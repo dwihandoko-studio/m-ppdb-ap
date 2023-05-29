@@ -5,7 +5,6 @@
     <div class="noise-bg" data-background="<?= base_url('themes') ?>/img/bg/noise_bg.png"></div>
     <div class="main-shape" data-background="<?= base_url('themes') ?>/img/images/main_shape.png"></div>
 
-    <!-- banner-area -->
     <section class="banner-area">
         <div class="container">
             <div class="row">
@@ -29,7 +28,62 @@
             </div>
         </div>
     </section>
-    <!-- banner-area-end -->
+    <section class="roadmap-area pt-140 pb-130">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-center mb-70">
+                        <h2 class="title title-animation">How it <span>works</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-9">
+                    <div class="roadmap-timeline-wrap">
+                        <div class="roadmap-line" data-background="<?= base_url('themes') ?>/img/brand/Line.svg"></div>
+                        <ul class="list-wrap">
+                            <li>
+                                <div class="roadmap-item">
+                                    <div class="roadmap-img wow fadeInLeft" data-wow-delay=".2s">
+                                        <img src="<?= base_url('themes') ?>/img/images/roadmap_img01.png" alt="">
+                                        <span class="number">01</span>
+                                    </div>
+                                    <div class="roadmap-content wow fadeInRight" data-wow-delay=".2s">
+                                        <h4 class="title">Selecting an AI tool</h4>
+                                        <p>Choose from a variety of AI tools to write social media ads, hero sections, blog posts...</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="roadmap-item">
+                                    <div class="roadmap-img wow fadeInRight" data-wow-delay=".2s">
+                                        <img src="<?= base_url('themes') ?>/img/images/roadmap_img02.png" alt="">
+                                        <span class="number">02</span>
+                                    </div>
+                                    <div class="roadmap-content wow fadeInLeft" data-wow-delay=".2s">
+                                        <h4 class="title">Write your keywords</h4>
+                                        <p>Explain to the AI ​​what you want to write. The more details, the better output.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="roadmap-item">
+                                    <div class="roadmap-img wow fadeInLeft" data-wow-delay=".2s">
+                                        <img src="<?= base_url('themes') ?>/img/images/roadmap_img03.png" alt="">
+                                        <span class="number">03</span>
+                                    </div>
+                                    <div class="roadmap-content wow fadeInRight" data-wow-delay=".2s">
+                                        <h4 class="title">Let's the AI do its magic</h4>
+                                        <p>Our highly trained AI understands your details and generate unique and human-like content in seconds.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- video-area -->
     <div class="video-area">
@@ -374,66 +428,6 @@
         </div>
     </section>
     <!-- use-cases-area-end -->
-
-    <!-- roadmap-area -->
-    <section class="roadmap-area pt-140 pb-130">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title text-center mb-70">
-                        <h2 class="title title-animation">How it <span>works</span></h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-9">
-                    <div class="roadmap-timeline-wrap">
-                        <div class="roadmap-line" data-background="<?= base_url('themes') ?>/img/brand/Line.svg"></div>
-                        <ul class="list-wrap">
-                            <li>
-                                <div class="roadmap-item">
-                                    <div class="roadmap-img wow fadeInLeft" data-wow-delay=".2s">
-                                        <img src="<?= base_url('themes') ?>/img/images/roadmap_img01.png" alt="">
-                                        <span class="number">01</span>
-                                    </div>
-                                    <div class="roadmap-content wow fadeInRight" data-wow-delay=".2s">
-                                        <h4 class="title">Selecting an AI tool</h4>
-                                        <p>Choose from a variety of AI tools to write social media ads, hero sections, blog posts...</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="roadmap-item">
-                                    <div class="roadmap-img wow fadeInRight" data-wow-delay=".2s">
-                                        <img src="<?= base_url('themes') ?>/img/images/roadmap_img02.png" alt="">
-                                        <span class="number">02</span>
-                                    </div>
-                                    <div class="roadmap-content wow fadeInLeft" data-wow-delay=".2s">
-                                        <h4 class="title">Write your keywords</h4>
-                                        <p>Explain to the AI ​​what you want to write. The more details, the better output.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="roadmap-item">
-                                    <div class="roadmap-img wow fadeInLeft" data-wow-delay=".2s">
-                                        <img src="<?= base_url('themes') ?>/img/images/roadmap_img03.png" alt="">
-                                        <span class="number">03</span>
-                                    </div>
-                                    <div class="roadmap-content wow fadeInRight" data-wow-delay=".2s">
-                                        <h4 class="title">Let's the AI do its magic</h4>
-                                        <p>Our highly trained AI understands your details and generate unique and human-like content in seconds.</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- roadmap-area-end -->
-
     <!-- pricing-area -->
     <section class="pricing-area pb-110">
         <div class="container">

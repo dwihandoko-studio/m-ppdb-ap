@@ -11,17 +11,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content ta-animated-headline">
-                        <h2 class="title ah-headline wow fadeInUp" data-wow-delay=".2s"><span>Whatever You want to ask- DEX.AI has the</span>
+                        <h2 class="title ah-headline wow fadeInUp" data-wow-delay=".2s"><span>Penerimaan Peserta Didik Baru</span>
                             <span class="ah-words-wrapper">
-                                <b class="is-visible">Answers</b>
-                                <b>Solutions</b>
+                                <b class="is-visible">Dinas Pendidikan Dan Kebudayaan</b>
+                                <b>Kabupaten Pesawaran</b>
+                                <b>Tahun Pelajaran 2023/2024</b>
                             </span>
                         </h2>
-                        <h2 class="title d-none wow fadeInUp" data-wow-delay=".2s">Whatever You want to ask- DEX.AI has the <span>Answers,</span> <span>Solutions</span></h2>
-                        <p class="wow fadeInUp" data-wow-delay=".4s">Artificial intelligence makes it fast & easy to create content for your blog, social media, website, and more! Rated 5/5 stars in 3,000+ reviews.</p>
+                        <h2 class="title d-none wow fadeInUp" data-wow-delay=".2s">Penerimaan Peserta Didik Baru <span>Dinas Pendidikan dan Kebudayaan</span> <span>Kabupaten Pesawaran</span> <span>Tahun Pelajaran 2023/2024</span></h2>
+                        <p class="wow fadeInUp" data-wow-delay=".4s">Webiste ini digunakan sebagai pusat informasi dan pengolahan seleksi data peserta didik Dinas Pendidikan dan Kebudayaan Kabupaten Pesawaran Tahun Pelajaran 2023/2024 secara online dan realtime.</p>
                         <div class="banner-btn">
-                            <a href="login.html" class="gradient-btn wow fadeInLeft" data-wow-delay=".6s">start a free trial</a>
-                            <a href="work.html" class="gradient-btn gradient-btn-two wow fadeInRight" data-wow-delay=".6s">how dex.ai work</a>
+                            <a href="<?= base_url('auth') ?>" class="gradient-btn wow fadeInLeft" data-wow-delay=".6s">Login</a>
+                            <a href="<?= base_url('auth/signup') ?>" class="gradient-btn gradient-btn-two wow fadeInRight" data-wow-delay=".6s">Daftar</a>
                         </div>
                     </div>
                 </div>

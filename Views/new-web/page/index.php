@@ -9,8 +9,8 @@
             <div class="mail-box">
                 <form action="#" method="post">
                     <div class="form-group">
-                        <input type="text" name="email" id="email" placeholder="Masukkan NISN/NIK" required="">
-                        <button type="submit">Cari Data S</button>
+                        <input type="email" name="email" id="email" placeholder="Masukkan NISN/NIK" required="">
+                        <button type="submit">Cari Data Siswa</button>
                     </div>
                 </form>
             </div>

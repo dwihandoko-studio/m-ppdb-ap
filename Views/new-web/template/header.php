@@ -316,7 +316,7 @@
                         </div>
                     </nav>
                     <div class="btn-box"><a href="#">Login</a></div>
-                    <div class="btn-box" style="margin-left: 10px;"><a href="#">Registrasi Akun</a></div>
+                    <div class="btn-box" style="margin-left: 10px; background: #feff59;"><a href="#">Registrasi Akun</a></div>
                 </div>
             </div>
         </div>

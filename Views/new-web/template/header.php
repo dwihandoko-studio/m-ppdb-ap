@@ -15,13 +15,8 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="#">Home</a>
-                                    <ul class="megamenu clearfix">
-                                        <li><a href="index.html">App Landing</a></li>
-                                        <li><a href="e-commerce.html">E-Commerce</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Pages</a>
+                                <li class="current"><a href="<?= base_url() ?>">Home</a></li>
+                                <li class="dropdown"><a href="#">Sekolah</a>
                                     <ul>
                                         <li class="dropdown"><a href="#">Team Page</a>
                                             <ul>
@@ -55,7 +50,7 @@
                                         <li><a href="error.html">Error Page</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Portfolio</a>
+                                <li class="dropdown"><a href="#">Jadwal</a>
                                     <ul>
                                         <li><a href="portfolio.html">Portfolio 01</a></li>
                                         <li><a href="portfolio-2.html">Portfolio 02</a></li>
@@ -63,7 +58,7 @@
                                         <li><a href="portfolio-details.html">Portfolio Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Element</a>
+                                <li class="dropdown"><a href="#">Regulasi</a>
                                     <ul>
                                         <li class="dropdown"><a href="#">Miscellaneous 01</a>
                                             <ul>
@@ -207,13 +202,6 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Latest News</a>
-                                    <ul>
-                                        <li><a href="blog.html">Latest News</a></li>
-                                        <li><a href="blog-details.html">News Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </div>
                     </nav>

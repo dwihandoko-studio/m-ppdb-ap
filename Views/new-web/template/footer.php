@@ -1,137 +1,79 @@
-<footer>
-    <div class="footer-area">
+<footer class="main-footer style-five">
+    <div class="anim-icons">
+        <div class="icon icon-1"><img src="<?= base_url('themes') ?>/images/icons/pattern-21.png" alt=""></div>
+    </div>
+    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/footer-bg-5.png);"></div>
+    <div class="footer-top">
         <div class="container">
-
-            <!-- brand-area -->
-            <div class="brand-area">
-                <div class="brand-wrap">
-                    <h6 class="title">Trusted by <span>10,000+ marketing</span> teams</h6>
-                    <div class="row brand-active">
-                        <div class="col">
-                            <div class="brand-item">
-                                <img src="assets/img/brand/brand_img01.png" alt="">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="brand-item">
-                                <img src="assets/img/brand/brand_img02.png" alt="">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="brand-item">
-                                <img src="assets/img/brand/brand_img03.png" alt="">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="brand-item">
-                                <img src="assets/img/brand/brand_img04.png" alt="">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="brand-item">
-                                <img src="assets/img/brand/brand_img05.png" alt="">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="brand-item">
-                                <img src="assets/img/brand/brand_img06.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- brand-area-end -->
-
-            <div class="footer-top">
+            <div class="widget-section">
                 <div class="row">
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-widget">
-                            <h4 class="fw-title">Use Case</h4>
-                            <div class="footer-link">
-                                <ul class="list-wrap">
-                                    <li><a href="contact.html">For teams</a></li>
-                                    <li><a href="contact.html">For blog writer</a></li>
-                                    <li><a href="contact.html">For social media</a></li>
-                                    <li><a href="contact.html">Report & Outage</a></li>
-                                    <li><a href="contact.html">Email Marketing</a></li>
+                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                        <div class="about-widget footer-widget">
+                            <figure class="footer-logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
+                            <div class="text">Lorem ipsum dolor sit consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">518 - 457 - 5182</a></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+                        <div class="links-widget footer-widget">
+                            <h4 class="widget-title">Services</h4>
+                            <div class="widget-content">
+                                <ul class="list clearfix">
+                                    <li><a href="#">Business Dashboards</a></li>
+                                    <li><a href="#">Sales Analytics</a></li>
+                                    <li><a href="#">Digital Marketing</a></li>
+                                    <li><a href="#">Financial Help</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-widget">
-                            <h4 class="fw-title">company</h4>
-                            <div class="footer-link">
-                                <ul class="list-wrap">
-                                    <li><a href="contact.html">Affiliate program</a></li>
-                                    <li><a href="login.html">Account</a></li>
-                                    <li><a href="contact.html">Invite a friend</a></li>
-                                    <li><a href="contact.html">Privacy policy</a></li>
-                                    <li><a href="contact.html">Terms of use</a></li>
+                    <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                        <div class="contact-widget footer-widget">
+                            <h4 class="widget-title">Contact Us</h4>
+                            <div class="widget-content">
+                                <ul class="contact-info clearfix">
+                                    <li><i class="fas fa-map-marker-alt"></i> 25 Bedford St. New York City.</li>
+                                    <li><i class="fas fa-phone"></i><a href="tel:0665184575181">(+066) 518 - 457 - 5181</a></li>
+                                    <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">info@example.com</a></li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-widget">
-                            <h4 class="fw-title">Product</h4>
-                            <div class="footer-link">
-                                <ul class="list-wrap">
-                                    <li><a href="index.html">DEX. AI</a></li>
-                                    <li><a href="work.html">Our work</a></li>
-                                    <li><a href="about.html">About us</a></li>
-                                    <li><a href="help.html">Support</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <div class="footer-widget">
-                            <h4 class="fw-title">Need help?</h4>
-                            <div class="footer-contact">
-                                <a href="tel:0123456789" class="phone">+(1) 123 656 7866</a>
-                                <a href="mailto:dex.aiinfotive@.com" class="email">dex.ai infotive@.com</a>
-                                <a href="mailto:dex.aiinfotive@.com" class="email">webdexai.com</a>
-                            </div>
-                            <div class="footer-social">
-                                <ul class="list-wrap">
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-widget">
-                            <div class="footer-newsletter">
-                                <h6 class="title">Join our AI experts community</h6>
-                                <p>Meet and learn from 70k+ creators & companies</p>
-                                <a href="contact.html" class="btn btn-two">join the community</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="row align-items-center">
-                    <div class="col-lg-8">
-                        <div class="copyright-text">
-                            <p>Copyright © 2023 DEX.AI All rights reserved.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="footer-menu">
-                            <ul class="list-wrap">
-                                <li><a href="contact.html">Terms & Conditions</a></li>
-                                <li><a href="contact.html">Refund Policy</a></li>
+                            <ul class="social-links clearfix">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                        <div class="links-widget footer-widget">
+                            <h4 class="widget-title">About Company</h4>
+                            <div class="widget-content">
+                                <ul class="list clearfix">
+                                    <li><a href="#">Appway Online</a></li>
+                                    <li><a href="#">Our Leadership</a></li>
+                                    <li><a href="#">Carrers</a></li>
+                                    <li><a href="#">What We Do</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="footer-bottom">
+        <div class="container clearfix">
+            <div class="copyright pull-left">&copy; 2020 <a href="#">appway</a>. All rights reserved</div>
+            <ul class="footer-nav pull-right">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Legal</a></li>
+            </ul>
+        </div>
+    </div>
 </footer>
+
+<button class="scroll-top scroll-to-target" data-target="html">
+    <span class="fa fa-arrow-up"></span>
+</button>

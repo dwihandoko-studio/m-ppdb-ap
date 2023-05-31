@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title><?= (isset($title)) ? $title . ' || ' : '' ?><?= getenv('web.meta.site.title') ? getenv('web.meta.site.title') : 'PPDB ONLINE' ?></title>
     <!-- Favicon -->
     <meta content="<?= getenv('web.meta.description') ? getenv('web.meta.description') : 'Mari Wujudkan Impian Kita' ?>" name="description" />
@@ -37,18 +38,16 @@
     <meta name="msapplication-TileImage" content="<?= base_url('favicons/ms-icon-144x144.png'); ?>">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/animate.min.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/magnific-popup.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/odometer.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/slick.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/select2.min.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/animatedheadline.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/aos.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/default.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/style.css">
-    <link rel="stylesheet" href="<?= base_url('themes') ?>/css/responsive.css">
+    <link href="<?= base_url('themes') ?>/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/font-awesome-all.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/flaticon.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/owl.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/animate.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/style.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>/css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 
     <script>
         const BASE_URL = '<?= base_url() ?>';
@@ -57,20 +56,8 @@
 
 </head>
 
-
-<body class="loading-proses">
-    <div id="preloader">
-        <div class="spinner">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-        </div>
-    </div>
-    <button class="scroll-top scroll-to-target" data-target="html">
-        <i class="fas fa-angle-up"></i>
-    </button>
+<body class="boxed_wrapper loading-proses">
+    <div class="preloader"></div>
 
     <?= $this->include('new-web/template/header') ?>
 
@@ -78,26 +65,24 @@
 
     <?= $this->include('new-web/template/footer') ?>
 
-    <script src="<?= base_url('themes') ?>/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="<?= base_url('themes') ?>/js/jquery.js"></script>
+    <script src="<?= base_url('themes') ?>/js/popper.min.js"></script>
     <script src="<?= base_url('themes') ?>/js/bootstrap.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/imagesloaded.pkgd.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/jquery.magnific-popup.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/jquery.odometer.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/jquery.appear.js"></script>
-    <script src="<?= base_url('themes') ?>/js/gsap.js"></script>
-    <script src="<?= base_url('themes') ?>/js/ScrollTrigger.js"></script>
-    <script src="<?= base_url('themes') ?>/js/ScrollToPlugin.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/SplitText.js"></script>
-    <script src="<?= base_url('themes') ?>/js/gsap-animation.js"></script>
-    <script src="<?= base_url('themes') ?>/js/select2.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/slick.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/animatedheadline.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/aos.js"></script>
-    <script src="<?= base_url('themes') ?>/js/ajax-form.js"></script>
-    <script src="<?= base_url('themes') ?>/js/wow.min.js"></script>
-    <script src="<?= base_url('themes') ?>/js/main.js"></script>
+    <script src="<?= base_url('themes') ?>/js/owl.js"></script>
+    <script src="<?= base_url('themes') ?>/js/wow.js"></script>
+    <script src="<?= base_url('themes') ?>/js/validation.js"></script>
+    <script src="<?= base_url('themes') ?>/js/jquery.fancybox.js"></script>
+    <script src="<?= base_url('themes') ?>/js/appear.js"></script>
+    <script src="<?= base_url('themes') ?>/js/circle-progress.js"></script>
+    <script src="<?= base_url('themes') ?>/js/jquery.countTo.js"></script>
+    <script src="<?= base_url('themes') ?>/js/scrollbar.js"></script>
+    <script src="<?= base_url('themes') ?>/js/jquery.paroller.min.js"></script>
+    <script src="<?= base_url('themes') ?>/js/tilt.jquery.js"></script>
+
     <script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     <?= $this->renderSection('scriptBottom'); ?>
+
+    <script src="<?= base_url('themes') ?>/js/script.js"></script>
 
 </body>
 

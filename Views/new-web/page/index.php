@@ -25,25 +25,25 @@
 
 <section class="domain-section">
     <div class="container">
-        <div class="inner-container">
-            <div class="sec-title center">
+        <div class="inner-container" style="margin-top: -75px;">
+            <!-- <div class="sec-title center">
                 <h2>Looking For Domain Name?</h2>
-            </div>
+            </div> -->
             <div class="search-form">
                 <form action="#" method="post">
                     <div class="form-group">
-                        <input type="text" name="domain_name" placeholder="Enter Your Domain Name" required="">
-                        <button type="submit">Search Now</button>
+                        <input type="text" name="_search" id="_search" placeholder="Masukkan NISN/NIK" required="">
+                        <button type="submit">Cari Data Siswa</button>
                     </div>
                 </form>
             </div>
-            <ul class="domain-name clearfix">
+            <!-- <ul class="domain-name clearfix">
                 <li><a href="#"><span>.com</span> $6.50</a></li>
                 <li><a href="#"><span>.sg</span> $10</a></li>
                 <li><a href="#"><span>.info</span> $11</a></li>
                 <li><a href="#"><span>.co</span> $9.50</a></li>
                 <li><a href="#"><span>.net</span> $7.50</a></li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </section>

@@ -1,7 +1,7 @@
 <?= $this->extend('new-web/template/index') ?>
 
 <?= $this->section('content') ?>
-<section class="banner-style-14 centred">
+<section class="banner-style-14 centred" style="padding-bottom: 0px;">
     <div class="container">
         <div class="content-box">
             <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Pesawaran Tahun Pelajaran 2023/2024</h2>

@@ -14,10 +14,71 @@
                     </div>
                 </form>
             </div>
-            <div class="image-box">
+            <!-- <div class="image-box">
                 <figure class="image-1 js-tilt"><img src="<?= base_url('themes') ?>/images/resource/illustration-26.png" alt=""></figure>
                 <figure class="image-2 float-bob-x"><img src="<?= base_url('themes') ?>/images/icons/cloud-1.png" alt=""></figure>
                 <figure class="image-3 float-bob-x"><img src="<?= base_url('themes') ?>/images/icons/cloud-2.png" alt=""></figure>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+<section class="transactions-work">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                <div id="content_block_39">
+                    <div class="content-box">
+                        <div class="sec-title">
+                            <h2>How Transactions Work</h2>
+                        </div>
+                        <h5>Crypto is the best crowdsale service!</h5>
+                        <div class="text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+                        </div>
+                        <div class="btn-box"><a href="#" class="theme-btn-two">Read More</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 inner-column">
+                <div id="content_block_40">
+                    <div class="inner-box">
+                        <div class="single-item wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms">
+                            <div class="count-box" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-9.png);">01</div>
+                            <div class="box">
+                                <div class="pattern-bg">
+                                    <div class="pattern-1" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-19.png);"></div>
+                                    <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-20.png);"></div>
+                                </div>
+                                <h4><a href="#">Bitcoin market</a></h4>
+                                <div class="text">Lorem ipsum dolor sit amet adipiscing elit donec tempus</div>
+                            </div>
+                        </div>
+                        <div class="single-item wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+                            <div class="count-box" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-10.png);">02</div>
+                            <div class="box">
+                                <div class="pattern-bg">
+                                    <div class="pattern-1" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-19.png);"></div>
+                                    <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-21.png);"></div>
+                                </div>
+                                <h4><a href="#">Buy crypto</a></h4>
+                                <div class="text">Lorem ipsum dolor sit amet adipiscing elit donec tempus</div>
+                            </div>
+                        </div>
+                        <div class="single-item wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
+                            <div class="count-box" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-11.png);">03</div>
+                            <div class="box">
+                                <div class="pattern-bg">
+                                    <div class="pattern-1" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-19.png);"></div>
+                                    <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-22.png);"></div>
+                                </div>
+                                <h4><a href="#">Earn money</a></h4>
+                                <div class="text">Lorem ipsum dolor sit amet adipiscing elit donec tempus</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -45,6 +45,7 @@
     <link href="<?= base_url('themes') ?>/css/bootstrap.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/jquery.fancybox.min.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/animate.css" rel="stylesheet">
+    <link href="<?= base_url('themes') ?>css/imagebg.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/style.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">

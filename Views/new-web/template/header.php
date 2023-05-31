@@ -315,7 +315,8 @@
                             </ul>
                         </div>
                     </nav>
-                    <div class="btn-box"><a href="#">Started Now</a></div>
+                    <div class="btn-box"><a href="#">Login</a></div>
+                    <div class="btn-box"><a href="#">Registrasi Akun</a></div>
                 </div>
             </div>
         </div>

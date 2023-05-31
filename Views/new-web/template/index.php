@@ -38,7 +38,7 @@
     <meta name="msapplication-TileImage" content="<?= base_url('favicons/ms-icon-144x144.png'); ?>">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="<?= base_url('themes') ?>/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/font-awesome-all.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/flaticon.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/owl.css" rel="stylesheet">

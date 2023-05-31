@@ -3,7 +3,7 @@
         <div class="container">
             <div class="main-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/logo-4.png" alt=""></a></figure>
+                    <figure class="logo"><a href="index.html"><img src="<?= base_url('uploads/logo.png') ?>" alt=""></a></figure>
                 </div>
                 <div class="menu-area pull-right clearfix">
                     <!--Mobile Navigation Toggler-->
@@ -19,23 +19,6 @@
                                     <ul class="megamenu clearfix">
                                         <li><a href="index.html">App Landing</a></li>
                                         <li><a href="e-commerce.html">E-Commerce</a></li>
-                                        <li><a href="seo.html">SEO</a></li>
-                                        <li><a href="account-billing.html">Account & Billing</a></li>
-                                        <li><a href="app-showcase.html">App Showcase</a></li>
-                                        <li><a href="hr-management.html">HR Management</a></li>
-                                        <li><a href="email-marketing.html">Email Marketing</a></li>
-                                        <li><a href="payment-processing.html">Payment Processing</a></li>
-                                        <li><a href="startup.html">Startup</a></li>
-                                        <li><a href="digital-marketing.html">Digital Marketing</a></li>
-                                        <li><a href="cloud-saas.html">Cloud Based Saas</a></li>
-                                        <li><a href="prototype-wireframing.html">Prototype & Wireframing</a></li>
-                                        <li><a href="crm-management.html">CRM Management</a></li>
-                                        <li><a href="project-management.html">Project Management</a></li>
-                                        <li><a href="digital-studio.html">Digital Studio</a></li>
-                                        <li><a href="crypto.html">Crypto</a></li>
-                                        <li><a href="ride-sharing.html">Ride Sharing</a></li>
-                                        <li><a href="web-hosting.html">Web Hosting</a></li>
-                                        <li><a href="home-charity.html">Home Charity</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Pages</a>

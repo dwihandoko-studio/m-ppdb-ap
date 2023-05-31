@@ -4,7 +4,7 @@
 <section class="banner-style-14 centred">
     <div class="container">
         <div class="content-box">
-            <h2>Penerimaan Peserta Didik Baru<br>Dinas Pendidikan dan Kebudayaan<br>Kabupaten Pesawaran<br>Tahun Pelajaran 2023/2024</h2>
+            <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Pesawaran Tahun Pelajaran 2023/2024</h2>
             <div class="text">Website ini dipersiapkan sebagai pusat informasi dan pengolahan data seleksi penerimaan peserta didik baru Dinas Pendidikan Kabupaten Pesawaran Tahun Pelajaran 2023/2024 secara online dan realtime.</div>
             <div class="mail-box">
                 <form action="#" method="post">

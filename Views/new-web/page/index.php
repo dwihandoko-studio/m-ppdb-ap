@@ -238,7 +238,7 @@
 </section>
 
 <section class="userfree-section centred">
-    <div class="pattern-bg" style="background-image: url(images/icons/pattern-20.png);"></div>
+    <div class="pattern-bg" style="background-image: url(<?= base_url('themes') ?>/images/icons/pattern-20.png);"></div>
     <div class="container">
         <div class="content-box">
             <div class="text">View, Organize and Prioritize All of your Team’s Projects</div>
@@ -395,7 +395,7 @@
 </section>
 
 <section class="subscribe-style-three">
-    <div class="pattern-bg wow slideInUp" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url(images/icons/map-shap-4.png);"></div>
+    <div class="pattern-bg wow slideInUp" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url(<?= base_url('themes') ?>/images/icons/map-shap-4.png);"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 inner-column">

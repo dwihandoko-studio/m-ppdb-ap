@@ -61,7 +61,6 @@
                                     </ul>
                                 </li>
                                 <li><a href="<?= base_url('web/jadwal') ?>">Jadwal</a></li>
-                                <li><a href="<?= base_url('web/regulasi') ?>">Regulasi</a></li>
                                 <li><a href="<?= base_url('web/statistik') ?>">Statistik</a></li>
                                 <li><a href="<?= base_url('web/pengumuman') ?>">Pengumuman</a></li>
                             </ul>

@@ -1,11 +1,12 @@
-<header class="main-header home-16">
+<header class="main-header style-two">
     <div class="outer-container">
         <div class="container">
             <div class="main-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/logo-4.png" alt=""></a></figure>
+                    <figure class="logo"><a href="index.html"><img src="<?= base_url('uploads/logo.png') ?>" alt=""></a></figure>
                 </div>
                 <div class="menu-area pull-right clearfix">
+                    <!--Mobile Navigation Toggler-->
                     <div class="mobile-nav-toggler">
                         <i class="icon-bar"></i>
                         <i class="icon-bar"></i>
@@ -315,28 +316,35 @@
                             </ul>
                         </div>
                     </nav>
-                    <div class="btn-box"><a href="#">Started Now</a></div>
+                    <div class="btn-box"><a href="#">Login</a></div>
+                    <div class="btn-box" style="margin-left: 10px;"><a href="#" style="background: #feff59;">Registrasi Akun</a></div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="sticky-header">
         <div class="container clearfix">
             <figure class="logo-box"><a href="index.html"><img src="<?= base_url('themes') ?>/images/small-logo.png" alt=""></a></figure>
             <div class="menu-area">
                 <nav class="main-menu clearfix">
+                    <!--Keep This Empty / Menu will come through Javascript-->
                 </nav>
             </div>
         </div>
     </div>
 </header>
+
+<!-- Mobile Menu  -->
 <div class="mobile-menu">
     <div class="menu-backdrop"></div>
     <div class="close-btn"><i class="fas fa-times"></i></div>
 
     <nav class="menu-box">
-        <div class="nav-logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/logo.png" alt="" title=""></a></div>
-        <div class="menu-outer"></div>
+        <div class="nav-logo"><a href="index.html"><img src="<?= base_url('uploads/logo.png') ?>" alt="" title=""></a></div>
+        <div class="menu-outer">
+            <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+        </div>
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
@@ -356,3 +364,4 @@
         </div>
     </nav>
 </div>
+<!-- End Mobile Menu -->

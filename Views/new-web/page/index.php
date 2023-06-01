@@ -187,15 +187,10 @@
                 <div id="content_block_16">
                     <div class="content-box wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                         <div class="sec-title">
-                            <h2>Get The App Now!</h2>
+                            <h2>Dapatkan Aplikasinya Sekarang Juga!</h2>
                         </div>
-                        <div class="text">Have you ever heard the expression,<br>“Do not count your chickens before they hatch?” Maybe an older, wiser individual</div>
+                        <div class="text">Tersedia di platform android,<br>Silahkan download aplikasi di playStore pada link berikut:</div>
                         <div class="download-btn">
-                            <a href="#" class="app-store-btn">
-                                <i class="fab fa-apple"></i>
-                                <span>Download on the</span>
-                                App Store
-                            </a>
                             <a href="#" class="google-play-btn">
                                 <i class="fab fa-android"></i>
                                 <span>Get on it</span>

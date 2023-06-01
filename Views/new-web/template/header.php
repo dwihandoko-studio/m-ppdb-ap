@@ -20,7 +20,7 @@
                                     <ul>
                                         <li class="dropdown"><a href="#">SD</a>
                                             <ul class="megamenu clearfix">
-                                                <h5 style="padding-left: 10px; font-size: 16px;">Zona 1</h5>
+                                                <h5 style="padding-left: 10px; font-size: 16px;">Kec. Gedung Tataan</h5>
                                                 <li><a href="team.html">Team 01</a></li>
                                                 <li><a href="team-2.html">Team 02</a></li>
                                                 <li><a href="team-3.html">Team 03</a></li>

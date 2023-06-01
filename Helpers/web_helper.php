@@ -483,19 +483,19 @@ function zonasiDetailWeb($npsn)
 {
 	$db      = \Config\Database::connect();
 	$data = $db->table('v_tb_sekolah_zonasi a')
-	            ->select("a.nama_provinsi, a.nama_kecamatan, a.nama_kabupaten, b.nama as nama_kelurahan")
-	            ->join('ref_kelurahan b', 'a.kelurahan_id = b.id')
-	            ->where('npsn', $npsn)
-	            ->orderBy('a.nama_kabupaten', 'asc')
-	            ->orderBy('a.nama_kecamatan', 'asc')
-	            ->orderBy('b.nama', 'asc')
-	            ->get()->getResult();
+		->select("a.nama_provinsi, a.nama_kecamatan, a.nama_kabupaten, b.nama as nama_kelurahan")
+		->join('ref_kelurahan b', 'a.kelurahan_id = b.id')
+		->where('npsn', $npsn)
+		->orderBy('a.nama_kabupaten', 'asc')
+		->orderBy('a.nama_kecamatan', 'asc')
+		->orderBy('b.nama', 'asc')
+		->get()->getResult();
 
 	if (count($data) > 0) {
-	   // $zonasi = "";
-	   // foreach ($data as $key => $value) {
-	   //     $zonasi .= $value->nama_dusun . ", " . $value->nama_kelurahan . " - " . $value->nama_kecamatan . " (" . $value->nama_kabupaten . ")<br>";  
-	   // }
+		// $zonasi = "";
+		// foreach ($data as $key => $value) {
+		//     $zonasi .= $value->nama_dusun . ", " . $value->nama_kelurahan . " - " . $value->nama_kecamatan . " (" . $value->nama_kabupaten . ")<br>";  
+		// }
 		return $data;
 	} else {
 		return [];
@@ -530,26 +530,25 @@ function alreadyOnPelimpahan($peserta_didik_id)
 
 function statusVerifikasiZonasiSekolah($sekolah_id)
 {
-    // SELECT COUNT(*) as total FROM _tb_pendaftar WHERE peserta_didik_id = ? AND via_jalur = 'PELIMPAHAN'
+	// SELECT COUNT(*) as total FROM _tb_pendaftar WHERE peserta_didik_id = ? AND via_jalur = 'PELIMPAHAN'
 	$db      = \Config\Database::connect();
 	$data = $db->table('_setting_zonasi_tb')
-	            ->select("COUNT(*) as total")
-	           // ->join('ref_kelurahan b', 'a.kelurahan_id = b.id')
-	           // ->join('ref_dusun c', 'a.dusun_id = c.id')
-	            ->where(['sekolah_id' => $sekolah_id, 'is_locked' => 1])
-	           // ->orderBy('a.nama_kabupaten', 'asc')
-	           // ->orderBy('a.nama_kecamatan', 'asc')
-	           // ->orderBy('b.nama', 'asc')
-	           // ->orderBy('c.urut', 'asc')
-	            ->get()->getRowObject();
+		->select("COUNT(*) as total")
+		// ->join('ref_kelurahan b', 'a.kelurahan_id = b.id')
+		// ->join('ref_dusun c', 'a.dusun_id = c.id')
+		->where(['sekolah_id' => $sekolah_id, 'is_locked' => 1])
+		// ->orderBy('a.nama_kabupaten', 'asc')
+		// ->orderBy('a.nama_kecamatan', 'asc')
+		// ->orderBy('b.nama', 'asc')
+		// ->orderBy('c.urut', 'asc')
+		->get()->getRowObject();
 
 	if ($data) {
-	    if($data->total > 0) {
-	        return '<span class="badge badge-success">Verified</span>';
-	    } else {
-	        return '<span class="badge badge-danger">Belum</span>';
-	    }
-	    
+		if ($data->total > 0) {
+			return '<span class="badge badge-success">Verified</span>';
+		} else {
+			return '<span class="badge badge-danger">Belum</span>';
+		}
 	} else {
 		return '<span class="badge badge-danger">Belum</span>';
 	}

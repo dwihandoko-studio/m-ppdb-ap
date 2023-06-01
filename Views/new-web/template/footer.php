@@ -7,7 +7,7 @@
         <div class="container">
             <div class="widget-section">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                    <div class="col-lg-6 col-md-6 col-sm-12 footer-column">
                         <div class="about-widget footer-widget">
                             <figure class="footer-logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
                             <div class="text">Layanan Kegiatan Penerimaan Peserta Didik Baru Dalam Jaringan Tahun Ajaran 2023/2024 Kabupaten Pesawaran.</div>
@@ -15,7 +15,7 @@
                             <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SD(+62) 821-1183-7685</a></h2>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+                    <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                         <div class="links-widget footer-widget">
                             <h4 class="widget-title">Halaman</h4>
                             <div class="widget-content">

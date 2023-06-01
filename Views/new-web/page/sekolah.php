@@ -1,6 +1,7 @@
 <?= $this->extend('new-web/template/index') ?>
 
 <?= $this->section('content') ?>
+<?= $this->include('new-web/template/header1') ?>
 <section class="service-style-four elements sec-pad-two service-layout-5">
     <div class="container">
         <div class="inner-content">

@@ -1,6 +1,7 @@
 <?= $this->extend('new-web/template/index') ?>
 
 <?= $this->section('content') ?>
+<?= $this->include('new-web/template/header') ?>
 <section class="banner-style-14 centred" style="padding-bottom: 0px;">
     <div class="container">
         <div class="content-box">

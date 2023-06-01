@@ -59,9 +59,6 @@
 
 <body class="boxed_wrapper loading-proses">
     <div class="preloader"></div>
-
-    <?= $this->include('new-web/template/header') ?>
-
     <?= $this->renderSection('content'); ?>
 
     <?= $this->include('new-web/template/footer') ?>

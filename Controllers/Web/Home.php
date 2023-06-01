@@ -322,6 +322,34 @@ class Home extends BaseController
         return view('new-web/page/index', $data);
     }
 
+    public function indexold()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        // var_dump($user);
+        // die;
+        if ($user->code == 200) {
+            $data['user'] = $user->data;
+        }
+
+        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
+        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+
+        $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
+
+        $data['jadwal'] = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+
+        $totalZonasi = $this->_db->table('_setting_kuota_tb')->select("sum(zonasi) as zonasi, sum(afirmasi) as afirmasi, sum(mutasi) as mutasi, sum(prestasi) as prestasi, (select count(*) from _tb_pendaftar where _tb_pendaftar.via_jalur = 'ZONASI') AS pendaftar_zonasi_terverifikasi,(select count(0) from _tb_pendaftar_temp where _tb_pendaftar_temp.via_jalur = 'ZONASI') AS pendaftar_zonasi_antrian,(select count(0) from _tb_pendaftar where _tb_pendaftar.via_jalur = 'AFIRMASI') AS pendaftar_afirmasi_terverifikasi,(select count(0) from _tb_pendaftar_temp where _tb_pendaftar_temp.via_jalur = 'AFIRMASI') AS pendaftar_afirmasi_antrian,(select count(0) from _tb_pendaftar where _tb_pendaftar.via_jalur = 'MUTASI') AS pendaftar_mutasi_terverifikasi,(select count(0) from _tb_pendaftar_temp where _tb_pendaftar_temp.via_jalur = 'MUTASI') AS pendaftar_mutasi_antrian,(select count(0) from _tb_pendaftar where _tb_pendaftar.via_jalur = 'PRESTASI') AS pendaftar_prestasi_terverifikasi,(select count(0) from _tb_pendaftar_temp where _tb_pendaftar_temp.via_jalur = 'PRESTASI') AS pendaftar_prestasi_antrian,(select count(0) from _tb_pendaftar where _tb_pendaftar.via_jalur = 'SWASTA') AS pendaftar_swasta_terverifikasi,(select count(0) from _tb_pendaftar_temp where _tb_pendaftar_temp.via_jalur = 'SWASTA') AS pendaftar_swasta_antrian")->limit(1)->get()->getRowObject();
+
+        $data['jumlah_kuota'] = $totalZonasi;
+
+        // $data['jumlah_kuota'] = $this->_db->table('v_jumlah_kuota')
+        //     ->select("SUM(zonasi) as zonasi, SUM(afirmasi) as afirmasi, SUM(prestasi) as prestasi, SUM(mutasi) as mutasi, SUM(pendaftar_zonasi_terverifikasi) as pendaftar_zonasi_terverifikasi, SUM(pendaftar_zonasi_antrian) as pendaftar_zonasi_antrian, SUM(pendaftar_afirmasi_terverifikasi) as pendaftar_afirmasi_terverifikasi, SUM(pendaftar_afirmasi_antrian) as pendaftar_afirmasi_antrian, SUM(pendaftar_mutasi_terverifikasi) as pendaftar_mutasi_terverifikasi, SUM(pendaftar_mutasi_antrian) as pendaftar_mutasi_antrian, SUM(pendaftar_prestasi_terverifikasi) as pendaftar_prestasi_terverifikasi, SUM(pendaftar_prestasi_antrian) as pendaftar_prestasi_antrian, SUM(pendaftar_swasta_terverifikasi) as pendaftar_swasta_terverifikasi, SUM(pendaftar_swasta_antrian) as pendaftar_swasta_antrian")
+        //     ->get()->getRowObject();
+
+        return view('web/page/index', $data);
+    }
+
     public function register()
     {
         $Profilelib = new Profilelib();

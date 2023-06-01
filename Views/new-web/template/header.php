@@ -19,7 +19,7 @@
                                 <li class="dropdown"><a href="#">Sekolah</a>
                                     <ul>
                                         <li class="dropdown"><a href="#">SD</a>
-                                            <ul class="megamenu clearfix">
+                                            <ul>
                                                 <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=5' ?>">Kec. Padang Cermin</a></li>
                                                 <li><a href="<?= base_url('web/sekolah/kec') . '?id=120902&j=5' ?>">Kec. Punduh Pedada</a></li>
                                                 <li><a href="<?= base_url('web/sekolah/kec') . '?id=120903&j=5' ?>">Kec. Kedondong</a></li>
@@ -34,7 +34,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a href="#">SMP</a>
-                                            <ul class="megamenu clearfix">
+                                            <ul>
                                                 <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=6' ?>">Kec. Padang Cermin</a></li>
                                                 <li><a href="<?= base_url('web/sekolah/kec') . '?id=120902&j=6' ?>">Kec. Punduh Pedada</a></li>
                                                 <li><a href="<?= base_url('web/sekolah/kec') . '?id=120903&j=6' ?>">Kec. Kedondong</a></li>

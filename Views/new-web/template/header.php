@@ -16,7 +16,6 @@
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li class="current"><a href="<?= base_url() ?>">Home</a></li>
-                                <li><a href="<?= base_url('web/sekolah') ?>">Sekolah</a></li>
                                 <li class="dropdown"><a href="#">Sekolah</a>
                                     <ul>
                                         <li class="dropdown"><a href="#">ZONA 1</a>

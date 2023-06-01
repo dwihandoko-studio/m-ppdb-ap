@@ -55,7 +55,7 @@
                 <div id="content_block_39">
                     <div class="content-box">
                         <div class="sec-title">
-                            <h2>How Transactions Work</h2>
+                            <h2>CARA DAFTAR</h2>
                         </div>
                         <h5>Crypto is the best crowdsale service!</h5>
                         <div class="text">
@@ -76,8 +76,8 @@
                                     <div class="pattern-1" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-19.png);"></div>
                                     <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-20.png);"></div>
                                 </div>
-                                <h4><a href="#">Bitcoin market</a></h4>
-                                <div class="text">Lorem ipsum dolor sit amet adipiscing elit donec tempus</div>
+                                <h4><a href="#">Klik Registrasi Akun</a></h4>
+                                <div class="text">Klik button “Registrasi Akun” apabila belum pernah bersekolah atau sekolah di Luar Lingkup Dinas Pendidikan dan Kebudayaan Kab. Pesawaran.</div>
                             </div>
                         </div>
                         <div class="single-item wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
@@ -87,8 +87,8 @@
                                     <div class="pattern-1" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-19.png);"></div>
                                     <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-21.png);"></div>
                                 </div>
-                                <h4><a href="#">Buy crypto</a></h4>
-                                <div class="text">Lorem ipsum dolor sit amet adipiscing elit donec tempus</div>
+                                <h4><a href="#">Login ke dashboard siswa</a></h4>
+                                <div class="text">Login dengan username (NISN/NIK) dan password yang telah diberikan saat kamu berhasil melakukan pendaftaran.</div>
                             </div>
                         </div>
                         <div class="single-item wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
@@ -98,8 +98,8 @@
                                     <div class="pattern-1" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-19.png);"></div>
                                     <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-22.png);"></div>
                                 </div>
-                                <h4><a href="#">Earn money</a></h4>
-                                <div class="text">Lorem ipsum dolor sit amet adipiscing elit donec tempus</div>
+                                <h4><a href="#">Lengkapi Pemutakhiran data</a></h4>
+                                <div class="text">Kamu akan diarahkan kehalaman dashboard kemudian cari button “Lihat Data Pribadi” untuk melengkapi formulir pemuktakhiran data.</div>
                             </div>
                         </div>
                     </div>

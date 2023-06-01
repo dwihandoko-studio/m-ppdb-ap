@@ -1,17 +1,31 @@
-<footer class="main-footer style-five">
+<footer class="main-footer style-five style-six">
     <div class="anim-icons">
         <div class="icon icon-1"><img src="<?= base_url('themes') ?>/images/icons/pattern-21.png" alt=""></div>
     </div>
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/footer-bg-5.png);"></div>
-    <div class="footer-top">
-        <div class="container">
+    <div class="container">
+        <div class="footer-top">
             <div class="widget-section">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                         <div class="about-widget footer-widget">
                             <figure class="footer-logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
-                            <div class="text">Lorem ipsum dolor sit consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
-                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">518 - 457 - 5182</a></h2>
+                            <div class="text">Lorem ipsum dolor sit consectetur adipisicing elit, sed do eiusmod tempor .........</div>
+                            <div class="apps-download">
+                                <h3>Download the App</h3>
+                                <div class="download-btn">
+                                    <a href="#" class="app-store-btn">
+                                        <i class="fab fa-apple"></i>
+                                        <span>Download on the</span>
+                                        App Store
+                                    </a>
+                                    <a href="#" class="google-play-btn">
+                                        <i class="fab fa-android"></i>
+                                        <span>Get on it</span>
+                                        Google Play
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
@@ -61,10 +75,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="container clearfix">
-            <div class="copyright pull-left">&copy; 2020 <a href="#">appway</a>. All rights reserved</div>
+        <div class="footer-bottom clearfix">
             <ul class="footer-nav pull-right">
                 <li><a href="#">Terms of Service</a></li>
                 <li><a href="#">Privacy Policy</a></li>
@@ -72,6 +83,7 @@
             </ul>
         </div>
     </div>
+    <div class="copyright">&copy; 2023 PPDB Online - All rights reserved. Version 2.0. Powered By: <a href="https://kntecline.id">KNTechline</a></div>
 </footer>
 
 <button class="scroll-top scroll-to-target" data-target="html">

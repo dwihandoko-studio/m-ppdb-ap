@@ -16,13 +16,15 @@
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
                         <div class="links-widget footer-widget">
-                            <h4 class="widget-title">Services</h4>
+                            <h4 class="widget-title">Halaman</h4>
                             <div class="widget-content">
                                 <ul class="list clearfix">
-                                    <li><a href="#">Business Dashboards</a></li>
-                                    <li><a href="#">Sales Analytics</a></li>
-                                    <li><a href="#">Digital Marketing</a></li>
-                                    <li><a href="#">Financial Help</a></li>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Sekolah</a></li>
+                                    <li><a href="#">Jadwal</a></li>
+                                    <li><a href="#">Regulasi</a></li>
+                                    <li><a href="#">Statistik</a></li>
+                                    <li><a href="#">Pengumuman</a></li>
                                 </ul>
                             </div>
                         </div>

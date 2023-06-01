@@ -179,7 +179,7 @@
                     <div class="sec-title center">
                         <h2>Dapatkan Berbagai Informasi Mengenai PPDB Tahun 2023<br>Kabupaten Pesawaran</h2>
                     </div>
-                    <div class="text"><a href="#" style="position: relative; display: inline-block; overflow: hidden; font-size: 14px; color: #4527a4; line-height: 30px; background: #fff; padding: 5px 30px; text-align: center; border-radius: 30px; z-index: 1; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);">Lihat Informasi PPDB 2023</a></div>
+                    <div class="text"><a href="#" style="position: relative; display: inline-block; overflow: hidden; font-size: 16px; color: #fff; line-height: 30px; background: #4527a4; padding: 15px 47px; text-align: center; border-radius: 30px; z-index: 1; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);">Lihat Informasi PPDB 2023</a></div>
                 </div>
             </div>
         </div>

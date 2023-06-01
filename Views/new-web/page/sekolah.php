@@ -2,8 +2,8 @@
 
 <?= $this->section('content') ?>
 <?= $this->include('new-web/template/header') ?>
-<section class="service-style-four elements sec-pad-two service-layout-5" style="margin-top: 100px;">
-    <div class="container">
+<section class="service-style-four elements sec-pad-two service-layout-5">
+    <div class="container" style="margin-top: 100px;">
         <div class="inner-content">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 service-block">

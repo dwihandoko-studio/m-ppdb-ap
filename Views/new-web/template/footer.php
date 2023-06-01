@@ -11,7 +11,8 @@
                         <div class="about-widget footer-widget">
                             <figure class="footer-logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
                             <div class="text">Layanan Kegiatan Penerimaan Peserta Didik Baru Dalam Jaringan Tahun Ajaran 2023/2024 Kabupaten Pesawaran.</div>
-                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">518 - 457 - 5182</a></h2>
+                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SMP(+62) 821-1183-7685</a></h2>
+                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SD(+62) 821-1183-7685</a></h2>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
@@ -31,12 +32,12 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                         <div class="contact-widget footer-widget">
-                            <h4 class="widget-title">Contact Us</h4>
+                            <h4 class="widget-title">Hubungi Kami</h4>
                             <div class="widget-content">
                                 <ul class="contact-info clearfix">
-                                    <li><i class="fas fa-map-marker-alt"></i> 25 Bedford St. New York City.</li>
-                                    <li><i class="fas fa-phone"></i><a href="tel:0665184575181">(+066) 518 - 457 - 5181</a></li>
-                                    <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">info@example.com</a></li>
+                                    <li><i class="fas fa-map-marker-alt"></i> Komplek Pemerintah, Jl. Kedondong - Gedung Tataan.</li>
+                                    <!-- <li><i class="fas fa-phone"></i><a href="tel:0665184575181">(+066) 518 - 457 - 5181</a></li> -->
+                                    <!-- <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">info@example.com</a></li> -->
                                 </ul>
                             </div>
                             <ul class="social-links clearfix">
@@ -47,7 +48,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                         <div class="links-widget footer-widget">
                             <h4 class="widget-title">About Company</h4>
                             <div class="widget-content">
@@ -59,7 +60,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

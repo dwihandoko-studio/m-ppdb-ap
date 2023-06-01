@@ -79,8 +79,6 @@
             <div class="menu-area">
                 <nav class="main-menu clearfix">
                     <!--Keep This Empty / Menu will come through Javascript-->
-                    <div class="btn-box"><a href="#" style="padding: 10px 18px;">Login</a></div>
-                    <div class="btn-box" style="margin-left: 10px;"><a href="#" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div>
                 </nav>
             </div>
         </div>

@@ -10,7 +10,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                         <div class="about-widget footer-widget">
                             <figure class="footer-logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
-                            <div class="text">Lorem ipsum dolor sit consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                            <div class="text">Layanan Kegiatan Penerimaan Peserta Didik Baru Dalam Jaringan Tahun Ajaran 2023/2024 Kabupaten Pesawaran.</div>
                             <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">518 - 457 - 5182</a></h2>
                         </div>
                     </div>

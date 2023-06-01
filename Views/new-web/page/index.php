@@ -142,10 +142,10 @@
                 <div id="content_block_45">
                     <div class="content-box">
                         <div class="sec-title">
-                            <h2>Managed Wordpress Hosting on all plans</h2>
+                            <h2>Ayo Daftar PPDB Sekarang Juga!!</h2>
                         </div>
-                        <div class="text">Spiffing pukka show off show off pick your nose and blow off easy peasy buggered hotpot Harry, pardon me blatant.!</div>
-                        <div class="btn-box"><a href="#">Product Docs</a></div>
+                        <div class="text">Kamu bisa mengikuti prosedur yang telah dijelaskan di atas dan mengikuti langkah dibawah ini.</div>
+                        <div class="btn-box"><a href="#">Daftar PPDB Sekarang</a></div>
                     </div>
                 </div>
             </div>

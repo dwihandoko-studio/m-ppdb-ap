@@ -129,6 +129,30 @@
     </div>
 </section>
 
+<section class="managed-wordpress">
+    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/layer-image-5.png);"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 col-sm-12 image-column wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                <div id="image_block_42">
+                    <figure class="image-box js-tilt"><img src="<?= base_url('themes') ?>/images/resource/vactor-image-10.png" alt=""></figure>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 content-column">
+                <div id="content_block_45">
+                    <div class="content-box">
+                        <div class="sec-title">
+                            <h2>Managed Wordpress Hosting on all plans</h2>
+                        </div>
+                        <div class="text">Spiffing pukka show off show off pick your nose and blow off easy peasy buggered hotpot Harry, pardon me blatant.!</div>
+                        <div class="btn-box"><a href="#">Product Docs</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="awesome-features">
     <div class="container-fluid">
         <div class="sec-title center">

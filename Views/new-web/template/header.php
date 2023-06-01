@@ -18,21 +18,25 @@
                                 <li class="current"><a href="<?= base_url() ?>">Home</a></li>
                                 <li class="dropdown"><a href="#">Sekolah</a>
                                     <ul>
-                                        <li class="dropdown"><a href="#">ZONA 1</a>
+                                        <li class="dropdown"><a href="#">SD</a>
                                             <ul>
-                                                <li><a href="optimization-application.html">Optimization Application</a></li>
-                                                <li><a href="device-friendly.html">Device Friendly</a></li>
-                                                <li><a href="software-product.html">Software Product</a></li>
-                                                <li><a href="betterlook-layout.html">Betterlook Layout</a></li>
-                                                <li><a href="whereyou-layout.html">Whereyou Layout</a></li>
-                                                <li><a href="popular-causes.html">Popular Causes</a></li>
-                                                <li><a href="wework-layout.html">We work Layout</a></li>
-                                                <li><a href="campaing-layout.html">Campaing Layout</a></li>
-                                                <li><a href="donate-layout.html">Donate Layout</a></li>
-                                                <li><a href="make-difference.html">Make Difference</a></li>
+                                                <li class="dropdown"><a href="#">ZONA 1</a>
+                                                    <ul>
+                                                        <li><a href="optimization-application.html">Optimization Application</a></li>
+                                                        <li><a href="device-friendly.html">Device Friendly</a></li>
+                                                        <li><a href="software-product.html">Software Product</a></li>
+                                                        <li><a href="betterlook-layout.html">Betterlook Layout</a></li>
+                                                        <li><a href="whereyou-layout.html">Whereyou Layout</a></li>
+                                                        <li><a href="popular-causes.html">Popular Causes</a></li>
+                                                        <li><a href="wework-layout.html">We work Layout</a></li>
+                                                        <li><a href="campaing-layout.html">Campaing Layout</a></li>
+                                                        <li><a href="donate-layout.html">Donate Layout</a></li>
+                                                        <li><a href="make-difference.html">Make Difference</a></li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown"><a href="#">ZONA 2</a>
+                                        <li class="dropdown"><a href="#">SMP</a>
                                             <ul>
                                                 <li><a href="solve-problem.html">Solve Problem</a></li>
                                                 <li><a href="marketing-benefits.html">Marketing Benefits</a></li>

@@ -20,34 +20,32 @@
                                     <ul>
                                         <li class="dropdown"><a href="#">SD</a>
                                             <ul class="megamenu clearfix">
-                                                <h5 style="padding-left: 10px; font-size: 16px;">Kec. Gedung Tataan</h5>
-                                                <li><a href="team.html">Team 01</a></li>
-                                                <li><a href="team-2.html">Team 02</a></li>
-                                                <li><a href="team-3.html">Team 03</a></li>
-                                                <h5 style="padding-left: 10px; font-size: 16px;">Zona 2</h5>
-                                                <li><a href="team.html">Team 01</a></li>
-                                                <li><a href="team-2.html">Team 02</a></li>
-                                                <li><a href="team-3.html">Team 03</a></li>
-                                                <h5 style="padding-left: 10px; font-size: 16px;">Zona 3</h5>
-                                                <li><a href="team.html">Team 01</a></li>
-                                                <li><a href="team-2.html">Team 02</a></li>
-                                                <li><a href="team-3.html">Team 03</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=5' ?>">Kec. Padang Cermin</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120902&j=5' ?>">Kec. Punduh Pedada</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120903&j=5' ?>">Kec. Kedondong</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120904&j=5' ?>">Kec. Way Lima</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120905&j=5' ?>">Kec. Gedung Tataan</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120906&j=5' ?>">Kec. Negeri Katon</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120907&j=5' ?>">Kec. Tegineneng</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120908&j=5' ?>">Kec. Marga Punduh</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120909&j=5' ?>">Kec. Way Khilau</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=5' ?>">Kec. Teluk Pandan</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=5' ?>">Kec. Way Ratai</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a href="#">SMP</a>
                                             <ul class="megamenu clearfix">
-                                                <h5 style="padding-left: 10px; font-size: 16px;">Zona 1</h5>
-                                                <li><a href="team.html">Team 01</a></li>
-                                                <li><a href="team-2.html">Team 02</a></li>
-                                                <li><a href="team-3.html">Team 03</a></li>
-                                                <h5 style="padding-left: 10px; font-size: 16px;">Zona 2</h5>
-                                                <li><a href="team.html">Team 01</a></li>
-                                                <li><a href="team-2.html">Team 02</a></li>
-                                                <li><a href="team-3.html">Team 03</a></li>
-                                                <h5 style="padding-left: 10px; font-size: 16px;">Zona 3</h5>
-                                                <li><a href="team.html">Team 01</a></li>
-                                                <li><a href="team-2.html">Team 02</a></li>
-                                                <li><a href="team-3.html">Team 03</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=6' ?>">Kec. Padang Cermin</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120902&j=6' ?>">Kec. Punduh Pedada</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120903&j=6' ?>">Kec. Kedondong</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120904&j=6' ?>">Kec. Way Lima</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120905&j=6' ?>">Kec. Gedung Tataan</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120906&j=6' ?>">Kec. Negeri Katon</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120907&j=6' ?>">Kec. Tegineneng</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120908&j=6' ?>">Kec. Marga Punduh</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120909&j=6' ?>">Kec. Way Khilau</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=6' ?>">Kec. Teluk Pandan</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120901&j=6' ?>">Kec. Way Ratai</a></li>
                                             </ul>
                                         </li>
                                     </ul>

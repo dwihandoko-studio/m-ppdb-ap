@@ -67,7 +67,7 @@
                         </div>
                     </nav>
                     <div class="btn-box"><a href="#" style="padding: 10px 18px;">Login</a></div>
-                    <div class="btn-box" style="margin-left: 10px; padding: 10px 18px;"><a href="#" style="background: #feff59;">Registrasi Akun</a></div>
+                    <div class="btn-box" style="margin-left: 10px;"><a href="#" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div>
                 </div>
             </div>
         </div>

@@ -51,18 +51,18 @@
 <section class="transactions-work" style="padding-top: 0px;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+            <div class="col-lg-12 col-md-12 col-sm-12 content-column">
                 <div id="content_block_39">
                     <div class="content-box">
                         <div class="sec-title">
                             <h2>CARA DAFTAR</h2>
                         </div>
-                        <h5>Crypto is the best crowdsale service!</h5>
+                        <!-- <h5>Crypto is the best crowdsale service!</h5>
                         <div class="text">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
                         </div>
-                        <div class="btn-box"><a href="#" class="theme-btn-two">Read More</a></div>
+                        <div class="btn-box"><a href="#" class="theme-btn-two">Read More</a></div> -->
                     </div>
                 </div>
             </div>
@@ -91,6 +91,12 @@
                                 <div class="text">Login dengan username (NISN/NIK) dan password yang telah diberikan saat kamu berhasil melakukan pendaftaran.</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 inner-column">
+                <div id="content_block_40">
+                    <div class="inner-box">
                         <div class="single-item wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
                             <div class="count-box" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-11.png);">03</div>
                             <div class="box">
@@ -100,6 +106,17 @@
                                 </div>
                                 <h4><a href="#">Lengkapi Pemutakhiran data</a></h4>
                                 <div class="text">Kamu akan diarahkan kehalaman dashboard kemudian cari button “Lihat Data Pribadi” untuk melengkapi formulir pemuktakhiran data.</div>
+                            </div>
+                        </div>
+                        <div class="single-item wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
+                            <div class="count-box" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-11.png);">04</div>
+                            <div class="box">
+                                <div class="pattern-bg">
+                                    <div class="pattern-1" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-19.png);"></div>
+                                    <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-22.png);"></div>
+                                </div>
+                                <h4><a href="#">Klik Daftar PPDB</a></h4>
+                                <div class="text">Kamu bisa melakukan pendaftaran dengan klik button “Daftar PPDB” yang ada dihalaman dashboard.</div>
                             </div>
                         </div>
                     </div>

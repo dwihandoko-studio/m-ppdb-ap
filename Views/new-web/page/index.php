@@ -170,7 +170,7 @@
     </div>
 </section>
 
-<section class="subscribe-style-three">
+<section class="subscribe-style-three" style="padding-bottom: 0px;">
     <div class="pattern-bg wow slideInUp" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url(<?= base_url('themes') ?>/images/icons/map-shap-4.png);"></div>
     <div class="container">
         <div class="row">

@@ -186,12 +186,8 @@
                                     <tr>
                                         <th></th>
                                         <th>#</th>
-                                        <!--<th rowspan="2" class="text-center">Jenjang</th>-->
                                         <th>NAMA</th>
                                         <th>NPSN</th>
-                                        <!--<th>&nbsp;</th>-->
-                                        <!--<th>&nbsp;</th>-->
-                                        <!--<th>&nbsp;</th>-->
                                     </tr>
                                 </thead>
                                 

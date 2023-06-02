@@ -68,11 +68,38 @@
                                     </div>
                                     <div class="table-content" style="padding-left: 15px;">
                                         <ul>
-                                            <li>One User</li>
-                                            <li>Ui elements 1000</li>
-                                            <li>E-mail support</li>
-                                            <li>Phone Support</li>
+                                            <li>
+                                                <b>Pendaftaran </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
+                                            <li>
+                                                <b>Verifikasi </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
+                                            <li>
+                                                <b>Analisis </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
+                                            <li>
+                                                <b>Pengumuman </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
                                         </ul>
+                                    </div>
+                                    <div class="table-footer">
+                                        &nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -87,11 +114,38 @@
                                     </div>
                                     <div class="table-content" style="padding-left: 15px;">
                                         <ul>
-                                            <li>One User</li>
-                                            <li>Ui elements 1000</li>
-                                            <li>E-mail support</li>
-                                            <li>Phone Support</li>
+                                            <li>
+                                                <b>Pendaftaran </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
+                                            <li>
+                                                <b>Verifikasi </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
+                                            <li>
+                                                <b>Analisis </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
+                                            <li>
+                                                <b>Pengumuman </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                            </li>
                                         </ul>
+                                    </div>
+                                    <div class="table-footer">
+                                        &nbsp;
                                     </div>
                                 </div>
                             </div>

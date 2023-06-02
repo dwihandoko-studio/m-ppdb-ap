@@ -79,6 +79,7 @@
     <script src="<?= base_url('themes') ?>/js/jquery.paroller.min.js"></script>
     <script src="<?= base_url('themes') ?>/js/tilt.jquery.js"></script>
 
+    <script src="<?= base_url('new-assets/assets'); ?>/js/jquery-block-ui.js"></script>
     <script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     <?= $this->renderSection('scriptBottom'); ?>
     <script>
@@ -105,6 +106,10 @@
 
             console.log(username);
             console.log(password);
+
+            $('div.donate-popup').block({
+                message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+            });
 
             // $.ajax({
             //     type: "POST",

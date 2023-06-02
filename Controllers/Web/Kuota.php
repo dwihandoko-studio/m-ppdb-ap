@@ -30,7 +30,6 @@ class Jadwal extends BaseController
 
     public function index()
     {
-        $jadwal = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
         // var_dump($user);
@@ -39,20 +38,10 @@ class Jadwal extends BaseController
             $data['user'] = $user->data;
         }
 
+        $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
         $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
         $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
 
-        $data['data'] = $jadwal;
-
-        return view('new-web/page/jadwal', $data);
-    }
-
-    public function referensizonasi()
-    {
-
-        $data['page'] = "REFERENSI ZONASI SEKOLAH";
-        $data['title'] = 'REFERENSI ZONASI SEKOLAH';
-
-        return view('web/page/referensi/zonasi', $data);
+        return view('new-web/page/kuota', $data);
     }
 }

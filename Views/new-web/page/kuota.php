@@ -77,7 +77,6 @@
         });
     }
 
-
     function formatKuota(d) {
         return ('<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">' +
             '<tr>' +

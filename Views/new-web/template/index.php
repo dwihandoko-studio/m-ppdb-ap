@@ -107,85 +107,91 @@
             console.log(username);
             console.log(password);
 
-            $.ajax({
-                type: "POST",
-                url: BASE_URL + '/auth/login',
-                data: {
-                    username: username,
-                    password: password,
-                },
-                dataType: 'JSON',
-                beforeSend: function() {
-                    loading = true;
-                    $('div.donate-form-area').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                },
-                success: function(msg) {
-                    console.log(msg);
-                    if (msg.code != 200) {
-                        if (msg.code !== 201) {
-                            if (msg.code !== 202) {
-                                $('div.donate-form-area').unblock();
-                                loading = false;
-                                Swal.fire(
-                                    'Gagal!',
-                                    msg.message,
-                                    'warning'
-                                );
-                            } else {
-                                Swal.fire(
-                                    'Warning!',
-                                    msg.message,
-                                    'warning'
-                                ).then((valRes) => {
-                                    // setTimeout(function() {
-                                    document.location.href = msg.url;
-                                    // }, 2000);
+            Swal.fire(
+                'Gagal!',
+                "Silahkan ulangi.",
+                'warning'
+            );
 
-                                })
-                            }
-                        } else {
-                            Swal.fire(
-                                'Berhasil!',
-                                msg.message,
-                                'success'
-                            ).then((valRes) => {
-                                // setTimeout(function() {
-                                document.location.href = msg.url;
-                                // }, 2000);
-                            })
-                        }
-                    } else {
-                        Swal.fire(
-                            'Berhasil!',
-                            msg.message,
-                            'success'
-                        ).then((valRes) => {
-                            // setTimeout(function() {
-                            document.location.href = msg.url;
-                            // }, 2000);
-                            // document.location.href = window.location.href + "dashboard";
-                        })
-                    }
-                },
-                error: function(data) {
-                    console.log(data);
-                    if (data.status === 200 && (data.statusText === "parsererror" || data.statusText === "OK")) {
-                        // setTimeout(function() {
-                        document.location.href = BASE_URL + '/dahboard';
-                        // }, 2000);
-                    } else {
-                        loading = false;
-                        $('div.donate-form-area').unblock();
-                        Swal.fire(
-                            'Gagal!',
-                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                            'warning'
-                        );
-                    }
-                }
-            });
+            // $.ajax({
+            //     type: "POST",
+            //     url: BASE_URL + '/auth/login',
+            //     data: {
+            //         username: username,
+            //         password: password,
+            //     },
+            //     dataType: 'JSON',
+            //     beforeSend: function() {
+            //         loading = true;
+            //         $('div.donate-form-area').block({
+            //             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+            //         });
+            //     },
+            //     success: function(msg) {
+            //         console.log(msg);
+            //         if (msg.code != 200) {
+            //             if (msg.code !== 201) {
+            //                 if (msg.code !== 202) {
+            //                     $('div.donate-form-area').unblock();
+            //                     loading = false;
+            //                     Swal.fire(
+            //                         'Gagal!',
+            //                         msg.message,
+            //                         'warning'
+            //                     );
+            //                 } else {
+            //                     Swal.fire(
+            //                         'Warning!',
+            //                         msg.message,
+            //                         'warning'
+            //                     ).then((valRes) => {
+            //                         // setTimeout(function() {
+            //                         document.location.href = msg.url;
+            //                         // }, 2000);
+
+            //                     })
+            //                 }
+            //             } else {
+            //                 Swal.fire(
+            //                     'Berhasil!',
+            //                     msg.message,
+            //                     'success'
+            //                 ).then((valRes) => {
+            //                     // setTimeout(function() {
+            //                     document.location.href = msg.url;
+            //                     // }, 2000);
+            //                 })
+            //             }
+            //         } else {
+            //             Swal.fire(
+            //                 'Berhasil!',
+            //                 msg.message,
+            //                 'success'
+            //             ).then((valRes) => {
+            //                 // setTimeout(function() {
+            //                 document.location.href = msg.url;
+            //                 // }, 2000);
+            //                 // document.location.href = window.location.href + "dashboard";
+            //             })
+            //         }
+            //     },
+            //     error: function(data) {
+            //         console.log(data);
+            //         if (data.status === 200 && (data.statusText === "parsererror" || data.statusText === "OK")) {
+            //             // setTimeout(function() {
+            //             document.location.href = BASE_URL + '/dahboard';
+            //             // }, 2000);
+            //         } else {
+            //             loading = false;
+            //             $('div.donate-form-area').unblock();
+            //             Swal.fire(
+            //                 'Gagal!',
+            //                 "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+            //                 'warning'
+            //             );
+            //         }
+            //     }
+            // });
         }
     </script>
 

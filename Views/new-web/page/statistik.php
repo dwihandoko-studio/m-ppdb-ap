@@ -58,13 +58,11 @@
             <h2>Unmatched Features With<br>Transparent Pricing</h2>
         </div>
         <div class="row">
-            <div class="col-lg-9 col-md-12 col-sm-12 pricing-column">
+            <div class="col-lg-12 col-md-12 col-sm-12 pricing-column">
                 <div class="pricing-inner clearfix">
                     <div class="pricing-table">
                         <div class="table-header">
-                            <h3 class="title">Start</h3>
-                            <h1 class="price"><span>$</span>200</h1>
-                            <div class="text">Per Month</div>
+                            <h3 class="title">Jalur Zonasi</h3>
                         </div>
                         <div class="table-content">
                             <ul class="clearfix">
@@ -80,13 +78,11 @@
                                 <li><i class="fas fa-check"></i></li>
                             </ul>
                         </div>
-                        <div class="table-footer"><a href="#">Choose Plan</a></div>
+                        <div class="table-footer">&nbsp;</div>
                     </div>
                     <div class="pricing-table">
                         <div class="table-header">
-                            <h3 class="title">PRO</h3>
-                            <h1 class="price"><span>$</span>320</h1>
-                            <div class="text">Per Month</div>
+                            <h3 class="title">Jalur Zonasi</h3>
                         </div>
                         <div class="table-content">
                             <ul class="clearfix">
@@ -102,13 +98,11 @@
                                 <li><i class="fas fa-check"></i></li>
                             </ul>
                         </div>
-                        <div class="table-footer"><a href="#">Choose Plan</a></div>
+                        <div class="table-footer">&nbsp;</div>
                     </div>
                     <div class="pricing-table">
                         <div class="table-header">
-                            <h3 class="title">Premium</h3>
-                            <h1 class="price"><span>$</span>450</h1>
-                            <div class="text">Per Month</div>
+                            <h3 class="title">Jalur Prestasi</h3>
                         </div>
                         <div class="table-content">
                             <ul class="clearfix">
@@ -124,25 +118,28 @@
                                 <li><i class="fas fa-check"></i></li>
                             </ul>
                         </div>
-                        <div class="table-footer"><a href="#">Choose Plan</a></div>
+                        <div class="table-footer">&nbsp;</div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12 feature-column">
-                <div class="feature-inner">
-                    <h2>Comparison Features</h2>
-                    <ul class="list clearfix">
-                        <li>Adding time manually</li>
-                        <li>Timeline</li>
-                        <li>Tracking time</li>
-                        <li>Adding time manually</li>
-                        <li>Tracking time</li>
-                        <li>Adding time manually</li>
-                        <li>Keyboard shortcuts</li>
-                        <li>Tags</li>
-                        <li>Time formats</li>
-                        <li>Pomodoro timer</li>
-                    </ul>
+                    <div class="pricing-table">
+                        <div class="table-header">
+                            <h3 class="title">Jalur Mutasi</h3>
+                        </div>
+                        <div class="table-content">
+                            <ul class="clearfix">
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                                <li><i class="fas fa-check"></i></li>
+                            </ul>
+                        </div>
+                        <div class="table-footer">&nbsp;</div>
+                    </div>
                 </div>
             </div>
         </div>

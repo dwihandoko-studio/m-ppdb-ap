@@ -26,6 +26,22 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group kecamatan-block">
+                                                <label for="filter_kecamatan" class="form-control-label">Filter Kecamatan</label>
+                                                <select class="form-control filter-kecamatan" name="filter_kecamatan" id="filter_kecamatan" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <option value="">-- Pilih --</option>
+                                                    <?php if (isset($kecamatans)) {
+                                                        if (count($kecamatans) > 0) {
+                                                            foreach ($kecamatans as $key => $value) {
+                                                                echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
+                                                            }
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -178,6 +194,7 @@
                 "url": "<?= base_url('web/zona/getZonasiSekolah') ?>",
                 "type": "POST",
                 "data": function(data) {
+                    data.filter_kecamatan = $('#filter_kecamatan').val();
                     data.filter_jenjang = $('#filter_jenjang_zonasi').val();
                 }
             },
@@ -232,6 +249,10 @@
                 row.child(formatZonasi(row.data())).show();
                 tr.addClass('shown');
             }
+        });
+
+        $('#filter_kecamatan').change(function() {
+            tableKuotaSekolah.draw();
         });
 
         $('#filter_jenjang_zonasi').change(function() {

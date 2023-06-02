@@ -52,8 +52,9 @@ class Zona extends BaseController
 
         if ($request->getMethod(true) == 'POST') {
             $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+            $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
 
-            $lists = $datamodel->get_datatables($filterJenjang);
+            $lists = $datamodel->get_datatables($filterJenjang, $filterKecamatan);
             // $lists = [];
             $data = [];
             $no = $request->getPost("start");
@@ -75,8 +76,8 @@ class Zona extends BaseController
                 "draw" => $request->getPost('draw'),
                 // "recordsTotal" => 0,
                 // "recordsFiltered" => 0,
-                "recordsTotal" => $datamodel->count_all($filterJenjang),
-                "recordsFiltered" => $datamodel->count_filtered($filterJenjang),
+                "recordsTotal" => $datamodel->count_all($filterJenjang, $filterKecamatan),
+                "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterKecamatan),
                 "data" => $data
             ];
             echo json_encode($output);

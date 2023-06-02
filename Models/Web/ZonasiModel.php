@@ -55,7 +55,7 @@ class ZonasiModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filterJenajng)
+    function get_datatables($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
         $this->dt->where('status_sekolah', '1');
@@ -63,7 +63,11 @@ class ZonasiModel extends Model
         if ($filterJenajng != "") {
             $this->dt->where('bentuk_pendidikan_id', $filterJenajng);
         }
-        
+
+        if ($filterKecamatan != "") {
+            $this->dt->where('kecamatan_id', $filterKecamatan);
+        }
+
         $this->dt->groupBy('npsn');
 
         if ($this->request->getPost('length') != -1)
@@ -71,7 +75,7 @@ class ZonasiModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filterJenajng)
+    function count_filtered($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
         $this->dt->where('status_sekolah', '1');
@@ -79,12 +83,16 @@ class ZonasiModel extends Model
         if ($filterJenajng != "") {
             $this->dt->where('bentuk_pendidikan_id', $filterJenajng);
         }
-        
+
+        if ($filterKecamatan != "") {
+            $this->dt->where('kecamatan_id', $filterKecamatan);
+        }
+
         $this->dt->groupBy('npsn');
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filterJenajng)
+    public function count_all($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
         $this->dt->where('status_sekolah', '1');
@@ -92,7 +100,11 @@ class ZonasiModel extends Model
         if ($filterJenajng != "") {
             $this->dt->where('bentuk_pendidikan_id', $filterJenajng);
         }
-        
+
+        if ($filterKecamatan != "") {
+            $this->dt->where('kecamatan_id', $filterKecamatan);
+        }
+
         $this->dt->groupBy('npsn');
 
         return $this->dt->countAllResults();

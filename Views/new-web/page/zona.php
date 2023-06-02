@@ -252,7 +252,7 @@
         });
 
         $('#filter_kecamatan').change(function() {
-            tableKuotaSekolah.draw();
+            tableZonasiSekolah.draw();
         });
 
         $('#filter_jenjang_zonasi').change(function() {

@@ -5,6 +5,34 @@
             <div class="donate-form-area" style="background: linear-gradient(130deg, #4527a4 15%, #ff0000 100%);">
                 <h2>Donation Information</h2>
                 <h4>How much would you like to donate:</h4>
+                <div id="content_block_51">
+                    <div class="content-box">
+                        <div class="upper-box">
+                            <h2>Would You like to Help people Across the Globe?</h2>
+                            <div class="text">Data from January 1 through November 30, 2019</div>
+                            <div class="btn-box">
+                                <a href="#" class="btn-one">Funding Progress</a>
+                                <a href="#" class="btn-two">Join Us</a>
+                            </div>
+                        </div>
+                        <div class="donation-box wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
+                            <div class="select-box">
+                                <div class="text">$ USD</div>
+                                <select class="selectmenu" id="ui-id-1" style="display: none;">
+                                    <option selected="selected">100.00</option>
+                                    <option>200.00</option>
+                                    <option>300.00</option>
+                                    <option>400.00</option>
+                                </select><span class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all" tabindex="0" id="ui-id-1-button" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-owns="ui-id-1-menu" aria-haspopup="true" style="width: 71px;" aria-activedescendant="ui-id-2" aria-labelledby="ui-id-2" aria-disabled="false"><span class="ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">100.00</span></span>
+                            </div>
+                            <div class="btn-box">
+                                <a href="#">One Time Donation Given</a>
+                                <a href="#">Every Month Donation Given</a>
+                                <button class="donate-box-btn">Donate Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <form action="#" class="donate-form default-form">
                     <ul class="chicklet-list clearfix">
                         <li>

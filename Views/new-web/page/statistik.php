@@ -52,7 +52,7 @@
         </div>
     </div>
 </section>
-<section class="pricing-style-four">
+<section class="pricing-style-four" style="padding-top: 10px;">
     <div class="container">
         <div class="sec-title center">
             <h2>Unmatched Features With<br>Transparent Pricing</h2>

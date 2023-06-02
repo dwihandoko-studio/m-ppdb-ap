@@ -64,8 +64,8 @@
                             </ul>
                         </div>
                     </nav>
-                    <div class="btn-box _login_button"><a href="#" style="padding: 10px 18px;">Login</a></div>
-                    <div class="btn-box _register_button" style="margin-left: 10px;"><a href="#" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div>
+                    <div class="btn-box _login_button"><a href="javascript:actionLoginButton(this);" style="padding: 10px 18px;">Login</a></div>
+                    <div class="btn-box _register_button" style="margin-left: 10px;"><a href="javascript:actionRegisterButton(this);" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div>
                 </div>
             </div>
         </div>

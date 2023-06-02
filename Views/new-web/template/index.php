@@ -90,12 +90,12 @@
             $('#register-popup').addClass('popup-visible');
         }
         //Hide Popup
-        $('.close-login').click(function() {
+        $('._close-login').click(function() {
             $('#login-popup').removeClass('popup-visible');
         });
 
         //Hide Popup
-        $('.close-register').click(function() {
+        $('._close-register').click(function() {
             $('#register-popup').removeClass('popup-visible');
         });
     </script>

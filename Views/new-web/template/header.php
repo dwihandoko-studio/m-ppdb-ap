@@ -52,7 +52,15 @@
                                 </li>
                                 <li><a href="<?= base_url('web/jadwal') ?>">Jadwal</a></li>
                                 <li><a href="<?= base_url('web/statistik') ?>">Statistik</a></li>
-                                <li><a href="<?= base_url('web/pengumuman') ?>">Pengumuman</a></li>
+                                <li class="dropdown">
+                                    <a href="#">Informasi</a>
+                                    <ul>
+                                        <li><a href="<?= base_url('web/kuota') ?>">Kuota Sekolah</a></li>
+                                        <li><a href="<?= base_url('web/zona') ?>">Zona Wilayah</a></li>
+                                        <li><a href="<?= base_url('web/pengumuman') ?>">Pengumuman</a></li>
+                                        <li><a href="<?= base_url('web/berita') ?>">Seputar PPDB</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </nav>

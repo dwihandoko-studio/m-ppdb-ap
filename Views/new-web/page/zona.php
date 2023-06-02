@@ -184,6 +184,9 @@
     }
 
     $(document).ready(function() {
+        loadedAll = true;
+        initSelect2('filter_kecamatan');
+        initSelect2('filter_jenjang');
 
         let tableZonasiSekolah = $('#tabelZonasiSekolah').DataTable({
             "processing": true,

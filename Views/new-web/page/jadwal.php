@@ -18,7 +18,7 @@
                                     <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-1.png" alt=""></figure>
                                     <div class="table-header">
                                         <h3 class="title">Jalur</h3>
-                                        <h3 class="price" style="font-size: 38px; padding-top: 6px;">AFIRMASI</span></h3>
+                                        <h3 class="price" style="font-size: 28px; padding-top: 6px;">AFIRMASI</span></h3>
                                     </div>
                                     <div class="table-content" style="padding-left: 15px;">
                                         <ul>
@@ -58,7 +58,7 @@
                                     <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-2.png" alt=""></figure>
                                     <div class="table-header">
                                         <h3 class="title">Jalur</h3>
-                                        <h2 class="price" style="font-size: 38px; padding-top: 6px;">ZONASI</span></h2>
+                                        <h2 class="price" style="font-size: 28px; padding-top: 6px;">ZONASI</span></h2>
                                     </div>
                                     <div class="table-content" style="padding-left: 15px;">
                                         <ul>

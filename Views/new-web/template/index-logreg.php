@@ -61,10 +61,6 @@
     <div class="preloader"></div>
     <?= $this->renderSection('content'); ?>
 
-    <?= $this->include('new-web/template/footer') ?>
-
-    <?= $this->include('new-web/template/login') ?>
-    <?= $this->include('new-web/template/register') ?>
     <script src="<?= base_url('themes') ?>/js/jquery.js"></script>
     <script src="<?= base_url('themes') ?>/js/popper.min.js"></script>
     <script src="<?= base_url('themes') ?>/js/bootstrap.min.js"></script>
@@ -81,29 +77,6 @@
 
     <script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     <?= $this->renderSection('scriptBottom'); ?>
-    <script>
-        if ($('#donate-popup').length) {
-
-            //Show Popup
-            $('._login_button').on('click', function() {
-                $('#login-popup').addClass('popup-visible');
-            });
-
-            //Hide Popup
-            $('.close-login').click(function() {
-                $('#login-popup').removeClass('popup-visible');
-            });
-
-            $('._register_button').on('click', function() {
-                $('#register-popup').addClass('popup-visible');
-            });
-
-            //Hide Popup
-            $('.close-register').click(function() {
-                $('#register-popup').removeClass('popup-visible');
-            });
-        }
-    </script>
 
     <script src="<?= base_url('themes') ?>/js/script.js"></script>
 

@@ -15,7 +15,7 @@ use App\Models\Dinas\Analisis\ProsessekolahModel;
 use App\Models\Dinas\Analisis\ProsessekolahprosesModel;
 
 
-class Jadwal extends BaseController
+class Kuota extends BaseController
 {
     var $folderImage = 'masterdata';
     private $_db;

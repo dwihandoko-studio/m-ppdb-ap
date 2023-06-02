@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <?= $this->include('new-web/template/header') ?>
-<section class="pricing-section centred">
+<section class="pricing-section centred _kuota_sekolah" id="_kuota_sekolah">
     <div class="container" style="margin-top: 100px;">
         <div class="sec-title center">
             <h2>KUOTA SEKOLAH</h2>
@@ -73,7 +73,7 @@
 <script>
     function initSelect2(event) {
         $('#' + event).select2({
-            dropdownParent: "#kuota-sekolah"
+            dropdownParent: "#_kuota_sekolah"
         });
     }
 

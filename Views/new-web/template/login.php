@@ -16,6 +16,7 @@
                                 <div class="form-group">
                                     <p style="color: #fff;">Password</p>
                                     <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 60px; outline: medium none;" type="password" name="_password" placeholder="">
+                                    <p style="color: #fff;">Lupa password? <a style="color: #4527a4" href="<?= base_url('web/login/reset') ?>">Reset</a></p>
                                 </div>
                             </div>
                             <div class="btn-box">

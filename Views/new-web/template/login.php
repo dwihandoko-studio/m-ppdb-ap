@@ -11,16 +11,16 @@
                             <div class="select-box">
                                 <div class="form-group">
                                     <p style="color: #fff;">NISN / NIK / Email</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 60px; outline: medium none;" type="text" name="_username" placeholder="">
+                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 60px; outline: medium none;" type="text" name="_username" id="_username" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <p style="color: #fff;">Password</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 60px; outline: medium none;" type="password" name="_password" placeholder="">
-                                    <p style="color: #fff;">Lupa password? <a style="color: #4527a4" href="<?= base_url('web/login/reset') ?>">Reset</a></p>
+                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 60px; outline: medium none;" type="password" name="_password" id="_password" placeholder="">
+                                    <p style="color: #fff;">Lupa password? <a style="color: #00fff2" href="<?= base_url('web/login/reset') ?>">Reset</a></p>
                                 </div>
                             </div>
                             <div class="btn-box">
-                                <button class="donate-box-btn">MASUK</button>
+                                <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
                             </div>
                         </div>
                     </div>

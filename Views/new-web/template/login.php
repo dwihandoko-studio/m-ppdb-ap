@@ -1,5 +1,5 @@
 <div id="login-popup" class="donate-popup">
-    <div class="close-login"><i class="far fa-window-close"></i></div>
+    <div class="close-donate"><i class="far fa-window-close"></i></div>
     <div class="popup-inner">
         <div class="container">
             <div class="donate-form-area">

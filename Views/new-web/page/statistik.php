@@ -22,7 +22,7 @@
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#ff0000" data-value=".50">
+                        <div class="piechart" data-fg-color="#393e95" data-value=".50">
                             <span>50</span>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#393e95" data-value=".24">
+                        <div class="piechart" data-fg-color="#ff8500" data-value=".24">
                             <span>24</span>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#ff8500" data-value=".27">
+                        <div class="piechart" data-fg-color="#ff0000" data-value=".27">
                             <span>27</span>
                         </div>
                     </div>

@@ -44,4 +44,50 @@ class Kuota extends BaseController
 
         return view('new-web/page/kuota', $data);
     }
+
+
+    public function getKuotasekolah()
+    {
+        $request = Services::request();
+        $datamodel = new KuotaModel($request);
+
+        if ($request->getMethod(true) == 'POST') {
+            $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
+            $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+
+            $lists = $datamodel->get_datatables($filterKecamatan, $filterJenjang);
+            // $lists = [];
+            $data = [];
+            $no = $request->getPost("start");
+            foreach ($lists as $list) {
+                $no++;
+                $row = [];
+
+                // $row[] = $no;
+                $row['button'] = '<button type="button" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
+                // $row['button'] = '<button type="button" onclick="actionDetailKuota(\'' . $list->id . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
+                $row['nama'] = $list->nama_sekolah;
+                $row['npsn'] = $list->npsn;
+                $row['kecamatan'] = $list->nama_kecamatan;
+                $row['jumlah'] = (int)$list->zonasi + (int)$list->afirmasi + (int)$list->mutasi + (int)$list->prestasi;
+                $row['zonasi'] = $list->zonasi;
+                $row['afirmasi'] = $list->afirmasi;
+                $row['mutasi'] = $list->mutasi;
+                $row['prestasi'] = $list->prestasi;
+                $row['id'] = $list->id;
+
+
+                $data[] = $row;
+            }
+            $output = [
+                "draw" => $request->getPost('draw'),
+                // "recordsTotal" => 0,
+                // "recordsFiltered" => 0,
+                "recordsTotal" => $datamodel->count_all($filterKecamatan, $filterJenjang),
+                "recordsFiltered" => $datamodel->count_filtered($filterKecamatan, $filterJenjang),
+                "data" => $data
+            ];
+            echo json_encode($output);
+        }
+    }
 }

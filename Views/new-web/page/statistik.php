@@ -4,9 +4,9 @@
 <?= $this->include('new-web/template/header') ?>
 <section class="crm-programming">
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/crm-bg.png);"></div>
-    <div class="container" style="margin-top: 100px;">>
+    <div class="container" style="margin-top: 90px;">>
         <div class="sec-title center">
-            <h2>CRM Programming That Gives<br>You Prompt Outcomes</h2>
+            <h2>STATISTIK PPDB 2023<br>KABUPATEN PESAWARAN</h2>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
@@ -16,7 +16,7 @@
                             <span>75</span>
                         </div>
                     </div>
-                    <div class="text">Improvement in lead conversion rates</div>
+                    <div class="text">Jalur Afirmasi</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
@@ -26,7 +26,7 @@
                             <span>50</span>
                         </div>
                     </div>
-                    <div class="text">Revenue increase per sales person.</div>
+                    <div class="text">Jalur Zonasi</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
@@ -36,7 +36,7 @@
                             <span>24</span>
                         </div>
                     </div>
-                    <div class="text">shorter sales cycle</div>
+                    <div class="text">Jalur Prestasi</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
@@ -46,7 +46,7 @@
                             <span>27</span>
                         </div>
                     </div>
-                    <div class="text">Improvement in customer retention</div>
+                    <div class="text">Jalur Mutasi</div>
                 </div>
             </div>
         </div>

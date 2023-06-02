@@ -1,7 +1,7 @@
 <div id="login-popup" class="donate-popup">
     <div class="close-donate _close-login"><i class="far fa-window-close"></i></div>
     <div class="popup-inner">
-        <div class="container">
+        <div class="container" style="width: 70%;">
             <div class="donate-form-area" style="background: linear-gradient(130deg, #4527a4 15%, #ff0000 100%);">
                 <h2>Donation Information</h2>
                 <h4>How much would you like to donate:</h4>

@@ -6,7 +6,7 @@
     <div class="container" style="margin-top: 100px;">
         <div class="sec-title center">
             <h2>JADWAL PELAKSANAAN</h2>
-            <p>Untuk jadwal pelaksanaan PPDB Tahun 2023 Kab. Pesawaran, terbagi menjadi 2 tahap:</p>
+            <p>Untuk jadwal pelaksanaan PPDB Tahun 2023 Kab. Pesawaran, sebagai berikut:</p>
         </div>
         <div class="tabs-box">
             <div class="tabs-content">

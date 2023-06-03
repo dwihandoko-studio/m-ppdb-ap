@@ -90,6 +90,16 @@
         function actionRegisterButton(event) {
             $('#register-popup').addClass('popup-visible');
         }
+
+        function actionLoginButtonMobile(event) {
+            $('body').removeClass('mobile-menu-visible');
+            $('#login-popup').addClass('popup-visible');
+        }
+
+        function actionRegisterButtonMobile(event) {
+            $('body').removeClass('mobile-menu-visible');
+            $('#register-popup').addClass('popup-visible');
+        }
         //Hide Popup
         $('._close-login').click(function() {
             $('#login-popup').removeClass('popup-visible');

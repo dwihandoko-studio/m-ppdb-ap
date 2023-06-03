@@ -94,8 +94,8 @@
             <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
         </div>
         <div class="content-box">
-            <a href="javascript:actionLoginButton(this);" class="theme-btn-two" style="background: #fff;">Login</a>
-            <a href="javascript:actionRegisterButton(this);" class="theme-btn-two" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a>
+            <a href="javascript:actionLoginButton(this);" class="theme-btn-two" style="margin-left: 15px; padding: 5px 18px;">Login</a>
+            <a href="javascript:actionRegisterButton(this);" class="theme-btn-two" style="padding: 5px 18px;">Registrasi Akun</a>
         </div>
         <div class="contact-info">
             <h4>Contact Info</h4>

@@ -184,6 +184,14 @@
                 }
             });
         }
+
+        function actionRegisterAfterSchool(event) {
+            
+        }
+
+        function actionRegisterBeforeSchool(event) {
+
+        }
     </script>
 
     <script src="<?= base_url('themes') ?>/js/script.js"></script>

@@ -93,6 +93,8 @@
         <div class="menu-outer">
             <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
         </div>
+        <div class="btn-box _login_button"><a href="javascript:actionLoginButton(this);" style="padding: 10px 18px;">Login</a></div>
+        <div class="btn-box _register_button" style="margin-left: 10px;"><a href="javascript:actionRegisterButton(this);" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div>
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>

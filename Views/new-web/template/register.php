@@ -15,7 +15,7 @@
                                         <div class="form-group">
                                             <p style="color: #fff;">Jenjang PPDB</p>
                                             <div class="select-box">
-                                                <select class="selectmenu" name="_jenjang" id="_jenjang" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; width: 100%; font-weight: 400; height: 50px; outline: medium none; padding: 0px 10px;">
+                                                <select class="selectmenu1" name="_jenjang" id="_jenjang" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; width: 100%; font-weight: 400; height: 50px; outline: medium none; padding: 0px 10px;">
                                                     <option selected="selected">SD</option>
                                                     <option>SMP</option>
                                                 </select>

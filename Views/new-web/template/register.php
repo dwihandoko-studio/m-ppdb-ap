@@ -15,7 +15,7 @@
                                         <div class="form-group">
                                             <p style="color: #fff;">Jenjang PPDB</p>
                                             <div class="select-box">
-                                                <select class="selectmenu" name="_jenjang" id="_jenjang">
+                                                <select class="selectmenu" name="_jenjang" id="_jenjang" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                                     <option selected="selected">SD</option>
                                                     <option>SMP</option>
                                                 </select>
@@ -40,15 +40,6 @@
                                             <input type="date" name="_tgl_lahir" id="_tgl_lahir" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <p style="color: #fff;">NISN / NIK / Email</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_username" id="_username" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <p style="color: #fff;">Password</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="password" name="_password" id="_password" placeholder="">
-                                    <p style="color: #fff;">Lupa password? <a style="color: #00fff2" href="<?= base_url('web/login/reset') ?>">Reset</a></p>
                                 </div>
                                 <!-- </div> -->
                                 <div class="btn-box">

@@ -11,11 +11,11 @@
                             <div class="select-box">
                                 <div class="form-group">
                                     <p style="color: #fff;">NISN / NIK / Email</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 60px; outline: medium none;" type="text" name="_username" id="_username" placeholder="">
+                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_username" id="_username" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <p style="color: #fff;">Password</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 60px; outline: medium none;" type="password" name="_password" id="_password" placeholder="">
+                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="password" name="_password" id="_password" placeholder="">
                                     <p style="color: #fff;">Lupa password? <a style="color: #00fff2" href="<?= base_url('web/login/reset') ?>">Reset</a></p>
                                 </div>
                             </div>

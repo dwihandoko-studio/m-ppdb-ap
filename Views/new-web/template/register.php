@@ -15,7 +15,7 @@
                                         <div class="form-group">
                                             <p style="color: #fff;">Jenjang PPDB</p>
                                             <div class="select-box">
-                                                <select class="selectmenu" name="_jenjang" id="_jenjang" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; width: 100%; font-weight: 400; height: 50px; outline: medium none;">
+                                                <select class="selectmenu" name="_jenjang" id="_jenjang" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; width: 100%; font-weight: 400; height: 50px; outline: medium none; padding: 0px 10px;">
                                                     <option selected="selected">SD</option>
                                                     <option>SMP</option>
                                                 </select>
@@ -25,13 +25,13 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <p style="color: #fff;">NISN</p>
-                                            <input type="date" name="_nisn" id="_nisn" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                            <input type="text" name="_nisn" id="_nisn" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <p style="color: #fff;">NPSN</p>
-                                            <input type="date" name="_npsn" id="_npsn" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                            <input type="text" name="_npsn" id="_npsn" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">

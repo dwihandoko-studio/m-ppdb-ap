@@ -44,7 +44,7 @@
                                     </div>
                                     <!-- </div> -->
                                     <div class="btn-box">
-                                        <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
+                                        <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">DAFTAR</button>
                                     </div>
                                 </div>
                             </div>
@@ -61,37 +61,32 @@
                                     <div class="row clearfix">
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <p style="color: #fff;">Jenjang PPDB</p>
-                                                <div class="select-box">
-                                                    <select class="selectmenu1" name="_jenjang" id="_jenjang" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; width: 100%; font-weight: 400; height: 50px; outline: medium none; padding: 0px 10px;">
-                                                        <option selected="selected">SD</option>
-                                                        <option>SMP</option>
-                                                    </select>
-                                                </div>
+                                                <p style="color: #fff;">Nama Lengkap</p>
+                                                <input type="text" name="_nama" id="_nama" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <p style="color: #fff;">NISN</p>
-                                                <input type="text" name="_nisn" id="_nisn" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                                <p style="color: #fff;">NIK</p>
+                                                <input type="text" name="_nik" id="_nik" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <p style="color: #fff;">NPSN</p>
-                                                <input type="text" name="_npsn" id="_npsn" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                                <p style="color: #fff;">Password</p>
+                                                <input type="password" name="_password_regis" id="_password_regis" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <p style="color: #fff;">Tanggal Lahir</p>
-                                                <input type="date" name="_tgl_lahir" id="_tgl_lahir" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                                <p style="color: #fff;">Ulangi Password</p>
+                                                <input type="password" name="_re_password_regis" id="_re_password_regis" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
                                             </div>
                                         </div>
                                     </div>
                                     <!-- </div> -->
                                     <div class="btn-box">
-                                        <button onclick="submitRegisterBeforeSchoolButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
+                                        <button onclick="submitRegisterBeforeSchoolButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">DAFTAR</button>
                                     </div>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@
                                     </div>
                                     <!-- </div> -->
                                     <div class="btn-box">
-                                        <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
+                                        <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                     </div>
                                     <!-- </div> -->
                                     <div class="btn-box">
-                                        <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
+                                        <button onclick="submitRegisterBeforeSchoolButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
                                     </div>
                                 </div>
                             </div>

@@ -289,19 +289,19 @@
             if (nisn === "") {
                 // $("input#_nisn").css("color", "#dc3545");
                 // $("input#_nisn").css("border-color", "#dc3545");
-                $('._nisn').html('<ul role="alert" style="color: #00fff2;"><li style="color: #dc3545;">NISN tidak boleh kosong.</li></ul>');
+                $('._nisn').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">NISN tidak boleh kosong.</li></ul>');
                 return;
             }
             if (npsn === "") {
                 // $("input#_npsn").css("color", "#dc3545");
                 // $("input#_npsn").css("border-color", "#dc3545");
-                $('._npsn').html('<ul role="alert" style="color: #00fff2;"><li style="color: #dc3545;">NPSN tidak boleh kosong.</li></ul>');
+                $('._npsn').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">NPSN tidak boleh kosong.</li></ul>');
                 return;
             }
             if (tglLahir === "") {
                 // $("input#_tgl_lahir").css("color", "#dc3545");
                 // $("input#_tgl_lahir").css("border-color", "#dc3545");
-                $('._tgl_lahir').html('<ul role="alert" style="color: #00fff2;"><li style="color: #dc3545;">NPSN tidak boleh kosong.</li></ul>');
+                $('._tgl_lahir').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">NPSN tidak boleh kosong.</li></ul>');
                 return;
             }
 

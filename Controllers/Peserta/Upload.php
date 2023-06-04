@@ -611,7 +611,7 @@ class Upload extends BaseController
                             } else if ($jenis === "_file_akta") {
                                 $dir = FCPATH . "uploads/peserta/akta";
                                 $namaFile = $oldData->lampiran_akta_kelahiran;
-                                $data['lampiran_lulus'] = null;
+                                $data['lampiran_akta_kelahiran'] = null;
                             } else if ($jenis === "_file_lulus") {
                                 $dir = FCPATH . "uploads/peserta/kelulusan";
                                 $namaFile = $oldData->lampiran_lulus;

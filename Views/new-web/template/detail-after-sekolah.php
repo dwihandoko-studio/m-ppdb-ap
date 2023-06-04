@@ -9,34 +9,50 @@
             <p style="color: #fff;">NISN (Pada Dapodik)</p>
             <input type="text" value="<?= trim($data->nisn) ?>" class="formcus-control" id="_nisn_d" name="_nisn_d" placeholder="NISN" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">NIK (Pada Dapodik)</p>
             <input type="text" value="<?= trim($data->nik) ?>" class="formcus-control" id="_nik_d" name="_nik_d" placeholder="NIK" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">Nama Lengkap (Pada Dapodik)</p>
             <input type="text" value="<?= trim($data->nama) ?>" class="formcus-control" id="_nama_d" name="_nama_d" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">Tempat Lahir (Pada Dapodik)</p>
             <input type="text" value="<?= trim($data->tempat_lahir) ?>" class="formcus-control" id="_tempat_lahir_d" name="_tempat_lahir_d" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">Tanggal Lahir (Pada Dapodik)</p>
             <input type="text" value="<?= trim($data->tanggal_lahir) ?>" class="formcus-control" id="_tgl_lahir_d" name="_tgl_lahir_d" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">Jenis Kelamin (Pada Dapodik)</p>
             <input type="text" value="<?= (trim($data->jenis_kelamin) == "L") ? 'Laki-Laki' : ((trim($data->jenis_kelamin) == "P") ? 'Perempuan' : '') ?>" class="formcus-control" id="_jk_d" name="_jk_d" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">Nama Ibu Kandung (Pada Dapodik)</p>
             <input type="text" value="<?= trim($data->nama_ibu_kandung) ?>" class="formcus-control" id="_nama_ibu_d" name="_nama_ibu_d" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">NPSN Sekolah Asal (Pada Dapodik)</p>
             <input type="text" value="<?= (isset($sekolah)) ? trim($sekolah->npsn) : '' ?>" class="formcus-control" id="_npsn_d" name="_npsn_d" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>
         </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
             <p style="color: #fff;">Nama Sekolah Asal (Pada Dapodik)</p>
             <input type="text" value="<?= (isset($sekolah)) ? trim($sekolah->nama) : '' ?>" class="formcus-control" id="_nama_sekolah_d" name="_nama_sekolah_d" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" readonly>

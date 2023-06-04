@@ -2035,6 +2035,8 @@ class Auth extends BaseController
 
             if ($dataSyn->code == 200) {
                 if ($dataSyn->data) {
+                    var_dump($dataSyn);
+                    die;
                     if (count($dataSyn->data) > 0) {
                         $dataSiswa = $dataSyn->data[0];
                         // var_dump($dataSiswa);die;

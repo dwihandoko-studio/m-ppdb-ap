@@ -248,7 +248,7 @@
                                 <div class="row">
                                     <div class="col-md-6 _file_foto_rumah-block">
                                         <h4>Afirmasi (Foto Rumah Tempat Tinggal Siswa)</h4>
-                                        <?php if ($dataUpload->lampiran_pernyataan != null) { ?>
+                                        <?php if ($dataUpload->lampiran_foto_rumah != null) { ?>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" value="DOKUMEN FOTO RUMAH" readonly />

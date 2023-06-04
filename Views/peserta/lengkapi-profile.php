@@ -138,6 +138,20 @@
                                             <div class="help-block _nama_ibu"></div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group _email-block">
+                                            <label for="_email" class="form-control-label">Email</label>
+                                            <input type="email" class="form-control" id="_email" name="_email" placeholder="Email . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->email) ? $user->email : '') : '' ?>" required>
+                                            <div class="help-block _email"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group _nohp-block">
+                                            <label for="_nohp" class="form-control-label">No Handphone</label>
+                                            <input type="phone" class="form-control" id="_nohp" name="_nohp" placeholder="08xxxxxxxx" onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->no_hp) ? $user->no_hp : '') : '' ?>" required>
+                                            <div class="help-block _nohp"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
                                 <h5 class="heading-small" style="margin-top: 20px;">Data Tempat Tinggal</h5>
@@ -553,12 +567,24 @@
             const kecamatan = document.getElementsByName('_kecamatan')[0].value;
             const kelurahan = document.getElementsByName('_kelurahan')[0].value;
             // const dusun = document.getElementsByName('_dusun')[0].value;
+            const email = document.getElementsByName('_email')[0].value;
+            const nohp = document.getElementsByName('_nohp')[0].value;
             const alamat = document.getElementsByName('_alamat')[0].value;
             const koordinat = document.getElementsByName('_koordinat')[0].value;
             const latitude = document.getElementsByName('_latitude')[0].value;
             const longitude = document.getElementsByName('_longitude')[0].value;
             const foto = document.getElementsByName('_file')[0].value;
 
+            if (email === "") {
+                $("input#_email").css("color", "#dc3545");
+                $("input#_email").css("border-color", "#dc3545");
+                $('._email').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Email tidak boleh kosong.</li></ul>');
+            }
+            if (nohp === "") {
+                $("input#_nohp").css("color", "#dc3545");
+                $("input#_nohp").css("border-color", "#dc3545");
+                $('._nohp').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">No handphone tidak boleh kosong.</li></ul>');
+            }
             if (provinsi === "") {
                 $("select#_provinsi").css("color", "#dc3545");
                 $("select#_provinsi").css("border-color", "#dc3545");

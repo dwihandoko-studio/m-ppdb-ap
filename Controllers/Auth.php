@@ -2035,53 +2035,60 @@ class Auth extends BaseController
 
             if ($dataSyn->code == 200) {
                 if ($dataSyn->data) {
-                    var_dump($dataSyn);
-                    die;
-                    if (count($dataSyn->data) > 0) {
-                        $dataSiswa = $dataSyn->data[0];
-                        // var_dump($dataSiswa);die;
-                        // $tingkatAkhirs = [6, 9, 72, 71, 73];
-                        // $any = in_array((int)$dataSiswa->tingkat_pendidikan, $tingkatAkhirs);
-                        // if ($any) {
-                        if ($tglLahir == $dataSiswa->tanggal_lahir) {
-                            if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
-                                $dataSiswa->lintang = '0.0';
-                                $dataSiswa->bujur = '-0.0';
+                    if (!($dataSyn->data->message)) {
+                        // var_dump($dataSyn);
+                        // die;
+                        if (count($dataSyn->data) > 0) {
+                            $dataSiswa = $dataSyn->data[0];
+                            // var_dump($dataSiswa);die;
+                            // $tingkatAkhirs = [6, 9, 72, 71, 73];
+                            // $any = in_array((int)$dataSiswa->tingkat_pendidikan, $tingkatAkhirs);
+                            // if ($any) {
+                            if ($tglLahir == $dataSiswa->tanggal_lahir) {
+                                if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
+                                    $dataSiswa->lintang = '0.0';
+                                    $dataSiswa->bujur = '-0.0';
+                                }
+
+                                $x['data'] = $dataSiswa;
+
+                                // $referensiLayananLib = new ReferensiLayananLib();
+                                // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
+
+                                $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
+
+                                if ($dataSekolah) {
+                                    // if ($dataSekolah->data->code == 200) {
+                                    $x['sekolah'] = $dataSekolah;
+                                    // }
+                                }
+                                $response = new \stdClass;
+                                $response->code = 200;
+                                $response->message = "Data ditemukan.";
+                                $response->data = view('new-web/template/detail-after-sekolah', $x);
+                                return json_encode($response);
+                            } else {
+                                $response = new \stdClass;
+                                $response->code = 400;
+                                $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
+                                return json_encode($response);
                             }
-
-                            $x['data'] = $dataSiswa;
-
-                            // $referensiLayananLib = new ReferensiLayananLib();
-                            // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
-
-                            $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
-
-                            if ($dataSekolah) {
-                                // if ($dataSekolah->data->code == 200) {
-                                $x['sekolah'] = $dataSekolah;
-                                // }
-                            }
-                            $response = new \stdClass;
-                            $response->code = 200;
-                            $response->message = "Data ditemukan.";
-                            $response->data = view('new-web/template/detail-after-sekolah', $x);
-                            return json_encode($response);
+                            // } else {
+                            //     $response = new \stdClass;
+                            //     $response->code = 400;
+                            //     $response->message = "Mohon maaf, Data terdeteksi berada bukan di jenjang kelas akhir. Silahkan hubungi operator sekolah asal.";
+                            //     return json_encode($response);
+                            // }
                         } else {
                             $response = new \stdClass;
                             $response->code = 400;
-                            $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
+                            $response->message = "Data tidak ditemukan";
                             return json_encode($response);
                         }
-                        // } else {
-                        //     $response = new \stdClass;
-                        //     $response->code = 400;
-                        //     $response->message = "Mohon maaf, Data terdeteksi berada bukan di jenjang kelas akhir. Silahkan hubungi operator sekolah asal.";
-                        //     return json_encode($response);
-                        // }
                     } else {
                         $response = new \stdClass;
                         $response->code = 400;
-                        $response->message = "Data tidak ditemukan";
+                        $response->message = $dataSyn->data->message;
                         return json_encode($response);
                     }
                 } else {

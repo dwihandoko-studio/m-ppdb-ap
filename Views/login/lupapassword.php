@@ -110,9 +110,9 @@
                                 <button type="button" class="btn btn-block btn-primary" onclick="aksiLogin()">Kirim</button>
                             </div>
                         </form>
-                        <!--<div class="mt-3 mb-4 text-center">-->
-                        <!--    <span class="font-weight-normal">atau Masuk Dengan</span>-->
-                        <!--</div>-->
+                        <div class="mt-3 mb-4 text-center">
+                            <span class="font-weight-normal"><a href="<?= base_url('web/home') ?>" class="font-weight-bold">Kembali</a></span>
+                        </div>
                         <!--<div class="btn-wrapper my-4 text-center">-->
                         <!--    <?php if (isset($loginButton)) { ?>-->
                         <!--        <a class="btn mr-2 btn-block btn-google" href="<?= $loginButton ?>">-->

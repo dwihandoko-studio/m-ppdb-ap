@@ -871,7 +871,7 @@ class Auth extends BaseController
         } else {
             $username = htmlspecialchars($this->request->getVar('username'), true);
 
-            $user = $this->_db->table('_users_tb')->where('email', strtolower($username))->get()->getRowObject();
+            $user = $this->_db->table('_users_profil_tb')->where('email', strtolower($username))->get()->getRowObject();
             if ($user) {
 
                 $emailLib = new Emaillib();

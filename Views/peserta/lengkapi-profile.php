@@ -633,6 +633,8 @@
             formUpload.append('kecamatan', kecamatan);
             formUpload.append('kelurahan', kelurahan);
             // formUpload.append('dusun', dusun);
+            formUpload.append('email', email);
+            formUpload.append('nohp', nohp);
             formUpload.append('alamat', alamat);
             formUpload.append('latitude', latitude);
             formUpload.append('longitude', longitude);

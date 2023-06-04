@@ -294,6 +294,19 @@ class User extends BaseController
             //         'required' => 'Dusun tidak boleh kosong.',
             //     ]
             // ],
+            'email' => [
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong.',
+                    'valid_email' => 'Email tidak valid.',
+                ]
+            ],
+            'nohp' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'No handphone tidak boleh kosong.',
+                ]
+            ],
             'alamat' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -325,7 +338,17 @@ class User extends BaseController
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = $this->validator->getError('file') . $this->validator->getError('provinsi') . $this->validator->getError('kabupaten') . $this->validator->getError('kecamatan') . $this->validator->getError('kelurahan') . $this->validator->getError('dusun') .  $this->validator->getError('alamat') .  $this->validator->getError('latitude') .  $this->validator->getError('longitude');
+            $response->message = $this->validator->getError('file')
+                . $this->validator->getError('provinsi')
+                . $this->validator->getError('kabupaten')
+                . $this->validator->getError('kecamatan')
+                . $this->validator->getError('kelurahan')
+                . $this->validator->getError('dusun')
+                . $this->validator->getError('email')
+                . $this->validator->getError('nohp')
+                .  $this->validator->getError('alamat')
+                .  $this->validator->getError('latitude')
+                .  $this->validator->getError('longitude');
             return json_encode($response);
         } else {
             $provinsi = htmlspecialchars($this->request->getVar('provinsi'), true);
@@ -333,6 +356,8 @@ class User extends BaseController
             $kecamatan = htmlspecialchars($this->request->getVar('kecamatan'), true);
             $kelurahan = htmlspecialchars($this->request->getVar('kelurahan'), true);
             // $dusun = htmlspecialchars($this->request->getVar('dusun'), true);
+            $email = htmlspecialchars($this->request->getVar('email'), true);
+            $nohp = htmlspecialchars($this->request->getVar('nohp'), true);
             $alamat = htmlspecialchars($this->request->getVar('alamat'), true);
             $latitude = htmlspecialchars($this->request->getVar('latitude'), true);
             $longitude = htmlspecialchars($this->request->getVar('longitude'), true);
@@ -364,7 +389,7 @@ class User extends BaseController
                             $lampiranName = $lampiran->getName();
                             $newNamelampiran = _create_name_foto($lampiranName, $oldData->nisn);
 
-                            if ($provinsi === $oldData->provinsi && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan && $alamat === $oldData->alamat && $latitude === $oldData->latitude && $longitude === $oldData->longitude && $oldData->profile_picture === $lampiranName) {
+                            if ($provinsi === $oldData->provinsi && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan && $alamat === $oldData->alamat && $latitude === $oldData->latitude && $longitude === $oldData->longitude && $oldData->profile_picture === $lampiranName && $oldData->email === $email && $oldData->no_hp === $nohp) {
                                 // if ($provinsi === $oldData->provinsi && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan && $dusun === $oldData->dusun && $alamat === $oldData->alamat && $latitude === $oldData->latitude && $longitude === $oldData->longitude && $oldData->profile_picture === $lampiranName) {
                                 $response = new \stdClass;
                                 $response->code = 201;
@@ -372,19 +397,21 @@ class User extends BaseController
                                 $response->message = "Tidak ada perubahan data yang disimpan.";
                                 return json_encode($response);
                             } else {
-                                if($latitude == 'null' || $latitude == '') {
+                                if ($latitude == 'null' || $latitude == '') {
                                     $response = new \stdClass;
                                     $response->code = 400;
                                     $response->message = "Titik Koordinat tidak boleh kosong.";
                                     return json_encode($response);
                                 }
-                                
+
                                 $data = [
                                     'provinsi' => $provinsi,
                                     'kabupaten' => $kabupaten,
                                     'kecamatan' => $kecamatan,
                                     'kelurahan' => $kelurahan,
                                     // 'dusun' => $dusun,
+                                    'email' => $email,
+                                    'no_hp' => $nohp,
                                     'alamat' => $alamat,
                                     'latitude' => $latitude,
                                     'longitude' => $longitude,
@@ -528,6 +555,19 @@ class User extends BaseController
             //         'required' => 'Dusun tidak boleh kosong.',
             //     ]
             // ],
+            'email' => [
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong.',
+                    'valid_email' => 'Email tidak valid.',
+                ]
+            ],
+            'nohp' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'No handphone tidak boleh kosong.',
+                ]
+            ],
             'alamat' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -566,7 +606,17 @@ class User extends BaseController
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = $this->validator->getError('file') . $this->validator->getError('provinsi') . $this->validator->getError('kabupaten') . $this->validator->getError('kecamatan') . $this->validator->getError('kelurahan') . $this->validator->getError('dusun') .  $this->validator->getError('alamat') .  $this->validator->getError('latitude') .  $this->validator->getError('longitude');
+            $response->message = $this->validator->getError('file')
+                . $this->validator->getError('provinsi')
+                . $this->validator->getError('kabupaten')
+                . $this->validator->getError('kecamatan')
+                . $this->validator->getError('kelurahan')
+                . $this->validator->getError('dusun')
+                . $this->validator->getError('email')
+                . $this->validator->getError('nohp')
+                .  $this->validator->getError('alamat')
+                .  $this->validator->getError('latitude')
+                .  $this->validator->getError('longitude');
             return json_encode($response);
         } else {
             $provinsi = htmlspecialchars($this->request->getVar('provinsi'), true);
@@ -574,6 +624,8 @@ class User extends BaseController
             $kecamatan = htmlspecialchars($this->request->getVar('kecamatan'), true);
             $kelurahan = htmlspecialchars($this->request->getVar('kelurahan'), true);
             // $dusun = htmlspecialchars($this->request->getVar('dusun'), true);
+            $email = htmlspecialchars($this->request->getVar('email'), true);
+            $no_hp = htmlspecialchars($this->request->getVar('nohp'), true);
             $alamat = htmlspecialchars($this->request->getVar('alamat'), true);
             $latitude = htmlspecialchars($this->request->getVar('latitude'), true);
             $longitude = htmlspecialchars($this->request->getVar('longitude'), true);
@@ -602,7 +654,7 @@ class User extends BaseController
                             }
 
                             if ($filename == '') {
-                                if ($provinsi === $oldData->provinsi && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan && $alamat === $oldData->alamat && $latitude === $oldData->latitude && $longitude === $oldData->longitude) {
+                                if ($provinsi === $oldData->provinsi && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan && $alamat === $oldData->alamat && $latitude === $oldData->latitude && $longitude === $oldData->longitude && $no_hp === $oldData->no_hp && $email === $oldData->email) {
                                     // if ($provinsi === $oldData->provinsi && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan && $dusun === $oldData->dusun && $alamat === $oldData->alamat && $latitude === $oldData->latitude && $longitude === $oldData->longitude) {
 
                                     $response = new \stdClass;
@@ -618,6 +670,8 @@ class User extends BaseController
                                 'kecamatan' => $kecamatan,
                                 'kelurahan' => $kelurahan,
                                 // 'dusun' => $dusun,
+                                'email' => $email,
+                                'no_hp' => $no_hp,
                                 'alamat' => $alamat,
                                 'latitude' => $latitude,
                                 'longitude' => $longitude,

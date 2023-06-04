@@ -2457,7 +2457,253 @@ class Auth extends BaseController
                     $response->code = 200;
                     $response->data = $data;
                     $response->url = base_url('web/home');
-                    $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NISN dan passwordnya adalah tanggal lahir anda dengan format ddmmyyyy (Example: $pass).";
+                    $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NISN dan passwordnya adalah tanggal lahir anda dengan format ddmmyyyy ($pass).";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 401;
+                    $response->message = "Gagal menyimpan informasi user.";
+                    return json_encode($response);
+                }
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal menyimpan user.";
+                return json_encode($response);
+            }
+        }
+    }
+
+    public function saveregisbeforeschool()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+        // if ($this->request->getMethod() != 'post') {
+        // $response = new \stdClass;
+        // $response->code = 400;
+        // $response->message = "Pendaftaran belum dibuka.";
+        // return json_encode($response);
+        // }
+
+        $rules = [
+            'nik' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NIK tidak boleh kosong. ',
+                ]
+            ],
+            'kk' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'KK tidak boleh kosong. ',
+                ]
+            ],
+            'nama' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama tidak boleh kosong. ',
+                ]
+            ],
+            'tempat_lahir' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Tempat lahir tidak boleh kosong. ',
+                ]
+            ],
+            'tgl_lahir' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Tanggal lahir tidak boleh kosong. ',
+                ]
+            ],
+            'jk' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Jenis kelamin tidak boleh kosong. ',
+                ]
+            ],
+            'nama_ayah' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama ayah tidak boleh kosong. ',
+                ]
+            ],
+            'nama_ibu' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama ibu tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('nik')
+                . $this->validator->getError('kk')
+                . $this->validator->getError('nama')
+                . $this->validator->getError('tempat_lahir')
+                . $this->validator->getError('tgl_lahir')
+                . $this->validator->getError('jk')
+                . $this->validator->getError('nama_ayah')
+                . $this->validator->getError('nama_ibu');
+            return json_encode($response);
+        } else {
+            $nik = htmlspecialchars($this->request->getVar('nik'), true);
+            $kk = htmlspecialchars($this->request->getVar('kk'), true);
+            $nama = htmlspecialchars($this->request->getVar('nama'), true);
+            $tempat_lahir = htmlspecialchars($this->request->getVar('tempat_lahir'), true);
+            $tgl_lahir = htmlspecialchars($this->request->getVar('tgl_lahir'), true);
+            $jk = htmlspecialchars($this->request->getVar('jk'), true);
+            $nama_ayah = htmlspecialchars($this->request->getVar('nama_ayah'), true);
+            $nama_ibu = htmlspecialchars($this->request->getVar('nama_ibu'), true);
+
+            $cekData = $this->_db->table('_users_tb')->where('email', $nik)->get()->getRowObject();
+
+            if ($cekData) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "NIK sudah terdaftar, silahkan login ke aplikasi.";
+                return json_encode($response);
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $pass = "12345678";
+            try {
+                $pass = date("dmY", strtotime($tgl_lahir));
+            } catch (\Throwable $th) {
+                $pass = "12345678";
+            }
+
+            $data = [
+                'id' => $uuid,
+                'email' => $nik,
+                'password' => password_hash($pass, PASSWORD_BCRYPT),
+                // 'role_user' => 6,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $idsekolah = "4a1512a8-b6ac-11ec-985c-0242ac120002";
+            $aktive = "1";
+            $kodewilayah = "000100";
+            $tingkatpendidikan = "1";
+            $tglLahirReplace = str_replace("-", "", $tgl_lahir);
+            $tglLahirConvert = substr($tglLahirReplace, 2, 8);
+
+            // 	$totalNisn = $this->_db->table('_users_profil_tb')->select("id, (SELECT COUNT(*) as total FROM _users_profil_tb where LEFT(nisn, 8) = 'BS$tglLahirConvert'")
+            $totalNisn = $this->_db->table('_users_profil_tb')->where("LEFT(nisn,8) = 'BS$tglLahirConvert'")->countAllResults();
+
+            if ($totalNisn > 0) {
+                $totalSumNisn = $totalNisn + 1;
+                if ($totalSumNisn > 9) {
+                    $urutNisn = $totalSumNisn;
+                } else {
+                    $urutNisn = '0' . $totalSumNisn;
+                }
+            } else {
+                $urutNisn = '01';
+            }
+
+            $nisnCreate = "BS" . $tglLahirConvert . $urutNisn;
+
+            $this->_db->transBegin();
+
+            try {
+                $this->_db->table('_users_tb')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal registrasi user.";
+                return json_encode($response);
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+                $uuidLibNisn = new Uuid();
+                $uuidNisn = $uuidLibNisn->v4();
+
+                $detailSiswaD = [
+                    'peserta_didik_id' => (string)$uuidNisn,
+                    'sekolah_id' => (string)$idsekolah,
+                    'kode_wilayah' => (string)$kodewilayah,
+                    'nama' => (string)$nama,
+                    'tempat_lahir' => (string)$tempat_lahir,
+                    'tanggal_lahir' => (string)$tgl_lahir,
+                    'jenis_kelamin' => (string)$jk,
+                    'nik' => (string)$nik,
+                    'nisn' => (string)$nisnCreate,
+                    'alamat_jalan' => null,
+                    'desa_kelurahan' => null,
+                    'rt' => null,
+                    'rw' => null,
+                    'nama_dusun' => null,
+                    'nama_ibu_kandung' => (string)$nama_ibu,
+                    'pekerjaan_ibu_kandung' => null,
+                    'penghasilan_ibu_kandung' => null,
+                    'nama_ayah' => (string)$nama_ayah,
+                    'pekerjaan_ayah' => null,
+                    'penghasilan_ayah' => null,
+                    'nama_wali' => null,
+                    'pekerjaan_wali' => null,
+                    'penghasilan_wali' => null,
+                    'kebutuhan_khusus' => null,
+                    'no_kip' => null,
+                    'no_pkh' => "",
+                    'lintang' => '-5.050143',
+                    'bujur' => '105.286190',
+                    'aktif' => "1",
+                    'tingkat_pendidikan' => (string)$tingkatpendidikan
+                ];
+                try {
+                    unset($data['password']);
+                    // unset($data['role_user']);
+                    unset($data['email']);
+                    $data['fullname'] = $nama;
+                    // $data['no_hp'] = $nohp;
+                    $data['nisn'] = $nisnCreate;
+                    $data['role_user'] = 6;
+                    // $data['email'] = $email;
+                    $data['sekolah_asal'] = $idsekolah;
+                    $data['npsn_asal'] = '10000001';
+                    $data['latitude'] = '-5.050143';
+                    $data['longitude'] = '105.286190';
+                    $data['peserta_didik_id'] = $uuidNisn;
+                    $data['details'] = json_encode($detailSiswaD);
+
+                    $this->_db->table('_users_profil_tb')->insert($data);
+                } catch (\Throwable $th) {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 401;
+                    $response->message = "Gagal menyimpan informasi user.";
+                    return json_encode($response);
+                }
+
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    // try {
+                    //     $emailLib = new Emaillib();
+                    //     $emailLib->sendActivation($data['email']);
+                    // } catch (\Throwable $th) {
+                    // }
+
+                    unset($data['details']);
+                    unset($data['peserta_didik_id']);
+                    unset($data['sekolah_asal']);
+
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->data = $data;
+                    $response->url = base_url('web/home');
+                    $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NIK dan passwordnya adalah tanggal lahir anda dengan format ddmmyyyy ($pass).";
                     return json_encode($response);
                 } else {
                     $this->_db->transRollback();
@@ -2787,7 +3033,7 @@ class Auth extends BaseController
             $response = new \stdClass;
             $response->code = 200;
             $response->message = "Data ditemukan";
-            $response->data = view('web/page/register/detail-belum-sekolah', $x);
+            $response->data = view('new-web/template/detail-before-sekolah', $x);
             return json_encode($response);
         }
     }

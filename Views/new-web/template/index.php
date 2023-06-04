@@ -196,15 +196,29 @@
         }
 
         function submitRegisterBeforeSchoolButton(event) {
-            const username = document.getElementsByName('_username')[0].value;
-            const password = document.getElementsByName('_password')[0].value;
+            // const jenjang = document.getElementsByName('_jenjang')[0].value;
+            const nik = document.getElementsByName('_nik')[0].value;
+            const kk = document.getElementsByName('_kk')[0].value;
+
+            if (nik.length !== 16) {
+                // $("input#_nisn").css("color", "#dc3545");
+                // $("input#_nisn").css("border-color", "#dc3545");
+                $('._nik').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">NIK tidak valid.</li></ul>');
+                return;
+            }
+            if (kk.length !== 16) {
+                // $("input#_npsn").css("color", "#dc3545");
+                // $("input#_npsn").css("border-color", "#dc3545");
+                $('._kk').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">KK tidak valid.</li></ul>');
+                return;
+            }
 
             $.ajax({
-                type: "POST",
-                url: BASE_URL + '/auth/login',
+                url: BASE_URL + '/auth/ceknikregistered',
+                type: 'POST',
                 data: {
-                    username: username,
-                    password: password,
+                    nik: nik,
+                    kk: kk,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {
@@ -214,51 +228,31 @@
                     });
                 },
                 success: function(msg) {
-                    console.log(msg);
-                    if (msg.code != 200) {
-                        if (msg.code !== 201) {
-                            if (msg.code !== 202) {
-                                $('div.donate-form-area').unblock();
-                                loading = false;
-                                Swal.fire(
-                                    'Gagal!',
-                                    msg.message,
-                                    'warning'
-                                );
-                            } else {
-                                Swal.fire(
-                                    'Warning!',
-                                    msg.message,
-                                    'warning'
-                                ).then((valRes) => {
-                                    // setTimeout(function() {
-                                    document.location.href = msg.url;
-                                    // }, 2000);
+                    loading = false;
+                    // console.log(msg);
+                    $('div.donate-form-area').unblock();
+                    if (msg.code !== 200) {
+                        $('.content-siswa-belum').html('');
+                        $('.content-siswa-belum').css('display', 'none');
 
-                                })
-                            }
-                        } else {
-                            Swal.fire(
-                                'Berhasil!',
-                                msg.message,
-                                'success'
-                            ).then((valRes) => {
-                                // setTimeout(function() {
-                                document.location.href = msg.url;
-                                // }, 2000);
-                            })
-                        }
-                    } else {
                         Swal.fire(
-                            'Berhasil!',
+                            'Gagal!',
                             msg.message,
-                            'success'
-                        ).then((valRes) => {
-                            // setTimeout(function() {
-                            document.location.href = msg.url;
-                            // }, 2000);
-                            // document.location.href = window.location.href + "dashboard";
-                        })
+                            'warning'
+                        );
+
+
+                    } else {
+                        $('.content-siswa-belum').html(msg.data);
+                        $('.content-siswa-belum').css('display', 'block');
+                        $('.' + event.id).css('display', 'none');
+                        // Swal.fire(
+                        //     'Berhasil!',
+                        //     msg.message,
+                        //     'success'
+                        // ).then((valRes) => {
+                        //     document.location.href = msg.url;
+                        // })
                     }
                 },
                 error: function(data) {
@@ -438,20 +432,133 @@
             // }
         }
 
+        function submitRegistrasiBelumSekolah(event) {
+            // if (loadedAll) {
+            //     if (loading) {
+            //         return;
+            //     }
+
+            const nik = document.getElementsByName('_nik_d_belum')[0].value;
+            const kk = document.getElementsByName('_kk_d_belum')[0].value;
+            const nama = document.getElementsByName('_nama_d_belum')[0].value;
+            const tempat_lahir = document.getElementsByName('_tempat_lahir_d_belum')[0].value;
+            const tgl_lahir = document.getElementsByName('_tgl_lahir_d_belum')[0].value;
+            const jk = document.getElementsByName('_jk_d_belum')[0].value;
+            const nama_ayah = document.getElementsByName('_nama_ayah_d_belum')[0].value;
+            const nama_ibu = document.getElementsByName('_nama_ibu_d_belum')[0].value;
+
+
+            if (nik === "") {
+                $('._nik').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">NIK tidak boleh kosong.</li></ul>');
+                return
+            }
+            if (kk === "") {
+                $('._kk').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">KK tidak boleh kosong.</li></ul>');
+                return
+            }
+            if (nama === "") {
+                $('._nama_d_belum').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Nama tidak boleh kosong.</li></ul>');
+                return
+            }
+            if (tempat_lahir === "") {
+                $('._tempat_lahir_d_belum').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Tempat lahir tidak boleh kosong.</li></ul>');
+                return
+            }
+            if (tgl_lahir === "") {
+                $('._tgl_lahir_d_belum').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Tanggal lahir tidak boleh kosong.</li></ul>');
+                return
+            }
+            if (nama_ayah === "") {
+                $('._nama_ayah_d_belum').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Nama ayah tidak boleh kosong.</li></ul>');
+                return
+            }
+            if (nama_ibu === "") {
+                $('._nama_ibu_d_belum').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Nama ibu tidak boleh kosong.</li></ul>');
+                return
+            }
+
+            $.ajax({
+                url: BASE_URL + '/auth/saveregisbeforeschool',
+                type: 'POST',
+                data: {
+                    nik: nik,
+                    kk: kk,
+                    nama: nama,
+                    tempat_lahir: tempat_lahir,
+                    tgl_lahir: tgl_lahir,
+                    jk: jk,
+                    nama_ayah: nama_ayah,
+                    nama_ibu: nama_ibu,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
+                    loading = true;
+                    $('div.donate-form-area').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
+                },
+                success: function(msg) {
+                    loading = false;
+                    // console.log(msg);
+                    $('div.donate-form-area').unblock();
+                    if (msg.code !== 200) {
+
+                        Swal.fire(
+                            'Gagal!',
+                            msg.message,
+                            'warning'
+                        );
+
+                    } else {
+                        Swal.fire(
+                            'Berhasil!',
+                            msg.message,
+                            'success'
+                        ).then((valRes) => {
+                            document.location.href = msg.url;
+                        })
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                    loading = false;
+
+                    $('div.donate-form-area').unblock();
+                    Swal.fire(
+                        'Gagal!',
+                        "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                        'warning'
+                    );
+
+                }
+            })
+            // }
+        }
+
         function actionRegisterAfterSchool(event) {
             $('._punya_nisn').css('display', 'block');
             $('._belum_punya_nisn').css('display', 'none');
+            $('.content-siswa').html('');
+            $('.content-siswa').css('display', 'none');
+            $('.content-siswa-belum').html('');
+            $('.content-siswa-belum').css('display', 'none');
         }
 
         function actionRegisterBeforeSchool(event) {
             $('._punya_nisn').css('display', 'none');
             $('._belum_punya_nisn').css('display', 'block');
+            $('.content-siswa').html('');
+            $('.content-siswa').css('display', 'none');
+            $('.content-siswa-belum').html('');
+            $('.content-siswa-belum').css('display', 'none');
         }
 
         function cancelConfirm(event) {
             $('.btncekdata').css('display', 'block');
             $('.content-siswa').html('');
             $('.content-siswa').css('display', 'none');
+            $('.content-siswa-belum').html('');
+            $('.content-siswa-belum').css('display', 'none');
         }
 
         function changeValidation(event) {

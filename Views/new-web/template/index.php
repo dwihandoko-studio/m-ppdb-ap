@@ -306,6 +306,68 @@
             }
 
             $.ajax({
+                url: BASE_URL + '/auth/getdatasiswa',
+                type: 'POST',
+                data: {
+                    nisn: nisn,
+                    npsn: npsn,
+                    tglLahir: tglLahir,
+                    // namaIbu: namaIbu,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
+                    loading = true;
+                    $('div.donate-form-area').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
+                },
+                success: function(msg) {
+                    loading = false;
+                    // console.log(msg);
+                    $('div.donate-form-area').unblock();
+                    if (msg.code !== 200) {
+                        $('.content-siswa').html('');
+                        $('.content-siswa').css('display', 'none');
+
+                        Swal.fire(
+                            'Gagal!',
+                            msg.message,
+                            'warning'
+                        );
+
+
+                    } else {
+                        $('.content-siswa').html(msg.data);
+                        $('.content-siswa').css('display', 'block');
+                        $('.' + event.id).css('display', 'none');
+                        // Swal.fire(
+                        //     'Berhasil!',
+                        //     msg.message,
+                        //     'success'
+                        // ).then((valRes) => {
+                        //     document.location.href = msg.url;
+                        // })
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                    if (data.status === 200 && (data.statusText === "parsererror" || data.statusText === "OK")) {
+                        // setTimeout(function() {
+                        document.location.href = BASE_URL + '/dahboard';
+                        // }, 2000);
+                    } else {
+                        loading = false;
+                        $('div.donate-form-area').unblock();
+                        Swal.fire(
+                            'Gagal!',
+                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                            'warning'
+                        );
+                    }
+                }
+            })
+
+            $.ajax({
                 type: "POST",
                 url: BASE_URL + '/auth/login',
                 data: {
@@ -394,6 +456,12 @@
         function actionRegisterBeforeSchool(event) {
             $('._punya_nisn').css('display', 'none');
             $('._belum_punya_nisn').css('display', 'block');
+        }
+
+        function cancelConfirm(event) {
+            $('.btncekdata').css('display', 'block');
+            $('.content-siswa').html('');
+            $('.content-siswa').css('display', 'none');
         }
 
         function changeValidation(event) {

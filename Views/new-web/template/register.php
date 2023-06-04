@@ -46,8 +46,11 @@
                                     </div>
                                 </div>
                                 <!-- </div> -->
-                                <div class="btn-box">
-                                    <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">DAFTAR</button>
+                                <div class="btn-box btncekdata" style="display: block;">
+                                    <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn" id="btncekdata">DAFTAR</button>
+                                </div>
+                                <div class="row clearfix content-siswa" style="display: none;">
+
                                 </div>
                             </div>
                         </div>

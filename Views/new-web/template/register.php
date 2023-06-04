@@ -12,7 +12,7 @@
                             <div class="donation-box wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
                                 <!-- <div class="select-box"> -->
                                 <div class="row clearfix">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <!-- <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <p style="color: #fff;">Jenjang PPDB</p>
                                             <div class="select-box">
@@ -22,7 +22,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <p style="color: #fff;">NISN</p>

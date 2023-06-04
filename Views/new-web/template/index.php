@@ -281,7 +281,7 @@
         }
 
         function submitRegisterAfterSchoolButton(event) {
-            const jenjang = document.getElementsByName('_jenjang')[0].value;
+            // const jenjang = document.getElementsByName('_jenjang')[0].value;
             const nisn = document.getElementsByName('_nisn')[0].value;
             const npsn = document.getElementsByName('_npsn')[0].value;
             const tglLahir = document.getElementsByName('_tgl_lahir')[0].value;
@@ -312,7 +312,7 @@
                     nisn: nisn,
                     npsn: npsn,
                     tglLahir: tglLahir,
-                    jenjang: jenjang,
+                    // jenjang: jenjang,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {

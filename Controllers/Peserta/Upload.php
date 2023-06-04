@@ -224,7 +224,7 @@ class Upload extends BaseController
                                     $response->message = "Upload file gagal.";
                                     return json_encode($response);
                                 }
-                            } else if ($id === "_foto_rumah") {
+                            } else if ($id === "_file_foto_rumah") {
                                 $lampiran = $this->request->getFile('file');
                                 $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
 
@@ -291,7 +291,7 @@ class Upload extends BaseController
                                         if ($cekData->lampiran_pernyataan !== null) {
                                             unlink($dir . '/' . $cekData->lampiran_pernyataan);
                                         }
-                                    } else if ($id === "_foto_rumah") {
+                                    } else if ($id === "_file_foto_rumah") {
                                         if ($cekData->lampiran_foto_rumah !== null) {
                                             unlink($dir . '/' . $cekData->lampiran_foto_rumah);
                                         }
@@ -436,7 +436,7 @@ class Upload extends BaseController
                                     $response->message = "Upload file gagal.";
                                     return json_encode($response);
                                 }
-                            } else if ($id === "_foto_rumah") {
+                            } else if ($id === "_file_foto_rumah") {
                                 $lampiran = $this->request->getFile('file');
                                 $filesNamelampiran = $lampiran->getName();
                                 $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
@@ -628,7 +628,7 @@ class Upload extends BaseController
                                 $dir = FCPATH . "uploads/peserta/pernyataan";
                                 $namaFile = $oldData->lampiran_pernyataan;
                                 $data['lampiran_pernyataan'] = null;
-                            } else if ($jenis === "_foto_rumah") {
+                            } else if ($jenis === "_file_foto_rumah") {
                                 $dir = FCPATH . "uploads/peserta/fotorumah";
                                 $namaFile = $oldData->lampiran_foto_rumah;
                                 $data['lampiran_foto_rumah'] = null;
@@ -688,7 +688,7 @@ class Upload extends BaseController
                                         }
                                     } catch (\Exception $e) {
                                     }
-                                } else if ($jenis === "_foto_rumah") {
+                                } else if ($jenis === "_file_foto_rumah") {
                                     try {
                                         if ($oldData->lampiran_foto_rumah !== null) {
                                             unlink($dir . '/' . $namaFile);

@@ -2372,6 +2372,13 @@ class Auth extends BaseController
                     'required' => 'Key tidak boleh kosong. ',
                 ]
             ],
+            'email' => [
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong. ',
+                    'valid_email' => 'Email tidak valid. ',
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -2379,10 +2386,12 @@ class Auth extends BaseController
             $response->code = 400;
             $response->message = $this->validator->getError('nisn')
                 . $this->validator->getError('key')
+                . $this->validator->getError('email')
                 . $this->validator->getError('npsn');
             return json_encode($response);
         } else {
             $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
+            $email = htmlspecialchars($this->request->getVar('email'), true);
             $keyD = htmlspecialchars($this->request->getVar('key'), true);
 
             $key = json_decode(safeDecryptMe($keyD, 'Aswertyuioasdfghjkqwertyuiqwerty'));
@@ -2440,7 +2449,7 @@ class Auth extends BaseController
                     // $data['no_hp'] = $nohp;
                     $data['nisn'] = $nisn;
                     $data['role_user'] = 6;
-                    // $data['email'] = $email;
+                    $data['email'] = $email;
                     $data['sekolah_asal'] = $key->sekolah_id;
                     $data['npsn_asal'] = $npsn;
                     $data['latitude'] = $latitudeInput;
@@ -2556,6 +2565,13 @@ class Auth extends BaseController
                     'required' => 'Nama ibu tidak boleh kosong. ',
                 ]
             ],
+            'email' => [
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong. ',
+                    'valid_email' => 'Email tidak valid. ',
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -2568,11 +2584,13 @@ class Auth extends BaseController
                 . $this->validator->getError('tgl_lahir')
                 . $this->validator->getError('jk')
                 . $this->validator->getError('nama_ayah')
+                . $this->validator->getError('email')
                 . $this->validator->getError('nama_ibu');
             return json_encode($response);
         } else {
             $nik = htmlspecialchars($this->request->getVar('nik'), true);
             $kk = htmlspecialchars($this->request->getVar('kk'), true);
+            $email = htmlspecialchars($this->request->getVar('email'), true);
             $nama = htmlspecialchars($this->request->getVar('nama'), true);
             $tempat_lahir = htmlspecialchars($this->request->getVar('tempat_lahir'), true);
             $tgl_lahir = htmlspecialchars($this->request->getVar('tgl_lahir'), true);
@@ -2686,7 +2704,7 @@ class Auth extends BaseController
                     // $data['no_hp'] = $nohp;
                     $data['nisn'] = $nisnCreate;
                     $data['role_user'] = 6;
-                    // $data['email'] = $email;
+                    $data['email'] = $email;
                     $data['sekolah_asal'] = $idsekolah;
                     $data['npsn_asal'] = '10000001';
                     $data['latitude'] = '-5.050143';

@@ -51,6 +51,13 @@
                     <div class="help-block _nama_ibu_d_belum"></div>
                 </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <p style="color: #fff;">Email</p>
+                    <input type="email" onfocus="inputFocus(this)" name="_email" id="_email" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                    <div class="help-block _email"></div>
+                </div>
+            </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="formcus-row">
                     <div class="formcus-group col-md-12">

@@ -371,11 +371,18 @@
             const nisn = document.getElementsByName('_nisn_d')[0].value;
             const keyD = document.getElementsByName('_key_d')[0].value;
             const npsn = document.getElementsByName('_npsn_d')[0].value;
+            const email = document.getElementsByName('_email')[0].value;
 
             if (nisn === "") {
-                $("input#_nisn").css("color", "#dc3545");
-                $("input#_nisn").css("border-color", "#dc3545");
-                $('._nisn').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">NISN / NIK tidak boleh kosong.</li></ul>');
+                // $("input#_nisn").css("color", "#dc3545");
+                // $("input#_nisn").css("border-color", "#dc3545");
+                $('._nisn').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">NISN tidak boleh kosong.</li></ul>');
+                return
+            }
+            if (email === "") {
+                // $("input#_nisn").css("color", "#dc3545");
+                // $("input#_nisn").css("border-color", "#dc3545");
+                $('._email').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Email tidak boleh kosong.</li></ul>');
                 return
             }
 
@@ -386,6 +393,7 @@
                     nisn: nisn,
                     key: keyD,
                     npsn: npsn,
+                    email: email,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {
@@ -446,7 +454,7 @@
             const jk = document.getElementsByName('_jk_d_belum')[0].value;
             const nama_ayah = document.getElementsByName('_nama_ayah_d_belum')[0].value;
             const nama_ibu = document.getElementsByName('_nama_ibu_d_belum')[0].value;
-
+            const email = document.getElementsByName('_email')[0].value;
 
             if (nik === "") {
                 $('._nik').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">NIK tidak boleh kosong.</li></ul>');
@@ -476,6 +484,10 @@
                 $('._nama_ibu_d_belum').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Nama ibu tidak boleh kosong.</li></ul>');
                 return
             }
+            if (email === "") {
+                $('._email').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Email tidak boleh kosong.</li></ul>');
+                return
+            }
 
             $.ajax({
                 url: BASE_URL + '/auth/saveregisbeforeschool',
@@ -489,6 +501,7 @@
                     jk: jk,
                     nama_ayah: nama_ayah,
                     nama_ibu: nama_ibu,
+                    email: email,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {

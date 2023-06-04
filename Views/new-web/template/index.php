@@ -369,73 +369,73 @@
         }
 
         function submitRegistrasi(event) {
-            if (loadedAll) {
-                if (loading) {
-                    return;
-                }
+            // if (loadedAll) {
+            //     if (loading) {
+            //         return;
+            //     }
 
-                const nisn = document.getElementsByName('_nisn_d')[0].value;
-                const keyD = document.getElementsByName('_key_d')[0].value;
-                const npsn = document.getElementsByName('_npsn_d')[0].value;
+            const nisn = document.getElementsByName('_nisn_d')[0].value;
+            const keyD = document.getElementsByName('_key_d')[0].value;
+            const npsn = document.getElementsByName('_npsn_d')[0].value;
 
-                if (nisn === "") {
-                    $("input#_nisn").css("color", "#dc3545");
-                    $("input#_nisn").css("border-color", "#dc3545");
-                    $('._nisn').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">NISN / NIK tidak boleh kosong.</li></ul>');
-                    return
-                }
+            if (nisn === "") {
+                $("input#_nisn").css("color", "#dc3545");
+                $("input#_nisn").css("border-color", "#dc3545");
+                $('._nisn').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">NISN / NIK tidak boleh kosong.</li></ul>');
+                return
+            }
 
-                $.ajax({
-                    url: BASE_URL + '/auth/saveregisschool',
-                    type: 'POST',
-                    data: {
-                        nisn: nisn,
-                        key: keyD,
-                        npsn: npsn,
-                    },
-                    dataType: 'JSON',
-                    beforeSend: function() {
-                        loading = true;
-                        $('div.donate-form-area').block({
-                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                        });
-                    },
-                    success: function(msg) {
-                        loading = false;
-                        // console.log(msg);
-                        $('div.donate-form-area').unblock();
-                        if (msg.code !== 200) {
+            $.ajax({
+                url: BASE_URL + '/auth/saveregisschool',
+                type: 'POST',
+                data: {
+                    nisn: nisn,
+                    key: keyD,
+                    npsn: npsn,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
+                    loading = true;
+                    $('div.donate-form-area').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
+                },
+                success: function(msg) {
+                    loading = false;
+                    // console.log(msg);
+                    $('div.donate-form-area').unblock();
+                    if (msg.code !== 200) {
 
-                            Swal.fire(
-                                'Gagal!',
-                                msg.message,
-                                'warning'
-                            );
-
-                        } else {
-                            Swal.fire(
-                                'Berhasil!',
-                                msg.message,
-                                'success'
-                            ).then((valRes) => {
-                                document.location.href = msg.url;
-                            })
-                        }
-                    },
-                    error: function(data) {
-                        console.log(data);
-                        loading = false;
-
-                        $('div.donate-form-area').unblock();
                         Swal.fire(
                             'Gagal!',
-                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                            msg.message,
                             'warning'
                         );
 
+                    } else {
+                        Swal.fire(
+                            'Berhasil!',
+                            msg.message,
+                            'success'
+                        ).then((valRes) => {
+                            document.location.href = msg.url;
+                        })
                     }
-                })
-            }
+                },
+                error: function(data) {
+                    console.log(data);
+                    loading = false;
+
+                    $('div.donate-form-area').unblock();
+                    Swal.fire(
+                        'Gagal!',
+                        "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                        'warning'
+                    );
+
+                }
+            })
+            // }
         }
 
         function actionRegisterAfterSchool(event) {

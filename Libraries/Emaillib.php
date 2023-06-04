@@ -167,14 +167,14 @@ class Emaillib
 
     public function sendResetPassword($email)
     {
-        $user = $this->_getUser($email);
+        // $user = $this->_getUser($email);
 
-        if ($user) {
-            $tokenLib = new Tokenlib();
-            $token = $tokenLib->createTokenActivation($user->email);
+        // if ($user) {
+        $tokenLib = new Tokenlib();
+        $token = $tokenLib->createTokenActivation($email);
 
-            if ($token) {
-                $content = '<table align="center" width="570" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;background-color:#ffffff;margin:0 auto;padding:0;width:570px">
+        if ($token) {
+            $content = '<table align="center" width="570" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;background-color:#ffffff;margin:0 auto;padding:0;width:570px">
                             
                             <tbody><tr>
                                 <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
@@ -197,7 +197,7 @@ class Emaillib
                                                             <table border="0" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
                                                                 <tbody><tr>
                                                                     <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
-                                                                        <a href="' . base_url() . '/auth/resetakun?from=email&id=' . $user->email . '&token=' . $token['token'] . '" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;border-radius:3px;color:#fff;display:inline-block;text-decoration:none;background-color:#3097d1;border-top:10px solid #3097d1;border-right:18px solid #3097d1;border-bottom:10px solid #3097d1;border-left:18px solid #3097d1" target="_blank">Reset Password PPDB</a>
+                                                                        <a href="' . base_url() . '/auth/resetakun?from=email&id=' . $email . '&token=' . $token['token'] . '" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;border-radius:3px;color:#fff;display:inline-block;text-decoration:none;background-color:#3097d1;border-top:10px solid #3097d1;border-right:18px solid #3097d1;border-bottom:10px solid #3097d1;border-left:18px solid #3097d1" target="_blank">Reset Password PPDB</a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody></table>
@@ -223,39 +223,39 @@ class Emaillib
                                 </td>
                             </tr>
                         </tbody></table>';
-                // $content = "Silahkan masukkan kode aktivasi akun ini : <br><div style='display: inline-block;width: 200px;background-color: #000; padding: 5px;color: #fff;text-align: center;font-size: 15px;'><b>" . $token['token'] . "</b></div>";
+            // $content = "Silahkan masukkan kode aktivasi akun ini : <br><div style='display: inline-block;width: 200px;background-color: #000; padding: 5px;color: #fff;text-align: center;font-size: 15px;'><b>" . $token['token'] . "</b></div>";
 
-                $sended = $this->_sendEmail($user->email, "Tautan link reset Akun Berhasil di kirim", $content);
-                // var_dump($sended);die;
+            $sended = $this->_sendEmail($email, "Tautan link reset Akun Berhasil di kirim", $content);
+            // var_dump($sended);die;
 
-                if ($sended->code == 200) {
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    // $response->data = $sended;
-                    $response->user = $user;
-                    return $response;
-                } else {
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    // $response->message = $sended->message;
-                    $response->message = "Gagal mengirim reset password.";
-                    $response->error = $sended->message;
-                    return $response;
-                }
+            if ($sended->code == 200) {
+                $response = new \stdClass;
+                $response->code = 200;
+                // $response->data = $sended;
+                $response->user = $email;
+                return $response;
             } else {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Gagal membuat token.";
-                $response->error = '';
+                // $response->message = $sended->message;
+                $response->message = "Gagal mengirim reset password.";
+                $response->error = $sended->message;
                 return $response;
             }
         } else {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Email tidak terdaftar, silahkan hubungi admin.";
+            $response->message = "Gagal membuat token.";
             $response->error = '';
             return $response;
         }
+        // } else {
+        //     $response = new \stdClass;
+        //     $response->code = 400;
+        //     $response->message = "Email tidak terdaftar, silahkan hubungi admin.";
+        //     $response->error = '';
+        //     return $response;
+        // }
     }
 
     public function sendNotifikasi($email, $judul, $text = '')

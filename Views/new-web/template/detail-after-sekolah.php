@@ -5,7 +5,7 @@
         <input type="hidden" value="<?= trim($data->peserta_didik_id) ?>" id="_id_d" name="_id_d">
         <input type="hidden" value="<?= trim($data->sekolah_id) ?>" id="_sekolah_id_d" name="_sekolah_id_d">
         <input type="hidden" value="<?= safeEncryptMe(json_encode($data), 'Aswertyuioasdfghjkqwertyuiqwerty') ?>" id="_key_d" name="_key_d">
-        <div class="row clearfix content-siswa">
+        <div class="row clearfix">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <p style="color: #fff;">NISN (Pada Dapodik)</p>

@@ -554,11 +554,12 @@
         }
 
         function cancelConfirm(event) {
-            $('.btncekdata').css('display', 'block');
+            // $('.btncekdata').css('display', 'block');
             $('.content-siswa').html('');
             $('.content-siswa').css('display', 'none');
             $('.content-siswa-belum').html('');
             $('.content-siswa-belum').css('display', 'none');
+            $('.' + event.id).css('display', 'block');
         }
 
         function changeValidation(event) {

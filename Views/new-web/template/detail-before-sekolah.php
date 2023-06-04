@@ -56,7 +56,7 @@
                     <div class="formcus-group col-md-12">
                         <div class="row">
                             <div class="col-md-4">
-                                <button id="btncancel" type="button" style="min-width: 100%; max-height: 40px; padding: 10px;" onclick="cancelConfirm(this)" class="btn btn-block btn-warning">BATAL</button>
+                                <button id="btncekdatabelumsekolah" type="button" style="min-width: 100%; max-height: 40px; padding: 10px;" onclick="cancelConfirm(this)" class="btn btn-block btn-warning">BATAL</button>
                             </div>
                             <div class="col-md-8">
                                 <button id="btnsimpan" type="button" style="min-width: 100%; max-height: 40px; padding: 10px;" onclick="submitRegistrasiBelumSekolah(this)" class="btn btn-block btn-primary">LANJUTKAN</button>

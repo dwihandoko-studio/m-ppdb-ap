@@ -34,12 +34,14 @@
                                         <div class="form-group">
                                             <p style="color: #fff;">NPSN</p>
                                             <input type="text" onfocus="inputFocus(this)" name="_npsn" id="_npsn" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                            <div class="help-block _npsn"></div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <p style="color: #fff;">Tanggal Lahir</p>
-                                            <input type="date" onfocus="inputFocus(this)" name="_tgl_lahir" id="_tgl_lahir" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                            <input class="datepicker" type="date" onfocus="inputFocus(this)" name="_tgl_lahir" id="_tgl_lahir" placeholder="" style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                            <div class="help-block _tgl_lahir"></div>
                                         </div>
                                     </div>
                                 </div>

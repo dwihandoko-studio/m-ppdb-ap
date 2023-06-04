@@ -843,7 +843,7 @@ class Auth extends BaseController
             }
         }
     }
-    
+
     public function lupapasswordaction()
     {
         if ($this->request->getMethod() != 'post') {
@@ -873,12 +873,12 @@ class Auth extends BaseController
 
             $user = $this->_db->table('_users_tb')->where('email', strtolower($username))->get()->getRowObject();
             if ($user) {
-                
+
                 $emailLib = new Emaillib();
                 $send = $emailLib->sendResetPassword($user->email);
-                
-                if($send->code == 200) {
-                    
+
+                if ($send->code == 200) {
+
                     $response = new \stdClass;
                     $response->code = 200;
                     $response->message = 'Kami sudah mengirimkan link reset passwrod di email anda. Silahkan cek email anda.';
@@ -895,7 +895,7 @@ class Auth extends BaseController
                 // $response->message = $send;
                 // return json_encode($response);
                 // var_dump($send);die;
-                
+
             } else {
                 $response = new \stdClass;
                 $response->code = 400;
@@ -911,7 +911,7 @@ class Auth extends BaseController
     public function lupapassword()
     {
         $data['title'] = "Reset Password Layanan";
-        
+
         if ($this->request->getMethod() != 'post') {
             return view('login/lupapassword', $data);
         }
@@ -936,7 +936,7 @@ class Auth extends BaseController
 
             $user = $this->_db->table('_users_tb')->where('email', strtolower($username))->get()->getRowObject();
             if ($user) {
-                
+
                 $emailLib = new Emaillib();
                 $send = $emailLib->sendResetPassword($user->email);
                 $response = new \stdClass;
@@ -944,7 +944,7 @@ class Auth extends BaseController
                 $response->message = $send;
                 return json_encode($response);
                 // var_dump($send);die;
-                
+
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->message = 'Kami sudah mengirimkan link reset passwrod di email anda. Silahkan cek email anda.';
@@ -1110,14 +1110,14 @@ class Auth extends BaseController
         }
 
         if ($this->request->getMethod() != 'post') {
-            
+
             $email = htmlspecialchars($this->request->getGet('id'), true);
             $token = htmlspecialchars($this->request->getGet('token'), true);
             $dataReset = $this->_db->table('_token_activation_tb')->where(['user_id' => $email, 'token' => $token])->orderBy('id', 'DESC')->limit(1)->get()->getRowObject();
-            if(!$dataReset) {
+            if (!$dataReset) {
                 return view('404');
             }
-            
+
             $today = date("Y-m-d H:i:s");
             $startdate = $dataReset->created_at;
 
@@ -1128,10 +1128,9 @@ class Auth extends BaseController
                 $data['reset'] = $dataReset;
                 $data['title'] = "Buat Password Baru";
                 return view('login/password-baru', $data);
-            } 
-            
+            }
+
             return view('404', ['data' => "Token telah expired."]);
-            
         } else {
             return view('404', ['data' => "Permintaan tidak diizinkan."]);
         }
@@ -1184,24 +1183,24 @@ class Auth extends BaseController
             $id = htmlspecialchars($this->request->getVar('id'), true);
             $email = htmlspecialchars($this->request->getVar('email'), true);
             $password = htmlspecialchars($this->request->getVar('password'), true);
-        
+
             $cekDataReset = $this->_db->table('_token_activation_tb')->where('id', $id)->get()->getRowObject();
-            
-            if(!$cekDataReset) {
+
+            if (!$cekDataReset) {
                 $response = new \stdClass;
                 $response->code = 401;
                 $response->message = "Data tidak ditemukan";
                 return json_encode($response);
             }
-            
+
             $jumlahUser = $this->_db->table('_users_profil_tb')->where('email', $email)->get()->getResult();
-            
-            if(count($jumlahUser) > 0) {
+
+            if (count($jumlahUser) > 0) {
                 $dataUpdate = [
                     'password' => password_hash($password, PASSWORD_BCRYPT),
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
-                
+
                 foreach ($jumlahUser as $key => $value) {
                     $this->_db->table('_users_tb')->where('id', $value->id)->update($dataUpdate);
                 }
@@ -1978,7 +1977,7 @@ class Auth extends BaseController
     //         }
     //     }
     // }
-    
+
     public function getdatasiswa()
     {
         if ($this->request->getMethod() != 'post') {
@@ -2041,35 +2040,35 @@ class Auth extends BaseController
                     // $tingkatAkhirs = [6, 9, 72, 71, 73];
                     // $any = in_array((int)$dataSiswa->tingkat_pendidikan, $tingkatAkhirs);
                     // if ($any) {
-                        if ($tglLahir == $dataSiswa->tanggal_lahir) {
-                            if($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
-                                $dataSiswa->lintang = '0.0';
-                                $dataSiswa->bujur = '-0.0';
-                            }
-                            
-                            $x['data'] = $dataSiswa;
-
-                            // $referensiLayananLib = new ReferensiLayananLib();
-                            // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
-
-                            $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
-
-                            if ($dataSekolah) {
-                                // if ($dataSekolah->data->code == 200) {
-                                $x['sekolah'] = $dataSekolah;
-                                // }
-                            }
-                            $response = new \stdClass;
-                            $response->code = 200;
-                            $response->message = "Data ditemukan.";
-                            $response->data = view('web/page/register/detail', $x);
-                            return json_encode($response);
-                        } else {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
-                            return json_encode($response);
+                    if ($tglLahir == $dataSiswa->tanggal_lahir) {
+                        if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
+                            $dataSiswa->lintang = '0.0';
+                            $dataSiswa->bujur = '-0.0';
                         }
+
+                        $x['data'] = $dataSiswa;
+
+                        // $referensiLayananLib = new ReferensiLayananLib();
+                        // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
+
+                        $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
+
+                        if ($dataSekolah) {
+                            // if ($dataSekolah->data->code == 200) {
+                            $x['sekolah'] = $dataSekolah;
+                            // }
+                        }
+                        $response = new \stdClass;
+                        $response->code = 200;
+                        $response->message = "Data ditemukan.";
+                        $response->data = view('new-web/template/detail-after-sekolah', $x);
+                        return json_encode($response);
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
+                        return json_encode($response);
+                    }
                     // } else {
                     //     $response = new \stdClass;
                     //     $response->code = 400;
@@ -2100,16 +2099,16 @@ class Auth extends BaseController
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
-        
+
         // $jadwals = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
-        
+
         // if (!$jadwals) {
         //     $response = new \stdClass;
         //     $response->code = 400;
         //     $response->message = "Pendaftaran ppdb belum dibuka.";
         //     return json_encode($response);
         // }
-        
+
         // $today = date("Y-m-d H:i:s");
         // $startdate = strtotime($today);
         // $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
@@ -2120,7 +2119,7 @@ class Auth extends BaseController
         //     $response->message = "Pendaftaran ppdb belum dibuka.";
         //     return json_encode($response);
         // }
-        
+
         // $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
         // if ($startdate > $enddateAkhir) {
         //     $response = new \stdClass;
@@ -2128,12 +2127,12 @@ class Auth extends BaseController
         //     $response->message = "Pendaftaran ppdb telah ditutup.";
         //     return json_encode($response);
         // }
-        
+
         // if ($this->request->getMethod() != 'post') {
-            // $response = new \stdClass;
-            // $response->code = 400;
-            // $response->message = "Pendaftaran belum dibuka.";
-            // return json_encode($response);
+        // $response = new \stdClass;
+        // $response->code = 400;
+        // $response->message = "Pendaftaran belum dibuka.";
+        // return json_encode($response);
         // }
 
         $rules = [
@@ -2230,7 +2229,7 @@ class Auth extends BaseController
                 $response->message = "Gagal mendaftarkan user.";
                 return json_encode($response);
             }
-            
+
             $latitudeInput = ($key->lintang == null || $key->lintang == "" || $key->lintang == "null" || $key->lintang == "NULL") ? "-4.9452477" : $key->lintang;
             $longitudeInput = ($key->bujur == null || $key->bujur == "" || $key->bujur == "null" || $key->bujur == "NULL") ? "103.770643" : $key->bujur;
 
@@ -2294,7 +2293,7 @@ class Auth extends BaseController
             }
         }
     }
-    
+
     public function saveregisbelumsekolah()
     {
         if ($this->request->getMethod() != 'post') {
@@ -2304,10 +2303,10 @@ class Auth extends BaseController
             return json_encode($response);
         }
         // if ($this->request->getMethod() != 'post') {
-            // $response = new \stdClass;
-            // $response->code = 400;
-            // $response->message = "Pendaftaran belum dibuka.";
-            // return json_encode($response);
+        // $response = new \stdClass;
+        // $response->code = 400;
+        // $response->message = "Pendaftaran belum dibuka.";
+        // return json_encode($response);
         // }
 
         $rules = [
@@ -2425,29 +2424,29 @@ class Auth extends BaseController
                 // 'role_user' => 6,
                 'created_at' => date('Y-m-d H:i:s')
             ];
-            
+
             $idsekolah = "4a1512a8-b6ac-11ec-985c-0242ac120002";
-        	$aktive = "1";
-        	$kodewilayah = "000100";
-        	$tingkatpendidikan = "1";
-        	$tglLahirReplace = str_replace("-","",$tgl_lahir);
-        	$tglLahirConvert = substr($tglLahirReplace,2,8);
-        	
-        // 	$totalNisn = $this->_db->table('_users_profil_tb')->select("id, (SELECT COUNT(*) as total FROM _users_profil_tb where LEFT(nisn, 8) = 'BS$tglLahirConvert'")
+            $aktive = "1";
+            $kodewilayah = "000100";
+            $tingkatpendidikan = "1";
+            $tglLahirReplace = str_replace("-", "", $tgl_lahir);
+            $tglLahirConvert = substr($tglLahirReplace, 2, 8);
+
+            // 	$totalNisn = $this->_db->table('_users_profil_tb')->select("id, (SELECT COUNT(*) as total FROM _users_profil_tb where LEFT(nisn, 8) = 'BS$tglLahirConvert'")
             $totalNisn = $this->_db->table('_users_profil_tb')->where("LEFT(nisn,8) = 'BS$tglLahirConvert'")->countAllResults();
-            
-            if($totalNisn > 0) {
+
+            if ($totalNisn > 0) {
                 $totalSumNisn = $totalNisn + 1;
-                if($totalSumNisn > 9 ) {
+                if ($totalSumNisn > 9) {
                     $urutNisn = $totalSumNisn;
                 } else {
                     $urutNisn = '0' . $totalSumNisn;
                 }
             } else {
-                $urutNisn = '01'; 
+                $urutNisn = '01';
             }
-        	
-        	$nisnCreate = "BS" . $tglLahirConvert . $urutNisn;
+
+            $nisnCreate = "BS" . $tglLahirConvert . $urutNisn;
 
             $this->_db->transBegin();
 
@@ -2464,7 +2463,7 @@ class Auth extends BaseController
             if ($this->_db->affectedRows() > 0) {
                 $uuidLibNisn = new Uuid();
                 $uuidNisn = $uuidLibNisn->v4();
-                
+
                 $detailSiswaD = [
                     'peserta_didik_id' => (string)$uuidNisn,
                     'sekolah_id' => (string)$idsekolah,
@@ -2556,8 +2555,9 @@ class Auth extends BaseController
             }
         }
     }
-    
-    public function ceknikregistered() {
+
+    public function ceknikregistered()
+    {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
             $response->code = 400;
@@ -2596,8 +2596,8 @@ class Auth extends BaseController
                 $response->message = "NIK terdeteksi sudah terdaftar di aplikasi. Silahkan untuk melakukan login.";
                 return json_encode($response);
             }
-            
-            $x['data']= [
+
+            $x['data'] = [
                 'nik' => $nik,
                 'kk' => $kk,
             ];
@@ -2607,7 +2607,6 @@ class Auth extends BaseController
             $response->message = "Data ditemukan";
             $response->data = view('web/page/register/detail-belum-sekolah', $x);
             return json_encode($response);
-            
         }
     }
 }

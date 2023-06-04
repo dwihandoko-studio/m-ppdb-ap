@@ -2,8 +2,8 @@
     <div class="col-lg-12">
         <hr style="color: #fff; height: 3px; opacity: 0.75;">
         <h4 style="justify-content: center; justify-items: center; color: #fff;">LENGKAPI DATA</h4>
-        <input type="hidden" value="<?= trim($data->nik) ?>" id="_nik_d_belum" name="_nik_d_belum">
-        <input type="hidden" value="<?= trim($data->kk) ?>" id="_kk_d_belum" name="_kk_d_belum">
+        <input type="hidden" value="<?= trim($data['nik']) ?>" id="_nik_d_belum" name="_nik_d_belum">
+        <input type="hidden" value="<?= trim($data['kk']) ?>" id="_kk_d_belum" name="_kk_d_belum">
         <div class="row clearfix">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">

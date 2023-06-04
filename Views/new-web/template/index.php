@@ -347,7 +347,7 @@
                     console.log(data);
                     if (data.status === 200 && (data.statusText === "parsererror" || data.statusText === "OK")) {
                         // setTimeout(function() {
-                        document.location.href = BASE_URL + '/dahboard';
+                        // document.location.href = BASE_URL + '/dahboard';
                         // }, 2000);
                     } else {
                         loading = false;

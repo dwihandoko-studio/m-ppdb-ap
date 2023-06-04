@@ -284,7 +284,7 @@
             const jenjang = document.getElementsByName('_jenjang')[0].value;
             const nisn = document.getElementsByName('_nisn')[0].value;
             const npsn = document.getElementsByName('_npsn')[0].value;
-            const tgl_lahir = document.getElementsByName('_tgl_lahir')[0].value;
+            const tglLahir = document.getElementsByName('_tgl_lahir')[0].value;
 
             if (nisn === "") {
                 // $("input#_nisn").css("color", "#dc3545");
@@ -312,7 +312,7 @@
                     nisn: nisn,
                     npsn: npsn,
                     tglLahir: tglLahir,
-                    // namaIbu: namaIbu,
+                    jenjang: jenjang,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {

@@ -2457,7 +2457,7 @@ class Auth extends BaseController
                     $response->code = 200;
                     $response->data = $data;
                     $response->url = base_url('web/home');
-                    $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NISN dan password yang barusan anda buat.";
+                    $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NISN dan passwordnya adalah tanggal lahir anda dengan format ddmmyyyy (Example: 30062001).";
                     return json_encode($response);
                 } else {
                     $this->_db->transRollback();

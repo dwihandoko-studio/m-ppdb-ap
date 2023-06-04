@@ -353,6 +353,22 @@ class Upload extends BaseController
                                     $response->message = "Upload file gagal.";
                                     return json_encode($response);
                                 }
+                            } else if ($id === "_file_akta") {
+                                $lampiran = $this->request->getFile('file');
+                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                                    $dir = FCPATH . "uploads/peserta/akta";
+
+                                    $lampiran->move($dir, $newNamelampiran);
+                                    $data['lampiran_akta_kelahiran'] = $newNamelampiran;
+                                    $namaFile = $newNamelampiran;
+                                } else {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->message = "Upload file gagal.";
+                                    return json_encode($response);
+                                }
                             } else if ($id === "_file_lulus") {
                                 $lampiran = $this->request->getFile('file');
                                 $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);

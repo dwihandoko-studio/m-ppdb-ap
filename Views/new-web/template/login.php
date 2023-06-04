@@ -10,7 +10,7 @@
                         <div class="donation-box wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
                             <div class="select-box">
                                 <div class="form-group">
-                                    <p style="color: #fff;">NISN / NIK / Email</p>
+                                    <p style="color: #fff;">NISN / NIK</p>
                                     <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_username" id="_username" placeholder="">
                                 </div>
                                 <div class="form-group">

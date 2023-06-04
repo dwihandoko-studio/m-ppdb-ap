@@ -26,7 +26,7 @@ class Emaillib
     {
         $email = \Config\Services::email();
         // $email->setFrom('pesawaran.ppdb@ngehoster.com', 'PPDB KAB. PESAWARAN');
-        $email->setFrom('pesawaran.ppdb@kntechline.id', 'PPDB KAB. PESAWARAN');
+        $email->setFrom('pesawaran.ppdb@kntechline.com', 'PPDB KAB. PESAWARAN');
         $email->setTo($emailTo);
 
         $email->setSubject($title);
@@ -50,7 +50,7 @@ class Emaillib
     private function _sendEmailNotifikasi($emailTo, $title, $content)
     {
         $email = \Config\Services::email();
-        $email->setFrom('pesawaran.ppdb@kntechline.id', 'PPDB KAB. PESAWARAN');
+        $email->setFrom('pesawaran.ppdb@kntechline.com', 'PPDB KAB. PESAWARAN');
         $email->setTo($emailTo);
 
         $email->setSubject($title);

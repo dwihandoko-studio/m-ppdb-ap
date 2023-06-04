@@ -2090,7 +2090,6 @@ class Auth extends BaseController
         }
     }
 
-
     public function saveregis()
     {
         if ($this->request->getMethod() != 'post') {
@@ -2243,6 +2242,189 @@ class Auth extends BaseController
                     $data['nisn'] = $nisn;
                     $data['role_user'] = 6;
                     $data['email'] = $email;
+                    $data['sekolah_asal'] = $key->sekolah_id;
+                    $data['npsn_asal'] = $npsn;
+                    $data['latitude'] = $latitudeInput;
+                    $data['longitude'] = $longitudeInput;
+                    $data['peserta_didik_id'] = $key->peserta_didik_id;
+                    $data['details'] = json_encode($key);
+
+                    $this->_db->table('_users_profil_tb')->insert($data);
+                } catch (\Throwable $th) {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 401;
+                    $response->message = "Gagal menyimpan informasi user.";
+                    return json_encode($response);
+                }
+
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    // try {
+                    //     $emailLib = new Emaillib();
+                    //     $emailLib->sendActivation($data['email']);
+                    // } catch (\Throwable $th) {
+                    // }
+
+                    unset($data['details']);
+                    unset($data['peserta_didik_id']);
+                    unset($data['sekolah_asal']);
+
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->data = $data;
+                    $response->url = base_url('web/home');
+                    $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NISN dan password yang barusan anda buat.";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 401;
+                    $response->message = "Gagal menyimpan informasi user.";
+                    return json_encode($response);
+                }
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal menyimpan user.";
+                return json_encode($response);
+            }
+        }
+    }
+
+    public function saveregisschool()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        // $jadwals = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+
+        // if (!$jadwals) {
+        //     $response = new \stdClass;
+        //     $response->code = 400;
+        //     $response->message = "Pendaftaran ppdb belum dibuka.";
+        //     return json_encode($response);
+        // }
+
+        // $today = date("Y-m-d H:i:s");
+        // $startdate = strtotime($today);
+        // $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
+
+        // if ($startdate < $enddateAwal) {
+        //     $response = new \stdClass;
+        //     $response->code = 400;
+        //     $response->message = "Pendaftaran ppdb belum dibuka.";
+        //     return json_encode($response);
+        // }
+
+        // $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
+        // if ($startdate > $enddateAkhir) {
+        //     $response = new \stdClass;
+        //     $response->code = 400;
+        //     $response->message = "Pendaftaran ppdb telah ditutup.";
+        //     return json_encode($response);
+        // }
+
+        // if ($this->request->getMethod() != 'post') {
+        // $response = new \stdClass;
+        // $response->code = 400;
+        // $response->message = "Pendaftaran belum dibuka.";
+        // return json_encode($response);
+        // }
+
+        $rules = [
+            'nisn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NISN tidak boleh kosong. ',
+                ]
+            ],
+            'npsn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NPSN tidak boleh kosong. ',
+                ]
+            ],
+            'key' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Key tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('nisn')
+                . $this->validator->getError('key')
+                . $this->validator->getError('npsn');
+            return json_encode($response);
+        } else {
+            $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
+            $keyD = htmlspecialchars($this->request->getVar('key'), true);
+
+            $key = json_decode(safeDecryptMe($keyD, 'Aswertyuioasdfghjkqwertyuiqwerty'));
+
+            $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+
+            $cekData = $this->_db->table('_users_tb')->where('email', $nisn)->get()->getRowObject();
+
+            if ($cekData) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "NISN sudah terdaftar, silahkan login ke aplikasi.";
+                return json_encode($response);
+            }
+
+            $pass = "12345678";
+            try {
+                $pass = date("dmY", strtotime($key->tanggal_lahir));
+            } catch (\Throwable $th) {
+                $pass = "12345678";
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $data = [
+                'id' => $uuid,
+                'email' => $nisn,
+                'password' => password_hash($pass, PASSWORD_BCRYPT),
+                // 'role_user' => 6,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+
+            try {
+                $this->_db->table('_users_tb')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal mendaftarkan user.";
+                return json_encode($response);
+            }
+
+            $latitudeInput = ($key->lintang == null || $key->lintang == "" || $key->lintang == "null" || $key->lintang == "NULL") ? "-4.9452477" : $key->lintang;
+            $longitudeInput = ($key->bujur == null || $key->bujur == "" || $key->bujur == "null" || $key->bujur == "NULL") ? "103.770643" : $key->bujur;
+
+            if ($this->_db->affectedRows() > 0) {
+                try {
+                    unset($data['password']);
+                    // unset($data['role_user']);
+                    unset($data['email']);
+                    $data['fullname'] = $key->nama;
+                    // $data['no_hp'] = $nohp;
+                    $data['nisn'] = $nisn;
+                    $data['role_user'] = 6;
+                    // $data['email'] = $email;
                     $data['sekolah_asal'] = $key->sekolah_id;
                     $data['npsn_asal'] = $npsn;
                     $data['latitude'] = $latitudeInput;

@@ -68,7 +68,7 @@
                                 <button id="btncancel" type="button" style="min-width: 100%; max-height: 40px; padding: 10px;" onclick="cancelConfirm(this)" class="btn btn-block btn-warning">BATAL</button>
                             </div>
                             <div class="col-md-8">
-                                <button id="btnsimpan" type="button" style="min-width: 100%; max-height: 40px; padding: 10px;" onclick="submitConfirm(this)" class="btn btn-block btn-primary">LANJUTKAN</button>
+                                <button id="btnsimpan" type="button" style="min-width: 100%; max-height: 40px; padding: 10px;" onclick="submitRegistrasi(this)" class="btn btn-block btn-primary">LANJUTKAN</button>
                             </div>
                         </div>
                     </div>

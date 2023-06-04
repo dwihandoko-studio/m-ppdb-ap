@@ -365,87 +365,77 @@
                         );
                     }
                 }
-            })
+            });
+        }
 
-            $.ajax({
-                type: "POST",
-                url: BASE_URL + '/auth/login',
-                data: {
-                    username: username,
-                    password: password,
-                },
-                dataType: 'JSON',
-                beforeSend: function() {
-                    loading = true;
-                    $('div.donate-form-area').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                },
-                success: function(msg) {
-                    console.log(msg);
-                    if (msg.code != 200) {
-                        if (msg.code !== 201) {
-                            if (msg.code !== 202) {
-                                $('div.donate-form-area').unblock();
-                                loading = false;
-                                Swal.fire(
-                                    'Gagal!',
-                                    msg.message,
-                                    'warning'
-                                );
-                            } else {
-                                Swal.fire(
-                                    'Warning!',
-                                    msg.message,
-                                    'warning'
-                                ).then((valRes) => {
-                                    // setTimeout(function() {
-                                    document.location.href = msg.url;
-                                    // }, 2000);
+        function submitRegistrasi(event) {
+            if (loadedAll) {
+                if (loading) {
+                    return;
+                }
 
-                                })
-                            }
+                const nisn = document.getElementsByName('_nisn_d')[0].value;
+                const keyD = document.getElementsByName('_key_d')[0].value;
+                const npsn = document.getElementsByName('_npsn_d')[0].value;
+
+                if (nisn === "") {
+                    $("input#_nisn").css("color", "#dc3545");
+                    $("input#_nisn").css("border-color", "#dc3545");
+                    $('._nisn').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">NISN / NIK tidak boleh kosong.</li></ul>');
+                    return
+                }
+
+                $.ajax({
+                    url: BASE_URL + '/auth/saveregisschool',
+                    type: 'POST',
+                    data: {
+                        nisn: nisn,
+                        key: keyD,
+                        npsn: npsn,
+                    },
+                    dataType: 'JSON',
+                    beforeSend: function() {
+                        loading = true;
+                        $('div.donate-form-area').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
+                    },
+                    success: function(msg) {
+                        loading = false;
+                        // console.log(msg);
+                        $('div.donate-form-area').unblock();
+                        if (msg.code !== 200) {
+
+                            Swal.fire(
+                                'Gagal!',
+                                msg.message,
+                                'warning'
+                            );
+
                         } else {
                             Swal.fire(
                                 'Berhasil!',
                                 msg.message,
                                 'success'
                             ).then((valRes) => {
-                                // setTimeout(function() {
                                 document.location.href = msg.url;
-                                // }, 2000);
                             })
                         }
-                    } else {
-                        Swal.fire(
-                            'Berhasil!',
-                            msg.message,
-                            'success'
-                        ).then((valRes) => {
-                            // setTimeout(function() {
-                            document.location.href = msg.url;
-                            // }, 2000);
-                            // document.location.href = window.location.href + "dashboard";
-                        })
-                    }
-                },
-                error: function(data) {
-                    console.log(data);
-                    if (data.status === 200 && (data.statusText === "parsererror" || data.statusText === "OK")) {
-                        // setTimeout(function() {
-                        document.location.href = BASE_URL + '/dahboard';
-                        // }, 2000);
-                    } else {
+                    },
+                    error: function(data) {
+                        console.log(data);
                         loading = false;
+
                         $('div.donate-form-area').unblock();
                         Swal.fire(
                             'Gagal!',
                             "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
                             'warning'
                         );
+
                     }
-                }
-            });
+                })
+            }
         }
 
         function actionRegisterAfterSchool(event) {

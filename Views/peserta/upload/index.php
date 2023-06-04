@@ -39,6 +39,47 @@
                             <?php if (isset($dataUpload)) {  ?>
                                 <div class="row">
                                     <div class="col-md-6 _file_kk-block">
+                                        <h4>Akta Kelahiran</h4>
+                                        <?php if ($dataUpload->lampiran_akta_kelahiran != null) { ?>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" value="DOKUMEN AKTA KELAHIRAN" readonly />
+                                                    <div class="input-group-append">
+                                                        <a style="padding-top: 12px;" class="btn btn-sm btn-info" href="<?= base_url('uploads/peserta/akta') . '/' . $dataUpload->lampiran_akta_kelahiran ?>" target="_blank">LIHAT</a>
+                                                        <?php if ((int)$dataUpload->is_locked === 0) {
+                                                        ?>
+                                                            <!-- <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-warning action-edit" href="javascript:actionEdit('_file_kk', '<?= $dataUpload->id ?>', 'Lampiran Kartu Keluarga')" data-id="_file_kk">EDIT</a> -->
+                                                            <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-danger action-hapus" href="javascript:actionHapus('_file_akta', '<?= $dataUpload->id ?>', 'Akta Kelahiran')" data-id="_file_akta" data-token="<?= '' ?>">HAPUS</a>
+                                                        <?php }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input file-akta" id="_file_akta" name="_file_akta" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_akta', 'Lampiran Akta Kelahiran')">
+                                                <label class="custom-file-label" for="_file_akta"></label>
+                                                <div class="progress-wrapper progress-_file_akta" style="display: none;">
+                                                    <div class="progress-info">
+                                                        <div class="progress-label">
+                                                            <span class="status-_file_akta" id="status-_file_akta">Memulai Upload . . .</span>
+                                                        </div>
+                                                        <div class="progress-percentage progress-percent-_file_akta" id="progress-percent-_file_akta">
+                                                            <span>0%</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-info progressbar-_file_akta" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="help-block _file_akta" for="_file_akta"></div>
+                                                <p style="font-size: 10px;"> Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 _file_kk-block">
                                         <h4>Kartu Keluarga</h4>
                                         <?php if ($dataUpload->lampiran_kk != null) { ?>
                                             <div class="form-group">
@@ -73,55 +114,58 @@
                                                     </div>
                                                 </div>
                                                 <div class="help-block _file_kk" for="_file_kk"></div>
-                                                <p style="font-size: 10px;"> Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                                <p style="font-size: 10px;"> Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                             </div>
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 _file_lulus-block">
-                                        <h4>Surat Keterangan Lulus</h4>
-                                        <?php if ($dataUpload->lampiran_lulus != null) { ?>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" value="DOKUMEN KELULUSAN" readonly />
-                                                    <div class="input-group-append">
-                                                        <a style="padding-top: 12px;" class="btn btn-sm btn-info" href="<?= base_url('uploads/peserta/kelulusan') . '/' . $dataUpload->lampiran_lulus ?>" target="_blank">LIHAT</a>
-                                                        <?php if ((int)$dataUpload->is_locked === 0) {
-                                                        ?>
-                                                            <!-- <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-warning action-edit" href="javascript:actionEdit('_file_lulus', '<?= $dataUpload->id ?>', 'Lampiran Keterangan Lulus / SKHU')" data-id="_file_lulus">EDIT</a> -->
-                                                            <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-danger action-hapus" href="javascript:actionHapus('_file_lulus', '<?= $dataUpload->id ?>', 'Surat Keterangan Lulus')" data-id="_file_lulus" data-token="<?= '' ?>">HAPUS</a>
-                                                        <?php }
-                                                        ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php } else { ?>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input file-kk" id="_file_lulus" name="_file_lulus" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_lulus', 'Surat Keterangan Lulus')">
-                                                <label class="custom-file-label" for="_file_lulus"></label>
-                                                <div class="progress-wrapper progress-_file_lulus" style="display: none;">
-                                                    <div class="progress-info">
-                                                        <div class="progress-label">
-                                                            <span class="status-_file_lulus" id="status-_file_lulus">Memulai Upload . . .</span>
-                                                        </div>
-                                                        <div class="progress-percentage progress-percent-_file_lulus" id="progress-percent-_file_lulus">
-                                                            <span>0%</span>
+                                <?php if (substr($user->nisn, 0, 2) == "BS") { ?>
+                                <?php } else { ?>
+                                    <div class="row">
+                                        <div class="col-md-6 _file_lulus-block">
+                                            <h4>Surat Keterangan Lulus</h4>
+                                            <?php if ($dataUpload->lampiran_lulus != null) { ?>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" value="DOKUMEN KELULUSAN" readonly />
+                                                        <div class="input-group-append">
+                                                            <a style="padding-top: 12px;" class="btn btn-sm btn-info" href="<?= base_url('uploads/peserta/kelulusan') . '/' . $dataUpload->lampiran_lulus ?>" target="_blank">LIHAT</a>
+                                                            <?php if ((int)$dataUpload->is_locked === 0) {
+                                                            ?>
+                                                                <!-- <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-warning action-edit" href="javascript:actionEdit('_file_lulus', '<?= $dataUpload->id ?>', 'Lampiran Keterangan Lulus / SKHU')" data-id="_file_lulus">EDIT</a> -->
+                                                                <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-danger action-hapus" href="javascript:actionHapus('_file_lulus', '<?= $dataUpload->id ?>', 'Surat Keterangan Lulus')" data-id="_file_lulus" data-token="<?= '' ?>">HAPUS</a>
+                                                            <?php }
+                                                            ?>
                                                         </div>
                                                     </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-info progressbar-_file_lulus" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-                                                    </div>
                                                 </div>
-                                                <div class="help-block _file_lulus" for="_file_lulus"></div>
-                                                <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
-                                            </div>
-                                        <?php } ?>
+                                            <?php } else { ?>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input file-kk" id="_file_lulus" name="_file_lulus" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_lulus', 'Surat Keterangan Lulus')">
+                                                    <label class="custom-file-label" for="_file_lulus"></label>
+                                                    <div class="progress-wrapper progress-_file_lulus" style="display: none;">
+                                                        <div class="progress-info">
+                                                            <div class="progress-label">
+                                                                <span class="status-_file_lulus" id="status-_file_lulus">Memulai Upload . . .</span>
+                                                            </div>
+                                                            <div class="progress-percentage progress-percent-_file_lulus" id="progress-percent-_file_lulus">
+                                                                <span>0%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-info progressbar-_file_lulus" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="help-block _file_lulus" for="_file_lulus"></div>
+                                                    <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                                 <div class="row">
                                     <div class="col-md-6 _file_afirmasi-block">
-                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KIS)</h4>
+                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Kelurahan/Kampung/Desa)</h4>
                                         <?php if ($dataUpload->lampiran_afirmasi != null) { ?>
                                             <div class="form-group">
                                                 <div class="input-group">
@@ -155,7 +199,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="help-block _file_afirmasi" for="_file_afirmasi"></div>
-                                                <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                                <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                             </div>
                                         <?php } ?>
                                     </div>
@@ -196,7 +240,48 @@
                                                     </div>
                                                 </div>
                                                 <div class="help-block _file_pernyataan" for="_file_pernyataan"></div>
-                                                <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                                <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 _foto_rumah-block">
+                                        <h4>Afirmasi (Foto Rumah Tempat Tinggal Siswa)</h4>
+                                        <?php if ($dataUpload->lampiran_pernyataan != null) { ?>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" value="DOKUMEN FOTO RUMAH" readonly />
+                                                    <div class="input-group-append">
+                                                        <a style="padding-top: 12px;" class="btn btn-sm btn-info" href="<?= base_url('uploads/peserta/fotorumah') . '/' . $dataUpload->lampiran_foto_rumah ?>" target="_blank">LIHAT</a>
+                                                        <?php if ((int)$dataUpload->is_locked === 0) {
+                                                        ?>
+                                                            <!-- <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-warning action-edit" href="javascript:actionEdit('_file_prestasi', '<?= $dataUpload->id ?>', 'Lampiran Keterangan Prestasi / Sertifikat')" data-id="_file_prestasi">EDIT</a> -->
+                                                            <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-danger action-hapus" href="javascript:actionHapus('_foto_rumah', '<?= $dataUpload->id ?>', 'Afirmasi (Foto Rumah Tempat Tinggal Siswa)')" data-id="_foto_rumah" data-token="<?= '' ?>">HAPUS</a>
+                                                        <?php }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input foto-rumah" id="_foto_rumah" name="_foto_rumah" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_foto_rumah', 'Afirmasi (Foto Rumah Tempat Tinggal Siswa)')">
+                                                <label class="custom-file-label" for="_foto_rumah"></label>
+                                                <div class="progress-wrapper progress-_foto_rumah" style="display: none;">
+                                                    <div class="progress-info">
+                                                        <div class="progress-label">
+                                                            <span class="status-_foto_rumah" id="status-_foto_rumah">Memulai Upload . . .</span>
+                                                        </div>
+                                                        <div class="progress-percentage progress-percent-_foto_rumah" id="progress-percent-_foto_rumah">
+                                                            <span>0%</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-info progressbar-_foto_rumah" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="help-block _foto_rumah" for="_foto_rumah"></div>
+                                                <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                             </div>
                                         <?php } ?>
                                     </div>
@@ -237,7 +322,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="help-block _file_mutasi" for="_file_mutasi"></div>
-                                                <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                                <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                             </div>
                                         <?php } ?>
                                     </div>
@@ -278,12 +363,36 @@
                                                     </div>
                                                 </div>
                                                 <div class="help-block _file_prestasi" for="_file_prestasi"></div>
-                                                <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                                <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                             </div>
                                         <?php } ?>
                                     </div>
                                 </div>
                             <?php } else { ?>
+                                <div class="row">
+                                    <div class="col-md-6 _file_akta-block">
+                                        <h4>Akta Kelahiran</h4>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input file-akta" id="_file_akta" name="_file_akta" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_akta', 'Lampiran Akta Kelahiran')">
+                                            <label class="custom-file-label" for="_file_akta"></label>
+                                            <div class="progress-wrapper progress-_file_akta" style="display: none;">
+                                                <div class="progress-info">
+                                                    <div class="progress-label">
+                                                        <span class="status-_file_akta" id="status-_file_akta">Memulai Upload . . .</span>
+                                                    </div>
+                                                    <div class="progress-percentage progress-percent-_file_akta" id="progress-percent-_file_akta">
+                                                        <span>0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-info progressbar-_file_akta" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="help-block _file_akta" for="_file_akta"></div>
+                                            <p style="font-size: 10px;"> Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6 _file_kk-block">
                                         <h4>Kartu Keluarga</h4>
@@ -304,39 +413,42 @@
                                                 </div>
                                             </div>
                                             <div class="help-block _file_kk" for="_file_kk"></div>
-                                            <p style="font-size: 10px;"> Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                            <p style="font-size: 10px;"> Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 _file_lulus-block" style="padding-top: 10px;">
-                                        <h4>Surat Keterangan Lulus</h4>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input file-kk" id="_file_lulus" name="_file_lulus" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_lulus', 'Surat Keterangan Lulus')">
-                                            <label class="custom-file-label" for="_file_lulus"></label>
-                                            <div class="progress-wrapper progress-_file_lulus" style="display: none;">
-                                                <div class="progress-info">
-                                                    <div class="progress-label">
-                                                        <span class="status-_file_lulus" id="status-_file_lulus">Memulai Upload . . .</span>
+                                <?php if (substr($user->nisn, 0, 2) == "BS") { ?>
+                                <?php } else { ?>
+                                    <div class="row">
+                                        <div class="col-md-6 _file_lulus-block" style="padding-top: 10px;">
+                                            <h4>Surat Keterangan Lulus</h4>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input file-kk" id="_file_lulus" name="_file_lulus" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_lulus', 'Surat Keterangan Lulus')">
+                                                <label class="custom-file-label" for="_file_lulus"></label>
+                                                <div class="progress-wrapper progress-_file_lulus" style="display: none;">
+                                                    <div class="progress-info">
+                                                        <div class="progress-label">
+                                                            <span class="status-_file_lulus" id="status-_file_lulus">Memulai Upload . . .</span>
+                                                        </div>
+                                                        <div class="progress-percentage progress-percent-_file_lulus" id="progress-percent-_file_lulus">
+                                                            <span>0%</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="progress-percentage progress-percent-_file_lulus" id="progress-percent-_file_lulus">
-                                                        <span>0%</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-info progressbar-_file_lulus" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                                     </div>
                                                 </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-info progressbar-_file_lulus" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-                                                </div>
+                                                <div class="help-block _file_lulus" for="_file_lulus"></div>
+                                                <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                             </div>
-                                            <div class="help-block _file_lulus" for="_file_lulus"></div>
-                                            <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
                                         </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                                 <div class="row">
                                     <div class="col-md-6 _file_prestasi-block" style="padding-top: 10px;">
-                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KIS)</h4>
+                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Kelurahan/Kampung/Desa)</h4>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input file-afirmasi" id="_file_afirmasi" name="_file_afirmasi" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_afirmasi', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KIS)')">
+                                            <input type="file" class="custom-file-input file-afirmasi" id="_file_afirmasi" name="_file_afirmasi" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_afirmasi', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Kelurahan/Kampung/Desa)')">
                                             <label class="custom-file-label" for="_file_afirmasi"></label>
                                             <div class="progress-wrapper progress-_file_afirmasi" style="display: none;">
                                                 <div class="progress-info">
@@ -352,7 +464,7 @@
                                                 </div>
                                             </div>
                                             <div class="help-block _file_afirmasi" for="_file_afirmasi"></div>
-                                            <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                            <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -376,7 +488,31 @@
                                                 </div>
                                             </div>
                                             <div class="help-block _file_pernyataan" for="_file_pernyataan"></div>
-                                            <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                            <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 _foto_rumah-block" style="padding-top: 10px;">
+                                        <h4>Afirmasi (Foto Rumah Tempat Tinggal Siswa)</h4>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input file-foto-rumah" id="_foto_rumah" name="_foto_rumah" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_foto_rumah', 'Afirmasi (Foto Rumah Tempat Tinggal Siswa)')">
+                                            <label class="custom-file-label" for="_foto_rumah"></label>
+                                            <div class="progress-wrapper progress-_foto_rumah" style="display: none;">
+                                                <div class="progress-info">
+                                                    <div class="progress-label">
+                                                        <span class="status-_foto_rumah" id="status-_foto_rumah">Memulai Upload . . .</span>
+                                                    </div>
+                                                    <div class="progress-percentage progress-percent-_foto_rumah" id="progress-percent-_foto_rumah">
+                                                        <span>0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-info progressbar-_foto_rumah" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="help-block _foto_rumah" for="_foto_rumah"></div>
+                                            <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -400,7 +536,7 @@
                                                 </div>
                                             </div>
                                             <div class="help-block _file_mutasi" for="_file_mutasi"></div>
-                                            <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                            <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -424,7 +560,7 @@
                                                 </div>
                                             </div>
                                             <div class="help-block _file_prestasi" for="_file_prestasi"></div>
-                                            <p style="font-size: 10px;">Pilih file PDF dengan ukuran maksimal 1 Mb.</p>
+                                            <p style="font-size: 10px;">Pilih file PDF / Gambar dengan ukuran maksimal 1 Mb.</p>
                                         </div>
                                     </div>
                                 </div>

@@ -33,7 +33,7 @@ class Upload extends BaseController
             session()->destroy();
             return redirect()->to(base_url('web/home'));
         }
-        
+
         $data['user'] = $user->data;
 
         $data['dataUpload'] = $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $user->data->id)->get()->getRowObject();
@@ -47,7 +47,7 @@ class Upload extends BaseController
         // $response->code = 400;
         // $response->message = "Untuk sementara upload file via web, masih dalam proses perbaikan. Silahkan gunakan App Android.";
         // return json_encode($response);
-        
+
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
             $response->code = 400;
@@ -142,6 +142,23 @@ class Upload extends BaseController
                                     $response->message = "Upload file gagal.";
                                     return json_encode($response);
                                 }
+                            } else if ($id === "_file_akta") {
+                                $lampiran = $this->request->getFile('file');
+
+                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                                    $dir = FCPATH . "uploads/peserta/akta";
+
+                                    $lampiran->move($dir, $newNamelampiran);
+                                    $data['lampiran_akta_kelahiran'] = $newNamelampiran;
+                                    $namaFile = $newNamelampiran;
+                                } else {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->message = "Upload file gagal.";
+                                    return json_encode($response);
+                                }
                             } else if ($id === "_file_lulus") {
                                 $lampiran = $this->request->getFile('file');
 
@@ -207,6 +224,22 @@ class Upload extends BaseController
                                     $response->message = "Upload file gagal.";
                                     return json_encode($response);
                                 }
+                            } else if ($id === "_foto_rumah") {
+                                $lampiran = $this->request->getFile('file');
+                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                                    $dir = FCPATH . "uploads/peserta/fotorumah";
+
+                                    $lampiran->move($dir, $newNamelampiran);
+                                    $data['lampiran_foto_rumah'] = $newNamelampiran;
+                                    $namaFile = $newNamelampiran;
+                                } else {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->message = "Upload file gagal.";
+                                    return json_encode($response);
+                                }
                             } else if ($id === "_file_mutasi") {
                                 $lampiran = $this->request->getFile('file');
                                 $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
@@ -238,6 +271,10 @@ class Upload extends BaseController
                                         if ($cekData->lampiran_kk !== null) {
                                             unlink($dir . '/' . $cekData->lampiran_kk);
                                         }
+                                    } else if ($id === "_file_akta") {
+                                        if ($cekData->lampiran_akta_kelahiran !== null) {
+                                            unlink($dir . '/' . $cekData->lampiran_akta_kelahiran);
+                                        }
                                     } else if ($id === "_file_lulus") {
                                         if ($cekData->lampiran_lulus !== null) {
                                             unlink($dir . '/' . $cekData->lampiran_lulus);
@@ -253,6 +290,10 @@ class Upload extends BaseController
                                     } else if ($id === "_file_pernyataan") {
                                         if ($cekData->lampiran_pernyataan !== null) {
                                             unlink($dir . '/' . $cekData->lampiran_pernyataan);
+                                        }
+                                    } else if ($id === "_foto_rumah") {
+                                        if ($cekData->lampiran_foto_rumah !== null) {
+                                            unlink($dir . '/' . $cekData->lampiran_foto_rumah);
                                         }
                                     } else if ($id === "_file_mutasi") {
                                         if ($cekData->lampiran_mutasi !== null) {
@@ -372,6 +413,23 @@ class Upload extends BaseController
 
                                     $lampiran->move($dir, $newNamelampiran);
                                     $data['lampiran_pernyataan'] = $newNamelampiran;
+                                    $namaFile = $newNamelampiran;
+                                } else {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->message = "Upload file gagal.";
+                                    return json_encode($response);
+                                }
+                            } else if ($id === "_foto_rumah") {
+                                $lampiran = $this->request->getFile('file');
+                                $filesNamelampiran = $lampiran->getName();
+                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                                    $dir = FCPATH . "uploads/peserta/fotorumah";
+
+                                    $lampiran->move($dir, $newNamelampiran);
+                                    $data['lampiran_foto_rumah'] = $newNamelampiran;
                                     $namaFile = $newNamelampiran;
                                 } else {
                                     $response = new \stdClass;
@@ -534,6 +592,10 @@ class Upload extends BaseController
                                 $dir = FCPATH . "uploads/peserta/kk";
                                 $namaFile = $oldData->lampiran_kk;
                                 $data['lampiran_kk'] = null;
+                            } else if ($jenis === "_file_akta") {
+                                $dir = FCPATH . "uploads/peserta/akta";
+                                $namaFile = $oldData->lampiran_akta_kelahiran;
+                                $data['lampiran_lulus'] = null;
                             } else if ($jenis === "_file_lulus") {
                                 $dir = FCPATH . "uploads/peserta/kelulusan";
                                 $namaFile = $oldData->lampiran_lulus;
@@ -550,6 +612,10 @@ class Upload extends BaseController
                                 $dir = FCPATH . "uploads/peserta/pernyataan";
                                 $namaFile = $oldData->lampiran_pernyataan;
                                 $data['lampiran_pernyataan'] = null;
+                            } else if ($jenis === "_foto_rumah") {
+                                $dir = FCPATH . "uploads/peserta/fotorumah";
+                                $namaFile = $oldData->lampiran_foto_rumah;
+                                $data['lampiran_foto_rumah'] = null;
                             } else if ($jenis === "_file_mutasi") {
                                 $dir = FCPATH . "uploads/peserta/mutasi";
                                 $namaFile = $oldData->lampiran_mutasi;
@@ -567,6 +633,13 @@ class Upload extends BaseController
                                 if ($jenis === "_file_kk") {
                                     try {
                                         if ($oldData->lampiran_kk !== null) {
+                                            unlink($dir . '/' . $namaFile);
+                                        }
+                                    } catch (\Exception $e) {
+                                    }
+                                } else if ($jenis === "_file_akta") {
+                                    try {
+                                        if ($oldData->lampiran_akta_kelahiran !== null) {
                                             unlink($dir . '/' . $namaFile);
                                         }
                                     } catch (\Exception $e) {
@@ -595,6 +668,13 @@ class Upload extends BaseController
                                 } else if ($jenis === "_file_pernyataan") {
                                     try {
                                         if ($oldData->lampiran_pernyataan !== null) {
+                                            unlink($dir . '/' . $namaFile);
+                                        }
+                                    } catch (\Exception $e) {
+                                    }
+                                } else if ($jenis === "_foto_rumah") {
+                                    try {
+                                        if ($oldData->lampiran_foto_rumah !== null) {
                                             unlink($dir . '/' . $namaFile);
                                         }
                                     } catch (\Exception $e) {

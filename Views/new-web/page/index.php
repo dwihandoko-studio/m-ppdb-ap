@@ -127,7 +127,7 @@
     </div>
 </section>
 
-<section class="clients-section centred">
+<!-- <section class="clients-section centred">
     <div class="container">
         <div class="clients-carousel owl-carousel owl-theme owl-dots-none">
             <figure class="image-box"><a href="#"><img src="<?= base_url('themes') ?>/images/clients/client-1.png" alt=""></a></figure>
@@ -145,7 +145,7 @@
         </div>
         <div class="trusted-box">Trusted by 18,000+ happy customers worldwide</div>
     </div>
-</section>
+</section> -->
 
 <section class="managed-wordpress">
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/layer-image-5.png);"></div>

@@ -10,7 +10,7 @@
                 <!-- <div class="row"> -->
                 <div class="alert alert-default bg-gradient-white alert-dismissible fade show" role="alert">
                     <span class="alert-icon" style="color: #32325d !important;"><i class="ni ni-notification-70"></i></span>
-                    <span class="alert-text" style="color: #32325d !important;"><strong>Selamat Datang <?= $user->fullname ?>!</strong><br> Di <?= getenv('web.meta.title') ? getenv('web.meta.title') : 'LAYANAN' ?>.</span>
+                    <span class="alert-text" style="color: #32325d !important;"><strong>Selamat Datang <?= $user->fullname ?>!</strong><br> Di <?= getenv('web.meta.title') ? getenv('web.meta.title') : 'PPDB' ?>.</span>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true" style="color: #32325d !important;">&times;</span>
                     </button>
@@ -221,8 +221,24 @@
         return document.getElementById(id);
     }
 
+    function disabledLoad() {
+        $('.jumlah_zonasi').html("&nbsp;");
+        $('.jumlah_afirmasi').html("&nbsp;");
+        $('.jumlah_mutasi').html("&nbsp;");
+        $('.jumlah_prestasi').html("&nbsp;");
+        $('.jumlah_zonasi_terverifikasi').html('');
+        $('.jumlah_zonasi_belum_verifikasi').html('');
+        $('.jumlah_afirmasi_terverifikasi').html('');
+        $('.jumlah_afirmasi_belum_verifikasi').html('');
+        $('.jumlah_prestasi_terverifikasi').html('');
+        $('.jumlah_prestasi_belum_verifikasi').html('');
+        $('.jumlah_mutasi_terverifikasi').html('');
+        $('.jumlah_mutasi_belum_verifikasi').html('');
+    }
+
     $(document).ready(function() {
-        loadStatistik();
+        // loadStatistik();
+        disabledLoad();
 
         <?php if (isset($informasi)) { ?>
             let contentInformation = '';

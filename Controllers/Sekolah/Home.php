@@ -49,6 +49,7 @@ class Home extends BaseController
         return view('sekolah/home', $data);
     }
 
+
     public function statistik()
     {
         $Profilelib = new Profilelib();

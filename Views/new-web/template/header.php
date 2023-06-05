@@ -100,9 +100,9 @@
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>Chicago 12, Melborne City, USA</li>
-                <li><a href="tel:+8801682648101">+88 01682648101</a></li>
-                <li><a href="mailto:info@example.com">info@example.com</a></li>
+                <li>Komplek Pemerintah, Jl. Kedondong - Gedung Tataan</li>
+                <li><a href="tel:+6282111837685">+62821-1183-7685</a></li>
+                <li><a href="mailto:pesawaran.ppdb@kntechline.com">pesawaran.ppdb@kntechline.com</a></li>
             </ul>
         </div>
         <div class="social-links">

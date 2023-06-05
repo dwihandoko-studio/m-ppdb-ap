@@ -736,18 +736,24 @@
                             <div class="collapse<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting") ? ' show' : '' ?>" id="navbar-setting">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
+                                        <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "panitia") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/setting/panitia') ?>">
+                                            <span class="sidenav-mini-icon"> P </span>
+                                            <span class="sidenav-normal"> Panitia </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "kuota") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/setting/kuota') ?>">
                                             <span class="sidenav-mini-icon"> K </span>
                                             <span class="sidenav-normal"> Kuota </span>
                                         </a>
                                     </li>
                                     <?php if ((int)$user->statusSekolah === 1) { ?>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "zonasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/setting/zonasi') ?>">
                                                 <span class="sidenav-mini-icon"> Z </span>
                                                 <span class="sidenav-normal"> Zonasi </span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                     <?php } ?>
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "barcode") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/setting/barcode') ?>">

@@ -191,12 +191,12 @@ class Panitia extends BaseController
                         return json_encode($response);
                     }
 
-                    $dataLib = new Datalib();
-                    $canDaftar = $dataLib->canSetting();
+                    // $dataLib = new Datalib();
+                    // $canDaftar = $dataLib->canSetting();
 
-                    if ($canDaftar->code !== 200) {
-                        return json_encode($canDaftar);
-                    }
+                    // if ($canDaftar->code !== 200) {
+                    //     return json_encode($canDaftar);
+                    // }
 
                     $cekData = $this->_db->table('_setting_panitia_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'is_locked' => 1])->countAllResults();
 

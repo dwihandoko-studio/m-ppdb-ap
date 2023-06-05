@@ -17,7 +17,7 @@
                 </div>
                 <!-- </div> -->
                 <div class="row">
-                    <?php if((int)$user->statusSekolah == 1) { ?>
+                    <?php if ((int)$user->statusSekolah == 1) { ?>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-stats">
                                 <div class="card-body">
@@ -181,24 +181,24 @@
             dataType: 'JSON',
             success: function(msg) {
                 if (msg.code === 200) {
-                    <?php if((int)$user->statusSekolah == 1) { ?>
-                    $('.jumlah_zonasi').html(msg.data.zonasi);
-                    $('.jumlah_afirmasi').html(msg.data.afirmasi);
-                    $('.jumlah_mutasi').html(msg.data.mutasi);
-                    $('.jumlah_prestasi').html(msg.data.prestasi);
-                    $('.jumlah_zonasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.zonasi_terverifikasi);
-                    $('.jumlah_zonasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.zonasi_belum_terverifikasi);
-                    $('.jumlah_afirmasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.afirmasi_terverifikasi);
-                    $('.jumlah_afirmasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.afirmasi_belum_terverifikasi);
-                    $('.jumlah_prestasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.prestasi_terverifikasi);
-                    $('.jumlah_prestasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.prestasi_belum_terverifikasi);
-                    $('.jumlah_mutasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.mutasi_terverifikasi);
-                    $('.jumlah_mutasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.mutasi_belum_terverifikasi);
-                    
+                    <?php if ((int)$user->statusSekolah == 1) { ?>
+                        $('.jumlah_zonasi').html(msg.data.zonasi);
+                        $('.jumlah_afirmasi').html(msg.data.afirmasi);
+                        $('.jumlah_mutasi').html(msg.data.mutasi);
+                        $('.jumlah_prestasi').html(msg.data.prestasi);
+                        $('.jumlah_zonasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.zonasi_terverifikasi);
+                        $('.jumlah_zonasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.zonasi_belum_terverifikasi);
+                        $('.jumlah_afirmasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.afirmasi_terverifikasi);
+                        $('.jumlah_afirmasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.afirmasi_belum_terverifikasi);
+                        $('.jumlah_prestasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.prestasi_terverifikasi);
+                        $('.jumlah_prestasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.prestasi_belum_terverifikasi);
+                        $('.jumlah_mutasi_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.mutasi_terverifikasi);
+                        $('.jumlah_mutasi_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.mutasi_belum_terverifikasi);
+
                     <?php } else { ?>
-                    $('.jumlah_swasta').html(msg.data.total_swasta);
-                    $('.jumlah_swasta_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.total_swasta_terverifikasi);
-                    $('.jumlah_swasta_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.total_swasta_belum_terverifikasi);
+                        $('.jumlah_swasta').html(msg.data.total_swasta);
+                        $('.jumlah_swasta_terverifikasi').html('<i class="fa fa-check"></i> Terverifikasi: ' + msg.data.total_swasta_terverifikasi);
+                        $('.jumlah_swasta_belum_verifikasi').html('<i class="fa fa-spin"></i> Belum Verifikasi: ' + msg.data.total_swasta_belum_terverifikasi);
                     <?php } ?>
                 }
             },

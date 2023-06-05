@@ -198,16 +198,15 @@ class Panitia extends BaseController
                         return json_encode($canDaftar);
                     }
 
-                    $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'is_locked' => 1])->countAllResults();
+                    $cekData = $this->_db->table('_setting_panaiti_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'is_locked' => 1])->countAllResults();
 
                     if ($cekData > 0) {
                         $response = new \stdClass;
                         $response->code = 400;
-                        $response->message = "Pengajuan Untuk Pemetaan Zonasi Telah Diverifikasi Dan Dikunci. Silahkan Hubungi Admin PPDB Dinas, Apabila Data Zonasi Sekolah Anda Masih Belum Sesuai Dengan Ketentuan Yang Telah Ditetapkan.";
+                        $response->message = "Pengajuan Untuk Panitia PPDB Sekolah Telah Diverifikasi Dan Dikunci. Silahkan Hubungi Admin PPDB Dinas, Apabila Data Panitia PPDB Sekolah Anda Masih Belum Sesuai Dengan Ketentuan Yang Telah Ditetapkan.";
                         return json_encode($response);
                     }
 
-                    $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
                     $response = new \stdClass;
                     $response->code = 200;
                     $response->message = "Permintaan diizinkan";

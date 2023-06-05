@@ -581,7 +581,7 @@ class Panitia extends BaseController
                             return json_encode($response);
                         }
 
-                        $cekData = $this->_db->table('_setting_panitia_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'nama' => $nama, 'nohp' => $nohp])->get()->getRowObject();
+                        $cekData = $this->_db->table('_setting_panitia_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'nama' => $nama, 'no_hp' => $nohp])->get()->getRowObject();
 
                         if ($cekData) {
                             $response = new \stdClass;

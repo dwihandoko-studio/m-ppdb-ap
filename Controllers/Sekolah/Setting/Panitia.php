@@ -529,16 +529,16 @@ class Panitia extends BaseController
         }
 
         $rules = [
-            'nama' => [
+            'nama_panitia' => [
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => 'Nama tidak boleh kosong. ',
+                    'required' => 'Nama panitia tidak boleh kosong. ',
                 ]
             ],
-            'nohp' => [
+            'nohp_panitia' => [
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => 'Nomor handphone tidak boleh kosong. ',
+                    'required' => 'Nomor handphone panitia tidak boleh kosong. ',
                 ]
             ],
         ];
@@ -546,12 +546,12 @@ class Panitia extends BaseController
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = $this->validator->getError('nama')
-                . $this->validator->getError('nohp');
+            $response->message = $this->validator->getError('nama_panitia')
+                . $this->validator->getError('nohp_panitia');
             return json_encode($response);
         } else {
-            $nama = htmlspecialchars($this->request->getVar('nama'), true);
-            $nohp = htmlspecialchars($this->request->getVar('nohp'), true);
+            $nama = htmlspecialchars($this->request->getVar('nama_panitia'), true);
+            $nohp = htmlspecialchars($this->request->getVar('nohp_panitia'), true);
 
             $jwt = get_cookie('jwt');
             $token_jwt = getenv('token_jwt.default.key');

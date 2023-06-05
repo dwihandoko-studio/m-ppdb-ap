@@ -198,7 +198,7 @@ class Panitia extends BaseController
                         return json_encode($canDaftar);
                     }
 
-                    $cekData = $this->_db->table('_setting_panaiti_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'is_locked' => 1])->countAllResults();
+                    $cekData = $this->_db->table('_setting_panitia_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'is_locked' => 1])->countAllResults();
 
                     if ($cekData > 0) {
                         $response = new \stdClass;
@@ -210,7 +210,7 @@ class Panitia extends BaseController
                     $response = new \stdClass;
                     $response->code = 200;
                     $response->message = "Permintaan diizinkan";
-                    $response->data = view('sekolah/setting/panitia/add', $data);
+                    $response->data = view('sekolah/setting/panitia/add');
                     return json_encode($response);
                 } else {
                     delete_cookie('jwt');

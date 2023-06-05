@@ -68,19 +68,48 @@
                         <div class="card card-stats">
                             <?php if (isset($lengkap_berkas)) {
                                 if ($lengkap_berkas->lampiran_kk == null || $lengkap_berkas->lampiran_lulus == null) { ?>
-                                    <a href="<?= base_url('peserta/upload') ?>">
+                                    <?php if (substr($user->nisn, 0, 2) == "BS") { ?>
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <h5 class="card-title text-uppercase text-muted mb-0">UPLOAD BERKAS</h5><span>Belum Upload</span>
+                                                    <h5 class="card-title text-uppercase text-muted mb-0">UPLOAD BERKAS</h5><span>Sudah Upload</span>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">2</div>
+                                                    <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">2</div>
                                                 </div>
                                             </div>
-                                            <p class="mt-3 mb-0 text-sm"><span class="text-danger mr-2"><i class="ni ni-fat-remove"></i> Berkas belum diupload.</span><br>Upload Sekarang</p>
+                                            <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Berkas telah diupload.</span></p>
                                         </div>
-                                    </a>
+                                    <?php } else { ?>
+                                        <?php if ($lengkap_berkas->lampiran_lulus == null) { ?>
+
+                                            <a href="<?= base_url('peserta/upload') ?>">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5 class="card-title text-uppercase text-muted mb-0">UPLOAD BERKAS</h5><span>Belum Upload</span>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">2</div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="mt-3 mb-0 text-sm"><span class="text-danger mr-2"><i class="ni ni-fat-remove"></i> Berkas belum diupload.</span><br>Upload Sekarang</p>
+                                                </div>
+                                            </a>
+                                        <?php } else { ?>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5 class="card-title text-uppercase text-muted mb-0">UPLOAD BERKAS</h5><span>Sudah Upload</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">2</div>
+                                                    </div>
+                                                </div>
+                                                <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Berkas telah diupload.</span></p>
+                                            </div>
+                                        <?php } ?>
+                                    <?php } ?>
                                 <?php } else { ?>
                                     <div class="card-body">
                                         <div class="row">

@@ -10,8 +10,8 @@ class PanitiaModel extends Model
 {
     protected $table = "_setting_panitia_tb a";
     // protected $column_order = array(null, null, 'f.nama', 'e.nama', 'd.nama', 'c.nama', 'b.nama', 'a.nama');
-    protected $column_order = array(null, null, 'nama', 'nohp');
-    protected $column_search = array('nama', 'nohp');
+    protected $column_order = array(null, null, 'nama', 'no_hp');
+    protected $column_search = array('nama', 'no_hp');
     protected $order = array('nama' => 'asc');
     protected $request;
     protected $db;

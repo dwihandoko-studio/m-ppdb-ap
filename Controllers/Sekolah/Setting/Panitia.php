@@ -37,13 +37,13 @@ class Panitia extends BaseController
                     $userId = $decoded->data->id;
                     $role = $decoded->data->role;
                     $request = Services::request();
-                    $datamodel = new ZonasiModel($request);
+                    $datamodel = new PanitiaModel($request);
 
                     if ($request->getMethod(true) == 'POST') {
-                        $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
-                        $filterKelurahan = htmlspecialchars($request->getVar('filter_kelurahan'), true) ?? "";
+                        // $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
+                        // $filterKelurahan = htmlspecialchars($request->getVar('filter_kelurahan'), true) ?? "";
 
-                        $lists = $datamodel->get_datatables($filterKecamatan, $filterKelurahan, $userId);
+                        $lists = $datamodel->get_datatables($userId);
                         // $lists = [];
                         $data = [];
                         $no = $request->getPost("start");
@@ -67,7 +67,7 @@ class Panitia extends BaseController
                                 <i class="ni ni-ruler-pencil"></i>
                                 <span>Edit</span>
                             </button>
-                            <button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
+                            <button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->nama . '\')" type="button" class="dropdown-item">
                                 <i class="fa fa-trash"></i>
                                 <span>Hapus</span>
                             </button>
@@ -85,11 +85,8 @@ class Panitia extends BaseController
 
                             // $row[] = $no;
 
-                            // $row[] = $list->namaDusun;
-                            $row[] = $list->namaKelurahan;
-                            $row[] = $list->namaKecamatan;
-                            $row[] = $list->namaKabupaten;
-                            $row[] = $list->namaProvinsi;
+                            $row[] = $list->nama;
+                            $row[] = $list->no_hp;
 
                             $data[] = $row;
                         }
@@ -97,8 +94,8 @@ class Panitia extends BaseController
                             "draw" => $request->getPost('draw'),
                             // "recordsTotal" => 0,
                             // "recordsFiltered" => 0,
-                            "recordsTotal" => $datamodel->count_all($filterKecamatan, $filterKelurahan, $userId),
-                            "recordsFiltered" => $datamodel->count_filtered($filterKecamatan, $filterKelurahan, $userId),
+                            "recordsTotal" => $datamodel->count_all($userId),
+                            "recordsFiltered" => $datamodel->count_filtered($userId),
                             "data" => $data,
                             // "er" => $userId
                         ];

@@ -67,7 +67,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="card card-stats">
                             <?php if (isset($lengkap_berkas)) {
-                                if ($lengkap_berkas->lampiran_kk == null || $lengkap_berkas->lampiran_akta == null) { ?>
+                                if ($lengkap_berkas->lampiran_kk == null || $lengkap_berkas->lampiran_akta_kelahiran == null) { ?>
                                     <?php if (substr($user->nisn, 0, 2) == "BS") { ?>
                                         <div class="card-body">
                                             <div class="row">

@@ -550,6 +550,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "profilsekolah") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/setting/profilsekolah') ?>">
+                                            <span class="sidenav-mini-icon"> PS </span>
+                                            <span class="sidenav-normal"> Profil Sekolah </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "kuota") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/setting/kuota') ?>">
                                             <span class="sidenav-mini-icon"> K </span>
                                             <span class="sidenav-normal"> Kuota </span>

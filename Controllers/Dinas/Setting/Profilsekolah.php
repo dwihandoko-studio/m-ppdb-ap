@@ -82,7 +82,7 @@ class Profilsekolah extends BaseController
         $data['title'] = 'DATA PROFIL SEKOLAH';
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
-        if ($user->status != 200) {
+        if ($user->code != 200) {
             delete_cookie('jwt');
             session()->destroy();
             return redirect()->to(base_url('auth'));
@@ -96,7 +96,7 @@ class Profilsekolah extends BaseController
     {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
-            $response->status = 400;
+            $response->code = 400;
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
@@ -162,7 +162,7 @@ class Profilsekolah extends BaseController
         } else {
             $Profilelib = new Profilelib();
             $user = $Profilelib->user();
-            if ($user->status != 200) {
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;
@@ -835,7 +835,7 @@ class Profilsekolah extends BaseController
         } else {
             $Profilelib = new Profilelib();
             $user = $Profilelib->user();
-            if ($user->status != 200) {
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;
@@ -1005,7 +1005,7 @@ class Profilsekolah extends BaseController
 
             $Profilelib = new Profilelib();
             $user = $Profilelib->user();
-            if ($user->status != 200) {
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;

@@ -437,9 +437,6 @@
             "ajax": {
                 "url": "./getAll",
                 "type": "POST",
-                // "data": function(data) {
-                //     data.sekolah_id = '<?= $sekolah->sekolah_id ?>';
-                // }
             },
             language: {
                 paginate: {

@@ -30,8 +30,8 @@ class ProfilsekolahModel extends Model
         $select = "a.*, b.nama as nama_sekolah";
         // $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun, g.nama as nama_sekolah, h.nama as nama_jenjang";
 
-        $this->dt->select($select);
-        $this->dt->join('ref_sekolah b', 'a.id = b.id', 'LEFT');
+        // $this->dt->select($select);
+        // $this->dt->join('ref_sekolah b', 'a.id = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan h', 'a.bentuk_pendidikan_id = h.id', 'LEFT');
         // $this->dt->join('ref_dusun f', 'a.dusun = f.id', 'LEFT');
 
@@ -59,7 +59,11 @@ class ProfilsekolahModel extends Model
     }
     function get_datatables($filterKecamatan, $filterJenjang)
     {
+        $select = "a.*, b.nama as nama_sekolah";
+
         $this->_get_datatables_query();
+        $this->dt->select($select);
+        $this->dt->join('ref_sekolah b', 'a.id = b.id', 'LEFT');
         $this->dt->join('ref_sekolah b', 'a.id = b.id');
         // $this->dt->where("a.sekolah_id = (select sekolah_id from _users_profil_tb where id = '$userId')");
 

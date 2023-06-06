@@ -59,6 +59,9 @@ class Profilsekolah extends BaseController
 
         $data['user'] = $user->data;
         $data['title'] = 'Setting Profil Sekolah';
+
+        $builder = $this->_db->table('_ref_profil_sekolah');
+        $data['ks'] = $builder->where('id', $user->data->sekolah_id)->get()->getRowObject();
         // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
         // $data['kabupatens'] = $this->_db->table('ref_kabupaten')->where('id_provinsi', $user->data->provinsi)->orderBy('nama', 'asc')->get()->getResult();
         // $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', $user->data->kabupaten)->orderBy('nama', 'asc')->get()->getResult();
@@ -70,112 +73,6 @@ class Profilsekolah extends BaseController
         $data['datatables'] = false;
 
         return view('sekolah/setting/profilsekolah/profile', $data);
-    }
-
-    public function gantiPassword()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Hanya request post yang diperbolehkan";
-            return json_encode($response);
-        }
-
-        $rules = [
-            'oldPassword' => [
-                'rules' => 'required|trim|min_length[6]',
-                'errors' => [
-                    'required' => 'Password lama tidak boleh kosong.',
-                    'min_length' => 'Panjang Password Lama minimal 6 karakter.',
-                ]
-            ],
-            'newPassword' => [
-                'rules' => 'required|trim|min_length[6]',
-                'errors' => [
-                    'required' => 'Password Baru tidak boleh kosong.',
-                    'min_length' => 'Panjang Password Baru minimal 6 karakter.',
-                ]
-            ],
-            'retypeNewPassword' => [
-                'rules' => 'required|matches[newPassword]',
-                'errors' => [
-                    'required' => 'Ulangi Password Baru tidak boleh kosong.',
-                    'matches' => 'Password Baru dan Ulangi Password Baru tidak sama.',
-                ]
-            ],
-        ];
-
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('oldPassword')  . " " . $this->validator->getError('newPassword')  . " " . $this->validator->getError('retypeNewPassword');
-            return json_encode($response);
-        } else {
-            $oldPassword = htmlspecialchars($this->request->getVar('oldPassword'), true);
-            $newPassword = htmlspecialchars($this->request->getVar('newPassword'), true);
-
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
-
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $builder = $this->_db->table('_users_tb');
-                        $oldData = $builder->where('id', $userId)->get()->getRowObject();
-                        if ($oldData) {
-                            if (password_verify($oldPassword, $oldData->password) == true) {
-                                $this->_db->transBegin();
-                                $builder->set(['password' => password_hash($newPassword, PASSWORD_DEFAULT), 'updated_at' => date('Y-m-d H:i:s')])->where('id', $oldData->id)->update();
-                                $res = $this->_db->affectedRows();
-                                if ($res > 0) {
-                                    $this->_db->transCommit();
-                                    $response = new \stdClass;
-                                    $response->code = 200;
-                                    $response->message = "Update Password Baru Berhasil.";
-                                    $response->url = base_url('v1/ptk/home');
-                                    return json_encode($response);
-                                } else {
-                                    $this->_db->transRollback();
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Update Password Baru Gagal.";
-                                    return json_encode($response);
-                                }
-                            } else {
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Password Lama Salah!!!";
-                                return json_encode($response);
-                            }
-                        } else {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Pengguna tidak ditemukan.";
-                            return json_encode($response);
-                        }
-                    } else {
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } else {
-                $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
-                return json_encode($response);
-            }
-        }
     }
 
     public function save()

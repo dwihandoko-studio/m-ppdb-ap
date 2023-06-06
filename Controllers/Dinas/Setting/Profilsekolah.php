@@ -87,7 +87,6 @@ class Profilsekolah extends BaseController
             session()->destroy();
             return redirect()->to(base_url('auth'));
         }
-        $id = $this->_helpLib->getPtkId($user->data->id);
         $data['user'] = $user->data;
         return view('dinas/setting/profilsekolah/index', $data);
     }
@@ -116,13 +115,25 @@ class Profilsekolah extends BaseController
             $response->message = $this->validator->getError('id');
             return json_encode($response);
         } else {
-            $id = htmlspecialchars($this->request->getVar('id'), true);
-            $data['tw'] = $this->_db->table('_ref_tahun_tw')->where('is_current', 1)->orderBy('tahun', 'desc')->orderBy('tw', 'desc')->get()->getRowObject();
-            $data['tws'] = $this->_db->table('_ref_tahun_tw')->orderBy('tahun', 'desc')->orderBy('tw', 'desc')->get()->getResult();
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
+                delete_cookie('jwt');
+                session()->destroy();
+                $response = new \stdClass;
+                $response->status = 401;
+                $response->message = "Session expired";
+                return json_encode($response);
+            }
+
+            $data = [
+                'title' => 'UPLOAD'
+            ];
+
             $response = new \stdClass;
             $response->status = 200;
             $response->message = "Permintaan diizinkan";
-            $response->data = view('situgu/su/upload/tpg/matching/upload', $data);
+            $response->data = view('dinas/setting/profilsekolah/upload', $data);
             return json_encode($response);
         }
     }

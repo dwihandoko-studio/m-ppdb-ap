@@ -336,62 +336,8 @@
     }
 
     function actionImport(event) {
-        $.ajax({
-            url: "<?= base_url('dinas/setting/profilsekolah/import') ?>",
-            type: 'POST',
-            data: {
-                id: 'import',
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                $('div.main-content').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(resul) {
-                $('div.main-content').unblock();
+        document.location.href = BASE_URL + '/dinas/setting/profilsekolah/import';
 
-                if (resul.code !== 200) {
-                    if (resul.code === 401) {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        ).then((valRes) => {
-                            document.location.href = BASE_URL + '/dashboard';
-                        });
-                    } else {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        );
-                    }
-                } else {
-
-                    $('#contentModalLabel').html('IMPORT PROFIL SEKOLAH');
-                    $('.contentBodyModal').html(resul.data);
-                    $('#contentModal').modal({
-                        backdrop: 'static',
-                        keyboard: false
-                    }, 'show');
-
-                    // initSelect2('_prov', '#contentModal');
-                    // initSelect2('_kab', '#contentModal');
-                    // initSelect2('_kec', '#contentModal');
-                    // initSelect2('_kel', '#contentModal');
-                    // initSelect2('_dusun', '#contentModal');
-                }
-            },
-            error: function() {
-                $('div.main-content').unblock();
-                Swal.fire(
-                    'Failed!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
-            }
-        });
     }
 
     function changeValidation(event) {

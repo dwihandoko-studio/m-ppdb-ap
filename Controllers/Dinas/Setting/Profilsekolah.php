@@ -91,49 +91,172 @@ class Profilsekolah extends BaseController
         return view('dinas/setting/profilsekolah/index', $data);
     }
 
-    public function upload()
+    public function import()
+    {
+        $data['title'] = 'IMPORT DATA PROFIL SEKOLAH';
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('auth'));
+        }
+        $data['user'] = $user->data;
+        return view('dinas/setting/profilsekolah/import', $data);
+    }
+
+    public function uploadSaveData()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = [
+                'code' => 400,
+                'error' => "Hanya request post yang diperbolehkan."
+            ];
+        } else {
+
+            $rules = [
+                'file' => [
+                    'rules' => 'uploaded[file]|max_size[file, 5120]|mime_in[file,application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office,application/msword,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,application/x-zip]',
+                    'errors' => [
+                        'uploaded' => 'File import gagal di upload',
+                        'max_size' => 'Ukuran file melebihi batas file max file upload.',
+                        'mime_in' => 'Ekstensi file tidak diizinkan untuk di upload.',
+                    ]
+                ],
+                'jenis' => [
+                    'rules' => 'required|trim',
+                    'errors' => [
+                        'required' => 'Jenis Upload an tidak boleh kosong.'
+                    ]
+                ]
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'code' => 400,
+                    'error' => $this->validator->getError('file') . " " . $this->validator->getError('jenis')
+                ];
+            } else {
+                $jenis = htmlspecialchars($this->request->getVar('jenis'), true);
+                $lampiran = $this->request->getFile('file');
+                $extension = $lampiran->getClientExtension();
+                $filesNamelampiran = $lampiran->getName();
+                $fileLocation = $lampiran->getTempName();
+
+                if ('xls' == $extension) {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                } else {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                }
+
+                $spreadsheet = $reader->load($fileLocation);
+                $sheet = $spreadsheet->getActiveSheet()->toArray();
+
+                $total_line = (count($sheet) > 0) ? count($sheet) - 1 : 0;
+
+                $dataImport = [];
+
+                unset($sheet[0]);
+
+                foreach ($sheet as $key => $data) {
+
+                    if ($data[1] == "" || strlen($data[2]) < 5) {
+                        // if($data[1] == "") {
+                        continue;
+                    }
+
+                    $dataInsert = [
+                        'npsn' => $data[2],
+                        'nama_sekolah' => $data[1],
+                        'jenjang' => $data[3],
+                        'status_sekolah' => $data[4],
+                        'url_profil' => $data[5],
+                    ];
+
+                    $dataImport[] = $dataInsert;
+                }
+
+                $response = [
+                    'code' => 200,
+                    'success' => true,
+                    'total_line' => $total_line,
+                    'data' => $dataImport,
+                ];
+            }
+        }
+
+        echo json_encode($response);
+    }
+
+    public function importData()
     {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
+            $response->code = 500;
+            $response->message = "Request not allowed";
             return json_encode($response);
         }
 
-        $rules = [
-            'id' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
-                ]
-            ],
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            $response = new \stdClass;
+            $response->code = 401;
+            $response->message = "Session telah habis.";
+            return json_encode($response);
+        }
+
+        $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+        $nama_sekolah = htmlspecialchars($this->request->getVar('nama_sekolah'), true);
+        $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
+        $status_sekolah = htmlspecialchars($this->request->getVar('status_sekolah'), true);
+        $url_profil = htmlspecialchars($this->request->getVar('url_profil'), true);
+
+        $currentDataOnDB = $this->_db->table('_ref_profil_sekolah')->where(['npsn' => $npsn])->get()->getRowObject();
+
+        if (!$currentDataOnDB) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Sekolah sudah ada.";
+            return json_encode($response);
+        }
+
+        $refSekolah = $this->_db->table('ref_sekolah')->select('id')->where(['npsn' => $npsn])->get()->getRowObject();
+
+        if (!$refSekolah) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Sekolah tidak ada.";
+            return json_encode($response);
+        }
+
+        $this->_db->transBegin();
+
+        $data = [
+            'id' => $refSekolah->id,
+            'user_id' => $user->data->id,
+            'npsn' => $npsn,
+            'url_profil' => $url_profil,
+            'created_at' => date('Y-m-d H:i:s'),
         ];
 
-        if (!$this->validate($rules)) {
+        $this->_db->table('_ref_profil_sekolah')->insert($data);
+
+        if ($this->_db->affectedRows() > 0) {
+
+            $this->_db->transCommit();
             $response = new \stdClass;
-            $response->status = 400;
-            $response->message = $this->validator->getError('id');
+            $response->code = 200;
+            $response->message = "Berhasil mengimport data";
+            $response->url = base_url('dinas/setting/profilsekolah');
             return json_encode($response);
         } else {
-            $Profilelib = new Profilelib();
-            $user = $Profilelib->user();
-            if ($user->code != 200) {
-                delete_cookie('jwt');
-                session()->destroy();
-                $response = new \stdClass;
-                $response->status = 401;
-                $response->message = "Session expired";
-                return json_encode($response);
-            }
-
-            $data = [
-                'title' => 'UPLOAD'
-            ];
-
+            $this->_db->transRollback();
             $response = new \stdClass;
-            $response->status = 200;
-            $response->message = "Permintaan diizinkan";
-            $response->data = view('dinas/setting/profilsekolah/upload', $data);
+            $response->code = 400;
+            $response->message = "Gagal menyimpan data";
             return json_encode($response);
         }
     }

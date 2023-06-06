@@ -69,7 +69,7 @@ class Profilsekolah extends BaseController
         $data['title'] = 'Setting Profil Sekolah';
         $data['datatables'] = false;
 
-        return view('sekolah/setting/profile', $data);
+        return view('sekolah/setting/profilesekolah/profile', $data);
     }
 
     public function gantiPassword()

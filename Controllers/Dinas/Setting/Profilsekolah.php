@@ -154,7 +154,7 @@ class Profilsekolah extends BaseController
 
                 foreach ($sheet as $key => $data) {
 
-                    if ($data[1] == "" || strlen($data[2]) < 5) {
+                    if ($data[2] == "" || strlen($data[2]) < 5) {
                         // if($data[1] == "") {
                         continue;
                     }
@@ -210,7 +210,7 @@ class Profilsekolah extends BaseController
 
         $currentDataOnDB = $this->_db->table('_ref_profil_sekolah')->where(['npsn' => $npsn])->get()->getRowObject();
 
-        if (!$currentDataOnDB) {
+        if ($currentDataOnDB) {
             $response = new \stdClass;
             $response->code = 400;
             $response->message = "Sekolah sudah ada.";

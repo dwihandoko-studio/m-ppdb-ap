@@ -736,6 +736,12 @@
                             <div class="collapse<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting") ? ' show' : '' ?>" id="navbar-setting">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
+                                        <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "profilsekolah") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/setting/profilsekolah') ?>">
+                                            <span class="sidenav-mini-icon"> PS </span>
+                                            <span class="sidenav-normal"> Profil Sekolah </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "setting"  && $uri->getSegment(3) == "panitia") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/setting/panitia') ?>">
                                             <span class="sidenav-mini-icon"> P </span>
                                             <span class="sidenav-normal"> Panitia </span>

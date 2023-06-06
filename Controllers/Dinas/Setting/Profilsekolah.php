@@ -105,7 +105,7 @@ class Profilsekolah extends BaseController
         return view('dinas/setting/profilsekolah/import', $data);
     }
 
-    public function uploadSaveData()
+    public function uploadData()
     {
         if ($this->request->getMethod() != 'post') {
             $response = [

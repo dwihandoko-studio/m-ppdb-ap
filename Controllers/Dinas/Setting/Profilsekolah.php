@@ -118,23 +118,17 @@ class Profilsekolah extends BaseController
                 'file' => [
                     'rules' => 'uploaded[file]|max_size[file, 5120]|mime_in[file,application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office,application/msword,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,application/x-zip]',
                     'errors' => [
-                        'uploaded' => 'File import gagal di upload',
-                        'max_size' => 'Ukuran file melebihi batas file max file upload.',
-                        'mime_in' => 'Ekstensi file tidak diizinkan untuk di upload.',
+                        'uploaded' => 'File import gagal di upload. ',
+                        'max_size' => 'Ukuran file melebihi batas file max file upload. ',
+                        'mime_in' => 'Ekstensi file tidak diizinkan untuk di upload. ',
                     ]
                 ],
-                'jenis' => [
-                    'rules' => 'required|trim',
-                    'errors' => [
-                        'required' => 'Jenis Upload an tidak boleh kosong.'
-                    ]
-                ]
             ];
 
             if (!$this->validate($rules)) {
                 $response = [
                     'code' => 400,
-                    'error' => $this->validator->getError('file') . " " . $this->validator->getError('jenis')
+                    'error' => $this->validator->getError('file')
                 ];
             } else {
                 $jenis = htmlspecialchars($this->request->getVar('jenis'), true);

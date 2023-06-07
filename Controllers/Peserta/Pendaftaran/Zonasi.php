@@ -65,7 +65,7 @@ class Zonasi extends BaseController
                     }
 
                     // $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND a.kelurahan_id = '{$getCurrentUser->kelurahan}' AND a.dusun_id = '{$getCurrentUser->dusun}' AND ($andWhere)";
-                    $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND a.kelurahan_id = '{$getCurrentUser->kelurahan}' AND ($andWhere)";
+                    $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND ($andWhere)";
 
                     if ($keyword !== "") {
                         $where .= " AND (a.npsn = '$keyword' OR a.nama LIKE '%$keyword%')";

@@ -103,6 +103,7 @@ class Zonasi extends BaseController
                     //             <span>Verifikasi</span>
                     //         </button>';
                 }
+                $row[] = $no;
                 $row[] = $status;
                 $action = "";
                 $action .= '<div class="dropup">

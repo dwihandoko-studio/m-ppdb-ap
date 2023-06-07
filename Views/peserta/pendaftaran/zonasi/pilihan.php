@@ -4,7 +4,7 @@
     <?php if (isset($result)) { ?>
         <?php if (count($result) > 0) { ?>
             <?php foreach ($result as $key => $v) { ?>
-                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 50px;"' ?>>
+                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 60px;"' ?>>
                     <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                             <div>
                                 <div class="row align-items-center">
@@ -38,7 +38,7 @@
     <?php if (isset($result)) { ?>
         <?php if (count($result) > 0) { ?>
             <?php foreach ($result as $key => $v) { ?>
-                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 50px;"' ?>>
+                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 60px;"' ?>>
                     <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                             <div>
                                 <div class="row align-items-center">
@@ -72,7 +72,7 @@
     <?php if (isset($result)) { ?>
         <?php if (count($result) > 0) { ?>
             <?php foreach ($result as $key => $v) { ?>
-                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 50px;"' ?>>
+                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 60px;"' ?>>
                     <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                             <div>
                                 <div class="row align-items-center">

@@ -49,9 +49,9 @@ class Profilsekolah extends BaseController
             $row = [];
 
             $row[] = $no;
-            $action = '<a class="btn btn-primary btn-sm" href="' . base_url('dinas/setting/zonasi/sekolah?token=' . $list->id) . '">
+            $action = '<a class="btn btn-primary btn-sm" href="' . base_url('dinas/setting/profilsekolah/sekolah?token=' . $list->id) . '">
                                 <i class="ni ni-vector"></i>
-                                <span>ZONASI</span>
+                                <span>DETAIL</span>
                             </a>';
             $row[] = $action;
             $row[] = $list->npsn;

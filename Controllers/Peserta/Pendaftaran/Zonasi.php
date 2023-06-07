@@ -108,12 +108,14 @@ class Zonasi extends BaseController
                             $response = new \stdClass;
                             $response->code = 204;
                             $response->message = "Tidak ada data.";
+                            $response->data = view('peserta/pendaftaran/zonasi/pilihan', $data);
                             return json_encode($response);
                         }
                     } else {
                         $response = new \stdClass;
                         $response->code = 400;
                         $response->message = "Tidak ada data.";
+                        $response->data = view('peserta/pendaftaran/zonasi/pilihan', $data);
                         return json_encode($response);
                     }
                 } else {

@@ -47,7 +47,7 @@
         <div class="col-md-12">
             <div class="form-group _sek-block">
                 <label for="_sek" class="form-control-label">Sekolah</label>
-                <select onChange="changeKelurahan(this);" class="form-control sek" name="_sek" id="_sek" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                <select onChange="changeSekolah(this);" class="form-control sek" name="_sek" id="_sek" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                     <option value="">-- Pilih --</option>
                 </select>
                 <div class="help-block _sek"></div>

@@ -8,12 +8,7 @@
                     <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                             <div>
                                 <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <a href="javascript:;" class="avatar" style="background-color: transparent;min-width: 100px;">
-                                            <img style="min-width: 100px;" alt="Image placeholder" src="<?= base_url('new-assets') ?>/assets/img/icons/<?= ((int)$v->status_sekolah == 1) ? 'sekolah-negeri.png' : 'sekolah-swasta.png' ?>">
-                                        </a>
-                                    </div>
-                                    <div class="col ml--2">
+                                    <div class="col">
                                         <h4 class="mb-0">
                                             <a href="javascript:;">
                                                 <?= $v->nama ?>

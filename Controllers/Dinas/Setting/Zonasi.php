@@ -571,7 +571,7 @@ class Zonasi extends BaseController
             $prov = htmlspecialchars($this->request->getVar('prov'), true);
             $kab = htmlspecialchars($this->request->getVar('kab'), true);
             $kec = htmlspecialchars($this->request->getVar('kec'), true);
-            $sekolah = htmlspecialchars($this->request->getVar('sek'), true);
+            $sekolah = htmlspecialchars($this->request->getVar('sekolah'), true);
             $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
 
             $Profilelib = new Profilelib();

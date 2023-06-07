@@ -560,7 +560,7 @@ function getNpsnSekolahRef($sekolah_id)
 	$db      = \Config\Database::connect();
 	$data = $db->table('ref_sekolah')
 		->select("npsn")
-		->where(['sekolah_id' => $sekolah_id])
+		->where(['id' => $sekolah_id])
 		->get()->getRowObject();
 
 	if ($data) {

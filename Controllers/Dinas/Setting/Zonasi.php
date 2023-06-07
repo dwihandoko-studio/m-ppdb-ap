@@ -548,12 +548,6 @@ class Zonasi extends BaseController
                     'required' => 'Kecamatan tidak boleh kosong. ',
                 ]
             ],
-            'kel' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Kelurahan tidak boleh kosong. ',
-                ]
-            ],
             'sekolah' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -566,33 +560,20 @@ class Zonasi extends BaseController
                     'required' => 'Jenjang tidak boleh kosong. ',
                 ]
             ],
-            'npsn' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'NPSN tidak boleh kosong. ',
-                ]
-            ],
-            // 'dusun' => [
-            //     'rules' => 'required|trim',
-            //     'errors' => [
-            //         'required' => 'Dusun tidak boleh kosong. ',
-            //     ]
-            // ],
         ];
 
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = $this->validator->getError('sekolah') . $this->validator->getError('npsn') . $this->validator->getError('jenjang') . $this->validator->getError('prov') . $this->validator->getError('kab') . $this->validator->getError('kec') . $this->validator->getError('kel') . $this->validator->getError('dusun');
+            $response->message = $this->validator->getError('sekolah') . $this->validator->getError('jenjang') . $this->validator->getError('prov') . $this->validator->getError('kab') . $this->validator->getError('kec') . $this->validator->getError('sek') . $this->validator->getError('dusun');
             return json_encode($response);
         } else {
             $prov = htmlspecialchars($this->request->getVar('prov'), true);
             $kab = htmlspecialchars($this->request->getVar('kab'), true);
             $kec = htmlspecialchars($this->request->getVar('kec'), true);
-            $kel = htmlspecialchars($this->request->getVar('kel'), true);
-            $sekolah = htmlspecialchars($this->request->getVar('sekolah'), true);
+            $sekolah = htmlspecialchars($this->request->getVar('sek'), true);
             $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
-            $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+            // $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
             // $dusun = htmlspecialchars($this->request->getVar('dusun'), true);
 
             $jwt = get_cookie('jwt');
@@ -607,7 +588,7 @@ class Zonasi extends BaseController
                         $role = $decoded->data->role;
 
                         // $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $sekolah, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel, 'dusun' => $dusun])->get()->getRowObject();
-                        $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $sekolah, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel])->get()->getRowObject();
+                        $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $sekolah, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec])->get()->getRowObject();
 
                         if ($cekData) {
                             $response = new \stdClass;
@@ -624,11 +605,11 @@ class Zonasi extends BaseController
                             'id' => $uuid,
                             'sekolah_id' => $sekolah,
                             'bentuk_pendidikan_id' => $jenjang,
-                            'npsn' => $npsn,
+                            'npsn' => getNpsnSekolahRef($sekolah),
                             'provinsi' => $prov,
                             'kabupaten' => $kab,
                             'kecamatan' => $kec,
-                            'kelurahan' => $kel,
+                            // 'kelurahan' => $kel,
                             // 'dusun' => $dusun,
                             'is_locked' => 1,
                             'created_at' => date('Y-m-d H:i:s')

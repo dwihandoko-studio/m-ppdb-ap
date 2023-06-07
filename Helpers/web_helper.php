@@ -553,3 +553,19 @@ function statusVerifikasiZonasiSekolah($sekolah_id)
 		return '<span class="badge badge-danger">Belum</span>';
 	}
 }
+
+function getNpsnSekolahRef($sekolah_id)
+{
+	// SELECT COUNT(*) as total FROM _tb_pendaftar WHERE peserta_didik_id = ? AND via_jalur = 'PELIMPAHAN'
+	$db      = \Config\Database::connect();
+	$data = $db->table('ref_sekolah')
+		->select("npsn")
+		->where(['sekolah_id' => $sekolah_id])
+		->get()->getRowObject();
+
+	if ($data) {
+		return $data->npsn;
+	} else {
+		return NULL;
+	}
+}

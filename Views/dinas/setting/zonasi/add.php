@@ -318,7 +318,7 @@
         const kab = document.getElementsByName('_kab')[0].value;
         const kec = document.getElementsByName('_kec')[0].value;
         const sek = document.getElementsByName('_sek')[0].value;
-        const jenjang_sekolah = document.getElementsByName('jenjang')[0].value;
+        const jenjang_sekolah = document.getElementsByName('_jenjang')[0].value;
 
         if (prov === "") {
             $("select#_prov").css("color", "#dc3545");

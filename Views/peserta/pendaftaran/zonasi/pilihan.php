@@ -19,12 +19,10 @@
                                 <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $user->latitude, $user->longitude, 'kilometers') . ' Km' ?></small>
                                 <p style="margin: 0px; font-size: 11px;">Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)</p>
                             </div>
-                            <div class="col-auto">
-                                <button onclick="aksiDaftar('<?= $v->id ?>', '<?= $v->nama ?>')" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp; Daftar</button>
-                            </div>
                         </div>
                     </div>
-                </label></div>
+                </label>
+            </div>
         <?php } ?>
     <?php } else { ?>
         <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>

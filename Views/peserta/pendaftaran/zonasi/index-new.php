@@ -33,7 +33,7 @@
                         <h5 class="h3 mb-0">PENDAFTARAN VIA JALUR ZONASI</h5>
                         <p>Daftar Sekolah Yang Dalam Ruang Lingkup Zonasi.</p>
                     </div>
-                    <div class="card-header py-0">
+                    <!-- <div class="card-header py-0">
                         <form>
                             <div class="form-group mb-0">
                                 <div class="input-group input-group-lg input-group-flush">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                     <div class="card-body">
                         <div class="col-lg-12">
                             <div class="row">
@@ -51,7 +51,7 @@
                                     <div class="form-group sekolah-pilihan-pertama-block">
                                         <label for="_sekolah_pilihan_pertama" class="form-control-label">Sekolah Pilihan 1 (Pertama) :</label>
                                         <input type="hidden" id="_sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" />
-                                        <div class="content_sekolah_pilihan_pertama" style="min-height: 25%;" id="content_sekolah_pilihan_pertama">
+                                        <div class="content_sekolah_pilihan_pertama" style="min-height: 50px; border: 1px solid #002951;" id="content_sekolah_pilihan_pertama">&nbsp;
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     <div class="form-group sekolah-pilihan-kedua-block">
                                         <label for="_sekolah_pilihan_kedua" class="form-control-label">Sekolah Pilihan 2 (Kedua) :</label>
                                         <input type="hidden" id="_sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" />
-                                        <div class="content_sekolah_pilihan_kedua" style="min-height: 25%;" id="content_sekolah_pilihan_kedua">
+                                        <div class="content_sekolah_pilihan_kedua" style="min-height: 50px; border: 1px solid #002951;" id="content_sekolah_pilihan_kedua">&nbsp;
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                     <div class="form-group sekolah-pilihan-ketiga-block">
                                         <label for="_sekolah_pilihan_ketiga" class="form-control-label">Sekolah Pilihan 3 (Ketiga) :</label>
                                         <input type="hidden" id="_sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" />
-                                        <div class="content_sekolah_pilihan_ketiga" style="min-height: 25%;" id="content_sekolah_pilihan_ketiga">
+                                        <div class="content_sekolah_pilihan_ketiga" style="min-height: 50px; border: 1px solid #002951;" id="content_sekolah_pilihan_ketiga">&nbsp;
                                         </div>
                                     </div>
                                 </div>

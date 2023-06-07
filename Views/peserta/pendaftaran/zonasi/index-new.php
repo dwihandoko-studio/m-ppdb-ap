@@ -46,34 +46,8 @@
                     </div> -->
                     <div class="card-body">
                         <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-md-12">
-                                    <div class="form-group sekolah-pilihan-pertama-block">
-                                        <label for="_sekolah_pilihan_pertama" class="form-control-label">Sekolah Pilihan 1 (Pertama) :</label>
-                                        <input type="hidden" id="_sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" />
-                                        <!-- style="min-height: 100px; border: 1px solid #002951; border-radius: 0.25rem;" -->
-                                        <div class="content_sekolah_pilihan_pertama" id="content_sekolah_pilihan_pertama">&nbsp;
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="col-lg-12 col-sm-12 col-md-12 mt--2">
-                                    <div class="form-group sekolah-pilihan-kedua-block">
-                                        <label for="_sekolah_pilihan_kedua" class="form-control-label">Sekolah Pilihan 2 (Kedua) :</label>
-                                        <input type="hidden" id="_sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" />
-                                        <div class="content_sekolah_pilihan_kedua" id="content_sekolah_pilihan_kedua">&nbsp;
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="col-lg-12 col-sm-12 col-md-12 mt--2">
-                                    <div class="form-group sekolah-pilihan-ketiga-block">
-                                        <label for="_sekolah_pilihan_ketiga" class="form-control-label">Sekolah Pilihan 3 (Ketiga) :</label>
-                                        <input type="hidden" id="_sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" />
-                                        <div class="content_sekolah_pilihan_ketiga" id="content_sekolah_pilihan_ketiga">&nbsp;
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="row content-pilihan-pendaftaran-zonasi">
+
                             </div>
                         </div>
                         <!-- <ul class="list-group list-group-flush list my--3 content_zonasi" id="content_zonasi">
@@ -198,16 +172,16 @@
     }
 
     function getSekolahPilihan1() {
-        const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
-        const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
-        const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
+        // const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
+        // const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
+        // const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
         $.ajax({
             url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
             type: 'POST',
             data: {
-                pilihan1: pilihan1,
-                pilihan2: pilihan2,
-                pilihan3: pilihan3,
+                pilihan1: "",
+                pilihan2: "",
+                pilihan3: "",
             },
             dataType: 'JSON',
             beforeSend: function() {},
@@ -226,7 +200,7 @@
 
                     // }
 
-                    $('.content_sekolah_pilihan_pertama').html(msg.data);
+                    $('.content-pilihan-pendaftaran-zonasi').html(msg.data);
                 }
             },
             error: function(data) {
@@ -238,87 +212,87 @@
 
     }
 
-    function getSekolahPilihan2() {
-        const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
-        const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
-        const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
-        $.ajax({
-            url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
-            type: 'POST',
-            data: {
-                pilihan1: pilihan1,
-                pilihan2: pilihan2,
-                pilihan3: pilihan3,
-            },
-            dataType: 'JSON',
-            beforeSend: function() {},
-            success: function(msg) {
-                if (msg.code == 200) {
-                    // let htmlpil1 = "";
-                    // htmlpil1 += '<option value="">-- Pilih Sekolah Pilihan 1 (Pertama) --</option>';
-                    // if (msg.data.length > 0) {
-                    //     for (let step = 0; step < msg.data.length; step++) {
-                    //         htmlpil1 += '<option value="';
-                    //         htmlpil1 += msg.data[step].id;
-                    //         htmlpil1 += '">';
-                    //         htmlpil1 += msg.data[step].nama;
-                    //         htmlpil1 += '</option>';
-                    //     }
+    // function getSekolahPilihan2() {
+    //     const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
+    //     const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
+    //     const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
+    //     $.ajax({
+    //         url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
+    //         type: 'POST',
+    //         data: {
+    //             pilihan1: pilihan1,
+    //             pilihan2: pilihan2,
+    //             pilihan3: pilihan3,
+    //         },
+    //         dataType: 'JSON',
+    //         beforeSend: function() {},
+    //         success: function(msg) {
+    //             if (msg.code == 200) {
+    //                 // let htmlpil1 = "";
+    //                 // htmlpil1 += '<option value="">-- Pilih Sekolah Pilihan 1 (Pertama) --</option>';
+    //                 // if (msg.data.length > 0) {
+    //                 //     for (let step = 0; step < msg.data.length; step++) {
+    //                 //         htmlpil1 += '<option value="';
+    //                 //         htmlpil1 += msg.data[step].id;
+    //                 //         htmlpil1 += '">';
+    //                 //         htmlpil1 += msg.data[step].nama;
+    //                 //         htmlpil1 += '</option>';
+    //                 //     }
 
-                    // }
+    //                 // }
 
-                    $('.content_sekolah_pilihan_kedua').html(msg.data);
-                }
-            },
-            error: function(data) {
-                // console.log(data);
-                // $('div._kel-block').unblock();
-                // $('div._dusun-block').unblock();
-            }
-        })
+    //                 $('.content_sekolah_pilihan_kedua').html(msg.data);
+    //             }
+    //         },
+    //         error: function(data) {
+    //             // console.log(data);
+    //             // $('div._kel-block').unblock();
+    //             // $('div._dusun-block').unblock();
+    //         }
+    //     })
 
-    }
+    // }
 
-    function getSekolahPilihan3() {
-        const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
-        const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
-        const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
-        $.ajax({
-            url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
-            type: 'POST',
-            data: {
-                pilihan1: pilihan1,
-                pilihan2: pilihan2,
-                pilihan3: pilihan3,
-            },
-            dataType: 'JSON',
-            beforeSend: function() {},
-            success: function(msg) {
-                if (msg.code == 200) {
-                    // let htmlpil1 = "";
-                    // htmlpil1 += '<option value="">-- Pilih Sekolah Pilihan 1 (Pertama) --</option>';
-                    // if (msg.data.length > 0) {
-                    //     for (let step = 0; step < msg.data.length; step++) {
-                    //         htmlpil1 += '<option value="';
-                    //         htmlpil1 += msg.data[step].id;
-                    //         htmlpil1 += '">';
-                    //         htmlpil1 += msg.data[step].nama;
-                    //         htmlpil1 += '</option>';
-                    //     }
+    // function getSekolahPilihan3() {
+    //     const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
+    //     const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
+    //     const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
+    //     $.ajax({
+    //         url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
+    //         type: 'POST',
+    //         data: {
+    //             pilihan1: pilihan1,
+    //             pilihan2: pilihan2,
+    //             pilihan3: pilihan3,
+    //         },
+    //         dataType: 'JSON',
+    //         beforeSend: function() {},
+    //         success: function(msg) {
+    //             if (msg.code == 200) {
+    //                 // let htmlpil1 = "";
+    //                 // htmlpil1 += '<option value="">-- Pilih Sekolah Pilihan 1 (Pertama) --</option>';
+    //                 // if (msg.data.length > 0) {
+    //                 //     for (let step = 0; step < msg.data.length; step++) {
+    //                 //         htmlpil1 += '<option value="';
+    //                 //         htmlpil1 += msg.data[step].id;
+    //                 //         htmlpil1 += '">';
+    //                 //         htmlpil1 += msg.data[step].nama;
+    //                 //         htmlpil1 += '</option>';
+    //                 //     }
 
-                    // }
+    //                 // }
 
-                    $('.content_sekolah_pilihan_ketiga').html(msg.data);
-                }
-            },
-            error: function(data) {
-                // console.log(data);
-                // $('div._kel-block').unblock();
-                // $('div._dusun-block').unblock();
-            }
-        })
+    //                 $('.content_sekolah_pilihan_ketiga').html(msg.data);
+    //             }
+    //         },
+    //         error: function(data) {
+    //             // console.log(data);
+    //             // $('div._kel-block').unblock();
+    //             // $('div._dusun-block').unblock();
+    //         }
+    //     })
 
-    }
+    // }
 
     function getDataSekolah(page = "1") {
         const keyword = document.getElementsByName('_search_item')[0].value;
@@ -720,8 +694,8 @@
 
     $(document).ready(function() {
         getSekolahPilihan1();
-        getSekolahPilihan2();
-        getSekolahPilihan3();
+        // getSekolahPilihan2();
+        // getSekolahPilihan3();
         // getDataSekolah();
     });
 

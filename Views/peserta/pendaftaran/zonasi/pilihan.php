@@ -1,6 +1,6 @@
-<?php if (isset($data)) { ?>
-    <?php if (count($data) > 0) { ?>
-        <?php foreach ($data as $key => $v) { ?>
+<?php if (isset($result)) { ?>
+    <?php if (count($result) > 0) { ?>
+        <?php foreach ($result as $key => $v) { ?>
             <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                     <div>
                         <div class="row align-items-center">

@@ -50,6 +50,7 @@
                                 <div class="col-lg-8 col-sm-12 col-md-12">
                                     <div class="form-group sekolah-pilihan-pertama-block">
                                         <label for="_sekolah_pilihan_pertama" class="form-control-label">Sekolah Pilihan 1 (Pertama) :</label>
+                                        <input type="hidden" id="_sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" />
                                         <div class="content_sekolah_pilihan_pertama" id="content_sekolah_pilihan_pertama">
                                         </div>
                                     </div>
@@ -57,6 +58,7 @@
                                 <div class="col-lg-8 col-sm-12 col-md-12">
                                     <div class="form-group sekolah-pilihan-kedua-block">
                                         <label for="_sekolah_pilihan_kedua" class="form-control-label">Sekolah Pilihan 2 (Kedua) :</label>
+                                        <input type="hidden" id="_sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" />
                                         <div class="content_sekolah_pilihan_kedua" id="content_sekolah_pilihan_kedua">
                                         </div>
                                     </div>
@@ -64,6 +66,7 @@
                                 <div class="col-lg-8 col-sm-12 col-md-12">
                                     <div class="form-group sekolah-pilihan-ketiga-block">
                                         <label for="_sekolah_pilihan_ketiga" class="form-control-label">Sekolah Pilihan 3 (Ketiga) :</label>
+                                        <input type="hidden" id="_sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" />
                                         <div class="content_sekolah_pilihan_ketiga" id="content_sekolah_pilihan_ketiga">
                                         </div>
                                     </div>

@@ -242,7 +242,7 @@ class Referensi extends BaseController
             $kec = htmlspecialchars($this->request->getVar('id'), true);
             $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
             $wilayah = substr($kec, 0, 6);
-            $oldData = $this->_db->table('ref_sekolah')->where("bentuk_pendidikan_id = $jenjang AND LEFT(kode_wilayah, 4) = '$wilayah'")->get()->getResult();
+            $oldData = $this->_db->table('ref_sekolah')->where("bentuk_pendidikan_id = $jenjang AND LEFT(kode_wilayah, 6) = '$wilayah'")->get()->getResult();
 
             if (!$oldData) {
                 $response = new \stdClass;

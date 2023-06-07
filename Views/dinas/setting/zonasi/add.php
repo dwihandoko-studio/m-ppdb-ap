@@ -5,7 +5,7 @@
                 <label for="_jenjang" class="form-control-label">Jenjang</label>
                 <select class="form-control jenjang" name="_jenjang" id="_jenjang" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                     <option value="5" selected>SD</option>
-                    <option value="6" selected>SMP</option>
+                    <option value="6">SMP</option>
                 </select>
                 <div class="help-block _jenjang"></div>
             </div>

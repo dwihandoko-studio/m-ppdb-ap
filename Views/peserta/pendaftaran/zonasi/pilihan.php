@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-12 col-sm-12 col-md-12">
+    <div class="col-lg-12 col-sm-12 col-md-12 mb-4">
         <h4>Sekolah Pilihan 1 (Pertama) :</h4>
         <input type="hidden" id="_sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" />
         <?php if (isset($result)) { ?>
@@ -33,7 +33,7 @@
         <?php } ?>
     </div>
     <hr />
-    <div class="col-lg-12 col-sm-12 col-md-12 mt-2">
+    <div class="col-lg-12 col-sm-12 col-md-12 mb-4">
         <h4>Sekolah Pilihan 2 (Kedua) :</h4>
         <input type="hidden" id="_sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" />
         <?php if (isset($result)) { ?>
@@ -67,7 +67,7 @@
         <?php } ?>
     </div>
     <hr />
-    <div class="col-lg-12 col-sm-12 col-md-12 mt-2">
+    <div class="col-lg-12 col-sm-12 col-md-12 mb-4">
         <h4>Sekolah Pilihan 3 (Ketiga) :</h4>
         <input type="hidden" id="_sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" />
         <?php if (isset($result)) { ?>

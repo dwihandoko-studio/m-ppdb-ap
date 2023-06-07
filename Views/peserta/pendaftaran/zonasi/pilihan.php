@@ -4,7 +4,7 @@
     <?php if (isset($result)) { ?>
         <?php if (count($result) > 0) { ?>
             <?php foreach ($result as $key => $v) { ?>
-                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 80px;"' ?>>
+                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 50px;"' ?>>
                     <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                             <div>
                                 <div class="row align-items-center">
@@ -32,13 +32,13 @@
     <?php } ?>
 </div>
 <hr />
-<div class="col-lg-12 col-sm-12 col-md-12 mt--2">
+<div class="col-lg-12 col-sm-12 col-md-12 mt-2">
     <h4>Sekolah Pilihan 2 (Kedua) :</h4>
     <input type="hidden" id="_sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" />
     <?php if (isset($result)) { ?>
         <?php if (count($result) > 0) { ?>
             <?php foreach ($result as $key => $v) { ?>
-                <div>
+                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 50px;"' ?>>
                     <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                             <div>
                                 <div class="row align-items-center">
@@ -71,21 +71,16 @@
     <?php } ?>
 </div>
 <hr />
-<div class="col-lg-12 col-sm-12 col-md-12 mt--2">
+<div class="col-lg-12 col-sm-12 col-md-12 mt-2">
     <h4>Sekolah Pilihan 3 (Ketiga) :</h4>
     <input type="hidden" id="_sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" />
     <?php if (isset($result)) { ?>
         <?php if (count($result) > 0) { ?>
             <?php foreach ($result as $key => $v) { ?>
-                <div>
+                <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 50px;"' ?>>
                     <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
                             <div>
                                 <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <a href="javascript:;" class="avatar" style="background-color: transparent;min-width: 100px;">
-                                            <img style="min-width: 100px;" alt="Image placeholder" src="<?= base_url('new-assets') ?>/assets/img/icons/<?= ((int)$v->status_sekolah == 1) ? 'sekolah-negeri.png' : 'sekolah-swasta.png' ?>">
-                                        </a>
-                                    </div>
                                     <div class="col ml--2">
                                         <h4 class="mb-0">
                                             <a href="javascript:;">

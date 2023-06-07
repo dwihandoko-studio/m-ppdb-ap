@@ -45,10 +45,7 @@
                         </form>
                     </div> -->
                     <div class="card-body">
-                        <div class="col-lg-12">
-                            <div class="row content-pilihan-pendaftaran-zonasi">
-
-                            </div>
+                        <div class="col-lg-12 content-pilihan-pendaftaran-zonasi">
                         </div>
                         <!-- <ul class="list-group list-group-flush list my--3 content_zonasi" id="content_zonasi">
 

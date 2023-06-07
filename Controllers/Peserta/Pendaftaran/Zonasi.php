@@ -276,6 +276,40 @@ class Zonasi extends BaseController
         }
         $data['user'] = $user->data;
 
+        $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
+
+        $dataCurrentUser = json_decode($getCurrentUser->details);
+        if ((int)$dataCurrentUser->tingkat_pendidikan == 6) {
+            $andWhere = "a.bentuk_pendidikan_id IN (6,10,31,32,33,35,36)";
+        } else {
+            $andWhere = "a.bentuk_pendidikan_id IN (5,9,30,31,32,33,38)";
+        }
+
+        // $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND a.kelurahan_id = '{$getCurrentUser->kelurahan}' AND a.dusun_id = '{$getCurrentUser->dusun}' AND ($andWhere)";
+        $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND ($andWhere)";
+
+        $data['result'] = $this->_db->table('v_tb_sekolah_zonasi a')
+            // $data['result'] = $this->_db->table('ref_provinsi a')
+            //         //RUMUS JARAK (111.111 *
+            // DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude))
+            //      * COS(RADIANS(b.Latitude))
+            //      * COS(RADIANS(a.Longitude - b.Longitude))
+            //      + SIN(RADIANS(a.Latitude))
+            //      * SIN(RADIANS(b.Latitude))))) AS distance_in_km)
+            // ->select("b.*, a.dusun as dusun_id, c.nama as nama_jenjang_pendidikan, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, ")
+            // ->join('ref_sekolah b', 'a.sekolah_id = b.id')
+            // ->join('ref_bentuk_pendidikan c', 'a.bentuk_pendidikan_id = c.id')
+            // ->join('ref_kecamatan f', 'b.kode_wilayah = f.id')
+            // ->join('ref_kabupaten e', 'f.id_kabupaten = e.id')
+            // ->join('ref_provinsi d', 'e.id_provinsi = d.id')
+            ->where($where)
+            ->orderBy('a.created_at', 'asc')
+            // ->limit($limit_per_page, $start)
+            ->get()->getResult();
+        $data['countData'] = $this->_db->table('v_tb_sekolah_zonasi a')->where($where)->countAllResults();
+        // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
+        $data['usernya'] = $getCurrentUser;
+
         return view('peserta/pendaftaran/zonasi/index-new', $data);
     }
 

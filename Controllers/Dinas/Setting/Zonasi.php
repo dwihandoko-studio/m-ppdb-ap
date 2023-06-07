@@ -121,6 +121,7 @@ class Zonasi extends BaseController
                         </div>
                     </div>';
                 $row[] = $action;
+                $row[] = $list->nama_jenjang;
                 $row[] = $list->nama_sekolah;
                 $row[] = $list->npsn;
                 $row[] = $list->namaKecamatan;

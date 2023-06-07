@@ -10,7 +10,7 @@ class ZonasiModel extends Model
 {
     protected $table = "_setting_zonasi_tb a";
     // protected $column_order = array(null, null, 'f.nama', 'e.nama', 'd.nama', 'c.nama', 'b.nama');
-    protected $column_order = array(null, null, 'g.nama', 'a.npsn', 'd.nama', 'c.nama', 'b.nama');
+    protected $column_order = array(null, null, null, 'h.nama', 'g.nama', 'a.npsn', 'd.nama', 'c.nama', 'b.nama');
     protected $column_search = array('g.nama', 'a.npsn', 'd.nama', 'c.nama', 'b.nama');
     protected $order = array('a.is_locked' => 'asc', 'a.bentuk_pendidikan_id' => 'asc', 'g.nama' => 'asc');
     protected $request;

@@ -83,9 +83,11 @@
                                     <th data-orderable="false">Aksi</th>
                                     <th data-orderable="false">Status</th>
                                     <th data-orderable="false">Jenjang</th>
-                                    <th>NPSN</th>
                                     <th>Nama Sekolah</th>
-                                    <th>Nama Kecamatan</th>
+                                    <th>NPSN</th>
+                                    <th>Kecamatan</th>
+                                    <th>Kabupaten</th>
+                                    <th>Provinsi</th>
                                 </tr>
                             </thead>
 
@@ -271,7 +273,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('dinas/setting/zonasi/getAllSekolah') ?>",
+                "url": "<?= base_url('dinas/setting/zonasi/getAll') ?>",
                 "type": "POST",
                 "data": function(data) {
                     data.filter_kecamatan = $('#filter_kecamatan').val();

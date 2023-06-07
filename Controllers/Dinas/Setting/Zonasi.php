@@ -77,11 +77,11 @@ class Zonasi extends BaseController
         $datamodel = new ZonasiModel($request);
 
         if ($request->getMethod(true) == 'POST') {
-            // $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
-            // $filterSekolah = htmlspecialchars($request->getVar('filter_sekolah'), true) ?? "";
-            $idSekolah = htmlspecialchars($request->getVar('sekolah_id'), true) ?? "";
+            $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+            $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
+            // $idSekolah = htmlspecialchars($request->getVar('sekolah_id'), true) ?? "";
 
-            $lists = $datamodel->get_datatables($idSekolah);
+            $lists = $datamodel->get_datatables($filterJenjang, $filterKecamatan);
             // $lists = [];
             $data = [];
             $no = $request->getPost("start");
@@ -114,15 +114,15 @@ class Zonasi extends BaseController
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </button>';
-                $action .= '<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
+                $action .= '<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->nama_sekolah . '\')" type="button" class="dropdown-item">
                                 <i class="fa fa-trash"></i>
                                 <span>Hapus</span>
                             </button>
                         </div>
                     </div>';
                 $row[] = $action;
-                // $row[] = $list->namaDusun;
-                $row[] = $list->namaKelurahan;
+                $row[] = $list->nama_sekolah;
+                $row[] = $list->npsn;
                 $row[] = $list->namaKecamatan;
                 $row[] = $list->namaKabupaten;
                 $row[] = $list->namaProvinsi;
@@ -133,8 +133,8 @@ class Zonasi extends BaseController
                 "draw" => $request->getPost('draw'),
                 // "recordsTotal" => 0,
                 // "recordsFiltered" => 0,
-                "recordsTotal" => $datamodel->count_all($idSekolah),
-                "recordsFiltered" => $datamodel->count_filtered($idSekolah),
+                "recordsTotal" => $datamodel->count_all($filterJenjang, $filterKecamatan),
+                "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterKecamatan),
                 "data" => $data
             ];
             echo json_encode($output);

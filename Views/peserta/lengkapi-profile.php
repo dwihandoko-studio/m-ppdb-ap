@@ -621,7 +621,7 @@
                 $('._file').html('<ul role="alert" style="color: #dc3545; list-style: none;padding-inline-start: 10px;"><li style="color: #dc3545;">Alamat tidak boleh kosong.</li></ul>');
             }
 
-            if (foto === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || alamat === "") {
+            if (email === "" || nohp === "" || foto === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || alamat === "") {
                 // if (foto === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || dusun === "" || alamat === "") {
                 return;
             }

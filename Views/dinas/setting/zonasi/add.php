@@ -134,7 +134,7 @@
             $(event).removeAttr('style');
             $('.' + color).html('');
             // $( "label#"+color ).css("color", "#555");
-            const jenjang = document.getElementsByName('jenjang')[0].value;
+            const jenjang = document.getElementsByName('_jenjang')[0].value;
 
             $.ajax({
                 url: BASE_URL + '/dinas/referensi/getSekolahRef',

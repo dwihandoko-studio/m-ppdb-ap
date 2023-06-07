@@ -96,6 +96,9 @@ class Zonasi extends BaseController
                     $data['totalPage'] = ($data['countData'] > 0) ? ceil($data['countData'] / $limit_per_page) : 0;
                     $data['keyword'] = $keyword;
 
+                    var_dump($data);
+                    die;
+
                     if ($data['countData'] > 0) {
                         if (count($data['result']) > 0) {
                             $response = new \stdClass;

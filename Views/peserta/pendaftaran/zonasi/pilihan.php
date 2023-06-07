@@ -27,6 +27,8 @@
                 </label></div>
         <?php } ?>
     <?php } else { ?>
+        <p>Tidak ada data sekolah dalam zonasi anda.</p>
     <?php } ?>
 <?php } else { ?>
+    <p>Tidak ada data sekolah dalam zonasi anda.</p>
 <?php } ?>

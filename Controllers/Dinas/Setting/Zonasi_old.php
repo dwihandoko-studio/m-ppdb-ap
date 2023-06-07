@@ -205,8 +205,43 @@ class Zonasi extends BaseController
             return json_encode($response);
         }
 
+        $rules = [
+            'id_sekolah' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id sekolah tidak boleh kosong. ',
+                ]
+            ],
+            'jenjang' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Jenjang sekolah tidak boleh kosong. ',
+                ]
+            ],
+            'npsn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NPSN sekolah tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id_sekolah') . $this->validator->getError('jenjang') . $this->validator->getError('npsn');
+            return json_encode($response);
+        }
+
+        $id = htmlspecialchars($this->request->getVar('id_sekolah'), true);
+        $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
+        $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+
         $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
 
+        $data['id_sekolah'] = $id;
+        $data['jenjang'] = $jenjang;
+        $data['npsn'] = $npsn;
         $response = new \stdClass;
         $response->code = 200;
         $response->message = "Permintaan diizinkan";

@@ -18,8 +18,8 @@ class Referensi extends BaseController
         $this->_db      = \Config\Database::connect();
         // $this->session      = \Config\Database::connect();
     }
-    
-    
+
+
     public function getKabupaten()
     {
         if ($this->request->getMethod() != 'post') {
@@ -191,6 +191,58 @@ class Referensi extends BaseController
             $id = htmlspecialchars($this->request->getVar('id'), true);
             $wilayah = substr(getenv('ppdb.default.wilayahppdb'), 0, 4);
             $oldData = $this->_db->table('ref_sekolah')->where("bentuk_pendidikan_id = $id AND LEFT(kode_wilayah, 4) = '$wilayah'")->get()->getResult();
+
+            if (!$oldData) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan";
+                return json_encode($response);
+            }
+
+            $data['data'] = $oldData;
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Permintaan diizinkan";
+            $response->data = $oldData;
+            return json_encode($response);
+        }
+    }
+
+    public function getSekolahRef()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'id' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id tidak boleh kosong. ',
+                ]
+            ],
+            'jenjang' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Jenjang tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id')
+                . $this->validator->getError('id');
+            return json_encode($response);
+        } else {
+            $kec = htmlspecialchars($this->request->getVar('id'), true);
+            $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
+            $wilayah = substr($kec, 0, 6);
+            $oldData = $this->_db->table('ref_sekolah')->where("bentuk_pendidikan_id = $jenjang AND LEFT(kode_wilayah, 4) = '$wilayah'")->get()->getResult();
 
             if (!$oldData) {
                 $response = new \stdClass;

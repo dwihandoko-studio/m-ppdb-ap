@@ -15,13 +15,11 @@
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="<?= base_url('dinas/home'); ?>"><i class="fas fa-home"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Setting Zonasi</li>
+                                <li class="breadcrumb-item active" aria-current="page">Setting Kuota</li>
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-lg-6 col-5 text-right">
-                        <button type="button" onclick="actionAdd(this)" class="btn btn-sm btn-neutral">Tambah Zonasi Sekolah</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -45,12 +43,12 @@
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                                                 <option value="">-- Pilih --</option>
-                                                <?php if (isset($jenjangs)) {
-                                                    if (count($jenjangs) > 0) {
-                                                        foreach ($jenjangs as $key => $value) {
-                                                            echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
-                                                        }
+                                                <?php if(isset($jenjangs)) {
+                                                if(count($jenjangs) > 0) {
+                                                    foreach ($jenjangs as $key => $value) {
+                                                        echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
                                                     }
+                                                }
                                                 } ?>
                                             </select>
                                         </div>
@@ -60,12 +58,12 @@
                                             <label for="filter_kecamatan" class="form-control-label">Filter Kecamatan</label>
                                             <select class="form-control filter-kecamatan" name="filter_kecamatan" id="filter_kecamatan" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                                                 <option value="">-- Pilih --</option>
-                                                <?php if (isset($instansis)) {
-                                                    if (count($instansis) > 0) {
-                                                        foreach ($instansis as $key => $value) {
-                                                            echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
-                                                        }
+                                                <?php if(isset($instansis)) {
+                                                if(count($instansis) > 0) {
+                                                    foreach ($instansis as $key => $value) {
+                                                        echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
                                                     }
+                                                }
                                                 } ?>
                                             </select>
                                         </div>
@@ -83,9 +81,9 @@
                                     <th data-orderable="false">Aksi</th>
                                     <th data-orderable="false">Status</th>
                                     <th data-orderable="false">Jenjang</th>
-                                    <th>NPSN</th>
-                                    <th>Nama Sekolah</th>
-                                    <th>Nama Kecamatan</th>
+                                    <th >NPSN</th>
+                                    <th >Nama Sekolah</th>
+                                    <th >Nama Kecamatan</th>
                                 </tr>
                             </thead>
 
@@ -121,129 +119,6 @@
 <script src="<?= base_url('new-assets'); ?>/assets/vendor/select2/dist/js/select2.min.js"></script>
 
 <script>
-    function actionHapus(event, title = "") {
-        Swal.fire({
-            title: 'Apakah anda yakin ingin menghapus data ini?',
-            text: "Hapus data zonasi wilayah : " + title,
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    url: "<?= base_url('dinas/setting/zonasi/hapus') ?>",
-                    type: 'POST',
-                    data: {
-                        id: event,
-                    },
-                    dataType: 'JSON',
-                    beforeSend: function() {
-                        $('div.main-content').block({
-                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                        });
-                    },
-                    success: function(resul) {
-                        $('div.main-content').unblock();
-
-                        if (resul.code !== 200) {
-                            if (resul.code === 401) {
-                                Swal.fire(
-                                    'Failed!',
-                                    resul.message,
-                                    'warning'
-                                ).then((valRes) => {
-                                    document.location.href = BASE_URL + '/dashboard';
-                                });
-                            } else {
-                                Swal.fire(
-                                    'Failed!',
-                                    resul.message,
-                                    'warning'
-                                );
-                            }
-                        } else {
-                            Swal.fire(
-                                'SELAMAT!',
-                                resul.message,
-                                'success'
-                            ).then((valRes) => {
-                                reloadPage();
-                            })
-                        }
-                    },
-                    error: function() {
-                        $('div.main-content').unblock();
-                        Swal.fire(
-                            'Failed!',
-                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                            'warning'
-                        );
-                    }
-                });
-            }
-        })
-    }
-
-    function actionAdd(event) {
-        $.ajax({
-            url: "<?= base_url('dinas/setting/zonasi/add') ?>",
-            type: 'POST',
-            data: {
-                id: 'add',
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                $('div.main-content').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(resul) {
-                $('div.main-content').unblock();
-
-                if (resul.code !== 200) {
-                    if (resul.code === 401) {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        ).then((valRes) => {
-                            document.location.href = BASE_URL + '/dashboard';
-                        });
-                    } else {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        );
-                    }
-                } else {
-
-                    $('#contentModalLabel').html('TAMBAH ZONASI');
-                    $('.contentBodyModal').html(resul.data);
-                    $('#contentModal').modal({
-                        backdrop: 'static',
-                        keyboard: false
-                    }, 'show');
-
-                    initSelect2('_prov', '#contentModal');
-                    initSelect2('_kab', '#contentModal');
-                    initSelect2('_kec', '#contentModal');
-                    initSelect2('_sek', '#contentModal');
-                    initSelect2('_jenjang', '#contentModal');
-                }
-            },
-            error: function() {
-                $('div.main-content').unblock();
-                Swal.fire(
-                    'Failed!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
-            }
-        });
-    }
-
     function initSelect2(event, parrent) {
         $('#' + event).select2({
             dropdownParent: parrent
@@ -257,7 +132,7 @@
             document.location.href = action;
         }
     }
-
+    
     function ambilId(id) {
         return document.getElementById(id);
     }
@@ -290,7 +165,7 @@
                 "orderable": false,
             }],
         });
-
+        
         $('#filter_jenjang').change(function() {
             tableUsulan.draw();
         });

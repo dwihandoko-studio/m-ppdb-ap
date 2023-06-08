@@ -62,11 +62,16 @@ class Profilsekolah extends BaseController
                 $no++;
                 $row = [];
 
-                $row['no'] = $no;
-                $row['button'] = '<button type="button" onclick="actionDetailZonasi(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
-                $row['id'] = $list->id;
-                $row['npsn'] = $list->npsn;
-                $row['nama_sekolah'] = $list->nama_sekolah;
+                $row[] = $no;
+                $row[] = '<button type="button" onclick="actionDetailZonasi(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
+                $row[] = $list->id;
+                $row[] = $list->npsn;
+                $row[] = $list->nama_sekolah;
+                // $row['no'] = $no;
+                // $row['button'] = '<button type="button" onclick="actionDetailZonasi(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
+                // $row['id'] = $list->id;
+                // $row['npsn'] = $list->npsn;
+                // $row['nama_sekolah'] = $list->nama_sekolah;
                 // $row['datazonasi'] = zonasiDetailWeb($list->npsn);
 
                 $data[] = $row;

@@ -62,7 +62,7 @@
                                                                 <?= $v->nama ?>
                                                             </small>
                                                             NPSN: <?= $v->npsn ?><br />
-                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
+                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?>
                                                             - Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
                                                         </label>
                                                     </div>
@@ -96,7 +96,7 @@
                                                                 <?= $v->nama ?>
                                                             </small>
                                                             NPSN: <?= $v->npsn ?><br />
-                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
+                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?>
                                                             - Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
                                                         </label>
                                                     </div>
@@ -130,7 +130,7 @@
                                                                 <?= $v->nama ?>
                                                             </small>
                                                             NPSN: <?= $v->npsn ?><br />
-                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
+                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?>
                                                             - Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
                                                         </label>
                                                     </div>

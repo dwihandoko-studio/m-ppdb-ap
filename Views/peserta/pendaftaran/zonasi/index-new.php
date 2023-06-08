@@ -45,107 +45,61 @@
                         </form>
                     </div> -->
                     <div class="card-body">
-                        <!-- <div class="col-lg-12 content-pilihan-pendaftaran-zonasi-"> -->
                         <div class="row">
-                            <div class="col-md-12 mb-4">
-                                <h4>Sekolah Pilihan 1 (Pertama) :</h4>
-                                <input type="hidden" id="_sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" />
-                                <ul>
-                                    <?php if (isset($result)) { ?>
-                                        <?php if (count($result) > 0) { ?>
-                                            <?php foreach ($result as $key => $v) { ?>
-                                                <li style="list-style: none;">
-                                                    <div class="custom-control custom-radio mb-4">
-                                                        <input name="_pilihan_pertama" class="custom-control-input" value="<?= $v->id ?>" id="_pilihan_pertama_<?= $key ?>" type="radio">
-                                                        <label class="custom-control-label" for="_pilihan_pertama_<?= $key ?>">
-                                                            <small style="font-size: 0.9375rem;">
-                                                                <?= $v->nama ?>
-                                                            </small>
-                                                            NPSN: <?= $v->npsn ?> &nbsp; &nbsp;<?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
-                                                            Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            <?php } ?>
-                                        <?php } else { ?>
-                                            <li style="list-style: none;">
-                                                <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
-                                            </li>
-                                        <?php } ?>
-                                    <?php } else { ?>
-                                        <li style="list-style: none;">
-                                            <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
+                            <div class="col-md-12">
+                                <div class="form-group _sekolah_pilihan_pertama-block">
+                                    <input name="_pilihan_pertama" class="custom-control-input _pilihan_pertama" id="_pilihan_pertama" type="hidden">
+                                    <label for="_sekolah_pilihan_pertama" class="form-control-label">Sekolah Pilihan 1 (Pertama)</label>
+                                    <select onChange="changeSekolahPilihanPertama(this);" class="form-control sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" id="_sekolah_pilihan_pertama" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                        <option value="">-- Pilih Sekolah Pilihan Pertama --</option>
+                                        <?php if (isset($result)) {
+                                            if (count($result) > 0) {
+                                                foreach ($result as $key => $val) { ?>
+                                                    <option value="<?= $val->id ?>"><?= $val->nama ?></option>
+                                        <?php }
+                                            }
+                                        } ?>
+                                    </select>
+                                    <div class="help-block _sekolah_pilihan_pertama"></div>
+                                </div>
                             </div>
-                            <hr />
-                            <div class="col-md-12 mb-4">
-                                <h4>Sekolah Pilihan 2 (Kedua) :</h4>
-                                <input type="hidden" id="_sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" />
-                                <ul>
-                                    <?php if (isset($result)) { ?>
-                                        <?php if (count($result) > 0) { ?>
-                                            <?php foreach ($result as $key => $v) { ?>
-                                                <li style="list-style: none;">
-                                                    <div class="custom-control custom-radio mb-4">
-                                                        <input name="_pilihan_kedua" class="custom-control-input" value="<?= $v->id ?>" id="_pilihan_kedua_<?= $key ?>" type="radio">
-                                                        <label class="custom-control-label" for="_pilihan_kedua_<?= $key ?>">
-                                                            <small style="font-size: 0.9375rem;">
-                                                                <?= $v->nama ?>
-                                                            </small>
-                                                            NPSN: <?= $v->npsn ?> &nbsp; &nbsp;<?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
-                                                            Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            <?php } ?>
-                                        <?php } else { ?>
-                                            <li style="list-style: none;">
-                                                <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
-                                            </li>
-                                        <?php } ?>
-                                    <?php } else { ?>
-                                        <li style="list-style: none;">
-                                            <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
+                            <div class="col-md-12">
+                                <div class="form-group _sekolah_pilihan_kedua-block">
+                                    <input name="_pilihan_kedua" class="custom-control-input _pilihan_kedua" id="_pilihan_kedua" type="hidden">
+                                    <label for="_sekolah_pilihan_kedua" class="form-control-label">Sekolah Pilihan 1 (Kedua)</label>
+                                    <select onChange="changeSekolahPilihanKedua(this);" class="form-control sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" id="_sekolah_pilihan_kedua" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                        <option value="">-- Pilih Sekolah Pilihan Kedua --</option>
+                                        <?php if (isset($result)) {
+                                            if (count($result) > 0) {
+                                                foreach ($result as $key => $val) { ?>
+                                                    <option value="<?= $val->id ?>"><?= $val->nama ?></option>
+                                        <?php }
+                                            }
+                                        } ?>
+                                    </select>
+                                    <div class="help-block _sekolah_pilihan_kedua"></div>
+                                </div>
                             </div>
-                            <hr />
-                            <div class="col-md-12 mb-4">
-                                <h4>Sekolah Pilihan 3 (Ketiga) :</h4>
-                                <input type="hidden" id="_sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" />
-                                <ul>
-                                    <?php if (isset($result)) { ?>
-                                        <?php if (count($result) > 0) { ?>
-                                            <?php foreach ($result as $key => $v) { ?>
-                                                <li style="list-style: none;">
-                                                    <div class="custom-control custom-radio mb-4">
-                                                        <input name="_pilihan_ketiga" class="custom-control-input" value="<?= $v->id ?>" id="_pilihan_ketiga_<?= $key ?>" type="radio">
-                                                        <label class="custom-control-label" for="_pilihan_ketiga_<?= $key ?>">
-                                                            <small style="font-size: 0.9375rem;">
-                                                                <?= $v->nama ?>
-                                                            </small>
-                                                            NPSN: <?= $v->npsn ?> &nbsp; &nbsp;<?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
-                                                            Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            <?php } ?>
-                                        <?php } else { ?>
-                                            <li style="list-style: none;">
-                                                <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
-                                            </li>
-                                        <?php } ?>
-                                    <?php } else { ?>
-                                        <li style="list-style: none;">
-                                            <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
+                            <div class="col-md-12">
+                                <div class="form-group _sekolah_pilihan_ketiga-block">
+                                    <input name="_pilihan_ketiga" class="custom-control-input _pilihan_ketiga" id="_pilihan_ketiga" type="hidden">
+                                    <label for="_sekolah_pilihan_ketiga" class="form-control-label">Sekolah Pilihan 1 (Ketiga)</label>
+                                    <select onChange="changeSekolahPilihanKetiga(this);" class="form-control sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" id="_sekolah_pilihan_ketiga" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                        <option value="">-- Pilih Sekolah Pilihan Ketiga --</option>
+                                        <?php if (isset($result)) {
+                                            if (count($result) > 0) {
+                                                foreach ($result as $key => $val) { ?>
+                                                    <option value="<?= $val->id ?>"><?= $val->nama ?></option>
+                                        <?php }
+                                            }
+                                        } ?>
+                                    </select>
+                                    <div class="help-block _sekolah_pilihan_ketiga"></div>
+                                </div>
                             </div>
                         </div>
+                        <!-- <div class="col-lg-12 content-pilihan-pendaftaran-zonasi-"> -->
+
                         <!-- </div> -->
                         <!-- <ul class="list-group list-group-flush list my--3 content_zonasi" id="content_zonasi">
 
@@ -790,6 +744,9 @@
     }
 
     $(document).ready(function() {
+        initSelect2Panel('_sekolah_pilihan_pertama');
+        initSelect2Panel('_sekolah_pilihan_kedua');
+        initSelect2Panel('_sekolah_pilihan_ketiga');
         // getSekolahPilihan1();
         // getSekolahPilihan2();
         // getSekolahPilihan3();

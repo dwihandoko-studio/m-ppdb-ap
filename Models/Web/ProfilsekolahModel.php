@@ -26,7 +26,7 @@ class ProfilsekolahModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.*, count(b.*) as jumlah, a.role_user";
+        $select = "b.*, count(b.id) as jumlah, a.role_user";
 
         $this->dt->select($select);
         $this->dt->join('v_profil_sekolah b', 'a.sekolah_id = b.id', 'LEFT');

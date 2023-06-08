@@ -192,7 +192,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('web/zona/getProfilSekolah') ?>",
+                "url": "<?= base_url('web/profilsekolah/getProfilSekolah') ?>",
                 "type": "POST",
                 "data": function(data) {
                     data.filter_kecamatan = $('#filter_kecamatan').val();

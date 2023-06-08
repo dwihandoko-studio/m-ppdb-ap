@@ -960,7 +960,7 @@ class Zonasi extends BaseController
             return json_encode($response);
         }
 
-        $refSekolah = $this->_db->table('ref_sekolah')->select('id')->where(['npsn' => $npsn])->get()->getRowObject();
+        $refSekolah = $this->_db->table('ref_sekolah')->select('id, npsn, bentuk_pendidikan_id')->where(['npsn' => $npsn])->get()->getRowObject();
 
         if (!$refSekolah) {
             $response = new \stdClass;

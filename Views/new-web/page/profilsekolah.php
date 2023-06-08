@@ -79,40 +79,40 @@
         });
     }
 
-    function formatZonasi(d) {
-        let cZonasiD = '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;>"';
-        cZonasiD += '<thead>';
-        cZonasiD += '<tr>';
-        cZonasiD += '<th colspan="6" style="text-align: center; align-items: center;">DATA ZONASI SEKOLAH ';
-        cZonasiD += d.nama;
-        cZonasiD += ' (';
-        cZonasiD += d.npsn;
-        cZonasiD += ' )';
-        cZonasiD += '</th>';
-        cZonasiD += '</tr>';
-        cZonasiD += '<tr>';
-        cZonasiD += '<th>No</td>';
-        cZonasiD += '<th>Provinsi</th>';
-        cZonasiD += '<th>Kabupaten</th>';
-        cZonasiD += '<th>Kecamatan</th>';
-        cZonasiD += '<th>Kelurahan</th>';
-        cZonasiD += '<th>Dusun</th>';
-        cZonasiD += '</tr>';
-        cZonasiD += '</thead>';
-        cZonasiD += '<tbody class="detail-zonasi-';
-        cZonasiD += d.id;
-        cZonasiD += '">';
-        cZonasiD += '<tr>';
-        cZonasiD += '<td colspan="6" style="text-align: center; align-items: center;">';
-        cZonasiD += '......LOADING.......';
-        cZonasiD += '</td>';
-        cZonasiD += '</tr>';
-        cZonasiD += '</tbody>';
-        cZonasiD += '</table>';
-        return cZonasiD;
-        // `d` is the original data object for the row
+    // function formatZonasi(d) {
+    //     let cZonasiD = '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;>"';
+    //     cZonasiD += '<thead>';
+    //     cZonasiD += '<tr>';
+    //     cZonasiD += '<th colspan="6" style="text-align: center; align-items: center;">DATA PANITIA SEKOLAH ';
+    //     cZonasiD += d.nama_sekolah;
+    //     cZonasiD += ' (';
+    //     cZonasiD += d.npsn;
+    //     cZonasiD += ' )';
+    //     cZonasiD += '</th>';
+    //     cZonasiD += '</tr>';
+    //     cZonasiD += '<tr>';
+    //     cZonasiD += '<th>No</td>';
+    //     cZonasiD += '<th>Provinsi</th>';
+    //     cZonasiD += '<th>Kabupaten</th>';
+    //     cZonasiD += '<th>Kecamatan</th>';
+    //     cZonasiD += '<th>Kelurahan</th>';
+    //     cZonasiD += '<th>Dusun</th>';
+    //     cZonasiD += '</tr>';
+    //     cZonasiD += '</thead>';
+    //     cZonasiD += '<tbody class="detail-zonasi-';
+    //     cZonasiD += d.id;
+    //     cZonasiD += '">';
+    //     cZonasiD += '<tr>';
+    //     cZonasiD += '<td colspan="6" style="text-align: center; align-items: center;">';
+    //     cZonasiD += '......LOADING.......';
+    //     cZonasiD += '</td>';
+    //     cZonasiD += '</tr>';
+    //     cZonasiD += '</tbody>';
+    //     cZonasiD += '</table>';
+    //     return cZonasiD;
+    //     // `d` is the original data object for the row
 
-    }
+    // }
 
 
     function actionDetailZonasi(event, title) {
@@ -233,21 +233,21 @@
         });
 
 
-        $('#tabelZonasiSekolah tbody').on('click', 'td.dt-control', function() {
-            var tr = $(this).closest('tr');
-            var row = tableZonasiSekolah.row(tr);
+        // $('#tabelZonasiSekolah tbody').on('click', 'td.dt-control', function() {
+        //     var tr = $(this).closest('tr');
+        //     var row = tableZonasiSekolah.row(tr);
 
-            if (row.child.isShown()) {
-                // This row is already open - close it
-                row.child.hide();
-                tr.removeClass('shown');
-            } else {
-                // Open this row
+        //     if (row.child.isShown()) {
+        //         // This row is already open - close it
+        //         row.child.hide();
+        //         tr.removeClass('shown');
+        //     } else {
+        //         // Open this row
 
-                row.child(formatZonasi(row.data())).show();
-                tr.addClass('shown');
-            }
-        });
+        //         row.child(formatZonasi(row.data())).show();
+        //         tr.addClass('shown');
+        //     }
+        // });
 
         $('#filter_kecamatan').change(function() {
             tableZonasiSekolah.draw();

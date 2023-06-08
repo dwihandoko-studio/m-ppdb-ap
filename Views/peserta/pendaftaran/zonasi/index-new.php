@@ -55,24 +55,22 @@
                                         <?php if (count($result) > 0) { ?>
                                             <?php foreach ($result as $key => $v) { ?>
                                                 <li>
-                                                    <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 60px;"' ?>>
-                                                        <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
-                                                                <div>
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col">
-                                                                            <h4 class="mb-0">
-                                                                                <a href="javascript:;">
-                                                                                    <?= $v->nama ?>
-                                                                                </a>
-                                                                            </h4>
-                                                                            <small>NPSN: <?= $v->npsn ?></small>
-                                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?></small>
-                                                                            <p style="margin: 0px; font-size: 11px;">Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)</p>
-                                                                        </div>
+                                                    <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
+                                                            <div>
+                                                                <div class="row align-items-center">
+                                                                    <div class="col">
+                                                                        <h4 class="mb-0">
+                                                                            <a href="javascript:;">
+                                                                                <?= $v->nama ?>
+                                                                            </a>
+                                                                        </h4>
+                                                                        <small>NPSN: <?= $v->npsn ?></small>
+                                                                        <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?></small>
+                                                                        <p style="margin: 0px; font-size: 11px;">Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)</p>
                                                                     </div>
                                                                 </div>
-                                                            </label>
-                                                        </div>
+                                                            </div>
+                                                        </label>
                                                     </div>
                                                 </li>
                                             <?php } ?>
@@ -97,24 +95,22 @@
                                         <?php if (count($result) > 0) { ?>
                                             <?php foreach ($result as $key => $v) { ?>
                                                 <li>
-                                                    <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 60px;"' ?>>
-                                                        <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
-                                                                <div>
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col ml--2">
-                                                                            <h4 class="mb-0">
-                                                                                <a href="javascript:;">
-                                                                                    <?= $v->nama ?>
-                                                                                </a>
-                                                                            </h4>
-                                                                            <small>NPSN: <?= $v->npsn ?></small>
-                                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?></small>
-                                                                            <p style="margin: 0px; font-size: 11px;">Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)</p>
-                                                                        </div>
+                                                    <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
+                                                            <div>
+                                                                <div class="row align-items-center">
+                                                                    <div class="col ml--2">
+                                                                        <h4 class="mb-0">
+                                                                            <a href="javascript:;">
+                                                                                <?= $v->nama ?>
+                                                                            </a>
+                                                                        </h4>
+                                                                        <small>NPSN: <?= $v->npsn ?></small>
+                                                                        <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?></small>
+                                                                        <p style="margin: 0px; font-size: 11px;">Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)</p>
                                                                     </div>
                                                                 </div>
-                                                            </label>
-                                                        </div>
+                                                            </div>
+                                                        </label>
                                                     </div>
                                                 </li>
                                             <?php } ?>
@@ -139,24 +135,22 @@
                                         <?php if (count($result) > 0) { ?>
                                             <?php foreach ($result as $key => $v) { ?>
                                                 <li>
-                                                    <div class="col-lg-12" <?= ($key == 0) ? '' : 'style="margin-top: 60px;"' ?>>
-                                                        <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
-                                                                <div>
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col ml--2">
-                                                                            <h4 class="mb-0">
-                                                                                <a href="javascript:;">
-                                                                                    <?= $v->nama ?>
-                                                                                </a>
-                                                                            </h4>
-                                                                            <small>NPSN: <?= $v->npsn ?></small>
-                                                                            <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?></small>
-                                                                            <p style="margin: 0px; font-size: 11px;">Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)</p>
-                                                                        </div>
+                                                    <div class="custom-control custom-radio mb-3"><input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio"> <label class="custom-control-label" for="customRadio5">
+                                                            <div>
+                                                                <div class="row align-items-center">
+                                                                    <div class="col ml--2">
+                                                                        <h4 class="mb-0">
+                                                                            <a href="javascript:;">
+                                                                                <?= $v->nama ?>
+                                                                            </a>
+                                                                        </h4>
+                                                                        <small>NPSN: <?= $v->npsn ?></small>
+                                                                        <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?></small>
+                                                                        <p style="margin: 0px; font-size: 11px;">Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)</p>
                                                                     </div>
                                                                 </div>
-                                                            </label>
-                                                        </div>
+                                                            </div>
+                                                        </label>
                                                     </div>
                                                 </li>
                                             <?php } ?>

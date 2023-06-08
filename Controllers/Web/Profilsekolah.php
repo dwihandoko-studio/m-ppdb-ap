@@ -66,8 +66,7 @@ class Profilsekolah extends BaseController
                 $row['button'] = '<button type="button" onclick="actionDetailZonasi(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
                 $row['id'] = $list->id;
                 $row['npsn'] = $list->npsn;
-                $row['nama'] = $list->nama;
-                $row['jumlah'] = $list->jumlah . ' Wilayah';
+                $row['nama_sekolah'] = $list->nama;
                 // $row['datazonasi'] = zonasiDetailWeb($list->npsn);
 
                 $data[] = $row;

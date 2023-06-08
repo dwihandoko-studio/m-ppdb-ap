@@ -219,10 +219,7 @@
                     data: 'npsn'
                 },
                 {
-                    data: 'nama'
-                },
-                {
-                    data: 'jumlah'
+                    data: 'nama_sekolah'
                 }
             ],
             "columnDefs": [{

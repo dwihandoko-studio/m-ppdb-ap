@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 class ProfilsekolahModel extends Model
 {
     protected $table = "_users_profil_tb a";
-    protected $column_order = array(null, 'b.nama_sekolah', 'b.npsn', 'b.url_profil');
-    protected $column_search = array('nama_sekolah', 'npsn');
-    protected $order = array('nama_sekolah' => 'asc');
+    protected $column_order = array(null, 'b.nama_sekolah', 'b.npsn');
+    protected $column_search = array('b.nama_sekolah', 'b.npsn');
+    protected $order = array('b.nama_sekolah' => 'asc');
     protected $request;
     protected $db;
     protected $dt;

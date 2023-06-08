@@ -54,10 +54,10 @@
                                     <?php if (isset($result)) { ?>
                                         <?php if (count($result) > 0) { ?>
                                             <?php foreach ($result as $key => $v) { ?>
-                                                <li>
+                                                <li style="list-style: none;">
                                                     <div class="custom-control custom-radio mb-4">
-                                                        <input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio">
-                                                        <label class="custom-control-label" for="customRadio5">
+                                                        <input name="_pilihan_pertama" class="custom-control-input" value="<?= $v->id ?>" id="_pilihan_pertama_<?= $key ?>" type="radio">
+                                                        <label class="custom-control-label" for="_pilihan_pertama_<?= $key ?>">
                                                             <small style="font-size: 0.9375rem;">
                                                                 <?= $v->nama ?>
                                                             </small>
@@ -68,12 +68,12 @@
                                                 </li>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <li>
+                                            <li style="list-style: none;">
                                                 <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
                                             </li>
                                         <?php } ?>
                                     <?php } else { ?>
-                                        <li>
+                                        <li style="list-style: none;">
                                             <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
                                         </li>
                                     <?php } ?>
@@ -87,10 +87,10 @@
                                     <?php if (isset($result)) { ?>
                                         <?php if (count($result) > 0) { ?>
                                             <?php foreach ($result as $key => $v) { ?>
-                                                <li>
+                                                <li style="list-style: none;">
                                                     <div class="custom-control custom-radio mb-4">
-                                                        <input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio">
-                                                        <label class="custom-control-label" for="customRadio5">
+                                                        <input name="_pilihan_kedua" class="custom-control-input" value="<?= $v->id ?>" id="_pilihan_kedua_<?= $key ?>" type="radio">
+                                                        <label class="custom-control-label" for="_pilihan_kedua_<?= $key ?>">
                                                             <small style="font-size: 0.9375rem;">
                                                                 <?= $v->nama ?>
                                                             </small>
@@ -101,12 +101,12 @@
                                                 </li>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <li>
+                                            <li style="list-style: none;">
                                                 <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
                                             </li>
                                         <?php } ?>
                                     <?php } else { ?>
-                                        <li>
+                                        <li style="list-style: none;">
                                             <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
                                         </li>
                                     <?php } ?>
@@ -120,10 +120,10 @@
                                     <?php if (isset($result)) { ?>
                                         <?php if (count($result) > 0) { ?>
                                             <?php foreach ($result as $key => $v) { ?>
-                                                <li>
+                                                <li style="list-style: none;">
                                                     <div class="custom-control custom-radio mb-4">
-                                                        <input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio">
-                                                        <label class="custom-control-label" for="customRadio5">
+                                                        <input name="_pilihan_ketiga" class="custom-control-input" value="<?= $v->id ?>" id="_pilihan_ketiga_<?= $key ?>" type="radio">
+                                                        <label class="custom-control-label" for="_pilihan_ketiga_<?= $key ?>">
                                                             <small style="font-size: 0.9375rem;">
                                                                 <?= $v->nama ?>
                                                             </small>
@@ -134,12 +134,12 @@
                                                 </li>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <li>
+                                            <li style="list-style: none;">
                                                 <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
                                             </li>
                                         <?php } ?>
                                     <?php } else { ?>
-                                        <li>
+                                        <li style="list-style: none;">
                                             <p style="padding: 8px;">Tidak ada data sekolah dalam zonasi anda.</p>
                                         </li>
                                     <?php } ?>

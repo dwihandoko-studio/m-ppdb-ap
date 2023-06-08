@@ -55,7 +55,7 @@
                                         <?php if (isset($result)) {
                                             if (count($result) > 0) {
                                                 foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>"><?= $val->nama ?></option>
+                                                    <option value="<?= $val->id ?>"><?= $val->nama ?>NPSN: <?= $v->npsn ?> &nbsp; &nbsp;<?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?></option>
                                         <?php }
                                             }
                                         } ?>
@@ -72,7 +72,7 @@
                                         <?php if (isset($result)) {
                                             if (count($result) > 0) {
                                                 foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>"><?= $val->nama ?></option>
+                                                    <option value="<?= $val->id ?>"><?= $val->nama ?>NPSN: <?= $v->npsn ?> &nbsp; &nbsp;<?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?></option>
                                         <?php }
                                             }
                                         } ?>
@@ -89,7 +89,7 @@
                                         <?php if (isset($result)) {
                                             if (count($result) > 0) {
                                                 foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>"><?= $val->nama ?></option>
+                                                    <option value="<?= $val->id ?>"><?= $val->nama ?>NPSN: <?= $v->npsn ?> &nbsp; &nbsp;<?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?></option>
                                         <?php }
                                             }
                                         } ?>

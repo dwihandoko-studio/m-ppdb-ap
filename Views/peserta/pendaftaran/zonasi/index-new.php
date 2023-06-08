@@ -108,6 +108,9 @@
 
                         </div> -->
                     </div>
+                    <div class="card-footer">
+                        <button type="button" onclick="actionDaftarSimpan(this);" class="btn btn-primary btn-lg btn-block _daftar_simpan" id="_daftar_simpan">DAFTAR DAN SIMPAN</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -172,225 +175,6 @@
 
 <script>
     let loading = false;
-
-    function cariData(event) {
-        const cari = document.getElementsByName('_search_item')[0].value;
-        if (cari !== "") {
-            $.ajax({
-                url: "<?= base_url('peserta/pendaftaran/zonasi/getAll') ?>",
-                type: 'POST',
-                data: {
-                    keyword: cari,
-                    page: "1",
-                },
-                dataType: 'JSON',
-                beforeSend: function() {
-                    $('div.loading-content').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                },
-                success: function(resul) {
-                    $('div.loading-content').unblock();
-
-                    if (resul.code !== 200) {
-                        if (resul.code === 401) {
-                            Swal.fire(
-                                'Failed!',
-                                resul.message,
-                                'warning'
-                            ).then((valRes) => {
-                                document.location.href = BASE_URL + '/dashboard';
-                            });
-                        } else {
-                            $('.content_zonasi').html('');
-                            $('.content_pagination').html('');
-                        }
-                    } else {
-                        $('.content_zonasi').html(resul.data);
-                        $('.content_pagination').html(resul.pagination);
-                    }
-                },
-                error: function() {
-                    $('div.loading-content').unblock();
-                    Swal.fire(
-                        'Failed!',
-                        "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                        'warning'
-                    );
-                }
-            });
-        }
-    }
-
-    function getSekolahPilihan1() {
-        // const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
-        // const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
-        // const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
-        $.ajax({
-            url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
-            type: 'POST',
-            data: {
-                pilihan1: "",
-                pilihan2: "",
-                pilihan3: "",
-            },
-            dataType: 'JSON',
-            beforeSend: function() {},
-            success: function(msg) {
-                if (msg.code == 200) {
-                    // let htmlpil1 = "";
-                    // htmlpil1 += '<option value="">-- Pilih Sekolah Pilihan 1 (Pertama) --</option>';
-                    // if (msg.data.length > 0) {
-                    //     for (let step = 0; step < msg.data.length; step++) {
-                    //         htmlpil1 += '<option value="';
-                    //         htmlpil1 += msg.data[step].id;
-                    //         htmlpil1 += '">';
-                    //         htmlpil1 += msg.data[step].nama;
-                    //         htmlpil1 += '</option>';
-                    //     }
-
-                    // }
-
-                    $('.content-pilihan-pendaftaran-zonasi').html(msg.data);
-                }
-            },
-            error: function(data) {
-                // console.log(data);
-                // $('div._kel-block').unblock();
-                // $('div._dusun-block').unblock();
-            }
-        })
-
-    }
-
-    // function getSekolahPilihan2() {
-    //     const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
-    //     const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
-    //     const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
-    //     $.ajax({
-    //         url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
-    //         type: 'POST',
-    //         data: {
-    //             pilihan1: pilihan1,
-    //             pilihan2: pilihan2,
-    //             pilihan3: pilihan3,
-    //         },
-    //         dataType: 'JSON',
-    //         beforeSend: function() {},
-    //         success: function(msg) {
-    //             if (msg.code == 200) {
-    //                 // let htmlpil1 = "";
-    //                 // htmlpil1 += '<option value="">-- Pilih Sekolah Pilihan 1 (Pertama) --</option>';
-    //                 // if (msg.data.length > 0) {
-    //                 //     for (let step = 0; step < msg.data.length; step++) {
-    //                 //         htmlpil1 += '<option value="';
-    //                 //         htmlpil1 += msg.data[step].id;
-    //                 //         htmlpil1 += '">';
-    //                 //         htmlpil1 += msg.data[step].nama;
-    //                 //         htmlpil1 += '</option>';
-    //                 //     }
-
-    //                 // }
-
-    //                 $('.content_sekolah_pilihan_kedua').html(msg.data);
-    //             }
-    //         },
-    //         error: function(data) {
-    //             // console.log(data);
-    //             // $('div._kel-block').unblock();
-    //             // $('div._dusun-block').unblock();
-    //         }
-    //     })
-
-    // }
-
-    // function getSekolahPilihan3() {
-    //     const pilihan1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
-    //     const pilihan2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
-    //     const pilihan3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
-    //     $.ajax({
-    //         url: BASE_URL + '/peserta/pendaftaran/zonasi/getAllSekolahZonasi',
-    //         type: 'POST',
-    //         data: {
-    //             pilihan1: pilihan1,
-    //             pilihan2: pilihan2,
-    //             pilihan3: pilihan3,
-    //         },
-    //         dataType: 'JSON',
-    //         beforeSend: function() {},
-    //         success: function(msg) {
-    //             if (msg.code == 200) {
-    //                 // let htmlpil1 = "";
-    //                 // htmlpil1 += '<option value="">-- Pilih Sekolah Pilihan 1 (Pertama) --</option>';
-    //                 // if (msg.data.length > 0) {
-    //                 //     for (let step = 0; step < msg.data.length; step++) {
-    //                 //         htmlpil1 += '<option value="';
-    //                 //         htmlpil1 += msg.data[step].id;
-    //                 //         htmlpil1 += '">';
-    //                 //         htmlpil1 += msg.data[step].nama;
-    //                 //         htmlpil1 += '</option>';
-    //                 //     }
-
-    //                 // }
-
-    //                 $('.content_sekolah_pilihan_ketiga').html(msg.data);
-    //             }
-    //         },
-    //         error: function(data) {
-    //             // console.log(data);
-    //             // $('div._kel-block').unblock();
-    //             // $('div._dusun-block').unblock();
-    //         }
-    //     })
-
-    // }
-
-    function getDataSekolah(page = "1") {
-        const keyword = document.getElementsByName('_search_item')[0].value;
-        $.ajax({
-            url: "<?= base_url('peserta/pendaftaran/zonasi/getAll') ?>",
-            type: 'POST',
-            data: {
-                keyword: keyword,
-                page: page,
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                $('div.loading-content').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(resul) {
-                $('div.loading-content').unblock();
-
-                if (resul.code !== 200) {
-                    if (resul.code === 401) {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        ).then((valRes) => {
-                            document.location.href = BASE_URL + '/dashboard';
-                        });
-                    } else {
-                        $('.content_zonasi').html('');
-                        $('.content_pagination').html('');
-                    }
-                } else {
-                    $('.content_zonasi').html(resul.data);
-                    $('.content_pagination').html(resul.pagination);
-                }
-            },
-            error: function() {
-                $('div.loading-content').unblock();
-                Swal.fire(
-                    'Failed!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
-            }
-        });
-    }
 
     function reloadPage(action = "") {
         if (action === "") {
@@ -497,224 +281,128 @@
         $('.action-location-icon').css('color', '#adb5bd');
     }
 
-    function pickCoordinat() {
-        const lat = document.getElementsByName('_latitude')[0].value;
-        const long = document.getElementsByName('_longitude')[0].value;
+    function actionDaftarSimpan(event) {
+        const sekolah1 = document.getElementsByName('_sekolah_pilihan_pertama')[0].value;
+        const sekolah2 = document.getElementsByName('_sekolah_pilihan_kedua')[0].value;
+        const sekolah3 = document.getElementsByName('_sekolah_pilihan_ketiga')[0].value;
 
-        $.ajax({
-            url: "<?= base_url('peserta/user/location') ?>",
-            type: 'POST',
-            data: {
-                lat: lat,
-                long: long,
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                $('div.main-content').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(resul) {
-                $('div.main-content').unblock();
+        if (sekolah1 === "") {
+            $("select#_sekolah_pilihan_pertama").css("color", "#dc3545");
+            $("select#_sekolah_pilihan_pertama").css("border-color", "#dc3545");
+            $('._sekolah_pilihan_pertama').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih sekolah pilihan pertama dulu.</li></ul>');
+            return;
+        }
+        if (sekolah2 === "") {
+            $("select#_sekolah_pilihan_kedua").css("color", "#dc3545");
+            $("select#_sekolah_pilihan_kedua").css("border-color", "#dc3545");
+            $('._sekolah_pilihan_kedua').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih sekolah pilihan kedua dulu.</li></ul>');
+            return;
+        }
+        if (sekolah3 === "") {
+            $("select#_sekolah_pilihan_ketiga").css("color", "#dc3545");
+            $("select#_sekolah_pilihan_ketiga").css("border-color", "#dc3545");
+            $('._sekolah_pilihan_ketiga').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih sekolah pilihan ketiga dulu.</li></ul>');
+            return;
+        }
+        if (sekolah1 === sekolah2) {
+            Swal.fire(
+                'PERINGATAN!',
+                "Sekolah pilihan pertama dan kedua tidak boleh sama.",
+                'warning'
+            );
+            return;
+        }
+        if (sekolah1 === sekolah3) {
+            Swal.fire(
+                'PERINGATAN!',
+                "Sekolah pilihan pertama dan ketiga tidak boleh sama.",
+                'warning'
+            );
+            return;
+        }
+        if (sekolah2 === sekolah3) {
+            Swal.fire(
+                'PERINGATAN!',
+                "Sekolah pilihan kedua dan ketiga tidak boleh sama.",
+                'warning'
+            );
+            return;
+        }
 
-                if (resul.code !== 200) {
-                    Swal.fire(
-                        'Failed!',
-                        resul.message,
-                        'warning'
-                    );
-                } else {
-                    $('#contentModalLabel').html('AMBIL LOKASI');
-                    $('.contentBodyModal').html(resul.data);
-                    $('#contentModal').modal({
-                        backdrop: 'static',
-                        keyboard: false
-                    }, 'show');
+        Swal.fire({
+            title: 'Apakah anda yakin ingin mendaftar di sekolah pilihan ini?',
+            text: "Daftar ke sekolah pilihan melalui jalur Zonasi.",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Daftar!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "<?= base_url('peserta/pendaftaran/zonasi/aksidaftar') ?>",
+                    type: 'POST',
+                    data: {
+                        sekolah1: sekolah1,
+                        sekolah2: sekolah2,
+                        sekolah3: sekolah3,
+                    },
+                    dataType: 'JSON',
+                    beforeSend: function() {
+                        $('div.main-content').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
+                    },
+                    success: function(resul) {
+                        $('div.main-content').unblock();
 
-                    var map = L.map("map_inits").setView([lat, long], 12);
-                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | Supported By <a href="https://kntechline.id">Kntechline.id</a>'
-                    }).addTo(map);
-
-                    var lati = lat;
-                    var longi = long;
-                    var marker;
-
-                    marker = L.marker({
-                        lat: lat,
-                        lng: long
-                    }, {
-                        draggable: true
-                    }).addTo(map);
-                    document.getElementById('_lat').value = lati;
-                    document.getElementById('_long').value = longi;
-
-                    var onDrag = function(e) {
-                        var latlng = marker.getLatLng();
-                        lati = latlng.lat;
-                        longi = latlng.lng;
-                        document.getElementById('_lat').value = latlng.lat;
-                        document.getElementById('_long').value = latlng.lng;
-                    };
-
-                    var onClick = function(e) {
-                        map.removeLayer(marker);
-                        // map.off('click', onClick); //turn off listener for map click
-                        marker = L.marker(e.latlng, {
-                            draggable: true
-                        }).addTo(map);
-                        lati = e.latlng.lat;
-                        longi = e.latlng.lng;
-                        document.getElementById('_lat').value = lati;
-                        document.getElementById('_long').value = longi;
-
-                        // marker.on('drag', onDrag);
-                    };
-                    marker.on('drag', onDrag);
-                    map.on('click', onClick);
-
-                    setTimeout(function() {
-                        map.invalidateSize();
-                        // console.log("maps opened");
-                        $("h6#title_map").css("display", "block");
-                    }, 1000);
-
-                }
-            },
-            error: function() {
-                $('div.main-content').unblock();
-                Swal.fire(
-                    'Failed!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
-            }
-        });
-    }
-
-    function takedKoordinat() {
-        const latitu = document.getElementsByName('_lat')[0].value;
-        const longitu = document.getElementsByName('_long')[0].value;
-
-        document.getElementById('_latitude').value = latitu;
-        document.getElementById('_longitude').value = longitu;
-        document.getElementById('_koordinat').value = "(" + latitu + "," + longitu + ")";
-
-        $('#contentModal').modal('hide');
-    }
-
-    function actionSave(event) {
-        if (!loading) {
-            const provinsi = document.getElementsByName('_provinsi')[0].value;
-            const kabupaten = document.getElementsByName('_kabupaten')[0].value;
-            const kecamatan = document.getElementsByName('_kecamatan')[0].value;
-            const kelurahan = document.getElementsByName('_kelurahan')[0].value;
-            const dusun = document.getElementsByName('_dusun')[0].value;
-            const alamat = document.getElementsByName('_alamat')[0].value;
-            const koordinat = document.getElementsByName('_koordinat')[0].value;
-            const latitude = document.getElementsByName('_latitude')[0].value;
-            const longitude = document.getElementsByName('_longitude')[0].value;
-
-            if (provinsi === "") {
-                $("select#_provinsi").css("color", "#dc3545");
-                $("select#_provinsi").css("border-color", "#dc3545");
-                $('._provinsi').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih provinsi dulu.</li></ul>');
-            }
-            if (kabupaten === "") {
-                $("select#_kabupaten").css("color", "#dc3545");
-                $("select#_kabupaten").css("border-color", "#dc3545");
-                $('._kabupaten').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih kabupaten dulu.</li></ul>');
-            }
-            if (kecamatan === "") {
-                $("select#_kecamatan").css("color", "#dc3545");
-                $("select#_kecamatan").css("border-color", "#dc3545");
-                $('._kecamatan').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih kecamatan dulu.</li></ul>');
-            }
-            if (kelurahan === "") {
-                $("select#_kelurahan").css("color", "#dc3545");
-                $("select#_kelurahan").css("border-color", "#dc3545");
-                $('._kelurahan').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih kelurahan dulu.</li></ul>');
-            }
-            if (dusun === "") {
-                $("select#_dusun").css("color", "#dc3545");
-                $("select#_dusun").css("border-color", "#dc3545");
-                $('._dusun').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih dusun dulu.</li></ul>');
-            }
-            if (alamat === "") {
-                $("textarea#_alamat").css("color", "#dc3545");
-                $("textarea#_alamat").css("border-color", "#dc3545");
-                $('._alamat').html('<ul role="alert" style="color: #dc3545; list-style: none;padding-inline-start: 10px;"><li style="color: #dc3545;">Alamat tidak boleh kosong.</li></ul>');
-            }
-
-            if (provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || dusun === "" || alamat === "") {
-                return;
-            }
-
-            $.ajax({
-                url: BASE_URL + '/peserta/user/saveprofil',
-                type: 'POST',
-                data: {
-                    provinsi: provinsi,
-                    kabupaten: kabupaten,
-                    kecamatan: kecamatan,
-                    kelurahan: kelurahan,
-                    dusun: dusun,
-                    alamat: alamat,
-                    latitude: latitude,
-                    longitude: longitude,
-                },
-                dataType: 'JSON',
-                beforeSend: function() {
-                    loading = true;
-                    $('div.main-content').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                },
-                success: function(msg) {
-                    loading = false;
-                    $('div.main-content').unblock();
-                    if (msg.code !== 200) {
-                        if (msg.code !== 201) {
-
-                            Swal.fire(
-                                'Gagal!',
-                                msg.message,
-                                'warning'
-                            );
-
+                        if (resul.code !== 200) {
+                            if (resul.code === 401) {
+                                Swal.fire(
+                                    'Failed!',
+                                    resul.message,
+                                    'warning'
+                                ).then((valRes) => {
+                                    document.location.href = BASE_URL + '/dashboard';
+                                });
+                            } else {
+                                Swal.fire(
+                                    'GAGAL!',
+                                    resul.message,
+                                    'warning'
+                                );
+                            }
                         } else {
-                            Swal.fire(
-                                'Peringatan!',
-                                msg.message,
-                                'success'
-                            ).then((valRes) => {
-                                document.location.href = msg.url;
+                            Swal.fire({
+                                title: 'BERHASIL !!!',
+                                text: resul.message,
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                cancelButtonText: 'Tutup',
+                                confirmButtonText: 'Download Bukti Pendaftaran'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.open(
+                                        "<?= base_url('peserta/riwayat/cetakpendaftaran') ?>?id=" + resul.data.id + "&kode=" + resul.data.kode_pendaftaran + "&jalur=" + resul.data.via_jalur, "_blank");
+                                    reloadPage('<?= base_url("peserta/home") ?>');
+                                } else {
+                                    console.log('tutup');
+                                    reloadPage();
+                                }
                             })
                         }
-                    } else {
+                    },
+                    error: function() {
+                        $('div.main-content').unblock();
                         Swal.fire(
-                            'Berhasil!',
-                            msg.message,
-                            'success'
-                        ).then((valRes) => {
-                            document.location.href = msg.url;
-                        })
+                            'GAGAL!',
+                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                            'warning'
+                        );
                     }
-                },
-                error: function(data) {
-                    console.log(data);
-                    loading = false;
-
-                    $('div.main-content').unblock();
-                    Swal.fire(
-                        'Gagal!',
-                        "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                        'warning'
-                    );
-
-                }
-            })
-        }
+                })
+            }
+        })
     }
 
     function initSelect2Panel(event) {

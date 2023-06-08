@@ -334,16 +334,22 @@ class Zonasi extends BaseController
         }
 
         $rules = [
-            'name' => [
+            'sekolah1' => [
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => 'Name tidak boleh kosong. ',
+                    'required' => 'Sekolah pilihan pertama tidak boleh kosong. ',
                 ]
             ],
-            'id' => [
+            'sekolah2' => [
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
+                    'required' => 'Sekolah pilihan kedua tidak boleh kosong. ',
+                ]
+            ],
+            'sekolah3' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Sekolah pilihan ketiga tidak boleh kosong. ',
                 ]
             ],
         ];
@@ -351,115 +357,18 @@ class Zonasi extends BaseController
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = $this->validator->getError('name') . $this->validator->getError('id');
+            $response->message = $this->validator->getError('sekolah1')
+                . $this->validator->getError('sekolah2')
+                . $this->validator->getError('sekolah3');
             return json_encode($response);
         } else {
-            $name = htmlspecialchars($this->request->getVar('name'), true);
-            $id = htmlspecialchars($this->request->getVar('id'), true);
+            $sekolah1 = htmlspecialchars($this->request->getVar('sekolah1'), true);
+            $sekolah2 = htmlspecialchars($this->request->getVar('sekolah2'), true);
+            $sekolah3 = htmlspecialchars($this->request->getVar('sekolah3'), true);
 
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
-
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $peserta = $this->_db->table('_users_profil_tb a')
-                            ->select("a.*, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
-                            ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
-                            ->where('a.id', $userId)
-                            ->get()->getRowObject();
-                        if (!$peserta) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Data anda belum lengkap, silahkan lengkapi data terlebih dahulu.";
-                            return json_encode($response);
-                        }
-
-                        if ($peserta->lampiran_kk == null || $peserta->lampiran_lulus == null) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen terlebih dahulu.";
-                            return json_encode($response);
-                        }
-
-                        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
-                        if ($cekRegisterApprove) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
-                            return json_encode($response);
-                        }
-
-                        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
-
-                        if ($cekRegisterTemp) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
-                            return json_encode($response);
-                        }
-
-                        $uuidLib = new Uuid();
-                        $uuid = $uuidLib->v4();
-
-                        $data = [
-                            'id' => $uuid,
-                            'kode_pendaftaran' => createKodePendaftaran("ZONAZI", $peserta->nisn),
-                            'user_id' => $userId,
-                            'peserta_didik_id' => $peserta->peserta_didik_id,
-                            'from_sekolah_id' => $peserta->sekolah_asal,
-                            'tujuan_sekolah_id' => $id,
-                            'via_jalur' => "ZONASI",
-                            'status_pendaftaran' => 0,
-                            'lampiran' => null,
-                            'keterangan' => null,
-                            'pendaftar' => 'SISWA',
-                            'created_at' => date('Y-m-d H:i:s')
-                        ];
-
-                        $this->_db->transBegin();
-                        $this->_db->table('_tb_pendaftar_temp')->insert($data);
-                        if ($this->_db->affectedRows() > 0) {
-                            $this->_db->transCommit();
-                            try {
-                                $riwayatLib = new Riwayatlib();
-                                $riwayatLib->insert("Mendaftar via Jalur Zonasi ke Sekolah $name, dengan No Pendaftaran : " . $data['kode_pendaftaran'], "Daftar Jalur Zonasi");
-                            } catch (\Throwable $th) {
-                            }
-                            $response = new \stdClass;
-                            $response->code = 200;
-                            $response->data = $data;
-                            $response->message = "Pendaftaran via jalur Zonasi ke Sekolah $name berhasil dilakukan. Kode pendaftaran anda : " . $data['kode_pendaftaran'] . ". Selanjutnya Silahkan cetak bukti pendaftaran anda.";
-                            return json_encode($response);
-                        } else {
-                            $this->_db->transRollback();
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Pendaftaran via jalur Zonasi ke Sekolah $name berhasil dilakukan.";
-                            return json_encode($response);
-                        }
-                    } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    delete_cookie('jwt');
-                    session()->destroy();
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->error = $e;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } else {
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;
@@ -467,6 +376,95 @@ class Zonasi extends BaseController
                 $response->message = "Session telah habis.";
                 return json_encode($response);
             }
+
+            $peserta = $this->_db->table('_users_profil_tb a')
+                ->select("a.*, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
+                ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
+                ->where('a.id', $user->data->id)
+                ->get()->getRowObject();
+            if (!$peserta) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data anda belum lengkap, silahkan lengkapi data terlebih dahulu.";
+                return json_encode($response);
+            }
+
+            if ($peserta->lampiran_akta == null || $peserta->lampiran_kk == null) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen Akta dan Kartu Keluarga terlebih dahulu.";
+                return json_encode($response);
+            }
+
+            if ($peserta->lampiran_lulus == null) {
+                if (substr($user->data->nisn, 0, 2) == "BS") {
+                } else {
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran surat keterangan lulu (sertifikat kelulusan) terlebih dahulu.";
+                    return json_encode($response);
+                }
+            }
+
+            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+            if ($cekRegisterApprove) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                return json_encode($response);
+            }
+
+            $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+
+            if ($cekRegisterTemp) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
+                return json_encode($response);
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $data = [
+                'id' => $uuid,
+                'kode_pendaftaran' => createKodePendaftaran("ZONAZI", $peserta->nisn),
+                'user_id' => $user->data->id,
+                'peserta_didik_id' => $peserta->peserta_didik_id,
+                'from_sekolah_id' => $peserta->sekolah_asal,
+                'tujuan_sekolah_id_1' => $sekolah1,
+                'tujuan_sekolah_id_2' => $sekolah2,
+                'tujuan_sekolah_id_3' => $sekolah3,
+                'via_jalur' => "ZONASI",
+                'status_pendaftaran' => 0,
+                'lampiran' => null,
+                'keterangan' => null,
+                'pendaftar' => 'SISWA',
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+            $this->_db->table('_tb_pendaftar_temp')->insert($data);
+            if ($this->_db->affectedRows() > 0) {
+                $this->_db->transCommit();
+                try {
+                    $riwayatLib = new Riwayatlib();
+                    $riwayatLib->insert("Mendaftar via Jalur Zonasi, dengan No Pendaftaran : " . $data['kode_pendaftaran'], "Daftar Jalur Zonasi");
+                } catch (\Throwable $th) {
+                }
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->message = "Pendaftaran via jalur Zonasi berhasil dilakukan. Kode pendaftaran anda : " . $data['kode_pendaftaran'] . ". Selanjutnya Silahkan cetak bukti pendaftaran anda.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Pendaftaran via jalur Zonasi gagal dilakukan.";
+                return json_encode($response);
+            }
+
 
 
 

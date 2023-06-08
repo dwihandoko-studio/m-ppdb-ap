@@ -60,10 +60,10 @@
                                                         <label class="custom-control-label" for="customRadio5">
                                                             <small style="font-size: 0.9375rem;">
                                                                 <?= $v->nama ?>
-                                                            </small><br />
-                                                            NPSN: <?= $v->npsn ?>
+                                                            </small>
+                                                            NPSN: <?= $v->npsn ?><br />
                                                             <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
-                                                            Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)
+                                                            - Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
                                                         </label>
                                                     </div>
                                                 </li>
@@ -94,10 +94,10 @@
                                                         <label class="custom-control-label" for="customRadio5">
                                                             <small style="font-size: 0.9375rem;">
                                                                 <?= $v->nama ?>
-                                                            </small><br />
-                                                            NPSN: <?= $v->npsn ?>
+                                                            </small>
+                                                            NPSN: <?= $v->npsn ?><br />
                                                             <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
-                                                            Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)
+                                                            - Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
                                                         </label>
                                                     </div>
                                                 </li>
@@ -128,10 +128,10 @@
                                                         <label class="custom-control-label" for="customRadio5">
                                                             <small style="font-size: 0.9375rem;">
                                                                 <?= $v->nama ?>
-                                                            </small><br />
-                                                            NPSN: <?= $v->npsn ?>
+                                                            </small>
+                                                            NPSN: <?= $v->npsn ?><br />
                                                             <?= ((int)$v->status_sekolah == 1) ? '<span class="badge badge-success" style="padding: 2px;">Negeri</span>' : '<span class="badge badge-info" style="padding: 2px;">Swasta</span>' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($v->latitude, $v->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?><br />
-                                                            Alamat: <?= $v->alamat_jalan ?>, Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?> (<?= $v->nama_provinsi ?>)
+                                                            - Kec. <?= $v->nama_kecamatan ?> - <?= $v->nama_kabupaten ?>
                                                         </label>
                                                     </div>
                                                 </li>

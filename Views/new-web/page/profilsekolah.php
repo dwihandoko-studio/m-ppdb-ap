@@ -53,7 +53,7 @@
                                 <thead style="border: 1px solid #273581;">
                                     <tr>
                                         <th data-orderable="false">No</th>
-                                        <th></th>
+                                        <!-- <th></th> -->
                                         <th>NPSN Sekolah</th>
                                         <th>Nama Sekolah</th>
                                     </tr>
@@ -206,22 +206,22 @@
                 },
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
-            'columns': [{
-                    data: 'no'
-                },
-                {
-                    className: 'dt-control',
-                    orderable: false,
-                    data: 'button',
-                    defaultContent: '',
-                },
-                {
-                    data: 'npsn'
-                },
-                {
-                    data: 'nama_sekolah'
-                }
-            ],
+            // 'columns': [{
+            //         data: 'no'
+            //     },
+            //     // {
+            //     //     className: 'dt-control',
+            //     //     orderable: false,
+            //     //     data: 'button',
+            //     //     defaultContent: '',
+            //     // },
+            //     {
+            //         data: 'npsn'
+            //     },
+            //     {
+            //         data: 'nama_sekolah'
+            //     }
+            // ],
             "columnDefs": [{
                 "targets": 0,
                 "orderable": false,

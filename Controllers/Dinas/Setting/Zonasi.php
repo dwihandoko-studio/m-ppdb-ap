@@ -836,4 +836,171 @@ class Zonasi extends BaseController
             }
         }
     }
+
+
+    public function import()
+    {
+        $data['title'] = 'IMPORT DATA ZONASI SEKOLAH';
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('auth'));
+        }
+        $data['user'] = $user->data;
+        return view('dinas/setting/zonasi/import', $data);
+    }
+
+    public function uploadData()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = [
+                'code' => 400,
+                'error' => "Hanya request post yang diperbolehkan."
+            ];
+        } else {
+
+            $rules = [
+                'file' => [
+                    'rules' => 'uploaded[file]|max_size[file, 5120]|mime_in[file,application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office,application/msword,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,application/x-zip]',
+                    'errors' => [
+                        'uploaded' => 'File import gagal di upload. ',
+                        'max_size' => 'Ukuran file melebihi batas file max file upload. ',
+                        'mime_in' => 'Ekstensi file tidak diizinkan untuk di upload. ',
+                    ]
+                ],
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'code' => 400,
+                    'error' => $this->validator->getError('file')
+                ];
+            } else {
+                $jenis = htmlspecialchars($this->request->getVar('jenis'), true);
+                $lampiran = $this->request->getFile('file');
+                $extension = $lampiran->getClientExtension();
+                $filesNamelampiran = $lampiran->getName();
+                $fileLocation = $lampiran->getTempName();
+
+                if ('xls' == $extension) {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                } else {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                }
+
+                $spreadsheet = $reader->load($fileLocation);
+                $sheet = $spreadsheet->getActiveSheet()->toArray();
+
+                $total_line = (count($sheet) > 0) ? count($sheet) - 1 : 0;
+
+                $dataImport = [];
+
+                unset($sheet[0]);
+
+                foreach ($sheet as $key => $data) {
+
+                    if ($data[0] == "" || strlen($data[0]) < 5) {
+                        // if($data[1] == "") {
+                        continue;
+                    }
+
+                    $dataInsert = [
+                        'npsn' => $data[0],
+                        'nama_sekolah' => $data[1],
+                        'kecamatan' => $data[3],
+                    ];
+
+                    $dataImport[] = $dataInsert;
+                }
+
+                $response = [
+                    'code' => 200,
+                    'success' => true,
+                    'total_line' => $total_line,
+                    'data' => $dataImport,
+                ];
+            }
+        }
+
+        echo json_encode($response);
+    }
+
+    public function importData()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 500;
+            $response->message = "Request not allowed";
+            return json_encode($response);
+        }
+
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            $response = new \stdClass;
+            $response->code = 401;
+            $response->message = "Session telah habis.";
+            return json_encode($response);
+        }
+
+        $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+        $nama_sekolah = htmlspecialchars($this->request->getVar('nama_sekolah'), true);
+        $kecamatan = htmlspecialchars($this->request->getVar('kecamatan'), true);
+
+        $currentDataOnDB = $this->_db->table('_setting_zonasi_tb')->where(['npsn' => $npsn, 'kecamatan' => $kecamatan])->get()->getRowObject();
+
+        if ($currentDataOnDB) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Sekolah sudah ada.";
+            return json_encode($response);
+        }
+
+        $refSekolah = $this->_db->table('ref_sekolah')->select('id')->where(['npsn' => $npsn])->get()->getRowObject();
+
+        if (!$refSekolah) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Sekolah tidak ada.";
+            return json_encode($response);
+        }
+
+        $this->_db->transBegin();
+        $uuidLib = new Uuid();
+        $uuid = $uuidLib->v4();
+
+        $data = [
+            'id' => $uuid,
+            'sekolah_id' => $refSekolah->id,
+            'bentuk_pendidikan_id' => $refSekolah->bentuk_pendidikan_id,
+            'npsn' => $refSekolah->npsn,
+            'provinsi' => '120000',
+            'kabupaten' => '120900',
+            'kecamatan' => $kecamatan,
+            'is_locked' => 1,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+
+        $this->_db->table('_setting_zonasi_tb')->insert($data);
+
+        if ($this->_db->affectedRows() > 0) {
+
+            $this->_db->transCommit();
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Berhasil mengimport data";
+            $response->url = base_url('dinas/setting/zonasi');
+            return json_encode($response);
+        } else {
+            $this->_db->transRollback();
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Gagal menyimpan data";
+            return json_encode($response);
+        }
+    }
 }

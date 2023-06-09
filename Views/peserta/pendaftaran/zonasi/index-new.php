@@ -51,9 +51,9 @@
                                 <br />
                                 <?php if (isset($sekolah_pilihan)) { ?>
                                     <ol>
-                                        <li>Sekolah Pilihan Pertama : <?= $sekolah_pilihan->nama_sekolah_1 . '  (' . $sekolah_pilihan->npsn_sekolah_1 . ')' ?></li>
-                                        <li>Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= $sekolah_pilihan->nama_sekolah_2 . '  (' . $sekolah_pilihan->npsn_sekolah_2 . ')' ?></li>
-                                        <li>Sekolah Pilihan Ketiga &nbsp;: <?= $sekolah_pilihan->nama_sekolah_3 . '  (' . $sekolah_pilihan->npsn_sekolah_3 . ')' ?></li>
+                                        <li>Sekolah Pilihan Pertama : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                        <li>Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
+                                        <li>Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
                                     </ol>
                                 <?php } ?>
                             </div>

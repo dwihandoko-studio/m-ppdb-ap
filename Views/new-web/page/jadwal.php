@@ -25,24 +25,24 @@
                                             <li>
                                                 <b>Pendaftaran </b><br>
                                                 Buka : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_afirmasi) ?> WIB<br>
                                                 Tutup : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Verifikasi </b><br>
                                                 Buka : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_afirmasi) ?> WIB<br>
                                                 Tutup : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Analisis </b><br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_analisis_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_analisis_afirmasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Pengumuman </b><br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_pengumuman_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_pengumuman_afirmasi) ?> WIB
                                             </li>
                                         </ul>
                                     </div>
@@ -67,22 +67,22 @@
                                                 Buka : <br>
                                                 <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
                                                 Tutup : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_pendaftaran_zonasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Verifikasi </b><br>
                                                 Buka : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB<br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_verifikasi_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_verifikasi_zonasi) ?> WIB<br>
                                                 Tutup : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_verifikasi_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_verifikasi_zonasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Analisis </b><br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_analisis_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_analisis_zonasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Pengumuman </b><br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_pengumuman_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_pengumuman_zonasi) ?> WIB
                                             </li>
                                         </ul>
                                     </div>

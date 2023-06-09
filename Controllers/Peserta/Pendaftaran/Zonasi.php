@@ -286,13 +286,7 @@ class Zonasi extends BaseController
         $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
         if ($cekRegisterApprove) {
             $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
-            $data['sekolah_pilihan'] = $this->_db->table('_tb_pendaftar a')
-                ->select("a.nama as nama_sekolah_1, a.npsn as npsn_sekolah_1, b.nama as nama_sekolah_2, b.npsn as npsn_sekolah_2, c.nama as nama_sekolah_3, c.npsn as npsn_sekolah_3")
-                ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id')
-                ->join('ref_sekolah c', 'a.tujuan_sekolah_id_2 = c.id')
-                ->join('ref_sekolah d', 'a.tujuan_sekolah_id_3 = d.id')
-                ->where('a.id', $cekRegisterApprove->id)
-                ->get()->getRowObject();
+            $data['sekolah_pilihan'] = $cekRegisterApprove;
         }
 
         $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();

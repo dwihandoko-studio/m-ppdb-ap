@@ -154,8 +154,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="card card-stats">
-                            <?php if (isset($status_pendaftaran)) {
-                                if ($status_pendaftaran) { ?>
+                            <?php if (isset($error)) {
+                                if ($error) { ?>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
@@ -165,7 +165,7 @@
                                                 <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">3</div>
                                             </div>
                                         </div>
-                                        <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran via jalur <?= $status_pendaftaran->via_jalur ?> ke sekolah <?= $status_pendaftaran->nama_sekolah ?>.</span></p>
+                                        <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran via jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
                                     </div>
                                 <?php } else { ?>
                                     <div class="card-body">
@@ -200,6 +200,26 @@
         </div>
     </div>
     <div class="container-fluid mt--6">
+
+        <?php if (isset($error)) { ?>
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
+                        <br />
+                        <?php if (isset($sekolah_pilihan)) { ?>
+                            <center>
+                                <ol>
+                                    <li style="list-style: none;">Sekolah Pilihan Pertama : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                    <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
+                                    <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
+                                </ol>
+                            </center>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
         <div class="card">
             <div class="card-header">
                 <h5 class="h3 mb-0">PENGUMUMAN</h5>

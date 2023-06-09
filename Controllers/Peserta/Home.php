@@ -38,18 +38,32 @@ class Home extends BaseController
 
         $data['lengkap_data'] = $this->_db->table('_users_profil_tb')->where('id', $userId)->get()->getRowObject();
         $data['lengkap_berkas'] = $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $userId)->get()->getRowObject();
-        $statusDaftar = $this->_db->table('_tb_pendaftar a')
-            ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
-            ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
-            ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
-        if (!($statusDaftar)) {
-            $statusDaftar = $this->_db->table('_tb_pendaftar_temp a')
-                ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
-                ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
-                ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
+        // $statusDaftar = $this->_db->table('_tb_pendaftar a')
+        //     ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
+        //     ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
+        //     ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
+        // if (!($statusDaftar)) {
+        //     $statusDaftar = $this->_db->table('_tb_pendaftar_temp a')
+        //         ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
+        //         ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
+        //         ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
+        // }
+
+        // $data['status_pendaftaran'] = $statusDaftar;
+
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        if ($cekRegisterApprove) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+            $data['sekolah_pilihan'] = $cekRegisterApprove;
         }
 
-        $data['status_pendaftaran'] = $statusDaftar;
+        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+
+        if ($cekRegisterTemp) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas.";
+            $data['sekolah_pilihan'] = $cekRegisterTemp;
+        }
+
 
         // var_dump($data);
         // die;

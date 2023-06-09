@@ -203,9 +203,9 @@
 
         <?php if (isset($error)) { ?>
             <div class="card">
-                <div class="card-body p-0">
-                    <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert"> -->
-                    <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
+                <div class="card-body bg-gradient-danger p-0">
+                    <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                    <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
                     <br />
                     <?php if (isset($sekolah_pilihan)) { ?>
                         <center>

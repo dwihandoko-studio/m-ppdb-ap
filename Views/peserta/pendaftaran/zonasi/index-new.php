@@ -47,7 +47,7 @@
                     <div class="card-body">
                         <?php if (isset($error)) { ?>
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span> <span class="alert-text"><strong>Peringatan!</strong> <br><?= $error ?></span></button>
+                                <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span> <span class="alert-text"><strong>Peringatan!</strong> <br><?= $error ?></span></button></center>
                             </div>
                         <?php } else { ?>
                             <div class="row">
@@ -115,7 +115,9 @@
                         </div> -->
                     </div>
                     <div class="card-footer">
-                        <button type="button" onclick="actionDaftarSimpan(this);" class="btn btn-primary btn-lg btn-block _daftar_simpan" id="_daftar_simpan">DAFTAR DAN SIMPAN</button>
+                        <?php if (!(isset($error))) { ?>
+                            <button type="button" onclick="actionDaftarSimpan(this);" class="btn btn-primary btn-lg btn-block _daftar_simpan" id="_daftar_simpan">DAFTAR DAN SIMPAN</button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

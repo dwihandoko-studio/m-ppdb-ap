@@ -18,8 +18,8 @@
                             </div>
                         </div>
                     </div>
+                    <h4>INFORMASI PANITIA PPDB <?= (isset($sekolah)) ? $sekolah->nama_sekolah . " || " . $sekolah->npsn : ' SEKOLAH' ?></h4>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h4>INFORMASI PANITIA PPDB <?= (isset($sekolah)) ? $sekolah->nama_sekolah . " || " . $sekolah->npsn : ' SEKOLAH' ?></h4>
                         <div class="table-responsive" style="background-color: #fff; padding: 12px;border-radius: 5px; margin-top: -8px;">
                             <table class="table table-hover" id="tabelZonasiSekolah">
                                 <thead style="border: 1px solid #273581;">

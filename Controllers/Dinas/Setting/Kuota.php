@@ -1091,8 +1091,9 @@ class Kuota extends BaseController
                 $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
                 $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
                 $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
-                $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
+                $kMutasi = $jumlahSiswa - ($kZonasi + $kAfirmasi);
+                // $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kPrestasi = 0;
             }
 
             $data = [

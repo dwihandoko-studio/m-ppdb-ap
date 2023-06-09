@@ -237,7 +237,7 @@
                         }, false);
                         return xhr;
                     },
-                    url: "<?= base_url('dinas/setting/zonasi/uploadData') ?>",
+                    url: "<?= base_url('dinas/setting/kuota/uploadData') ?>",
                     type: 'POST',
                     data: formUpload,
                     contentType: false,

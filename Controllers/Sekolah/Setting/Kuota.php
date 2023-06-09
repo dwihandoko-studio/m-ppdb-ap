@@ -91,7 +91,7 @@ class Kuota extends BaseController
         $response->data = view('sekolah/setting/kuota/add');
         return json_encode($response);
     }
-    
+
     public function edit()
     {
         if ($this->request->getMethod() != 'post') {
@@ -116,14 +116,14 @@ class Kuota extends BaseController
             $response->message = $this->validator->getError('id');
             return json_encode($response);
         } else {
-            
+
             $dataLib = new Datalib();
             $canDaftar = $dataLib->canSetting();
-    
+
             if ($canDaftar->code !== 200) {
                 return json_encode($canDaftar);
             }
-            
+
             $jwt = get_cookie('jwt');
             $token_jwt = getenv('token_jwt.default.key');
             if ($jwt) {
@@ -136,7 +136,7 @@ class Kuota extends BaseController
                             ->select("a.*, b.bentuk_pendidikan_id")
                             ->join('ref_sekolah b', 'a.sekolah_id = b.id', 'left')
                             ->where('a.id', $userId)->get()->getRowObject();
-    
+
                         if (!$sekolahId) {
                             $response = new \stdClass;
                             $response->code = 400;
@@ -149,34 +149,34 @@ class Kuota extends BaseController
                             $response->message = "Sekolah anda belum di set oleh admin dinas. Silahkan menghubungi admin dinas.";
                             return json_encode($response);
                         }
-                        
+
                         $dataLib = new Datalib();
                         $canDaftar = $dataLib->canSetting();
-                
+
                         if ($canDaftar->code !== 200) {
                             return json_encode($canDaftar);
                         }
-    
+
                         $cekData = $this->_db->table('_setting_kuota_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'is_locked' => 1])->countAllResults();
-    
+
                         if ($cekData > 0) {
                             $response = new \stdClass;
                             $response->code = 400;
                             $response->message = "Pengajuan Untuk Kuota Kesiapan Telah Diverifikasi Dan Dikunci. Silahkan Hubungi Admin PPDB Dinas, Apabila Data Kuota Kesiapan Sekolah Anda Masih Belum Sesuai Dengan Ketentuan Yang Telah Ditetapkan.";
                             return json_encode($response);
                         }
-                        
+
                         $id = htmlspecialchars($this->request->getVar('id'), true);
 
                         $oldData = $this->_db->table('_setting_kuota_tb')->where('id', $id)->get()->getRowObject();
-            
+
                         if (!$oldData) {
                             $response = new \stdClass;
                             $response->code = 400;
                             $response->message = "Data tidak ditemukan";
                             return json_encode($response);
                         }
-            
+
                         $data['data'] = $oldData;
                         $response = new \stdClass;
                         $response->code = 200;
@@ -208,7 +208,6 @@ class Kuota extends BaseController
                 $response->message = "Session telah habis.";
                 return json_encode($response);
             }
-            
         }
     }
 
@@ -301,17 +300,26 @@ class Kuota extends BaseController
                             return json_encode($response);
                         }
 
+                        $prosentaseJalur = getProsentaseJalur($refSekolah->bentuk_pendidikan_id);
+
+                        if (!$prosentaseJalur) {
+                            $response = new \stdClass;
+                            $response->code = 400;
+                            $response->message = "Referensi prosentase tidak ditemukan.";
+                            return json_encode($response);
+                        }
+
                         if ($refSekolah->bentuk_pendidikan_id == "6" || $refSekolah->bentuk_pendidikan_id == "10" || $refSekolah->bentuk_pendidikan_id == "31" || $refSekolah->bentuk_pendidikan_id == "32" || $refSekolah->bentuk_pendidikan_id == "33" || $refSekolah->bentuk_pendidikan_id == "35" || $refSekolah->bentuk_pendidikan_id == "36") {
                             $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         } else {
                             $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         }
 
@@ -502,17 +510,26 @@ class Kuota extends BaseController
                             return json_encode($response);
                         }
 
+                        $prosentaseJalur = getProsentaseJalur($refSekolah->bentuk_pendidikan_id);
+
+                        if (!$prosentaseJalur) {
+                            $response = new \stdClass;
+                            $response->code = 400;
+                            $response->message = "Referensi prosentase tidak ditemukan.";
+                            return json_encode($response);
+                        }
+
                         if ($refSekolah->bentuk_pendidikan_id == "6" || $refSekolah->bentuk_pendidikan_id == "10" || $refSekolah->bentuk_pendidikan_id == "31" || $refSekolah->bentuk_pendidikan_id == "32" || $refSekolah->bentuk_pendidikan_id == "33" || $refSekolah->bentuk_pendidikan_id == "35" || $refSekolah->bentuk_pendidikan_id == "36") {
                             $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         } else {
                             $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         }
 

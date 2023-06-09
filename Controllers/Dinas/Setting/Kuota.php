@@ -45,7 +45,7 @@ class Kuota extends BaseController
                 $row = [];
 
                 // $row[] = $no;
-                
+
                 $action = "";
                 $action .= '<div class="dropup">
                         <div class="btn btn-primary btn-sm" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +56,7 @@ class Kuota extends BaseController
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </button>';
-                if((int)$list->is_locked === 1) {
+                if ((int)$list->is_locked === 1) {
                     $status = '<span class="badge badge-success">Verified</span>';
                     $action .= '<button onclick="actionUnlockVerification(\'' . $list->id . '\', \' ' . $list->nama_sekolah . ' - ' . $list->npsn . '\')" type="button" class="dropdown-item">
                                 <i class="ni ni-lock-circle-open"></i>
@@ -69,9 +69,9 @@ class Kuota extends BaseController
                                 <span>Verifikasi</span>
                             </button>';
                 }
-                
+
                 $row[] = $status;
-                            
+
                 $action .= '<button onclick="actionEdit(\'' . $list->id . '\')" type="button" class="dropdown-item">
                                 <i class="ni ni-ruler-pencil"></i>
                                 <span>Edit</span>
@@ -130,14 +130,14 @@ class Kuota extends BaseController
             return redirect()->to(base_url('web/home'));
         }
         $data['user'] = $user->data;
-        
-        $data['jenjang_sekolas'] = $this->_db->table('ref_bentuk_pendidikan')->whereIn('id', [5,6])->get()->getResult();
-        
+
+        $data['jenjang_sekolas'] = $this->_db->table('ref_bentuk_pendidikan')->whereIn('id', [5, 6])->get()->getResult();
+
         $data['instansis'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
 
         return view('dinas/setting/kuota/index', $data);
     }
-    
+
     public function detail()
     {
         if ($this->request->getMethod() != 'post') {
@@ -191,7 +191,7 @@ class Kuota extends BaseController
             return json_encode($response);
         }
 
-        $data['jenjang_sekolas'] = $this->_db->table('ref_bentuk_pendidikan')->whereIn('id', [5,6,9,10,30,31,32,33,35,36,38])->get()->getResult();
+        $data['jenjang_sekolas'] = $this->_db->table('ref_bentuk_pendidikan')->whereIn('id', [5, 6, 9, 10, 30, 31, 32, 33, 35, 36, 38])->get()->getResult();
 
         $response = new \stdClass;
         $response->code = 200;
@@ -243,7 +243,7 @@ class Kuota extends BaseController
             return json_encode($response);
         }
     }
-    
+
     public function hapus()
     {
         if ($this->request->getMethod() != 'post') {
@@ -374,49 +374,49 @@ class Kuota extends BaseController
 
                 // try {
 
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $current = $this->_db->table('_setting_kuota_tb')->where('id', $id)->get()->getRowObject();
+                $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
+                if ($decoded) {
+                    $userId = $decoded->data->id;
+                    $role = $decoded->data->role;
+                    $current = $this->_db->table('_setting_kuota_tb')->where('id', $id)->get()->getRowObject();
 
-                        if ($current) {
-                            $this->_db->transBegin();
-                            
-                            $this->_db->table('_setting_kuota_tb')->where('id', $id)->update(['is_locked' => 1, 'updated_at' => date('Y-m-d H:i:s')]);
+                    if ($current) {
+                        $this->_db->transBegin();
 
-                            if ($this->_db->affectedRows() > 0) {
-                                $this->_db->transCommit();
-                                try {
-                                    $riwayatLib = new Riwayatlib();
-                                    $riwayatLib->insert("Memverifikasi data kuota sekolah $name", "Memverifikasi Kuota Sekolah", "submit");
-                                } catch (\Throwable $th) {
-                                }
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "Data kuota Sekolah $name berhasil diverifikasi.";
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transRollback();
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Data kuota sekolah $name gagal diverifikasi.";
-                                return json_encode($response);
+                        $this->_db->table('_setting_kuota_tb')->where('id', $id)->update(['is_locked' => 1, 'updated_at' => date('Y-m-d H:i:s')]);
+
+                        if ($this->_db->affectedRows() > 0) {
+                            $this->_db->transCommit();
+                            try {
+                                $riwayatLib = new Riwayatlib();
+                                $riwayatLib->insert("Memverifikasi data kuota sekolah $name", "Memverifikasi Kuota Sekolah", "submit");
+                            } catch (\Throwable $th) {
                             }
+                            $response = new \stdClass;
+                            $response->code = 200;
+                            $response->message = "Data kuota Sekolah $name berhasil diverifikasi.";
+                            return json_encode($response);
                         } else {
+                            $this->_db->transRollback();
                             $response = new \stdClass;
                             $response->code = 400;
-                            $response->message = "Data tidak ditemukan";
+                            $response->message = "Data kuota sekolah $name gagal diverifikasi.";
                             return json_encode($response);
                         }
                     } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
                         $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
+                        $response->code = 400;
+                        $response->message = "Data tidak ditemukan";
                         return json_encode($response);
                     }
+                } else {
+                    delete_cookie('jwt');
+                    session()->destroy();
+                    $response = new \stdClass;
+                    $response->code = 401;
+                    $response->message = "Session telah habis.";
+                    return json_encode($response);
+                }
                 // } catch (\Exception $e) {
                 //     delete_cookie('jwt');
                 //     session()->destroy();
@@ -476,49 +476,49 @@ class Kuota extends BaseController
 
                 // try {
 
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $current = $this->_db->table('_setting_kuota_tb')->where('id', $id)->get()->getRowObject();
+                $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
+                if ($decoded) {
+                    $userId = $decoded->data->id;
+                    $role = $decoded->data->role;
+                    $current = $this->_db->table('_setting_kuota_tb')->where('id', $id)->get()->getRowObject();
 
-                        if ($current) {
-                            $this->_db->transBegin();
-                            
-                            $this->_db->table('_setting_kuota_tb')->where('id', $id)->update(['is_locked' => 0, 'updated_at' => date('Y-m-d H:i:s')]);
+                    if ($current) {
+                        $this->_db->transBegin();
 
-                            if ($this->_db->affectedRows() > 0) {
-                                $this->_db->transCommit();
-                                try {
-                                    $riwayatLib = new Riwayatlib();
-                                    $riwayatLib->insert("Mengunlock verifikasi data kuota sekolah $name", "Mengunlock verifikasi Kuota Sekolah", "submit");
-                                } catch (\Throwable $th) {
-                                }
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "Data kuota Sekolah $name berhasil diunlock verifikasi.";
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transRollback();
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Data kuota sekolah $name gagal diunlock verifikasi.";
-                                return json_encode($response);
+                        $this->_db->table('_setting_kuota_tb')->where('id', $id)->update(['is_locked' => 0, 'updated_at' => date('Y-m-d H:i:s')]);
+
+                        if ($this->_db->affectedRows() > 0) {
+                            $this->_db->transCommit();
+                            try {
+                                $riwayatLib = new Riwayatlib();
+                                $riwayatLib->insert("Mengunlock verifikasi data kuota sekolah $name", "Mengunlock verifikasi Kuota Sekolah", "submit");
+                            } catch (\Throwable $th) {
                             }
+                            $response = new \stdClass;
+                            $response->code = 200;
+                            $response->message = "Data kuota Sekolah $name berhasil diunlock verifikasi.";
+                            return json_encode($response);
                         } else {
+                            $this->_db->transRollback();
                             $response = new \stdClass;
                             $response->code = 400;
-                            $response->message = "Data tidak ditemukan";
+                            $response->message = "Data kuota sekolah $name gagal diunlock verifikasi.";
                             return json_encode($response);
                         }
                     } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
                         $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
+                        $response->code = 400;
+                        $response->message = "Data tidak ditemukan";
                         return json_encode($response);
                     }
+                } else {
+                    delete_cookie('jwt');
+                    session()->destroy();
+                    $response = new \stdClass;
+                    $response->code = 401;
+                    $response->message = "Session telah habis.";
+                    return json_encode($response);
+                }
                 // } catch (\Exception $e) {
                 //     delete_cookie('jwt');
                 //     session()->destroy();
@@ -611,7 +611,7 @@ class Kuota extends BaseController
                         $userId = $decoded->data->id;
                         $role = $decoded->data->role;
                         $refSekolah = $this->_db->table('ref_sekolah')->where('id', $sekolah)->get()->getRowObject();
-                        
+
                         $cekData = $this->_db->table('_setting_kuota_tb')->where('sekolah_id', $sekolah)->get()->getRowObject();
 
                         if ($cekData) {
@@ -628,21 +628,30 @@ class Kuota extends BaseController
                             return json_encode($response);
                         }
 
+                        $prosentaseJalur = getProsentaseJalur($jenjang);
+
+                        if (!$prosentaseJalur) {
+                            $response = new \stdClass;
+                            $response->code = 400;
+                            $response->message = "Referensi prosentase tidak ditemukan.";
+                            return json_encode($response);
+                        }
+
                         $this->_db->transBegin();
                         $uuidLib = new Uuid();
                         $uuid = $uuidLib->v4();
 
                         if ($jenjang == "6" || $jenjang == "10" || $jenjang == "31" || $jenjang == "32" || $jenjang == "33" || $jenjang == "35" || $jenjang == "36") {
                             $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         } else {
                             $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         }
 
@@ -800,21 +809,30 @@ class Kuota extends BaseController
                         $userId = $decoded->data->id;
                         $role = $decoded->data->role;
 
+                        $prosentaseJalur = getProsentaseJalur($oldData->bentuk_pendidikan_id);
+
+                        if (!$prosentaseJalur) {
+                            $response = new \stdClass;
+                            $response->code = 400;
+                            $response->message = "Referensi prosentase tidak ditemukan.";
+                            return json_encode($response);
+                        }
+
                         $this->_db->transBegin();
                         $uuidLib = new Uuid();
                         $uuid = $uuidLib->v4();
 
                         if ((int)$oldData->bentuk_pendidikan_id == 6 || (int)$oldData->bentuk_pendidikan_id == 10 || (int)$oldData->bentuk_pendidikan_id == 31 || (int)$oldData->bentuk_pendidikan_id == 32 || (int)$oldData->bentuk_pendidikan_id == 33 || (int)$oldData->bentuk_pendidikan_id == 35 || (int)$oldData->bentuk_pendidikan_id == 36) {
                             $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         } else {
                             $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(0.70 * $jumlahSiswa);
-                            $kAfirmasi = ceil(0.15 * $jumlahSiswa);
-                            $kMutasi = ceil(0.05 * $jumlahSiswa);
+                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                             $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
                         }
 
@@ -882,6 +900,245 @@ class Kuota extends BaseController
                 $response = new \stdClass;
                 $response->code = 401;
                 $response->message = "Session telah habis.";
+                return json_encode($response);
+            }
+        }
+    }
+
+    public function import()
+    {
+        $data['title'] = 'IMPORT DATA KUOTA SEKOLAH';
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('auth'));
+        }
+        $data['user'] = $user->data;
+        return view('dinas/setting/kuota/import', $data);
+    }
+
+    public function uploadData()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = [
+                'code' => 400,
+                'error' => "Hanya request post yang diperbolehkan."
+            ];
+        } else {
+
+            $rules = [
+                'file' => [
+                    'rules' => 'uploaded[file]|max_size[file, 5120]|mime_in[file,application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office,application/msword,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,application/x-zip]',
+                    'errors' => [
+                        'uploaded' => 'File import gagal di upload. ',
+                        'max_size' => 'Ukuran file melebihi batas file max file upload. ',
+                        'mime_in' => 'Ekstensi file tidak diizinkan untuk di upload. ',
+                    ]
+                ],
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'code' => 400,
+                    'error' => $this->validator->getError('file')
+                ];
+            } else {
+                $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
+                $lampiran = $this->request->getFile('file');
+                $extension = $lampiran->getClientExtension();
+                $filesNamelampiran = $lampiran->getName();
+                $fileLocation = $lampiran->getTempName();
+
+                if ('xls' == $extension) {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                } else {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                }
+
+                $spreadsheet = $reader->load($fileLocation);
+                $sheet = $spreadsheet->getActiveSheet()->toArray();
+
+                $total_line = (count($sheet) > 0) ? count($sheet) - 1 : 0;
+
+                $dataImport = [];
+
+                unset($sheet[0]);
+
+                foreach ($sheet as $key => $data) {
+
+                    if ($data[1] == "" || strlen($data[1]) < 8) {
+                        // if($data[1] == "") {
+                        continue;
+                    }
+
+                    $dataInsert = [
+                        'npsn' => $data[1],
+                        'kuota' => $data[3],
+                        'jenjang' => $jenjang,
+                    ];
+
+                    $dataImport[] = $dataInsert;
+                }
+
+                $response = [
+                    'code' => 200,
+                    'success' => true,
+                    'total_line' => $total_line,
+                    'data' => $dataImport,
+                ];
+            }
+        }
+
+        echo json_encode($response);
+    }
+
+    public function importData()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'kuota' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kuota tidak boleh kosong. ',
+                ]
+            ],
+            'jenjang' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Jenjang tidak boleh kosong. ',
+                ]
+            ],
+            'npsn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NPSN tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('jenjang')
+                . $this->validator->getError('npsn')
+                . $this->validator->getError('kuota');
+            return json_encode($response);
+        } else {
+            $jumlahKelas = htmlspecialchars($this->request->getVar('kuota'), true);
+            $jumlahRombelCurrent = htmlspecialchars($this->request->getVar('kuota'), true);
+            $jumlahRombelKebutuhan = htmlspecialchars($this->request->getVar('kuota'), true);
+            $radius = htmlspecialchars('10', true);
+            $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
+            $sekolah = htmlspecialchars($this->request->getVar('npsn'), true);
+
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
+                delete_cookie('jwt');
+                session()->destroy();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Session telah habis.";
+                return json_encode($response);
+            }
+
+            $refSekolah = $this->_db->table('ref_sekolah')->where('npsn', $sekolah)->get()->getRowObject();
+
+            $cekData = $this->_db->table('_setting_kuota_tb')->where('sekolah_id', $refSekolah->id)->get()->getRowObject();
+
+            if ($cekData) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Kuota untuk sekolah ini sudah di set, silahkan menggunakan menu edit untuk merubah data.";
+                return json_encode($response);
+            }
+
+            if (!$refSekolah) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Sekolah tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $prosentaseJalur = getProsentaseJalur($jenjang);
+
+            if (!$prosentaseJalur) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Referensi prosentase tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $this->_db->transBegin();
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            if ($jenjang == "6" || $jenjang == "10" || $jenjang == "31" || $jenjang == "32" || $jenjang == "33" || $jenjang == "35" || $jenjang == "36") {
+                $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
+                $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
+            } else {
+                $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
+                $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
+            }
+
+            $data = [
+                'id' => $uuid,
+                'sekolah_id' => $refSekolah->id,
+                'npsn' => $refSekolah->npsn,
+                'bentuk_pendidikan_id' => $jenjang,
+                'jumlah_kelas' => $jumlahKelas,
+                'jumlah_rombel_current' => $jumlahRombelCurrent,
+                'jumlah_rombel_kebutuhan' => $jumlahRombelKebutuhan,
+                'radius_zonasi' => $radius,
+                'zonasi' => $kZonasi,
+                'afirmasi' => $kAfirmasi,
+                'mutasi' => $kMutasi,
+                'prestasi' => $kPrestasi,
+                'is_locked' => 1,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            try {
+                $this->_db->table('_setting_kuota_tb')->insert($data);
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Menambahkan setting kuota sekolah", "Menambahkan Kuota Sekolah", "submit");
+                    } catch (\Throwable $th) {
+                    }
+
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "Berhasil mengimport data";
+                    $response->url = base_url('dinas/setting/kuota');
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Gagal menyimpan kuota.";
+                    return json_encode($response);
+                }
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal menyimpan kuota. terjadi kesalahan.";
                 return json_encode($response);
             }
         }

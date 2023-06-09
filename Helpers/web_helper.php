@@ -569,3 +569,18 @@ function getNpsnSekolahRef($sekolah_id)
 		return NULL;
 	}
 }
+
+function getProsentaseJalur($jenjang)
+{
+	// SELECT COUNT(*) as total FROM _tb_pendaftar WHERE peserta_didik_id = ? AND via_jalur = 'PELIMPAHAN'
+	$db      = \Config\Database::connect();
+	$data = $db->table('_setting_prosentase_jalur')
+		->where(['bentuk_pendidikan_id' => $jenjang])
+		->get()->getRowObject();
+
+	if ($data) {
+		return $data;
+	} else {
+		return NULL;
+	}
+}

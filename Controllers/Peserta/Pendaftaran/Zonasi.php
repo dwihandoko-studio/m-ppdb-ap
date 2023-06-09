@@ -379,7 +379,7 @@ class Zonasi extends BaseController
             }
 
             $peserta = $this->_db->table('_users_profil_tb a')
-                ->select("a.*, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
+                ->select("a.*, b.lampiran_kk, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
                 ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
                 ->where('a.id', $user->data->id)
                 ->get()->getRowObject();
@@ -429,7 +429,7 @@ class Zonasi extends BaseController
 
             $data = [
                 'id' => $uuid,
-                'kode_pendaftaran' => createKodePendaftaran("ZONAZI", $peserta->nisn),
+                // 'kode_pendaftaran' => createKodePendaftaran("ZONAZI", $peserta->nisn),
                 'user_id' => $user->data->id,
                 'peserta_didik_id' => $peserta->peserta_didik_id,
                 'from_sekolah_id' => $peserta->sekolah_asal,
@@ -450,13 +450,16 @@ class Zonasi extends BaseController
                 $this->_db->transCommit();
                 try {
                     $riwayatLib = new Riwayatlib();
-                    $riwayatLib->insert("Mendaftar via Jalur Zonasi, dengan No Pendaftaran : " . $data['kode_pendaftaran'], "Daftar Jalur Zonasi");
+                    $riwayatLib->insert("Mendaftar via Jalur Zonasi, untuk diverifikasi berkas oleh sekolah tujuan. ", "Daftar Jalur Zonasi");
+                    // $riwayatLib->insert("Mendaftar via Jalur Zonasi, dengan No Pendaftaran : " . $data['kode_pendaftaran'], "Daftar Jalur Zonasi");
                 } catch (\Throwable $th) {
                 }
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->data = $data;
-                $response->message = "Pendaftaran via jalur Zonasi berhasil dilakukan. Kode pendaftaran anda : " . $data['kode_pendaftaran'] . ". Selanjutnya Silahkan cetak bukti pendaftaran anda.";
+                $response->message = "Pendaftaran via jalur Zonasi berhasil dilakukan.";
+                $response->redirrect = base_url('peserta/home');
+                // $response->message = "Pendaftaran via jalur Zonasi berhasil dilakukan. Kode pendaftaran anda : " . $data['kode_pendaftaran'] . ". Selanjutnya Silahkan cetak bukti pendaftaran anda.";
                 return json_encode($response);
             } else {
                 $this->_db->transRollback();

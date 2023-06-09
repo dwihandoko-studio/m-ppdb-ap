@@ -5,8 +5,8 @@
 <section class="pricing-section centred _profil_sekolah" id="_profil_sekolah">
     <div class="container" style="margin-top: 100px;">
         <div class="sec-title center">
-            <h2>PROFIL SEKOLAH</h2>
-            <p>Informasi profil sekolah pada pelaksanaan PPDB Tahun 2023 Kab. Pesawaran, sebagai berikut:</p>
+            <h2>PROFIL <?= (isset($sekolah)) ? strtoupper($sekolah->nama_sekolah) : ' SEKOLAH' ?></h2>
+            <p>Informasi profil <?= (isset($sekolah)) ? $sekolah->nama_sekolah : ' sekolah' ?> pada pelaksanaan PPDB Tahun 2023 Kab. Pesawaran, sebagai berikut:</p>
         </div>
         <div class="row">
             <div class="col-lg-12">

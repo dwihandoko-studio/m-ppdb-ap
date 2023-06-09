@@ -204,19 +204,19 @@
         <?php if (isset($error)) { ?>
             <div class="card">
                 <div class="card-body p-0">
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
-                        <br />
-                        <?php if (isset($sekolah_pilihan)) { ?>
-                            <center>
-                                <ol>
-                                    <li style="list-style: none;">Sekolah Pilihan Pertama : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
-                                    <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
-                                    <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
-                                </ol>
-                            </center>
-                        <?php } ?>
-                    </div>
+                    <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert"> -->
+                    <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
+                    <br />
+                    <?php if (isset($sekolah_pilihan)) { ?>
+                        <center>
+                            <ol>
+                                <li style="list-style: none;">Sekolah Pilihan Pertama : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
+                                <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
+                            </ol>
+                        </center>
+                    <?php } ?>
+                    <!-- </div> -->
                 </div>
             </div>
         <?php } ?>

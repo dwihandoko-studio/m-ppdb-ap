@@ -55,7 +55,7 @@
                                         <?php if (isset($result)) { ?>
                                             <?php if (count($result) > 0) { ?>
                                                 <?php foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>"><?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                                    <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -72,7 +72,7 @@
                                         <?php if (isset($result)) { ?>
                                             <?php if (count($result) > 0) { ?>
                                                 <?php foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>"><?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                                    <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -89,7 +89,7 @@
                                         <?php if (isset($result)) { ?>
                                             <?php if (count($result) > 0) { ?>
                                                 <?php foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>"><?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> &nbsp;&nbsp;Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                                    <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>

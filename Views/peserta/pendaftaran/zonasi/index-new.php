@@ -48,6 +48,14 @@
                         <?php if (isset($error)) { ?>
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
+                                <br />
+                                <?php if (isset($sekolah_pilihan)) { ?>
+                                    <ol>
+                                        <li>Sekolah Pilihan Pertama : <?= $sekolah_pilihan->nama_sekolah_1 . '  (' . $sekolah_pilihan->npsn_sekolah_1 . ')' ?></li>
+                                        <li>Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= $sekolah_pilihan->nama_sekolah_2 . '  (' . $sekolah_pilihan->npsn_sekolah_2 . ')' ?></li>
+                                        <li>Sekolah Pilihan Ketiga &nbsp;: <?= $sekolah_pilihan->nama_sekolah_3 . '  (' . $sekolah_pilihan->npsn_sekolah_3 . ')' ?></li>
+                                    </ol>
+                                <?php } ?>
                             </div>
                         <?php } else { ?>
                             <div class="row">

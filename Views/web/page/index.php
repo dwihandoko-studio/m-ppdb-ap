@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <ul class="select-box d-flex flex-wrap align-items-center justify-content-center justify-content-md-end">
-                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
+                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                         ?>
                         <?php if (isset($user)) { ?>
                             <p style="margin-bottom: 25px;">
-                                <span class="hr d-none d-xl-block"></span> PPDB ONLINE TP. 2022 - 2023 &nbsp;&nbsp;&nbsp;&nbsp;<span class="hr d-none d-xl-block"></span>
+                                <span class="hr d-none d-xl-block"></span> PPDB ONLINE TP. 2023 - 2024 &nbsp;&nbsp;&nbsp;&nbsp;<span class="hr d-none d-xl-block"></span>
                             </p>
                             <p style="margin-bottom: 25px;">
                                 SELAMAT DATANG
@@ -143,7 +143,7 @@
                             </p>
                             <button type="button" onclick="aksiDashboard(this)" style="width: 100%; min-height: 40px; padding: 5px; margin-bottom: 10px;" class="btn btn-warning">KE DASHBOARD SAYA</button>
                             <!-- <p style="margin-bottom: 25px;">
-                                <span class="hr d-none d-xl-block"></span> PPDB ONLINE TP. 2022 - 2023 &nbsp;&nbsp;&nbsp;&nbsp;<span class="hr d-none d-xl-block"></span>
+                                <span class="hr d-none d-xl-block"></span> PPDB ONLINE TP. 2023 - 2024 &nbsp;&nbsp;&nbsp;&nbsp;<span class="hr d-none d-xl-block"></span>
                             </p>
                             <form action="#" class="hero-form position-relative" style="margin-bottom: 20px;">
                                 <input class="form-control username" id="_username" name="_username" style="padding-right: 0px; height: 40px;width: 100%;" type="text" placeholder="NISN/NIK" />
@@ -158,7 +158,7 @@
                             <button type="button" onclick="aksiRegister(this)" style="width: 100%; min-height: 40px; padding: 5px; margin-bottom: 10px;" class="btn btn-info">D A F T A R</button> -->
                         <?php } else { ?>
                             <p style="margin-bottom: 25px;">
-                                <span class="hr d-none d-xl-block"></span> PPDB ONLINE TP. 2022 - 2023 &nbsp;&nbsp;&nbsp;&nbsp;<span class="hr d-none d-xl-block"></span>
+                                <span class="hr d-none d-xl-block"></span> PPDB ONLINE TP. 2023 - 2024 &nbsp;&nbsp;&nbsp;&nbsp;<span class="hr d-none d-xl-block"></span>
                             </p>
                             <form action="" class="hero-form position-relative" style="margin-bottom: 20px;" id="form-login">
                                 <input class="form-control username" id="_username" name="username" style="padding-right: 0px; height: 40px;width: 100%;" type="text" placeholder="NISN/NIK/Email" />
@@ -317,7 +317,8 @@
                                                         <div>
                                                             <h6 class="d-block">Tanggal Pelaksanaan</h6>
                                                             <span class="d-block mb-5"><i class="fa fa-calendar"></i>
-                                                                <?= tgl_indo($jadwal->tgl_awal_pendaftaran_zonasi) ?> <i class="fa fa-arrow-right"></i> 24 Juni 2022<?php //echo tgl_indo($jadwal->tgl_akhir_pendaftaran_zonasi) ?>
+                                                                <?= tgl_indo($jadwal->tgl_awal_pendaftaran_zonasi) ?> <i class="fa fa-arrow-right"></i> 24 Juni 2022<?php //echo tgl_indo($jadwal->tgl_akhir_pendaftaran_zonasi) 
+                                                                                                                                                                    ?>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -337,7 +338,8 @@
                                                         <div>
                                                             <h6 class="d-block">Ditutup</h6>
                                                             <span class="d-block mb-5"><i class="fa fa-calendar"></i> 24 Juni 2022
-                                                                <?php //echo tgl_indo($jadwal->tgl_akhir_pendaftaran_zonasi) ?> <br><i class="fa fa-clock"></i> Pukul <?= waktu_indo($jadwal->tgl_akhir_pendaftaran_zonasi) ?> WIB
+                                                                <?php //echo tgl_indo($jadwal->tgl_akhir_pendaftaran_zonasi) 
+                                                                ?> <br><i class="fa fa-clock"></i> Pukul <?= waktu_indo($jadwal->tgl_akhir_pendaftaran_zonasi) ?> WIB
                                                             </span>
                                                         </div>
                                                     </div>
@@ -518,91 +520,78 @@
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item" data-aos="fade-up" data-aos-delay="150" id="cara-daftar-akun">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                     <span>1. Registrasi Akun PPDB?</span>
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <p>
                                         Calon Peserta Didik melakukan registrasi melalui sistem aplikasi PPDB Online
                                     </p>
-                                    <img src="<?= base_url('template/pringo')?>/assets/images/logo/daftar.png" width="100%" alt="brand logo" />
+                                    <img src="<?= base_url('template/pringo') ?>/assets/images/logo/daftar.png" width="100%" alt="brand logo" />
                                     <br>
                                     <br>
                                     <br>
-                                    <img src="<?= base_url('template/pringo')?>/assets/images/logo/daftar1.png" width="100%" alt="brand logo" />
+                                    <img src="<?= base_url('template/pringo') ?>/assets/images/logo/daftar1.png" width="100%" alt="brand logo" />
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item" data-aos="fade-up" data-aos-delay="150" id="cara-unggah-dokument">
                             <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     <span>2. Unggah Dokumen?</span>
                                 </button>
                             </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                data-bs-parent="#accordionExample">
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <p>
                                         Calon Peserta Didik melengkapi data & mengunggah dokumen kelengkapan
                                         pendaftaran pada sistem ppdb.
                                     </p>
-                                    <img src="<?= base_url('template/pringo')?>/assets/images/logo/unggah.png" width="100%" alt="brand logo" />
+                                    <img src="<?= base_url('template/pringo') ?>/assets/images/logo/unggah.png" width="100%" alt="brand logo" />
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item" data-aos="fade-up" data-aos-delay="150" id="cara-daftar-sekolah">
                             <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false"
-                                    aria-controls="collapseThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     <span>3. Daftar Sekolah?</span>
                                 </button>
                             </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse"
-                                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <p>
                                         Calon Peserta Didik mendaftar ke Sekolah yang dituju sesuai dengan jalur
                                         yang dipilih melalui aplikasi ppdb online
                                     </p>
-                                    <img src="<?= base_url('template/pringo')?>/assets/images/logo/pendaftaran.png" width="100%" alt="brand logo" />
+                                    <img src="<?= base_url('template/pringo') ?>/assets/images/logo/pendaftaran.png" width="100%" alt="brand logo" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item" data-aos="fade-up" data-aos-delay="150" id="cara-cetak-bukti">
                             <h2 class="accordion-header" id="headingLima">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseLima" aria-expanded="false"
-                                    aria-controls="collapseLima">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLima" aria-expanded="false" aria-controls="collapseLima">
                                     <span>4. Cetak Bukti Pendaftaran?</span>
                                 </button>
                             </h2>
-                            <div id="collapseLima" class="accordion-collapse collapse" aria-labelledby="headingLima"
-                                data-bs-parent="#accordionExample">
+                            <div id="collapseLima" class="accordion-collapse collapse" aria-labelledby="headingLima" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <p>
                                         Calon Peserta Didik mencetak tanda bukti pendaftaran
                                     </p>
-                                    <img src="<?= base_url('template/pringo')?>/assets/images/logo/cetak.png" width="100%" alt="brand logo" />
+                                    <img src="<?= base_url('template/pringo') ?>/assets/images/logo/cetak.png" width="100%" alt="brand logo" />
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item" data-aos="fade-up" data-aos-delay="150" id="cara-pengumuman">
                             <h2 class="accordion-header" id="headingEnam">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseEnam" aria-expanded="false"
-                                    aria-controls="collapseEnam">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnam" aria-expanded="false" aria-controls="collapseEnam">
                                     <span>5. Pengumuman?</span>
                                 </button>
                             </h2>
-                            <div id="collapseEnam" class="accordion-collapse collapse" aria-labelledby="headingEnam"
-                                data-bs-parent="#accordionExample">
+                            <div id="collapseEnam" class="accordion-collapse collapse" aria-labelledby="headingEnam" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <p>
                                         Calon Peserta Didik melihat hasil seleksi dan pengumuman secara online
@@ -770,14 +759,14 @@
                                 <th style="vertical-align: middle;">Nama Kecamatan</th>
                                 <th style="vertical-align: middle;">Daya Tampung</th>
                             </tr>
-                            
+
                         </thead>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </section>
 <!-- working process section end -->
 
@@ -962,13 +951,13 @@
                                             <div class="col-md-6" style="color: #fff;">
                                                 <a href="<?= base_url('uploads/panduan/panduan_web_siswa.pdf') ?>" style="color: #fff;" target="_blank">
                                                     <img src="<?= base_url() ?>/template/pringo/download.svg" alt="" class="mr-2 align-items-center">
-                                                    Panduan Web Siswa/Orang Tua/Wali 
+                                                    Panduan Web Siswa/Orang Tua/Wali
                                                 </a>
                                             </div>
                                             <div class="col-md-6" style="color: #fff;">
                                                 <a href="<?= base_url('uploads/panduan/panduan_aplikasi.pdf') ?>" style="color: #fff;" target="_blank">
                                                     <img src="<?= base_url() ?>/template/pringo/download.svg" alt="" class="mr-2 align-items-center">
-                                                    Panduan Android Siswa/Orang Tua/Wali 
+                                                    Panduan Android Siswa/Orang Tua/Wali
                                                 </a>
                                             </div>
                                         </div>
@@ -1043,14 +1032,14 @@
             '</table>'
         );
         // `d` is the original data object for the row
-        
+
     }
-    
+
     $(document).ready(function() {
         loadedAll = true;
         initSelect2('filter_kecamatan');
         initSelect2('filter_jenjang');
-        
+
         let tableKuotaSekolah = $('#tabelKuotaSekolah').DataTable({
             "processing": true,
             "serverSide": true,
@@ -1081,29 +1070,37 @@
                     orderable: false,
                     data: 'button',
                     defaultContent: '',
-                }, 
-                { data: 'nama' }, 
-                { data: 'npsn' }, 
-                { data: 'kecamatan' },
-                { data: 'jumlah' }
+                },
+                {
+                    data: 'nama'
+                },
+                {
+                    data: 'npsn'
+                },
+                {
+                    data: 'kecamatan'
+                },
+                {
+                    data: 'jumlah'
+                }
             ],
             "columnDefs": [{
                 "targets": 0,
                 "orderable": false,
             }],
         });
-        
-        $('#tabelKuotaSekolah tbody').on('click', 'td.dt-control', function () {
+
+        $('#tabelKuotaSekolah tbody').on('click', 'td.dt-control', function() {
             var tr = $(this).closest('tr');
             var row = tableKuotaSekolah.row(tr);
-     
+
             if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child.hide();
                 tr.removeClass('shown');
             } else {
                 // Open this row
-                
+
                 row.child(formatKuota(row.data())).show();
                 tr.addClass('shown');
             }
@@ -1116,7 +1113,7 @@
         $('#filter_jenjang').change(function() {
             tableKuotaSekolah.draw();
         });
-        
+
     });
 
     function showPassword(event) {
@@ -1572,12 +1569,11 @@
             behavior: 'smooth'
         });
     }
-    
+
     function openAction(event) {
         $('#offcanvas-modal').modal('hide');
         window.location.hash = event;
     }
-    
 </script>
 <?= $this->endSection(); ?>
 

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="main-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="index.html"><img src="<?= base_url('uploads/logo.png') ?>" alt=""></a></figure>
+                    <figure class="logo"><a href="<?= base_url() ?>"><img src="<?= base_url('uploads/logo.png') ?>" alt=""></a></figure>
                 </div>
                 <div class="menu-area pull-right clearfix">
                     <!--Mobile Navigation Toggler-->

@@ -3,7 +3,7 @@
     <div class="popup-inner">
         <div class="container">
             <div class="donate-form-area" style="background: linear-gradient(130deg, #4527a4 15%, #ff0000 100%);">
-                <h2 style="color: #fff;">PPDB ONLINE TP. 2022 - 2023</h2>
+                <h2 style="color: #fff;">PPDB ONLINE TP. 2023 - 2024</h2>
                 <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Login Panitia Sekolah, silahkan login menggunakan email dan password yang sudah didaftarkan pada layanan.</span></h6>
                 <div id="content_block_51">
                     <div class="content-box">

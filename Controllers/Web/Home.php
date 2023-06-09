@@ -304,8 +304,8 @@ class Home extends BaseController
             $data['user'] = $user->data;
         }
 
-        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
 
@@ -332,8 +332,8 @@ class Home extends BaseController
             $data['user'] = $user->data;
         }
 
-        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
 
@@ -378,8 +378,8 @@ class Home extends BaseController
             return redirect()->to(base_url('web/home'));
         }
 
-        $data['page'] = "REGISTER || PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "REGISTER || PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2023 - 2024';
 
         return view('web/page/register/index-text', $data);
     }
@@ -412,8 +412,8 @@ class Home extends BaseController
         //     return redirect()->to(base_url('web/home'));
         // }
 
-        $data['page'] = "REGISTER || PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "REGISTER || PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2023 - 2024';
 
         return view('web/page/register/index-text', $data);
     }
@@ -446,8 +446,8 @@ class Home extends BaseController
             return redirect()->to(base_url('web/home'));
         }
 
-        $data['page'] = "REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2023 - 2024';
 
         return view('web/page/register/belum-sekolah', $data);
     }

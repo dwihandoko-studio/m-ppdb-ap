@@ -38,8 +38,8 @@ class Login extends BaseController
             $data['user'] = $user->data;
         }
 
-        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         return view('new-web/page/login', $data);
     }

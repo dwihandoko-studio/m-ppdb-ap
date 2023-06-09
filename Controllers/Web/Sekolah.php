@@ -308,8 +308,8 @@ class Sekolah extends BaseController
             $data['user'] = $user->data;
         }
 
-        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         $id_kec = htmlspecialchars($this->request->getGet('id'), true);
         $jenjang = htmlspecialchars($this->request->getGet('j'), true);
@@ -351,8 +351,8 @@ class Sekolah extends BaseController
             return redirect()->to(base_url('web/home'));
         }
 
-        $data['page'] = "REGISTER || PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "REGISTER || PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2023 - 2024';
 
         return view('web/page/register/index-text', $data);
     }
@@ -385,8 +385,8 @@ class Sekolah extends BaseController
         //     return redirect()->to(base_url('web/home'));
         // }
 
-        $data['page'] = "REGISTER || PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "REGISTER || PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'REGISTER || PPDB ONLINE TA. 2023 - 2024';
 
         return view('web/page/register/index-text', $data);
     }
@@ -419,8 +419,8 @@ class Sekolah extends BaseController
             return redirect()->to(base_url('web/home'));
         }
 
-        $data['page'] = "REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'REGISTER BELUM SEKOLAH || PPDB ONLINE TA. 2023 - 2024';
 
         return view('web/page/register/belum-sekolah', $data);
     }

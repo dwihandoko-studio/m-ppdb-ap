@@ -3,7 +3,7 @@
     <div class="popup-inner">
         <div class="container">
             <div class="donate-form-area" style="background: linear-gradient(130deg, #4527a4 15%, #ff0000 100%);">
-                <h2 style="color: #fff;">REGISTRASI - PPDB ONLINE TP. 2022 - 2023</h2>
+                <h2 style="color: #fff;">REGISTRASI - PPDB ONLINE TP. 2023 - 2024</h2>
                 <div id="_punya_nisn" class="_punya_nisn" style="display: block;">
                     <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Peserta Yang Belum Tercatat di Referensi Data Kemdikbud. (Berlaku hanya untuk peserta PPDB yang akan mendaftar jenjang SD). <a href="javascript:actionRegisterBeforeSchool(this);" style="color: #00fff2; padding: 0px 10px;">Klik Disini...</a></span></h6>
                     <!-- <form action="#" class="donate-form default-form"> -->

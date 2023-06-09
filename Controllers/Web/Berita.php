@@ -39,8 +39,8 @@ class Berita extends BaseController
         }
 
         $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
-        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         return view('new-web/page/berita', $data);
     }

@@ -39,8 +39,8 @@ class Profilsekolah extends BaseController
         }
 
         $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
-        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         return view('new-web/page/profilsekolah', $data);
     }
@@ -56,8 +56,8 @@ class Profilsekolah extends BaseController
         $id = htmlspecialchars($this->request->getGet('id'), true);
         $data['sekolah'] = $this->_db->table('v_profil_sekolah')->where('id', $id)->get()->getRowObject();
         $data['panitia'] = $this->_db->table('_setting_panitia_tb')->where('sekolah_id', $id)->get()->getResult();
-        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
-        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         return view('new-web/page/profildetailsekolah', $data);
     }

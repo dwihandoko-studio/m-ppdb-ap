@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 footer-column">
                         <div class="about-widget footer-widget">
-                            <figure class="footer-logo"><a href="index.html"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
+                            <figure class="footer-logo"><a href="<?= base_url() ?>"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
                             <div class="text">Layanan Kegiatan Penerimaan Peserta Didik Baru Dalam Jaringan Tahun Ajaran 2023/2024 Kabupaten Pesawaran.</div>
                             <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SMP(+62) 821-1183-7685</a></h2>
                             <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SD(+62) 821-1183-7685</a></h2>
@@ -20,12 +20,11 @@
                             <h4 class="widget-title">Halaman</h4>
                             <div class="widget-content">
                                 <ul class="list clearfix">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Sekolah</a></li>
-                                    <li><a href="#">Jadwal</a></li>
-                                    <li><a href="#">Regulasi</a></li>
+                                    <li><a href="<?= base_url() ?>">Home</a></li>
+                                    <li><a href="<?= base_url('web/sekolah') ?>">Sekolah</a></li>
+                                    <li><a href="<?= base_url('web/jadwal') ?>">Jadwal</a></li>
                                     <li><a href="#">Statistik</a></li>
-                                    <li><a href="#">Pengumuman</a></li>
+                                    <li><a href="#">Informasi</a></li>
                                 </ul>
                             </div>
                         </div>

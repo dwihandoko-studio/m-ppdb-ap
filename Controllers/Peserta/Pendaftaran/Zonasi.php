@@ -289,7 +289,7 @@ class Zonasi extends BaseController
         $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND ($andWhere)";
 
         $data['result'] = $this->_db->table('v_tb_sekolah_zonasi a')
-            ->select("a.*, DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude)) * COS(RADIANS({$getCurrentUser->latitude})) * COS(RADIANS(a.Longitude - {$getCurrentUser->longitude})) + SIN(RADIANS(a.Latitude)) * SIN(RADIANS({$getCurrentUser->latitude}))))) AS distance_in_km)")
+            ->select("a.*, DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude)) * COS(RADIANS({$getCurrentUser->latitude})) * COS(RADIANS(a.Longitude - {$getCurrentUser->longitude})) + SIN(RADIANS(a.Latitude)) * SIN(RADIANS({$getCurrentUser->latitude}))))) AS distance_in_km")
             // $data['result'] = $this->_db->table('ref_provinsi a')
             //         //RUMUS JARAK (111.111 *
             // DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude))

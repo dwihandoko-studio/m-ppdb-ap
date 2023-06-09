@@ -40,12 +40,12 @@ class Home extends BaseController
         $data['lengkap_berkas'] = $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $userId)->get()->getRowObject();
         $statusDaftar = $this->_db->table('_tb_pendaftar a')
             ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
-            ->join('ref_sekolah b', 'a.tujuan_sekolah_id = b.id', 'LEFT')
+            ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
             ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
         if (!($statusDaftar)) {
             $statusDaftar = $this->_db->table('_tb_pendaftar_temp a')
                 ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
-                ->join('ref_sekolah b', 'a.tujuan_sekolah_id = b.id', 'LEFT')
+                ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
                 ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
         }
 

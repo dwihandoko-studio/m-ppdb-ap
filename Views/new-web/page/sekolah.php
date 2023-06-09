@@ -17,9 +17,9 @@
                                                 <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-bg-1.png);"></div>
                                                 <i class="fa fa-school"></i>
                                             </div>
-                                            <h3><a href="<?= base_url('web/sekolah/detail') . '?id=' . $v->id ?>"><?= $v->nama ?></a></h3>
+                                            <h3><a href="<?= base_url('web/profilsekolah/detail') . '?id=' . $v->id ?>"><?= $v->nama ?></a></h3>
                                             <div class="text"><?= $v->npsn ?> - <?= $v->desa_kelurahan ?></div>
-                                            <div class="link-btn"><a href="<?= base_url('web/sekolah/detail') . '?id=' . $v->id ?>"><i class="far fa-arrow-alt-circle-right"></i></a></div>
+                                            <div class="link-btn"><a href="<?= base_url('web/profilsekolah/detail') . '?id=' . $v->id ?>"><i class="far fa-arrow-alt-circle-right"></i></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -31,9 +31,9 @@
                                                 <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-bg-3.png);"></div>
                                                 <i class="fa fa-school"></i>
                                             </div>
-                                            <h3><a href="<?= base_url('web/sekolah/detail') . '?id=' . $v->id ?>"><?= $v->nama ?></a></h3>
+                                            <h3><a href="<?= base_url('web/profilsekolah/detail') . '?id=' . $v->id ?>"><?= $v->nama ?></a></h3>
                                             <div class="text"><?= $v->npsn ?> - <?= $v->desa_kelurahan ?></div>
-                                            <div class="link-btn"><a href="<?= base_url('web/sekolah/detail') . '?id=' . $v->id ?>"><i class="far fa-arrow-alt-circle-right"></i></a></div>
+                                            <div class="link-btn"><a href="<?= base_url('web/profilsekolah/detail') . '?id=' . $v->id ?>"><i class="far fa-arrow-alt-circle-right"></i></a></div>
                                         </div>
                                     </div>
                                 </div>

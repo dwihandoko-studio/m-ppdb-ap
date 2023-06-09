@@ -59,12 +59,13 @@ class Zonasi extends BaseController
                         $start = (($page - 1) * $limit_per_page);
                     }
 
-                    $where = "a.tujuan_sekolah_id = '$getCurrentUser->sekolah_id' AND a.via_jalur = 'ZONASI' AND (a.status_pendaftaran = 0)";
-                    
-                    if($keyword !== "") {
-                        $where .= " AND (a.kode_pendaftaran LIKE '%$keyword%')";
+                    $where = "a.tujuan_sekolah_id_1 = '$getCurrentUser->sekolah_id' AND a.via_jalur = 'ZONASI' AND (a.status_pendaftaran = 0)";
+
+                    if ($keyword !== "") {
+                        $where .= " AND (b.nisn = '$keyword' OR b.details LIKE '%$keyword%')";
+                        // $where .= " AND (b.kode_pendaftaran LIKE '%$keyword%')";
                     }
-                    
+
                     $data['result'] = $this->_db->table('_tb_pendaftar_temp a')
                         // $data['result'] = $this->_db->table('ref_provinsi a')
                         //         //RUMUS JARAK (111.111 *
@@ -76,7 +77,7 @@ class Zonasi extends BaseController
                         ->select("b.*, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
                         ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                         ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                        ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                        ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                         ->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT')
                         ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
                         ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
@@ -278,29 +279,29 @@ class Zonasi extends BaseController
                         if ($this->_db->affectedRows() > 0) {
                             $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
                             if ($this->_db->affectedRows() > 0) {
-                                
+
                                 // try {
-                                    $riwayatLib = new Riwayatlib();
-                                    $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Zonasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Zonasi", "submit");
-                                    
-                                    $saveNotifSystem = new Notificationlib();
-                                    $saveNotifSystem->send([
-                                        'judul' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
-                                        'isi' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                                        'action_web' => 'peserta/riwayat/pendaftaran',
-                                        'action_app' => 'riwayat_pendaftaran_page',
-                                        'token' => $cekRegisterTemp['kode_pendaftaran'],
-                                        'send_from' => $userId,
-                                        'send_to' => $cekRegisterTemp['user_id'],
-                                    ]);
-                    
-                                    $onesignal = new Fcmlib();
-                                    $send = $onesignal->pushNotifToUser([
-                                        'title' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
-                                        'content' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                                        'send_to' => $cekRegisterTemp['user_id'],
-                                        'app_url' => 'riwayat_pendaftaran_page',
-                                    ]);
+                                $riwayatLib = new Riwayatlib();
+                                $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Zonasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Zonasi", "submit");
+
+                                $saveNotifSystem = new Notificationlib();
+                                $saveNotifSystem->send([
+                                    'judul' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
+                                    'isi' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                                    'action_web' => 'peserta/riwayat/pendaftaran',
+                                    'action_app' => 'riwayat_pendaftaran_page',
+                                    'token' => $cekRegisterTemp['kode_pendaftaran'],
+                                    'send_from' => $userId,
+                                    'send_to' => $cekRegisterTemp['user_id'],
+                                ]);
+
+                                $onesignal = new Fcmlib();
+                                $send = $onesignal->pushNotifToUser([
+                                    'title' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
+                                    'content' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                                    'send_to' => $cekRegisterTemp['user_id'],
+                                    'app_url' => 'riwayat_pendaftaran_page',
+                                ]);
                                 // } catch (\Throwable $th) {
                                 // }
                                 $this->_db->transCommit();
@@ -429,11 +430,11 @@ class Zonasi extends BaseController
                             if ($this->_db->affectedRows() > 0) {
                                 $updatelockLib = new Updatedatalib();
                                 $berhasil = $updatelockLib->unlockUpdate($cekRegisterTemp['user_id']);
-                                
+
                                 try {
                                     $riwayatLib = new Riwayatlib();
                                     $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Mutasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Tolak Pendaftaran Jalur Mutasi", "tolak");
-                                    
+
                                     $saveNotifSystem = new Notificationlib();
                                     $saveNotifSystem->send([
                                         'judul' => "Pendaftaran Jalur Zonasi Ditolak.",
@@ -444,7 +445,7 @@ class Zonasi extends BaseController
                                         'send_from' => $userId,
                                         'send_to' => $cekRegisterTemp['user_id'],
                                     ]);
-                    
+
                                     $onesignal = new Fcmlib();
                                     $send = $onesignal->pushNotifToUser([
                                         'title' => "Pendaftaran Jalur Zonasi Ditolak.",

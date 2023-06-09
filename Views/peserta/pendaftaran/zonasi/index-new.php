@@ -47,7 +47,7 @@
                     <div class="card-body">
                         <?php if (isset($error)) { ?>
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
+                                <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
                                 <br />
                                 <?php if (isset($sekolah_pilihan)) { ?>
                                     <center>

@@ -88,7 +88,7 @@ class Zonasi extends BaseController
             ->orderBy('a.created_at', 'asc')
             ->limit($limit_per_page, $start)
             ->get()->getResult();
-        $data['countData'] = $this->_db->table('_tb_pendaftar_temp a')->where($where)->countAllResults();
+        $data['countData'] = $this->_db->table('_tb_pendaftar_temp a')->->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')->where($where)->countAllResults();
         // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
         $data['page'] = $page;
         $data['user'] = $getCurrentUser;

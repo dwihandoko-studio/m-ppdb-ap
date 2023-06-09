@@ -45,59 +45,65 @@
                         </form>
                     </div> -->
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group _sekolah_pilihan_pertama-block">
-                                    <input name="_pilihan_pertama" class="custom-control-input _pilihan_pertama" id="_pilihan_pertama" type="hidden">
-                                    <label for="_sekolah_pilihan_pertama" class="form-control-label">Sekolah Pilihan 1 (Pertama)</label>
-                                    <select onChange="changeValidation('_sekolah_pilihan_pertama');" class="form-control sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" id="_sekolah_pilihan_pertama" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                        <option value="">-- Pilih Sekolah Pilihan Pertama --</option>
-                                        <?php if (isset($result)) { ?>
-                                            <?php if (count($result) > 0) { ?>
-                                                <?php foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                        <?php if (isset($error)) { ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span> <span class="alert-text"><strong>Peringatan!</strong> <br><?= $error ?></span></button>
+                            </div>
+                        <?php } else { ?>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group _sekolah_pilihan_pertama-block">
+                                        <input name="_pilihan_pertama" class="custom-control-input _pilihan_pertama" id="_pilihan_pertama" type="hidden">
+                                        <label for="_sekolah_pilihan_pertama" class="form-control-label">Sekolah Pilihan 1 (Pertama)</label>
+                                        <select onChange="changeValidation('_sekolah_pilihan_pertama');" class="form-control sekolah_pilihan_pertama" name="_sekolah_pilihan_pertama" id="_sekolah_pilihan_pertama" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                            <option value="">-- Pilih Sekolah Pilihan Pertama --</option>
+                                            <?php if (isset($result)) { ?>
+                                                <?php if (count($result) > 0) { ?>
+                                                    <?php foreach ($result as $key => $val) { ?>
+                                                        <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                                    <?php } ?>
                                                 <?php } ?>
                                             <?php } ?>
-                                        <?php } ?>
-                                    </select>
-                                    <div class="help-block _sekolah_pilihan_pertama"></div>
+                                        </select>
+                                        <div class="help-block _sekolah_pilihan_pertama"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group _sekolah_pilihan_kedua-block">
-                                    <input name="_pilihan_kedua" class="custom-control-input _pilihan_kedua" id="_pilihan_kedua" type="hidden">
-                                    <label for="_sekolah_pilihan_kedua" class="form-control-label">Sekolah Pilihan 2 (Kedua)</label>
-                                    <select onChange="changeValidation('_sekolah_pilihan_kedua');" class="form-control sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" id="_sekolah_pilihan_kedua" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                        <option value="">-- Pilih Sekolah Pilihan Kedua --</option>
-                                        <?php if (isset($result)) { ?>
-                                            <?php if (count($result) > 0) { ?>
-                                                <?php foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                <div class="col-md-12">
+                                    <div class="form-group _sekolah_pilihan_kedua-block">
+                                        <input name="_pilihan_kedua" class="custom-control-input _pilihan_kedua" id="_pilihan_kedua" type="hidden">
+                                        <label for="_sekolah_pilihan_kedua" class="form-control-label">Sekolah Pilihan 2 (Kedua)</label>
+                                        <select onChange="changeValidation('_sekolah_pilihan_kedua');" class="form-control sekolah_pilihan_kedua" name="_sekolah_pilihan_kedua" id="_sekolah_pilihan_kedua" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                            <option value="">-- Pilih Sekolah Pilihan Kedua --</option>
+                                            <?php if (isset($result)) { ?>
+                                                <?php if (count($result) > 0) { ?>
+                                                    <?php foreach ($result as $key => $val) { ?>
+                                                        <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                                    <?php } ?>
                                                 <?php } ?>
                                             <?php } ?>
-                                        <?php } ?>
-                                    </select>
-                                    <div class="help-block _sekolah_pilihan_kedua"></div>
+                                        </select>
+                                        <div class="help-block _sekolah_pilihan_kedua"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group _sekolah_pilihan_ketiga-block">
-                                    <input name="_pilihan_ketiga" class="custom-control-input _pilihan_ketiga" id="_pilihan_ketiga" type="hidden">
-                                    <label for="_sekolah_pilihan_ketiga" class="form-control-label">Sekolah Pilihan 3 (Ketiga)</label>
-                                    <select onChange="changeValidation('_sekolah_pilihan_ketiga');" class="form-control sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" id="_sekolah_pilihan_ketiga" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                        <option value="">-- Pilih Sekolah Pilihan Ketiga --</option>
-                                        <?php if (isset($result)) { ?>
-                                            <?php if (count($result) > 0) { ?>
-                                                <?php foreach ($result as $key => $val) { ?>
-                                                    <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                <div class="col-md-12">
+                                    <div class="form-group _sekolah_pilihan_ketiga-block">
+                                        <input name="_pilihan_ketiga" class="custom-control-input _pilihan_ketiga" id="_pilihan_ketiga" type="hidden">
+                                        <label for="_sekolah_pilihan_ketiga" class="form-control-label">Sekolah Pilihan 3 (Ketiga)</label>
+                                        <select onChange="changeValidation('_sekolah_pilihan_ketiga');" class="form-control sekolah_pilihan_ketiga" name="_sekolah_pilihan_ketiga" id="_sekolah_pilihan_ketiga" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                            <option value="">-- Pilih Sekolah Pilihan Ketiga --</option>
+                                            <?php if (isset($result)) { ?>
+                                                <?php if (count($result) > 0) { ?>
+                                                    <?php foreach ($result as $key => $val) { ?>
+                                                        <option value="<?= $val->id ?>">Jarak : <?= getJarak2Koordinat($val->latitude, $val->longitude, $usernya->latitude, $usernya->longitude, 'kilometers') . ' Km' ?> &nbsp; - <?= $val->nama ?> - NPSN: <?= $val->npsn ?> &nbsp; &nbsp;<?= ((int)$val->status_sekolah == 1) ? '(<span class="badge badge-success" style="padding: 2px;">Negeri</span>)' : '(<span class="badge badge-info" style="padding: 2px;">Swasta</span>)' ?> - Kec. <?= $val->nama_kecamatan ?> - <?= $val->nama_kabupaten ?></option>
+                                                    <?php } ?>
                                                 <?php } ?>
                                             <?php } ?>
-                                        <?php } ?>
-                                    </select>
-                                    <div class="help-block _sekolah_pilihan_ketiga"></div>
+                                        </select>
+                                        <div class="help-block _sekolah_pilihan_ketiga"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
                         <!-- <div class="col-lg-12 content-pilihan-pendaftaran-zonasi-"> -->
 
                         <!-- </div> -->

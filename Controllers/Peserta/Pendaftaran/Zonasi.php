@@ -276,6 +276,24 @@ class Zonasi extends BaseController
         }
         $data['user'] = $user->data;
 
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister();
+
+        if ($canDaftar->code !== 200) {
+            $data['error'] = $canDaftar->message;
+        }
+
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        if ($cekRegisterApprove) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+        }
+
+        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+
+        if ($cekRegisterTemp) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
+        }
+
         $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
 
         $dataCurrentUser = json_decode($getCurrentUser->details);

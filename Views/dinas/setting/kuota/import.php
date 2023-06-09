@@ -195,7 +195,7 @@
         $('#simpan-add').on('click', function(e) {
             e.preventDefault();
             const fileName = document.getElementsByName('file')[0].value;
-            const jenjang = document.getElementsByName('jenjang')[0].value;
+            const jenjang = document.getElementsByName('_jenjang')[0].value;
             // const aksiPilihan = document.getElementsByName('_jenis_aksi')[0].value;
 
             // if(aksiPilihan === "") {

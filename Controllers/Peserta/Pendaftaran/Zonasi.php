@@ -379,7 +379,7 @@ class Zonasi extends BaseController
             }
 
             $peserta = $this->_db->table('_users_profil_tb a')
-                ->select("a.*, b.lampiran_kk, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
+                ->select("a.*, b.lampiran_akta_kelahiran, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
                 ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
                 ->where('a.id', $user->data->id)
                 ->get()->getRowObject();
@@ -390,7 +390,7 @@ class Zonasi extends BaseController
                 return json_encode($response);
             }
 
-            if ($peserta->lampiran_akta == null || $peserta->lampiran_kk == null) {
+            if ($peserta->lampiran_akta_kelahiran == null || $peserta->lampiran_kk == null) {
                 $response = new \stdClass;
                 $response->code = 400;
                 $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen Akta dan Kartu Keluarga terlebih dahulu.";
@@ -402,7 +402,7 @@ class Zonasi extends BaseController
                 } else {
                     $response = new \stdClass;
                     $response->code = 400;
-                    $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran surat keterangan lulu (sertifikat kelulusan) terlebih dahulu.";
+                    $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran surat keterangan lulus (sertifikat kelulusan) terlebih dahulu.";
                     return json_encode($response);
                 }
             }

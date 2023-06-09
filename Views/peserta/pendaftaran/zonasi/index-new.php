@@ -508,7 +508,8 @@
     }
 
     function changeValidation(event) {
-        $('.' + event).css('display', 'none');
+        // $('.' + event).css('display', 'none');
+        $('.' + event).html('');
     };
 
     function inputFocus(id) {

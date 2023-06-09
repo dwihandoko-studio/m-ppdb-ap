@@ -203,7 +203,7 @@
 
         <?php if (isset($error)) { ?>
             <div class="card">
-                <div class="card-body bg-gradient-success p-0" style="border-radius: 3%;">
+                <div class="card-body bg-gradient-success p-0" style="border-radius: 8px;">
                     <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
                     <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>PERINGATAN !!!</strong> <br><?= $error ?></span></button></center>
                     <br />

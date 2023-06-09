@@ -401,7 +401,10 @@ class Zonasi extends BaseController
             $cekRegisterTemp['keterangan_penolakan'] = $keterangan;
             $cekRegisterTemp['status_pendaftaran'] = 3;
 
+            $nisn = $cekRegisterTemp['nisn'];
+
             $this->_db->transBegin();
+            unset($cekRegisterTemp['nisn']);
             $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
             if ($this->_db->affectedRows() > 0) {
                 $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
@@ -411,7 +414,7 @@ class Zonasi extends BaseController
 
                     try {
                         $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Zonasi NISN: " . $cekRegisterTemp['nisn'], "Tolak Pendaftaran Jalur Zonasi", "tolak");
+                        $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Zonasi NISN: " . $nisn, "Tolak Pendaftaran Jalur Zonasi", "tolak");
 
                         $saveNotifSystem = new Notificationlib();
                         $saveNotifSystem->send([

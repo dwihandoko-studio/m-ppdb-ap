@@ -39,7 +39,7 @@
                                 <div class="input-group input-group-lg input-group-flush">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><span class="fas fa-search"></span></div>
-                                    </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NISN . . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
+                                    </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NISN / NIK . . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
                                 </div>
                             </div>
                         </form>

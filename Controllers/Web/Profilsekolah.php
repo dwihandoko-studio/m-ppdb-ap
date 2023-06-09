@@ -45,6 +45,23 @@ class Profilsekolah extends BaseController
         return view('new-web/page/profilsekolah', $data);
     }
 
+    public function detail()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code == 200) {
+            $data['user'] = $user->data;
+        }
+
+        $id = htmlspecialchars($this->request->getGet('id'), true);
+        $data['sekolah'] = $this->_db->table('v_profil_sekolah')->where('id', $id)->get()->getRowObject();
+        $data['panitia'] = $this->_db->table('_setting_panitia_tb')->where('sekolah_id', $id)->get()->getResult();
+        $data['page'] = "PPDB ONLINE TA. 2022 - 2023";
+        $data['title'] = 'PPDB ONLINE TA. 2022 - 2023';
+
+        return view('new-web/page/profildetailsekolah', $data);
+    }
+
     public function getProfilSekolah()
     {
         $request = Services::request();

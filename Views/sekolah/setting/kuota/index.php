@@ -20,13 +20,13 @@
                         </nav>
                     </div>
                     <?php if (isset($kuota)) { ?>
-                        <div class="col-lg-6 col-5 text-right">
+                        <!-- <div class="col-lg-6 col-5 text-right">
                             <button type="button" onclick="actionEdit(this, '<?= $kuota->id ?>')" class="btn btn-sm btn-neutral">Edit Kuota</button>
-                        </div>
+                        </div> -->
                     <?php } else { ?>
-                        <div class="col-lg-6 col-5 text-right">
+                        <!-- <div class="col-lg-6 col-5 text-right">
                             <button type="button" onclick="actionAdd(this)" class="btn btn-sm btn-neutral">Tambah Kuota</button>
-                        </div>
+                        </div> -->
                     <?php } ?>
                 </div>
             </div>

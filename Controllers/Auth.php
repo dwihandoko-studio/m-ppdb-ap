@@ -1987,6 +1987,34 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
+        $jadwal = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+
+        if (!$jadwal) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Pendaftaran ppdb belum dibuka.";
+            return json_encode($response);
+        }
+
+        $today = date("Y-m-d H:i:s");
+        $startdate = strtotime($today);
+        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
+
+        if ($startdate < $enddateAwal) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Pendaftaran ppdb belum dibuka.";
+            return json_encode($response);
+        }
+
+        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
+        if ($startdate > $enddateAkhir) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Pendaftaran ppdb telah ditutup.";
+            return json_encode($response);
+        }
+
         $rules = [
             'nisn' => [
                 'rules' => 'required|trim',

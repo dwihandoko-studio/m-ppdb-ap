@@ -150,7 +150,7 @@
                             htmlZonasi += '<td>';
                             htmlZonasi += msg.data[stepr].nama_kabupaten;
                             htmlZonasi += '</td>';
-                            htmlZonasi += '<td>';
+                            htmlZonasi += '<td style="text-align: left; align-items: left;">';
                             htmlZonasi += msg.data[stepr].nama_kecamatan;
                             htmlZonasi += '</td>';
                             htmlZonasi += '</tr>';

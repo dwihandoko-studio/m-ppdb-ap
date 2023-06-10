@@ -29,7 +29,7 @@ class ZonasiModel extends Model
         $select = "a.*, count(a.npsn) as jumlah, e.no_hp as no_hp_sekolah";
 
         $this->dt->select($select);
-        $this->dt->join('_users_profil_tb e', 'a.sekolah_id = e.sekolah_id');
+        $this->dt->join('_users_profil_tb e', 'a.id = e.sekolah_id');
         // $this->dt->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
         // $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');

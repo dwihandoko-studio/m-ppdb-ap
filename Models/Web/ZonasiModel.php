@@ -7,10 +7,10 @@ use CodeIgniter\Model;
 
 class ZonasiModel extends Model
 {
-    protected $table = "v_tb_sekolah_zonasi";
-    protected $column_order = array(null, 'nama', null);
-    protected $column_search = array('nama', 'npsn');
-    protected $order = array('nama' => 'asc');
+    protected $table = "v_tb_sekolah_zonasi a";
+    protected $column_order = array(null, 'a.nama', null);
+    protected $column_search = array('a.nama', 'a.npsn');
+    protected $order = array('a.nama' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -26,9 +26,10 @@ class ZonasiModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "*, count(npsn) as jumlah";
+        $select = "a.*, count(a.npsn) as jumlah, e.no_hp as no_hp_sekolah";
 
         $this->dt->select($select);
+        $this->dt->join('_users_profil_tb e', 'a.sekolah_id = e.sekolah_id');
         // $this->dt->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
         // $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');
@@ -58,17 +59,17 @@ class ZonasiModel extends Model
     function get_datatables($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
-        $this->dt->where('status_sekolah', '1');
+        $this->dt->where('a.status_sekolah', '1');
 
         if ($filterJenajng != "") {
-            $this->dt->where('bentuk_pendidikan_id', $filterJenajng);
+            $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
 
         if ($filterKecamatan != "") {
-            $this->dt->where('kecamatan_id', $filterKecamatan);
+            $this->dt->where('a.kecamatan_id', $filterKecamatan);
         }
 
-        $this->dt->groupBy('npsn');
+        $this->dt->groupBy('a.npsn');
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -78,34 +79,34 @@ class ZonasiModel extends Model
     function count_filtered($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
-        $this->dt->where('status_sekolah', '1');
+        $this->dt->where('a.status_sekolah', '1');
 
         if ($filterJenajng != "") {
-            $this->dt->where('bentuk_pendidikan_id', $filterJenajng);
+            $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
 
         if ($filterKecamatan != "") {
-            $this->dt->where('kecamatan_id', $filterKecamatan);
+            $this->dt->where('a.kecamatan_id', $filterKecamatan);
         }
 
-        $this->dt->groupBy('npsn');
+        $this->dt->groupBy('a.npsn');
 
         return $this->dt->countAllResults();
     }
     public function count_all($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
-        $this->dt->where('status_sekolah', '1');
+        $this->dt->where('a.status_sekolah', '1');
 
         if ($filterJenajng != "") {
-            $this->dt->where('bentuk_pendidikan_id', $filterJenajng);
+            $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
 
         if ($filterKecamatan != "") {
-            $this->dt->where('kecamatan_id', $filterKecamatan);
+            $this->dt->where('a.kecamatan_id', $filterKecamatan);
         }
 
-        $this->dt->groupBy('npsn');
+        $this->dt->groupBy('a.npsn');
 
         return $this->dt->countAllResults();
     }

@@ -120,7 +120,7 @@ class Zona extends BaseController
             $response = new \stdClass;
             $response->code = 200;
             $response->message = "Data ditemukan.";
-            $response->data = zonasiDetailWeb($name);
+            $response->data = zonasiDetailWebNew($name);
             return json_encode($response);
         }
     }

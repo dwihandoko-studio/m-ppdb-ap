@@ -478,7 +478,6 @@ function createKodePendaftaran($kode, $nisn)
 	return $kodePendaftaran;
 }
 
-
 function zonasiDetailWeb($npsn)
 {
 	$db      = \Config\Database::connect();
@@ -489,6 +488,27 @@ function zonasiDetailWeb($npsn)
 		->orderBy('a.nama_kabupaten', 'asc')
 		->orderBy('a.nama_kecamatan', 'asc')
 		->orderBy('b.nama', 'asc')
+		->get()->getResult();
+
+	if (count($data) > 0) {
+		// $zonasi = "";
+		// foreach ($data as $key => $value) {
+		//     $zonasi .= $value->nama_dusun . ", " . $value->nama_kelurahan . " - " . $value->nama_kecamatan . " (" . $value->nama_kabupaten . ")<br>";  
+		// }
+		return $data;
+	} else {
+		return [];
+	}
+}
+
+function zonasiDetailWebNew($npsn)
+{
+	$db      = \Config\Database::connect();
+	$data = $db->table('v_tb_sekolah_zonasi a')
+		->select("a.nama_provinsi, a.nama_kecamatan, a.nama_kabupaten")
+		->where('a.npsn', $npsn)
+		->orderBy('a.nama_kabupaten', 'asc')
+		->orderBy('a.nama_kecamatan', 'asc')
 		->get()->getResult();
 
 	if (count($data) > 0) {

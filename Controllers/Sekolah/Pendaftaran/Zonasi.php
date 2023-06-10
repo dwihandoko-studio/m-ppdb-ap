@@ -289,7 +289,7 @@ class Zonasi extends BaseController
                         'isi' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
                         'action_web' => 'peserta/riwayat/pendaftaran',
                         'action_app' => 'riwayat_pendaftaran_page',
-                        'token' => $cekRegisterTemp['kode_pendaftaran'],
+                        'token' => $cekRegisterTemp['id'],
                         'send_from' => $user->data->id,
                         'send_to' => $cekRegisterTemp['user_id'],
                     ]);

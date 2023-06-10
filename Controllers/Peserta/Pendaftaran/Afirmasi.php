@@ -65,13 +65,13 @@ class Afirmasi extends BaseController
                     } else {
                         $andWhere .= " AND (a.bentuk_pendidikan_id IN (5,9,30,31,32,33,38))";
                     }
-                    
+
                     $where = "$andWhere";
 
-                    if($keyword !== "") {
+                    if ($keyword !== "") {
                         $where .= " AND (a.npsn = '$keyword' OR a.nama LIKE '%$keyword%')";
                     }
-                    
+
                     $data['result'] = $this->_db->table('v_tb_sekolah_kuota a')
                         // $data['result'] = $this->_db->table('ref_provinsi a')
                         //         //RUMUS JARAK (111.111 *
@@ -156,6 +156,26 @@ class Afirmasi extends BaseController
         }
         $data['user'] = $user->data;
 
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("AFIRMASI");
+
+        if ($canDaftar->code !== 200) {
+            $data['error'] = $canDaftar->message;
+        }
+
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        if ($cekRegisterApprove) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+            $data['sekolah_pilihan'] = $cekRegisterApprove;
+        }
+
+        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+
+        if ($cekRegisterTemp) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas.";
+            $data['sekolah_pilihan'] = $cekRegisterTemp;
+        }
+
         return view('peserta/pendaftaran/afirmasi/index', $data);
     }
 
@@ -203,116 +223,9 @@ class Afirmasi extends BaseController
             $name = htmlspecialchars($this->request->getVar('name'), true);
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
-
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $peserta = $this->_db->table('_users_profil_tb a')
-                            ->select("a.*, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
-                            ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
-                            ->where('a.id', $userId)
-                            ->get()->getRowObject();
-                        if (!$peserta) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Data anda belum lengkap, silahkan lengkapi data terlebih dahulu.";
-                            return json_encode($response);
-                        }
-
-                        if ($peserta->lampiran_kk == null || $peserta->lampiran_lulus == null) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen terlebih dahulu.";
-                            return json_encode($response);
-                        }
-
-                        if ($peserta->lampiran_afirmasi == null) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Lampiran dokumen afirmasi anda belum lengkap, silahkan lengkapi lampiran dokumen afirmasi terlebih dahulu.";
-                            return json_encode($response);
-                        }
-
-                        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
-                        if ($cekRegisterApprove) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
-                            return json_encode($response);
-                        }
-
-                        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
-
-                        if ($cekRegisterTemp) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
-                            return json_encode($response);
-                        }
-
-                        $uuidLib = new Uuid();
-                        $uuid = $uuidLib->v4();
-
-                        $data = [
-                            'id' => $uuid,
-                            'kode_pendaftaran' => createKodePendaftaran("AFIRMASI", $peserta->nisn),
-                            'peserta_didik_id' => $peserta->peserta_didik_id,
-                            'user_id' => $userId,
-                            'from_sekolah_id' => $peserta->sekolah_asal,
-                            'tujuan_sekolah_id' => $id,
-                            'via_jalur' => "AFIRMASI",
-                            'status_pendaftaran' => 0,
-                            'lampiran' => null,
-                            'keterangan' => null,
-                            'pendaftar' => 'SISWA',
-                            'created_at' => date('Y-m-d H:i:s')
-                        ];
-
-                        $this->_db->transBegin();
-                        $this->_db->table('_tb_pendaftar_temp')->insert($data);
-                        if ($this->_db->affectedRows() > 0) {
-                            $this->_db->transCommit();
-                            try {
-                                $riwayatLib = new Riwayatlib();
-                                $riwayatLib->insert("Mendaftar via Jalur Afirmasi ke Sekolah $name, dengan No Pendaftaran : " . $data['kode_pendaftaran'], "Daftar Jalur Afirmasi");
-                            } catch (\Throwable $th) {
-                            }
-                            $response = new \stdClass;
-                            $response->code = 200;
-                            $response->data = $data;
-                            $response->message = "Pendaftaran via jalur Afirmasi ke Sekolah $name berhasil dilakukan. Kode pendaftaran anda : " . $data['kode_pendaftaran'] . ". Selanjutnya Silahkan cetak bukti pendaftaran anda.";
-                            return json_encode($response);
-                        } else {
-                            $this->_db->transRollback();
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Pendaftaran via jalur Afirmasi ke Sekolah $name berhasil dilakukan.";
-                            return json_encode($response);
-                        }
-                    } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    delete_cookie('jwt');
-                    session()->destroy();
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->error = $e;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } else {
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;
@@ -321,7 +234,98 @@ class Afirmasi extends BaseController
                 return json_encode($response);
             }
 
+            $peserta = $this->_db->table('_users_profil_tb a')
+                ->select("a.*, b.lampiran_akta_kelahiran, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_pernyataan, b.lampiran_foto_rumah, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
+                ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
+                ->where('a.id', $user->data->id)
+                ->get()->getRowObject();
+            if (!$peserta) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data anda belum lengkap, silahkan lengkapi data terlebih dahulu.";
+                return json_encode($response);
+            }
 
+            if ($peserta->lampiran_akta_kelahiran == null || $peserta->lampiran_kk == null) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen Akta dan Kartu Keluarga terlebih dahulu.";
+                return json_encode($response);
+            }
+
+            if ($peserta->lampiran_lulus == null) {
+                if (substr($user->data->nisn, 0, 2) == "BS") {
+                } else {
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran surat keterangan lulus (sertifikat kelulusan) terlebih dahulu.";
+                    return json_encode($response);
+                }
+            }
+
+            if ($peserta->lampiran_afirmasi == null || $peserta->lampiran_pernyataan == null || $peserta->lampiran_foto_rumah == null) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Lampiran dokumen afirmasi anda belum lengkap, silahkan lengkapi lampiran dokumen afirmasi terlebih dahulu.";
+                return json_encode($response);
+            }
+
+            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+            if ($cekRegisterApprove) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                return json_encode($response);
+            }
+
+            $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+
+            if ($cekRegisterTemp) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
+                return json_encode($response);
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $data = [
+                'id' => $uuid,
+                // 'kode_pendaftaran' => createKodePendaftaran("AFIRMASI", $peserta->nisn),
+                'peserta_didik_id' => $peserta->peserta_didik_id,
+                'user_id' => $user->data->id,
+                'from_sekolah_id' => $peserta->sekolah_asal,
+                'tujuan_sekolah_id_1' => $id,
+                'via_jalur' => "AFIRMASI",
+                'status_pendaftaran' => 0,
+                'lampiran' => null,
+                'keterangan' => null,
+                'pendaftar' => 'SISWA',
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+            $this->_db->table('_tb_pendaftar_temp')->insert($data);
+            if ($this->_db->affectedRows() > 0) {
+                $this->_db->transCommit();
+                try {
+                    $riwayatLib = new Riwayatlib();
+                    $riwayatLib->insert("Mendaftar via Jalur Afirmasi, untuk diverifikasi berkas oleh sekolah tujuan.", "Daftar Jalur Afirmasi");
+                } catch (\Throwable $th) {
+                }
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->message = "Pendaftaran via jalur Afirmasi berhasil dilakukan.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Pendaftaran via jalur Afirmasi gagal dilakukan.";
+                return json_encode($response);
+            }
 
             // $dir = "";
             // $namaFile = "";

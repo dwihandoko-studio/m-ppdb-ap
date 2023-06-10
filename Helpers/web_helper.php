@@ -508,10 +508,11 @@ function zonasiDetailWebNew($npsn)
 		->select("a.*, b.nama as nama_provinsi, d.nama as nama_kecamatan, c.nama as nama_kabupaten")
 		->join('ref_provinsi b', 'a.provinsi = b.id', 'LEFT')
 		->join('ref_kabupaten c', 'a.kabupaten = c.id', 'LEFT')
-		->join('ref_kecamatan d', 'a.kecamatan = c.id', 'LEFT')
+		->join('ref_kecamatan d', 'a.kecamatan = d.id', 'LEFT')
 		->where('a.npsn', $npsn)
 		->orderBy('b.nama', 'asc')
 		->orderBy('c.nama', 'asc')
+		->orderBy('d.nama', 'asc')
 		->get()->getResult();
 
 	if (count($data) > 0) {

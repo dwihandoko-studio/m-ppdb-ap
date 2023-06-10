@@ -12,8 +12,8 @@
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="900ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#2eb100" data-value=".75">
-                            <span>75</span>
+                        <div class="piechart" data-fg-color="#2eb100" data-value=".0">
+                            <span>0</span>
                         </div>
                     </div>
                     <div class="text">Jalur Afirmasi</div>
@@ -22,8 +22,8 @@
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#393e95" data-value=".50">
-                            <span>50</span>
+                        <div class="piechart" data-fg-color="#393e95" data-value=".0">
+                            <span>0</span>
                         </div>
                     </div>
                     <div class="text">Jalur Zonasi</div>
@@ -32,8 +32,8 @@
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#ff8500" data-value=".24">
-                            <span>24</span>
+                        <div class="piechart" data-fg-color="#ff8500" data-value=".0">
+                            <span>0</span>
                         </div>
                     </div>
                     <div class="text">Jalur Prestasi</div>
@@ -42,8 +42,8 @@
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#ff0000" data-value=".27">
-                            <span>27</span>
+                        <div class="piechart" data-fg-color="#ff0000" data-value="0">
+                            <span>0</span>
                         </div>
                     </div>
                     <div class="text">Jalur Mutasi</div>
@@ -52,7 +52,7 @@
         </div>
     </div>
 </section>
-<section class="pricing-style-four" style="padding-top: 10px;">
+<!-- <section class="pricing-style-four" style="padding-top: 10px;">
     <div class="container">
         <div class="sec-title center">
             <h2>Unmatched Features With<br>Transparent Pricing</h2>
@@ -144,7 +144,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptBottom'); ?>

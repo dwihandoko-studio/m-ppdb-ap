@@ -1,4 +1,4 @@
-<?= $this->extend('new-web/template/index-logreg') ?>
+<?= $this->extend('new-web/template/index') ?>
 
 <?= $this->section('content') ?>
 <header class="main-header style-four">

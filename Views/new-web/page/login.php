@@ -126,14 +126,16 @@
                                 <p style="color: #fff;">Lupa password? <a style="color: #00fff2" href="<?= base_url('auth/lupapassword') ?>">Reset</a></p>
                             </div>
                         </div>
-                        <div class="btn-box">
-                            <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
-                        </div>
-                        <center>
+                        <div class="row">
+                            <div class="btn-box">
+                                <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
+                            </div>
                             <p style="color: #fff">Belum punya akun?</p><br><br>
                             <div class="btn-box">
                                 <a href="<?= base_url('web/register') ?>" class="donate-box-btn">DAFTAR</a>
                             </div>
+                        </div>
+                        <center>
                         </center>
 
                     </div>

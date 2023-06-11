@@ -114,7 +114,7 @@
             <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Login Panitia Sekolah, silahkan login menggunakan email dan password yang sudah didaftarkan pada layanan.</span></h6>
             <div id="content_block_51">
                 <div class="content-box">
-                    <div class="donation-box wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
+                    <div class="donation-box" style="visibility: visible;">
                         <div class="select-box">
                             <div class="form-group">
                                 <p style="color: #fff;">NISN / NIK</p>
@@ -135,7 +135,84 @@
         </div>
     </div>
 </section>
-<footer class="main-footer style-five style-six style-seven">
+<footer class="main-footer style-five">
+    <div class="anim-icons">
+        <div class="icon icon-1"><img src="<?= base_url('themes') ?>/images/icons/pattern-21.png" alt=""></div>
+    </div>
+    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/footer-bg-5.png);"></div>
+    <div class="footer-top">
+        <div class="container">
+            <div class="widget-section">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 footer-column">
+                        <div class="about-widget footer-widget">
+                            <figure class="footer-logo"><a href="<?= base_url() ?>"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
+                            <div class="text">Layanan Kegiatan Penerimaan Peserta Didik Baru Dalam Jaringan Tahun Ajaran 2023/2024 Kabupaten Pesawaran.</div>
+                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SMP(+62) 821-1183-7685</a></h2>
+                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SD(+62) 821-1183-7685</a></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                        <div class="links-widget footer-widget">
+                            <h4 class="widget-title">Halaman</h4>
+                            <div class="widget-content">
+                                <ul class="list clearfix">
+                                    <li><a href="<?= base_url() ?>">Home</a></li>
+                                    <li><a href="<?= base_url('web/sekolah') ?>">Sekolah</a></li>
+                                    <li><a href="<?= base_url('web/jadwal') ?>">Jadwal</a></li>
+                                    <li><a href="#">Statistik</a></li>
+                                    <li><a href="#">Informasi</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                        <div class="contact-widget footer-widget">
+                            <h4 class="widget-title">Hubungi Kami</h4>
+                            <div class="widget-content">
+                                <ul class="contact-info clearfix">
+                                    <li><i class="fas fa-map-marker-alt"></i> Komplek Pemerintah, Jl. Kedondong - Gedung Tataan.</li>
+                                    <!-- <li><i class="fas fa-phone"></i><a href="tel:0665184575181">(+066) 518 - 457 - 5181</a></li> -->
+                                    <!-- <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">info@example.com</a></li> -->
+                                </ul>
+                            </div>
+                            <ul class="social-links clearfix">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                        <div class="links-widget footer-widget">
+                            <h4 class="widget-title">About Company</h4>
+                            <div class="widget-content">
+                                <ul class="list clearfix">
+                                    <li><a href="#">Appway Online</a></li>
+                                    <li><a href="#">Our Leadership</a></li>
+                                    <li><a href="#">Carrers</a></li>
+                                    <li><a href="#">What We Do</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container clearfix">
+            <div class="copyright pull-left">&copy; 2023 PPDB Online - All rights reserved. Version 2.0. Powered By: <a href="https://kntecline.id">KNTechline</a></div>
+            <ul class="footer-nav pull-right">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Legal</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<!-- <footer class="main-footer style-five style-six style-seven">
     <div class="container">
         <div class="footer-top">
             <div class="widget-section">
@@ -217,7 +294,7 @@
         </div>
     </div>
     <div class="copyright">&copy; 2020 <a href="#">appway</a>. All rights reserved</div>
-</footer>
+</footer> -->
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptBottom'); ?>

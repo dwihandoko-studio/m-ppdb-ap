@@ -277,7 +277,8 @@ class Zonasi extends BaseController
             ->orderBy('distance_in_km', 'asc')
             // ->limit($limit_per_page, $start)
             ->get()->getResult();
-        $data['countData'] = $this->_db->table('v_tb_sekolah_zonasi a')->where($where)->countAllResults();
+        $data['countData'] = $this->_db->table('v_tb_sekolah_zonasi a')
+            ->where($where)->countAllResults();
         // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
         $data['usernya'] = $getCurrentUser;
 

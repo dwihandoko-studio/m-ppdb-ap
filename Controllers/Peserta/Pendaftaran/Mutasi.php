@@ -92,7 +92,9 @@ class Mutasi extends BaseController
             // ->orderBy('a.created_at', 'asc')
             ->limit($limit_per_page, $start)
             ->get()->getResult();
-        $data['countData'] = $this->_db->table('v_tb_sekolah_kuota a')->where($where)->countAllResults();
+        $data['countData'] = $this->_db->table('v_tb_sekolah_kuota a')
+            ->select("a.*, DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude)) * COS(RADIANS({$getCurrentUser->latitude})) * COS(RADIANS(a.Longitude - {$getCurrentUser->longitude})) + SIN(RADIANS(a.Latitude)) * SIN(RADIANS({$getCurrentUser->latitude}))))) AS distance_in_km")
+            ->where($where)->countAllResults();
         // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
         $data['page'] = $page;
         $data['user'] = $getCurrentUser;

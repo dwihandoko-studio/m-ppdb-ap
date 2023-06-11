@@ -21,10 +21,10 @@
                             <div class="widget-content">
                                 <ul class="list clearfix">
                                     <li><a href="<?= base_url() ?>">Home</a></li>
-                                    <li><a href="<?= base_url('web/sekolah') ?>">Sekolah</a></li>
+                                    <!-- <li><a href="<?= base_url('web/sekolah') ?>">Sekolah</a></li> -->
                                     <li><a href="<?= base_url('web/jadwal') ?>">Jadwal</a></li>
-                                    <li><a href="#">Statistik</a></li>
-                                    <li><a href="#">Informasi</a></li>
+                                    <li><a href="<?= base_url('web/statistik') ?>">Statistik</a></li>
+                                    <!-- <li><a href="#">Informasi</a></li> -->
                                 </ul>
                             </div>
                         </div>

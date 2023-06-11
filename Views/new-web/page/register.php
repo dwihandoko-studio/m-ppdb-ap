@@ -116,7 +116,7 @@
                 <!-- <form action="#" class="donate-form default-form"> -->
                 <div id="content_block_51">
                     <div class="content-box">
-                        <div class="donation-box wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
+                        <div class="donation-box">
                             <!-- <div class="select-box"> -->
                             <div class="row clearfix">
                                 <!-- <div class="col-lg-6 col-md-6 col-sm-12">
@@ -169,7 +169,7 @@
                 <!-- <form action="#" class="donate-form default-form"> -->
                 <div id="content_block_51">
                     <div class="content-box">
-                        <div class="donation-box wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
+                        <div class="donation-box">
                             <!-- <div class="select-box"> -->
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-12">

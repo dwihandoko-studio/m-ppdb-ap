@@ -153,8 +153,16 @@
                                 </div>
                             </div>
                             <!-- </div> -->
-                            <div class="btn-box btncekdata" style="display: block;">
-                                <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn" id="btncekdata">CEK DATA</button>
+                            <div class="row">
+                                <div class="btn-box btncekdata" style="display: block;">
+                                    <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn" id="btncekdata">CEK DATA</button>
+                                </div>
+                                <center>
+                                    <p style="color: #fff; margin-right: 20px;">Sudan punya akun?</p>
+                                </center>
+                                <div class="btn-box">
+                                    <a href="<?= base_url('web/login') ?>" class="donate-box-btn">LOGIN</a>
+                                </div>
                             </div>
                             <div class="content-siswa" style="display: none;">
                             </div>
@@ -188,8 +196,16 @@
                                 </div>
                             </div>
                             <!-- </div> -->
-                            <div class="btn-box btncekdatabelumsekolah" style="display: block;">
-                                <button onclick="submitRegisterBeforeSchoolButton(this)" class="donate-box-btn" id="btncekdatabelumsekolah">CEK DATA</button>
+                            <div class="row">
+                                <div class="btn-box btncekdatabelumsekolah" style="display: block;">
+                                    <button onclick="submitRegisterBeforeSchoolButton(this)" class="donate-box-btn" id="btncekdatabelumsekolah">CEK DATA</button>
+                                </div>
+                                <center>
+                                    <p style="color: #fff; margin-right: 20px;">Sudan punya akun?</p>
+                                </center>
+                                <div class="btn-box">
+                                    <a href="<?= base_url('web/login') ?>" class="donate-box-btn">LOGIN</a>
+                                </div>
                             </div>
                             <div class="content-siswa-belum" style="display: none;">
                             </div>

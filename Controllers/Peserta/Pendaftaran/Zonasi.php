@@ -239,15 +239,15 @@ class Zonasi extends BaseController
             $data['sekolah_pilihan'] = $cekRegisterApprove;
         }
 
-        var_dump($cekRegisterApprove);
-        die;
-
         $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
 
         if ($cekRegisterTemp) {
             $data['error'] = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas.";
             $data['sekolah_pilihan'] = $cekRegisterTemp;
         }
+
+        var_dump($cekRegisterTemp);
+        die;
 
         $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
 

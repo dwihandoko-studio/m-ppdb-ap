@@ -108,43 +108,26 @@
     </nav>
 </div>
 <section class="donate-section elements">
-    <div class="pattern-box">
-        <div class="pattern-1"><img src="images/icons/shap-28.png" alt=""></div>
-        <div class="pattern-2"><img src="images/icons/shap-29.png" alt=""></div>
-    </div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                <div id="image_block_46">
-                    <figure class="image-box wow slideInLeft" data-wow-delay="00ms" data-wow-duration="1500ms"><img src="images/resource/illustration-40.png" alt=""></figure>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                <div id="content_block_51">
-                    <div class="content-box">
-                        <div class="upper-box">
-                            <h2>Would You like to Help people Across the Globe?</h2>
-                            <div class="text">Data from January 1 through November 30, 2019</div>
-                            <div class="btn-box">
-                                <a href="#" class="btn-one">Funding Progress</a>
-                                <a href="#" class="btn-two">Join Us</a>
+        <div class="donate-form-area" style="background: linear-gradient(130deg, #4527a4 15%, #ff0000 100%);">
+            <h2 style="color: #fff;">PPDB ONLINE TP. 2023 - 2024</h2>
+            <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Login Panitia Sekolah, silahkan login menggunakan email dan password yang sudah didaftarkan pada layanan.</span></h6>
+            <div id="content_block_51">
+                <div class="content-box">
+                    <div class="donation-box wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
+                        <div class="select-box">
+                            <div class="form-group">
+                                <p style="color: #fff;">NISN / NIK</p>
+                                <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_username" id="_username" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <p style="color: #fff;">Password</p>
+                                <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="password" name="_password" id="_password" placeholder="">
+                                <p style="color: #fff;">Lupa password? <a style="color: #00fff2" href="<?= base_url('auth/lupapassword') ?>">Reset</a></p>
                             </div>
                         </div>
-                        <div class="donation-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                            <div class="select-box">
-                                <div class="text">$ USD</div>
-                                <select class="selectmenu">
-                                    <option selected="selected">100.00</option>
-                                    <option>200.00</option>
-                                    <option>300.00</option>
-                                    <option>400.00</option>
-                                </select>
-                            </div>
-                            <div class="btn-box">
-                                <a href="#">One Time Donation Given</a>
-                                <a href="#">Every Month Donation Given</a>
-                                <button class="donate-box-btn">Donate Now</button>
-                            </div>
+                        <div class="btn-box">
+                            <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
                         </div>
                     </div>
                 </div>

@@ -117,7 +117,7 @@
                                     </div>
                                 <?php } else { ?>
                                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                        <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
+                                        <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br>Sekolah Zonasi Tidak Ditemukan</span></button></center>
                                         <br />
                                         <center>
                                             <p>Wilayah tempat tinggal pendaftar, terdeteksi tidak masuk dalam wilayah jalur zonasi.</p>
@@ -126,7 +126,7 @@
                                 <?php } ?>
                             <?php } else { ?>
                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
+                                    <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br>Sekolah Zonasi Tidak Ditemukan</span></button></center>
                                     <br />
                                     <center>
                                         <p>Wilayah tempat tinggal pendaftar, terdeteksi tidak masuk dalam wilayah jalur zonasi.</p>

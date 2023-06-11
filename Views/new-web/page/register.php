@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                             <!-- </div> -->
-                            <div class="row btncekdata" style="display: block;">
+                            <div class="row btncekdata">
                                 <div class="btn-box" style="margin-right: 20px;">
                                     <button onclick="submitRegisterAfterSchoolButton(this)" class="donate-box-btn" id="btncekdata">CEK DATA</button>
                                 </div>
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <!-- </div> -->
-                            <div class="row btncekdatabelumsekolah" style="display: block;">
+                            <div class="row btncekdatabelumsekolah">
                                 <div class="btn-box" style="margin-right: 20px;">
                                     <button onclick="submitRegisterBeforeSchoolButton(this)" class="donate-box-btn" id="btncekdatabelumsekolah">CEK DATA</button>
                                 </div>

@@ -35,6 +35,18 @@ class Upload extends BaseController
         }
 
         $data['user'] = $user->data;
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        if ($cekRegisterApprove) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+            $data['sekolah_pilihan'] = $cekRegisterApprove;
+        }
+
+        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+
+        if ($cekRegisterTemp) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas.";
+            $data['sekolah_pilihan'] = $cekRegisterTemp;
+        }
 
         $data['dataUpload'] = $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $user->data->id)->get()->getRowObject();
 

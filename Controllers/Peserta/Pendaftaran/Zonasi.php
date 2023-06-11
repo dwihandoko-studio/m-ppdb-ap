@@ -246,10 +246,10 @@ class Zonasi extends BaseController
             $data['sekolah_pilihan'] = $cekRegisterTemp;
         }
 
-        var_dump($cekRegisterTemp);
-        die;
-
         $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
+
+        var_dump($getCurrentUser);
+        die;
 
         $dataCurrentUser = json_decode($getCurrentUser->details);
         if ((int)$dataCurrentUser->tingkat_pendidikan == 6) {

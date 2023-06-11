@@ -74,6 +74,7 @@ class Swasta extends BaseController
 
         $data['result'] = $this->_db->table('v_tb_sekolah_kuota a')
             ->select("a.*, DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude)) * COS(RADIANS({$getCurrentUser->latitude})) * COS(RADIANS(a.Longitude - {$getCurrentUser->longitude})) + SIN(RADIANS(a.Latitude)) * SIN(RADIANS({$getCurrentUser->latitude}))))) AS distance_in_km")
+            ->join('_users_profil_tb b', 'b.sekolah_id = a.id')
             // $data['result'] = $this->_db->table('ref_provinsi a')
             //         //RUMUS JARAK (111.111 *
             // DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude))
@@ -93,6 +94,7 @@ class Swasta extends BaseController
             ->limit($limit_per_page, $start)
             ->get()->getResult();
         $data['countData'] = $this->_db->table('v_tb_sekolah_kuota a')
+            ->join('_users_profil_tb b', 'b.sekolah_id = a.id')
             ->where($where)->countAllResults();
         // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
         $data['page'] = $page;

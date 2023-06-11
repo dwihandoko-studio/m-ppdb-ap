@@ -40,7 +40,7 @@ class Afirmasi extends BaseController
         if (!$getCurrentUser) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Tidak ada data.";
+            $response->message = "Tidak ada data user.";
             return json_encode($response);
         }
 
@@ -116,7 +116,7 @@ class Afirmasi extends BaseController
         } else {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Tidak ada data.";
+            $response->message = "Tidak ada data sekolah.";
             return json_encode($response);
         }
     }

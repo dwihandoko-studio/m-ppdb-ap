@@ -711,7 +711,7 @@
         $('.content-siswa').css('display', 'none');
         $('.content-siswa-belum').html('');
         $('.content-siswa-belum').css('display', 'none');
-        $('.' + event.id).css('display', 'block');
+        $('.' + event.id).css('display', 'flex');
     }
 
     function changeValidation(event) {

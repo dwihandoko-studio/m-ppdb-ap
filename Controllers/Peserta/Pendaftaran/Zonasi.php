@@ -229,9 +229,6 @@ class Zonasi extends BaseController
         $dataLib = new Datalib();
         $canDaftar = $dataLib->canRegister();
 
-        var_dump($canDaftar);
-        die;
-
         if ($canDaftar->code !== 200) {
             $data['error'] = $canDaftar->message;
         }
@@ -241,6 +238,9 @@ class Zonasi extends BaseController
             $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
             $data['sekolah_pilihan'] = $cekRegisterApprove;
         }
+
+        var_dump($cekRegisterApprove);
+        die;
 
         $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
 

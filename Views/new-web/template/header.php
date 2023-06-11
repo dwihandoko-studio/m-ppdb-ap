@@ -64,8 +64,10 @@
                             </ul>
                         </div>
                     </nav>
-                    <div class="btn-box _login_button"><a href="javascript:actionLoginButton(this);" style="padding: 10px 18px;">Login</a></div>
-                    <div class="btn-box _register_button" style="margin-left: 10px;"><a href="javascript:actionRegisterButton(this);" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div>
+                    <div class="btn-box _login_button"><a href="<?= base_url('web/login') ?>" style="padding: 10px 18px;">Login</a></div>
+                    <!-- <div class="btn-box _login_button"><a href="javascript:actionLoginButton(this);" style="padding: 10px 18px;">Login</a></div> -->
+                    <div class="btn-box _register_button" style="margin-left: 10px;"><a href="<?= base_url('web/register') ?>" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div>
+                    <!-- <div class="btn-box _register_button" style="margin-left: 10px;"><a href="javascript:actionRegisterButton(this);" style="background: #feff59; padding: 10px 18px;">Registrasi Akun</a></div> -->
                 </div>
             </div>
         </div>
@@ -94,8 +96,10 @@
             <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
         </div>
         <div class="content-box" style="margin-top: 20px; margin-bottom: 5px;">
-            <a href="javascript:actionLoginButtonMobile(this);" class="theme-btn-two" style="margin-left: 15px; padding: 5px 18px;">Login</a>
-            <a href="javascript:actionRegisterButtonMobile(this);" class="theme-btn-two" style="padding: 5px 18px;">Registrasi Akun</a>
+            <a href="<?= base_url('web/login') ?>" class="theme-btn-two" style="margin-left: 15px; padding: 5px 18px;">Login</a>
+            <!-- <a href="javascript:actionLoginButtonMobile(this);" class="theme-btn-two" style="margin-left: 15px; padding: 5px 18px;">Login</a> -->
+            <a href="<?= base_url('web/register') ?>" class="theme-btn-two" style="padding: 5px 18px;">Registrasi Akun</a>
+            <!-- <a href="javascript:actionRegisterButtonMobile(this);" class="theme-btn-two" style="padding: 5px 18px;">Registrasi Akun</a> -->
         </div>
         <div class="contact-info">
             <h4>Contact Info</h4>

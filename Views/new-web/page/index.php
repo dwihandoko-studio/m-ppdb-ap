@@ -163,7 +163,7 @@
                             <h2>Ayo Daftar PPDB Sekarang Juga!!</h2>
                         </div>
                         <div class="text">Kamu bisa mengikuti prosedur yang telah dijelaskan di atas dan mengikuti langkah dibawah ini.</div>
-                        <div class="btn-box"><a href="javascript:actionRegisterButton(this);">Daftar PPDB Sekarang</a></div>
+                        <div class="btn-box"><a href="<?= base_url('web/register') ?>">Daftar PPDB Sekarang</a></div>
                     </div>
                 </div>
             </div>

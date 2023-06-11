@@ -1062,10 +1062,10 @@
                     success: function(msg) {
                         $('div.main-content').unblock();
                         if (msg.code != 200) {
-                            if (resul.code === 401) {
+                            if (msg.code === 401) {
                                 Swal.fire(
                                     'Failed!',
-                                    resul.message,
+                                    msg.message,
                                     'warning'
                                 ).then((valRes) => {
                                     document.location.href = BASE_URL + '/dashboard';
@@ -1142,10 +1142,10 @@
                 $('div.main-content').unblock();
                 if (msg.code !== 200) {
                     if (msg.code !== 201) {
-                        if (resul.code === 401) {
+                        if (msg.code === 401) {
                             Swal.fire(
                                 'Failed!',
-                                resul.message,
+                                msg.message,
                                 'warning'
                             ).then((valRes) => {
                                 document.location.href = BASE_URL + '/dashboard';

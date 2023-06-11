@@ -52,9 +52,11 @@
                                 <?php if (isset($sekolah_pilihan)) { ?>
                                     <center>
                                         <ol>
-                                            <li style="list-style: none;">Sekolah Pilihan Pertama : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
-                                            <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
-                                            <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
+                                            <li style="list-style: none;"><?= $sekolah_pilihan->tujuan_sekolah_id_2 !== NULL ? 'Sekolah Pilihan Pertama' : 'Sekolah yang dituju' ?> : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                            <?php if ($sekolah_pilihan->tujuan_sekolah_id_2 !== NULL) { ?>
+                                                <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
+                                                <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
+                                            <?php } ?>
                                         </ol>
                                     </center>
                                 <?php } ?>
@@ -181,6 +183,21 @@
                         </button>
                     </div>
                     <div class="tolakBodyModal">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modal-document-loading">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="documentModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="documentBodyModal">
 
                     </div>
                 </div>

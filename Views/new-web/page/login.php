@@ -1,7 +1,8 @@
 <?= $this->extend('new-web/template/index') ?>
 
 <?= $this->section('content') ?>
-<header class="main-header style-four">
+<?= $this->include('new-web/template/header') ?>
+<!-- <header class="main-header style-four">
     <div class="outer-container">
         <div class="container">
             <div class="main-box clearfix">
@@ -307,7 +308,7 @@
             </ul>
         </div>
     </nav>
-</div>
+</div> -->
 <section class="donate-section elements">
     <div class="pattern-box">
         <div class="pattern-1"><img src="images/icons/shap-28.png" alt=""></div>

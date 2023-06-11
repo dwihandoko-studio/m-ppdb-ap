@@ -46,7 +46,7 @@
                                 <i class="ni ni-single-02"></i>
                                 <span>Profil Saya</span>
                             </a>
-                            <a href="<?= base_url('peserta/user/changepassword') ?>" class="dropdown-item">
+                            <a href="#" class="dropdown-item button-ganti-password">
                                 <i class="ni ni-key-25"></i>
                                 <span>Ganti Password</span>
                             </a>

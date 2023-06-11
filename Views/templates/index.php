@@ -114,6 +114,150 @@
                 }
             })
         });
+
+        $('.button-ganti-password').on('click', function() {
+            const html = '<form id="formGantiPassword" class="form-horizontal form-ganti-password" method="post">' +
+                '<div class="modal-body">' +
+                '<div class="row col-md-12">' +
+                '<div class="col-md-12">' +
+                '<div class="form-group old-password-block">' +
+                '<label class="form-control-label" for="_old_password">Password Lama</label>' +
+                '<input type="password" id="_old_password" name="_old_password" class="form-control" placeholder="Masukkan password lama" onFocus="inputFocus(this);" required>' +
+                '<div class="help-block _old_password"></div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-md-12">' +
+                '<div class="form-group new-password-block">' +
+                '<label class="form-control-label" for="_new_password">Password Baru</label>' +
+                '<input type="password" id="_new_password" name="_new_password" class="form-control" placeholder="Masukkan password baru" onFocus="inputFocus(this);" required>' +
+                '<div class="help-block _new_password"></div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-md-12">' +
+                '<div class="form-group retype-new-password-block">' +
+                '<label class="form-control-label" for="_retype_new_password">Ulangi Password Baru</label>' +
+                '<input type="password" id="_retype_new_password" name="_retype_new_password" class="form-control" placeholder="Masukkan ulangi password baru" onFocus="inputFocus(this);" required>' +
+                '<div class="help-block _retype_new_password"></div>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="modal-footer">' +
+                '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Tutup</button>' +
+                '<button type="button" class="btn btn-outline-primary simpan-ganti-password">Simpan</button>' +
+                '</div>' +
+                '</form>';
+
+            $('#documentModalLabel').html('Ganti Password');
+            $('.documentBodyModal').html(html);
+            $('#documentModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+
+        $('#documentModal').on('click', '.simpan-ganti-password', function(e) {
+            e.preventDefault();
+            const oldPassword = document.getElementsByName('_old_password')[0].value;
+            const newPassword = document.getElementsByName('_new_password')[0].value;
+            const retypeNewPassword = document.getElementsByName('_retype_new_password')[0].value;
+
+            if (oldPassword === "") {
+                $("input#_old_password").css("color", "#dc3545");
+                $("input#_old_password").css("border-color", "#dc3545");
+                $('._old_password').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Isian tidak boleh kosong.</li></ul>');
+            }
+
+            if (newPassword === "") {
+                $("input#_new_password").css("color", "#dc3545");
+                $("input#_new_password").css("border-color", "#dc3545");
+                $('._new_password').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Isian tidak boleh kosong.</li></ul>');
+            }
+
+            if (retypeNewPassword === "") {
+                $("input#_retype_new_password").css("color", "#dc3545");
+                $("input#_retype_new_password").css("border-color", "#dc3545");
+                $('._retype_new_password').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Isian tidak boleh kosong.</li></ul>');
+            }
+
+            if (oldPassword === "" || newPassword === "" || retypeNewPassword === "") {
+                Swal.fire(
+                    'Gagal!',
+                    "Isian tidak boleh kosong.",
+                    'warning'
+                );
+            } else {
+
+                if (newPassword.length < 6) {
+                    $("input#_new_password").css("color", "#dc3545");
+                    $("input#_new_password").css("border-color", "#dc3545");
+                    $('._new_password').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Panjang password minimal 6 karakter.</li></ul>');
+                }
+
+                if (retypeNewPassword.length < 6) {
+                    $("input#_retype_new_password").css("color", "#dc3545");
+                    $("input#_retype_new_password").css("border-color", "#dc3545");
+                    $('._retype_new_password').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Panjang password minimal 6 karakter.</li></ul>');
+                }
+
+                if (newPassword.length < 6 || retypeNewPassword.length < 6) {} else {
+                    if (newPassword !== retypeNewPassword) {
+                        $("input#_retype_new_password").css("color", "#dc3545");
+                        $("input#_retype_new_password").css("border-color", "#dc3545");
+                        $('._retype_new_password').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Password baru dan ulangi password baru tidak sama.</li></ul>');
+                    } else {
+                        $.ajax({
+                            url: "<?= base_url('peserta/user/gantiPassword') ?>",
+                            type: 'POST',
+                            data: {
+                                oldPassword: oldPassword,
+                                newPassword: newPassword,
+                                retypeNewPassword: retypeNewPassword
+                            },
+                            dataType: 'JSON',
+                            beforeSend: function() {
+                                $('.simpan-ganti-password').attr('disabled', 'disabled');
+                                $('div.modal-document-loading').block({
+                                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                                });
+                            },
+                            success: function(msg) {
+                                $('.simpan-ganti-password').attr('disabled', false);
+                                $('div.modal-document-loading').unblock();
+                                if (msg.code != 200) {
+                                    // $('.simpan-ganti-password').attr('disabled', false);
+                                    // $('div.modal-document-loading').unblock();
+                                    Swal.fire(
+                                        'Gagal!',
+                                        msg.message,
+                                        'warning'
+                                    );
+                                } else {
+
+                                    Swal.fire(
+                                        'Berhasil!',
+                                        msg.message,
+                                        'success'
+                                    ).then((valRes) => {
+                                        document.location.href = "<?= current_url(true); ?>";
+                                    })
+                                }
+                            },
+                            error: function() {
+                                $('.simpan-ganti-password').attr('disabled', false);
+                                $('div.modal-document-loading').unblock();
+                                Swal.fire(
+                                    'Gagal!',
+                                    "Trafic sedang penuh, silahkan coba beberapa saat lagi...",
+                                    'warning'
+                                );
+                            }
+                        })
+                    }
+                }
+            }
+        });
     </script>
 
 </body>

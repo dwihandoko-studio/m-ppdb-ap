@@ -146,7 +146,11 @@
                     </div>
                     <div class="card-footer">
                         <?php if (!(isset($error))) { ?>
-                            <button type="button" onclick="actionDaftarSimpan(this);" class="btn btn-primary btn-lg btn-block _daftar_simpan" id="_daftar_simpan">DAFTAR DAN SIMPAN</button>
+                            <?php if (isset($result)) { ?>
+                                <?php if (count($result) > 0) { ?>
+                                    <button type="button" onclick="actionDaftarSimpan(this);" class="btn btn-primary btn-lg btn-block _daftar_simpan" id="_daftar_simpan">DAFTAR DAN SIMPAN</button>
+                                <?php } ?>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </div>

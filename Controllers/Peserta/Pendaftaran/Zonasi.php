@@ -248,9 +248,6 @@ class Zonasi extends BaseController
 
         $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
 
-        var_dump($getCurrentUser);
-        die;
-
         $dataCurrentUser = json_decode($getCurrentUser->details);
         if ((int)$dataCurrentUser->tingkat_pendidikan == 6) {
             $andWhere = "a.bentuk_pendidikan_id IN (6,10,31,32,33,35,36)";
@@ -283,6 +280,11 @@ class Zonasi extends BaseController
         $data['countData'] = $this->_db->table('v_tb_sekolah_zonasi a')->where($where)->countAllResults();
         // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
         $data['usernya'] = $getCurrentUser;
+
+
+        var_dump($data);
+        die;
+
 
         return view('peserta/pendaftaran/zonasi/index-new', $data);
     }

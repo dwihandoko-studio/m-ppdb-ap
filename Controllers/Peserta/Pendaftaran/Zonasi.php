@@ -229,6 +229,9 @@ class Zonasi extends BaseController
         $dataLib = new Datalib();
         $canDaftar = $dataLib->canRegister();
 
+        var_dump($canDaftar);
+        die;
+
         if ($canDaftar->code !== 200) {
             $data['error'] = $canDaftar->message;
         }

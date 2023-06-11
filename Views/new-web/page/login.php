@@ -130,14 +130,13 @@
                             <div class="btn-box" style="margin-right: 20px;">
                                 <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
                             </div>
-                            <p style="color: #fff; margin-right: 20px;">Belum punya akun?</p><br><br>
+                            <center>
+                                <p style="color: #fff; margin-right: 20px;">Belum punya akun?</p>
+                            </center>
                             <div class="btn-box">
                                 <a href="<?= base_url('web/register') ?>" class="donate-box-btn">DAFTAR</a>
                             </div>
                         </div>
-                        <center>
-                        </center>
-
                     </div>
                 </div>
             </div>

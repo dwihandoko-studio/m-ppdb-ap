@@ -127,7 +127,8 @@
                             </div>
                         </div>
                         <div class="btn-box">
-                            <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
+                            <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button> &nbsp;&nbsp;
+                            <a href="<?= base_url('web/register') ?>" class="donate-box-btn">REGISTER</a>
                         </div>
                     </div>
                 </div>

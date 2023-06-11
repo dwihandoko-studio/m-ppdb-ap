@@ -130,7 +130,7 @@
                             <button onclick="submitLoginButton(this)" class="donate-box-btn _submit_login_button" id="_submit_login_button">MASUK</button>
                         </div>
                         <center>
-                            <p style="color: #fff">Belum punya akun?</p><br><br><a href="<?= base_url('web/register') ?>" class="donate-box-btn">DAFTAR</a>
+                            <p style="color: #fff">Belum punya akun?</p><br><br><a style="color: #00fff2;" href="<?= base_url('web/register') ?>" class="donate-box-btn">DAFTAR</a>
                         </center>
 
                     </div>

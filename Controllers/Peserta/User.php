@@ -141,6 +141,26 @@ class User extends BaseController
         return json_encode($response);
     }
 
+    public function changepassword()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $data['user'] = $user->data;
+        $data['details'] = json_decode($user->data->details);
+        $data['title'] = 'Ganti Password';
+        $data['page'] = "Ganti Password";
+        $data['file_upload'] = FALSE;
+        $data['datatables'] = false;
+
+        return view('peserta/profile', $data);
+    }
+
     public function gantiPassword()
     {
         if ($this->request->getMethod() != 'post') {

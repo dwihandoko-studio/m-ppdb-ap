@@ -46,6 +46,10 @@
                                 <i class="ni ni-single-02"></i>
                                 <span>Profil Saya</span>
                             </a>
+                            <a href="<?= base_url('peserta/user/changepassword') ?>" class="dropdown-item">
+                                <i class="ni ni-key-25"></i>
+                                <span>Ganti Password</span>
+                            </a>
                         <?php endif; ?>
                         <!-- <a href="#!" class="dropdown-item">
                                     <i class="ni ni-settings-gear-65"></i>

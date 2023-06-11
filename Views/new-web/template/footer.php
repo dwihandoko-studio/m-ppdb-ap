@@ -11,8 +11,8 @@
                         <div class="about-widget footer-widget">
                             <figure class="footer-logo"><a href="<?= base_url() ?>"><img src="<?= base_url('themes') ?>/images/footer-logo-2.png" alt=""></a></figure>
                             <div class="text">Layanan Kegiatan Penerimaan Peserta Didik Baru Dalam Jaringan Tahun Ajaran 2023/2024 Kabupaten Pesawaran.</div>
-                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SMP(+62) 821-1183-7685</a></h2>
-                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:5184575182">CS SD(+62) 821-1183-7685</a></h2>
+                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:081398091467">CS SMP(+62) 813-9809-1467</a></h2>
+                            <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:081398091467">CS SD(+62) 813-9809-1467</a></h2>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
@@ -68,9 +68,9 @@
         <div class="container clearfix">
             <div class="copyright pull-left">&copy; 2023 PPDB Online - All rights reserved. Version 2.0. Powered By: <a href="https://kntecline.id">KNTechline</a></div>
             <ul class="footer-nav pull-right">
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Legal</a></li>
+                <li><a href="https://www.termsofservicegenerator.net/live.php?token=St80uNFSbFNRgRjcnXhtutyxJ1qSctlQ">Terms of Service</a></li>
+                <li><a href="https://www.privacypolicyonline.com/live.php?token=bo2AQ2VGFnBdr04zUU4v5CbOZfQYonnb">Privacy Policy</a></li>
+                <li><a href="https://www.disclaimergenerator.net/live.php?token=n0x1rUUvP0M8V65hyMUz2NYMyUB5XjVV">Legal</a></li>
             </ul>
         </div>
     </div>

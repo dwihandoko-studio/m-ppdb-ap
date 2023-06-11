@@ -2685,7 +2685,7 @@ class Auth extends BaseController
 
             $idsekolah = "4a1512a8-b6ac-11ec-985c-0242ac120002";
             $aktive = "1";
-            $kodewilayah = "000100";
+            $kodewilayah = "120909";
             $tingkatpendidikan = "1";
             $tglLahirReplace = str_replace("-", "", $tgl_lahir);
             $tglLahirConvert = substr($tglLahirReplace, 2, 8);
@@ -2765,8 +2765,8 @@ class Auth extends BaseController
                     $data['email'] = $email;
                     $data['sekolah_asal'] = $idsekolah;
                     $data['npsn_asal'] = '10000001';
-                    $data['latitude'] = '-5.050143';
-                    $data['longitude'] = '105.286190';
+                    $data['latitude'] = '-5.456770';
+                    $data['longitude'] = '105.086300';
                     $data['peserta_didik_id'] = $uuidNisn;
                     $data['details'] = json_encode($detailSiswaD);
 

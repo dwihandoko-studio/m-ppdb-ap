@@ -603,6 +603,7 @@ class User extends BaseController
             $rules = array_merge($rules, $lampiran);
         }
 
+
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;

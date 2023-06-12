@@ -2,7 +2,7 @@
     <div class="anim-icons">
         <div class="icon icon-1"><img src="<?= base_url('themes') ?>/images/icons/pattern-21.png" alt=""></div>
     </div>
-    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/footer-bg-5.png);"></div>
+    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/footer-bg-5.webp);"></div>
     <div class="footer-top">
         <div class="container">
             <div class="widget-section">

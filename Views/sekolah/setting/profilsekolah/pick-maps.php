@@ -17,6 +17,7 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
+                <label for="_aaaaa" class="form-control-label">&nbsp;</label>
                 <button type="button" onclick="onChangeValueLatLongFromInput()" class="btn btn-success">SET Koordinat</button>
             </div>
         </div>

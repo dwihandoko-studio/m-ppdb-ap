@@ -353,6 +353,19 @@
         });
     }
 
+    function changeValueLatLongFromInput(latiput, longiput) {
+        map.removeLayer(marker);
+        // map.off('click', onClick); //turn off listener for map click
+        marker = L.marker({
+            lat: latiput,
+            lng: longiput
+        }, {
+            draggable: true
+        }).addTo(map);
+        document.getElementById('_lat').value = latiput;
+        document.getElementById('_long').value = longiput;
+    }
+
     function takedKoordinat() {
         const latitu = document.getElementsByName('_lat')[0].value;
         const longitu = document.getElementsByName('_long')[0].value;

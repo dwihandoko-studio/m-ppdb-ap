@@ -258,8 +258,8 @@
         $('.action-location-icon').css('color', '#adb5bd');
     }
 
-    var mapEdit;
-    var markerEdit;
+    var map;
+    var marker;
 
     function pickCoordinat() {
         const lat = document.getElementsByName('_latitude')[0].value;
@@ -295,16 +295,16 @@
                         keyboard: false
                     }, 'show');
 
-                    var map = L.map("map_inits").setView([lat, long], 12);
+                    map = L.map("map_inits").setView([lat, long], 12);
                     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | Supported By <a href="https://kntechline.id">Kntechline.id</a>'
                     }).addTo(map);
 
-                    mapEdit = map;
+                    // mapEdit = map;
 
                     var lati = lat;
                     var longi = long;
-                    var marker;
+                    // var marker;
 
                     marker = L.marker({
                         lat: lat,
@@ -359,9 +359,9 @@
     }
 
     function changeValueLatLongFromInput(latiput, longiput) {
-        mapEdit.removeLayer(marker);
+        map.removeLayer(marker);
         // map.off('click', onClick); //turn off listener for map click
-        markerEdit = L.marker({
+        marker = L.marker({
             lat: latiput,
             lng: longiput
         }, {

@@ -340,6 +340,19 @@
                         $("h6#title_map").css("display", "block");
                     }, 1000);
 
+                    function changeValueLatLongFromInput(latiput, longiput) {
+                        map.removeLayer(marker);
+                        // map.off('click', onClick); //turn off listener for map click
+                        marker = L.marker({
+                            lat: latiput,
+                            lng: longiput
+                        }, {
+                            draggable: true
+                        }).addTo(map);
+                        document.getElementById('_lat').value = latiput;
+                        document.getElementById('_long').value = longiput;
+                    }
+
                 }
             },
             error: function() {
@@ -351,19 +364,6 @@
                 );
             }
         });
-    }
-
-    function changeValueLatLongFromInput(latiput, longiput) {
-        map.removeLayer(marker);
-        // map.off('click', onClick); //turn off listener for map click
-        marker = L.marker({
-            lat: latiput,
-            lng: longiput
-        }, {
-            draggable: true
-        }).addTo(map);
-        document.getElementById('_lat').value = latiput;
-        document.getElementById('_long').value = longiput;
     }
 
     function takedKoordinat() {

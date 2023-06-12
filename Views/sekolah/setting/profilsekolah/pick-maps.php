@@ -25,20 +25,20 @@
     <button type="button" onclick="takedKoordinat()" class="btn btn-primary">Simpan Koordinat</button>
 </div>
 <script>
-    function onChangeValueLatLongFromInput() {
-        const after_change_lat = document.getElementsByName('_lat')[0].value;
-        const after_change_long = document.getElementsByName('_long')[0].value;
+    // function onChangeValueLatLongFromInput() {
+    //     const after_change_lat = document.getElementsByName('_lat')[0].value;
+    //     const after_change_long = document.getElementsByName('_long')[0].value;
 
-        const latitudeFix = parseFloat(after_change_lat);
-        const longitudeFix = parseFloat(after_change_long);
-        if (!isNaN(latitudeFix) && !isNaN(longitudeFix)) {
-            changeValueLatLongFromInput(latitudeFix, longitudeFix);
-        } else {
-            Swal.fire(
-                'Warning!',
-                "Nilai yang anda inputkan tidak valid.",
-                'warning'
-            );
-        }
-    }
+    //     const latitudeFix = parseFloat(after_change_lat);
+    //     const longitudeFix = parseFloat(after_change_long);
+    //     if (!isNaN(latitudeFix) && !isNaN(longitudeFix)) {
+    //         changeValueLatLongFromInput(latitudeFix, longitudeFix);
+    //     } else {
+    //         Swal.fire(
+    //             'Warning!',
+    //             "Nilai yang anda inputkan tidak valid.",
+    //             'warning'
+    //         );
+    //     }
+    // }
 </script>

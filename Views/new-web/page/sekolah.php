@@ -14,7 +14,7 @@
                                     <div class="service-block-three wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                         <div class="inner-box">
                                             <div class="icon-box">
-                                                <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-bg-1.png);"></div>
+                                                <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-bg-1.webp);"></div>
                                                 <i class="fa fa-school"></i>
                                             </div>
                                             <h3><a href="<?= base_url('web/profilsekolah/detail') . '?id=' . $v->id ?>"><?= $v->nama ?></a></h3>
@@ -28,7 +28,7 @@
                                     <div class="service-block-three wow fadeInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                         <div class="inner-box">
                                             <div class="icon-box">
-                                                <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-bg-3.png);"></div>
+                                                <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/icon-bg-3.webp);"></div>
                                                 <i class="fa fa-school"></i>
                                             </div>
                                             <h3><a href="<?= base_url('web/profilsekolah/detail') . '?id=' . $v->id ?>"><?= $v->nama ?></a></h3>

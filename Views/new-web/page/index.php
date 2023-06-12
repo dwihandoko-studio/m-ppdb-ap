@@ -153,7 +153,7 @@
         <div class="row">
             <div class="col-lg-7 col-md-12 col-sm-12 image-column wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                 <div id="image_block_42">
-                    <figure class="image-box js-tilt"><img src="<?= base_url('themes') ?>/images/resource/vactor-image-10.png" alt=""></figure>
+                    <figure class="image-box js-tilt"><img src="<?= base_url('themes') ?>/images/resource/vactor-image-10.webp" alt=""></figure>
                 </div>
             </div>
             <div class="col-lg-5 col-md-12 col-sm-12 content-column">

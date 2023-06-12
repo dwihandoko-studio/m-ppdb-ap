@@ -50,7 +50,22 @@
                                             <div class="help-block _nip_ks"></div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group _koordinat-block">
+                                            <label for="_koordinat" class="form-control-label">Koordinat Sekolah</label>
+                                            <div class="input-group input-group-merge">
+                                                <input type="hidden" name="_latitude" id="_latitude" value="<?= (isset($sekolah)) ? $sekolah->latitude : '' ?>">
+                                                <input type="hidden" name="_longitude" id="_longitude" value="<?= (isset($sekolah)) ? $sekolah->longitude : '' ?>">
+                                                <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?= (isset($sekolah)) ? '(' . $sekolah->latitude . ';' . $sekolah->longitude . ')' : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
+                                                    <span class="input-group-text action-location-icon" style="background-color: transparent;"><i class="fas fa-map-marker"></i></span>
+                                                </div>
+                                            </div>
 
+
+                                            <div class="help-block _koordinat"></div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <hr style="margin-top: 30px;">
@@ -116,11 +131,9 @@
 
 <?= $this->section('scriptBottom'); ?>
 <script src="<?= base_url('new-assets/assets/js'); ?>/jquery-block-ui.js"></script>
-<!--<script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>-->
-<script src="<?= base_url('new-assets') ?>/assets/vendor/datatables/datatables.min.js"></script>
 <script src="<?= base_url('new-assets') ?>/assets/vendor/moment.min.js"></script>
-<script src="<?= base_url('new-assets') ?>/assets/vendor/bootstrap-datetimepicker.js"></script>
-<script src="<?= base_url('new-assets'); ?>/assets/vendor/select2/dist/js/select2.min.js"></script>
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyChdWD-7HQXG7sI1tqbQ43WJuMx7TJ7uuY&sensor=false&libraries=places'></script>
+<script src="<?= base_url('new-assets'); ?>/js/locationpicker.jquery.min.js"></script>
 
 <script>
     function initSelect2Panel(event) {
@@ -232,174 +245,123 @@
         return document.getElementById(id);
     }
 
-    function onChangeProvinsi(event) {
-        const color = $(event).attr('name');
-        $(event).removeAttr('style');
-        $('.' + color).html('');
-        // $( "label#"+color ).css("color", "#555");
 
-        if (event.value !== "") {
-            $.ajax({
-                url: BASE_URL + '/sekolah/referensi/getKabupaten',
-                type: 'POST',
-                data: {
-                    id: event.value,
-                },
-                dataType: 'JSON',
-                beforeSend: function() {
-                    $('.kabupaten').html('<option value="" selected>--Pilih Provinsi Dulu--</option>');
-                    $('.kecamatan').html('<option value="" selected>--Pilih Kabupaten Dulu--</option>');
-                    $('.kelurahan').html('<option value="" selected>--Pilih Kecamatan Dulu--</option>');
-                    $('div._kabupaten-block').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                    $('div._kecamatan-block').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                    $('div._kelurahan-block').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                },
-                success: function(msg) {
-                    // console.log(msg);
-                    $('div._kabupaten-block').unblock();
-                    $('div._kecamatan-block').unblock();
-                    $('div._kelurahan-block').unblock();
-                    // const msg = JSON.parse(resMsg);
-                    // const msg = JSON.parse(JSON.stringify(resMsg));
-                    if (msg.code == 200) {
-                        let html = "";
-                        html += '<option value="">--Pilih Kabupaten--</option>';
-                        if (msg.data.length > 0) {
-                            for (let step = 0; step < msg.data.length; step++) {
-                                html += '<option value="';
-                                html += msg.data[step].id;
-                                html += '">';
-                                html += msg.data[step].nama;
-                                html += '</option>';
-                            }
-
-                        }
-
-                        $('.kabupaten').html(html);
-                    }
-                },
-                error: function(data) {
-                    console.log(data);
-                    $('div._kabupaten-block').unblock();
-                    $('div._kecamatan-block').unblock();
-                    $('div._kelurahan-block').unblock();
-                }
-            })
-        }
+    function actionMouseHoverLocation(event) {
+        event.style.color = '#fff';
+        event.style.background = '#0A48B3';
+        $('.action-location-icon').css('color', '#fff');
     }
 
-    function onChangeKabupaten(event) {
-        const color = $(event).attr('name');
-        $(event).removeAttr('style');
-        $('.' + color).html('');
-        // $( "label#"+color ).css("color", "#555");
-
-        if (event.value !== "") {
-            $.ajax({
-                url: BASE_URL + '/sekolah/referensi/getKecamatan',
-                type: 'POST',
-                data: {
-                    id: event.value,
-                },
-                dataType: 'JSON',
-                beforeSend: function() {
-                    $('.kecamatan').html('<option value="" selected>--Pilih Kabupaten Dulu--</option>');
-                    $('.kelurahan').html('<option value="" selected>--Pilih Kecamatan Dulu--</option>');
-                    $('div._kecamatan-block').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                    $('div._kelurahan-block').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                },
-                success: function(msg) {
-                    // console.log(msg);
-                    $('div._kecamatan-block').unblock();
-                    $('div._kelurahan-block').unblock();
-                    if (msg.code == 200) {
-                        let html = "";
-                        html += '<option value="">--Pilih Kecamatan--</option>';
-                        if (msg.data.length > 0) {
-                            for (let step = 0; step < msg.data.length; step++) {
-                                html += '<option value="';
-                                html += msg.data[step].id;
-                                html += '">';
-                                html += msg.data[step].nama;
-                                html += '</option>';
-                            }
-
-                        }
-
-                        $('.kecamatan').html(html);
-                    }
-                },
-                error: function(data) {
-                    console.log(data);
-                    $('div._kecamatan-block').unblock();
-                    $('div._kelurahan-block').unblock();
-                }
-            })
-        }
+    function actionMouseOutHoverLocation(event) {
+        event.style.color = '#adb5bd';
+        event.style.background = '#fff';
+        $('.action-location-icon').css('color', '#adb5bd');
     }
 
-    function onChangeKecamatan(event) {
-        const color = $(event).attr('name');
-        $(event).removeAttr('style');
-        $('.' + color).html('');
-        // $( "label#"+color ).css("color", "#555");
+    function pickCoordinat() {
+        const lat = document.getElementsByName('_latitude')[0].value;
+        const long = document.getElementsByName('_longitude')[0].value;
 
-        if (event.value !== "") {
-            $.ajax({
-                url: BASE_URL + '/sekolah/referensi/getKelurahan',
-                type: 'POST',
-                data: {
-                    id: event.value,
-                },
-                dataType: 'JSON',
-                beforeSend: function() {
-                    $('.kelurahan').html('<option value="" selected>--Pilih Kecamatan Dulu--</option>');
-                    $('div._kelurahan-block').block({
-                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    });
-                },
-                success: function(msg) {
-                    // console.log(msg);
-                    $('div._kelurahan-block').unblock();
-                    if (msg.code == 200) {
-                        let html = "";
-                        html += '<option value="">--Pilih Kelurahan--</option>';
-                        if (msg.data.length > 0) {
-                            for (let step = 0; step < msg.data.length; step++) {
-                                html += '<option value="';
-                                html += msg.data[step].id;
-                                html += '">';
-                                html += msg.data[step].nama;
-                                html += '</option>';
-                            }
+        $.ajax({
+            url: "<?= base_url('sekolah/setting/profilsekolah/location') ?>",
+            type: 'POST',
+            data: {
+                lat: lat,
+                long: long,
+            },
+            dataType: 'JSON',
+            beforeSend: function() {
+                $('div.main-content').block({
+                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                });
+            },
+            success: function(resul) {
+                $('div.main-content').unblock();
 
-                        }
+                if (resul.code !== 200) {
+                    Swal.fire(
+                        'Failed!',
+                        resul.message,
+                        'warning'
+                    );
+                } else {
+                    $('#contentModalLabel').html('AMBIL LOKASI');
+                    $('.contentBodyModal').html(resul.data);
+                    $('#contentModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    }, 'show');
 
-                        $('.kelurahan').html(html);
-                    }
-                },
-                error: function(data) {
-                    console.log(data);
-                    $('div._kelurahan-block').unblock();
+                    var map = L.map("map_inits").setView([lat, long], 12);
+                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | Supported By <a href="https://kntechline.id">Kntechline.id</a>'
+                    }).addTo(map);
+
+                    var lati = lat;
+                    var longi = long;
+                    var marker;
+
+                    marker = L.marker({
+                        lat: lat,
+                        lng: long
+                    }, {
+                        draggable: true
+                    }).addTo(map);
+                    document.getElementById('_lat').value = lati;
+                    document.getElementById('_long').value = longi;
+
+                    var onDrag = function(e) {
+                        var latlng = marker.getLatLng();
+                        lati = latlng.lat;
+                        longi = latlng.lng;
+                        document.getElementById('_lat').value = latlng.lat;
+                        document.getElementById('_long').value = latlng.lng;
+                    };
+
+                    var onClick = function(e) {
+                        map.removeLayer(marker);
+                        // map.off('click', onClick); //turn off listener for map click
+                        marker = L.marker(e.latlng, {
+                            draggable: true
+                        }).addTo(map);
+                        lati = e.latlng.lat;
+                        longi = e.latlng.lng;
+                        document.getElementById('_lat').value = lati;
+                        document.getElementById('_long').value = longi;
+
+                        // marker.on('drag', onDrag);
+                    };
+                    marker.on('drag', onDrag);
+                    map.on('click', onClick);
+
+                    setTimeout(function() {
+                        map.invalidateSize();
+                        // console.log("maps opened");
+                        $("h6#title_map").css("display", "block");
+                    }, 1000);
+
                 }
-            })
-        }
+            },
+            error: function() {
+                $('div.main-content').unblock();
+                Swal.fire(
+                    'Failed!',
+                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                    'warning'
+                );
+            }
+        });
     }
 
-    function onChangeKelurahan(event) {
-        const color = $(event).attr('name');
-        $(event).removeAttr('style');
-        $('.' + color).html('');
+    function takedKoordinat() {
+        const latitu = document.getElementsByName('_lat')[0].value;
+        const longitu = document.getElementsByName('_long')[0].value;
+
+        document.getElementById('_latitude').value = latitu;
+        document.getElementById('_longitude').value = longitu;
+        document.getElementById('_koordinat').value = "(" + latitu + "," + longitu + ")";
+
+        $('#contentModal').modal('hide');
     }
 
 
@@ -460,6 +422,9 @@
     $('#_kirim_permohonan').on('click', function() {
         const nama_ks = document.getElementsByName('_nama_ks')[0].value;
         const nip_ks = document.getElementsByName('_nip_ks')[0].value;
+        const koordinat = document.getElementsByName('_koordinat')[0].value;
+        const latitude = document.getElementsByName('_latitude')[0].value;
+        const longitude = document.getElementsByName('_longitude')[0].value;
 
         if (nama_ks === "") {
             $("input#_nama_ks").css("color", "#dc3545");
@@ -477,6 +442,8 @@
         const formUpload = new FormData();
         formUpload.append('nama_ks', nama_ks);
         formUpload.append('nip_ks', nip_ks);
+        formUpload.append('latitude', latitude);
+        formUpload.append('longitude', longitude);
 
         $.ajax({
             xhr: function() {
@@ -572,9 +539,18 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptTop'); ?>
-<!--<link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">-->
-<link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/select2/dist/css/select2.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
 <style>
+    #map_inits {
+        width: 100%;
+        height: 400px;
+    }
+
+    .leaflet-tooltip {
+        pointer-events: auto
+    }
+
     .preview-image-upload {
         position: relative;
     }

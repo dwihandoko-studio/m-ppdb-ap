@@ -221,6 +221,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptBottom'); ?>
+<script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 <script>
     function actionLoginButton(event) {
         $('#login-popup').addClass('popup-visible');
@@ -732,4 +733,5 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptTop'); ?>
+<link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <?= $this->endSection(); ?>

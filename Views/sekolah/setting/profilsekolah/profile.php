@@ -258,6 +258,8 @@
         $('.action-location-icon').css('color', '#adb5bd');
     }
 
+    var mapEdit;
+
     function pickCoordinat() {
         const lat = document.getElementsByName('_latitude')[0].value;
         const long = document.getElementsByName('_longitude')[0].value;
@@ -296,6 +298,8 @@
                     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | Supported By <a href="https://kntechline.id">Kntechline.id</a>'
                     }).addTo(map);
+
+                    mapEdit = map;
 
                     var lati = lat;
                     var longi = long;
@@ -340,36 +344,6 @@
                         $("h6#title_map").css("display", "block");
                     }, 1000);
 
-                    function changeValueLatLongFromInput(latiput, longiput) {
-                        map.removeLayer(marker);
-                        // map.off('click', onClick); //turn off listener for map click
-                        marker = L.marker({
-                            lat: latiput,
-                            lng: longiput
-                        }, {
-                            draggable: true
-                        }).addTo(map);
-                        document.getElementById('_lat').value = latiput;
-                        document.getElementById('_long').value = longiput;
-                    }
-
-                    function onChangeValueLatLongFromInput() {
-                        const after_change_lat = document.getElementsByName('_lat')[0].value;
-                        const after_change_long = document.getElementsByName('_long')[0].value;
-
-                        const latitudeFix = parseFloat(after_change_lat);
-                        const longitudeFix = parseFloat(after_change_long);
-                        if (!isNaN(latitudeFix) && !isNaN(longitudeFix)) {
-                            changeValueLatLongFromInput(latitudeFix, longitudeFix);
-                        } else {
-                            Swal.fire(
-                                'Warning!',
-                                "Nilai yang anda inputkan tidak valid.",
-                                'warning'
-                            );
-                        }
-                    }
-
                 }
             },
             error: function() {
@@ -381,6 +355,36 @@
                 );
             }
         });
+    }
+
+    function changeValueLatLongFromInput(latiput, longiput) {
+        mapEdit.removeLayer(marker);
+        // map.off('click', onClick); //turn off listener for map click
+        marker = L.marker({
+            lat: latiput,
+            lng: longiput
+        }, {
+            draggable: true
+        }).addTo(map);
+        document.getElementById('_lat').value = latiput;
+        document.getElementById('_long').value = longiput;
+    }
+
+    function onChangeValueLatLongFromInput() {
+        const after_change_lat = document.getElementsByName('_lat')[0].value;
+        const after_change_long = document.getElementsByName('_long')[0].value;
+
+        const latitudeFix = parseFloat(after_change_lat);
+        const longitudeFix = parseFloat(after_change_long);
+        if (!isNaN(latitudeFix) && !isNaN(longitudeFix)) {
+            changeValueLatLongFromInput(latitudeFix, longitudeFix);
+        } else {
+            Swal.fire(
+                'Warning!',
+                "Nilai yang anda inputkan tidak valid.",
+                'warning'
+            );
+        }
     }
 
     function takedKoordinat() {

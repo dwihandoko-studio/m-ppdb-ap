@@ -178,8 +178,8 @@
                 <div id="image_block_16">
                     <div class="image-box">
                         <div class="bg-layer  wow slideInLeft" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url(<?= base_url('themes') ?>/images/icons/image-shap-6.png);"></div>
-                        <figure class="image image-1 wow slideInLeft" data-wow-delay="300ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/phone-9.png" alt=""></figure>
-                        <figure class="image image-2 wow slideInLeft" data-wow-delay="600ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/phone-10.png" alt=""></figure>
+                        <figure class="image image-1 wow slideInLeft" data-wow-delay="300ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/phone-9.webp" alt=""></figure>
+                        <figure class="image image-2 wow slideInLeft" data-wow-delay="600ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/phone-10.webp" alt=""></figure>
                     </div>
                 </div>
             </div>

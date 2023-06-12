@@ -6,7 +6,7 @@
         <div class="container">
             <div class="main-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="<?= base_url() ?>"><img src="<?= base_url('uploads/logo.png') ?>" alt=""></a></figure>
+                    <figure class="logo"><a href="<?= base_url() ?>"><img src="<?= base_url('uploads/logo.webp') ?>" alt=""></a></figure>
                 </div>
                 <div class="menu-area pull-right clearfix">
                     <div class="mobile-nav-toggler">
@@ -73,7 +73,7 @@
 
     <div class="sticky-header">
         <div class="container clearfix">
-            <figure class="logo-box"><a href="<?= base_url() ?>"><img src="<?= base_url('themes') ?>/images/small-logo.png" alt=""></a></figure>
+            <figure class="logo-box"><a href="<?= base_url() ?>"><img src="<?= base_url('themes') ?>/images/small-logo.webp" alt=""></a></figure>
             <div class="menu-area">
                 <nav class="main-menu clearfix">
                 </nav>
@@ -86,7 +86,7 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
 
     <nav class="menu-box">
-        <div class="nav-logo"><a href="<?= base_url() ?>"><img src="<?= base_url('uploads/logo.png') ?>" alt="" title=""></a></div>
+        <div class="nav-logo"><a href="<?= base_url() ?>"><img src="<?= base_url('uploads/logo.webp') ?>" alt="" title=""></a></div>
         <div class="menu-outer"></div>
         <div class="contact-info">
             <h4>Contact Info</h4>

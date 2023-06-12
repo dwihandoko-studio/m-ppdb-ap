@@ -63,14 +63,14 @@ class Zonasi extends BaseController
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </button>
-                            <button onclick="actionEdit(\'' . $list->id . '\')" type="button" class="dropdown-item">
+                            <!--<button onclick="actionEdit(\'' . $list->id . '\')" type="button" class="dropdown-item">
                                 <i class="ni ni-ruler-pencil"></i>
                                 <span>Edit</span>
-                            </button>
-                            <button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
+                            </button> -->
+                            <!--<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
                                 <i class="fa fa-trash"></i>
                                 <span>Hapus</span>
-                            </button>
+                            </button>-->
                         </div>
                     </div>';
                             $row[] = $action;
@@ -86,7 +86,7 @@ class Zonasi extends BaseController
                             // $row[] = $no;
 
                             // $row[] = $list->namaDusun;
-                            $row[] = $list->namaKelurahan;
+                            // $row[] = $list->namaKelurahan;
                             $row[] = $list->namaKecamatan;
                             $row[] = $list->namaKabupaten;
                             $row[] = $list->namaProvinsi;
@@ -165,7 +165,7 @@ class Zonasi extends BaseController
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
-        
+
         $jwt = get_cookie('jwt');
         $token_jwt = getenv('token_jwt.default.key');
         if ($jwt) {
@@ -193,10 +193,10 @@ class Zonasi extends BaseController
                         $response->message = "Sekolah anda belum di set oleh admin dinas. Silahkan menghubungi admin dinas.";
                         return json_encode($response);
                     }
-                    
+
                     $dataLib = new Datalib();
                     $canDaftar = $dataLib->canSetting();
-            
+
                     if ($canDaftar->code !== 200) {
                         return json_encode($canDaftar);
                     }
@@ -209,7 +209,7 @@ class Zonasi extends BaseController
                         $response->message = "Pengajuan Untuk Pemetaan Zonasi Telah Diverifikasi Dan Dikunci. Silahkan Hubungi Admin PPDB Dinas, Apabila Data Zonasi Sekolah Anda Masih Belum Sesuai Dengan Ketentuan Yang Telah Ditetapkan.";
                         return json_encode($response);
                     }
-                    
+
                     $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
                     $response = new \stdClass;
                     $response->code = 200;
@@ -279,7 +279,7 @@ class Zonasi extends BaseController
                             ->select("a.*, b.bentuk_pendidikan_id")
                             ->join('ref_sekolah b', 'a.sekolah_id = b.id', 'left')
                             ->where('a.id', $userId)->get()->getRowObject();
-    
+
                         if (!$sekolahId) {
                             $response = new \stdClass;
                             $response->code = 400;
@@ -292,25 +292,25 @@ class Zonasi extends BaseController
                             $response->message = "Sekolah anda belum di set oleh admin dinas. Silahkan menghubungi admin dinas.";
                             return json_encode($response);
                         }
-                        
+
                         $dataLib = new Datalib();
                         $canDaftar = $dataLib->canSetting();
-                
+
                         if ($canDaftar->code !== 200) {
                             return json_encode($canDaftar);
                         }
-    
+
                         $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $sekolahId->sekolah_id, 'is_locked' => 1])->countAllResults();
-    
+
                         if ($cekData > 0) {
                             $response = new \stdClass;
                             $response->code = 400;
                             $response->message = "Pengajuan Untuk Pemetaan Zonasi Telah Diverifikasi Dan Dikunci. Silahkan Hubungi Admin PPDB Dinas, Apabila Data Zonasi Sekolah Anda Masih Belum Sesuai Dengan Ketentuan Yang Telah Ditetapkan.";
                             return json_encode($response);
                         }
-                        
+
                         $id = htmlspecialchars($this->request->getVar('id'), true);
-            
+
                         $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan";
                         $current = $this->_db->table('_setting_zonasi_tb a')
                             ->select($select)
@@ -320,7 +320,7 @@ class Zonasi extends BaseController
                             ->join('ref_kelurahan e', 'a.kelurahan = e.id', 'LEFT')
                             // ->join('ref_dusun f', 'a.dusun = f.id', 'LEFT')
                             ->where('a.id', $id)->get()->getRowObject();
-            
+
                         if ($current) {
                             $data['data'] = $current;
                             $data['provinsis'] = $this->_db->table('ref_provinsi')->where("id != '350000'")->orderBy('nama', 'asc')->get()->getResult();

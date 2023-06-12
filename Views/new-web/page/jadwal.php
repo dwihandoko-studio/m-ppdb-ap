@@ -15,7 +15,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 pricing-column">
                             <div class="pricing-block-one">
                                 <div class="pricing-table">
-                                    <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-1.png" alt=""></figure>
+                                    <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-1.webp" alt=""></figure>
                                     <div class="table-header">
                                         <h3 class="title" style="padding: 10px 15px;">Jalur</h3>
                                         <h3 class="price" style="font-size: 26px; padding-top: 6px;">AFIRMASI</span></h3>
@@ -55,7 +55,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 pricing-column">
                             <div class="pricing-block-one">
                                 <div class="pricing-table">
-                                    <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-2.png" alt=""></figure>
+                                    <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-2.webp" alt=""></figure>
                                     <div class="table-header">
                                         <h3 class="title" style="padding: 10px 15px;">Jalur</h3>
                                         <h2 class="price" style="font-size: 26px; padding-top: 6px;">ZONASI</span></h2>
@@ -95,7 +95,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 pricing-column">
                             <div class="pricing-block-one">
                                 <div class="pricing-table">
-                                    <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-3.png" alt=""></figure>
+                                    <figure class="image"><img src="<?= base_url('themes') ?>/images/icons/price-icon-3.webp" alt=""></figure>
                                     <div class="table-header">
                                         <h3 class="title" style="padding: 10px 15px;">Jalur</h3>
                                         <h2 class="price" style="font-size: 26px; padding-top: 6px;">PRESTASI DAN MUTASI</span></h2>

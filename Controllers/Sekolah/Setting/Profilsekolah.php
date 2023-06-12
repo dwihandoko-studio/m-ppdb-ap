@@ -38,6 +38,7 @@ class Profilsekolah extends BaseController
         $data['kabupatens'] = $this->_db->table('ref_kabupaten')->where('id_provinsi', $user->data->provinsi)->orderBy('nama', 'asc')->get()->getResult();
         $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', $user->data->kabupaten)->orderBy('nama', 'asc')->get()->getResult();
         $data['kelurahans'] = $this->_db->table('ref_kelurahan')->where('id_kecamatan', $user->data->kecamatan)->orderBy('nama', 'asc')->get()->getResult();
+        $data['sekolah'] = $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->get()->getRowObject();
 
         $data['page'] = "Dashboard";
         $data['file_upload'] = FALSE;
@@ -62,6 +63,7 @@ class Profilsekolah extends BaseController
 
         $builder = $this->_db->table('_ref_profil_sekolah');
         $data['ks'] = $builder->where('id', $user->data->sekolah_id)->get()->getRowObject();
+        $data['sekolah'] = $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->get()->getRowObject();
         // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
         // $data['kabupatens'] = $this->_db->table('ref_kabupaten')->where('id_provinsi', $user->data->provinsi)->orderBy('nama', 'asc')->get()->getResult();
         // $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', $user->data->kabupaten)->orderBy('nama', 'asc')->get()->getResult();
@@ -97,17 +99,33 @@ class Profilsekolah extends BaseController
                     'required' => 'NIP kepala sekolah tidak boleh kosong. ',
                 ]
             ],
+            'latitude' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Latitude tidak boleh kosong.',
+                ]
+            ],
+            'longitude' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Longitude tidak boleh kosong.',
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
             $response->message = $this->validator->getError('nama_ks')
-                . $this->validator->getError('nip_ks');
+                . $this->validator->getError('nip_ks')
+                . $this->validator->getError('latitude')
+                . $this->validator->getError('longitude');
             return json_encode($response);
         } else {
             $nama_ks = htmlspecialchars($this->request->getVar('nama_ks'), true);
             $nip_ks = htmlspecialchars($this->request->getVar('nip_ks'), true);
+            $latitude = htmlspecialchars($this->request->getVar('latitude'), true);
+            $longitude = htmlspecialchars($this->request->getVar('longitude'), true);
 
             $Profilelib = new Profilelib();
             $user = $Profilelib->userSekolah();
@@ -141,11 +159,23 @@ class Profilsekolah extends BaseController
                     $this->_db->table('_ref_profil_sekolah')->where('id', $oldData->id)->update($data);
 
                     if ($this->_db->affectedRows() > 0) {
-                        $this->_db->transCommit();
-                        $response = new \stdClass;
-                        $response->code = 200;
-                        $response->message = "Update Profil Sekolah Berhasil Disimpan.";
-                        return json_encode($response);
+                        $this->_db->table('ref_sekolah')->where('id', $oldData->id)->update([
+                            'latitude' => $latitude,
+                            'longitude' => $longitude,
+                        ]);
+                        if ($this->_db->affectedRows() > 0) {
+                            $this->_db->transCommit();
+                            $response = new \stdClass;
+                            $response->code = 200;
+                            $response->message = "Update Profil Sekolah Berhasil Disimpan.";
+                            return json_encode($response);
+                        } else {
+                            $this->_db->transRollback();
+                            $response = new \stdClass;
+                            $response->code = 400;
+                            $response->message = "Update Profil Sekolah Gagal Disimpan.";
+                            return json_encode($response);
+                        }
                     } else {
                         $this->_db->transRollback();
                         $response = new \stdClass;
@@ -161,11 +191,23 @@ class Profilsekolah extends BaseController
                 $this->_db->table('_ref_profil_sekolah')->insert($data);
 
                 if ($this->_db->affectedRows() > 0) {
-                    $this->_db->transCommit();
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Profil Sekolah Berhasil Disimpan.";
-                    return json_encode($response);
+                    $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->update([
+                        'latitude' => $latitude,
+                        'longitude' => $longitude,
+                    ]);
+                    if ($this->_db->affectedRows() > 0) {
+                        $this->_db->transCommit();
+                        $response = new \stdClass;
+                        $response->code = 200;
+                        $response->message = "Profil Sekolah Berhasil Disimpan.";
+                        return json_encode($response);
+                    } else {
+                        $this->_db->transRollback();
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Profil Sekolah Gagal Disimpan.";
+                        return json_encode($response);
+                    }
                 } else {
                     $this->_db->transRollback();
                     $response = new \stdClass;
@@ -175,6 +217,25 @@ class Profilsekolah extends BaseController
                 }
             }
         }
+    }
+
+    public function location()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $data['lat'] = htmlspecialchars($this->request->getVar('lat'), true) ?? "";
+        $data['long'] = htmlspecialchars($this->request->getVar('long'), true) ?? "";
+
+        $response = new \stdClass;
+        $response->code = 200;
+        $response->message = "Permintaan diizinkan";
+        $response->data = view('sekolah/setting/profilsekolah/pick-maps', $data);
+        return json_encode($response);
     }
 
     public function getuser()

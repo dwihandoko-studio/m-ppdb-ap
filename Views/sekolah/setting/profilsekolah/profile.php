@@ -259,6 +259,7 @@
     }
 
     var mapEdit;
+    var markerEdit;
 
     function pickCoordinat() {
         const lat = document.getElementsByName('_latitude')[0].value;
@@ -360,12 +361,12 @@
     function changeValueLatLongFromInput(latiput, longiput) {
         mapEdit.removeLayer(marker);
         // map.off('click', onClick); //turn off listener for map click
-        marker = L.marker({
+        markerEdit = L.marker({
             lat: latiput,
             lng: longiput
         }, {
             draggable: true
-        }).addTo(map);
+        }).addTo(mapEdit);
         document.getElementById('_lat').value = latiput;
         document.getElementById('_long').value = longiput;
     }

@@ -149,7 +149,15 @@ class Profilsekolah extends BaseController
 
             if ($oldData) {
                 $data['updated_at'] = date('Y-m-d H:i:s');
-                if ($nama_ks === $oldData->nama_ks && $nip_ks === $oldData->nip_ks) {
+                $oldSekolah = $this->_db->table('ref_sekolah')->select("latitude, longitude")->where('id', $user->data->sekolah_id)->get()->getRowObject();
+                if (!$oldSekolah) {
+                    $response = new \stdClass;
+                    $response->code = 201;
+                    $response->message = "Referensi sekolah tidak ditemukan.";
+                    return json_encode($response);
+                }
+
+                if ($nama_ks === $oldData->nama_ks && $nip_ks === $oldData->nip_ks && $latitude === $oldSekolah->latitude && $longitude === $oldSekolah->longitude) {
                     $response = new \stdClass;
                     $response->code = 201;
                     $response->message = "Tidak ada perubahan data yang disimpan.";

@@ -366,7 +366,7 @@
             lng: longiput
         }, {
             draggable: true
-        }).addTo(mapEdit);
+        }).addTo(map);
         document.getElementById('_lat').value = latiput;
         document.getElementById('_long').value = longiput;
     }

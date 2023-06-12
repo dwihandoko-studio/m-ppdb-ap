@@ -48,7 +48,6 @@
     <link href="<?= base_url('themes') ?>/css/imagebg.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/style.css" rel="stylesheet">
     <link href="<?= base_url('themes') ?>/css/responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 
     <script>
         const BASE_URL = '<?= base_url() ?>';
@@ -80,7 +79,6 @@
     <script src="<?= base_url('themes') ?>/js/tilt.jquery.js"></script>
 
     <script src="<?= base_url('new-assets/assets'); ?>/js/jquery-block-ui.js"></script>
-    <script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     <?= $this->renderSection('scriptBottom'); ?>
     <script src="<?= base_url('themes') ?>/js/script.js"></script>
 

@@ -2055,81 +2055,128 @@ class Auth extends BaseController
                 return json_encode($response);
             }
 
-            $referensidapodikLib = new ReferensidapodikLib();
-            $dataSyn = $referensidapodikLib->getDetailSiswa($nisn, $npsn);
+            $cekPdOnLocal = $this->_db->table('ref_pd_test')->where(['nisn' => $nisn, 'npsn' => $npsn])->get()->getRowObject();
+            if ($cekPdOnLocal) {
+                $dataSiswa = $cekPdOnLocal;
+                // var_dump($dataSiswa);die;
+                // $tingkatAkhirs = [6, 9, 72, 71, 73];
+                // $any = in_array((int)$dataSiswa->tingkat_pendidikan, $tingkatAkhirs);
+                // if ($any) {
+                if ($tglLahir == $dataSiswa->tanggal_lahir) {
+                    if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
+                        $dataSiswa->lintang = '0.0';
+                        $dataSiswa->bujur = '-0.0';
+                    }
 
-            // var_dump($dataSyn);
-            // die;
+                    $x['data'] = $dataSiswa;
 
-            if ($dataSyn->code == 200) {
-                if ($dataSyn->data) {
-                    if (is_array($dataSyn->data)) {
-                        // var_dump($dataSyn);
-                        // die;
-                        if (count($dataSyn->data) > 0) {
-                            $dataSiswa = $dataSyn->data[0];
-                            // var_dump($dataSiswa);die;
-                            // $tingkatAkhirs = [6, 9, 72, 71, 73];
-                            // $any = in_array((int)$dataSiswa->tingkat_pendidikan, $tingkatAkhirs);
-                            // if ($any) {
-                            if ($tglLahir == $dataSiswa->tanggal_lahir) {
-                                if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
-                                    $dataSiswa->lintang = '0.0';
-                                    $dataSiswa->bujur = '-0.0';
+                    // $referensiLayananLib = new ReferensiLayananLib();
+                    // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
+
+                    $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
+
+                    if ($dataSekolah) {
+                        // if ($dataSekolah->data->code == 200) {
+                        $x['sekolah'] = $dataSekolah;
+                        // }
+                    }
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "Data ditemukan.";
+                    $response->data = view('new-web/template/detail-after-sekolah', $x);
+                    return json_encode($response);
+                } else {
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
+                    return json_encode($response);
+                }
+            } else {
+
+                $referensidapodikLib = new ReferensidapodikLib();
+                $dataSyn = $referensidapodikLib->getDetailSiswa($nisn, $npsn);
+
+                // var_dump($dataSyn);
+                // die;
+
+                if ($dataSyn->code == 200) {
+                    if ($dataSyn->data) {
+                        if (is_array($dataSyn->data)) {
+                            // var_dump($dataSyn);
+                            // die;
+                            if (count($dataSyn->data) > 0) {
+                                $dataSiswa = $dataSyn->data[0];
+
+                                if ($dataSiswa->peserta_didik_id == NULL || $dataSiswa->peserta_didik_id == "") {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->redirrect = base_url('web/pengaduan');
+                                    $response->message = "Referensi Data Peserta Didik ditemukan tidak Valid, Silahkan Ajukan Pencarian Data dari Dapodik Kemdikbud melalui Layanan Aduan PPDB yang terdapat pada sistem aplikasi PPDB ini.";
+                                    return json_encode($response);
                                 }
+                                // var_dump($dataSiswa);die;
+                                // $tingkatAkhirs = [6, 9, 72, 71, 73];
+                                // $any = in_array((int)$dataSiswa->tingkat_pendidikan, $tingkatAkhirs);
+                                // if ($any) {
+                                if ($tglLahir == $dataSiswa->tanggal_lahir) {
+                                    if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
+                                        $dataSiswa->lintang = '0.0';
+                                        $dataSiswa->bujur = '-0.0';
+                                    }
 
-                                $x['data'] = $dataSiswa;
+                                    $x['data'] = $dataSiswa;
 
-                                // $referensiLayananLib = new ReferensiLayananLib();
-                                // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
+                                    // $referensiLayananLib = new ReferensiLayananLib();
+                                    // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
 
-                                $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
+                                    $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
 
-                                if ($dataSekolah) {
-                                    // if ($dataSekolah->data->code == 200) {
-                                    $x['sekolah'] = $dataSekolah;
-                                    // }
+                                    if ($dataSekolah) {
+                                        // if ($dataSekolah->data->code == 200) {
+                                        $x['sekolah'] = $dataSekolah;
+                                        // }
+                                    }
+                                    $response = new \stdClass;
+                                    $response->code = 200;
+                                    $response->message = "Data ditemukan.";
+                                    $response->data = view('new-web/template/detail-after-sekolah', $x);
+                                    return json_encode($response);
+                                } else {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
+                                    return json_encode($response);
                                 }
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "Data ditemukan.";
-                                $response->data = view('new-web/template/detail-after-sekolah', $x);
-                                return json_encode($response);
+                                // } else {
+                                //     $response = new \stdClass;
+                                //     $response->code = 400;
+                                //     $response->message = "Mohon maaf, Data terdeteksi berada bukan di jenjang kelas akhir. Silahkan hubungi operator sekolah asal.";
+                                //     return json_encode($response);
+                                // }
                             } else {
                                 $response = new \stdClass;
                                 $response->code = 400;
-                                $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
+                                $response->message = "Data tidak ditemukan";
                                 return json_encode($response);
                             }
-                            // } else {
-                            //     $response = new \stdClass;
-                            //     $response->code = 400;
-                            //     $response->message = "Mohon maaf, Data terdeteksi berada bukan di jenjang kelas akhir. Silahkan hubungi operator sekolah asal.";
-                            //     return json_encode($response);
-                            // }
                         } else {
                             $response = new \stdClass;
                             $response->code = 400;
-                            $response->message = "Data tidak ditemukan";
+                            $response->message = $dataSyn->data->message;
                             return json_encode($response);
                         }
                     } else {
                         $response = new \stdClass;
                         $response->code = 400;
-                        $response->message = $dataSyn->data->message;
+                        $response->message = "Data tidak ditemukan";
                         return json_encode($response);
                     }
                 } else {
                     $response = new \stdClass;
                     $response->code = 400;
-                    $response->message = "Data tidak ditemukan";
+                    $response->message = $dataSyn->message;
                     return json_encode($response);
                 }
-            } else {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = $dataSyn->message;
-                return json_encode($response);
             }
         }
     }

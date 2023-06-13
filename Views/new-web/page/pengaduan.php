@@ -107,7 +107,7 @@
         </div>
     </nav>
 </div>
-<section class="page-title style-two">
+<section class="page-title style-two" style="padding: 100px 0px 0px 0px;">
     <div class="container">
         
     </div>

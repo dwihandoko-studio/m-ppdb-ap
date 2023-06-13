@@ -2110,6 +2110,8 @@ class Auth extends BaseController
                                 if ($dataSiswa->peserta_didik_id == NULL || $dataSiswa->peserta_didik_id == "") {
                                     $response = new \stdClass;
                                     $response->code = 400;
+                                    $response->nisn = $nisn;
+                                    $response->npsn = $npsn;
                                     $response->redirrect = base_url('web/pengaduan');
                                     $response->message = "Referensi Data Peserta Didik ditemukan tidak Valid, Silahkan Ajukan Pencarian Data dari Dapodik Kemdikbud melalui Layanan Aduan PPDB yang terdapat pada sistem aplikasi PPDB ini.";
                                     return json_encode($response);

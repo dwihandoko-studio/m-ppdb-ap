@@ -469,7 +469,7 @@
                             msg.message,
                             'warning'
                         ).then((valRes) => {
-                            document.location.href = msg.redirrect;
+                            document.location.href = msg.redirrect + '?nisn=' + msg.nisn + '&npsn=' + msg.npsn;
                         })
                     } else {
                         Swal.fire(

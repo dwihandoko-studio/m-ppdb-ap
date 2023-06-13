@@ -136,15 +136,15 @@
                                 <input type="hidden" id="_npsn" name="_npsn" value="<?= isset($npsn) ? $npsn : '-' ?>">
                                 <div class="form-group">
                                     <p style="color: #fff;">Nama Lengkap *</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_nama" id="_nama" placeholder="">
+                                    <input style="width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_nama" id="_nama" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <p style="color: #fff;">No Handphone *</p>
-                                    <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_nohp" id="_nohp" placeholder="">
+                                    <input style="width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_nohp" id="_nohp" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <p style="color: #fff;">Deskripsi Kendala / Masalah *</p>
-                                    <textarea style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" rows="5" name="_deskripsi" id="_deskripsi" placeholder="Masukkan deskripsi kendala / masalah"></textarea>
+                                    <textarea style="width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; outline: medium none;" rows="5" name="_deskripsi" id="_deskripsi" placeholder="Masukkan deskripsi kendala / masalah"></textarea>
                                 </div>
                             </div>
                             <div class="btn-box">

@@ -8,7 +8,7 @@ use CodeIgniter\Model;
 class ZonasiModel extends Model
 {
     protected $table = "v_tb_sekolah_zonasi a";
-    protected $column_order = array(null, 'a.nama', null);
+    protected $column_order = array(null, null, 'a.npsn', 'a.nama', null);
     protected $column_search = array('a.nama', 'a.npsn');
     protected $order = array('a.nama' => 'asc');
     protected $request;

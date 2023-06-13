@@ -200,7 +200,8 @@
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
             'columns': [{
-                    data: 'no'
+                    data: 'no',
+                    orderable: false
                 },
                 {
                     className: 'dt-control',
@@ -215,7 +216,8 @@
                     data: 'nama'
                 },
                 {
-                    data: 'jumlah'
+                    data: 'jumlah',
+                    orderable: false
                 }
             ],
             "columnDefs": [{

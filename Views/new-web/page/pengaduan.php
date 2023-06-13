@@ -674,4 +674,10 @@
 
 <?= $this->section('scriptTop'); ?>
 <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+<style>
+    ::placeholder {
+        color: #ffffff8f; /* Ganti dengan warna yang Anda inginkan */
+    }
+</style>
+
 <?= $this->endSection(); ?>

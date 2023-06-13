@@ -8,7 +8,7 @@ use CodeIgniter\Model;
 class KuotaModel extends Model
 {
     protected $table = "_setting_kuota_tb a";
-    protected $column_order = array(null, 'b.nama', 'b.npsn', 'a.jumlah_rombel_kebutuhan', null, null, null, null);
+    protected $column_order = array(null, 'b.nama', 'b.npsn', 'c.nama', 'a.jumlah');
     protected $column_search = array('b.nama', 'b.npsn');
     protected $order = array('b.nama' => 'asc');
     protected $request;
@@ -32,7 +32,7 @@ class KuotaModel extends Model
         $this->dt->join('_users_profil_tb e', 'a.sekolah_id = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT');
         $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
-        $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');
+        $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
 
         $i = 0;
         foreach ($this->column_search as $item) {

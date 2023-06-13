@@ -31,7 +31,14 @@ class Pengaduan extends BaseController
             $data['user'] = $user->data;
         }
 
-        $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
+        $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
+        $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+
+        if ($nisn !== "" && $npsn !== "") {
+            $data['nisn'] = $nisn;
+            $data['npsn'] = $npsn;
+        }
+
         $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
         $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 

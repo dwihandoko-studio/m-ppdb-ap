@@ -132,8 +132,8 @@
                         </div>
                         <div class="donation-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <div class="select-box">
-                                <input type="hidden" id="_nisn" name="_nisn" value="<?= htmlspecialchars($this->request->getGet('nisn'), true) ?>">
-                                <input type="hidden" id="_npsn" name="_npsn" value="<?= htmlspecialchars($this->request->getGet('npsn'), true) ?>">
+                                <input type="hidden" id="_nisn" name="_nisn" value="<?= isset($nisn) ? $nisn : '-' ?>">
+                                <input type="hidden" id="_npsn" name="_npsn" value="<?= isset($npsn) ? $npsn : '-' ?>">
                                 <div class="form-group">
                                     <p style="color: #fff;">Nama Lengkap *</p>
                                     <input style="background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" type="text" name="_nama" id="_nama" placeholder="">

@@ -735,7 +735,7 @@
                 // defaultDate: new Date().toLocaleString('en-GB', { hour12: false }),
                 defaultDate: date,
                 locale: 'en-GB',
-                format: 'YYYY-MM-DD',
+                format: 'YYYY-MM-DD HH:mm:ss',
                 icons: {
                     time: "fa fa-clock",
                     date: "fa fa-calendar-day",

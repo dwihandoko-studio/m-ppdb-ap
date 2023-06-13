@@ -25,8 +25,8 @@
                                 <thead style="border: 1px solid #273581;">
                                     <tr>
                                         <th data-orderable="false">No</th>
-                                        <th>Nama Panitia</th>
-                                        <th>No Handphone</th>
+                                        <th data-orderable="false">Nama Panitia</th>
+                                        <th data-orderable="false">No Handphone</th>
                                     </tr>
                                 </thead>
                                 <tbody>

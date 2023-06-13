@@ -56,7 +56,7 @@
                                         <!-- <th></th> -->
                                         <th>NPSN Sekolah</th>
                                         <th>Nama Sekolah</th>
-                                        <th>&nbsp;</th>
+                                        <th data-orderable="false">&nbsp;</th>
                                     </tr>
                                 </thead>
                             </table>

@@ -107,6 +107,11 @@
         </div>
     </nav>
 </div>
+<section class="page-title style-two">
+    <div class="container">
+        
+    </div>
+</section>
 <section class="donate-section elements">
     <div class="pattern-box">
         <div class="pattern-1"><img src="<?= base_url('themes') ?>/images/icons/shap-28.png" alt=""></div>

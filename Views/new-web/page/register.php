@@ -463,11 +463,21 @@
                     $('.content-siswa').html('');
                     $('.content-siswa').css('display', 'none');
 
-                    Swal.fire(
-                        'Gagal!',
-                        msg.message,
-                        'warning'
-                    );
+                    if (msg.redirrect) {
+                        Swal.fire(
+                            'Peringatan!!!',
+                            msg.message,
+                            'warning'
+                        ).then((valRes) => {
+                            document.location.href = msg.redirrect;
+                        })
+                    } else {
+                        Swal.fire(
+                            'Gagal!',
+                            msg.message,
+                            'warning'
+                        );
+                    }
 
 
                 } else {

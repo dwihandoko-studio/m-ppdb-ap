@@ -159,7 +159,8 @@
                     data: 'kecamatan'
                 },
                 {
-                    data: 'jumlah'
+                    data: 'jumlah',
+                    orderable: false
                 }
             ],
             "columnDefs": [{

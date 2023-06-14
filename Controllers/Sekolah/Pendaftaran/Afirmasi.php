@@ -27,109 +27,89 @@ class Afirmasi extends BaseController
 
     public function getAll()
     {
-        $jwt = get_cookie('jwt');
-        $token_jwt = getenv('token_jwt.default.key');
-        if ($jwt) {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->userSekolah();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+        
+        $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
 
-            try {
+        if (!$getCurrentUser) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Tidak ada data.";
+            return json_encode($response);
+        }
 
-                $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                if ($decoded) {
-                    $userId = $decoded->data->id;
-                    $role = $decoded->data->role;
-                    $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $userId)->get()->getRowObject();
+        $keyword = htmlspecialchars($this->request->getVar('keyword'), true) ?? "";
+        $page = htmlspecialchars($this->request->getVar('page'), true);
 
-                    if (!$getCurrentUser) {
-                        $response = new \stdClass;
-                        $response->code = 400;
-                        $response->message = "Tidak ada data.";
-                        return json_encode($response);
-                    }
+        $limit_per_page = 10;
 
-                    $keyword = htmlspecialchars($this->request->getVar('keyword'), true) ?? "";
-                    $page = htmlspecialchars($this->request->getVar('page'), true);
+        if ((int)$page == 0 || (int)$page == 1) {
+            $page = 1;
+            $start = 0;
+        } else {
+            $page = (int)$page;
+            $start = (($page - 1) * $limit_per_page);
+        }
 
-                    $limit_per_page = 10;
+        $where = "a.tujuan_sekolah_id_1 = '$getCurrentUser->sekolah_id' AND a.via_jalur = 'AFIRMASI' AND (a.status_pendaftaran = 0)";
 
-                    if ((int)$page == 0 || (int)$page == 1) {
-                        $page = 1;
-                        $start = 0;
-                    } else {
-                        $page = (int)$page;
-                        $start = (($page - 1) * $limit_per_page);
-                    }
+        if ($keyword !== "") {
+            $where .= " AND (a.kode_pendaftaran LIKE '%$keyword%')";
+        }
 
-                    $where = "a.tujuan_sekolah_id = '$getCurrentUser->sekolah_id' AND a.via_jalur = 'AFIRMASI' AND (a.status_pendaftaran = 0)";
+        $data['result'] = $this->_db->table('_tb_pendaftar_temp a')
+            // $data['result'] = $this->_db->table('ref_provinsi a')
+            //         //RUMUS JARAK (111.111 *
+            // DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude))
+            //      * COS(RADIANS(b.Latitude))
+            //      * COS(RADIANS(a.Longitude - b.Longitude))
+            //      + SIN(RADIANS(a.Latitude))
+            //      * SIN(RADIANS(b.Latitude))))) AS distance_in_km)
+            ->select("b.*, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
+            ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+            ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT')
+            ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
+            ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
+            ->join('ref_kecamatan f', 'b.kecamatan = f.id', 'LEFT')
+            ->join('ref_kecamatan g', 'b.kelurahan = g.id', 'LEFT')
+            ->join('ref_kecamatan h', 'b.dusun = h.id', 'LEFT')
+            ->where($where)
+            ->orderBy('a.created_at', 'asc')
+            ->limit($limit_per_page, $start)
+            ->get()->getResult();
+        $data['countData'] = $this->_db->table('_tb_pendaftar_temp a')->where($where)->countAllResults();
+        // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
+        $data['page'] = $page;
+        $data['user'] = $getCurrentUser;
+        $data['totalPage'] = ($data['countData'] > 0) ? ceil($data['countData'] / $limit_per_page) : 0;
+        $data['keyword'] = $keyword;
 
-                    if ($keyword !== "") {
-                        $where .= " AND (a.kode_pendaftaran LIKE '%$keyword%')";
-                    }
-
-                    $data['result'] = $this->_db->table('_tb_pendaftar_temp a')
-                        // $data['result'] = $this->_db->table('ref_provinsi a')
-                        //         //RUMUS JARAK (111.111 *
-                        // DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude))
-                        //      * COS(RADIANS(b.Latitude))
-                        //      * COS(RADIANS(a.Longitude - b.Longitude))
-                        //      + SIN(RADIANS(a.Latitude))
-                        //      * SIN(RADIANS(b.Latitude))))) AS distance_in_km)
-                        ->select("b.*, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
-                        ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                        ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                        ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                        ->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT')
-                        ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
-                        ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
-                        ->join('ref_kecamatan f', 'b.kecamatan = f.id', 'LEFT')
-                        ->join('ref_kecamatan g', 'b.kelurahan = g.id', 'LEFT')
-                        ->join('ref_kecamatan h', 'b.dusun = h.id', 'LEFT')
-                        ->where($where)
-                        ->orderBy('a.created_at', 'asc')
-                        ->limit($limit_per_page, $start)
-                        ->get()->getResult();
-                    $data['countData'] = $this->_db->table('_tb_pendaftar_temp a')->where($where)->countAllResults();
-                    // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
-                    $data['page'] = $page;
-                    $data['user'] = $getCurrentUser;
-                    $data['totalPage'] = ($data['countData'] > 0) ? ceil($data['countData'] / $limit_per_page) : 0;
-                    $data['keyword'] = $keyword;
-
-                    if ($data['countData'] > 0) {
-                        if (count($data['result']) > 0) {
-                            $response = new \stdClass;
-                            $response->code = 200;
-                            $response->message = "Permintaan diizinkan";
-                            $response->data = view('sekolah/pendaftaran/afirmasi/pilihan-zonasi', $data);
-                            $response->pagination = view('sekolah/pendaftaran/afirmasi/pilihan-pagination', $data);
-                            return json_encode($response);
-                        } else {
-                            $response = new \stdClass;
-                            $response->code = 204;
-                            $response->message = "Tidak ada data.";
-                            return json_encode($response);
-                        }
-                    } else {
-                        $response = new \stdClass;
-                        $response->code = 400;
-                        $response->message = "Tidak ada data.";
-                        return json_encode($response);
-                    }
-                } else {
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } catch (\Exception $e) {
+        if ($data['countData'] > 0) {
+            if (count($data['result']) > 0) {
                 $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
+                $response->code = 200;
+                $response->message = "Permintaan diizinkan";
+                $response->data = view('sekolah/pendaftaran/afirmasi/pilihan-zonasi', $data);
+                $response->pagination = view('sekolah/pendaftaran/afirmasi/pilihan-pagination', $data);
+                return json_encode($response);
+            } else {
+                $response = new \stdClass;
+                $response->code = 204;
+                $response->message = "Tidak ada data.";
                 return json_encode($response);
             }
         } else {
             $response = new \stdClass;
-            $response->code = 401;
-            $response->message = "Session telah habis.";
+            $response->code = 400;
+            $response->message = "Tidak ada data.";
             return json_encode($response);
         }
     }

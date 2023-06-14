@@ -3235,4 +3235,33 @@ class Auth extends BaseController
             return json_encode($response);
         }
     }
+
+    public function cetakkartupendaftaran() {
+        if ($this->request->getMethod() != 'get') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+        
+        $id = htmlspecialchars($this->request->getGet('token'), true);
+
+        $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
+        if ($currentApprove) {
+            $pendaftaran = $currentApprove;
+        } else {
+            $pendaftaran = $this->_db->table('v_tb_pendaftar_temp')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
+        }
+
+        if ($pendaftaran) {
+            $data['data'] = $pendaftaran;
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Permintaan diizinkan";
+            $response->data = view('peserta/riwayat/cetak-pendaftaran', $data);
+            return json_encode($response);
+        } else {
+            return view('404', ['data' => "Data tidak ditemukan."]);
+        }
+    }
 }

@@ -9,26 +9,10 @@
             <div class="text">Kabupaten Pesawaran.</div>
             <div class="mail-box">
                 <form action="#" method="post">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input type="text" name="_tiket" id="_tiket" placeholder="No Tiket" required="">
-                                </div>
-                                <div class="col-md-2">
-                                    &nbsp;
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
-                                </div>
-                                <div class="col-md-2">
-                                    &nbsp;
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="submit">Cari Pengaduan</button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group-custom">
+                        <input class="custom-input-form" type="text" name="_tiket" id="_tiket" placeholder="No tiket" required="">
+                        <input class="custom-input-form" type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
+                        <button class="custom-button-form" type="submit">Cari Pengaduan</button>
                     </div>
                 </form>
             </div>
@@ -47,4 +31,116 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptTop'); ?>
+<style>
+    @media only screen and (max-width: 5000px) {
+        .form-group-custom {
+            position: relative;
+            max-width: 650px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .custom-input-form {
+            position: relative;
+            width: 35%;
+            height: 50px;
+            border: 1px solid #4527a4;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #777;
+            padding: 10px 20px 10px 20px;
+        }
+
+        .custom-button-form {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 120px;
+            height: 50px;
+            background: #4527a4;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            cursor: pointer;
+            transition: all 500ms ease;
+        }
+
+    }
+
+    @media only screen and (max-width: 599px) {
+        .form-group-custom {
+            position: relative;
+            /* max-width: 600px; */
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .custom-input-form {
+            position: relative;
+            width: 48%;
+            height: 50px;
+            border: 1px solid #4527a4;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #777;
+            padding: 10px 20px 10px 20px;
+            margin-bottom: 15px;
+        }
+
+        .custom-button-form {
+            position: relative;
+            border-radius: 30px;
+            width: 100%;
+            top: 0px;
+            right: 0px;
+            height: 50px;
+            background: #4527a4;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 500ms ease;
+        }
+
+    }
+
+    @media only screen and (max-width: 399px) {
+        .form-group-custom {
+            position: relative;
+            /* max-width: 600px; */
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .custom-input-form {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            border: 1px solid #4527a4;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #777;
+            padding: 10px 20px 10px 20px;
+            margin-bottom: 15px;
+        }
+
+        .custom-button-form {
+            position: relative;
+            border-radius: 30px;
+            width: 100%;
+            top: 0px;
+            right: 0px;
+            height: 50px;
+            background: #4527a4;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 500ms ease;
+        }
+
+    }
+</style>
 <?= $this->endSection(); ?>

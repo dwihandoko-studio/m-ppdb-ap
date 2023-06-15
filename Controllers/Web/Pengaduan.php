@@ -31,8 +31,8 @@ class Pengaduan extends BaseController
             $data['user'] = $user->data;
         }
 
-        $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
-        $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+        $nisn = htmlspecialchars($this->request->getGet('nisn'), true);
+        $npsn = htmlspecialchars($this->request->getGet('npsn'), true);
 
         if ($nisn !== "" && $npsn !== "") {
             $data['nisn'] = $nisn;

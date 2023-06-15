@@ -226,7 +226,7 @@
                                 'warning'
                             ).then((valRes) => {
                                 // setTimeout(function() {
-                                document.location.href = msg.url;
+                                document.location.href = msg.redirrect;
                                 // }, 2000);
 
                             })

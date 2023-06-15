@@ -136,6 +136,7 @@ class Pengaduan extends BaseController
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->data = $data;
+                $response->redirrect = base_url('web/home');
                 $response->message = "Pengaduan berhasil dikirim.";
                 return json_encode($response);
             } else {

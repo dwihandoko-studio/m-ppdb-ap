@@ -15,6 +15,9 @@
                                 <div class="col-md-4">
                                     <input type="text" name="_tiket" id="_tiket" placeholder="No Tiket" required="">
                                 </div>
+                                <div class="col-md-2">
+                                    &nbsp;
+                                </div>
                                 <div class="col-md-4">
                                     <input type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
                                 </div>

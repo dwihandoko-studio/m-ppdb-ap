@@ -61,7 +61,7 @@ class KuotaModel extends Model
         $this->_get_datatables_query();
 
         if ($filterKecamatan != "") {
-            $this->dt->where('b.kode_wilayah', $filterKecamatan);
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
         }
 
         if ($filterJenajng != "") {
@@ -78,7 +78,7 @@ class KuotaModel extends Model
         $this->_get_datatables_query();
 
         if ($filterKecamatan != "") {
-            $this->dt->where('b.kode_wilayah', $filterKecamatan);
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
         }
 
         if ($filterJenajng != "") {
@@ -92,7 +92,7 @@ class KuotaModel extends Model
         $this->_get_datatables_query();
 
         if ($filterKecamatan != "") {
-            $this->dt->where('b.kode_wilayah', $filterKecamatan);
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
         }
 
         if ($filterJenajng != "") {

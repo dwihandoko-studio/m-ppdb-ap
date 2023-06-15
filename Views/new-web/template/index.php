@@ -92,7 +92,7 @@
     <script src="<?= base_url('themes') ?>/js/script.js"></script>
     <script>
         function openPengaduanPage() {
-            window.location.href = BASE_URL + "/pengaduan/data";
+            window.location.href = BASE_URL + "/web/pengaduan/data";
         }
     </script>
 </body>

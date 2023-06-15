@@ -45,6 +45,30 @@ class Pengaduan extends BaseController
         return view('new-web/page/pengaduan', $data);
     }
 
+    public function data()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        // var_dump($user);
+        // die;
+        if ($user->code == 200) {
+            $data['user'] = $user->data;
+        }
+
+        $nisn = htmlspecialchars($this->request->getGet('nisn'), true);
+        $npsn = htmlspecialchars($this->request->getGet('npsn'), true);
+
+        if ($nisn !== "" && $npsn !== "") {
+            $data['nisn'] = $nisn;
+            $data['npsn'] = $npsn;
+        }
+
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
+
+        return view('new-web/page/index-pengaduan', $data);
+    }
+
     public function add()
     {
         if ($this->request->getMethod() != 'post') {

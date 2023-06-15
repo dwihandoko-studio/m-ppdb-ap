@@ -55,7 +55,7 @@
             position: absolute;
             top: 0px;
             right: 0px;
-            width: 120px;
+            width: 30%;
             height: 50px;
             background: #4527a4;
             text-align: center;

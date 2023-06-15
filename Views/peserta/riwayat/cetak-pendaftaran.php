@@ -1,19 +1,19 @@
 <?php ob_start();
-// var_dump(FCPATH . "temp/");die;
-include APPPATH . "Libraries/phpqrcode/qrlib.php";
-// session_start();
-$tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
-// if (!file_exists($tempdir)) //Buat folder bername temp
-// 	mkdir($tempdir);
+// // var_dump(FCPATH . "temp/");die;
+// include APPPATH . "Libraries/phpqrcode/qrlib.php";
+// // session_start();
+// $tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
+// // if (!file_exists($tempdir)) //Buat folder bername temp
+// // 	mkdir($tempdir);
 
-//isi qrcode jika di scan
-$siswa = json_decode($data->details);
-$codeContents = $siswa->nisn . '-' . $siswa->nama;
+// //isi qrcode jika di scan
+// $siswa = json_decode($data->details);
+// $codeContents = $siswa->nisn . '-' . $siswa->nama;
 
-//simpan file kedalam temp
-//nilai konfigurasi Frame di bawah 4 tidak direkomendasikan
+// //simpan file kedalam temp
+// //nilai konfigurasi Frame di bawah 4 tidak direkomendasikan
 
-QRcode::png($codeContents, $tempdir . $siswa->nisn . '.png', QR_ECLEVEL_M, 4);
+// QRcode::png($codeContents, $tempdir . $siswa->nisn . '.png', QR_ECLEVEL_M, 4);
 
 ?>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -127,7 +127,8 @@ QRcode::png($codeContents, $tempdir . $siswa->nisn . '.png', QR_ECLEVEL_M, 4);
                     <tr>
                         <td colspan="5" align="left">&nbsp;&nbsp;&nbsp;<b>Pilihan Sekolah</b></td>
                         <td rowspan="6" style="border: none" width="10%">
-                            <img class="img" src="<?= base_url() ?>/temp/<?= $siswa->nisn ?>.png" ec="H" style="width: 30mm; background-color: white; color: black;">
+                            <img class="img" src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=<?= $data->peserta_didik_id?>&choe=UTF-8" ec="H" style="width: 30mm; background-color: white; color: black;">
+                            <!-- <img class="img" src="<? //= base_url() ?>/temp/<? //= $siswa->nisn ?>.png" ec="H" style="width: 30mm; background-color: white; color: black;"> -->
                         </td>
                     </tr>
                     <tr>

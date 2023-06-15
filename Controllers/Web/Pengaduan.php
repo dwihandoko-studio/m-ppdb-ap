@@ -106,8 +106,8 @@ class Pengaduan extends BaseController
                 'no_hp' => $nohp,
                 'deskripsi' => $deskripsi,
                 'tujuan' => $tujuan,
-                'nisn' => ($nisn == "" || $nisn == NULL) ? NULL : $nisn,
-                'npsn' => ($npsn == "" || $npsn == NULL) ? NULL : $npsn,
+                'nisn' => ($nisn == "-" || $nisn == "" || $nisn == NULL) ? NULL : $nisn,
+                'npsn' => ($npsn == "-" || $npsn == "" || $npsn == NULL) ? NULL : $npsn,
                 'status' => 0,
                 'created_at' => date('Y-m-d H:i:s')
             ];

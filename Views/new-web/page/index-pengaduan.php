@@ -11,7 +11,7 @@
                 <form action="#" method="post">
                     <div class="form-group-custom">
                         <input class="custom-input-form" type="text" name="_tiket" id="_tiket" placeholder="No tiket" required="">
-                        <input class="custom-input-form" type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
+                        <input class="custom-input-form-1" type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
                         <button class="custom-button-form" type="submit">Cari Pengaduan</button>
                     </div>
                 </form>
@@ -43,6 +43,17 @@
         .custom-input-form {
             position: relative;
             width: 35%;
+            height: 50px;
+            border: 1px solid #4527a4;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #777;
+            padding: 10px 20px 10px 20px;
+        }
+
+        .custom-input-form-1 {
+            position: relative;
+            width: 65%;
             height: 50px;
             border: 1px solid #4527a4;
             border-radius: 30px;
@@ -89,6 +100,18 @@
             margin-bottom: 15px;
         }
 
+        .custom-input-form-1 {
+            position: relative;
+            width: 48%;
+            height: 50px;
+            border: 1px solid #4527a4;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #777;
+            padding: 10px 20px 10px 20px;
+            margin-bottom: 15px;
+        }
+
         .custom-button-form {
             position: relative;
             border-radius: 30px;
@@ -115,6 +138,18 @@
         }
 
         .custom-input-form {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            border: 1px solid #4527a4;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #777;
+            padding: 10px 20px 10px 20px;
+            margin-bottom: 15px;
+        }
+
+        .custom-input-form-1 {
             position: relative;
             width: 100%;
             height: 50px;

@@ -49,7 +49,7 @@ $siswa = json_decode($data->details);
                         <span style="margin-top: 8px; font-size: 20px;">KARTU TANDA PESERTA PPDB ONLINE</span><br>
                         <span style="margin-top: 8px; font-size: 18px;">KABUPATEN PESAWARAN</span><br>
                         <span style="margin-top: 8px; font-size: 18px;">PROVINSI LAMPUNG</span><br>
-                        <span style="margin-top: 8px; font-size: 16;">TAHUN PELAJARAN 2022/2023</span>
+                        <span style="margin-top: 8px; font-size: 16;">TAHUN PELAJARAN 2023/2024</span>
                     </td>
                     <td width="10%" style="border:none;">
                         <img class="img" src="<?= base_url('tutwuri.png') ?>" ec="H" style="width: 30mm; background-color: white; color: black;">

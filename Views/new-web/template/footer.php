@@ -80,7 +80,7 @@
     <span class="fa fa-arrow-up"></span>
 </button>
 
-<div class="button-pengaduan" onclick="openPengaduanPage()">
+<div class="button-pengaduan showed-on-page" onclick="openPengaduanPage()">
     <figure class="image float-bob-y clearfix">
         <img src="<?= base_url('themes') ?>/images/resource/user-16.png" alt="">
     </figure>

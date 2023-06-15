@@ -52,7 +52,6 @@
     <script>
         const BASE_URL = '<?= base_url() ?>';
     </script>
-    <?= $this->renderSection('scriptTop'); ?>
     <style>
         .button-pengaduan {
             position: fixed;
@@ -68,6 +67,7 @@
             left: 2rem !important;
         }
     </style>
+    <?= $this->renderSection('scriptTop'); ?>
 </head>
 
 <body class="boxed_wrapper loading-proses">

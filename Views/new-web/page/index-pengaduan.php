@@ -57,6 +57,10 @@
 
 <?= $this->section('scriptTop'); ?>
 <style>
+    .showed-on-page {
+        display: none !important;
+    }
+
     @media only screen and (max-width: 5000px) {
         .form-group-custom {
             position: relative;

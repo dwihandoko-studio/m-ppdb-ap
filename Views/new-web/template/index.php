@@ -57,10 +57,15 @@
         .button-pengaduan {
             position: fixed;
             bottom: 2rem;
-            left: 2rem;
+            right: 2rem;
             z-index: 10;
             max-width: 150px;
             cursor: pointer !important;
+        }
+
+        .scroll-top.open {
+            bottom: 30px;
+            left: 2rem !important;
         }
     </style>
 </head>

@@ -42,7 +42,7 @@
 
         .custom-input-form {
             position: relative;
-            width: 35%;
+            width: 37%;
             height: 50px;
             border: 1px solid #4527a4;
             border-radius: 30px;
@@ -53,7 +53,7 @@
 
         .custom-input-form-1 {
             position: relative;
-            width: 62%;
+            width: 60%;
             height: 50px;
             border: 1px solid #4527a4;
             border-radius: 30px;
@@ -66,7 +66,7 @@
             position: absolute;
             top: 0px;
             right: 0px;
-            width: 30%;
+            width: 25%;
             height: 50px;
             background: #4527a4;
             text-align: center;

@@ -16,11 +16,36 @@
                     </div>
                 </form>
             </div>
-            <!-- <div class="image-box">
-                <figure class="image-1 js-tilt"><img src="<?= base_url('themes') ?>/images/resource/illustration-26.png" alt=""></figure>
-                <figure class="image-2 float-bob-x"><img src="<?= base_url('themes') ?>/images/icons/cloud-1.png" alt=""></figure>
-                <figure class="image-3 float-bob-x"><img src="<?= base_url('themes') ?>/images/icons/cloud-2.png" alt=""></figure>
-            </div> -->
+        </div>
+    </div>
+</section>
+<section class="subscribe-style-five home-18">
+    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/layer-image-6.png);"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                <div id="image_block_38">
+                    <div class="image-box">
+                        <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/user-icon.png);"></div>
+                        <figure class="image float-bob-y clearfix"><img src="<?= base_url('themes') ?>/images/resource/user-16.png" alt=""></figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                <div id="content_block_41">
+                    <div class="content-box">
+                        <div class="sec-title">
+                            <h2>Ada Kendala Mengenai PPDB?</h2>
+                        </div>
+                        <div class="text">Jika mengalami kendala atau masalah dalam proses pendaftaran PPDB, silahkan buat pengaduan melalui tombol dibawah ini.</div>
+                        <form action="<?= base_url('web/pengaduan') ?>" method="GET" class="subscribe-form">
+                            <div class="form-group">
+                                <button type="submit" class="theme-btn-two">Buat Pengaduan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

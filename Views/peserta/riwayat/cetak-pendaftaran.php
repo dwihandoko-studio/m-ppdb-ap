@@ -7,7 +7,7 @@
 // // 	mkdir($tempdir);
 
 // //isi qrcode jika di scan
-// $siswa = json_decode($data->details);
+$siswa = json_decode($data->details);
 // $codeContents = $siswa->nisn . '-' . $siswa->nama;
 
 // //simpan file kedalam temp

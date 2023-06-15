@@ -79,3 +79,9 @@
 <button class="scroll-top scroll-to-target" data-target="html">
     <span class="fa fa-arrow-up"></span>
 </button>
+
+<div class="button-pengaduan" onclick="openPengaduanPage()">
+    <figure class="image float-bob-y clearfix">
+        <img src="<?= base_url('themes') ?>/images/resource/user-16.png" alt="">
+    </figure>
+</div>

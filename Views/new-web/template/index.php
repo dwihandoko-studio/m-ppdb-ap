@@ -53,7 +53,16 @@
         const BASE_URL = '<?= base_url() ?>';
     </script>
     <?= $this->renderSection('scriptTop'); ?>
-
+    <style>
+        .button-pengaduan {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 10;
+            max-width: 150px;
+            cursor: pointer !important;
+        }
+    </style>
 </head>
 
 <body class="boxed_wrapper loading-proses">
@@ -81,7 +90,11 @@
     <script src="<?= base_url('new-assets/assets'); ?>/js/jquery-block-ui.js"></script>
     <?= $this->renderSection('scriptBottom'); ?>
     <script src="<?= base_url('themes') ?>/js/script.js"></script>
-
+    <script>
+        function openPengaduanPage() {
+            window.location.href = BASE_URL + "/pengaduan/data";
+        }
+    </script>
 </body>
 
 </html>

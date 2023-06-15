@@ -22,6 +22,9 @@
                                     <input type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
                                 </div>
                                 <div class="col-md-2">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-2">
                                     <button type="submit">Cari Pengaduan</button>
                                 </div>
                             </div>

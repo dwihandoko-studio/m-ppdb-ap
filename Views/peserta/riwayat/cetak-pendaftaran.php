@@ -145,24 +145,81 @@ QRcode::png($codeContents, $tempdir . $siswa->nisn . '.png', QR_ECLEVEL_M, 4);
                             ?>
                         </td>
                     </tr>
+                    <?php if ($data->via_jalur == "ZONASI") { ?>
                     <tr>
+                        <td></td>
+                        <td align="">Sekolah Tujuan Pilihan Pertama</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= $data->nama_sekolah_tujuan_1 ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">NPSN Sekolah Tujuan Pilihan Pertama</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= $data->npsn_sekolah_tujuan_1 ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">Jarak Sekolah Tujuan Pilihan Pertama</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= getJarak2Koordinat($data->latitude, $data->longitude, $data->latitude_sekolah_tujuan_1, $data->longitude_sekolah_tujuan_1, 'kilometers') . ' Km' ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">Sekolah Tujuan Pilihan Kedua</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= $data->nama_sekolah_tujuan_2 ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">NPSN Sekolah Tujuan Pilihan Kedua</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= $data->npsn_sekolah_tujuan_2 ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">Jarak Sekolah Tujuan Pilihan Kedua</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= getJarak2Koordinat($data->latitude, $data->longitude, $data->latitude_sekolah_tujuan_2, $data->longitude_sekolah_tujuan_2, 'kilometers') . ' Km' ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">Sekolah Tujuan Pilihan Ketiga</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= $data->nama_sekolah_tujuan_3 ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">NPSN Sekolah Tujuan Pilihan Ketiga</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= $data->npsn_sekolah_tujuan_3 ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="">Jarak Sekolah Tujuan Pilihan Ketiga</td>
+                        <td align="center">:</td>
+                        <td align="left"><?= getJarak2Koordinat($data->latitude, $data->longitude, $data->latitude_sekolah_tujuan_3, $data->longitude_sekolah_tujuan_3, 'kilometers') . ' Km' ?></td>
+                    </tr>
+                    <?php } else { ?>
+                        <tr>
                         <td></td>
                         <td align="">Sekolah Tujuan</td>
                         <td align="center">:</td>
-                        <td align="left"><?= $data->nama_sekolah_tujuan ?></td>
+                        <td align="left"><?= $data->nama_sekolah_tujuan_1 ?></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td align="">NPSN Sekolah Tujuan</td>
                         <td align="center">:</td>
-                        <td align="left"><?= $data->npsn_sekolah_tujuan ?></td>
+                        <td align="left"><?= $data->npsn_sekolah_tujuan_1 ?></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td align="">Jarak Sekolah Tujuan</td>
                         <td align="center">:</td>
-                        <td align="left"><?= getJarak2Koordinat($data->latitude, $data->longitude, $data->latitude_sekolah_tujuan, $data->longitude_sekolah_tujuan, 'kilometers') . ' Km' ?></td>
+                        <td align="left"><?= getJarak2Koordinat($data->latitude, $data->longitude, $data->latitude_sekolah_tujuan_1, $data->longitude_sekolah_tujuan_1, 'kilometers') . ' Km' ?></td>
                     </tr>
+                    <?php } ?>
                     <tr>
                         <td></td>
                         <td align="">Nama Sekolah Asal</td>

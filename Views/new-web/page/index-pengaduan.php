@@ -10,9 +10,19 @@
             <div class="mail-box">
                 <form action="#" method="post">
                     <div class="form-group">
-                        <input type="text" name="_tiket" id="_tiket" placeholder="No Tiket" required="">
-                        <input type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
-                        <button type="submit">Cari Pengaduan</button>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" name="_tiket" id="_tiket" placeholder="No Tiket" required="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit">Cari Pengaduan</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

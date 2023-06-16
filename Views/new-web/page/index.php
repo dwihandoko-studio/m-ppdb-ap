@@ -9,9 +9,9 @@
         <div class="icon icon-3 rotate-me"><img src="<?= base_url('themes') ?>/images/icons/anim-icon-9.png" alt=""></div>
     </div>
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/banner-bg-13.png);"></div>
-    <div class="image-box js-tilt">
+    <!-- <div class="image-box js-tilt">
         <figure class="image wow slideInRight" data-wow-delay="00ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/illustration-33.png" alt=""></figure>
-    </div>
+    </div> -->
     <!-- <div class="container"> -->
     <!-- <div class="content-box">
             <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Lampung Timur Tahun Pelajaran 2023/2024</h2>

@@ -584,7 +584,7 @@
             $('._alamat').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Isian tidak boleh kosong.</li></ul>');
         }
 
-        if (alamat === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "") {
+        if (alamat === "" || kabupaten === "" || kecamatan === "" || kelurahan === "") {
             Swal.fire(
                 'Warning!!!',
                 "Silahkan lengkapi semua isian wajib terlebih dahulu.",

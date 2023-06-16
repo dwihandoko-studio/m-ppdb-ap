@@ -194,12 +194,12 @@ class User extends BaseController
                     'required' => 'Alamat tidak boleh kosong. ',
                 ]
             ],
-            'provinsi' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Silahkan pilih provinsi. ',
-                ]
-            ],
+            // 'provinsi' => [
+            //     'rules' => 'required|trim',
+            //     'errors' => [
+            //         'required' => 'Silahkan pilih provinsi. ',
+            //     ]
+            // ],
             'kabupaten' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -227,106 +227,80 @@ class User extends BaseController
             return json_encode($response);
         } else {
             $alamat = htmlspecialchars($this->request->getVar('alamat'), true);
-            $provinsi = htmlspecialchars($this->request->getVar('provinsi'), true);
+            // $provinsi = htmlspecialchars($this->request->getVar('provinsi'), true);
             $kabupaten = htmlspecialchars($this->request->getVar('kabupaten'), true);
             $kecamatan = htmlspecialchars($this->request->getVar('kecamatan'), true);
             $kelurahan = htmlspecialchars($this->request->getVar('kelurahan'), true);
 
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
-
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $oldData = $this->_db->table('_users_profil_tb')->where('id', $userId)->get()->getRowObject();
-
-                        if ($oldData) {
-                            if ($alamat === $oldData->alamat && $provinsi === $oldData->provinsi && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan) {
-                                $response = new \stdClass;
-                                $response->code = 201;
-                                $response->message = "Tidak ada perubahan data yang disimpan.";
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transBegin();
-                                $data = [
-                                    'alamat' => $alamat,
-                                    'provinsi' => $provinsi,
-                                    'kabupaten' => $kabupaten,
-                                    'kecamatan' => $kecamatan,
-                                    'kelurahan' => $kelurahan,
-                                    'updated_at' => date('Y-m-d H:i:s'),
-                                ];
-
-                                $this->_db->table('_users_profil_tb')->where('id', $oldData->id)->update($data);
-
-                                if ($this->_db->affectedRows() > 0) {
-                                    $this->_db->transCommit();
-                                    $issuer_claim = base_url(); // this can be the servername. Example: https://domain.com
-                                    $audience_claim = "PPDB";
-                                    $issuedat_claim = time(); // issued at
-                                    $notbefore_claim = $issuedat_claim; //not before in seconds
-                                    $expire_claim = $issuedat_claim + (3600 * 24); // expire time in seconds
-                                    $token = array(
-                                        "iss" => $issuer_claim,
-                                        "aud" => $audience_claim,
-                                        "iat" => $issuedat_claim,
-                                        "nbf" => $notbefore_claim,
-                                        "exp" => $expire_claim,
-                                        "data" => array(
-                                            "id" => $userId,
-                                            "fullname" => $oldData->fullname,
-                                            "role" => (int)$oldData->role_user,
-                                            "compliteProfile" => true,
-                                        )
-                                    );
-
-                                    $token = JWT::encode($token, $token_jwt);
-                                    set_cookie('jwt', $token, strval(3600 * 24));
-                                    $response = new \stdClass;
-                                    $response->code = 200;
-                                    $response->message = "Update Biodata Sekolah Berhasil Disimpan.";
-                                    return json_encode($response);
-                                } else {
-                                    $this->_db->transRollback();
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Update Biodata Sekolah Gagal Disimpan.";
-                                    return json_encode($response);
-                                }
-                            }
-                        } else {
-                            $response = new \stdClass;
-                            $response->code = 401;
-                            $response->message = "Pengguna tidak ditemukan.";
-                            return json_encode($response);
-                        }
-                    } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session anda telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    delete_cookie('jwt');
-                    session()->destroy();
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->error = $e;
-                    $response->message = "Session kamu telah habis.";
-                    return json_encode($response);
-                }
-            } else {
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->userSekolah();
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;
                 $response->code = 401;
                 $response->message = "Session telah habis.";
+                return json_encode($response);
+            }
+            $oldData = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
+            $token_jwt = getenv('token_jwt.default.key');
+            if ($oldData) {
+                if ($alamat === $oldData->alamat && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan) {
+                    $response = new \stdClass;
+                    $response->code = 201;
+                    $response->message = "Tidak ada perubahan data yang disimpan.";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transBegin();
+                    $data = [
+                        'alamat' => $alamat,
+                        'kabupaten' => $kabupaten,
+                        'kecamatan' => $kecamatan,
+                        'kelurahan' => $kelurahan,
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+
+                    $this->_db->table('_users_profil_tb')->where('id', $oldData->id)->update($data);
+
+                    if ($this->_db->affectedRows() > 0) {
+                        $this->_db->transCommit();
+                        $issuer_claim = base_url(); // this can be the servername. Example: https://domain.com
+                        $audience_claim = "PPDB";
+                        $issuedat_claim = time(); // issued at
+                        $notbefore_claim = $issuedat_claim; //not before in seconds
+                        $expire_claim = $issuedat_claim + (3600 * 24); // expire time in seconds
+                        $token = array(
+                            "iss" => $issuer_claim,
+                            "aud" => $audience_claim,
+                            "iat" => $issuedat_claim,
+                            "nbf" => $notbefore_claim,
+                            "exp" => $expire_claim,
+                            "data" => array(
+                                "id" => $user->data->id,
+                                "fullname" => $oldData->fullname,
+                                "role" => (int)$oldData->role_user,
+                                "compliteProfile" => true,
+                            )
+                        );
+
+                        $token = JWT::encode($token, $token_jwt);
+                        set_cookie('jwt', $token, strval(3600 * 24));
+                        $response = new \stdClass;
+                        $response->code = 200;
+                        $response->message = "Update Biodata Admin Sekolah Berhasil Disimpan.";
+                        return json_encode($response);
+                    } else {
+                        $this->_db->transRollback();
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Update Biodata Admin Sekolah Gagal Disimpan.";
+                        return json_encode($response);
+                    }
+                }
+            } else {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Pengguna tidak ditemukan.";
                 return json_encode($response);
             }
         }

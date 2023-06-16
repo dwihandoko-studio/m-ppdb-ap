@@ -39,7 +39,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group _nama-block">
                                             <label for="_nama" class="form-control-label">Nama Lengkap <span class="required" style="color: indigo;">* Wajib</span></label>
-                                            <input type="text" class="form-control" id="_nama" name="_nama" placeholder="Nama Lengkap . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->fullname) ? $user->fullname : '') : '' ?>">
+                                            <input type="text" class="form-control" id="_nama" name="_nama" placeholder="Nama Lengkap . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->fullname) ? $user->fullname : '') : '' ?>" readonly>
                                             <div class="help-block _nama"></div>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group _provinsi-block">
                                             <label for="_provinsi" class="form-control-label">Provinsi</label>
-                                            <select class="form-control filter-provinsi" name="_provinsi" id="_provinsi" data-toggle="select22" title="Simple select" onChange="onChangeProvinsi(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                            <select class="form-control filter-provinsi" name="_provinsi" id="_provinsi" data-toggle="select22" title="Simple select" onChange="onChangeProvinsi(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
                                                 <?php if (isset($provinsis)) {
                                                     if (count($provinsis) > 0) {
                                                         echo "<option value=''>--Pilih Provinsi--</option>";
@@ -552,17 +552,17 @@
     });
 
     $('#_kirim_permohonan').on('click', function() {
-        const provinsi = document.getElementsByName('_provinsi')[0].value;
+        // const provinsi = document.getElementsByName('_provinsi')[0].value;
         const kabupaten = document.getElementsByName('_kabupaten')[0].value;
         const kecamatan = document.getElementsByName('_kecamatan')[0].value;
         const kelurahan = document.getElementsByName('_kelurahan')[0].value;
         const alamat = document.getElementsByName('_alamat')[0].value;
 
-        if (provinsi === "") {
-            $("select#_provinsi").css("color", "#dc3545");
-            $("select#_provinsi").css("border-color", "#dc3545");
-            $('._provinsi').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Pilih terlebih dahulu.</li></ul>');
-        }
+        // if (provinsi === "") {
+        //     $("select#_provinsi").css("color", "#dc3545");
+        //     $("select#_provinsi").css("border-color", "#dc3545");
+        //     $('._provinsi').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Pilih terlebih dahulu.</li></ul>');
+        // }
         if (kabupaten === "") {
             $("select#_kabupaten").css("color", "#dc3545");
             $("select#_kabupaten").css("border-color", "#dc3545");
@@ -594,7 +594,7 @@
         }
 
         const formUpload = new FormData();
-        formUpload.append('provinsi', provinsi);
+        // formUpload.append('provinsi', provinsi);
         formUpload.append('kabupaten', kabupaten);
         formUpload.append('kecamatan', kecamatan);
         formUpload.append('kelurahan', kelurahan);

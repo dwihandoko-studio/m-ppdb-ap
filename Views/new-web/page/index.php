@@ -2,6 +2,45 @@
 
 <?= $this->section('content') ?>
 <?= $this->include('new-web/template/header') ?>
+<section class="banner-style-16">
+    <div class="anim-icons">
+        <div class="icon icon-1 rotate-me"><img src="<?= base_url('themes') ?>/images/icons/anim-icon-10.png" alt=""></div>
+        <div class="icon icon-2 rotate-me"><img src="<?= base_url('themes') ?>/images/icons/anim-icon-11.png" alt=""></div>
+        <div class="icon icon-3 rotate-me"><img src="<?= base_url('themes') ?>/images/icons/anim-icon-9.png" alt=""></div>
+    </div>
+    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/banner-bg-13.png);"></div>
+    <div class="container">
+        <div class="upper-box">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                    <div class="content-box">
+                        <h1>Accounts Payable Automation 80% Faster Bill Pay & AP</h1>
+                        <div class="text">Agencies around the world are moving to the digital agencies. So, It is high time to introduce your agency digitaly.</div>
+                        <div class="btn-box"><a href="#">Get Start<i class="fas fa-angle-right"></i></a></div>
+                        <div class="share-box">
+                            <a href="#"><i class="fab fa-twitter-square"></i>Share On Twitter</a>
+                            <a href="#"><i class="fab fa-facebook-square"></i>Share On Facebook</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <div class="image-box js-tilt">
+                        <figure class="image wow slideInRight" data-wow-delay="00ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/illustration-33.png" alt=""></figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lower-box">
+            <div class="timer">
+                <div class="cs-countdown" data-countdown="12/24/2019 05:06:59"></div>
+            </div>
+            <div class="btn-box">
+                <a href="#" class="btn-one">White Paper</a>
+                <a href="#" class="btn-two">Buy Token</a>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="banner-style-14 centred" style="padding-bottom: 0px;">
     <div class="container">
         <div class="content-box">

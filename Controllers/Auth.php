@@ -844,6 +844,80 @@ class Auth extends BaseController
         }
     }
 
+    public function loginsso()
+    {
+        $token = htmlspecialchars($this->request->getGet('token'), true);
+
+        if ($token == NULL || $token == "-") {
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $token_jwt = getenv('token_jwt.default.key');
+
+        try {
+            $decoded = JWT::decode($token, $token_jwt, array('HS256'));
+            if ($decoded) {
+                $userId = $decoded->data->id;
+
+                $select = "a.id, b.fullname, b.email, b.no_hp as noHp, b.sekolah_asal, b.latitude, b.longitude, b.nisn, b.profile_picture as imageProfile, b.details, b.dusun, b.role_user as roleUser, a.created_at as createdAt, a.updated_at as updated_at, b.last_active as lastActive, b.kecamatan, c.nama as namaKecamatan, b.provinsi, d.nama as namaProvinsi, b.kabupaten, e.nama as namaKabupaten, b.kelurahan, f.nama as namaKelurahan";
+                $dataUser = $this->_db->table('_users_tb a')
+                    ->select($select)
+                    ->join('_users_profil_tb b', 'a.id = b.id', 'LEFT')
+                    ->join('ref_kecamatan c', 'b.kecamatan = c.id', 'LEFT')
+                    ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
+                    ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
+                    ->join('ref_kelurahan f', 'b.kelurahan = f.id', 'LEFT')
+                    ->where('a.id', $userId)
+                    ->get()->getRowObject();
+
+                if (!$dataUser) {
+                    return redirect()->to(base_url('web/home'));
+                }
+
+                $issuer_claim = "THE_CLAIM"; // this can be the servername. Example: https://domain.com
+                $audience_claim = "THE_AUDIENCE";
+                $issuedat_claim = time(); // issued at
+                $notbefore_claim = $issuedat_claim; //not before in seconds
+                $expire_claim = $issuedat_claim + (3600 * 24); // expire time in seconds
+                $token = array(
+                    "iss" => $issuer_claim,
+                    "aud" => $audience_claim,
+                    "iat" => $issuedat_claim,
+                    "nbf" => $notbefore_claim,
+                    "exp" => $expire_claim,
+                    "data" => array(
+                        "id" => $dataUser->id,
+                        "fullname" => $dataUser->fullname,
+                        "role" => (int)$dataUser->roleUser,
+                        "compliteProfile" => ($dataUser->kelurahan == null || $dataUser->kelurahan == "") ? false : true,
+                    )
+                );
+
+                $token = JWT::encode($token, $token_jwt);
+                set_cookie('jwt', $token, strval(3600 * 24));
+
+
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->message = 'Login berhasil.';
+                if ((int)$dataUser->roleUser == 6) {
+                    $response->url = base_url('peserta/home');
+                } else if ((int)$dataUser->roleUser == 4) {
+                    $response->url = base_url('sekolah/home');
+                } else if ((int)$dataUser->roleUser == 3) {
+                    $response->url = base_url('dinas/home');
+                } else {
+                    $response->url = base_url('dashboard');
+                }
+                return json_encode($response);
+            } else {
+                return redirect()->to(base_url('web/home'));
+            }
+        } catch (\Exception $e) {
+            return redirect()->to(base_url('web/home'));
+        }
+    }
+
     public function lupapasswordaction()
     {
         if ($this->request->getMethod() != 'post') {
@@ -3236,14 +3310,15 @@ class Auth extends BaseController
         }
     }
 
-    public function cetakkartupendaftaran() {
+    public function cetakkartupendaftaran()
+    {
         if ($this->request->getMethod() != 'get') {
             $response = new \stdClass;
             $response->code = 400;
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
-        
+
         $id = htmlspecialchars($this->request->getGet('token'), true);
 
         $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();

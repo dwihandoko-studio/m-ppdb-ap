@@ -58,7 +58,7 @@
             bottom: 2rem;
             right: 2rem;
             z-index: 10;
-            max-width: 150px;
+            max-width: 170px;
             cursor: pointer !important;
         }
 

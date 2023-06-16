@@ -10,7 +10,24 @@
     </div>
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/banner-bg-13.png);"></div>
     <div class="container">
-        <div class="upper-box">
+        <div class="content-box">
+            <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Lampung Timur Tahun Pelajaran 2023/2024</h2>
+            <div class="text">Website ini dipersiapkan sebagai pusat informasi dan pengolahan data seleksi penerimaan peserta didik baru Dinas Pendidikan Kabupaten Lampung Timur Tahun Pelajaran 2023/2024 secara online dan realtime.</div>
+            <div class="mail-box">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" name="_search" id="_search" placeholder="Masukkan NISN/NIK" required="">
+                        <button type="submit">Cari Data Siswa</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="image-box">
+                <figure class="image-1 js-tilt"><img src="<?= base_url('themes') ?>/images/resource/illustration-26.png" alt=""></figure>
+                <figure class="image-2 float-bob-x"><img src="<?= base_url('themes') ?>/images/icons/cloud-1.png" alt=""></figure>
+                <figure class="image-3 float-bob-x"><img src="<?= base_url('themes') ?>/images/icons/cloud-2.png" alt=""></figure>
+            </div> -->
+        </div>
+        <!-- <div class="upper-box">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                     <div class="content-box">
@@ -29,16 +46,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lower-box">
-            <div class="timer">
-                <div class="cs-countdown" data-countdown="12/24/2019 05:06:59"></div>
-            </div>
-            <div class="btn-box">
-                <a href="#" class="btn-one">White Paper</a>
-                <a href="#" class="btn-two">Buy Token</a>
-            </div>
-        </div>
+        </div> -->
     </div>
 </section>
 <section class="banner-style-14 centred" style="padding-bottom: 0px;">

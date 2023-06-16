@@ -167,7 +167,7 @@ class Profilsekolah extends BaseController
 
                 if ($nama_ks === $oldData->nama_ks && $nip_ks === $oldData->nip_ks && $latitude === $oldSekolah->latitude && $longitude === $oldSekolah->longitude && $nama_sekolah == $oldSekolah->nama) {
                     $response = new \stdClass;
-                    $response->code = 201;
+                    $response->code = 200;
                     $response->message = "Tidak ada perubahan data yang disimpan.";
                     return json_encode($response);
                 } else {

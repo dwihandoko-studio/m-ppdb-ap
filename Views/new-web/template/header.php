@@ -1,4 +1,4 @@
-<header class="main-header style-two">
+<header class="main-header home-16">
     <div class="outer-container">
         <div class="container">
             <div class="main-box clearfix">

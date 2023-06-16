@@ -9,8 +9,11 @@
         <div class="icon icon-3 rotate-me"><img src="<?= base_url('themes') ?>/images/icons/anim-icon-9.png" alt=""></div>
     </div>
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/banner-bg-13.png);"></div>
-    <div class="container">
-        <!-- <div class="content-box">
+    <div class="image-box js-tilt">
+        <figure class="image wow slideInRight" data-wow-delay="00ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/illustration-33.png" alt=""></figure>
+    </div>
+    <!-- <div class="container"> -->
+    <!-- <div class="content-box">
             <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Lampung Timur Tahun Pelajaran 2023/2024</h2>
             <div class="text">Website ini dipersiapkan sebagai pusat informasi dan pengolahan data seleksi penerimaan peserta didik baru Dinas Pendidikan Kabupaten Lampung Timur Tahun Pelajaran 2023/2024 secara online dan realtime.</div>
             <div class="mail-box">
@@ -22,7 +25,7 @@
                 </form>
             </div>
         </div> -->
-        <!-- <div class="upper-box">
+    <!-- <div class="upper-box">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                     <div class="content-box">
@@ -42,7 +45,7 @@
                 </div>
             </div>
         </div> -->
-    </div>
+    <!-- </div> -->
 </section>
 <section class="banner-style-14 centred" style="padding-bottom: 0px;">
     <div class="container">

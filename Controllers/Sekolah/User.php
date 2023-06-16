@@ -247,7 +247,7 @@ class User extends BaseController
             if ($oldData) {
                 if ($alamat === $oldData->alamat && $kabupaten === $oldData->kabupaten && $kecamatan === $oldData->kecamatan && $kelurahan === $oldData->kelurahan) {
                     $response = new \stdClass;
-                    $response->code = 201;
+                    $response->code = 200;
                     $response->message = "Tidak ada perubahan data yang disimpan.";
                     return json_encode($response);
                 } else {

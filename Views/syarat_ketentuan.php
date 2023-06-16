@@ -6,7 +6,7 @@
 
     <meta charset="UTF-8">
     <title>Slamdung | Syarat Ketenttuan</title>
-    <meta name="description" content="Slamdung (Sistem layanan administrasi Kependudukan Daring) Kabupaten Pesawaran">
+    <meta name="description" content="PPDB TA. 2023/2024 Kabupaten Lampung Timur">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -275,11 +275,11 @@
 
         <h1>Syarat &amp; Ketentuan</h1>
 
-        <p>Selamat datang di situs Sistem Layanan Administrasi Kependudukan Daring (SLAMDUNG) berbasis Android milik Dinas Kependudukan dan Pencatatan Sipil Kabupaten Pesawaran.</p>
+        <p>Selamat datang di situs Sistem Layanan Administrasi Kependudukan Daring (SLAMDUNG) berbasis Android milik Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur.</p>
 
-        <p>Halaman ini berisi syarat dan ketentuan bagi seluruh penduduk Kabupaten Pesawaran yang menggunakan layanan untuk menerbitkan Dokumen Kependudukan oleh Dinas Kependudukan dan Pencatatan Sipil Kabupaten Pesawaran.</p>
+        <p>Halaman ini berisi syarat dan ketentuan bagi seluruh penduduk Kabupaten Lampung Timur yang menggunakan layanan untuk menerbitkan Dokumen Kependudukan oleh Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur.</p>
 
-        <p>Dinas Kependudukan dan Pencatatan Sipil Kabupaten Pesawaran menghimbau agar Anda membaca Syarat dan Ketentuan ini dengan seksama, Dinas Kependudukan dan Pencatatan Sipil Kabupaten Pesawaran berhak sewaktu-waktu mengubah Syarat dan Ketentuan ini.</p>
+        <p>Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur menghimbau agar Anda membaca Syarat dan Ketentuan ini dengan seksama, Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur berhak sewaktu-waktu mengubah Syarat dan Ketentuan ini.</p>
 
         <p>Pengguna layanan ini harus tunduk dan patuh pada ketentuan sebagai berikut :</p>
         <div>
@@ -288,10 +288,10 @@
                     Sistem Layanan Administrasi Kependudukan Daring (SLAMDUNG) berbasis Android ini tunduk dan taat pada ketentuan hukum dan perundang – undangan yang berlaku di Negara Kesatuan Republik Indonesia dalam hal ini Undang-Undang tentang tentang Informasi dan Transaksi Elektronik.
                 </li>
                 <li>
-                    Layanan Dukcapil Online diselenggarakan oleh pemerintah Kabupaten Pesawaran, dalam hal ini Dinas Kependudukan dan Pencatatan Sipil.
+                    Layanan Dukcapil Online diselenggarakan oleh pemerintah Kabupaten Lampung Timur, dalam hal ini Dinas Kependudukan dan Pencatatan Sipil.
                 </li>
                 <li>
-                    Layanan dukcapil online Kabupaten Pesawaran adalah layanan yang diperuntukkan secara khusus kepada masyarakat Kabupaten Pesawaran.
+                    Layanan dukcapil online Kabupaten Lampung Timur adalah layanan yang diperuntukkan secara khusus kepada masyarakat Kabupaten Lampung Timur.
                 </li>
                 <li>
                     Tujuan layanan dukcapil online adalah untuk mempermudah masyarakat dalam kepengurusan dokumen kependudukan secara mandiri.
@@ -303,7 +303,7 @@
                     Penduduk yang akan melakukan permohonan penerbitan dokumen kependudukan akan membuat akun dengan menggunakan user Nomor Identitas Kependudukan (NIK). Nomor Identitas Kependudukan sebagai user, hanya dapat digunakan oleh pemohon yang bersangkutan dan tidak dianjurkan untuk diwakilkan.
                 </li>
                 <li>
-                    Pengguna yang menggunakan layanan ini menyatakan bahwa setuju dengan ketentuan dan syarat yang diberlakukan oleh penyedia layanan. Dalam hal ini adalah Dinas Kependudukan dan Pencatatan Sipil Kabupaten Pesawaran.
+                    Pengguna yang menggunakan layanan ini menyatakan bahwa setuju dengan ketentuan dan syarat yang diberlakukan oleh penyedia layanan. Dalam hal ini adalah Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur.
                 </li>
                 <li>
                     Informasi kependudukan yang dikirim melaluli layanan ini, akan kami simpan di server kami dan tidak akan kami berikan kepada pihak manapun.
@@ -326,7 +326,7 @@
 
         <div class="copyrights">
 
-            <p>&copy; 2020 SLAMDUNG, supported by: Disdukcapil Kabupaten Pesawaran.</p>
+            <p>&copy; 2020 SLAMDUNG, supported by: Disdukcapil Kabupaten Lampung Timur.</p>
 
         </div>
 

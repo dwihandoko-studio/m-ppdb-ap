@@ -6,7 +6,7 @@
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/crm-bg.webp);"></div>
     <div class="container" style="margin-top: 90px;">>
         <div class="sec-title center">
-            <h2>STATISTIK PPDB 2023<br>KABUPATEN PESAWARAN</h2>
+            <h2>STATISTIK PPDB 2023<br>KABUPATEN LAMPUNG TIMUR</h2>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12 single-column">

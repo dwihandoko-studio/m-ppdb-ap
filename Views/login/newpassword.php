@@ -81,7 +81,7 @@
     <div class="login-box">
         <div class="logo">
             <a href="javascript:void(0);"><b>PPDB</b></a>
-            <small>Kab. Pesawaran</small>
+            <small>Kab. Lampung Timur</small>
         </div>
         <div class="card">
             <div class="body">

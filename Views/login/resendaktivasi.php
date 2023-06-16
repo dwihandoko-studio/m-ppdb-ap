@@ -82,7 +82,7 @@
         <div class="logo">
             <a href="javascript:void(0);"><b>SI-UTPG</b></a>
             <small>Sistem Informasi Usulan Tunjangan Profesi Guru</small>
-            <small>Kab. Pesawaran</small>
+            <small>Kab. Lampung Timur</small>
         </div>
         <div class="card">
             <div class="body">

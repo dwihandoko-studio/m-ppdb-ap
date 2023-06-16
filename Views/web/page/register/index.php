@@ -59,7 +59,7 @@
             </nav>
             <!-- offcanvas-menu end -->
 
-            <p class="text-gradient mt-3">PPDB KAB. PESAWARAN</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
         </div>
     </div>
 </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <ul class="select-box d-flex flex-wrap align-items-center justify-content-center justify-content-md-end">
-                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
+                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
                     </ul>
                 </div>
             </div>

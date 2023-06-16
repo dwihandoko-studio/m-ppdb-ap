@@ -59,7 +59,7 @@
             </nav>
             <!-- offcanvas-menu end -->
 
-            <p class="text-gradient mt-3">PPDB KAB. PESAWARAN</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
         </div>
     </div>
 </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <ul class="select-box d-flex flex-wrap align-items-center justify-content-center justify-content-md-end">
-                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
+                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -209,46 +209,45 @@
 <script src="<?= base_url('new-assets') ?>/assets/vendor/datatables/datatables.min.js"></script>
 
 <script>
-    
     function formatZonasi(d) {
         let cZonasiD = '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;>"';
-            cZonasiD +=     '<thead>';
-            cZonasiD +=         '<tr>';
-            cZonasiD +=             '<th colspan="6" style="text-align: center; align-items: center;">DATA ZONASI SEKOLAH ';
-            cZonasiD +=             d.nama;
-            cZonasiD +=             ' (';
-            cZonasiD +=             d.npsn;
-            cZonasiD +=             ' )';
-            cZonasiD +=             '</th>';
-            cZonasiD +=         '</tr>';
-            cZonasiD +=         '<tr>';
-            cZonasiD +=             '<th>No</td>';
-            cZonasiD +=             '<th>Provinsi</th>';
-            cZonasiD +=             '<th>Kabupaten</th>';
-            cZonasiD +=             '<th>Kecamatan</th>';
-            cZonasiD +=             '<th>Kelurahan</th>';
-            cZonasiD +=             '<th>Dusun</th>';
-            cZonasiD +=         '</tr>';
-            cZonasiD +=     '</thead>';
-            cZonasiD +=     '<tbody class="detail-zonasi-';
-            cZonasiD +=         d.id;
-            cZonasiD +=         '">';
-            cZonasiD +=         '<tr>';
-            cZonasiD +=             '<td colspan="6" style="text-align: center; align-items: center;">';
-            cZonasiD +=             '......LOADING.......';
-            cZonasiD +=             '</td>';
-            cZonasiD +=         '</tr>';
-            cZonasiD +=     '</tbody>';
-            cZonasiD += '</table>';
+        cZonasiD += '<thead>';
+        cZonasiD += '<tr>';
+        cZonasiD += '<th colspan="6" style="text-align: center; align-items: center;">DATA ZONASI SEKOLAH ';
+        cZonasiD += d.nama;
+        cZonasiD += ' (';
+        cZonasiD += d.npsn;
+        cZonasiD += ' )';
+        cZonasiD += '</th>';
+        cZonasiD += '</tr>';
+        cZonasiD += '<tr>';
+        cZonasiD += '<th>No</td>';
+        cZonasiD += '<th>Provinsi</th>';
+        cZonasiD += '<th>Kabupaten</th>';
+        cZonasiD += '<th>Kecamatan</th>';
+        cZonasiD += '<th>Kelurahan</th>';
+        cZonasiD += '<th>Dusun</th>';
+        cZonasiD += '</tr>';
+        cZonasiD += '</thead>';
+        cZonasiD += '<tbody class="detail-zonasi-';
+        cZonasiD += d.id;
+        cZonasiD += '">';
+        cZonasiD += '<tr>';
+        cZonasiD += '<td colspan="6" style="text-align: center; align-items: center;">';
+        cZonasiD += '......LOADING.......';
+        cZonasiD += '</td>';
+        cZonasiD += '</tr>';
+        cZonasiD += '</tbody>';
+        cZonasiD += '</table>';
         return cZonasiD;
         // `d` is the original data object for the row
-        
+
     }
-    
-    
+
+
     function actionDetailZonasi(event, title) {
         console.log(event);
-        
+
         $.ajax({
             url: "<?= base_url('web/home/getDetailZonasi') ?>",
             type: 'POST',
@@ -270,37 +269,37 @@
                 } else {
                     if (msg.data.length > 0) {
                         let htmlZonasi = "";
-                            for (let stepr = 0; stepr < msg.data.length; stepr++) {
-                                const numberBer = stepr +1;
-                                htmlZonasi +=          '<tr>';
-                                htmlZonasi +=              '<td>';
-                                htmlZonasi +=                  numberBer;
-                                htmlZonasi +=              '</td>';
-                                htmlZonasi +=              '<td>';
-                                htmlZonasi +=                  msg.data[stepr].nama_provinsi;
-                                htmlZonasi +=              '</td>';
-                                htmlZonasi +=              '<td>';
-                                htmlZonasi +=                  msg.data[stepr].nama_kabupaten;
-                                htmlZonasi +=              '</td>';
-                                htmlZonasi +=              '<td>';
-                                htmlZonasi +=                  msg.data[stepr].nama_kecamatan;
-                                htmlZonasi +=              '</td>';
-                                htmlZonasi +=              '<td>';
-                                htmlZonasi +=                  msg.data[stepr].nama_kelurahan;
-                                htmlZonasi +=              '</td>';
-                                htmlZonasi +=              '<td>';
-                                htmlZonasi +=                  msg.data[stepr].nama_dusun;
-                                htmlZonasi +=              '</td>';
-                                htmlZonasi +=          '</tr>';
-                            }
-    
+                        for (let stepr = 0; stepr < msg.data.length; stepr++) {
+                            const numberBer = stepr + 1;
+                            htmlZonasi += '<tr>';
+                            htmlZonasi += '<td>';
+                            htmlZonasi += numberBer;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '<td>';
+                            htmlZonasi += msg.data[stepr].nama_provinsi;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '<td>';
+                            htmlZonasi += msg.data[stepr].nama_kabupaten;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '<td>';
+                            htmlZonasi += msg.data[stepr].nama_kecamatan;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '<td>';
+                            htmlZonasi += msg.data[stepr].nama_kelurahan;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '<td>';
+                            htmlZonasi += msg.data[stepr].nama_dusun;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '</tr>';
+                        }
+
                         $('.detail-zonasi-' + event).html(htmlZonasi);
                     } else {
-                        let cZonasiD =         '<tr>';
-                            cZonasiD +=             '<td colspan="6" style="text-align: center; align-items: center;">';
-                            cZonasiD +=             'Belum ada data.';
-                            cZonasiD +=             '</td>';
-                            cZonasiD +=         '</tr>';
+                        let cZonasiD = '<tr>';
+                        cZonasiD += '<td colspan="6" style="text-align: center; align-items: center;">';
+                        cZonasiD += 'Belum ada data.';
+                        cZonasiD += '</td>';
+                        cZonasiD += '</tr>';
 
                         $('.detail-zonasi-' + event).html(cZonasiD);
                     }
@@ -310,11 +309,11 @@
                 console.log(e);
             }
         });
-        
+
     }
-    
+
     $(document).ready(function() {
-        
+
         let tableZonasiSekolah = $('#tabelZonasiSekolah').DataTable({
             "processing": true,
             "serverSide": true,
@@ -333,45 +332,52 @@
                 },
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
-            'columns': [
-                { data: 'no' }, 
+            'columns': [{
+                    data: 'no'
+                },
                 {
                     className: 'dt-control',
                     orderable: false,
                     data: 'button',
                     defaultContent: '',
-                }, 
-                { data: 'npsn' }, 
-                { data: 'nama' }, 
-                { data: 'jumlah' }
+                },
+                {
+                    data: 'npsn'
+                },
+                {
+                    data: 'nama'
+                },
+                {
+                    data: 'jumlah'
+                }
             ],
             "columnDefs": [{
                 "targets": 0,
                 "orderable": false,
             }],
             lengthMenu: [
-                [ 10, 25 ],
-                [ '10 Data', '25 Data' ]
+                [10, 25],
+                ['10 Data', '25 Data']
             ],
         });
-        
-        
-        $('#tabelZonasiSekolah tbody').on('click', 'td.dt-control', function () {
+
+
+        $('#tabelZonasiSekolah tbody').on('click', 'td.dt-control', function() {
             var tr = $(this).closest('tr');
             var row = tableZonasiSekolah.row(tr);
-     
+
             if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child.hide();
                 tr.removeClass('shown');
             } else {
                 // Open this row
-                
+
                 row.child(formatZonasi(row.data())).show();
                 tr.addClass('shown');
             }
         });
-        
+
         $('#filter_jenjang_zonasi').change(function() {
             tableZonasiSekolah.draw();
         });

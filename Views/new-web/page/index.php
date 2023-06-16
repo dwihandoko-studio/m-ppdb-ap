@@ -5,8 +5,8 @@
 <section class="banner-style-14 centred" style="padding-bottom: 0px;">
     <div class="container">
         <div class="content-box">
-            <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Pesawaran Tahun Pelajaran 2023/2024</h2>
-            <div class="text">Website ini dipersiapkan sebagai pusat informasi dan pengolahan data seleksi penerimaan peserta didik baru Dinas Pendidikan Kabupaten Pesawaran Tahun Pelajaran 2023/2024 secara online dan realtime.</div>
+            <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Lampung Timur Tahun Pelajaran 2023/2024</h2>
+            <div class="text">Website ini dipersiapkan sebagai pusat informasi dan pengolahan data seleksi penerimaan peserta didik baru Dinas Pendidikan Kabupaten Lampung Timur Tahun Pelajaran 2023/2024 secara online dan realtime.</div>
             <div class="mail-box">
                 <form action="#" method="post">
                     <div class="form-group">
@@ -78,7 +78,7 @@
                                     <div class="pattern-2" style="background-image: url(<?= base_url('themes') ?>/images/icons/shap-20.webp);"></div>
                                 </div>
                                 <h4><a href="#">Klik Registrasi Akun</a></h4>
-                                <div class="text">Klik button “Registrasi Akun” apabila belum pernah bersekolah atau sekolah di Luar Lingkup Dinas Pendidikan dan Kebudayaan Kab. Pesawaran.</div>
+                                <div class="text">Klik button “Registrasi Akun” apabila belum pernah bersekolah atau sekolah di Luar Lingkup Dinas Pendidikan dan Kebudayaan Kab. Lampung Timur.</div>
                             </div>
                         </div>
                         <div class="single-item wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
@@ -211,7 +211,7 @@
             <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 inner-column">
                 <div class="inner-box">
                     <div class="sec-title center">
-                        <h2>Dapatkan Berbagai Informasi Mengenai PPDB Tahun 2023<br>Kabupaten Pesawaran</h2>
+                        <h2>Dapatkan Berbagai Informasi Mengenai PPDB Tahun 2023<br>Kabupaten Lampung Timur</h2>
                     </div>
                     <div class="text"><a href="#" style="position: relative; display: inline-block; overflow: hidden; font-size: 16px; color: #fff; line-height: 30px; background: #4527a4; padding: 15px 47px; text-align: center; border-radius: 30px; z-index: 1; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);">Lihat Informasi PPDB 2023</a></div>
                 </div>

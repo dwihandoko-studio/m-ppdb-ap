@@ -6,7 +6,7 @@
     <div class="container">
         <div class="content-box">
             <h2>PENGADUAN PPDB TA. 2023/2024</h2>
-            <div class="text">Kabupaten Pesawaran.</div>
+            <div class="text">Kabupaten Lampung Timur.</div>
             <div class="mail-box">
                 <form action="#" method="post">
                     <div class="form-group-custom">

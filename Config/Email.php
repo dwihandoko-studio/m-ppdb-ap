@@ -56,8 +56,8 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	// 	public $SMTPUser = 'pesawaran.ppdb@ngehoster.com';
-	public $SMTPUser = 'pesawaran.ppdb@kntechline.com';
+	// 	public $SMTPUser = 'lamtim.ppdb@ngehoster.com';
+	public $SMTPUser = 'lamtim.ppdb@kntechline.com';
 
 	/**
 	 * SMTP Password

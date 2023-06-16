@@ -59,7 +59,7 @@
             </nav>
             <!-- offcanvas-menu end -->
 
-            <p class="text-gradient mt-3">PPDB KAB. PESAWARAN</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
         </div>
     </div>
 </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <ul class="select-box d-flex flex-wrap align-items-center justify-content-center justify-content-md-end">
-                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
+                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -193,11 +193,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if(isset($data_lolos)) {
-                                        if(count($data_lolos) > 0) {
+                                    <?php if (isset($data_lolos)) {
+                                        if (count($data_lolos) > 0) {
                                             $no = 1;
                                             foreach ($data_lolos as $key => $value) {
-                                            ?>
+                                    ?>
                                                 <tr>
                                                     <td><?= $no ?></td>
                                                     <td><?= $value->via_jalur ?></td>
@@ -206,14 +206,12 @@
                                                     <td><?= $value->kode_pendaftaran ?></td>
                                                     <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
                                                 </tr>
-                                            <?php 
+                                    <?php
                                                 $no++;
                                             }
                                         } else {
-                                            
                                         }
                                     } else {
-                                        
                                     }
                                     ?>
                                 </tbody>
@@ -235,7 +233,7 @@
 <script src="<?= base_url('new-assets') ?>/assets/vendor/datatables/datatables.min.js"></script>
 
 <script>
-    
+
 </script>
 <?= $this->endSection(); ?>
 
@@ -387,7 +385,7 @@
         justify-items: center;
         align-items: center;
     }
-    
+
     td.text-align-center {
         text-align: center;
         align-items: center;

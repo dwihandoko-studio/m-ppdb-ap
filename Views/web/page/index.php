@@ -40,7 +40,7 @@
 
                 </ul>
             </nav>
-            <p class="text-gradient mt-3">PPDB KAB. PESAWARAN</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
         </div>
     </div>
 </div>
@@ -940,7 +940,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                     <div class="col-lg-8" style="margin-bottom: 50px;">
-                                        <h2 style="color: #fff; margin-bottom: 40px;">Download berbagai macam informasi terkait pendaftaran PPDB Kabupaten Pesawaran</h2>
+                                        <h2 style="color: #fff; margin-bottom: 40px;">Download berbagai macam informasi terkait pendaftaran PPDB Kabupaten Lampung Timur</h2>
                                         <div class="row">
                                             <div class="col-md-6" style="color: #fff;">
                                                 <a href="<?= base_url('uploads/panduan/panduan_panitia.pdf') ?>" style="color: #fff;" target="_blank">
@@ -963,8 +963,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4" style="color: #fff;">
-                                        Download juga aplikasi PPDB Kabupaten Pesawaran di Playstore untuk pengalaman lebih baik.<br>
-                                        <a href="https://play.google.com/store/apps/details?id=com.kntechline.ppdb.pesawaran" target="_blank">
+                                        Download juga aplikasi PPDB Kabupaten Lampung Timur di Playstore untuk pengalaman lebih baik.<br>
+                                        <a href="https://play.google.com/store/apps/details?id=com.kntechline.ppdb.duatiga.lamtim" target="_blank">
                                             <img src="<?= base_url() ?>/template/pringo/playstore.png" alt="" class="mr-2 align-items-center">
                                         </a>
                                     </div>
@@ -1309,7 +1309,7 @@
             text: false
         },
         xAxis: {
-            categories: ['Kab. Pesawaran'],
+            categories: ['Kab. Lampung Timur'],
             title: {
                 text: null
             }

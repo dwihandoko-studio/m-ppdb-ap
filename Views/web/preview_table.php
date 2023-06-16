@@ -37,7 +37,7 @@
     <meta name="msapplication-TileImage" content="<?= base_url('favicons/ms-icon-144x144.png'); ?>">
     <meta name="theme-color" content="#ffffff">
 
-    <title>DATA LOLOS PPDB KAB. PESAWARAN TAHUN 2022</title>
+    <title>DATA LOLOS PPDB KAB. LAMPUNG TIMUR TAHUN 2023/2024</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/nucleo/css/nucleo.css" type="text/css">
@@ -54,13 +54,13 @@
         .preview-image-upload {
             position: relative;
         }
-    
+
         .preview-image-upload .imagePreviewUpload {
             max-width: 300px;
             max-height: 300px;
             cursor: pointer;
         }
-    
+
         .preview-image-upload .btn-remove-preview-image {
             display: none;
             position: absolute;
@@ -78,14 +78,14 @@
             /*cursor: pointer;*/
             border-radius: 5px;
         }
-    
+
         .imagePreviewUpload:hover+.btn-remove-preview-image,
         .btn-remove-preview-image:hover {
             display: block;
         }
-    
+
         /*.imagePreviewUpload .btn-remove-preview-image:hover {*/
-    
+
         /*    background-color: black;*/
         /*}*/
     </style>
@@ -98,7 +98,7 @@
         <div class="scrollbar-inner">
             <div class="sidenav-header  d-flex  align-items-center">
                 <a class="navbar-brand" href="#">
-                    <h2>PPDB PESAWARAN</h2>
+                    <h2>PPDB LAMPUNG TIMUR</h2>
                 </a>
                 <div class=" ml-auto ">
                     <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
@@ -123,7 +123,7 @@
                         <h6 class="navbar-heading pl-4 text-muted">
                             <span class="docs-normal">Master Data</span>
                         </h6>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -184,11 +184,11 @@
                                 </ol>
                             </nav>
                         </div>
-    
+
                         <!--<div class="col-lg-6 col-5 text-right">-->
                         <!--    <button type="button" onclick="actionAdd(this)" class="btn btn-sm btn-neutral">Tambah Penguna</button>-->
                         <!--</div>-->
-    
+
                     </div>
                 </div>
             </div>
@@ -212,12 +212,12 @@
                                                 <label for="filter_role" class="form-control-label">Filter Role</label>
                                                 <select class="form-control filter-role" name="filter_role" id="filter_role" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                                                     <option value="">-- Pilih --</option>
-                                                    <?php if(isset($levels)) {
-                                                    if(count($levels) > 0) {
-                                                        foreach ($levels as $key => $value) {
-                                                            echo '<option value="' . $value->id . '">' . $value->role . '</option>';
+                                                    <?php if (isset($levels)) {
+                                                        if (count($levels) > 0) {
+                                                            foreach ($levels as $key => $value) {
+                                                                echo '<option value="' . $value->id . '">' . $value->role . '</option>';
+                                                            }
                                                         }
-                                                    }
                                                     } ?>
                                                 </select>
                                             </div>
@@ -233,124 +233,124 @@
                                     <thead>
                                         <tr>
                                             <th data-orderable="false">NISN</th>
-                            				<th data-orderable="false">Nama Lengkap</th>
-                            				<th data-orderable="false">Jenis Kelamin</th>
-                            				<th data-orderable="false">Nama Sekolah Asal (NPSN)</th>
-                            				<th data-orderable="false">Nama Sekolah Tujuan (NPSN)</th>
-                            				<th data-orderable="false">Kode Pendaftaran</th>
-                            				<th data-orderable="false">Jalur Pendaftaran</th>
-                            				<th data-orderable="false">Jarak</th>
+                                            <th data-orderable="false">Nama Lengkap</th>
+                                            <th data-orderable="false">Jenis Kelamin</th>
+                                            <th data-orderable="false">Nama Sekolah Asal (NPSN)</th>
+                                            <th data-orderable="false">Nama Sekolah Tujuan (NPSN)</th>
+                                            <th data-orderable="false">Kode Pendaftaran</th>
+                                            <th data-orderable="false">Jalur Pendaftaran</th>
+                                            <th data-orderable="false">Jarak</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php if (isset($data_lolos_zonasi)) {
-                            		        if (count($data_lolos_zonasi) > 0) {
-                            		            foreach ($data_lolos_zonasi as $key => $value) { ?>
-                            		                <tr>
-                            		                    <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
-                            		                    <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
-                            		                    <td><?php 
-                            		                        try {
-                                		                        $rinci = json_decode($value->data_rinci_peserta);
-                                		                        echo $rinci->jenis_kelamin;
-                            		                        } catch (\Exception $e) {
-                            		                            echo $value->id;
-                            		                        }
-                            		                        ?>
-                            		                    </td>
-                            		                    <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
-                            		                    <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
-                            		                    <td><?= $value->kode_pendaftaran ?></td>
-                            		                    <td><?= $value->via_jalur ?></td>
-                            		                    <td><?= $value->jarak ?></td>
-                            		                </tr>
-                            		            <?php }
-                            		        }
-                            		    } ?>
-                            		    
-                            		    <!--<tr>-->
-                            		    <!--    <th colspan="7">AFIRMASI</th>-->
-                            		    <!--</tr>-->
-                            		    <?php if (isset($data_lolos_afirmasi)) {
-                            		        if (count($data_lolos_afirmasi) > 0) {
-                            		            foreach ($data_lolos_afirmasi as $key => $value) { ?>
-                            		                <tr>
-                            		                    <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
-                            		                    <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
-                            		                    <td><?php 
-                            		                        try {
-                                		                        $rinci = json_decode($value->data_rinci_peserta);
-                                		                        echo $rinci->jenis_kelamin;
-                            		                        } catch (\Exception $e) {
-                            		                            echo $value->id;
-                            		                        }
-                            		                        ?>
-                            		                    </td>
-                            		                    <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
-                            		                    <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
-                            		                    <td><?= $value->kode_pendaftaran ?></td>
-                            		                    <td><?= $value->via_jalur ?></td>
-                            		                    <td><?= $value->jarak ?></td>
-                            		                </tr>
-                            		            <?php }
-                            		        }
-                            		    } ?>
-                            		    
-                            		    <!--<tr>-->
-                            		    <!--    <th colspan="7">MUTASI</th>-->
-                            		    <!--</tr>-->
-                            		    <?php if (isset($data_lolos_mutasi)) {
-                            		        if (count($data_lolos_mutasi) > 0) {
-                            		            foreach ($data_lolos_mutasi as $key => $value) { ?>
-                            		                <tr>
-                            		                    <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
-                            		                    <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
-                            		                    <td><?php 
-                            		                        try {
-                                		                        $rinci = json_decode($value->data_rinci_peserta);
-                                		                        echo $rinci->jenis_kelamin;
-                            		                        } catch (\Exception $e) {
-                            		                            echo $value->id;
-                            		                        }
-                            		                        ?>
-                            		                    </td>
-                            		                    <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
-                            		                    <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
-                            		                    <td><?= $value->kode_pendaftaran ?></td>
-                            		                    <td><?= $value->via_jalur ?></td>
-                            		                    <td><?= $value->jarak ?></td>
-                            		                </tr>
-                            		            <?php }
-                            		        }
-                            		    } ?>
-                            		    
-                            		    <!--<tr>-->
-                            		    <!--    <th colspan="7">PRESTASI</th>-->
-                            		    <!--</tr>-->
-                            		    <?php if (isset($data_lolos_prestasi)) {
-                            		        if (count($data_lolos_prestasi) > 0) {
-                            		            foreach ($data_lolos_prestasi as $key => $value) { ?>
-                            		                <tr>
-                            		                    <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
-                            		                    <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
-                            		                    <td><?php 
-                            		                        try {
-                                		                        $rinci = json_decode($value->data_rinci_peserta);
-                                		                        echo $rinci->jenis_kelamin;
-                            		                        } catch (\Exception $e) {
-                            		                            echo $value->id;
-                            		                        }
-                            		                        ?>
-                            		                    </td>
-                            		                    <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
-                            		                    <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
-                            		                    <td><?= $value->kode_pendaftaran ?></td>
-                            		                    <td><?= $value->via_jalur ?></td>
-                            		                    <td><?= $value->jarak ?></td>
-                            		                </tr>
-                            		            <?php }
-                            		        }
-                            		    } ?>
+                                            if (count($data_lolos_zonasi) > 0) {
+                                                foreach ($data_lolos_zonasi as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
+                                                        <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
+                                                        <td><?php
+                                                            try {
+                                                                $rinci = json_decode($value->data_rinci_peserta);
+                                                                echo $rinci->jenis_kelamin;
+                                                            } catch (\Exception $e) {
+                                                                echo $value->id;
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
+                                                        <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
+                                                        <td><?= $value->kode_pendaftaran ?></td>
+                                                        <td><?= $value->via_jalur ?></td>
+                                                        <td><?= $value->jarak ?></td>
+                                                    </tr>
+                                        <?php }
+                                            }
+                                        } ?>
+
+                                        <!--<tr>-->
+                                        <!--    <th colspan="7">AFIRMASI</th>-->
+                                        <!--</tr>-->
+                                        <?php if (isset($data_lolos_afirmasi)) {
+                                            if (count($data_lolos_afirmasi) > 0) {
+                                                foreach ($data_lolos_afirmasi as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
+                                                        <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
+                                                        <td><?php
+                                                            try {
+                                                                $rinci = json_decode($value->data_rinci_peserta);
+                                                                echo $rinci->jenis_kelamin;
+                                                            } catch (\Exception $e) {
+                                                                echo $value->id;
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
+                                                        <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
+                                                        <td><?= $value->kode_pendaftaran ?></td>
+                                                        <td><?= $value->via_jalur ?></td>
+                                                        <td><?= $value->jarak ?></td>
+                                                    </tr>
+                                        <?php }
+                                            }
+                                        } ?>
+
+                                        <!--<tr>-->
+                                        <!--    <th colspan="7">MUTASI</th>-->
+                                        <!--</tr>-->
+                                        <?php if (isset($data_lolos_mutasi)) {
+                                            if (count($data_lolos_mutasi) > 0) {
+                                                foreach ($data_lolos_mutasi as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
+                                                        <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
+                                                        <td><?php
+                                                            try {
+                                                                $rinci = json_decode($value->data_rinci_peserta);
+                                                                echo $rinci->jenis_kelamin;
+                                                            } catch (\Exception $e) {
+                                                                echo $value->id;
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
+                                                        <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
+                                                        <td><?= $value->kode_pendaftaran ?></td>
+                                                        <td><?= $value->via_jalur ?></td>
+                                                        <td><?= $value->jarak ?></td>
+                                                    </tr>
+                                        <?php }
+                                            }
+                                        } ?>
+
+                                        <!--<tr>-->
+                                        <!--    <th colspan="7">PRESTASI</th>-->
+                                        <!--</tr>-->
+                                        <?php if (isset($data_lolos_prestasi)) {
+                                            if (count($data_lolos_prestasi) > 0) {
+                                                foreach ($data_lolos_prestasi as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?= $value->nisn == NULL || $value->nisn == "" ? "NULL" : $value->nisn ?></td>
+                                                        <td><?= $value->fullname == NULL || $value->fullname == "" ? "NULL" : $value->fullname ?></td>
+                                                        <td><?php
+                                                            try {
+                                                                $rinci = json_decode($value->data_rinci_peserta);
+                                                                echo $rinci->jenis_kelamin;
+                                                            } catch (\Exception $e) {
+                                                                echo $value->id;
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= $value->nama_sekolah_asal ?> (<?= $value->npsn_sekolah_asal ?>)</td>
+                                                        <td><?= $value->nama_sekolah_tujuan ?> (<?= $value->npsn_sekolah_tujuan ?>)</td>
+                                                        <td><?= $value->kode_pendaftaran ?></td>
+                                                        <td><?= $value->via_jalur ?></td>
+                                                        <td><?= $value->jarak ?></td>
+                                                    </tr>
+                                        <?php }
+                                            }
+                                        } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -368,7 +368,7 @@
                             </button>
                         </div>
                         <div class="contentBodyModal">
-    
+
                         </div>
                     </div>
                 </div>
@@ -387,14 +387,14 @@
     <script src="<?= base_url('new-assets/assets/js'); ?>/jquery-block-ui.js"></script>
     <script src="<?= base_url('new-assets') ?>/assets/vendor/datatables/datatables.min.js"></script>
     <script src="<?= base_url('new-assets'); ?>/assets/vendor/select2/dist/js/select2.min.js"></script>
-    
+
     <script>
         function initSelect2(event, parrent) {
             $('#' + event).select2({
                 dropdownParent: parrent
             });
         }
-    
+
         function reloadPage(action = "") {
             if (action === "") {
                 document.location.href = "<?= current_url(true); ?>";
@@ -402,18 +402,18 @@
                 document.location.href = action;
             }
         }
-        
+
         function changeValidation(event) {
             $('.' + event).css('display', 'none');
         };
-    
+
         function inputFocus(id) {
             const color = $(id).attr('id');
             $(id).removeAttr('style');
             $('.' + color).html('');
         }
-    
-    
+
+
         function inputChange(event) {
             console.log(event.value);
             if (event.value === null || (event.value.length > 0 && event.value !== "")) {
@@ -424,16 +424,16 @@
                 // $('.nama_instansi').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Isian tidak boleh kosong.</li></ul>');
             }
         }
-    
-    
+
+
         function ambilId(id) {
             return document.getElementById(id);
         }
-    
+
         $(document).ready(function() {
             // initSelect2('filter_role', '#panel');
             // initSelect2('filter_jenjang', '#panel');
-    
+
             let tableUsulan = $('#data-table-id').DataTable({
                 // "processing": true,
                 // "serverSide": false,
@@ -449,19 +449,17 @@
                 language: {
                     paginate: {
                         next: '<i class="ni ni-bold-right">',
-                        previous: '<i class="ni ni-bold-left">'  
+                        previous: '<i class="ni ni-bold-left">'
                     },
                     processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
                 },
-                "columnDefs": [
-                    {
-                        "targets": 0,
-                        "orderable": false,
-                    }
-                ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "orderable": false,
+                }],
                 lengthMenu: [
-                    [ -1 ],
-                    [ 'Show all' ]
+                    [-1],
+                    ['Show all']
                 ],
                 dom: 'Blfrtip',
                 buttons: [
@@ -475,18 +473,17 @@
                     }
                 ]
             });
-    
+
             // $('#filter_role').change(function() {
             //     tableUsulan.draw();
             // });
-        
+
             // $('#filter_jenjang').change(function() {
             //     tableUsulan.draw();
             // });
         });
-    
     </script>
-    
+
 </body>
 
 </html>

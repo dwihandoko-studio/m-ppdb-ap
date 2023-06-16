@@ -63,7 +63,7 @@
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border border-light rounded p-4 p-lg-5 w-100 fmxw-500">
                         <div class="text-center text-md-center mb-4 mt-md-0">
-                            <h1 class="mb-3 h3">Buat Password Baru PPDB Kab. Pesawaran</h1>
+                            <h1 class="mb-3 h3">Buat Password Baru PPDB Kab. Lampung Timur</h1>
                             <p class="text-gray">Untuk akun yang terkait dengan <?= $reset->user_id ?>.</p>
                             <?php if (isset($errorLogin)) { ?>
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">

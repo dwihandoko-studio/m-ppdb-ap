@@ -270,7 +270,7 @@
             //         extend: 'pdfHtml5',
             //         orientation: 'landscape',
             //         pageSize: 'A4',
-            //         // messageTop: 'Rekapitulasi Data Pendaftar PPDB DISDIKBUD Kab. Pesawaran Tahun 2021',
+            //         // messageTop: 'Rekapitulasi Data Pendaftar PPDB DISDIKBUD Kab. Lampung Timur Tahun 2021',
             //         title: 'Rekap Data Total',
             //         text: 'PDF',
             //     }

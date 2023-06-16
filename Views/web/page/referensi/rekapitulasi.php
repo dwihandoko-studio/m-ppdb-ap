@@ -59,7 +59,7 @@
             </nav>
             <!-- offcanvas-menu end -->
 
-            <p class="text-gradient mt-3">PPDB KAB. PESAWARAN</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
         </div>
     </div>
 </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <ul class="select-box d-flex flex-wrap align-items-center justify-content-center justify-content-md-end">
-                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-','',getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
+                        <li class="select-item"><a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs')) ?>">CS SMP: 0<?= getenv('web.meta.site.cs') ?></a> / <a target="_blank" href="https://wa.me/62<?= str_replace('-', '', getenv('web.meta.site.cs2')) ?>">SD: 0<?= getenv('web.meta.site.cs2') ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -197,7 +197,7 @@
                                         <th data-orderable="false" class="text-center">Terverifikasi</th>
                                     </tr>
                                 </thead>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -216,115 +216,114 @@
 <script src="<?= base_url('new-assets') ?>/assets/vendor/datatables/datatables.min.js"></script>
 
 <script>
-    
     function formatRekapitulasi(d) {
-        
+
         let cRekapD = '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
-            cRekapD +=      '<thead>';
-            cRekapD +=          '<tr>';
-            cRekapD +=              '<th colspan="3" style="text-align: center; align-items: center;">REKAPITULASI PPDB ';
-            cRekapD +=              d.nama;
-            cRekapD +=              ' ( ';
-            cRekapD +=              d.npsn;
-            cRekapD +=              ' )';
-            cRekapD +=              '</th>';
-            cRekapD +=          '</tr>';
-            cRekapD +=          '<tr>';
-            cRekapD +=              '<th>Pendaftar (';
-            cRekapD +=              d.jumlah_pendaftar;
-            cRekapD +=              ' Peserta)</th>';
-            cRekapD +=              '<th>Terverifikasi (';
-            cRekapD +=              d.terverifikasi;
-            cRekapD +=              ' Peserta)</th>';
-            cRekapD +=              '<th>Belum Verifikasi (';
-            cRekapD +=              d.belum_verifikasi;
-            cRekapD +=              ' Peserta)</th>';
-            cRekapD +=          '</tr>';
-            cRekapD +=      '</thead>';
-            cRekapD +=      '<tbody class="detail-jalur-';
-            cRekapD +=          d.id;
-            cRekapD +=      '">';
-            cRekapD +=          '<tr>';
-            cRekapD +=              '<td colspan="3" style="text-align: center; align-items: center;">';
-            cRekapD +=              '......LOADING.......';
-            cRekapD +=              '</td>';
-            cRekapD +=          '</tr>';
-            cRekapD +=      '</tbody>';
-            cRekapD += '</table>';
-            
-            cRekapD += '<br>';
-            cRekapD += '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
-            cRekapD +=      '<thead>';
-            cRekapD +=          '<tr>';
-            cRekapD +=              '<th colspan="5" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG TERVERIFIKASI</th>';
-            cRekapD +=          '</tr>';
-            cRekapD +=          '<tr>';
-            // cRekapD +=              '<th>';
-            // cRekapD +=                  'No';
-            // cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'No Pendaftaran';
-            cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'Nama Peserta';
-            cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'NISN';
-            cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'Asal Sekolah';
-            cRekapD +=              '</th>';
-            cRekapD +=          '</tr>';
-            cRekapD +=      '</thead>';
-            cRekapD +=      '<tbody class="data-rekap-verifikasi-';
-            cRekapD +=      d.id;
-            cRekapD +=      '">';
-            cRekapD +=          '<tr>';
-            cRekapD +=              '<td colspan="5" style="text-align: center; align-items: center;">';
-            cRekapD +=              '......LOADING.......';
-            cRekapD +=              '</td>';
-            cRekapD +=          '</tr>';
-            cRekapD +=      '</tbody>';
-            cRekapD += '</table>';
-            
-            cRekapD += '<br>';
-            cRekapD += '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
-            cRekapD +=      '<thead>';
-            cRekapD +=          '<tr>';
-            cRekapD +=              '<th colspan="5" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG BELUM VERIFIKASI</th>';
-            cRekapD +=          '</tr>';
-            cRekapD +=          '<tr>';
-            // cRekapD +=              '<th>';
-            // cRekapD +=                  'No';
-            // cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'No Pendaftaran';
-            cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'Nama Peserta';
-            cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'NISN';
-            cRekapD +=              '</th>';
-            cRekapD +=              '<th>';
-            cRekapD +=                  'Asal Sekolah';
-            cRekapD +=              '</th>';
-            cRekapD +=          '</tr>';
-            cRekapD +=      '</thead>';
-            cRekapD +=      '<tbody class="data-rekap-belum-verifikasi-';
-            cRekapD +=      d.id;
-            cRekapD +=      '">';
-            cRekapD +=          '<tr>';
-            cRekapD +=              '<td colspan="5" style="text-align: center; align-items: center;">';
-            cRekapD +=              '......LOADING.......';
-            cRekapD +=              '</td>';
-            cRekapD +=          '</tr>';
-            cRekapD +=      '</tbody>';
-            cRekapD += '</table>';
-            
+        cRekapD += '<thead>';
+        cRekapD += '<tr>';
+        cRekapD += '<th colspan="3" style="text-align: center; align-items: center;">REKAPITULASI PPDB ';
+        cRekapD += d.nama;
+        cRekapD += ' ( ';
+        cRekapD += d.npsn;
+        cRekapD += ' )';
+        cRekapD += '</th>';
+        cRekapD += '</tr>';
+        cRekapD += '<tr>';
+        cRekapD += '<th>Pendaftar (';
+        cRekapD += d.jumlah_pendaftar;
+        cRekapD += ' Peserta)</th>';
+        cRekapD += '<th>Terverifikasi (';
+        cRekapD += d.terverifikasi;
+        cRekapD += ' Peserta)</th>';
+        cRekapD += '<th>Belum Verifikasi (';
+        cRekapD += d.belum_verifikasi;
+        cRekapD += ' Peserta)</th>';
+        cRekapD += '</tr>';
+        cRekapD += '</thead>';
+        cRekapD += '<tbody class="detail-jalur-';
+        cRekapD += d.id;
+        cRekapD += '">';
+        cRekapD += '<tr>';
+        cRekapD += '<td colspan="3" style="text-align: center; align-items: center;">';
+        cRekapD += '......LOADING.......';
+        cRekapD += '</td>';
+        cRekapD += '</tr>';
+        cRekapD += '</tbody>';
+        cRekapD += '</table>';
+
+        cRekapD += '<br>';
+        cRekapD += '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
+        cRekapD += '<thead>';
+        cRekapD += '<tr>';
+        cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG TERVERIFIKASI</th>';
+        cRekapD += '</tr>';
+        cRekapD += '<tr>';
+        // cRekapD +=              '<th>';
+        // cRekapD +=                  'No';
+        // cRekapD +=              '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'No Pendaftaran';
+        cRekapD += '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'Nama Peserta';
+        cRekapD += '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'NISN';
+        cRekapD += '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'Asal Sekolah';
+        cRekapD += '</th>';
+        cRekapD += '</tr>';
+        cRekapD += '</thead>';
+        cRekapD += '<tbody class="data-rekap-verifikasi-';
+        cRekapD += d.id;
+        cRekapD += '">';
+        cRekapD += '<tr>';
+        cRekapD += '<td colspan="5" style="text-align: center; align-items: center;">';
+        cRekapD += '......LOADING.......';
+        cRekapD += '</td>';
+        cRekapD += '</tr>';
+        cRekapD += '</tbody>';
+        cRekapD += '</table>';
+
+        cRekapD += '<br>';
+        cRekapD += '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
+        cRekapD += '<thead>';
+        cRekapD += '<tr>';
+        cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG BELUM VERIFIKASI</th>';
+        cRekapD += '</tr>';
+        cRekapD += '<tr>';
+        // cRekapD +=              '<th>';
+        // cRekapD +=                  'No';
+        // cRekapD +=              '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'No Pendaftaran';
+        cRekapD += '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'Nama Peserta';
+        cRekapD += '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'NISN';
+        cRekapD += '</th>';
+        cRekapD += '<th>';
+        cRekapD += 'Asal Sekolah';
+        cRekapD += '</th>';
+        cRekapD += '</tr>';
+        cRekapD += '</thead>';
+        cRekapD += '<tbody class="data-rekap-belum-verifikasi-';
+        cRekapD += d.id;
+        cRekapD += '">';
+        cRekapD += '<tr>';
+        cRekapD += '<td colspan="5" style="text-align: center; align-items: center;">';
+        cRekapD += '......LOADING.......';
+        cRekapD += '</td>';
+        cRekapD += '</tr>';
+        cRekapD += '</tbody>';
+        cRekapD += '</table>';
+
         return cRekapD;
     }
-    
+
     function actionDetailRekapitulasi(event) {
         $.ajax({
             url: "<?= base_url('web/home/getDetailRekapitulasi') ?>",
@@ -346,159 +345,159 @@
                         let htmlRekap = "";
                         for (let stepr = 0; stepr < msg.data_terverifikasi.length; stepr++) {
                             // const numberBer = stepr +1;
-                            htmlRekap +=          '<tr>';
+                            htmlRekap += '<tr>';
                             // htmlRekap +=              '<td>';
                             // htmlRekap +=                  numberBer;
                             // htmlRekap +=              '</td>';
-                            htmlRekap +=              '<td>';
-                            htmlRekap +=                  msg.data_terverifikasi[stepr].kode_pendaftaran;
-                            htmlRekap +=              '</td>';
-                            htmlRekap +=              '<td>';
-                            htmlRekap +=                  msg.data_terverifikasi[stepr].fullname;
-                            htmlRekap +=              '</td>';
-                            htmlRekap +=              '<td>';
-                            htmlRekap +=                  msg.data_terverifikasi[stepr].nisn;
-                            htmlRekap +=              '</td>';
-                            htmlRekap +=              '<td>';
-                            htmlRekap +=                  msg.data_terverifikasi[stepr].nama_sekolah_asal;
-                            htmlRekap +=              '</td>';
-                            htmlRekap +=          '</tr>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_terverifikasi[stepr].kode_pendaftaran;
+                            htmlRekap += '</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_terverifikasi[stepr].fullname;
+                            htmlRekap += '</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_terverifikasi[stepr].nisn;
+                            htmlRekap += '</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_terverifikasi[stepr].nama_sekolah_asal;
+                            htmlRekap += '</td>';
+                            htmlRekap += '</tr>';
                         }
-    
+
                         $('.data-rekap-verifikasi-' + event).html(htmlRekap);
-                        
+
                     } else {
-                        let htmlRekap =         '<tr>';
-                            htmlRekap +=             '<td colspan="5" style="text-align: center; align-items: center;">';
-                            htmlRekap +=             'Tidak ada data.';
-                            htmlRekap +=             '</td>';
-                            htmlRekap +=         '</tr>';
+                        let htmlRekap = '<tr>';
+                        htmlRekap += '<td colspan="5" style="text-align: center; align-items: center;">';
+                        htmlRekap += 'Tidak ada data.';
+                        htmlRekap += '</td>';
+                        htmlRekap += '</tr>';
 
                         $('.data-rekap-verifikasi-' + event).html(htmlRekap);
                     }
-                    
+
                     if (msg.data_belum_verifikasi.length > 0) {
-                        
+
                         let htmlRekapB = "";
-                            for (let stepb = 0; stepb < msg.data_belum_verifikasi.length; stepb++) {
-                                // const numberBer = stepb +1;
-                                htmlRekapB +=          '<tr>';
-                                // htmlRekapB +=              '<td>';
-                                // htmlRekapB +=                  numberBer;
-                                // htmlRekapB +=              '</td>';
-                                htmlRekapB +=              '<td>';
-                                htmlRekapB +=                  msg.data_belum_verifikasi[stepb].kode_pendaftaran;
-                                htmlRekapB +=              '</td>';
-                                htmlRekapB +=              '<td>';
-                                htmlRekapB +=                  msg.data_belum_verifikasi[stepb].fullname;
-                                htmlRekapB +=              '</td>';
-                                htmlRekapB +=              '<td>';
-                                htmlRekapB +=                  msg.data_belum_verifikasi[stepb].nisn;
-                                htmlRekapB +=              '</td>';
-                                htmlRekapB +=              '<td>';
-                                htmlRekapB +=                  msg.data_belum_verifikasi[stepb].nama_sekolah_asal;
-                                htmlRekapB +=              '</td>';
-                                htmlRekapB +=          '</tr>';
-                            }
-                            
+                        for (let stepb = 0; stepb < msg.data_belum_verifikasi.length; stepb++) {
+                            // const numberBer = stepb +1;
+                            htmlRekapB += '<tr>';
+                            // htmlRekapB +=              '<td>';
+                            // htmlRekapB +=                  numberBer;
+                            // htmlRekapB +=              '</td>';
+                            htmlRekapB += '<td>';
+                            htmlRekapB += msg.data_belum_verifikasi[stepb].kode_pendaftaran;
+                            htmlRekapB += '</td>';
+                            htmlRekapB += '<td>';
+                            htmlRekapB += msg.data_belum_verifikasi[stepb].fullname;
+                            htmlRekapB += '</td>';
+                            htmlRekapB += '<td>';
+                            htmlRekapB += msg.data_belum_verifikasi[stepb].nisn;
+                            htmlRekapB += '</td>';
+                            htmlRekapB += '<td>';
+                            htmlRekapB += msg.data_belum_verifikasi[stepb].nama_sekolah_asal;
+                            htmlRekapB += '</td>';
+                            htmlRekapB += '</tr>';
+                        }
+
                         $('.data-rekap-belum-verifikasi-' + event).html(htmlRekapB);
                     } else {
-                        let htmlRekapB =         '<tr>';
-                            htmlRekapB +=             '<td colspan="5" style="text-align: center; align-items: center;">';
-                            htmlRekapB +=             'Tidak ada data.';
-                            htmlRekapB +=             '</td>';
-                            htmlRekapB +=         '</tr>';
+                        let htmlRekapB = '<tr>';
+                        htmlRekapB += '<td colspan="5" style="text-align: center; align-items: center;">';
+                        htmlRekapB += 'Tidak ada data.';
+                        htmlRekapB += '</td>';
+                        htmlRekapB += '</tr>';
 
                         $('.data-rekap-belum-verifikasi-' + event).html(htmlRekapB);
                     }
-                    
-                    if(msg.data){
-                        if(msg.data.status_sekolah === 1 || msg.data.status_sekolah === '1' ) {
+
+                    if (msg.data) {
+                        if (msg.data.status_sekolah === 1 || msg.data.status_sekolah === '1') {
                             let htmlRekapJ = "";
-                                htmlRekapJ +=          '<tr>';
-                                htmlRekapJ +=              '<td>Zonasi : ';
-                                htmlRekapJ +=              msg.data.zonasi;
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Zonasi : ';
-                                htmlRekapJ +=              msg.data.zonasi_terverifikasi;
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Zonasi : ';
-                                htmlRekapJ +=              msg.data.zonasi_belum_terverifikasi;
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=          '</tr>';
-                                htmlRekapJ +=          '<tr>';
-                                htmlRekapJ +=              '<td>Afirmasi : ';
-                                htmlRekapJ +=              msg.data.afirmasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Afirmasi : ';
-                                htmlRekapJ +=              msg.data.afirmasi_terverifikasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Afirmasi : ';
-                                htmlRekapJ +=              msg.data.afirmasi_belum_terverifikasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=          '</tr>';
-                                htmlRekapJ +=          '<tr>';
-                                htmlRekapJ +=              '<td>Mutasi : ';
-                                htmlRekapJ +=              msg.data.mutasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Mutasi : ';
-                                htmlRekapJ +=              msg.data.mutasi_terverifikasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Mutasi : ';
-                                htmlRekapJ +=              msg.data.mutasi_belum_terverifikasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=          '</tr>';
-                                htmlRekapJ +=          '<tr>';
-                                htmlRekapJ +=              '<td>Prestasi : ';
-                                htmlRekapJ +=              msg.data.prestasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Prestasi : ';
-                                htmlRekapJ +=              msg.data.prestasi_terverifikasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>Prestasi : ';
-                                htmlRekapJ +=              msg.data.prestasi_belum_terverifikasi
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=          '</tr>';
-        
+                            htmlRekapJ += '<tr>';
+                            htmlRekapJ += '<td>Zonasi : ';
+                            htmlRekapJ += msg.data.zonasi;
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Zonasi : ';
+                            htmlRekapJ += msg.data.zonasi_terverifikasi;
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Zonasi : ';
+                            htmlRekapJ += msg.data.zonasi_belum_terverifikasi;
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '</tr>';
+                            htmlRekapJ += '<tr>';
+                            htmlRekapJ += '<td>Afirmasi : ';
+                            htmlRekapJ += msg.data.afirmasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Afirmasi : ';
+                            htmlRekapJ += msg.data.afirmasi_terverifikasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Afirmasi : ';
+                            htmlRekapJ += msg.data.afirmasi_belum_terverifikasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '</tr>';
+                            htmlRekapJ += '<tr>';
+                            htmlRekapJ += '<td>Mutasi : ';
+                            htmlRekapJ += msg.data.mutasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Mutasi : ';
+                            htmlRekapJ += msg.data.mutasi_terverifikasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Mutasi : ';
+                            htmlRekapJ += msg.data.mutasi_belum_terverifikasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '</tr>';
+                            htmlRekapJ += '<tr>';
+                            htmlRekapJ += '<td>Prestasi : ';
+                            htmlRekapJ += msg.data.prestasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Prestasi : ';
+                            htmlRekapJ += msg.data.prestasi_terverifikasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>Prestasi : ';
+                            htmlRekapJ += msg.data.prestasi_belum_terverifikasi
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '</tr>';
+
                             $('.detail-jalur-' + event).html(htmlRekapJ);
                         } else {
                             let htmlRekapJ = "";
-                                htmlRekapJ +=          '<tr>';
-                                htmlRekapJ +=              '<td>';
-                                htmlRekapJ +=              msg.data.total_swasta;
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>';
-                                htmlRekapJ +=              msg.data.total_swasta_terverifikasi;
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=              '<td>';
-                                htmlRekapJ +=              msg.data.total_swasta_belum_terverifikasi;
-                                htmlRekapJ +=              '</td>';
-                                htmlRekapJ +=          '</tr>';
-        
+                            htmlRekapJ += '<tr>';
+                            htmlRekapJ += '<td>';
+                            htmlRekapJ += msg.data.total_swasta;
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>';
+                            htmlRekapJ += msg.data.total_swasta_terverifikasi;
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '<td>';
+                            htmlRekapJ += msg.data.total_swasta_belum_terverifikasi;
+                            htmlRekapJ += '</td>';
+                            htmlRekapJ += '</tr>';
+
                             $('.detail-jalur-' + event).html(htmlRekapJ);
                         }
-                        
+
                     } else {
-                        let htmlRekapJ =         '<tr>';
-                            htmlRekapJ +=             '<td colspan="3" style="text-align: center; align-items: center;">';
-                            htmlRekapJ +=             'Tidak ada data.';
-                            htmlRekapJ +=             '</td>';
-                            htmlRekapJ +=         '</tr>';
+                        let htmlRekapJ = '<tr>';
+                        htmlRekapJ += '<td colspan="3" style="text-align: center; align-items: center;">';
+                        htmlRekapJ += 'Tidak ada data.';
+                        htmlRekapJ += '</td>';
+                        htmlRekapJ += '</tr>';
 
                         $('.detail-jalur-' + event).html(htmlRekapJ);
                     }
-                    
+
                 }
             },
             error: function(e) {
                 console.log(e);
             }
         });
-        
+
     }
-    
+
     $(document).ready(function() {
-        
+
         let tableRekapitulasiSekolah = $('#tabelRekapPpdb').DataTable({
             "processing": true,
             "serverSide": true,
@@ -517,41 +516,56 @@
                 },
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
-            'columns': [
-                {
+            'columns': [{
                     className: 'dt-control',
                     orderable: false,
                     data: 'button',
                     defaultContent: '',
-                }, 
-                { data: 'npsn' }, 
-                { data: 'nama' }, 
-                { data: 'jumlah_kuota', className: 'text-align-center' },
-                { data: 'jumlah_pendaftar', className: 'text-align-center' },
-                { data: 'belum_verifikasi', className: 'text-align-center' },
-                { data: 'terverifikasi', className: 'text-align-center' }
+                },
+                {
+                    data: 'npsn'
+                },
+                {
+                    data: 'nama'
+                },
+                {
+                    data: 'jumlah_kuota',
+                    className: 'text-align-center'
+                },
+                {
+                    data: 'jumlah_pendaftar',
+                    className: 'text-align-center'
+                },
+                {
+                    data: 'belum_verifikasi',
+                    className: 'text-align-center'
+                },
+                {
+                    data: 'terverifikasi',
+                    className: 'text-align-center'
+                }
             ],
             "columnDefs": [{
                 "targets": 0,
                 "orderable": false,
             }],
             lengthMenu: [
-                [ 10, 25 ],
-                [ '10 Data', '25 Data' ]
+                [10, 25],
+                ['10 Data', '25 Data']
             ],
         });
 
-        $('#tabelRekapPpdb tbody').on('click', 'td.dt-control', function () {
+        $('#tabelRekapPpdb tbody').on('click', 'td.dt-control', function() {
             var tr = $(this).closest('tr');
             var row = tableRekapitulasiSekolah.row(tr);
-     
+
             if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child.hide();
                 tr.removeClass('shown');
             } else {
                 // Open this row
-                
+
                 row.child(formatRekapitulasi(row.data())).show();
                 tr.addClass('shown');
             }
@@ -713,7 +727,7 @@
         justify-items: center;
         align-items: center;
     }
-    
+
     td.text-align-center {
         text-align: center;
         align-items: center;

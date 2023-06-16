@@ -41,12 +41,12 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
     <div style="border: 2px  dashed #cbd4dd;">
         <div style="max-width: 100%; padding-left: 10px; padding-right: 8px;">
             <p>LAMPIRAN 1<br>
-            DATA PESERTA YANG LULUS PPDB TA. 2022/2023<br>
-            KABUPATEN PESAWARAN<br><br>
-            Satuan Pendidikan : <?= $sekolah->nama ?><br>
-            NPSN              : <?= $sekolah->npsn ?></p>
+                DATA PESERTA YANG LULUS PPDB TA. 2022/2023<br>
+                KABUPATEN LAMPUNG TIMUR<br><br>
+                Satuan Pendidikan : <?= $sekolah->nama ?><br>
+                NPSN : <?= $sekolah->npsn ?></p>
         </div>
-        
+
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR SWASTA</h4>
             <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
@@ -61,8 +61,8 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if(isset($data_lolos)) { 
-                        if(count($data_lolos) > 0) { 
+                    <?php if (isset($data_lolos)) {
+                        if (count($data_lolos) > 0) {
                             $no = 1;
                             foreach ($data_lolos as $key => $value) { ?>
                                 <tr>
@@ -73,7 +73,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                                         <?= $value->fullname ?>
                                     </td>
                                     <td style="font-size: 12px">
-                                        <?php if(substr($value->nisn,0,2) == 'BS') {
+                                        <?php if (substr($value->nisn, 0, 2) == 'BS') {
                                             $nisn = $value->nip;
                                         } else {
                                             $nisn = $value->nisn;
@@ -90,21 +90,21 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                                         <?= $value->npsn_sekolah_asal ?>
                                     </td>
                                 </tr>
-                            <?php 
-                            $no++;
+                            <?php
+                                $no++;
                             } ?>
-                        
+
                         <?php } else { ?>
+                            <tr>
+                                <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
+                            </tr>
+                        <?php } ?>
+                    <?php } else { ?>
                         <tr>
                             <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
                         </tr>
-                        <?php } ?>
-                    <?php } else { ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
-                    </tr>
                     <?php } ?>
-                    
+
                 </tbody>
             </table>
         </div>

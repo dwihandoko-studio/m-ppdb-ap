@@ -59,16 +59,16 @@
                                     <ul class="adress">
                                         <li>
                                             <span class="icon"><i class="icofont-ui-call"></i></span>
-                                            <a href="tel:0<?= str_replace('-','',getenv('web.meta.site.cs')) ?>">CS SMP(+62) <?= getenv('web.meta.site.cs') ?></a><br>
+                                            <a href="tel:0<?= str_replace('-', '', getenv('web.meta.site.cs')) ?>">CS SMP(+62) <?= getenv('web.meta.site.cs') ?></a><br>
                                             <span class="icon"><i class="icofont-ui-call"></i></span>
-                                            <a href="tel:0<?= str_replace('-','',getenv('web.meta.site.cs2')) ?>">CS SD(+62) <?= getenv('web.meta.site.cs2') ?></a>
+                                            <a href="tel:0<?= str_replace('-', '', getenv('web.meta.site.cs2')) ?>">CS SD(+62) <?= getenv('web.meta.site.cs2') ?></a>
                                         </li>
                                         <li>
                                             <span class="icon"><i class="icofont-send-mail"></i></span>
-                                            <a href="mailto:pesawaran.ppdb@kntechline.id">-</a>
+                                            <a href="mailto:lamtim.ppdb@kntechline.id">-</a>
                                         </li>
                                         <li>
-                                            <span class="icon"><i class="icofont-google-map"></i></span> Kab. Pesawaran
+                                            <span class="icon"><i class="icofont-google-map"></i></span> Kab. Lampung TImur
                                         </li>
                                     </ul>
                                 </div>

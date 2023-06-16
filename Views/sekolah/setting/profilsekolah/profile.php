@@ -37,6 +37,13 @@
                                 <!-- <h5 class="heading-small">Data Pribadi</h5> -->
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <div class="form-group _nama_sekolah-block">
+                                            <label for="_nama_sekolah" class="form-control-label">Nama Sekolah <span class="required" style="color: indigo;">* Wajib</span></label>
+                                            <input type="text" class="form-control" id="_nama_sekolah" name="_nama_sekolah" placeholder="Nama Sekolah . . ." onFocus="inputFocus(this);" value="<?= (isset($sekolah)) ? (isset($sekolah->nama) ? $sekolah->nama : '') : '' ?>">
+                                            <div class="help-block _nama_sekolah"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group _nama_ks-block">
                                             <label for="_nama_ks" class="form-control-label">Nama Kepala Sekolah <span class="required" style="color: indigo;">* Wajib</span></label>
                                             <input type="text" class="form-control" id="_nama_ks" name="_nama_ks" placeholder="Nama Kepala Sekolah . . ." onFocus="inputFocus(this);" value="<?= (isset($ks)) ? (isset($ks->nama_ks) ? $ks->nama_ks : '') : '' ?>">
@@ -455,12 +462,19 @@
     });
 
     $('#_kirim_permohonan').on('click', function() {
+        const nama_sekolah = document.getElementsByName('_nama_sekolah')[0].value;
         const nama_ks = document.getElementsByName('_nama_ks')[0].value;
         const nip_ks = document.getElementsByName('_nip_ks')[0].value;
         const koordinat = document.getElementsByName('_koordinat')[0].value;
         const latitude = document.getElementsByName('_latitude')[0].value;
         const longitude = document.getElementsByName('_longitude')[0].value;
 
+        if (nama_sekolah === "") {
+            $("input#_nama_sekolah").css("color", "#dc3545");
+            $("input#_nama_sekolah").css("border-color", "#dc3545");
+            $('._nama_sekolah').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Nama sekolah tidak boleh kosong.</li></ul>');
+            return;
+        }
         if (nama_ks === "") {
             $("input#_nama_ks").css("color", "#dc3545");
             $("input#_nama_ks").css("border-color", "#dc3545");
@@ -475,6 +489,7 @@
         }
 
         const formUpload = new FormData();
+        formUpload.append('nama_sekolah', nama_sekolah);
         formUpload.append('nama_ks', nama_ks);
         formUpload.append('nip_ks', nip_ks);
         formUpload.append('latitude', latitude);

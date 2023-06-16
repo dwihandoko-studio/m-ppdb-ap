@@ -87,6 +87,12 @@ class Profilsekolah extends BaseController
         }
 
         $rules = [
+            'nama_sekolah' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama sekolah tidak boleh kosong. ',
+                ]
+            ],
             'nama_ks' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -117,11 +123,13 @@ class Profilsekolah extends BaseController
             $response = new \stdClass;
             $response->code = 400;
             $response->message = $this->validator->getError('nama_ks')
+                . $this->validator->getError('nama_sekolah')
                 . $this->validator->getError('nip_ks')
                 . $this->validator->getError('latitude')
                 . $this->validator->getError('longitude');
             return json_encode($response);
         } else {
+            $nama_sekolah = htmlspecialchars($this->request->getVar('nama_sekolah'), true);
             $nama_ks = htmlspecialchars($this->request->getVar('nama_ks'), true);
             $nip_ks = htmlspecialchars($this->request->getVar('nip_ks'), true);
             $latitude = htmlspecialchars($this->request->getVar('latitude'), true);
@@ -149,7 +157,7 @@ class Profilsekolah extends BaseController
 
             if ($oldData) {
                 $data['updated_at'] = date('Y-m-d H:i:s');
-                $oldSekolah = $this->_db->table('ref_sekolah')->select("latitude, longitude")->where('id', $user->data->sekolah_id)->get()->getRowObject();
+                $oldSekolah = $this->_db->table('ref_sekolah')->select("latitude, longitude, nama")->where('id', $user->data->sekolah_id)->get()->getRowObject();
                 if (!$oldSekolah) {
                     $response = new \stdClass;
                     $response->code = 201;
@@ -157,7 +165,7 @@ class Profilsekolah extends BaseController
                     return json_encode($response);
                 }
 
-                if ($nama_ks === $oldData->nama_ks && $nip_ks === $oldData->nip_ks && $latitude === $oldSekolah->latitude && $longitude === $oldSekolah->longitude) {
+                if ($nama_ks === $oldData->nama_ks && $nip_ks === $oldData->nip_ks && $latitude === $oldSekolah->latitude && $longitude === $oldSekolah->longitude && $nama_sekolah == $oldSekolah->nama) {
                     $response = new \stdClass;
                     $response->code = 201;
                     $response->message = "Tidak ada perubahan data yang disimpan.";
@@ -170,6 +178,7 @@ class Profilsekolah extends BaseController
                         $this->_db->table('ref_sekolah')->where('id', $oldData->id)->update([
                             'latitude' => $latitude,
                             'longitude' => $longitude,
+                            'nama' => $nama_sekolah,
                         ]);
                         if ($this->_db->affectedRows() > 0) {
                             $this->_db->transCommit();
@@ -202,6 +211,7 @@ class Profilsekolah extends BaseController
                     $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->update([
                         'latitude' => $latitude,
                         'longitude' => $longitude,
+                        'nama' => $nama_sekolah,
                     ]);
                     if ($this->_db->affectedRows() > 0) {
                         $this->_db->transCommit();

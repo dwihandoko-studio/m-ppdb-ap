@@ -600,129 +600,106 @@ class Kuota extends BaseController
             $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
             $sekolah = htmlspecialchars($this->request->getVar('sekolah'), true);
 
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
-
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $refSekolah = $this->_db->table('ref_sekolah')->where('id', $sekolah)->get()->getRowObject();
-
-                        $cekData = $this->_db->table('_setting_kuota_tb')->where('sekolah_id', $sekolah)->get()->getRowObject();
-
-                        if ($cekData) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Kuota untuk sekolah ini sudah di set, silahkan menggunakan menu edit untuk merubah data.";
-                            return json_encode($response);
-                        }
-
-                        if (!$refSekolah) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Sekolah tidak ditemukan.";
-                            return json_encode($response);
-                        }
-
-                        $prosentaseJalur = getProsentaseJalur($jenjang);
-
-                        if (!$prosentaseJalur) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Referensi prosentase tidak ditemukan.";
-                            return json_encode($response);
-                        }
-
-                        $this->_db->transBegin();
-                        $uuidLib = new Uuid();
-                        $uuid = $uuidLib->v4();
-
-                        if ($jenjang == "6" || $jenjang == "10" || $jenjang == "31" || $jenjang == "32" || $jenjang == "33" || $jenjang == "35" || $jenjang == "36") {
-                            $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
-                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
-                            $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
-                        } else {
-                            $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
-                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
-                            $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
-                        }
-
-                        $data = [
-                            'id' => $uuid,
-                            'sekolah_id' => $sekolah,
-                            'npsn' => $refSekolah->npsn,
-                            'bentuk_pendidikan_id' => $jenjang,
-                            'jumlah_kelas' => $jumlahKelas,
-                            'jumlah_rombel_current' => $jumlahRombelCurrent,
-                            'jumlah_rombel_kebutuhan' => $jumlahRombelKebutuhan,
-                            'radius_zonasi' => $radius,
-                            'zonasi' => $kZonasi,
-                            'afirmasi' => $kAfirmasi,
-                            'mutasi' => $kMutasi,
-                            'prestasi' => $kPrestasi,
-                            'is_locked' => 1,
-                            'created_at' => date('Y-m-d H:i:s')
-                        ];
-
-                        try {
-                            $this->_db->table('_setting_kuota_tb')->insert($data);
-                            if ($this->_db->affectedRows() > 0) {
-                                $this->_db->transCommit();
-                                try {
-                                    $riwayatLib = new Riwayatlib();
-                                    $riwayatLib->insert("Menambahkan setting kuota sekolah", "Menambahkan Kuota Sekolah", "submit");
-                                } catch (\Throwable $th) {
-                                }
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "Data berhasil disimpan.";
-                                $response->data = $data;
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transRollback();
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Gagal menyimpan kuota.";
-                                return json_encode($response);
-                            }
-                        } catch (\Throwable $th) {
-                            $this->_db->transRollback();
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Gagal menyimpan kuota. terjadi kesalahan.";
-                            return json_encode($response);
-                        }
-                    } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    delete_cookie('jwt');
-                    session()->destroy();
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->error = $e;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } else {
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
+                return redirect()->to(base_url('web/home'));
+            }
+            $refSekolah = $this->_db->table('ref_sekolah')->where('id', $sekolah)->get()->getRowObject();
+
+            $cekData = $this->_db->table('_setting_kuota_tb')->where('sekolah_id', $sekolah)->get()->getRowObject();
+
+            if ($cekData) {
                 $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
+                $response->code = 400;
+                $response->message = "Kuota untuk sekolah ini sudah di set, silahkan menggunakan menu edit untuk merubah data.";
+                return json_encode($response);
+            }
+
+            if (!$refSekolah) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Sekolah tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $prosentaseJalur = getProsentaseJalur($jenjang);
+
+            if (!$prosentaseJalur) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Referensi prosentase tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $this->_db->transBegin();
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            if ($jenjang == "6" || $jenjang == "10" || $jenjang == "31" || $jenjang == "32" || $jenjang == "33" || $jenjang == "35" || $jenjang == "36") {
+                $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
+                $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
+            } else {
+                $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
+                $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                if (($kZonasi + $kAfirmasi) >= $jumlahSiswa) {
+                    $kAfirmasi = $kAfirmasi - 1;
+                }
+                // $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kMutasi = $jumlahSiswa - ($kZonasi + $kAfirmasi);
+                $kPrestasi = 0;
+                // $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
+            }
+
+            $data = [
+                'id' => $uuid,
+                'sekolah_id' => $sekolah,
+                'npsn' => $refSekolah->npsn,
+                'bentuk_pendidikan_id' => $jenjang,
+                'jumlah_kelas' => $jumlahKelas,
+                'jumlah_rombel_current' => $jumlahRombelCurrent,
+                'jumlah_rombel_kebutuhan' => $jumlahRombelKebutuhan,
+                'radius_zonasi' => $radius,
+                'zonasi' => $kZonasi,
+                'afirmasi' => $kAfirmasi,
+                'mutasi' => $kMutasi,
+                'prestasi' => $kPrestasi,
+                'is_locked' => 1,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            try {
+                $this->_db->table('_setting_kuota_tb')->insert($data);
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Menambahkan setting kuota sekolah", "Menambahkan Kuota Sekolah", "submit");
+                    } catch (\Throwable $th) {
+                    }
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "Data berhasil disimpan.";
+                    $response->data = $data;
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Gagal menyimpan kuota.";
+                    return json_encode($response);
+                }
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal menyimpan kuota. terjadi kesalahan.";
                 return json_encode($response);
             }
         }
@@ -798,108 +775,85 @@ class Kuota extends BaseController
                 return json_encode($response);
             }
 
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
-
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-
-                        $prosentaseJalur = getProsentaseJalur($oldData->bentuk_pendidikan_id);
-
-                        if (!$prosentaseJalur) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Referensi prosentase tidak ditemukan.";
-                            return json_encode($response);
-                        }
-
-                        $this->_db->transBegin();
-                        $uuidLib = new Uuid();
-                        $uuid = $uuidLib->v4();
-
-                        if ((int)$oldData->bentuk_pendidikan_id == 6 || (int)$oldData->bentuk_pendidikan_id == 10 || (int)$oldData->bentuk_pendidikan_id == 31 || (int)$oldData->bentuk_pendidikan_id == 32 || (int)$oldData->bentuk_pendidikan_id == 33 || (int)$oldData->bentuk_pendidikan_id == 35 || (int)$oldData->bentuk_pendidikan_id == 36) {
-                            $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
-                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
-                            $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
-                        } else {
-                            $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
-                            $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
-                            $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                            $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
-                            $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
-                        }
-
-                        $data = [
-                            'jumlah_kelas' => $jumlahKelas,
-                            'jumlah_rombel_current' => $jumlahRombelCurrent,
-                            'jumlah_rombel_kebutuhan' => $jumlahRombelKebutuhan,
-                            'radius_zonasi' => $radius,
-                            'zonasi' => $kZonasi,
-                            'afirmasi' => $kAfirmasi,
-                            'mutasi' => $kMutasi,
-                            'prestasi' => $kPrestasi,
-                            'is_locked' => 1,
-                            'updated_at' => date('Y-m-d H:i:s')
-                        ];
-
-                        try {
-                            $this->_db->table('_setting_kuota_tb')->where('id', $oldData->id)->update($data);
-                            if ($this->_db->affectedRows() > 0) {
-                                $this->_db->transCommit();
-                                try {
-                                    $riwayatLib = new Riwayatlib();
-                                    $riwayatLib->insert("Mengupdate setting kuota sekolah", "Mengupdate Kuota Sekolah", "update");
-                                } catch (\Throwable $th) {
-                                }
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "Data berhasil diupdate.";
-                                $response->data = $data;
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transRollback();
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Gagal mengupdate kuota.";
-                                return json_encode($response);
-                            }
-                        } catch (\Throwable $th) {
-                            $this->_db->transRollback();
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Gagal mengupdate kuota. terjadi kesalahan.";
-                            return json_encode($response);
-                        }
-                    } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    delete_cookie('jwt');
-                    session()->destroy();
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->error = $e;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } else {
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
+                return redirect()->to(base_url('web/home'));
+            }
+
+            $prosentaseJalur = getProsentaseJalur($oldData->bentuk_pendidikan_id);
+
+            if (!$prosentaseJalur) {
                 $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
+                $response->code = 400;
+                $response->message = "Referensi prosentase tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $this->_db->transBegin();
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            if ((int)$oldData->bentuk_pendidikan_id == 6 || (int)$oldData->bentuk_pendidikan_id == 10 || (int)$oldData->bentuk_pendidikan_id == 31 || (int)$oldData->bentuk_pendidikan_id == 32 || (int)$oldData->bentuk_pendidikan_id == 33 || (int)$oldData->bentuk_pendidikan_id == 35 || (int)$oldData->bentuk_pendidikan_id == 36) {
+                $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
+                $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
+            } else {
+                $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
+                $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
+                $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
+                if (($kZonasi + $kAfirmasi) >= $jumlahSiswa) {
+                    $kAfirmasi = $kAfirmasi - 1;
+                }
+                // $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kMutasi = $jumlahSiswa - ($kZonasi + $kAfirmasi);
+                $kPrestasi = 0;
+                // $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
+            }
+
+            $data = [
+                'jumlah_kelas' => $jumlahKelas,
+                'jumlah_rombel_current' => $jumlahRombelCurrent,
+                'jumlah_rombel_kebutuhan' => $jumlahRombelKebutuhan,
+                'radius_zonasi' => $radius,
+                'zonasi' => $kZonasi,
+                'afirmasi' => $kAfirmasi,
+                'mutasi' => $kMutasi,
+                'prestasi' => $kPrestasi,
+                'is_locked' => 1,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+
+            try {
+                $this->_db->table('_setting_kuota_tb')->where('id', $oldData->id)->update($data);
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Mengupdate setting kuota sekolah", "Mengupdate Kuota Sekolah", "update");
+                    } catch (\Throwable $th) {
+                    }
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "Data berhasil diupdate.";
+                    $response->data = $data;
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Gagal mengupdate kuota.";
+                    return json_encode($response);
+                }
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal mengupdate kuota. terjadi kesalahan.";
                 return json_encode($response);
             }
         }

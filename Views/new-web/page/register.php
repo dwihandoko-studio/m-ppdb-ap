@@ -112,7 +112,7 @@
         <div class="donate-form-area" style="background: none; border: none;">
             <h2 style="color: #fff;">REGISTRASI - PPDB ONLINE TP. 2023 - 2024</h2>
             <div id="_punya_nisn" class="_punya_nisn" style="display: block;">
-                <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Peserta Yang Belum Tercatat di Referensi Data Kemdikbud. (Berlaku hanya untuk peserta PPDB yang akan mendaftar jenjang SD). <a href="javascript:actionRegisterBeforeSchool(this);" style="color: #00fff2; padding: 0px 10px;">Klik Disini...</a></span></h6>
+                <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Peserta Yang Belum Tercatat di Referensi Data Kemdikbud. (Berlaku hanya untuk peserta PPDB yang akan mendaftar jenjang SD). <a href="javascript:actionRegisterBeforeSchool(this);" style="color: #f6ff00; font-weight: bold; font-size: 1.5rem;; padding: 0px 10px;">Klik Disini...</a></span></h6>
                 <!-- <form action="#" class="donate-form default-form"> -->
                 <div id="content_block_51">
                     <div class="content-box">
@@ -173,7 +173,7 @@
                 <!-- </form> -->
             </div>
             <div id="_belum_punya_nisn" class="_belum_punya_nisn" style="display: none;">
-                <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Peserta Yang Sudah Tercatat di Referensi Data Kemdikbud. (Berlaku untuk peserta PPDB yang akan mendaftar jenjang SD dan SMP). <a href="javascript:actionRegisterAfterSchool(this);" style="color: #00fff2; padding: 0px 10px;">Klik Disini...</a></span></h6>
+                <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Peserta Yang Sudah Tercatat di Referensi Data Kemdikbud. (Berlaku untuk peserta PPDB yang akan mendaftar jenjang SD dan SMP). <a href="javascript:actionRegisterAfterSchool(this);" style="color: #f6ff00; font-weight: bold; font-size: 1.5rem; padding: 0px 10px;">Klik Disini...</a></span></h6>
                 <!-- <form action="#" class="donate-form default-form"> -->
                 <div id="content_block_51">
                     <div class="content-box">

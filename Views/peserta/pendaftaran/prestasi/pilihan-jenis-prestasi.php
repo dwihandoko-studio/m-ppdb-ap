@@ -14,7 +14,7 @@
                     <div class="help-block _jenis_prestasi"></div>
                 </div>
             </div>
-            <div class="content-pilihan-prestasi-akademik" style="display: none;">
+            <div class="content-pilihan-prestasi-akademik" id="content-pilihan-prestasi-akademik" style="display: none;">
                 <div class="col-md-12">
                     <div class="form-group _pilih_peringkat-block">
                         <label for="_pilih_peringkat" class="form-control-label">Pilih Peringkat</label>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-pilihan-prestasi-non-akademik" style="display: none;">
+            <div class="content-pilihan-prestasi-non-akademik" id="content-pilihan-prestasi-non-akademik" style="display: none;">
                 <div class="col-md-12">
                     <div class="form-group _pilih_tingkat-block">
                         <label for="_pilih_tingkat" class="form-control-label">Pilih Tingkat</label>
@@ -86,6 +86,9 @@
     </form>
 
     <script>
+        let contentAkademik = document.getElementById("content-pilihan-prestasi-akademik");
+        let contentNonAkademik = document.getElementById("content-pilihan-prestasi-non-akademik");
+
         function changeJenisPrestasi(event) {
             if (event.value !== "") {
                 const color = $(event).attr('name');
@@ -93,12 +96,12 @@
                 $('.' + color).html('');
 
                 if (event.value === "AKADEMIK") {
-                    $('.content-pilihan-prestasi-akademik').style.display = 'block';
-                    $('.content-pilihan-prestasi-non-akademik').style.display = 'none';
+                    contentAkademik.style.display = "block";
+                    contentNonAkademik.style.display = "none";
                 }
                 if (event.value === "NON AKADEMIK") {
-                    $('.content-pilihan-prestasi-akademik').style.display = 'none';
-                    $('.content-pilihan-prestasi-non-akademik').style.display = 'block';
+                    contentAkademik.style.display = "none";
+                    contentNonAkademik.style.display = "block";
                 }
 
             }

@@ -68,9 +68,9 @@
         <div class="container clearfix">
             <div class="copyright pull-left">&copy; 2023 PPDB Online - All rights reserved. Version 2.0. Powered By: <a href="https://kntecline.id">KNTechline</a></div>
             <ul class="footer-nav pull-right">
-                <li><a href="https://www.termsofservicegenerator.net/live.php?token=St80uNFSbFNRgRjcnXhtutyxJ1qSctlQ">Terms of Service</a></li>
-                <li><a href="https://www.privacypolicyonline.com/live.php?token=bo2AQ2VGFnBdr04zUU4v5CbOZfQYonnb">Privacy Policy</a></li>
-                <li><a href="https://www.disclaimergenerator.net/live.php?token=n0x1rUUvP0M8V65hyMUz2NYMyUB5XjVV">Legal</a></li>
+                <li><a href="https://www.termsofservicegenerator.net/live.php?token=EhRpevkb8fPB9uY2KGkCBGs1GpbdNg9q">Terms of Service</a></li>
+                <li><a href="https://www.privacypolicyonline.com/live.php?token=hjFCWfyRvl0zzMsHfGWPALbpChFVHpA2">Privacy Policy</a></li>
+                <li><a href="https://www.disclaimergenerator.net/live.php?token=aiO2LQJ9SnuOZtyiZD8F70ZDnP90vYLl">Legal</a></li>
             </ul>
         </div>
     </div>

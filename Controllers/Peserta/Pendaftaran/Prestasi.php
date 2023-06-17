@@ -159,6 +159,121 @@ class Prestasi extends BaseController
         return view('peserta/pendaftaran/prestasi/index', $data);
     }
 
+    public function getpilihanprestasi()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("PRESTASI");
+
+        if ($canDaftar->code !== 200) {
+            return json_encode($canDaftar);
+        }
+
+        $rules = [
+            'nama' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama tidak boleh kosong. ',
+                ]
+            ],
+            'id' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('nama') . $this->validator->getError('id');
+            return json_encode($response);
+        } else {
+            $nama = htmlspecialchars($this->request->getVar('nama'), true);
+            $id = htmlspecialchars($this->request->getVar('id'), true);
+
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
+                delete_cookie('jwt');
+                session()->destroy();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Session telah habis.";
+                return json_encode($response);
+            }
+
+            $peserta = $this->_db->table('_users_profil_tb a')
+                ->select("a.*, b.lampiran_akta_kelahiran, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
+                ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
+                ->where('a.id', $user->data->id)
+                ->get()->getRowObject();
+            if (!$peserta) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data anda belum lengkap, silahkan lengkapi data terlebih dahulu.";
+                return json_encode($response);
+            }
+
+            if ($peserta->lampiran_akta_kelahiran == null || $peserta->lampiran_kk == null) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen Akta dan Kartu Keluarga terlebih dahulu.";
+                return json_encode($response);
+            }
+
+            if ($peserta->lampiran_lulus == null) {
+                if (substr($user->data->nisn, 0, 2) == "BS") {
+                } else {
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran surat keterangan lulus (sertifikat kelulusan) terlebih dahulu.";
+                    return json_encode($response);
+                }
+            }
+
+            if ($peserta->lampiran_prestasi == null) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Lampiran dokumen prestasi anda belum lengkap, silahkan lengkapi lampiran dokumen prestasi terlebih dahulu.";
+                return json_encode($response);
+            }
+
+            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+            if ($cekRegisterApprove) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                return json_encode($response);
+            }
+
+            $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+
+            if ($cekRegisterTemp) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
+                return json_encode($response);
+            }
+
+            $x['tujuan_sekolah_id'] = $id;
+            $x['tujuan_sekolah_nama'] = $nama;
+
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Permintaan diizinkan";
+            $response->data = view('peserta/pendaftaran/prestasi/pilihan-jenis-prestasi', $x);
+            return json_encode($response);
+        }
+    }
+
     public function aksidaftar()
     {
         // $response = new \stdClass;

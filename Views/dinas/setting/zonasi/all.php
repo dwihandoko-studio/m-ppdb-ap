@@ -15,14 +15,13 @@
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="<?= base_url('sekolah/home'); ?>"><i class="fas fa-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="<?= base_url('dinas/setting/zonasi'); ?>">Setting Zonasi</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><?= $sekolah->nama_sekolah ?> - (<?= $sekolah->npsn ?>)</li>
+                                <li class="breadcrumb-item active" aria-current="page">Setting Zonasi</li>
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-lg-4 col-5 text-right">
-                        <a href="<?= base_url('dinas/setting/zonasi') ?>" class="btn btn-sm btn-neutral">KEMBALI</a>
-                    </div>
+                    <!--<div class="col-lg-4 col-5 text-right">-->
+                    <!--    <a href="<?= base_url('dinas/setting/zonasi') ?>" class="btn btn-sm btn-neutral">KEMBALI</a>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -38,11 +37,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-8 col-7">
                                 <!--<h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>-->
-                                <h5 class="h3 mb-0">SETTING ZONASI <?= strtoupper($sekolah->nama_sekolah) ?> - (<?= $sekolah->npsn ?>)</h5>
-                            </div>
-                            <div class="col-lg-4 col-5 text-right">
-                                <button type="button" onclick="actionApprove('<?= $sekolah->sekolah_id ?>', '<?= strtoupper($sekolah->nama_sekolah) ?> - <?= $sekolah->npsn ?>')" class="btn btn-sm btn-success">Approve Zonasi</button> &nbsp;&nbsp;
-                                <button type="button" onclick="actionAdd(this)" class="btn btn-sm btn-primary">Tambah Zonasi Sekolah</button>
+                                <h5 class="h3 mb-0">SETTING ZONASI</h5>
                             </div>
                         </div>
 
@@ -52,8 +47,9 @@
                         <table id="data-table-id" class="table align-items-center table-flush">
                             <thead>
                                 <tr>
-                                    <th data-orderable="false">Status</th>
-                                    <th data-orderable="false">Aksi</th>
+                                    <th data-orderable="false">No</th>
+                                    <th>NPSN</th>
+                                    <th>Nama Sekolah</th>
                                     <th>Dusun</th>
                                     <th>Kelurahan</th>
                                     <th>Kecamatan</th>
@@ -343,67 +339,6 @@
         });
     }
 
-    function actionAdd(event) {
-        $.ajax({
-            url: "<?= base_url('dinas/setting/zonasi/add') ?>",
-            type: 'POST',
-            data: {
-                id_sekolah: '<?= $sekolah->sekolah_id ?>',
-                jenjang: '<?= $sekolah->bentuk_pendidikan_id ?>',
-                npsn: '<?= $sekolah->npsn ?>',
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                $('div.main-content').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(resul) {
-                $('div.main-content').unblock();
-
-                if (resul.code !== 200) {
-                    if (resul.code === 401) {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        ).then((valRes) => {
-                            document.location.href = BASE_URL + '/dashboard';
-                        });
-                    } else {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        );
-                    }
-                } else {
-
-                    $('#contentModalLabel').html('TAMBAH ZONASI');
-                    $('.contentBodyModal').html(resul.data);
-                    $('#contentModal').modal({
-                        backdrop: 'static',
-                        keyboard: false
-                    }, 'show');
-
-                    initSelect2('_prov', '#contentModal');
-                    initSelect2('_kab', '#contentModal');
-                    initSelect2('_kec', '#contentModal');
-                    initSelect2('_kel', '#contentModal');
-                    initSelect2('_dusun', '#contentModal');
-                }
-            },
-            error: function() {
-                $('div.main-content').unblock();
-                Swal.fire(
-                    'Failed!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
-            }
-        });
-    }
-
     function saveAdd(event) {
         const jumlahKelas = document.getElementsByName('_jumlah_kelas')[0].value;
         const jumlahRombelCurrent = document.getElementsByName('_jumlah_rombel_current')[0].value;
@@ -524,11 +459,9 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('dinas/setting/zonasi/getAll') ?>",
+                "url": "<?= base_url('dinas/setting/zonasi/getAllShow') ?>",
                 "type": "POST",
-                "data": function(data) {
-                    data.sekolah_id = '<?= $sekolah->sekolah_id ?>';
-                }
+
             },
             language: {
                 paginate: {
@@ -552,7 +485,7 @@
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
                     pageSize: 'A4',
-                    title: 'Rekap Data Kuota Sekolah',
+                    title: 'Rekap Data Zonasi Sekolah',
                     text: 'PDF',
                 }
             ]

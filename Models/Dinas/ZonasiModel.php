@@ -9,10 +9,9 @@ use Firebase\JWT\JWT;
 class ZonasiModel extends Model
 {
     protected $table = "_setting_zonasi_tb a";
-    // protected $column_order = array(null, null, 'f.nama', 'e.nama', 'd.nama', 'c.nama', 'b.nama');
-    protected $column_order = array(null, null, null, 'h.nama', 'g.nama', 'a.npsn', 'd.nama', 'c.nama', 'b.nama');
-    protected $column_search = array('g.nama', 'a.npsn', 'd.nama', 'c.nama', 'b.nama');
-    protected $order = array('a.is_locked' => 'asc', 'a.bentuk_pendidikan_id' => 'asc', 'g.nama' => 'asc');
+    protected $column_order = array(null, null, 'f.nama', 'e.nama', 'd.nama', 'c.nama', 'b.nama');
+    protected $column_search = array('f.nama', 'e.nama', 'd.nama', 'c.nama', 'b.nama');
+    protected $order = array('a.is_locked' => 'asc', 'b.nama' => 'asc', 'c.nama' => 'asc', 'd.nama' => 'asc', 'e.nama' => 'asc', 'f.nama' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -27,17 +26,16 @@ class ZonasiModel extends Model
     }
     private function _get_datatables_query()
     {
-
-        $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, g.nama as nama_sekolah, h.nama as nama_jenjang";
-        // $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun, g.nama as nama_sekolah, h.nama as nama_jenjang";
+        $select = "a.id,a.sekolah_id,a.bentuk_pendidikan_id,a.npsn,a.is_locked, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun, g.nama as nama_sekolah, h.nama as nama_jenjang";
 
         $this->dt->select($select);
         $this->dt->join('ref_provinsi b', 'a.provinsi = b.id', 'LEFT');
         $this->dt->join('ref_kabupaten c', 'a.kabupaten = c.id', 'LEFT');
         $this->dt->join('ref_kecamatan d', 'a.kecamatan = d.id', 'LEFT');
+        $this->dt->join('ref_kelurahan e', 'a.kelurahan = e.id', 'LEFT');
         $this->dt->join('ref_sekolah g', 'a.sekolah_id = g.id', 'LEFT');
         $this->dt->join('ref_bentuk_pendidikan h', 'a.bentuk_pendidikan_id = h.id', 'LEFT');
-        // $this->dt->join('ref_dusun f', 'a.dusun = f.id', 'LEFT');
+        $this->dt->join('ref_dusun f', 'a.dusun = f.id', 'LEFT');
 
         $i = 0;
         foreach ($this->column_search as $item) {
@@ -61,17 +59,17 @@ class ZonasiModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filterJenjang, $filterKecamatan)
+    function get_datatables($filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.sekolah_id = (select sekolah_id from _users_profil_tb where id = '$userId')");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
-        if ($filterKecamatan != "") {
-            $this->dt->where('a.kecamatan', $filterKecamatan);
+        if ($filterSekolah != "") {
+            $this->dt->where('a.sekolah_id', $filterSekolah);
         }
 
         if ($this->request->getPost('length') != -1)
@@ -79,32 +77,32 @@ class ZonasiModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filterJenjang, $filterKecamatan)
+    function count_filtered($filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.sekolah_id = (select sekolah_id from _users_profil_tb where id = '$userId')");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
-        if ($filterKecamatan != "") {
-            $this->dt->where('a.kecamatan', $filterKecamatan);
+        if ($filterSekolah != "") {
+            $this->dt->where('a.sekolah_id', $filterSekolah);
         }
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filterJenjang, $filterKecamatan)
+    public function count_all($filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.sekolah_id = (select sekolah_id from _users_profil_tb where id = '$userId')");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
-        if ($filterKecamatan != "") {
-            $this->dt->where('a.kecamatan', $filterKecamatan);
+        if ($filterSekolah != "") {
+            $this->dt->where('a.sekolah_id', $filterSekolah);
         }
 
         return $this->dt->countAllResults();

@@ -1,15 +1,8 @@
 <form id="formAddData" class="form-horizontal form-add-data" method="post">
     <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
-        <div class="col-md-12">
-            <div class="form-group _jenjang-block">
-                <label for="_jenjang" class="form-control-label">Jenjang</label>
-                <select class="form-control jenjang" name="_jenjang" id="_jenjang" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                    <option value="5" selected>SD</option>
-                    <option value="6">SMP</option>
-                </select>
-                <div class="help-block _jenjang"></div>
-            </div>
-        </div>
+        <input type="hidden" name="id_sekolah" value="<?= $id_sekolah ?>" />
+        <input type="hidden" name="jenjang" value="<?= $jenjang ?>" />
+        <input type="hidden" name="npsn" value="<?= $npsn ?>" />
         <div class="col-md-12">
             <div class="form-group _prov-block">
                 <label for="_prov" class="form-control-label">Provinsi</label>
@@ -45,23 +38,35 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="form-group _sek-block">
-                <label for="_sek" class="form-control-label">Sekolah</label>
-                <select onChange="changeSekolah(this);" class="form-control sek" name="_sek" id="_sek" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+            <div class="form-group _kel-block">
+                <label for="_kel" class="form-control-label">Kelurahan</label>
+                <select onChange="changeKelurahan(this);" class="form-control kel" name="_kel" id="_kel" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                     <option value="">-- Pilih --</option>
                 </select>
-                <div class="help-block _sek"></div>
+                <div class="help-block _kel"></div>
             </div>
         </div>
-        <!-- <div class="col-md-12">
+        <div class="col-md-12">
             <div class="form-group _dusun-block">
                 <label for="_dusun" class="form-control-label">Dusun</label>
-                <select onChange="changeDusun(this);" class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                    <option value="">-- Pilih --</option>
-                </select>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input class="custom-control-input _dusun_all" name="_dusun_all" value="all" id="_dusun_all" type="checkbox"> <label class="custom-control-label" for="_dusun_all">Pilih Semua</label>
+                </div>
+                <!--<select onChange="changeDusun(this);" class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." multiple="multiple" required>-->
+                <!--    <option value="">-- Pilih --</option>-->
+                <!--</select>-->
+                <?php if (isset($dusuns)) {
+                    if (count($dusuns) > 0) {
+                        foreach ($dusuns as $key => $val) { ?>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input class="custom-control-input _dusun_value" name="_dusun_value" value="<?= $val->id ?>" id="_dusun<?= $val->urut ?>" type="checkbox"> <label class="custom-control-label" for="_dusun<?= $val->urut ?>"><?= $val->nama ?></label>
+                            </div>
+                <?php       }
+                    }
+                } ?>
                 <div class="help-block _dusun"></div>
             </div>
-        </div> -->
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
@@ -70,6 +75,10 @@
 </form>
 
 <script>
+    $('#_dusun_all').click(function() {
+        $('input:checkbox').prop('checked', this.checked);
+    });
+
     function changeDusun(event) {
         if (event.value !== "") {
             const color = $(event).attr('name');
@@ -80,7 +89,7 @@
         }
     }
 
-    function changeSekolah(event) {
+    function changeKelurahan(event) {
         if (event.value !== "") {
             const color = $(event).attr('name');
             $(event).removeAttr('style');
@@ -134,21 +143,19 @@
             $(event).removeAttr('style');
             $('.' + color).html('');
             // $( "label#"+color ).css("color", "#555");
-            const jenjang = document.getElementsByName('_jenjang')[0].value;
 
             $.ajax({
-                url: BASE_URL + '/dinas/referensi/getSekolahRef',
+                url: BASE_URL + '/dinas/referensi/getKelurahan',
                 type: 'POST',
                 data: {
                     id: event.value,
-                    jenjang: jenjang,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {
-                    $('.sek').html('<option value="" selected>--Pilih--</option>');
+                    $('.kel').html('<option value="" selected>--Pilih--</option>');
                     // $('.dusun').html('<option value="" selected>--Pilih--</option>');
 
-                    $('div._sek-block').block({
+                    $('div._kel-block').block({
                         message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                     });
                     // $('div._dusun-block').block({
@@ -156,30 +163,28 @@
                     // });
                 },
                 success: function(msg) {
-                    $('div._sek-block').unblock();
+                    $('div._kel-block').unblock();
                     // $('div._dusun-block').unblock();
                     if (msg.code == 200) {
                         let htmlkel = "";
-                        htmlkel += '<option value="">--Pilih Sekolah--</option>';
+                        htmlkel += '<option value="">--Pilih Kelurahan--</option>';
                         if (msg.data.length > 0) {
                             for (let step = 0; step < msg.data.length; step++) {
                                 htmlkel += '<option value="';
                                 htmlkel += msg.data[step].id;
                                 htmlkel += '">';
                                 htmlkel += msg.data[step].nama;
-                                htmlkel += ' (';
-                                htmlkel += msg.data[step].npsn;
-                                htmlkel += ' )</option>';
+                                htmlkel += '</option>';
                             }
 
                         }
 
-                        $('.sek').html(htmlkel);
+                        $('.kel').html(htmlkel);
                     }
                 },
                 error: function(data) {
                     console.log(data);
-                    $('div._sek-block').unblock();
+                    $('div._kel-block').unblock();
                     // $('div._dusun-block').unblock();
                 }
             })
@@ -317,8 +322,17 @@
         const prov = document.getElementsByName('_prov')[0].value;
         const kab = document.getElementsByName('_kab')[0].value;
         const kec = document.getElementsByName('_kec')[0].value;
-        const sek = document.getElementsByName('_sek')[0].value;
-        const jenjang_sekolah = document.getElementsByName('_jenjang')[0].value;
+        const kel = document.getElementsByName('_kel')[0].value;
+        // const dusun = document.getElementsByName('_dusun')[0].value;
+        var dusun = $('input:checkbox:checked._dusun_value').map(function() {
+            return this.value;
+        }).get().join(",");
+
+        // console.log(testval);
+
+        const sekolah = document.getElementsByName('id_sekolah')[0].value;
+        const jenjang = document.getElementsByName('jenjang')[0].value;
+        const npsn = document.getElementsByName('npsn')[0].value;
 
         if (prov === "") {
             $("select#_prov").css("color", "#dc3545");
@@ -335,14 +349,20 @@
             $("select#_kec").css("border-color", "#dc3545");
             $('._kec').html('<ul role="alert" style="color: #dc3545; list-style: none; margin-block-start: 0px; padding-inline-start: 10px;"><li style="color: #dc3545;">Pilih kecamatan dulu.</li></ul>');
         }
-        if (sek === "") {
-            $("select#_sek").css("color", "#dc3545");
-            $("select#_sek").css("border-color", "#dc3545");
-            $('._sek').html('<ul role="alert" style="color: #dc3545; list-style: none; margin-block-start: 0px; padding-inline-start: 10px;"><li style="color: #dc3545;">Pilih seklah dulu.</li></ul>');
+        if (kel === "") {
+            $("select#_kel").css("color", "#dc3545");
+            $("select#_kel").css("border-color", "#dc3545");
+            $('._kel').html('<ul role="alert" style="color: #dc3545; list-style: none; margin-block-start: 0px; padding-inline-start: 10px;"><li style="color: #dc3545;">Pilih kelurahan dulu.</li></ul>');
+        }
+        if (dusun === "") {
+            Swal.fire(
+                'GAGAL!',
+                "Silahkan pilih dusun dulu.",
+                'warning'
+            );
         }
 
-        // if (prov === "" || kab === "" || kec === "" || kel === "" || dusun === "") {
-        if (prov === "" || kab === "" || kec === "" || sek === "") {
+        if (prov === "" || kab === "" || kec === "" || kel === "" || dusun === "") {
             return;
         } else {
             $.ajax({
@@ -352,8 +372,11 @@
                     prov: prov,
                     kab: kab,
                     kec: kec,
-                    sekolah: sek,
-                    jenjang: jenjang_sekolah,
+                    kel: kel,
+                    sekolah: sekolah,
+                    jenjang: jenjang,
+                    npsn: npsn,
+                    dusun: dusun,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {

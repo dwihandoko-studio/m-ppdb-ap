@@ -4,6 +4,7 @@ namespace App\Controllers\Dinas\Setting;
 
 use App\Controllers\BaseController;
 use App\Models\Dinas\ZonasiModel;
+use App\Models\Dinas\ZonasiallModel;
 use App\Models\Dinas\KuotaModel;
 use Config\Services;
 
@@ -77,11 +78,11 @@ class Zonasi extends BaseController
         $datamodel = new ZonasiModel($request);
 
         if ($request->getMethod(true) == 'POST') {
-            $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
-            $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
-            // $idSekolah = htmlspecialchars($request->getVar('sekolah_id'), true) ?? "";
+            // $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+            // $filterSekolah = htmlspecialchars($request->getVar('filter_sekolah'), true) ?? "";
+            $idSekolah = htmlspecialchars($request->getVar('sekolah_id'), true) ?? "";
 
-            $lists = $datamodel->get_datatables($filterJenjang, $filterKecamatan);
+            $lists = $datamodel->get_datatables($idSekolah);
             // $lists = [];
             $data = [];
             $no = $request->getPost("start");
@@ -103,7 +104,6 @@ class Zonasi extends BaseController
                     //             <span>Verifikasi</span>
                     //         </button>';
                 }
-                $row[] = $no;
                 $row[] = $status;
                 $action = "";
                 $action .= '<div class="dropup">
@@ -115,16 +115,15 @@ class Zonasi extends BaseController
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </button>';
-                $action .= '<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->nama_sekolah . '\')" type="button" class="dropdown-item">
+                $action .= '<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
                                 <i class="fa fa-trash"></i>
                                 <span>Hapus</span>
                             </button>
                         </div>
                     </div>';
                 $row[] = $action;
-                $row[] = $list->nama_jenjang;
-                $row[] = $list->nama_sekolah;
-                $row[] = $list->npsn;
+                $row[] = $list->namaDusun;
+                $row[] = $list->namaKelurahan;
                 $row[] = $list->namaKecamatan;
                 $row[] = $list->namaKabupaten;
                 $row[] = $list->namaProvinsi;
@@ -135,8 +134,81 @@ class Zonasi extends BaseController
                 "draw" => $request->getPost('draw'),
                 // "recordsTotal" => 0,
                 // "recordsFiltered" => 0,
-                "recordsTotal" => $datamodel->count_all($filterJenjang, $filterKecamatan),
-                "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterKecamatan),
+                "recordsTotal" => $datamodel->count_all($idSekolah),
+                "recordsFiltered" => $datamodel->count_filtered($idSekolah),
+                "data" => $data
+            ];
+            echo json_encode($output);
+        }
+    }
+
+    public function getAllShow()
+    {
+
+        $request = Services::request();
+        $datamodel = new ZonasiallModel($request);
+
+        if ($request->getMethod(true) == 'POST') {
+            // $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+            // $filterSekolah = htmlspecialchars($request->getVar('filter_sekolah'), true) ?? "";
+            // $idSekolah = htmlspecialchars($request->getVar('sekolah_id'), true) ?? "";
+
+            $lists = $datamodel->get_datatables();
+            // $lists = [];
+            $data = [];
+            $no = $request->getPost("start");
+            foreach ($lists as $list) {
+                $no++;
+                $row = [];
+
+                // $row[] = $no;
+                if ((int)$list->is_locked === 1) {
+                    $status = '<span class="badge badge-success">Verified</span>';
+                    // $action .= '<button onclick="actionUnlockVerification(\'' . $list->id . '\', \' ' . $list->nama_sekolah . ' - ' . $list->npsn . '\')" type="button" class="dropdown-item">
+                    //             <i class="ni ni-lock-circle-open"></i>
+                    //             <span>Unlock Verifikasi</span>
+                    //         </button>';
+                } else {
+                    $status = '<span class="badge badge-danger">Belum</span>';
+                    // $action .= '<button onclick="actionVerification(\'' . $list->id . '\', \' ' . $list->nama_sekolah . ' - ' . $list->npsn . '\')" type="button" class="dropdown-item">
+                    //             <i class="ni ni-check-bold"></i>
+                    //             <span>Verifikasi</span>
+                    //         </button>';
+                }
+                // $row[] = $status;
+                $action = "";
+                $action .= '<div class="dropup">
+                        <div class="btn btn-primary btn-sm" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <button onclick="actionDetail(\'' . $list->id . '\')" type="button" class="dropdown-item">
+                                <i class="fa fa-eye"></i>
+                                <span>Detail</span>
+                            </button>';
+                $action .= '<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
+                                <i class="fa fa-trash"></i>
+                                <span>Hapus</span>
+                            </button>
+                        </div>
+                    </div>';
+                $row[] = $no;
+                $row[] = $list->npsn;
+                $row[] = $list->nama_sekolah;
+                $row[] = $list->namaDusun;
+                $row[] = $list->namaKelurahan;
+                $row[] = $list->namaKecamatan;
+                $row[] = $list->namaKabupaten;
+                $row[] = $list->namaProvinsi;
+
+                $data[] = $row;
+            }
+            $output = [
+                "draw" => $request->getPost('draw'),
+                // "recordsTotal" => 0,
+                // "recordsFiltered" => 0,
+                "recordsTotal" => $datamodel->count_all(),
+                "recordsFiltered" => $datamodel->count_filtered(),
                 "data" => $data
             ];
             echo json_encode($output);
@@ -162,6 +234,25 @@ class Zonasi extends BaseController
         return view('dinas/setting/zonasi/index-sekolah', $data);
     }
 
+    public function all()
+    {
+        $data['title'] = 'Setting Zonasi';
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $data['user'] = $user->data;
+
+        $data['jenjangs'] = $this->_db->table('ref_bentuk_pendidikan')->whereIn('id', [5, 6])->get()->getResult();
+        $data['instansis'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))->orderBy('nama', 'asc')->get()->getResult();
+
+        return view('dinas/setting/zonasi/all', $data);
+    }
+
     public function sekolah()
     {
         $id = $this->request->getGet('token');
@@ -170,7 +261,7 @@ class Zonasi extends BaseController
         }
 
         $sekolah = $this->_db->table('_setting_kuota_tb a')
-            ->select("a.*, b.nama as nama_sekolah, c.nama as nama_kecamatan, d.nama as nama_jenjang")
+            ->select("a.id,a.sekolah_id,a.npsn,a.bentuk_pendidikan_id, b.nama as nama_sekolah, c.nama as nama_kecamatan, d.nama as nama_jenjang")
             ->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT')
             ->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT')
             ->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT')
@@ -207,8 +298,45 @@ class Zonasi extends BaseController
             return json_encode($response);
         }
 
+        $rules = [
+            'id_sekolah' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id sekolah tidak boleh kosong. ',
+                ]
+            ],
+            'jenjang' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Jenjang sekolah tidak boleh kosong. ',
+                ]
+            ],
+            'npsn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NPSN sekolah tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id_sekolah') . $this->validator->getError('jenjang') . $this->validator->getError('npsn');
+            return json_encode($response);
+        }
+
+        $id = htmlspecialchars($this->request->getVar('id_sekolah'), true);
+        $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
+        $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+
         $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
 
+        $data['dusuns'] = $this->_db->table('ref_dusun')->orderBy('urut', 'asc')->get()->getResult();
+
+        $data['id_sekolah'] = $id;
+        $data['jenjang'] = $jenjang;
+        $data['npsn'] = $npsn;
         $response = new \stdClass;
         $response->code = 200;
         $response->message = "Permintaan diizinkan";
@@ -243,13 +371,12 @@ class Zonasi extends BaseController
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
             $oldData = $this->_db->table('_setting_zonasi_tb a')
-                // ->select("a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun, g.nama as nama_sekolah, h.nama as nama_jenjang")
-                ->select("a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, g.nama as nama_sekolah, h.nama as nama_jenjang")
+                ->select("a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun, g.nama as nama_sekolah, h.nama as nama_jenjang")
                 ->join('ref_provinsi b', 'a.provinsi = b.id', 'LEFT')
                 ->join('ref_kabupaten c', 'a.kabupaten = c.id', 'LEFT')
                 ->join('ref_kecamatan d', 'a.kecamatan = d.id', 'LEFT')
                 ->join('ref_kelurahan e', 'a.kelurahan = e.id', 'LEFT')
-                // ->join('ref_dusun f', 'a.dusun = f.id', 'LEFT')
+                ->join('ref_dusun f', 'a.dusun = f.id', 'LEFT')
                 ->join('ref_sekolah g', 'a.sekolah_id = g.id', 'LEFT')
                 ->join('ref_bentuk_pendidikan h', 'a.bentuk_pendidikan_id = h.id', 'LEFT')
                 ->where('a.id', $id)
@@ -299,15 +426,14 @@ class Zonasi extends BaseController
         } else {
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
-            $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan";
-            // $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun";
+            $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun";
             $current = $this->_db->table('_setting_zonasi_tb a')
                 ->select($select)
                 ->join('ref_provinsi b', 'a.provinsi = b.id', 'LEFT')
                 ->join('ref_kabupaten c', 'a.kabupaten = c.id', 'LEFT')
                 ->join('ref_kecamatan d', 'a.kecamatan = d.id', 'LEFT')
                 ->join('ref_kelurahan e', 'a.kelurahan = e.id', 'LEFT')
-                // ->join('ref_dusun f', 'a.dusun = f.id', 'LEFT')
+                ->join('ref_dusun f', 'a.dusun = f.id', 'LEFT')
                 ->where('a.id', $id)->get()->getRowObject();
 
             if ($current) {
@@ -316,7 +442,7 @@ class Zonasi extends BaseController
                 $data['kabupatens'] = $this->_db->table('ref_kabupaten')->where('id_provinsi', $current->provinsi)->orderBy('nama', 'asc')->get()->getResult();
                 $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', $current->kabupaten)->orderBy('nama', 'asc')->get()->getResult();
                 $data['kelurahans'] = $this->_db->table('ref_kelurahan')->where('id_kecamatan', $current->kecamatan)->orderBy('nama', 'asc')->get()->getResult();
-                // $data['dusuns'] = $this->_db->table('ref_dusun')->orderBy('urut', 'asc')->get()->getResult();
+                $data['dusuns'] = $this->_db->table('ref_dusun')->orderBy('urut', 'asc')->get()->getResult();
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->message = "Permintaan diizinkan";
@@ -548,6 +674,12 @@ class Zonasi extends BaseController
                     'required' => 'Kecamatan tidak boleh kosong. ',
                 ]
             ],
+            'kel' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kelurahan tidak boleh kosong. ',
+                ]
+            ],
             'sekolah' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -560,82 +692,134 @@ class Zonasi extends BaseController
                     'required' => 'Jenjang tidak boleh kosong. ',
                 ]
             ],
+            'npsn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NPSN tidak boleh kosong. ',
+                ]
+            ],
+            'dusun' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Dusun tidak boleh kosong. ',
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = $this->validator->getError('sekolah') . $this->validator->getError('jenjang') . $this->validator->getError('prov') . $this->validator->getError('kab') . $this->validator->getError('kec') . $this->validator->getError('sek') . $this->validator->getError('dusun');
+            $response->message = $this->validator->getError('sekolah') . $this->validator->getError('npsn') . $this->validator->getError('jenjang') . $this->validator->getError('prov') . $this->validator->getError('kab') . $this->validator->getError('kec') . $this->validator->getError('kel') . $this->validator->getError('dusun');
             return json_encode($response);
         } else {
             $prov = htmlspecialchars($this->request->getVar('prov'), true);
             $kab = htmlspecialchars($this->request->getVar('kab'), true);
             $kec = htmlspecialchars($this->request->getVar('kec'), true);
+            $kel = htmlspecialchars($this->request->getVar('kel'), true);
             $sekolah = htmlspecialchars($this->request->getVar('sekolah'), true);
             $jenjang = htmlspecialchars($this->request->getVar('jenjang'), true);
+            $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+            $dusunx = htmlspecialchars($this->request->getVar('dusun'), true);
 
-            $Profilelib = new Profilelib();
-            $user = $Profilelib->user();
-            if ($user->code != 200) {
+            $jwt = get_cookie('jwt');
+            $token_jwt = getenv('token_jwt.default.key');
+            if ($jwt) {
+
+                try {
+
+                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
+                    if ($decoded) {
+                        $userId = $decoded->data->id;
+                        $role = $decoded->data->role;
+
+                        $dusuns = explode(",", $dusunx);
+
+                        $this->_db->transBegin();
+                        try {
+
+                            foreach ($dusuns as $key => $dusun) {
+
+                                $cekData = $this->_db->table('_setting_zonasi_tb')->select("id,sekolah_id")->where(['sekolah_id' => $sekolah, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel, 'dusun' => $dusun])->get()->getRowObject();
+                                // $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $sekolah, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel])->get()->getRowObject();
+
+                                if ($cekData) {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->message = "Zonasi ini untuk sekolah ini dengan wilayah yang di pilih sudah di set, silahkan menggunakan menu edit untuk merubah data.";
+                                    return json_encode($response);
+                                }
+
+                                $uuidLib = new Uuid();
+                                $uuid = $uuidLib->v4();
+
+                                $data = [
+                                    'id' => $uuid,
+                                    'sekolah_id' => $sekolah,
+                                    'bentuk_pendidikan_id' => $jenjang,
+                                    'npsn' => $npsn,
+                                    'provinsi' => $prov,
+                                    'kabupaten' => $kab,
+                                    'kecamatan' => $kec,
+                                    'kelurahan' => $kel,
+                                    'dusun' => $dusun,
+                                    'is_locked' => 1,
+                                    'created_at' => date('Y-m-d H:i:s')
+                                ];
+
+                                // try {
+                                $this->_db->table('_setting_zonasi_tb')->insert($data);
+                                if ($this->_db->affectedRows() > 0) {
+                                    continue;
+                                } else {
+                                    $this->_db->transRollback();
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->message = "Gagal menyimpan zonasi.";
+                                    return json_encode($response);
+                                }
+                            }
+                        } catch (\Throwable $th) {
+                            $this->_db->transRollback();
+                            $response = new \stdClass;
+                            $response->code = 400;
+                            $response->message = "Gagal menyimpan zonasi. terjadi kesalahan.";
+                            return json_encode($response);
+                        }
+
+                        $this->_db->transCommit();
+                        try {
+                            $riwayatLib = new Riwayatlib();
+                            $riwayatLib->insert("Menambahkan setting zonasi sekolah", "Menambahkan Zonasi Sekolah", "submit");
+                        } catch (\Throwable $th) {
+                        }
+                        $response = new \stdClass;
+                        $response->code = 200;
+                        $response->message = "Data berhasil disimpan.";
+                        $response->data = $data;
+                        return json_encode($response);
+                    } else {
+                        delete_cookie('jwt');
+                        session()->destroy();
+                        $response = new \stdClass;
+                        $response->code = 401;
+                        $response->message = "Session telah habis.";
+                        return json_encode($response);
+                    }
+                } catch (\Exception $e) {
+                    delete_cookie('jwt');
+                    session()->destroy();
+                    $response = new \stdClass;
+                    $response->code = 401;
+                    $response->error = $e;
+                    $response->message = "Session telah habis...";
+                    return json_encode($response);
+                }
+            } else {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;
                 $response->code = 401;
-                $response->message = "session telah habis";
-                return json_encode($response);
-            }
-
-            $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $sekolah, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec])->get()->getRowObject();
-
-            if ($cekData) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Zonasi ini untuk sekolah ini dengan wilayah yang di pilih sudah di set, silahkan menggunakan menu edit untuk merubah data.";
-                return json_encode($response);
-            }
-
-            $this->_db->transBegin();
-            $uuidLib = new Uuid();
-            $uuid = $uuidLib->v4();
-
-            $data = [
-                'id' => $uuid,
-                'sekolah_id' => $sekolah,
-                'bentuk_pendidikan_id' => $jenjang,
-                'npsn' => getNpsnSekolahRef($sekolah),
-                'provinsi' => $prov,
-                'kabupaten' => $kab,
-                'kecamatan' => $kec,
-                'is_locked' => 1,
-                'created_at' => date('Y-m-d H:i:s')
-            ];
-
-            try {
-                $this->_db->table('_setting_zonasi_tb')->insert($data);
-                if ($this->_db->affectedRows() > 0) {
-                    $this->_db->transCommit();
-                    try {
-                        $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Menambahkan setting zonasi sekolah", "Menambahkan Zonasi Sekolah", "submit");
-                    } catch (\Throwable $th) {
-                    }
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Data berhasil disimpan.";
-                    $response->data = $data;
-                    return json_encode($response);
-                } else {
-                    $this->_db->transRollback();
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    $response->message = "Gagal menyimpan zonasi.";
-                    return json_encode($response);
-                }
-            } catch (\Throwable $th) {
-                $this->_db->transRollback();
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Gagal menyimpan zonasi. terjadi kesalahan.";
+                $response->message = "Session telah habis..";
                 return json_encode($response);
             }
         }
@@ -681,12 +865,12 @@ class Zonasi extends BaseController
                     'required' => 'Kelurahan tidak boleh kosong. ',
                 ]
             ],
-            // 'dusun' => [
-            //     'rules' => 'required|trim',
-            //     'errors' => [
-            //         'required' => 'Dusun tidak boleh kosong. ',
-            //     ]
-            // ],
+            'dusun' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Dusun tidak boleh kosong. ',
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -700,7 +884,7 @@ class Zonasi extends BaseController
             $kab = htmlspecialchars($this->request->getVar('kab'), true);
             $kec = htmlspecialchars($this->request->getVar('kec'), true);
             $kel = htmlspecialchars($this->request->getVar('kel'), true);
-            // $dusun = htmlspecialchars($this->request->getVar('dusun'), true);
+            $dusun = htmlspecialchars($this->request->getVar('dusun'), true);
 
             $jwt = get_cookie('jwt');
             $token_jwt = getenv('token_jwt.default.key');
@@ -746,16 +930,16 @@ class Zonasi extends BaseController
                     //     return json_encode($response);
                     // }
 
-                    // if (($cekOldData->provinsi === $prov) && ($cekOldData->kabupaten === $kab) && ($cekOldData->kecamatan === $kec) && ($cekOldData->kelurahan === $kel) && ($cekOldData->dusun === $dusun)) {
-                    if (($cekOldData->provinsi === $prov) && ($cekOldData->kabupaten === $kab) && ($cekOldData->kecamatan === $kec) && ($cekOldData->kelurahan === $kel)) {
+                    if (($cekOldData->provinsi === $prov) && ($cekOldData->kabupaten === $kab) && ($cekOldData->kecamatan === $kec) && ($cekOldData->kelurahan === $kel) && ($cekOldData->dusun === $dusun)) {
+                        // if (($cekOldData->provinsi === $prov) && ($cekOldData->kabupaten === $kab) && ($cekOldData->kecamatan === $kec) && ($cekOldData->kelurahan === $kel)) {
                         $response = new \stdClass;
                         $response->code = 201;
                         $response->message = "Tidak ada perubahan data yang perlu disimpan.";
                         return json_encode($response);
                     }
 
-                    $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $cekOldData->sekolah_id, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel])->get()->getRowObject();
-                    // $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $cekOldData->sekolah_id, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel, 'dusun' => $dusun])->get()->getRowObject();
+                    // $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $cekOldData->sekolah_id, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel])->get()->getRowObject();
+                    $cekData = $this->_db->table('_setting_zonasi_tb')->where(['sekolah_id' => $cekOldData->sekolah_id, 'provinsi' => $prov, 'kabupaten' => $kab, 'kecamatan' => $kec, 'kelurahan' => $kel, 'dusun' => $dusun])->get()->getRowObject();
 
                     if ($cekData) {
                         $response = new \stdClass;
@@ -776,7 +960,7 @@ class Zonasi extends BaseController
                         'kabupaten' => $kab,
                         'kecamatan' => $kec,
                         'kelurahan' => $kel,
-                        // 'dusun' => $dusun,
+                        'dusun' => $dusun,
                         'is_locked' => 0,
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
@@ -834,173 +1018,6 @@ class Zonasi extends BaseController
                 $response->message = "Session telah habis.";
                 return json_encode($response);
             }
-        }
-    }
-
-
-    public function import()
-    {
-        $data['title'] = 'IMPORT DATA ZONASI SEKOLAH';
-        $Profilelib = new Profilelib();
-        $user = $Profilelib->user();
-        if ($user->code != 200) {
-            delete_cookie('jwt');
-            session()->destroy();
-            return redirect()->to(base_url('auth'));
-        }
-        $data['user'] = $user->data;
-        return view('dinas/setting/zonasi/import', $data);
-    }
-
-    public function uploadData()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = [
-                'code' => 400,
-                'error' => "Hanya request post yang diperbolehkan."
-            ];
-        } else {
-
-            $rules = [
-                'file' => [
-                    'rules' => 'uploaded[file]|max_size[file, 5120]|mime_in[file,application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office,application/msword,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,application/x-zip]',
-                    'errors' => [
-                        'uploaded' => 'File import gagal di upload. ',
-                        'max_size' => 'Ukuran file melebihi batas file max file upload. ',
-                        'mime_in' => 'Ekstensi file tidak diizinkan untuk di upload. ',
-                    ]
-                ],
-            ];
-
-            if (!$this->validate($rules)) {
-                $response = [
-                    'code' => 400,
-                    'error' => $this->validator->getError('file')
-                ];
-            } else {
-                $jenis = htmlspecialchars($this->request->getVar('jenis'), true);
-                $lampiran = $this->request->getFile('file');
-                $extension = $lampiran->getClientExtension();
-                $filesNamelampiran = $lampiran->getName();
-                $fileLocation = $lampiran->getTempName();
-
-                if ('xls' == $extension) {
-                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-                } else {
-                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-                }
-
-                $spreadsheet = $reader->load($fileLocation);
-                $sheet = $spreadsheet->getActiveSheet()->toArray();
-
-                $total_line = (count($sheet) > 0) ? count($sheet) - 1 : 0;
-
-                $dataImport = [];
-
-                unset($sheet[0]);
-
-                foreach ($sheet as $key => $data) {
-
-                    if ($data[0] == "" || strlen($data[0]) < 5) {
-                        // if($data[1] == "") {
-                        continue;
-                    }
-
-                    $dataInsert = [
-                        'npsn' => $data[0],
-                        'nama_sekolah' => $data[1],
-                        'kecamatan' => $data[3],
-                    ];
-
-                    $dataImport[] = $dataInsert;
-                }
-
-                $response = [
-                    'code' => 200,
-                    'success' => true,
-                    'total_line' => $total_line,
-                    'data' => $dataImport,
-                ];
-            }
-        }
-
-        echo json_encode($response);
-    }
-
-    public function importData()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 500;
-            $response->message = "Request not allowed";
-            return json_encode($response);
-        }
-
-        $Profilelib = new Profilelib();
-        $user = $Profilelib->user();
-        if ($user->code != 200) {
-            delete_cookie('jwt');
-            session()->destroy();
-            $response = new \stdClass;
-            $response->code = 401;
-            $response->message = "Session telah habis.";
-            return json_encode($response);
-        }
-
-        $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
-        $nama_sekolah = htmlspecialchars($this->request->getVar('nama_sekolah'), true);
-        $kecamatan = htmlspecialchars($this->request->getVar('kecamatan'), true);
-
-        $currentDataOnDB = $this->_db->table('_setting_zonasi_tb')->where(['npsn' => $npsn, 'kecamatan' => $kecamatan])->get()->getRowObject();
-
-        if ($currentDataOnDB) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Sekolah sudah ada.";
-            return json_encode($response);
-        }
-
-        $refSekolah = $this->_db->table('ref_sekolah')->select('id, npsn, bentuk_pendidikan_id')->where(['npsn' => $npsn])->get()->getRowObject();
-
-        if (!$refSekolah) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Sekolah tidak ada.";
-            return json_encode($response);
-        }
-
-        $this->_db->transBegin();
-        $uuidLib = new Uuid();
-        $uuid = $uuidLib->v4();
-
-        $data = [
-            'id' => $uuid,
-            'sekolah_id' => $refSekolah->id,
-            'bentuk_pendidikan_id' => $refSekolah->bentuk_pendidikan_id,
-            'npsn' => $refSekolah->npsn,
-            'provinsi' => '120000',
-            'kabupaten' => '120900',
-            'kecamatan' => $kecamatan,
-            'is_locked' => 1,
-            'created_at' => date('Y-m-d H:i:s')
-        ];
-
-        $this->_db->table('_setting_zonasi_tb')->insert($data);
-
-        if ($this->_db->affectedRows() > 0) {
-
-            $this->_db->transCommit();
-            $response = new \stdClass;
-            $response->code = 200;
-            $response->message = "Berhasil mengimport data";
-            $response->url = base_url('dinas/setting/zonasi');
-            return json_encode($response);
-        } else {
-            $this->_db->transRollback();
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Gagal menyimpan data";
-            return json_encode($response);
         }
     }
 }

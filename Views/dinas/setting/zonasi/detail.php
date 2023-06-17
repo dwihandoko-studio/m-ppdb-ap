@@ -23,14 +23,13 @@
                     <div class="help-block _prov"></div>
                 </div>
             </div>
-            <!-- <div class="col-md-12">
+            <div class="col-md-12">
                 <div class="form-group _prov-block">
                     <label for="_prov" class="form-control-label">Dusun</label>
-                    <input type="text" class="form-control" value="<?php // echo $data->namaDusun 
-                                                                    ?>" readonly />
+                    <input type="text" class="form-control" value="<?= $data->namaDusun ?>" readonly />
                     <div class="help-block _prov"></div>
                 </div>
-            </div> -->
+            </div>
             <div class="col-md-12">
                 <div class="form-group _prov-block">
                     <label for="_prov" class="form-control-label">Kelurahan</label>

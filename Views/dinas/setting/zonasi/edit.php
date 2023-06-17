@@ -66,7 +66,7 @@
                     <div class="help-block _kel"></div>
                 </div>
             </div>
-            <!-- <div class="col-md-12">
+            <div class="col-md-12">
                 <div class="form-group _dusun-block">
                     <label for="_dusun" class="form-control-label">Dusun</label>
                     <select onChange="changeDusun(this);" class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select-2" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
@@ -74,15 +74,14 @@
                         <?php if (isset($dusuns)) {
                             if (count($dusuns) > 0) {
                                 foreach ($dusuns as $key => $val) { ?>
-                                    <option value="<?= $val->id ?>" <?php //echo ($data->dusun === $val->id) ? 'selected' : '' 
-                                                                    ?>><?= $val->nama ?></option>
+                                    <option value="<?= $val->id ?>" <?= ($data->dusun === $val->id) ? 'selected' : '' ?>><?= $val->nama ?></option>
                         <?php }
                             }
                         } ?>
                     </select>
                     <div class="help-block _dusun"></div>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
@@ -108,44 +107,44 @@
                 $('.' + color).html('');
                 // $( "label#"+color ).css("color", "#555");
 
-                // $.ajax({
-                //     url: BASE_URL + '/sekolah/referensi/getDusun',
-                //     type: 'POST',
-                //     data: {
-                //         id: event.value,
-                //     },
-                //     dataType: 'JSON',
-                //     beforeSend: function() {
-                //         $('.dusun').html('<option value="" selected>--Pilih--</option>');
+                $.ajax({
+                    url: BASE_URL + '/sekolah/referensi/getDusun',
+                    type: 'POST',
+                    data: {
+                        id: event.value,
+                    },
+                    dataType: 'JSON',
+                    beforeSend: function() {
+                        $('.dusun').html('<option value="" selected>--Pilih--</option>');
 
-                //         $('div._dusun-block').block({
-                //             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                //         });
-                //     },
-                //     success: function(msg) {
-                //         $('div._dusun-block').unblock();
-                //         if (msg.code == 200) {
-                //             let htmldus = "";
-                //             htmldus += '<option value="">--Pilih Dusun--</option>';
-                //             if (msg.data.length > 0) {
-                //                 for (let step = 0; step < msg.data.length; step++) {
-                //                     htmldus += '<option value="';
-                //                     htmldus += msg.data[step].id;
-                //                     htmldus += '">';
-                //                     htmldus += msg.data[step].nama;
-                //                     htmldus += '</option>';
-                //                 }
+                        $('div._dusun-block').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
+                    },
+                    success: function(msg) {
+                        $('div._dusun-block').unblock();
+                        if (msg.code == 200) {
+                            let htmldus = "";
+                            htmldus += '<option value="">--Pilih Dusun--</option>';
+                            if (msg.data.length > 0) {
+                                for (let step = 0; step < msg.data.length; step++) {
+                                    htmldus += '<option value="';
+                                    htmldus += msg.data[step].id;
+                                    htmldus += '">';
+                                    htmldus += msg.data[step].nama;
+                                    htmldus += '</option>';
+                                }
 
-                //             }
+                            }
 
-                //             $('.dusun').html(htmldus);
-                //         }
-                //     },
-                //     error: function(data) {
-                //         console.log(data);
-                //         $('div._dusun-block').unblock();
-                //     }
-                // })
+                            $('.dusun').html(htmldus);
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        $('div._dusun-block').unblock();
+                    }
+                })
             }
         }
 
@@ -165,14 +164,14 @@
                     dataType: 'JSON',
                     beforeSend: function() {
                         $('.kel').html('<option value="" selected>--Pilih--</option>');
-                        // $('.dusun').html('<option value="" selected>--Pilih--</option>');
+                        $('.dusun').html('<option value="" selected>--Pilih--</option>');
 
                         $('div._kel-block').block({
                             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                         });
-                        // $('div._dusun-block').block({
-                        //     message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                        // });
+                        $('div._dusun-block').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
                     },
                     success: function(msg) {
                         $('div._kel-block').unblock();
@@ -196,7 +195,7 @@
                     error: function(data) {
                         console.log(data);
                         $('div._kel-block').unblock();
-                        // $('div._dusun-block').unblock();
+                        $('div._dusun-block').unblock();
                     }
                 })
             }
@@ -219,7 +218,7 @@
                     beforeSend: function() {
                         $('.kec').html('<option value="" selected>--Pilih--</option>');
                         $('.kel').html('<option value="" selected>--Pilih--</option>');
-                        // $('.dusun').html('<option value="" selected>--Pilih--</option>');
+                        $('.dusun').html('<option value="" selected>--Pilih--</option>');
 
                         $('div._kec-block').block({
                             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
@@ -227,15 +226,15 @@
                         $('div._kel-block').block({
                             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                         });
-                        // $('div._dusun-block').block({
-                        //     message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                        // });
+                        $('div._dusun-block').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
                     },
                     success: function(msg) {
                         // console.log(msg);
                         $('div._kec-block').unblock();
                         $('div._kel-block').unblock();
-                        // $('div._dusun-block').unblock();
+                        $('div._dusun-block').unblock();
                         if (msg.code == 200) {
                             let htmlkec = "";
                             htmlkec += '<option value="">--Pilih Kecamatan--</option>';
@@ -257,7 +256,7 @@
                         console.log(data);
                         $('div._kec-block').unblock();
                         $('div._kel-block').unblock();
-                        // $('div._dusun-block').unblock();
+                        $('div._dusun-block').unblock();
                     }
                 })
             }
@@ -281,7 +280,7 @@
                         $('.kab').html('<option value="" selected>--Pilih--</option>');
                         $('.kec').html('<option value="" selected>--Pilih--</option>');
                         $('.kel').html('<option value="" selected>--Pilih--</option>');
-                        // $('.dusun').html('<option value="" selected>--Pilih--</option>');
+                        $('.dusun').html('<option value="" selected>--Pilih--</option>');
 
                         $('div._kab-block').block({
                             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
@@ -292,16 +291,16 @@
                         $('div._kel-block').block({
                             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                         });
-                        // $('div._dusun-block').block({
-                        //     message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                        // });
+                        $('div._dusun-block').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
                     },
                     success: function(msg) {
                         // console.log(msg);
                         $('div._kab-block').unblock();
                         $('div._kec-block').unblock();
                         $('div._kel-block').unblock();
-                        // $('div._dusun-block').unblock();
+                        $('div._dusun-block').unblock();
                         if (msg.code == 200) {
                             let htmlkab = "";
                             htmlkab += '<option value="">--Pilih Kabupaten--</option>';
@@ -324,7 +323,7 @@
                         $('div._kab-block').unblock();
                         $('div._kec-block').unblock();
                         $('div._kel-block').unblock();
-                        // $('div._dusun-block').unblock();
+                        $('div._dusun-block').unblock();
                     }
                 })
             }
@@ -336,7 +335,7 @@
             const kab = document.getElementsByName('_kab')[0].value;
             const kec = document.getElementsByName('_kec')[0].value;
             const kel = document.getElementsByName('_kel')[0].value;
-            // const dusun = document.getElementsByName('_dusun')[0].value;
+            const dusun = document.getElementsByName('_dusun')[0].value;
 
             if (prov === "") {
                 $("select#_prov").css("color", "#dc3545");
@@ -358,14 +357,14 @@
                 $("select#_kel").css("border-color", "#dc3545");
                 $('._kel').html('<ul role="alert" style="color: #dc3545; list-style: none; margin-block-start: 0px; padding-inline-start: 10px;"><li style="color: #dc3545;">Pilih kelurahan dulu.</li></ul>');
             }
-            // if (dusun === "") {
-            //     $("select#_dusun").css("color", "#dc3545");
-            //     $("select#_dusun").css("border-color", "#dc3545");
-            //     $('._dusun').html('<ul role="alert" style="color: #dc3545; list-style: none; margin-block-start: 0px; padding-inline-start: 10px;"><li style="color: #dc3545;">Pilih dusun dulu.</li></ul>');
-            // }
+            if (dusun === "") {
+                $("select#_dusun").css("color", "#dc3545");
+                $("select#_dusun").css("border-color", "#dc3545");
+                $('._dusun').html('<ul role="alert" style="color: #dc3545; list-style: none; margin-block-start: 0px; padding-inline-start: 10px;"><li style="color: #dc3545;">Pilih dusun dulu.</li></ul>');
+            }
 
-            // if (id === "" || prov === "" || kab === "" || kec === "" || kel === "" || dusun === "") {
-            if (id === "" || prov === "" || kab === "" || kec === "" || kel === "") {
+            if (id === "" || prov === "" || kab === "" || kec === "" || kel === "" || dusun === "") {
+                // if (id === "" || prov === "" || kab === "" || kec === "" || kel === "") {
                 return;
             } else {
                 Swal.fire({
@@ -386,7 +385,7 @@
                                 kab: kab,
                                 kec: kec,
                                 kel: kel,
-                                // dusun: dusun,
+                                dusun: dusun,
                             },
                             dataType: 'JSON',
                             beforeSend: function() {

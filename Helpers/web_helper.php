@@ -505,14 +505,18 @@ function zonasiDetailWebNew($npsn)
 {
 	$db      = \Config\Database::connect();
 	$data = $db->table('_setting_zonasi_tb a')
-		->select("a.*, b.nama as nama_provinsi, d.nama as nama_kecamatan, c.nama as nama_kabupaten")
+		->select("a.*, b.nama as nama_provinsi, d.nama as nama_kecamatan, c.nama as nama_kabupaten, e.nama as nama_kelurahan, f.nama as nama_dusun")
 		->join('ref_provinsi b', 'a.provinsi = b.id', 'LEFT')
 		->join('ref_kabupaten c', 'a.kabupaten = c.id', 'LEFT')
 		->join('ref_kecamatan d', 'a.kecamatan = d.id', 'LEFT')
+		->join('ref_kelurahan e', 'a.kelurahan = e.id', 'LEFT')
+		->join('ref_dusun f', 'a.dusun = f.id', 'LEFT')
 		->where('a.npsn', $npsn)
 		->orderBy('b.nama', 'asc')
 		->orderBy('c.nama', 'asc')
 		->orderBy('d.nama', 'asc')
+		->orderBy('e.nama', 'asc')
+		->orderBy('f.nama', 'asc')
 		->get()->getResult();
 
 	if (count($data) > 0) {

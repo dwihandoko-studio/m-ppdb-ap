@@ -96,6 +96,8 @@
         cZonasiD += '<th>Provinsi</th>';
         cZonasiD += '<th>Kabupaten</th>';
         cZonasiD += '<th>Kecamatan</th>';
+        cZonasiD += '<th>Kelurahan/Desa</th>';
+        cZonasiD += '<th>Dusun</th>';
         cZonasiD += '</tr>';
         cZonasiD += '</thead>';
         cZonasiD += '<tbody class="detail-zonasi-';
@@ -152,6 +154,12 @@
                             htmlZonasi += '</td>';
                             htmlZonasi += '<td style="text-align: left; align-items: left;">';
                             htmlZonasi += msg.data[stepr].nama_kecamatan;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '<td style="text-align: left; align-items: left;">';
+                            htmlZonasi += msg.data[stepr].nama_kelurahan;
+                            htmlZonasi += '</td>';
+                            htmlZonasi += '<td style="text-align: left; align-items: left;">';
+                            htmlZonasi += msg.data[stepr].nama_dusun;
                             htmlZonasi += '</td>';
                             htmlZonasi += '</tr>';
                         }

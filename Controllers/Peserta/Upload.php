@@ -99,441 +99,418 @@ class Upload extends BaseController
             $filename = htmlspecialchars($this->request->getVar('filename'), true);
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
-
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $cekData = $this->_db->table('_upload_kelengkapan_berkas')->where(['user_id' => $userId])->get()->getRowObject();
-
-                        $userDataLogin = $this->_db->table('_users_profil_tb')->where('id', $userId)->get()->getRowObject();
-                        if (!$userDataLogin) {
-                            $response = new \stdClass;
-                            $response->code = 401;
-                            $response->url = base_url('peserta/home');
-                            $response->message = "User tidak ditemukan.";
-                            return json_encode($response);
-                        }
-
-                        $dataLib = new Datalib();
-                        $cekAvailableRegistered = $dataLib->cekAlreadyRegistered($userDataLogin->peserta_didik_id);
-                        if ($cekAvailableRegistered) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->url = base_url('peserta/home');
-                            $response->message = "Anda sudah melakukan pendaftaran. Untuk merubah data silahkan batalkan pendaftaran anda, atau silahkan hubungi panitia PPDB.";
-                            return json_encode($response);
-                        }
-
-                        if ($cekData) {
-                            $data = [
-                                'updated_at' => date('Y-m-d H:i:s')
-                            ];
-
-                            $dir = "";
-                            $namaFile = "";
-
-                            if ($id === "_file_kk") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/kk";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_kk'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_akta") {
-                                $lampiran = $this->request->getFile('file');
-
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/akta";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_akta_kelahiran'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_lulus") {
-                                $lampiran = $this->request->getFile('file');
-
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/kelulusan";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_lulus'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_prestasi") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/prestasi";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_prestasi'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_afirmasi") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/afirmasi";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_afirmasi'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_pernyataan") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/pernyataan";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_pernyataan'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_foto_rumah") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/fotorumah";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_foto_rumah'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_mutasi") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/mutasi";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_mutasi'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else {
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Id tidak diketahui.";
-                                return json_encode($response);
-                            }
-                            $this->_db->transBegin();
-                            $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $userId)->update($data);
-                            if ($this->_db->affectedRows() > 0) {
-                                $this->_db->transCommit();
-                                try {
-                                    if ($id === "_file_kk") {
-                                        if ($cekData->lampiran_kk !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_kk);
-                                        }
-                                    } else if ($id === "_file_akta") {
-                                        if ($cekData->lampiran_akta_kelahiran !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_akta_kelahiran);
-                                        }
-                                    } else if ($id === "_file_lulus") {
-                                        if ($cekData->lampiran_lulus !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_lulus);
-                                        }
-                                    } else if ($id === "_file_prestasi") {
-                                        if ($cekData->lampiran_prestasi !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_prestasi);
-                                        }
-                                    } else if ($id === "_file_afirmasi") {
-                                        if ($cekData->lampiran_afirmasi !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_afirmasi);
-                                        }
-                                    } else if ($id === "_file_pernyataan") {
-                                        if ($cekData->lampiran_pernyataan !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_pernyataan);
-                                        }
-                                    } else if ($id === "_file_foto_rumah") {
-                                        if ($cekData->lampiran_foto_rumah !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_foto_rumah);
-                                        }
-                                    } else if ($id === "_file_mutasi") {
-                                        if ($cekData->lampiran_mutasi !== null) {
-                                            unlink($dir . '/' . $cekData->lampiran_mutasi);
-                                        }
-                                    }
-                                } catch (\Throwable $th) {
-                                    //throw $th;
-                                }
-                                try {
-                                    $riwayatLib = new Riwayatlib();
-                                    $riwayatLib->insert("Mengupload kelengkapan berkas peserta.", "Upload Berkas", "upload");
-                                } catch (\Throwable $th) {
-                                }
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "File berhasil disimpan.";
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transRollback();
-                                unlink($dir . '/' . $namaFile);
-                                // if ($id === "_file_kk") {
-                                // } else if($id === "_file_lulus") {
-                                //     unlink($dir . '/' . $data['lampiran_kk']);
-                                // }
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "File gagal disimpan.";
-                                return json_encode($response);
-                            }
-                        } else {
-                            $uuidLib = new Uuid();
-                            $uuid = $uuidLib->v4();
-
-                            $data = [
-                                'id' => $uuid,
-                                'user_id' => $userId,
-                                'created_at' => date('Y-m-d H:i:s')
-                            ];
-
-                            $dir = "";
-                            $namaFile = "";
-
-                            if ($id === "_file_kk") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/kk";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_kk'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_akta") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/akta";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_akta_kelahiran'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_lulus") {
-                                $lampiran = $this->request->getFile('file');
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/kelulusan";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_lulus'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_prestasi") {
-                                $lampiran = $this->request->getFile('file');
-                                $filesNamelampiran = $lampiran->getName();
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/prestasi";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_prestasi'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_afirmasi") {
-                                $lampiran = $this->request->getFile('file');
-                                $filesNamelampiran = $lampiran->getName();
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/afirmasi";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_afirmasi'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_pernyataan") {
-                                $lampiran = $this->request->getFile('file');
-                                $filesNamelampiran = $lampiran->getName();
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/pernyataan";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_pernyataan'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_foto_rumah") {
-                                $lampiran = $this->request->getFile('file');
-                                $filesNamelampiran = $lampiran->getName();
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/fotorumah";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_foto_rumah'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else if ($id === "_file_mutasi") {
-                                $lampiran = $this->request->getFile('file');
-                                $filesNamelampiran = $lampiran->getName();
-                                $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
-
-                                if ($lampiran->isValid() && !$lampiran->hasMoved()) {
-                                    $dir = FCPATH . "uploads/peserta/mutasi";
-
-                                    $lampiran->move($dir, $newNamelampiran);
-                                    $data['lampiran_mutasi'] = $newNamelampiran;
-                                    $namaFile = $newNamelampiran;
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Upload file gagal.";
-                                    return json_encode($response);
-                                }
-                            } else {
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Id tidak diketahui.";
-                                return json_encode($response);
-                            }
-                            $this->_db->transBegin();
-                            $this->_db->table('_upload_kelengkapan_berkas')->insert($data);
-                            if ($this->_db->affectedRows() > 0) {
-                                $this->_db->transCommit();
-                                try {
-                                    $riwayatLib = new Riwayatlib();
-                                    $riwayatLib->insert("Mengupload kelengkapan berkas peserta.", "Upload Berkas");
-                                } catch (\Throwable $th) {
-                                }
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "File berhasil disimpan.";
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transRollback();
-                                unlink($dir . '/' . $namaFile);
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "File gagal disimpan.";
-                                return json_encode($response);
-                            }
-                        }
-                    } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    delete_cookie('jwt');
-                    session()->destroy();
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->error = $e;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } else {
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->user();
+            if ($user->code != 200) {
                 delete_cookie('jwt');
                 session()->destroy();
                 $response = new \stdClass;
                 $response->code = 401;
                 $response->message = "Session telah habis.";
                 return json_encode($response);
+            }
+
+
+            $cekData = $this->_db->table('_upload_kelengkapan_berkas')->where(['user_id' => $user->data->id])->get()->getRowObject();
+
+            $userDataLogin = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
+            if (!$userDataLogin) {
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->url = base_url('peserta/home');
+                $response->message = "User tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $dataLib = new Datalib();
+            $cekAvailableRegistered = $dataLib->cekAlreadyRegistered($userDataLogin->peserta_didik_id);
+            if ($cekAvailableRegistered) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->url = base_url('peserta/home');
+                $response->message = "Anda sudah melakukan pendaftaran. Untuk merubah data silahkan batalkan pendaftaran anda, atau silahkan hubungi panitia PPDB.";
+                return json_encode($response);
+            }
+
+            if ($cekData) {
+                $data = [
+                    'updated_at' => date('Y-m-d H:i:s')
+                ];
+
+                $dir = "";
+                $namaFile = "";
+
+                if ($id === "_file_kk") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/kk";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_kk'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_akta") {
+                    $lampiran = $this->request->getFile('file');
+
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/akta";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_akta_kelahiran'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_lulus") {
+                    $lampiran = $this->request->getFile('file');
+
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/kelulusan";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_lulus'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_prestasi") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/prestasi";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_prestasi'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_afirmasi") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/afirmasi";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_afirmasi'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_pernyataan") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/pernyataan";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_pernyataan'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_foto_rumah") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/fotorumah";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_foto_rumah'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_mutasi") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/mutasi";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_mutasi'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else {
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Id tidak diketahui.";
+                    return json_encode($response);
+                }
+                $this->_db->transBegin();
+                $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $user->data->id)->update($data);
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    try {
+                        if ($id === "_file_kk") {
+                            if ($cekData->lampiran_kk !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_kk);
+                            }
+                        } else if ($id === "_file_akta") {
+                            if ($cekData->lampiran_akta_kelahiran !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_akta_kelahiran);
+                            }
+                        } else if ($id === "_file_lulus") {
+                            if ($cekData->lampiran_lulus !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_lulus);
+                            }
+                        } else if ($id === "_file_prestasi") {
+                            if ($cekData->lampiran_prestasi !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_prestasi);
+                            }
+                        } else if ($id === "_file_afirmasi") {
+                            if ($cekData->lampiran_afirmasi !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_afirmasi);
+                            }
+                        } else if ($id === "_file_pernyataan") {
+                            if ($cekData->lampiran_pernyataan !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_pernyataan);
+                            }
+                        } else if ($id === "_file_foto_rumah") {
+                            if ($cekData->lampiran_foto_rumah !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_foto_rumah);
+                            }
+                        } else if ($id === "_file_mutasi") {
+                            if ($cekData->lampiran_mutasi !== null) {
+                                unlink($dir . '/' . $cekData->lampiran_mutasi);
+                            }
+                        }
+                    } catch (\Throwable $th) {
+                        //throw $th;
+                    }
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Mengupload kelengkapan berkas peserta.", "Upload Berkas", "upload");
+                    } catch (\Throwable $th) {
+                    }
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "File berhasil disimpan.";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    unlink($dir . '/' . $namaFile);
+                    // if ($id === "_file_kk") {
+                    // } else if($id === "_file_lulus") {
+                    //     unlink($dir . '/' . $data['lampiran_kk']);
+                    // }
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "File gagal disimpan.";
+                    return json_encode($response);
+                }
+            } else {
+                $uuidLib = new Uuid();
+                $uuid = $uuidLib->v4();
+
+                $data = [
+                    'id' => $uuid,
+                    'user_id' => $user->data->id,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+
+                $dir = "";
+                $namaFile = "";
+
+                if ($id === "_file_kk") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/kk";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_kk'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_akta") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/akta";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_akta_kelahiran'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_lulus") {
+                    $lampiran = $this->request->getFile('file');
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/kelulusan";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_lulus'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_prestasi") {
+                    $lampiran = $this->request->getFile('file');
+                    $filesNamelampiran = $lampiran->getName();
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/prestasi";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_prestasi'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_afirmasi") {
+                    $lampiran = $this->request->getFile('file');
+                    $filesNamelampiran = $lampiran->getName();
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/afirmasi";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_afirmasi'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_pernyataan") {
+                    $lampiran = $this->request->getFile('file');
+                    $filesNamelampiran = $lampiran->getName();
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/pernyataan";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_pernyataan'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_foto_rumah") {
+                    $lampiran = $this->request->getFile('file');
+                    $filesNamelampiran = $lampiran->getName();
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/fotorumah";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_foto_rumah'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else if ($id === "_file_mutasi") {
+                    $lampiran = $this->request->getFile('file');
+                    $filesNamelampiran = $lampiran->getName();
+                    $newNamelampiran = _create_name_foto($filename, $userDataLogin->nisn);
+
+                    if ($lampiran->isValid() && !$lampiran->hasMoved()) {
+                        $dir = FCPATH . "uploads/peserta/mutasi";
+
+                        $lampiran->move($dir, $newNamelampiran);
+                        $data['lampiran_mutasi'] = $newNamelampiran;
+                        $namaFile = $newNamelampiran;
+                    } else {
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Upload file gagal.";
+                        return json_encode($response);
+                    }
+                } else {
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Id tidak diketahui.";
+                    return json_encode($response);
+                }
+                $this->_db->transBegin();
+                $this->_db->table('_upload_kelengkapan_berkas')->insert($data);
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Mengupload kelengkapan berkas peserta.", "Upload Berkas");
+                    } catch (\Throwable $th) {
+                    }
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "File berhasil disimpan.";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    unlink($dir . '/' . $namaFile);
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "File gagal disimpan.";
+                    return json_encode($response);
+                }
             }
         }
     }

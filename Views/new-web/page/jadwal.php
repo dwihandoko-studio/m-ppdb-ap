@@ -74,7 +74,7 @@
                                                 Buka : <br>
                                                 <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_verifikasi_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_verifikasi_zonasi) ?> WIB<br>
                                                 Tutup : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_verifikasi_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_verifikasi_zonasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_verifikasi_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_verifikasi_zonasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Analisis </b><br>

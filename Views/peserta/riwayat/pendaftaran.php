@@ -55,8 +55,11 @@
                                                     <?php if ((int)$pendaftaran->status_pendaftaran > 0) { ?>
                                                         <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>
                                                     <?php } else { ?>
-                                                        <a class="btn btn-danger" href="javascript:batalPendaftaran('<?= $pendaftaran->id ?>', '<?= $pendaftaran->kode_pendaftaran ?>', '<?= $pendaftaran->via_jalur ?>');">BATALKAN</a>
-                                                        <a class="btn btn-info" href="javascript:cetakBuktiPendaftaran('<?= $pendaftaran->id ?>', '<?= $pendaftaran->kode_pendaftaran ?>', '<?= $pendaftaran->via_jalur ?>');">CETAK PENDAFTARAN</a>
+                                                        <!-- <a class="btn btn-danger" href="javascript:batalPendaftaran('<?= $pendaftaran->id ?>', '<?= $pendaftaran->kode_pendaftaran ?>', '<?= $pendaftaran->via_jalur ?>');">BATALKAN</a> -->
+                                                        <?php if ($pendaftaran->kode_pendaftaran == NULL || $pendaftaran->kode_pendaftaran == "") { ?>
+                                                        <?php } else { ?>
+                                                            <a class="btn btn-info" href="javascript:cetakBuktiPendaftaran('<?= $pendaftaran->id ?>', '<?= $pendaftaran->kode_pendaftaran ?>', '<?= $pendaftaran->via_jalur ?>');">CETAK PENDAFTARAN</a>
+                                                        <?php } ?>
                                                     <?php } ?>
                                                 </div>
                                             </div>
@@ -75,7 +78,10 @@
                                                             <?php if ((int)$pendaftaran->status_pendaftaran > 1) { ?>
                                                                 <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>
                                                             <?php } else { ?>
-                                                                <a class="btn btn-info" href="javascript:cetakBuktiPendaftaran('<?= $pendaftaran->id ?>', '<?= $pendaftaran->kode_pendaftaran ?>', '<?= $pendaftaran->via_jalur ?>');">CETAK PENDAFTARAN</a>
+                                                                <?php if ($pendaftaran->kode_pendaftaran == NULL || $pendaftaran->kode_pendaftaran == "") { ?>
+                                                                <?php } else { ?>
+                                                                    <a class="btn btn-info" href="javascript:cetakBuktiPendaftaran('<?= $pendaftaran->id ?>', '<?= $pendaftaran->kode_pendaftaran ?>', '<?= $pendaftaran->via_jalur ?>');">CETAK PENDAFTARAN</a>
+                                                                <?php } ?>
                                                             <?php } ?>
                                                         </div>
                                                     </div>

@@ -207,6 +207,6 @@ class Pengaduan extends BaseController
         $x['page'] = "PPDB ONLINE TA. 2023 - 2024";
         $x['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
-        return view('new-web/page/success-pengaduan', $data);
+        return view('new-web/page/success-pengaduan', $x);
     }
 }

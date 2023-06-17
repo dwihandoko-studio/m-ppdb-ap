@@ -195,6 +195,58 @@ class Pengaduan extends BaseController
         }
     }
 
+    public function cari()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'tiket' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'No tiket tidak boleh kosong. ',
+                ]
+            ],
+            'nohp' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'No handphone tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('nohp')
+                . $this->validator->getError('tiket');
+            return json_encode($response);
+        } else {
+            $tiket = htmlspecialchars($this->request->getVar('tiket'), true);
+            $nohp = htmlspecialchars($this->request->getVar('nohp'), true);
+
+            $data = $this->_db->table('tb_pengaduan')->where(['token' => $tiket, 'no_hp' => $nohp])->get()->getRowObject();
+            if ($data) {
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->redirrect = base_url('web/pengaduan/detail') . '?token=' . $data->token;
+                $response->message = "Pengaduan berhasil dikirim.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Aduan tidak ditemukan.";
+                return json_encode($response);
+            }
+        }
+    }
+
     public function success()
     {
         $id = htmlspecialchars($this->request->getGet('id'), true);
@@ -208,5 +260,20 @@ class Pengaduan extends BaseController
         $x['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         return view('new-web/page/success-pengaduan', $x);
+    }
+
+    public function detail()
+    {
+        $id = htmlspecialchars($this->request->getGet('token'), true);
+        $data = $this->_db->table('tb_pengaduan')->where('token', $id)->get()->getRowObject();
+        if (!$data) {
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $x['data'] = $data;
+        $x['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $x['title'] = 'PPDB ONLINE TA. 2023 - 2024';
+
+        return view('new-web/page/detail-pengaduan', $x);
     }
 }

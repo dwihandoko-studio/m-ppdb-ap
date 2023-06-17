@@ -43,17 +43,17 @@
                                 <table border="0">
                                     <thead>
                                         <tr>
-                                            <th style="padding-right: 20px;">
+                                            <td style="padding-right: 20px;">
                                                 No. Tiket
-                                            </th>
-                                            <th style="padding-right: 20px;">:</th>
+                                            </td>
+                                            <td style="padding-right: 20px;">:</td>
                                             <th><?= $data->token ?></th>
                                         </tr>
                                         <tr>
-                                            <th style="padding-right: 20px;">
+                                            <td style="padding-right: 20px;">
                                                 No. Handphone
-                                            </th>
-                                            <th style="padding-right: 20px;">:</th>
+                                            </td>
+                                            <td style="padding-right: 20px;">:</td>
                                             <th><?= $data->no_hp ?></th>
                                         </tr>
                                     </thead>

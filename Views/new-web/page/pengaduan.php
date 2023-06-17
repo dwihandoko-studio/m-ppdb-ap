@@ -140,16 +140,46 @@
                                 <input type="hidden" id="_nisn" name="_nisn" value="<?= isset($nisn) ? $nisn : '-' ?>">
                                 <input type="hidden" id="_npsn" name="_npsn" value="<?= isset($npsn) ? $npsn : '-' ?>">
                                 <div class="form-group">
+                                    <p style="color: #fff;">Klasifikasi *</p>
+                                    <select id="_klasifikasi" name="_klasifikasi" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                        <option value="" selected>&nbsp;</option>
+                                        <option value="Sudah punya NISN, data peserta tidak ditemukan">Sudah punya NISN, data peserta tidak ditemukan</option>
+                                        <option value="Data yang tampil dari sekolah asal tidak sesuai">Data yang tampil dari sekolah asal tidak sesuai</option>
+                                        <option value="Lupa Password">Lupa Password</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                    <div class="help-block _klasifikasi"></div>
+                                    <!-- <input type="text" name="_nama" id="_nama" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder=""> -->
+                                </div>
+                                <div class="form-group">
+                                    <p style="color: #fff;">Tujuan *</p>
+                                    <select id="_tujuan" name="_tujuan" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
+                                        <option value="" selected>&nbsp;</option>
+                                        <option value="Bagian Teknis Layanan PPDB Daring">Bagian Teknis Layanan PPDB Daring</option>
+                                        <option value="Panitia PPDB Dinas Kabupaten">Panitia PPDB Dinas Kabupaten</option>
+                                    </select>
+                                    <div class="help-block _tujuan"></div>
+                                    <!-- <input type="text" name="_nama" id="_nama" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder=""> -->
+                                </div>
+                                <div class="form-group">
                                     <p style="color: #fff;">Nama Lengkap *</p>
                                     <input type="text" name="_nama" id="_nama" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder="">
+                                    <div class="help-block _nama"></div>
+                                </div>
+                                <div class="form-group">
+                                    <p style="color: #fff;">Email *</p>
+                                    <input type="email" name="_email" id="_email" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder="">
+                                    <div class="help-block _email"></div>
                                 </div>
                                 <div class="form-group">
                                     <p style="color: #fff;">No Handphone *</p>
                                     <input type="text" name="_nohp" id="_nohp" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder="">
+                                    <div class="help-block _nohp"></div>
                                 </div>
                                 <div class="form-group">
                                     <p style="color: #fff;">Deskripsi Kendala / Masalah *</p>
                                     <textarea rows="5" name="_deskripsi" id="_deskripsi" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; outline: medium none;" placeholder="Masukkan deskripsi kendala / masalah"></textarea>
+                                    <div class="help-block _deskripsi"></div>
                                 </div>
                             </div>
                             <div class="btn-box">
@@ -172,12 +202,29 @@
         const nisn = document.getElementsByName('_nisn')[0].value;
         const npsn = document.getElementsByName('_npsn')[0].value;
         const nama = document.getElementsByName('_nama')[0].value;
+        const email = document.getElementsByName('_email')[0].value;
         const nohp = document.getElementsByName('_nohp')[0].value;
         const deskripsi = document.getElementsByName('_deskripsi')[0].value;
-        const tujuan = "teknis";
+        const klasifikasi = document.getElementsByName('_klasifikasi')[0].value;
+        const tujuan = document.getElementsByName('_tujuan')[0].value;
+        // const tujuan = "teknis";
+
+        if (klasifikasi === "") {
+            $('._klasifikasi').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Pilih klasifikasi aduan.</li></ul>');
+            return;
+        }
+
+        if (tujuan === "") {
+            $('._tujuan').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Pilih tujuan aduan.</li></ul>');
+            return;
+        }
 
         if (nama.length < 3) {
             $('._nama').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Nama tidak boleh kosong.</li></ul>');
+            return;
+        }
+        if (email.length < 3) {
+            $('._email').html('<ul role="alert" style="color: #00fff2;"><li style="color: #00fff2;">Email tidak boleh kosong.</li></ul>');
             return;
         }
         if (nohp.length < 8) {
@@ -196,9 +243,11 @@
                 nisn: nisn,
                 npsn: npsn,
                 nama: nama,
+                email: email,
                 nohp: nohp,
                 deskripsi: deskripsi,
                 tujuan: tujuan,
+                klasifikasi: klasifikasi,
             },
             dataType: 'JSON',
             beforeSend: function() {

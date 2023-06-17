@@ -85,6 +85,13 @@ class Pengaduan extends BaseController
                     'required' => 'Nama tidak boleh kosong. ',
                 ]
             ],
+            'email' => [
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong. ',
+                    'valid_email' => 'Email tidak valid. ',
+                ]
+            ],
             'nohp' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -103,6 +110,12 @@ class Pengaduan extends BaseController
                     'required' => 'Tujuan tidak boleh kosong. ',
                 ]
             ],
+            'klasifikasi' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Tujuan tidak boleh kosong. ',
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -111,25 +124,34 @@ class Pengaduan extends BaseController
             $response->message = $this->validator->getError('nohp')
                 . $this->validator->getError('nama')
                 . $this->validator->getError('deskripsi')
+                . $this->validator->getError('email')
+                . $this->validator->getError('klasifikasi')
                 . $this->validator->getError('tujuan');
             return json_encode($response);
         } else {
             $nama = htmlspecialchars($this->request->getVar('nama'), true);
+            $email = htmlspecialchars($this->request->getVar('email'), true);
             $nohp = htmlspecialchars($this->request->getVar('nohp'), true);
             $deskripsi = htmlspecialchars($this->request->getVar('deskripsi'), true);
             $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
             $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
             $tujuan = htmlspecialchars($this->request->getVar('tujuan'), true);
+            $klasifikasi = htmlspecialchars($this->request->getVar('klasifikasi'), true);
 
             $uuidLib = new Uuid();
             $uuid = $uuidLib->v4();
 
+            $token = time();
+
             $data = [
                 'id' => $uuid,
+                'token' => $token,
                 'nama' => $nama,
+                'email' => $email,
                 'no_hp' => $nohp,
                 'deskripsi' => $deskripsi,
                 'tujuan' => $tujuan,
+                'klasifikasi' => $klasifikasi,
                 'nisn' => ($nisn == "-" || $nisn == "" || $nisn == NULL) ? NULL : $nisn,
                 'npsn' => ($npsn == "-" || $npsn == "" || $npsn == NULL) ? NULL : $npsn,
                 'status' => 0,
@@ -160,7 +182,7 @@ class Pengaduan extends BaseController
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->data = $data;
-                $response->redirrect = base_url('web/home');
+                $response->redirrect = base_url('web/pengaduan/success') . '?id=' . $uuid;
                 $response->message = "Pengaduan berhasil dikirim.";
                 return json_encode($response);
             } else {
@@ -171,5 +193,20 @@ class Pengaduan extends BaseController
                 return json_encode($response);
             }
         }
+    }
+
+    public function success()
+    {
+        $id = htmlspecialchars($this->request->getGet('id'), true);
+        $data = $this->_db->table('tb_pengaduan')->where('id', $id)->get()->getRowObject();
+        if (!$data) {
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $x['data'] = $data;
+        $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
+
+        return view('new-web/page/success-pengaduan', $data);
     }
 }

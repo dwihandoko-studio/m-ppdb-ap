@@ -10,7 +10,7 @@ class KuotaModel extends Model
     protected $table = "_setting_kuota_tb a";
     protected $column_order = array(null, 'b.nama', 'b.npsn', 'c.nama', null);
     protected $column_search = array('b.nama', 'b.npsn');
-    protected $order = array('b.nama' => 'asc');
+    protected $order = array('b.status_sekolah' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -26,7 +26,7 @@ class KuotaModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "a.*, b.nama as nama_sekolah, c.nama as nama_kecamatan, d.nama as nama_jenjang, e.no_hp as no_hp_sekolah";
+        $select = "a.*, b.nama as nama_sekolah, b.status_sekolah, c.nama as nama_kecamatan, d.nama as nama_jenjang, e.no_hp as no_hp_sekolah";
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb e', 'a.sekolah_id = e.sekolah_id');

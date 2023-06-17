@@ -295,28 +295,87 @@ class Prestasi extends BaseController
         }
 
         $rules = [
-            'name' => [
+            'tujuan_sekolah_nama' => [
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => 'Name tidak boleh kosong. ',
+                    'required' => 'Nama tidak boleh kosong. ',
                 ]
             ],
-            'id' => [
+            'tujuan_sekolah_id' => [
                 'rules' => 'required|trim',
                 'errors' => [
                     'required' => 'Id tidak boleh kosong. ',
                 ]
             ],
+            'jenis_prestasi' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Jenis prestasi tidak boleh kosong. ',
+                ]
+            ],
         ];
+
+        if (htmlspecialchars($this->request->getVar('jenis_prestasi'), true) == "AKADEMIK") {
+            $jenisVali = [
+                'peringkat_prestasi' => [
+                    'rules' => 'required|trim',
+                    'errors' => [
+                        'required' => 'Peringkat prestasi tidak boleh kosong. ',
+                    ]
+                ],
+                'akreditasi_prestasi' => [
+                    'rules' => 'required|trim',
+                    'errors' => [
+                        'required' => 'Akreditasi sekolah asal prestasi tidak boleh kosong. ',
+                    ]
+                ],
+                'nilai_prestasi' => [
+                    'rules' => 'required|trim',
+                    'errors' => [
+                        'required' => 'Nilai rata-rata ijazah/SKL tidak boleh kosong. ',
+                    ]
+                ],
+            ];
+            $rules = array_merge($rules, $jenisVali);
+        } else {
+            $jenisVali = [
+                'tingkat_prestasi' => [
+                    'rules' => 'required|trim',
+                    'errors' => [
+                        'required' => 'Tingkat prestasi tidak boleh kosong. ',
+                    ]
+                ],
+                'juara_prestasi' => [
+                    'rules' => 'required|trim',
+                    'errors' => [
+                        'required' => 'Juara prestasi tidak boleh kosong. ',
+                    ]
+                ],
+            ];
+            $rules = array_merge($rules, $jenisVali);
+        }
 
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = $this->validator->getError('name') . $this->validator->getError('id');
+            $response->message = $this->validator->getError('tujuan_sekolah_nama')
+                . $this->validator->getError('tujuan_sekolah_id')
+                . $this->validator->getError('jenis_prestasi')
+                . $this->validator->getError('peringkat_prestasi')
+                . $this->validator->getError('akreditasi_prestasi')
+                . $this->validator->getError('nilai_prestasi')
+                . $this->validator->getError('tingkat_prestasi')
+                . $this->validator->getError('juara_prestasi');
             return json_encode($response);
         } else {
-            $name = htmlspecialchars($this->request->getVar('name'), true);
-            $id = htmlspecialchars($this->request->getVar('id'), true);
+            $tujuan_sekolah_nama = htmlspecialchars($this->request->getVar('tujuan_sekolah_nama'), true);
+            $tujuan_sekolah_id = htmlspecialchars($this->request->getVar('tujuan_sekolah_id'), true);
+            $jenis_prestasi = htmlspecialchars($this->request->getVar('jenis_prestasi'), true);
+            $peringkat_prestasi = htmlspecialchars($this->request->getVar('peringkat_prestasi'), true);
+            $akreditasi_prestasi = htmlspecialchars($this->request->getVar('akreditasi_prestasi'), true);
+            $nilai_prestasi = htmlspecialchars($this->request->getVar('nilai_prestasi'), true);
+            $tingkat_prestasi = htmlspecialchars($this->request->getVar('tingkat_prestasi'), true);
+            $juara_prestasi = htmlspecialchars($this->request->getVar('juara_prestasi'), true);
 
             $Profilelib = new Profilelib();
             $user = $Profilelib->user();
@@ -382,6 +441,73 @@ class Prestasi extends BaseController
                 return json_encode($response);
             }
 
+            $nilai_akumulative = 0;
+            if ($jenis_prestasi == "NON AKADEMIK") {
+                if ($tingkat_prestasi == "INTERNASIONAL") {
+                    $nilai_akumulative = 400;
+                } else if ($tingkat_prestasi == "NASIONAL") {
+                    if ($juara_prestasi == "JUARA PERTAMA") {
+                        $nilai_akumulative = 375;
+                    } else if ($juara_prestasi == "JUARA KEDUA") {
+                        $nilai_akumulative = 350;
+                    } else if ($juara_prestasi == "JUARA KETIGA") {
+                        $nilai_akumulative = 325;
+                    } else if ($juara_prestasi == "JAMBORE TK. NASIONAL") {
+                        $nilai_akumulative = 350;
+                    }
+                } else if ($tingkat_prestasi == "PROVINSI") {
+                    if ($juara_prestasi == "JUARA PERTAMA") {
+                        $nilai_akumulative = 350;
+                    } else if ($juara_prestasi == "JUARA KEDUA") {
+                        $nilai_akumulative = 325;
+                    } else if ($juara_prestasi == "JUARA KETIGA") {
+                        $nilai_akumulative = 300;
+                    }
+                } else if ($tingkat_prestasi == "KABUPATEN/KOTA") {
+                    if ($juara_prestasi == "JUARA PERTAMA") {
+                        $nilai_akumulative = 325;
+                    } else if ($juara_prestasi == "JUARA KEDUA") {
+                        $nilai_akumulative = 300;
+                    } else if ($juara_prestasi == "JUARA KETIGA") {
+                        $nilai_akumulative = 275;
+                    }
+                } else if ($tingkat_prestasi == "KECAMATAN") {
+                    if ($juara_prestasi == "JUARA PERTAMA") {
+                        $nilai_akumulative = 275;
+                    } else if ($juara_prestasi == "JUARA KEDUA") {
+                        $nilai_akumulative = 250;
+                    } else if ($juara_prestasi == "JUARA KETIGA") {
+                        $nilai_akumulative = 225;
+                    }
+                }
+            } else if ($jenis_prestasi == "AKADEMIK") {
+                if ($peringkat_prestasi == "PERINGKAT PERTAMA") {
+                    if ($akreditasi_prestasi == "AKREDITASI A") {
+                        $nilai_akumulative = 225;
+                    } else if ($akreditasi_prestasi == "AKREDITASI B") {
+                        $nilai_akumulative = 150;
+                    } else if ($akreditasi_prestasi == "AKREDITASI C") {
+                        $nilai_akumulative = 125;
+                    }
+                } else if ($peringkat_prestasi == "PERINGKAT KEDUA") {
+                    if ($akreditasi_prestasi == "AKREDITASI A") {
+                        $nilai_akumulative = 200;
+                    } else if ($akreditasi_prestasi == "AKREDITASI B") {
+                        $nilai_akumulative = 125;
+                    } else if ($akreditasi_prestasi == "AKREDITASI C") {
+                        $nilai_akumulative = 100;
+                    }
+                } else if ($peringkat_prestasi == "PERINGKAT KETIGA") {
+                    if ($akreditasi_prestasi == "AKREDITASI A") {
+                        $nilai_akumulative = 175;
+                    } else if ($akreditasi_prestasi == "AKREDITASI B") {
+                        $nilai_akumulative = 100;
+                    } else if ($akreditasi_prestasi == "AKREDITASI C") {
+                        $nilai_akumulative = 75;
+                    }
+                }
+            }
+
             $uuidLib = new Uuid();
             $uuid = $uuidLib->v4();
 
@@ -391,7 +517,7 @@ class Prestasi extends BaseController
                 'peserta_didik_id' => $peserta->peserta_didik_id,
                 'user_id' => $user->data->id,
                 'from_sekolah_id' => $peserta->sekolah_asal,
-                'tujuan_sekolah_id_1' => $id,
+                'tujuan_sekolah_id_1' => $tujuan_sekolah_id,
                 'via_jalur' => "PRESTASI",
                 'status_pendaftaran' => 0,
                 'lampiran' => null,
@@ -403,17 +529,38 @@ class Prestasi extends BaseController
             $this->_db->transBegin();
             $this->_db->table('_tb_pendaftar_temp')->insert($data);
             if ($this->_db->affectedRows() > 0) {
-                $this->_db->transCommit();
-                try {
-                    $riwayatLib = new Riwayatlib();
-                    $riwayatLib->insert("Mendaftar via Jalur Prestasi, untuk diverifikasi berkas oleh sekolah tujuan.", "Daftar Jalur Prestasi");
-                } catch (\Throwable $th) {
+                $this->_db->table('tb_nilai_prestasi')->insert([
+                    'id' => $uuid,
+                    'id_pendaftaran' => $uuid,
+                    'jenis_prestasi' => $jenis_prestasi,
+                    'tingkat_prestasi' => $tingkat_prestasi,
+                    'juara_prestasi' => $juara_prestasi,
+                    'peringkat_prestasi' => $peringkat_prestasi,
+                    'akreditasi_prestasi' => $akreditasi_prestasi,
+                    'nilai_prestasi' => $nilai_prestasi,
+                    'nilai_akumulative' => $nilai_akumulative,
+                    'created_at' => $data['created_at'],
+                ]);
+
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Mendaftar via Jalur Prestasi, untuk diverifikasi berkas oleh sekolah tujuan.", "Daftar Jalur Prestasi");
+                    } catch (\Throwable $th) {
+                    }
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->data = $data;
+                    $response->message = "Pendaftaran via jalur Prestasi berhasil dilakukan.";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Pendaftaran via jalur Prestasi gagal dilakukan.";
+                    return json_encode($response);
                 }
-                $response = new \stdClass;
-                $response->code = 200;
-                $response->data = $data;
-                $response->message = "Pendaftaran via jalur Prestasi berhasil dilakukan.";
-                return json_encode($response);
             } else {
                 $this->_db->transRollback();
                 $response = new \stdClass;

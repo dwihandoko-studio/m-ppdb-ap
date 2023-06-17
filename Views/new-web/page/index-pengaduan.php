@@ -95,16 +95,16 @@
                         'warning'
                     );
                 } else {
-                    Swal.fire(
-                        'Berhasil!',
-                        msg.message,
-                        'success'
-                    ).then((valRes) => {
-                        // setTimeout(function() {
-                        document.location.href = msg.redirrect;
-                        // }, 2000);
-                        // document.location.href = window.location.href + "dashboard";
-                    })
+                    // Swal.fire(
+                    //     'Berhasil!',
+                    //     msg.message,
+                    //     'success'
+                    // ).then((valRes) => {
+                    // setTimeout(function() {
+                    document.location.href = msg.redirrect;
+                    // }, 2000);
+                    // document.location.href = window.location.href + "dashboard";
+                    // })
                 }
             },
             error: function(data) {

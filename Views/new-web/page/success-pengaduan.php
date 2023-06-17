@@ -39,10 +39,12 @@
                         </div>
                         <div class="text">Pengduan kamu dengan klasifikasi <b><?= $data->klasifikasi ?></b> yang ditujukan kepada <b><?= $data->tujuan ?></b> berhasil dikirim.<br /><br />Silahkan Catat No Tiket dan No Handphone kamu dibawah ini untuk proses pencarian dan memantau status pengaduan kamu:</div>
                         <div class="text">
-                            <span>No. Tiket</span>
-                            <span><?= $data->token ?></span><br />
-                            <span>No. Handphone</span>
-                            <span><?= $data->no_hp ?></span><br />
+                            <div style="padding: 20px; border: 1px dashed #777777; width: 200px; height: 100px;">
+                                <span>No. Tiket</span></br>
+                                <span><b><?= $data->token ?></b></span><br />
+                                <span>No. Handphone</span><br />
+                                <span><b><?= $data->no_hp ?></b></span><br />
+                            </div>
                         </div>
                         <form action="<?= base_url('web/pengaduan/data') ?>" method="GET" class="subscribe-form">
                             <div class="form-group">

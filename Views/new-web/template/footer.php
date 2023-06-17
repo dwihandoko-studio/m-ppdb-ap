@@ -34,8 +34,9 @@
                             <h4 class="widget-title">Hubungi Kami</h4>
                             <div class="widget-content">
                                 <ul class="contact-info clearfix">
-                                    <li><i class="fas fa-map-marker-alt"></i> Komplek Pemerintah, Jl. Kedondong - Gedung Tataan.</li>
-                                    <!-- <li><i class="fas fa-phone"></i><a href="tel:0665184575181">(+066) 518 - 457 - 5181</a></li> -->
+                                    <li><i class="fas fa-map-marker-alt"></i> Jl. Buay Selagai Kompleks Perkantoran Pemda Lampung Timur, Sukadana.</li>
+                                    <li><i class="fas fa-phone"></i><a href="tel:0725625037">(0725) 625037</a></li>
+                                    <li><i class="fas fa-phone"></i><a href="tel:082185581129">082185581129</a></li>
                                     <!-- <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">info@example.com</a></li> -->
                                 </ul>
                             </div>

@@ -104,9 +104,9 @@
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>Komplek Pemerintah, Jl. Kedondong - Gedung Tataan</li>
-                <li><a href="tel:+6282111837685">+62821-1183-7685</a></li>
-                <li><a href="mailto:lamtim.ppdb@kntechline.com">lamtim.ppdb@kntechline.com</a></li>
+                <li>Jl. Buay Selagai Kompleks Perkantoran Pemda Lampung Timur, Sukadana</li>
+                <li><a href="tel:082185581129">082185581129</a></li>
+                <!-- <li><a href="mailto:lamtim.ppdb@kntechline.com">lamtim.ppdb@kntechline.com</a></li> -->
             </ul>
         </div>
         <div class="social-links">

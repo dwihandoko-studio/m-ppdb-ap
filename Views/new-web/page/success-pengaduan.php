@@ -39,11 +39,29 @@
                         </div>
                         <div class="text">Pengduan kamu dengan klasifikasi <b><?= $data->klasifikasi ?></b> yang ditujukan kepada <b><?= $data->tujuan ?></b> berhasil dikirim.<br /><br />Silahkan Catat No Tiket dan No Handphone kamu dibawah ini untuk proses pencarian dan memantau status pengaduan kamu:</div>
                         <div class="text">
-                            <div style="padding: 20px; border: 1px dashed #777777;">
-                                <span>No. Tiket</span></br>
+                            <div style="padding: 20px; border: 2px dashed #777777;">
+                                <table border="0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                No. Tiket
+                                            </th>
+                                            <th>:</th>
+                                            <th><?= $data->token ?></th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                No. Handphone
+                                            </th>
+                                            <th>:</th>
+                                            <th><?= $data->no_hp ?></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <!-- <span>No. Tiket : </span></br>
                                 <span><b><?= $data->token ?></b></span><br />
                                 <span>No. Handphone</span><br />
-                                <span><b><?= $data->no_hp ?></b></span><br />
+                                <span><b><?= $data->no_hp ?></b></span><br /> -->
                             </div>
                         </div>
                         <form action="<?= base_url('web/pengaduan/data') ?>" method="GET" class="subscribe-form">

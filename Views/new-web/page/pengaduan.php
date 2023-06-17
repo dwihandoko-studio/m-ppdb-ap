@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 image-column">
                 <div id="image_block_46">
-                    <figure class="image-box wow slideInLeft" data-wow-delay="00ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/illustration-40.png" alt=""></figure>
+                    <figure class="image-box wow slideInLeft" data-wow-delay="00ms" data-wow-duration="1500ms"><img src="<?= base_url('themes') ?>/images/resource/bg-aduan.webp" alt=""></figure>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 content-column">

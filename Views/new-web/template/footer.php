@@ -83,6 +83,6 @@
 
 <div class="button-pengaduan showed-on-page" onclick="openPengaduanPage()">
     <figure class="image float-bob-y clearfix">
-        <img src="<?= base_url('themes') ?>/pengaduan.png" alt="">
+        <img src="<?= base_url('themes') ?>/cs.webp" alt="">
     </figure>
 </div>

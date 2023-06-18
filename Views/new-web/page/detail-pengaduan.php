@@ -168,6 +168,8 @@
                         'warning'
                     );
                 } else {
+                    $('div.comments-form-area').unblock();
+                    document.getElementsByName('_komentar')[0].value = "";
                     const newDivKomentar = document.createElement('div');
                     newDivKomentar.className = 'comment replay-comment';
                     newDivKomentar.style.marginBottom = '30px';
@@ -186,7 +188,7 @@
 
                     const htmlWithReplacement = newKomentarnya.replace("{{nama}}", msg.data.nama);
                     const htmlWithReplacement1 = htmlWithReplacement.replace("{{date}}", msg.data.created_at);
-                    const htmlWithReplacement2 = htmlWithReplacement.replace("{{komentar}}", msg.data.komentar);
+                    const htmlWithReplacement2 = htmlWithReplacement1.replace("{{komentar}}", msg.data.komentar);
 
                     newDivKomentar.innerHTML = htmlWithReplacement2;
 

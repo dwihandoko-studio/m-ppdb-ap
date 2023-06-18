@@ -116,9 +116,10 @@
 
 <script>
     let loading = false;
+
     function cariData(event) {
         const cari = document.getElementsByName('_search_item')[0].value;
-        if(cari !== "") {
+        if (cari !== "") {
             $.ajax({
                 url: "<?= base_url('peserta/pendaftaran/zonasi/getAll') ?>",
                 type: 'POST',
@@ -134,7 +135,7 @@
                 },
                 success: function(resul) {
                     $('div.loading-content').unblock();
-    
+
                     if (resul.code !== 200) {
                         if (resul.code === 401) {
                             Swal.fire(

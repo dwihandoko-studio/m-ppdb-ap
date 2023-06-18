@@ -15,7 +15,8 @@
                             </a>
                         </h4>
                         <small>NPSN: <?= $value->npsn ?></small>
-                        <?= ((int)$value->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?= getJarak2Koordinat($value->latitude, $value->longitude, $user->latitude, $user->longitude, 'kilometers') . ' Km' ?></small>
+                        <?= ((int)$value->status_sekolah == 1) ? '<span class="badge badge-success">Negeri</span>' : '<span class="badge badge-info">Swasta</span>' ?> &nbsp;&nbsp;<small>Jarak : <?php //echo getJarak2Koordinat($value->latitude, $value->longitude, $user->latitude, $user->longitude, 'kilometers') . ' Km' 
+                                                                                                                                                                                                    ?><?= $value->jarak . ' Km' ?></small>
                         <p style="margin: 0px; font-size: 11px;">Alamat: <?= $value->alamat_jalan ?>, Kec. <?= $value->nama_kecamatan ?> - <?= $value->nama_kabupaten ?> (<?= $value->nama_provinsi ?>)</p>
                     </div>
                     <div class="col-auto">

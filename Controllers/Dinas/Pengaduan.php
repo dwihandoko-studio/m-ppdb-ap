@@ -218,7 +218,8 @@ class Pengaduan extends BaseController
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->data = $data;
-                $response->replayed = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $id_post)->countAllResults();
+                $jumlahKomentar = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $id_post)->countAllResults();
+                $response->replayed = (string)$jumlahKomentar;
                 $response->message = "balasan omentar berhasil dikirim.";
                 return json_encode($response);
             } else {

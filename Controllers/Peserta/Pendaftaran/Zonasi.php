@@ -175,6 +175,7 @@ class Zonasi extends BaseController
             $name = htmlspecialchars($this->request->getVar('name'), true);
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
+            $Profilelib = new Profilelib();
             $user = $Profilelib->user();
             if ($user->code != 200) {
                 delete_cookie('jwt');

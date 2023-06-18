@@ -49,40 +49,48 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- <div class="lower-content">
-                                <div class="single-item">
-                                    <div class="icon-box"><i class="flaticon-growth"></i></div>
-                                    <h3><a href="#">Detailing and Analysis</a></h3>
-                                    <div class="text">Naff are you taking the piss say blow off faff about wellies richard.</div>
-                                </div>
-                                <div class="single-item">
-                                    <div class="icon-box"><i class="flaticon-art-and-design"></i></div>
-                                    <h3><a href="#">Specialized SEO Audit</a></h3>
-                                    <div class="text">Naff are you taking the piss say blow off faff about wellies richard.</div>
-                                </div>
-                            </div> -->
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 image-column">
-                <div id="image_block_36">
-                    <div class="image-box wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
-                        <div class="lower-content">
-                            <div class="single-item">
-                                <div class="icon-box"><i class="flaticon-growth"></i></div>
-                                <h4><?= $data->nama ?></h3>
-                                    <div class="text"><?= $data->deskripsi ?></div>
+            <div class="col-lg-8 col-md-12 col-sm-12 image-column" style="text-align: left !important;">
+                <div class="comments-area">
+                    <div class="comment-box">
+                        <div class="comment">
+                            <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-1.png" alt=""></figure>
+                            <div class="comment-inner">
+                                <div class="comment-info">
+                                    <h5 class="name"><?= $data->nama ?></h5>
+                                    <span class="date"><?= $data->created_at ?></span>
+                                </div>
+                                <div class="text"><?= $data->deskripsi ?></div>
+                                <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                             </div>
-                            <div class="single-item">
-                                <form action="#" method="post" class="subscribe-form">
-                                    <div class="form-group">
-                                        <input type="text" name="_komentar" id="_komentar" placeholder="Tulis komentar" required="">
-                                        <button type="submit">Kirim</button>
-                                    </div>
-                                </form>
+                        </div>
+                        <div class="comment replay-comment">
+                            <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-2.png" alt=""></figure>
+                            <div class="comment-inner">
+                                <div class="comment-info">
+                                    <h5 class="name">Admin</h5>
+                                    <span class="date">October 5, 2019</span>
+                                </div>
+                                <div class="text">Masih dalam proses</div>
+                                <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="comments-form-area">
+                    <form action="#" method="post" class="comment-form default-form">
+                        <input type="hidden" id="_id_aduan" name="_id_aduan" value="<?= $data->id ?>" />
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                <textarea name="message" placeholder="Tulis komentar..."></textarea>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                <button type="submit" class="theme-btn-two">Kirim</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

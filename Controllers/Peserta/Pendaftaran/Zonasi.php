@@ -132,6 +132,26 @@ class Zonasi extends BaseController
         }
         $data['user'] = $user->data;
 
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister();
+
+        if ($canDaftar->code !== 200) {
+            $data['error'] = $canDaftar->message;
+        }
+
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        if ($cekRegisterApprove) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+            $data['sekolah_pilihan'] = $cekRegisterApprove;
+        }
+
+        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+
+        if ($cekRegisterTemp) {
+            $data['error'] = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas.";
+            $data['sekolah_pilihan'] = $cekRegisterTemp;
+        }
+
         return view('peserta/pendaftaran/zonasi/index', $data);
     }
 

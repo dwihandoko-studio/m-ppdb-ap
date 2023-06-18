@@ -156,6 +156,19 @@ class Prestasi extends BaseController
             $data['sekolah_pilihan'] = $cekRegisterTemp;
         }
 
+        $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
+
+        if (!$getCurrentUser) {
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $dataCurrentUser = json_decode($getCurrentUser->details);
+
+        if ((int)$dataCurrentUser->tingkat_pendidikan == 6) {
+        } else {
+            $data['error'] = "Mohon Maaf, Jalur Prestasi Hanya diperuntukan bagi sekolah jenjang SMP.";
+        }
+
         return view('peserta/pendaftaran/prestasi/index', $data);
     }
 

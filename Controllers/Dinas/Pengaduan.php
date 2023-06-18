@@ -49,16 +49,21 @@ class Pengaduan extends BaseController
             $row = [];
 
             $row[] = $no;
-            $action = '<a class="btn btn-primary btn-sm" href="' . base_url('dinas/setting/profilsekolah/sekolah?token=' . $list->id) . '">
-                                <i class="ni ni-vector"></i>
+            $action = '<a class="btn btn-primary btn-sm" href="' . base_url('dinas/pengaduan/detail?token=' . $list->id) . '">
+                                <i class="ni ni-headphones"></i>
                                 <span>DETAIL</span>
                             </a>';
+            if ((int)$list->status === 2) {
+                $status = '<span class="badge badge-success">Close</span>';
+            } else {
+                $status = '<span class="badge badge-danger">Open</span>';
+            }
             $row[] = $action;
-            $row[] = $list->npsn;
-            $row[] = $list->nama_sekolah;
-            $row[] = $list->nama_ks;
-            $row[] = $list->nip_ks;
-            $row[] = $list->url_profil;
+            $row[] = $list->nama;
+            $row[] = $list->token;
+            $row[] = $list->no_hp;
+            $row[] = $status;
+
             $data[] = $row;
         }
         $output = [

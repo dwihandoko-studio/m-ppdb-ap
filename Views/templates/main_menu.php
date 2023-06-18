@@ -3,7 +3,7 @@
     <div class="scrollbar-inner">
         <div class="sidenav-header  d-flex  align-items-center">
             <a class="navbar-brand" href="#">
-                <h2>PPDB LAMPUNG TIMUR</h2>
+                <h2>PPDB LAMTIM</h2>
             </a>
             <div class=" ml-auto ">
                 <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
@@ -706,6 +706,12 @@
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('dinas/pengaduan'); ?>" role="button" aria-expanded="true">
+                                <i class="ni ni-headphones" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
+                                <span class="nav-link-text">Pengaduan</span>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "riwayat") ? '' : ' collapsed' ?>" href="#navbar-riwayat" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "riwayat") ? 'true' : 'false' ?>" aria-controls="navbar-riwayat">

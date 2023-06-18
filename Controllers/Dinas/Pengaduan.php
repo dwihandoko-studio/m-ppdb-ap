@@ -96,9 +96,9 @@ class Pengaduan extends BaseController
         return view('dinas/pengaduan/index', $data);
     }
 
-    public function import()
+    public function detail()
     {
-        $data['title'] = 'IMPORT DATA PROFIL SEKOLAH';
+        $data['title'] = 'DETAIL PENGADUAN';
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
         if ($user->code != 200) {
@@ -107,14 +107,136 @@ class Pengaduan extends BaseController
             return redirect()->to(base_url('auth'));
         }
         $data['user'] = $user->data;
-        return view('dinas/setting/profilsekolah/import', $data);
+
+        $token = htmlspecialchars($this->request->getGet('token'), true);
+        $aduan = $this->_db->table('tb_pengaduan')->where('id', $token)->get()->getRowObject();
+        if (!$aduan) {
+            return redirect()->to(base_url('dinas/pengaduan/data'));
+        }
+
+        $komentars = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $token)->orderBy('created_at')->get()->getResult();
+        if (count($komentars) > 0) {
+            $data['komentars'] = $komentars;
+        }
+        $data['aduan'] = $aduan;
+        return view('dinas/pengaduan/detail', $data);
     }
 
-    public function delete()
+
+    public function balascomment()
     {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
-            $response->status = 400;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'id_post' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id post tidak boleh kosong. ',
+                ]
+            ],
+            'nama' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama tidak boleh kosong. ',
+                ]
+            ],
+            'komentar' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Komentar tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id_post')
+                . $this->validator->getError('nama')
+                . $this->validator->getError('komentar');
+            return json_encode($response);
+        } else {
+            $nama = htmlspecialchars($this->request->getVar('nama'), true);
+            $komentar = htmlspecialchars($this->request->getVar('komentar'), true);
+            $id_post = htmlspecialchars($this->request->getVar('id_post'), true);
+
+            $posted = $this->_db->table('tb_pengaduan')->where('id', $id_post)->get()->getRowObject();
+
+            if (!$posted) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Aduan tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $data = [
+                'id' => $uuid,
+                'id_post' => $id_post,
+                'nama' => $nama,
+                'komentar' => $komentar,
+                'status' => 0,
+                'is_admin' => 1,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+            if ($posted->status == 0) {
+                $this->_db->table('tb_pengaduan')->where('id', $posted->id)->update([
+                    'status' => 1,
+                    'updated_at' => $data['created_at'],
+                ]);
+            }
+
+            try {
+                $this->_db->table('tb_pengaduan_komentar')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal mengirim balasan komentar.";
+                return json_encode($response);
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+
+
+                $this->_db->transCommit();
+                // try {
+                //     $emailLib = new Emaillib();
+                //     $emailLib->sendActivation($data['email']);
+                // } catch (\Throwable $th) {
+                // }
+
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $jumlahKomentar = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $id_post)->countAllResults();
+                $response->replayed = (string)$jumlahKomentar;
+                $response->message = "balasan omentar berhasil dikirim.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal membalas komentar.";
+                return json_encode($response);
+            }
+        }
+    }
+
+    public function close()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
@@ -126,23 +248,15 @@ class Pengaduan extends BaseController
                     'required' => 'Id tidak boleh kosong. ',
                 ]
             ],
-            'filename' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Filename tidak boleh kosong. ',
-                ]
-            ],
         ];
 
         if (!$this->validate($rules)) {
             $response = new \stdClass;
-            $response->status = 400;
-            $response->message = $this->validator->getError('id')
-                . $this->validator->getError('filename');
+            $response->code = 400;
+            $response->message = $this->validator->getError('id');
             return json_encode($response);
         } else {
             $id = htmlspecialchars($this->request->getVar('id'), true);
-            $filename = htmlspecialchars($this->request->getVar('filename'), true);
 
             $Profilelib = new Profilelib();
             $user = $Profilelib->user();
@@ -155,7 +269,7 @@ class Pengaduan extends BaseController
                 return json_encode($response);
             }
 
-            $current = $this->_db->table('tb_matching')
+            $current = $this->_db->table('tb_pengaduan')
                 ->where('id', $id)
                 ->get()->getRowObject();
 
@@ -163,39 +277,35 @@ class Pengaduan extends BaseController
 
                 $this->_db->transBegin();
                 try {
-                    $this->_db->table('tb_matching')->where('id', $current->id)->delete();
+                    $this->_db->table('tb_pengaduan')->where('id', $current->id)->update([
+                        'status' => 2,
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
                 } catch (\Throwable $th) {
                     $this->_db->transRollback();
                     $response = new \stdClass;
-                    $response->status = 400;
+                    $response->code = 400;
                     $response->error = var_dump($th);
-                    $response->message = "Data matching gagal dihapus.";
+                    $response->message = "Aduan gagal ditutup.";
                     return json_encode($response);
                 }
 
                 if ($this->_db->affectedRows() > 0) {
                     $this->_db->transCommit();
-                    try {
-                        $file = $current->filename;
-                        unlink(FCPATH . "upload/matching/$file.json");
-                        unlink(FCPATH . "upload/matching/$file");
-                    } catch (\Throwable $th) {
-                        //throw $th;
-                    }
                     $response = new \stdClass;
-                    $response->status = 200;
-                    $response->message = "Data matching berhasil dihapus.";
+                    $response->code = 200;
+                    $response->message = "Data aduan berhasil ditutup.";
                     return json_encode($response);
                 } else {
                     $this->_db->transRollback();
                     $response = new \stdClass;
-                    $response->status = 400;
-                    $response->message = "Data matching gagal dihapus.";
+                    $response->code = 400;
+                    $response->message = "Data aduan gagal ditutup.";
                     return json_encode($response);
                 }
             } else {
                 $response = new \stdClass;
-                $response->status = 400;
+                $response->code = 400;
                 $response->message = "Data tidak ditemukan";
                 return json_encode($response);
             }

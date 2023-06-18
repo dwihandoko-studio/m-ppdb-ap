@@ -14,7 +14,7 @@
                         <div class="sec-title">
                             <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
                             <p>Hallo <?= $data->nama ?>,<br />Kamu bisa menulis komentar dikolom komentar dan update status pengaduan kamu.</p>
-                            <div style="padding: 20px; border: 2px solid #777777;">
+                            <div style="margin-top: 35px; padding: 20px; border: 2px solid #777777;">
                                 <table border="0">
                                     <thead>
                                         <tr>

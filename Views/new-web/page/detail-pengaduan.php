@@ -4,12 +4,12 @@
 <?= $this->include('new-web/template/header') ?>
 <section class="sidebar-page-container">
     <div class="container" style="margin-top: 100px;">
-        <div class="sec-title center">
+        <div class="sec-title center" style="margin-bottom: 40px;">
             <h4>DETAIL PENGADUAN DENGAN TICKET <?= $data->token ?></h4>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
-                <div class="sidebar-categories sidebar-widget">
+                <div class="sidebar-categories sidebar-widget" style=" border: 2px dashed #777777;">
                     <h4 class="sidebar-title">
                         <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
                     </h4>

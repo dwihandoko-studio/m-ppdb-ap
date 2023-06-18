@@ -2,14 +2,27 @@
 
 <?= $this->section('content') ?>
 <?= $this->include('new-web/template/header') ?>
-<section class="pricing-section centred _profil_sekolah" id="_profil_sekolah">
+<section class="sidebar-page-container">
     <div class="container" style="margin-top: 100px;">
         <div class="sec-title center">
             <h4>DETAIL PENGADUAN DENGAN TICKET <?= $data->token ?></h4>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 content-column" style="text-align: left !important;">
-                <div id="content_block_38">
+            <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
+                <div class="sidebar-categories sidebar-widget">
+                    <h4 class="sidebar-title">
+                        <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
+                    </h4>
+                    <div class="widget-content">
+                        <ul>
+                            <li><a href="#">No. Tiket <span><?= $data->token ?></span></a></li>
+                            <li><a href="#">No. Handphone <span><?= $data->no_hp ?></span></a></li>
+                            <li><a href="#">Klasifikasi <span><?= $data->klasifikasi ?></span></a></li>
+                            <li><a href="#">Tujuan <span><?= $data->tujuan ?></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div id="content_block_38">
                     <div class="content-box wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms">
                         <div class="sec-title">
                             <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
@@ -50,9 +63,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 image-column" style="text-align: left !important;">
+            <div class="col-lg-8 col-md-12 col-sm-12 content-side" style="text-align: left !important;">
                 <div class="blog-single-content">
                     <div class="comments-area">
                         <div class="comment-box">

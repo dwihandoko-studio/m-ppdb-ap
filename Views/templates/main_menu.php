@@ -709,7 +709,7 @@
                         </li>
                         <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('dinas/pengaduan'); ?>" role="button" aria-expanded="true">
-                                <i class="fa fa-ticket text-primary"></i>
+                                <i class="ni ni-headphones" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text">Pengaduan</span>
                             </a>
                         </li>

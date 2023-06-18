@@ -208,6 +208,15 @@ class Profilsekolah extends BaseController
                 $this->_db->table('_ref_profil_sekolah')->insert($data);
 
                 if ($this->_db->affectedRows() > 0) {
+                    $oldSekolah = $this->_db->table('ref_sekolah')->select("latitude, longitude, nama")->where('id', $user->data->sekolah_id)->get()->getRowObject();
+                    if ($latitude === $oldSekolah->latitude && $longitude === $oldSekolah->longitude && $nama_sekolah == $oldSekolah->nama) {
+                        $this->_db->transCommit();
+                        $response = new \stdClass;
+                        $response->code = 200;
+                        $response->message = "Profil Sekolah Berhasil Disimpan.";
+                        return json_encode($response);
+                    }
+
                     $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->update([
                         'latitude' => $latitude,
                         'longitude' => $longitude,

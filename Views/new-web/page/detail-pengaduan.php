@@ -98,7 +98,7 @@
                             <input type="hidden" id="_id_aduan" name="_id_aduan" value="<?= $data->id ?>" />
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <textarea name="message" placeholder="Tulis komentar..."></textarea>
+                                    <textarea style="height: 50px;" name="message" placeholder="Tulis komentar..."></textarea>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
                                     <button type="submit" class="theme-btn-two">Kirim</button>

@@ -53,44 +53,46 @@
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-sm-12 image-column" style="text-align: left !important;">
-                <div class="comments-area">
-                    <div class="comment-box">
-                        <div class="comment">
-                            <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-1.png" alt=""></figure>
-                            <div class="comment-inner">
-                                <div class="comment-info">
-                                    <h5 class="name"><?= $data->nama ?></h5>
-                                    <span class="date"><?= $data->created_at ?></span>
+                <div class="blog-single-content">
+                    <div class="comments-area">
+                        <div class="comment-box">
+                            <div class="comment">
+                                <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-1.png" alt=""></figure>
+                                <div class="comment-inner">
+                                    <div class="comment-info">
+                                        <h5 class="name"><?= $data->nama ?></h5>
+                                        <span class="date"><?= $data->created_at ?></span>
+                                    </div>
+                                    <div class="text"><?= $data->deskripsi ?></div>
+                                    <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                                 </div>
-                                <div class="text"><?= $data->deskripsi ?></div>
-                                <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                             </div>
-                        </div>
-                        <div class="comment replay-comment">
-                            <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-2.png" alt=""></figure>
-                            <div class="comment-inner">
-                                <div class="comment-info">
-                                    <h5 class="name">Admin</h5>
-                                    <span class="date">October 5, 2019</span>
+                            <div class="comment replay-comment">
+                                <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-2.png" alt=""></figure>
+                                <div class="comment-inner">
+                                    <div class="comment-info">
+                                        <h5 class="name">Admin</h5>
+                                        <span class="date">October 5, 2019</span>
+                                    </div>
+                                    <div class="text">Masih dalam proses</div>
+                                    <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                                 </div>
-                                <div class="text">Masih dalam proses</div>
-                                <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="comments-form-area">
-                    <form action="#" method="post" class="comment-form default-form">
-                        <input type="hidden" id="_id_aduan" name="_id_aduan" value="<?= $data->id ?>" />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                <textarea name="message" placeholder="Tulis komentar..."></textarea>
+                    <div class="comments-form-area">
+                        <form action="#" method="post" class="comment-form default-form">
+                            <input type="hidden" id="_id_aduan" name="_id_aduan" value="<?= $data->id ?>" />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <textarea name="message" placeholder="Tulis komentar..."></textarea>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                    <button type="submit" class="theme-btn-two">Kirim</button>
+                                </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                <button type="submit" class="theme-btn-two">Kirim</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

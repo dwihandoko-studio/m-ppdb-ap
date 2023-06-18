@@ -15,10 +15,10 @@
                     </h4>
                     <div class="widget-content">
                         <ul>
-                            <li><a href="#">No. Tiket <span><?= $data->token ?></span></a></li>
-                            <li><a href="#">No. Handphone <span><?= $data->no_hp ?></span></a></li>
-                            <li><a href="#">Klasifikasi <span><?= $data->klasifikasi ?></span></a></li>
-                            <li><a href="#">Tujuan <span><?= $data->tujuan ?></span></a></li>
+                            <li>No. Tiket <span>: <?= $data->token ?></span></li>
+                            <li>No. Handphone <span>: <?= $data->no_hp ?></span></li>
+                            <li>Klasifikasi <span>: <?= $data->klasifikasi ?></span></li>
+                            <li>Tujuan <span>: <?= $data->tujuan ?></span></li>
                         </ul>
                     </div>
                 </div>

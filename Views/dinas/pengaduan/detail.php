@@ -42,7 +42,7 @@
                             </a>
                             <div class="mx-3">
                                 <a href="#" class="text-dark font-weight-600 text-sm"><?= $aduan->nama ?></a>
-                                <small class="d-block text-muted"><?= $aduan->created_at ?>&nbsp;&nbsp;||&nbsp;&nbsp;<a target="_blank" href="https://wa.me/<?= $aduan->no_hp ?>"><?= $aduan->no_hp ?>&nbsp;&nbsp;||&nbsp;&nbsp;<?= $aduan->email ?></small>
+                                <small class="d-block text-muted"><?= $aduan->created_at ?>&nbsp;&nbsp;||&nbsp;&nbsp;<a target="_blank" href="https://wa.me/<?= $aduan->no_hp ?>"><?= $aduan->no_hp ?></a>&nbsp;&nbsp;||&nbsp;&nbsp;<?= $aduan->email ?></small>
                             </div>
                         </div>
                         <!-- <div class="text-right ml-auto">

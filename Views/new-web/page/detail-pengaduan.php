@@ -8,7 +8,7 @@
             <h4>DETAIL PENGADUAN DENGAN TICKET <?= $data->token ?></h4>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 content-column">
+            <div class="col-lg-4 col-md-12 col-sm-12 content-column pull-left">
                 <div id="content_block_38">
                     <div class="content-box wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms">
                         <div class="sec-title">

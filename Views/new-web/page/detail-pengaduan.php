@@ -80,7 +80,7 @@
                                     <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                                 </div>
                             </div>
-                            <hr style="margin-bottom: 20px;" />
+                            <hr style="margin-bottom: 30px;" />
                             <div class="comment replay-comment" style="margin-bottom: 30px;">
                                 <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-2.png" alt=""></figure>
                                 <div class="comment-inner">

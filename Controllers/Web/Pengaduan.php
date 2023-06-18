@@ -271,9 +271,104 @@ class Pengaduan extends BaseController
         }
 
         $x['data'] = $data;
+        if ($data->status == 1) {
+            $x['comments'] = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $data->id)->orderBy('created_at', 'asc')->get()->getResult();
+        }
         $x['page'] = "PPDB ONLINE TA. 2023 - 2024";
         $x['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         return view('new-web/page/detail-pengaduan', $x);
+    }
+
+    public function comment()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'id_post' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id post tidak boleh kosong. ',
+                ]
+            ],
+            'nama' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama tidak boleh kosong. ',
+                ]
+            ],
+            'komentar' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Komentar tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id_post')
+                . $this->validator->getError('nama')
+                . $this->validator->getError('komentar');
+            return json_encode($response);
+        } else {
+            $nama = htmlspecialchars($this->request->getVar('nama'), true);
+            $komentar = htmlspecialchars($this->request->getVar('komentar'), true);
+            $id_post = htmlspecialchars($this->request->getVar('id_post'), true);
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $token = time();
+
+            $data = [
+                'id' => $uuid,
+                'id_post' => $id_post,
+                'nama' => $nama,
+                'komentar' => $komentar,
+                'status' => 0,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+
+            try {
+                $this->_db->table('tb_pengaduan_komentar')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal mengirim komentar.";
+                return json_encode($response);
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+
+                $this->_db->transCommit();
+                // try {
+                //     $emailLib = new Emaillib();
+                //     $emailLib->sendActivation($data['email']);
+                // } catch (\Throwable $th) {
+                // }
+
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->message = "Komentar berhasil dikirim.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal menyimpan komentar.";
+                return json_encode($response);
+            }
+        }
     }
 }

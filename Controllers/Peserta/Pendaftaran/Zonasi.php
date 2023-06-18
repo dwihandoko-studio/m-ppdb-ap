@@ -88,7 +88,7 @@ class Zonasi extends BaseController
             // ->join('ref_kabupaten e', 'f.id_kabupaten = e.id')
             // ->join('ref_provinsi d', 'e.id_provinsi = d.id')
             ->where($where)
-            ->orderBy('a.created_at', 'asc')
+            ->orderBy('jarak', 'asc')
             ->limit($limit_per_page, $start)
             ->get()->getResult();
         $data['countData'] = $this->_db->table('v_tb_sekolah_zonasi a')->where($where)->countAllResults();

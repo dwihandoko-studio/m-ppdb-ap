@@ -65,8 +65,8 @@
                     </div>
                 </div> -->
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 content-side" style="text-align: left !important; padding: 20px;">
-                <div class="blog-single-content" style="border: 2px solid #777777;">
+            <div class="col-lg-8 col-md-12 col-sm-12 content-side" style="text-align: left !important; padding: 0px 20px 20px 20px;">
+                <div class="blog-single-content" style="border: 2px solid #777777; padding: 20px;">
                     <div class="comments-area">
                         <div class="comment-box">
                             <div class="comment">

@@ -264,7 +264,7 @@ class Swasta extends BaseController
 
             $data = [
                 'id' => $uuid,
-                // 'kode_pendaftaran' => createKodePendaftaran("SWASTA", $peserta->nisn),
+                'kode_pendaftaran' => createKodePendaftaran("SWASTA", $peserta->nisn),
                 'user_id' => $user->data->id,
                 'peserta_didik_id' => $peserta->peserta_didik_id,
                 'from_sekolah_id' => $peserta->sekolah_asal,

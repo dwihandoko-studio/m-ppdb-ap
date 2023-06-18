@@ -272,7 +272,7 @@ class Afirmasi extends BaseController
 
             $data = [
                 'id' => $uuid,
-                // 'kode_pendaftaran' => createKodePendaftaran("AFIRMASI", $peserta->nisn),
+                'kode_pendaftaran' => createKodePendaftaran("AFIRMASI", $peserta->nisn),
                 'peserta_didik_id' => $peserta->peserta_didik_id,
                 'user_id' => $user->data->id,
                 'from_sekolah_id' => $peserta->sekolah_asal,

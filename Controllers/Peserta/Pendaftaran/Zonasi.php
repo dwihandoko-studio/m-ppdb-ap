@@ -255,8 +255,8 @@ class Zonasi extends BaseController
             $andWhere = "a.bentuk_pendidikan_id IN (5,9,30,31,32,33,38)";
         }
 
-        // $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND a.kelurahan_id = '{$getCurrentUser->kelurahan}' AND a.dusun_id = '{$getCurrentUser->dusun}' AND ($andWhere)";
-        $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND ($andWhere)";
+        $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND a.kelurahan_id = '{$getCurrentUser->kelurahan}' AND a.dusun_id = '{$getCurrentUser->dusun}' AND ($andWhere)";
+        // $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND ($andWhere)";
 
         $data['result'] = $this->_db->table('v_tb_sekolah_zonasi a')
             ->select("a.*, DEGREES(ACOS(LEAST(1.0, COS(RADIANS(a.Latitude)) * COS(RADIANS({$getCurrentUser->latitude})) * COS(RADIANS(a.Longitude - {$getCurrentUser->longitude})) + SIN(RADIANS(a.Latitude)) * SIN(RADIANS({$getCurrentUser->latitude}))))) AS distance_in_km, b.id as akunSekolahNya")
@@ -402,7 +402,7 @@ class Zonasi extends BaseController
 
             $data = [
                 'id' => $uuid,
-                // 'kode_pendaftaran' => createKodePendaftaran("ZONAZI", $peserta->nisn),
+                'kode_pendaftaran' => createKodePendaftaran("ZONAZI", $peserta->nisn),
                 'user_id' => $user->data->id,
                 'peserta_didik_id' => $peserta->peserta_didik_id,
                 'from_sekolah_id' => $peserta->sekolah_asal,

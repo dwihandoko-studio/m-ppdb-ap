@@ -303,7 +303,7 @@ class Emaillib
                     <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
                         <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">Halo ' . $email . '</h1>
                         <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                            Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk pengaduan pada webiste PPDB Kab. Lampung Timur.
+                            Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk pengaduan pada webiste PPDB Kab. Pesawaran.
                         </p>
                         <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                             Aduan kamu dengan <br/>
@@ -319,7 +319,7 @@ class Emaillib
                         <p>Untuk melihat status aduan kamu, <a href="' . base_url('web/pengaduan/detail') . '?token=' . $token . '" target="_blank">PERGI KE KONTENT ADUAN</a></p><br/><br/>
                         <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                             Terima kasih,<br>
-                            Tim PPDB Kab. Lampung Timur
+                            Tim PPDB Kab. Pesawaran
                         </p>
 
                     </td>

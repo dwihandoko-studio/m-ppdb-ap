@@ -37,11 +37,11 @@
                                 <div class="form-group">
                                     <p style="color: #fff;">Klasifikasi *</p>
                                     <select id="_klasifikasi" name="_klasifikasi" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
-                                        <option value="" selected>&nbsp;</option>
-                                        <option value="Sudah punya NISN, data peserta tidak ditemukan">Sudah punya NISN, data peserta tidak ditemukan</option>
-                                        <option value="Data yang tampil dari sekolah asal tidak sesuai">Data yang tampil dari sekolah asal tidak sesuai</option>
-                                        <option value="Lupa Password">Lupa Password</option>
-                                        <option value="Lain-lain">Lain-lain</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="" selected>&nbsp;</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="Sudah punya NISN, data peserta tidak ditemukan">Sudah punya NISN, data peserta tidak ditemukan</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="Data yang tampil dari sekolah asal tidak sesuai">Data yang tampil dari sekolah asal tidak sesuai</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="Lupa Password">Lupa Password</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="Lain-lain">Lain-lain</option>
                                     </select>
                                     <div class="help-block _klasifikasi"></div>
                                     <!-- <input type="text" name="_nama" id="_nama" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder=""> -->
@@ -49,9 +49,9 @@
                                 <div class="form-group">
                                     <p style="color: #fff;">Tujuan *</p>
                                     <select id="_tujuan" name="_tujuan" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;">
-                                        <option value="" selected>&nbsp;</option>
-                                        <option value="Bagian Teknis Layanan PPDB Daring">Bagian Teknis Layanan PPDB Daring</option>
-                                        <option value="Panitia PPDB Dinas Kabupaten">Panitia PPDB Dinas Kabupaten</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="" selected>&nbsp;</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="Bagian Teknis Layanan PPDB Daring">Bagian Teknis Layanan PPDB Daring</option>
+                                        <option style="background: #bdbdbde3; color: #000;" value="Panitia PPDB Dinas Kabupaten">Panitia PPDB Dinas Kabupaten</option>
                                     </select>
                                     <div class="help-block _tujuan"></div>
                                     <!-- <input type="text" name="_nama" id="_nama" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder=""> -->

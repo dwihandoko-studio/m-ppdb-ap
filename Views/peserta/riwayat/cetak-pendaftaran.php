@@ -43,7 +43,7 @@ $siswa = json_decode($data->details);
             <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
                 <tr>
                     <td colspan="5" width="10%" style="border:none;">
-                        <img class="img" src="<?= base_url('favicons/android-icon-144x144.png') ?>" ec="H" style="width: 30mm; background-color: white; color: black;">
+                        <img class="img" src="<?= base_url('faviconslmt/android-icon-144x144.png') ?>" ec="H" style="width: 30mm; background-color: white; color: black;">
                     </td>
                     <td style="text-align: center;">
                         <span style="margin-top: 8px; font-size: 20px;">KARTU TANDA PESERTA PPDB ONLINE</span><br>

@@ -32,6 +32,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="h3 mb-0">DETAIL PENGADUAN | <?= $aduan->token ?></h5>
+                        <p>Klasifikasi: <?= $aduan->klasifikasi ?></p>
+                        <p>Tujuan: <?= $aduan->tujuan ?></p>
                     </div>
                     <div class="card-header d-flex align-items-center">
                         <div class="d-flex align-items-center">
@@ -40,7 +42,7 @@
                             </a>
                             <div class="mx-3">
                                 <a href="#" class="text-dark font-weight-600 text-sm"><?= $aduan->nama ?></a>
-                                <small class="d-block text-muted"><?= $aduan->created_at ?></small>
+                                <small class="d-block text-muted"><?= $aduan->created_at ?></small> &nbsp;<small class="d-block text-muted"><?= $aduan->no_hp ?></small> &nbsp;<small class="d-block text-muted"><?= $aduan->email ?></small>
                             </div>
                         </div>
                         <!-- <div class="text-right ml-auto">

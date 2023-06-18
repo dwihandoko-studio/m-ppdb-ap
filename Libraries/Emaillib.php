@@ -294,4 +294,50 @@ class Emaillib
             return $response;
         }
     }
+
+    public function sendNotificationKomentar($email, $token, $nohp, $text = '')
+    {
+        $content = '<table align="center" width="570" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;background-color:#ffffff;margin:0 auto;padding:0;width:570px">
+                
+                <tbody><tr>
+                    <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
+                        <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">Halo ' . $email . '</h1>
+                        <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
+                            Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk pengaduan pada webiste PPDB Kab. Lampung Timur.
+                        </p>
+                        <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
+                            Aduan kamu dengan <br/>
+                            No. Tiket: ' . $token . '<br/>
+                            No. Handphone: ' . $nohp . '
+                        </p>
+                        
+                        <p>Dengan balasan:<br/><b>';
+
+        $content    .=  $text;
+
+        $content    .=  '</b></p>
+                        <p>Untuk melihat status aduan kamu, <a href="' . base_url('web/pengaduan/detail') . '?token=' . $token . '" target="_blank">PERGI KE KONTENT ADUAN</a></p><br/><br/>
+                        <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
+                            Terima kasih,<br>
+                            Tim PPDB Kab. Lampung Timur
+                        </p>
+
+                    </td>
+                </tr>
+            </tbody></table>';
+
+        $sended = $this->_sendEmailNotifikasi($email, 'Balasan Tiket Aduan ' . $token, $content);
+
+        if ($sended->code == 200) {
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->data = $sended;
+            return $response;
+        } else {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Gagal mengirim notifikasi.";
+            return $response;
+        }
+    }
 }

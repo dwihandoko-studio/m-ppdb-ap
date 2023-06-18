@@ -236,7 +236,7 @@ class Pengaduan extends BaseController
     {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
-            $response->status = 400;
+            $response->code = 400;
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
@@ -252,7 +252,7 @@ class Pengaduan extends BaseController
 
         if (!$this->validate($rules)) {
             $response = new \stdClass;
-            $response->status = 400;
+            $response->code = 400;
             $response->message = $this->validator->getError('id');
             return json_encode($response);
         } else {
@@ -284,7 +284,7 @@ class Pengaduan extends BaseController
                 } catch (\Throwable $th) {
                     $this->_db->transRollback();
                     $response = new \stdClass;
-                    $response->status = 400;
+                    $response->code = 400;
                     $response->error = var_dump($th);
                     $response->message = "Aduan gagal ditutup.";
                     return json_encode($response);
@@ -293,19 +293,19 @@ class Pengaduan extends BaseController
                 if ($this->_db->affectedRows() > 0) {
                     $this->_db->transCommit();
                     $response = new \stdClass;
-                    $response->status = 200;
+                    $response->code = 200;
                     $response->message = "Data aduan berhasil ditutup.";
                     return json_encode($response);
                 } else {
                     $this->_db->transRollback();
                     $response = new \stdClass;
-                    $response->status = 400;
+                    $response->code = 400;
                     $response->message = "Data aduan gagal ditutup.";
                     return json_encode($response);
                 }
             } else {
                 $response = new \stdClass;
-                $response->status = 400;
+                $response->code = 400;
                 $response->message = "Data tidak ditemukan";
                 return json_encode($response);
             }

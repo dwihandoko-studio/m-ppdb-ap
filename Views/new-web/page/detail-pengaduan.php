@@ -69,7 +69,7 @@
                 <div class="blog-single-content" style="border: 2px solid #777777; padding: 20px;">
                     <div class="comments-area">
                         <div class="comment-box">
-                            <div class="comment">
+                            <div class="comment" style="margin-bottom: 30px;">
                                 <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-1.png" alt=""></figure>
                                 <div class="comment-inner">
                                     <div class="comment-info">
@@ -80,7 +80,7 @@
                                     <!-- <div class="replay-btn"><a href="#">Reply</a></div> -->
                                 </div>
                             </div>
-                            <div class="comment replay-comment">
+                            <div class="comment replay-comment" style="margin-bottom: 30px;">
                                 <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-2.png" alt=""></figure>
                                 <div class="comment-inner">
                                     <div class="comment-info">

@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
-                <div class="sidebar-categories sidebar-widget" style=" border: 2px dashed #777777;">
+                <div class="sidebar-categories sidebar-widget" style="padding: 20px; border: 2px dashed #777777;">
                     <h4 class="sidebar-title">
                         <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
                     </h4>

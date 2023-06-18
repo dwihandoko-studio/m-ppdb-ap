@@ -85,6 +85,13 @@ class Pengaduan extends BaseController
                     'required' => 'Nama tidak boleh kosong. ',
                 ]
             ],
+            'email' => [
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong. ',
+                    'valid_email' => 'Email tidak valid. ',
+                ]
+            ],
             'nohp' => [
                 'rules' => 'required|trim',
                 'errors' => [
@@ -103,6 +110,12 @@ class Pengaduan extends BaseController
                     'required' => 'Tujuan tidak boleh kosong. ',
                 ]
             ],
+            'klasifikasi' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Tujuan tidak boleh kosong. ',
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -111,25 +124,34 @@ class Pengaduan extends BaseController
             $response->message = $this->validator->getError('nohp')
                 . $this->validator->getError('nama')
                 . $this->validator->getError('deskripsi')
+                . $this->validator->getError('email')
+                . $this->validator->getError('klasifikasi')
                 . $this->validator->getError('tujuan');
             return json_encode($response);
         } else {
             $nama = htmlspecialchars($this->request->getVar('nama'), true);
+            $email = htmlspecialchars($this->request->getVar('email'), true);
             $nohp = htmlspecialchars($this->request->getVar('nohp'), true);
             $deskripsi = htmlspecialchars($this->request->getVar('deskripsi'), true);
             $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
             $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
             $tujuan = htmlspecialchars($this->request->getVar('tujuan'), true);
+            $klasifikasi = htmlspecialchars($this->request->getVar('klasifikasi'), true);
 
             $uuidLib = new Uuid();
             $uuid = $uuidLib->v4();
 
+            $token = time();
+
             $data = [
                 'id' => $uuid,
+                'token' => $token,
                 'nama' => $nama,
+                'email' => $email,
                 'no_hp' => $nohp,
                 'deskripsi' => $deskripsi,
                 'tujuan' => $tujuan,
+                'klasifikasi' => $klasifikasi,
                 'nisn' => ($nisn == "-" || $nisn == "" || $nisn == NULL) ? NULL : $nisn,
                 'npsn' => ($npsn == "-" || $npsn == "" || $npsn == NULL) ? NULL : $npsn,
                 'status' => 0,
@@ -160,7 +182,7 @@ class Pengaduan extends BaseController
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->data = $data;
-                $response->redirrect = base_url('web/home');
+                $response->redirrect = base_url('web/pengaduan/success') . '?id=' . $uuid;
                 $response->message = "Pengaduan berhasil dikirim.";
                 return json_encode($response);
             } else {
@@ -168,6 +190,201 @@ class Pengaduan extends BaseController
                 $response = new \stdClass;
                 $response->code = 401;
                 $response->message = "Gagal menyimpan user.";
+                return json_encode($response);
+            }
+        }
+    }
+
+    public function cari()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'tiket' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'No tiket tidak boleh kosong. ',
+                ]
+            ],
+            'nohp' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'No handphone tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('nohp')
+                . $this->validator->getError('tiket');
+            return json_encode($response);
+        } else {
+            $tiket = htmlspecialchars($this->request->getVar('tiket'), true);
+            $nohp = htmlspecialchars($this->request->getVar('nohp'), true);
+
+            $data = $this->_db->table('tb_pengaduan')->where(['token' => $tiket, 'no_hp' => $nohp])->get()->getRowObject();
+            if ($data) {
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->redirrect = base_url('web/pengaduan/detail') . '?token=' . $data->token;
+                $response->message = "Pengaduan berhasil dikirim.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Aduan tidak ditemukan.";
+                return json_encode($response);
+            }
+        }
+    }
+
+    public function success()
+    {
+        $id = htmlspecialchars($this->request->getGet('id'), true);
+        $data = $this->_db->table('tb_pengaduan')->where('id', $id)->get()->getRowObject();
+        if (!$data) {
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $x['data'] = $data;
+        $x['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $x['title'] = 'PPDB ONLINE TA. 2023 - 2024';
+
+        return view('new-web/page/success-pengaduan', $x);
+    }
+
+    public function detail()
+    {
+        $id = htmlspecialchars($this->request->getGet('token'), true);
+        $data = $this->_db->table('tb_pengaduan')->where('token', $id)->get()->getRowObject();
+        if (!$data) {
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $x['data'] = $data;
+        if ($data->status == 1) {
+            $x['comments'] = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $data->id)->orderBy('created_at', 'asc')->get()->getResult();
+        }
+        $x['page'] = "PPDB ONLINE TA. 2023 - 2024";
+        $x['title'] = 'PPDB ONLINE TA. 2023 - 2024';
+
+        return view('new-web/page/detail-pengaduan', $x);
+    }
+
+    public function comment()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'id_post' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id post tidak boleh kosong. ',
+                ]
+            ],
+            'nama' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Nama tidak boleh kosong. ',
+                ]
+            ],
+            'komentar' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Komentar tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id_post')
+                . $this->validator->getError('nama')
+                . $this->validator->getError('komentar');
+            return json_encode($response);
+        } else {
+            $nama = htmlspecialchars($this->request->getVar('nama'), true);
+            $komentar = htmlspecialchars($this->request->getVar('komentar'), true);
+            $id_post = htmlspecialchars($this->request->getVar('id_post'), true);
+
+            $posted = $this->_db->table('tb_pengaduan')->where('id', $id_post)->get()->getRowObject();
+
+            if (!$posted) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Aduan tidak ditemukan.";
+                return json_encode($response);
+            }
+
+
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $token = time();
+
+            $data = [
+                'id' => $uuid,
+                'id_post' => $id_post,
+                'nama' => $nama,
+                'komentar' => $komentar,
+                'status' => 0,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+            if ($posted->status == 0) {
+                $this->_db->table('tb_pengaduan')->where('id', $posted->id)->update([
+                    'status' => 1,
+                    'updated_at' => $data['created_at'],
+                ]);
+            }
+
+            try {
+                $this->_db->table('tb_pengaduan_komentar')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal mengirim komentar.";
+                return json_encode($response);
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+
+
+                $this->_db->transCommit();
+                // try {
+                //     $emailLib = new Emaillib();
+                //     $emailLib->sendActivation($data['email']);
+                // } catch (\Throwable $th) {
+                // }
+
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->message = "Komentar berhasil dikirim.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal menyimpan komentar.";
                 return json_encode($response);
             }
         }

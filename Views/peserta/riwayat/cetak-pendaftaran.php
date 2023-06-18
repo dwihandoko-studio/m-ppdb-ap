@@ -148,7 +148,7 @@ $siswa = json_decode($data->details);
                             ?>
                         </td>
                     </tr>
-                    <?php if ($data->via_jalur == "ZONASI") { ?>
+                    <?php if ($data->via_jalur == "ZONASIS") { ?>
                         <tr>
                             <td></td>
                             <td align="">Sekolah Tujuan Pilihan Pertama</td>

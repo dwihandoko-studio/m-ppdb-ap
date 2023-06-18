@@ -203,12 +203,31 @@
                             );
                         }
                     } else {
-                        Swal.fire(
-                            'SELAMAT!',
-                            resul.message,
-                            'success'
-                        ).then((valRes) => {
-                            reloadPage();
+                        // Swal.fire(
+                        //     'SELAMAT!',
+                        //     resul.message,
+                        //     'success'
+                        // ).then((valRes) => {
+                        //     reloadPage();
+                        // })
+                        Swal.fire({
+                            title: 'BERHASIL !!!',
+                            text: resul.message,
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            cancelButtonText: 'Tutup',
+                            confirmButtonText: 'Download Bukti Pendaftaran'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.open(
+                                    "<?= base_url('peserta/riwayat/cetakpendaftaran') ?>?id=" + resul.data.id + "&kode=" + resul.data.kode_pendaftaran + "&jalur=" + resul.data.via_jalur, "_blank");
+                                // document.location.href = "<?= base_url("peserta/home") ?>";
+                                reloadPage('<?= base_url("peserta/home") ?>');
+                            } else {
+                                console.log('tutup');
+                                reloadPage();
+                            }
                         })
                     }
                 },

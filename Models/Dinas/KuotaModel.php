@@ -11,7 +11,8 @@ class KuotaModel extends Model
     protected $table = "_setting_kuota_tb a";
     protected $column_order = array(null, null, 'c.nama', 'a.bentuk_pendidikan_id', 'a.npsn', 'b.nama', 'a.jumlah_rombel_kebutuhan', 'a.zonasi', 'a.afirmasi', 'a.mutasi', 'a.prestasi');
     protected $column_search = array('a.npsn', 'b.nama', 'c.nama');
-    protected $order = array('a.is_locked' => 'asc','a.bentuk_pendidikan_id' => 'asc', 'b.nama' => 'asc');
+    protected $order = array('a.updated_at' => 'asc');
+    // protected $order = array('a.is_locked' => 'asc','a.bentuk_pendidikan_id' => 'asc', 'b.nama' => 'asc');
     protected $request;
     protected $db;
     protected $dt;

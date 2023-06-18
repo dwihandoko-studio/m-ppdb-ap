@@ -322,6 +322,17 @@ class Pengaduan extends BaseController
             $komentar = htmlspecialchars($this->request->getVar('komentar'), true);
             $id_post = htmlspecialchars($this->request->getVar('id_post'), true);
 
+            $posted = $this->_db->table('tb_pengaduan')->where('id', $id_post)->get()->getRowObject();
+
+            if (!$posted) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Aduan tidak ditemukan.";
+                return json_encode($response);
+            }
+
+
+
             $uuidLib = new Uuid();
             $uuid = $uuidLib->v4();
 
@@ -337,6 +348,12 @@ class Pengaduan extends BaseController
             ];
 
             $this->_db->transBegin();
+            if ($posted->status == 0) {
+                $this->_db->table('tb_pengaduan')->where('id', $posted->id)->update([
+                    'status' => 1,
+                    'updated_at' => $data['created_at'],
+                ]);
+            }
 
             try {
                 $this->_db->table('tb_pengaduan_komentar')->insert($data);
@@ -349,6 +366,7 @@ class Pengaduan extends BaseController
             }
 
             if ($this->_db->affectedRows() > 0) {
+
 
                 $this->_db->transCommit();
                 // try {

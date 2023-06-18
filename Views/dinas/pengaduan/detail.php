@@ -222,7 +222,7 @@
 
                     // Menambahkan elemen baru ke dalam elemen target
                     targetElementContentKometar.appendChild(newDivKomentar);
-                    document.getElementById('jumlah-balasan-comment').textContent = msg.data.replayed;
+                    document.getElementById('jumlah-balasan-comment').textContent = msg.replayed;
 
                 }
             },

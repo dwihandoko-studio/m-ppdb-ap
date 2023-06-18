@@ -166,7 +166,7 @@
 
         $.ajax({
             type: "POST",
-            url: '/balascomment',
+            url: BASE_URL + '/dinas/pengaduan/balascomment',
             data: {
                 id_post: id,
                 nama: 'Admin',

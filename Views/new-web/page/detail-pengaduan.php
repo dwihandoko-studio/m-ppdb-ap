@@ -3,10 +3,10 @@
 <?= $this->section('content') ?>
 <?= $this->include('new-web/template/header') ?>
 <section class="feature-style-13">
-    <div class="anim-icons">
+    <!-- <div class="anim-icons">
         <div class="icon icon-1"></div>
         <div class="icon icon-2"></div>
-    </div>
+    </div> -->
     <div class="container">
         <div class="inner-box">
             <div class="row">

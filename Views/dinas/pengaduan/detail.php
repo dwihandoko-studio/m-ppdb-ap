@@ -93,7 +93,7 @@
                                                         <p class="text-sm lh-160"><?= $v->komentar ?></p>
                                                         <div class="icon-actions">
                                                             <a href="javascript:;">
-                                                                <i class="ni ni-calendar-grid-58"></i>
+                                                                <i class="ni ni-watch-time"></i>
                                                                 <span class="text-muted"><?= $v->created_at ?></span>
                                                             </a>
                                                         </div>
@@ -105,20 +105,29 @@
                                 <?php } ?>
                             </div>
                             <hr>
-                            <div class="media align-items-center loading-comentar">
-                                <img alt="Image placeholder" class="avatar avatar-lg rounded-circle mr-4" src="<?= base_url('new-assets'); ?>/assets/img/theme/team-1.jpg">
-                                <div class="media-body">
-                                    <form>
-                                        <textarea class="form-control" id="_balas_komentar" name="_balas_komentar" placeholder="Write your comment" rows="2"></textarea>
-                                        <button style="margin-top: 10px;" type="button" onclick="sendBalasKomentar(this, '<?= $aduan->id ?>');" class="btn btn-primary btn-icon">
-                                            <span class="btn-inner--icon">
-                                                <i class="ni ni-send"></i>
-                                            </span>
-                                            <span class="btn-inner--text">Kirim</span>
-                                        </button>
-                                    </form>
+                            <?php if ($aduan->status == 2) {
+                            } else { ?>
+                                <div class="media align-items-center loading-comentar">
+                                    <img alt="Image placeholder" class="avatar avatar-lg rounded-circle mr-4" src="<?= base_url('new-assets'); ?>/assets/img/theme/team-1.jpg">
+                                    <div class="media-body">
+                                        <form>
+                                            <textarea class="form-control" id="_balas_komentar" name="_balas_komentar" placeholder="Write your comment" rows="2"></textarea>
+                                            <button style="margin-top: 10px;" type="button" onclick="sendBalasKomentar(this, '<?= $aduan->id ?>');" class="btn btn-primary btn-icon">
+                                                <span class="btn-inner--icon">
+                                                    <i class="ni ni-send"></i>
+                                                </span>
+                                                <span class="btn-inner--text">Kirim</span>
+                                            </button>
+                                            <button style="margin-top: 10px;" type="button" onclick="closePengaduan(this, '<?= $aduan->id ?>');" class="btn btn-danger btn-icon">
+                                                <span class="btn-inner--icon">
+                                                    <i class="ni ni-send"></i>
+                                                </span>
+                                                <span class="btn-inner--text">Close Aduan Ini?</span>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -203,7 +212,7 @@
                                 <p class="text-sm lh-160">{{komentar}}</p>
                                 <div class="icon-actions">
                                     <a href="javascript:;">
-                                        <i class="ni ni-calendar-grid-58"></i>
+                                        <i class="ni ni-watch-time"></i>
                                         <span class="text-muted">{{date}}</span>
                                     </a>
                                 </div>
@@ -238,6 +247,80 @@
 
             }
         });
+    }
+
+    function closePengaduan(event, id) {
+        Swal.fire({
+            title: 'Apakah anda yakin ingin menutup pengaduan ini?',
+            text: "Tutup pengaduan <?= $aduan->nama ?>, dengan No Tiket:  <?= $aduan->token ?>.",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Tutup Aduan!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: BASE_URL + "/dinas/pengaduan/close",
+                    type: 'POST',
+                    data: {
+                        id: id,
+                    },
+                    dataType: 'JSON',
+                    beforeSend: function() {
+                        $('div.loading-comentar').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
+                    },
+                    success: function(resul) {
+                        $('div.loading-comentar').unblock();
+
+                        if (resul.code !== 200) {
+                            if (resul.code !== 201) {
+                                if (resul.code === 401) {
+                                    Swal.fire(
+                                        'Failed!',
+                                        resul.message,
+                                        'warning'
+                                    ).then((valRes) => {
+                                        document.location.href = BASE_URL + '/dashboard';
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'GAGAL!',
+                                        resul.message,
+                                        'warning'
+                                    );
+                                }
+                            } else {
+                                Swal.fire(
+                                    'Peringatan!',
+                                    resul.message,
+                                    'success'
+                                ).then((valRes) => {
+                                    reloadPage();
+                                })
+                            }
+                        } else {
+                            Swal.fire(
+                                'SELAMAT!',
+                                resul.message,
+                                'success'
+                            ).then((valRes) => {
+                                reloadPage();
+                            })
+                        }
+                    },
+                    error: function() {
+                        $('div.loading-comentar').unblock();
+                        Swal.fire(
+                            'PERINGATAN!',
+                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                            'warning'
+                        );
+                    }
+                });
+            }
+        })
     }
 
     function initSelect2(event, parrent) {

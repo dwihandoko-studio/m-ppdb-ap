@@ -232,7 +232,7 @@ class Pengaduan extends BaseController
         }
     }
 
-    public function delete()
+    public function close()
     {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
@@ -248,23 +248,15 @@ class Pengaduan extends BaseController
                     'required' => 'Id tidak boleh kosong. ',
                 ]
             ],
-            'filename' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Filename tidak boleh kosong. ',
-                ]
-            ],
         ];
 
         if (!$this->validate($rules)) {
             $response = new \stdClass;
             $response->status = 400;
-            $response->message = $this->validator->getError('id')
-                . $this->validator->getError('filename');
+            $response->message = $this->validator->getError('id');
             return json_encode($response);
         } else {
             $id = htmlspecialchars($this->request->getVar('id'), true);
-            $filename = htmlspecialchars($this->request->getVar('filename'), true);
 
             $Profilelib = new Profilelib();
             $user = $Profilelib->user();
@@ -277,7 +269,7 @@ class Pengaduan extends BaseController
                 return json_encode($response);
             }
 
-            $current = $this->_db->table('tb_matching')
+            $current = $this->_db->table('tb_pengaduan')
                 ->where('id', $id)
                 ->get()->getRowObject();
 
@@ -285,34 +277,30 @@ class Pengaduan extends BaseController
 
                 $this->_db->transBegin();
                 try {
-                    $this->_db->table('tb_matching')->where('id', $current->id)->delete();
+                    $this->_db->table('tb_pengaduan')->where('id', $current->id)->update([
+                        'status' => 2,
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
                 } catch (\Throwable $th) {
                     $this->_db->transRollback();
                     $response = new \stdClass;
                     $response->status = 400;
                     $response->error = var_dump($th);
-                    $response->message = "Data matching gagal dihapus.";
+                    $response->message = "Aduan gagal ditutup.";
                     return json_encode($response);
                 }
 
                 if ($this->_db->affectedRows() > 0) {
                     $this->_db->transCommit();
-                    try {
-                        $file = $current->filename;
-                        unlink(FCPATH . "upload/matching/$file.json");
-                        unlink(FCPATH . "upload/matching/$file");
-                    } catch (\Throwable $th) {
-                        //throw $th;
-                    }
                     $response = new \stdClass;
                     $response->status = 200;
-                    $response->message = "Data matching berhasil dihapus.";
+                    $response->message = "Data aduan berhasil ditutup.";
                     return json_encode($response);
                 } else {
                     $this->_db->transRollback();
                     $response = new \stdClass;
                     $response->status = 400;
-                    $response->message = "Data matching gagal dihapus.";
+                    $response->message = "Data aduan gagal ditutup.";
                     return json_encode($response);
                 }
             } else {

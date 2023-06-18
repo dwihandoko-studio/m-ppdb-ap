@@ -708,6 +708,12 @@
                             </div>
                         </li>
                         <li class="nav-item">
+                            <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('dinas/pengaduan'); ?>" role="button" aria-expanded="true">
+                                <i class="fa fa-ticket text-primary"></i>
+                                <span class="nav-link-text">Pengaduan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "riwayat") ? '' : ' collapsed' ?>" href="#navbar-riwayat" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "riwayat") ? 'true' : 'false' ?>" aria-controls="navbar-riwayat">
                                 <i class="ni ni-ui-04" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "riwayat") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "riwayat") ? ' style="color: #00BCD4 !important"' : '' ?>>Riwayat</span>

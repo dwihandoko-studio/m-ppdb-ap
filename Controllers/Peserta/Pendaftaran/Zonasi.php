@@ -188,7 +188,7 @@ class Zonasi extends BaseController
             $peserta = $this->_db->table('_users_profil_tb a')
                 ->select("a.*, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
                 ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
-                ->where('a.id', $userId)
+                ->where('a.id', $user->data->id)
                 ->get()->getRowObject();
             if (!$peserta) {
                 $response = new \stdClass;
@@ -227,7 +227,7 @@ class Zonasi extends BaseController
             $data = [
                 'id' => $uuid,
                 'kode_pendaftaran' => createKodePendaftaran("ZONAZI", $peserta->nisn),
-                'user_id' => $userId,
+                'user_id' => $user->data->id,
                 'peserta_didik_id' => $peserta->peserta_didik_id,
                 'from_sekolah_id' => $peserta->sekolah_asal,
                 'tujuan_sekolah_id_1' => $id,

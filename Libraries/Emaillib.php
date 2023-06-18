@@ -289,7 +289,7 @@ class Emaillib
                 </tr>
             </tbody></table>';
 
-        $sended = $this->_sendEmailNotifikasi($email, $judul, $content);
+        $sended = $this->_sendEmailNotifikasi($email, 'Balasan Tiket Aduan ' . $token, $content);
 
         if ($sended->code == 200) {
             $response = new \stdClass;

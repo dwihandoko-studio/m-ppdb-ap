@@ -37,7 +37,7 @@ class Zonasi extends BaseController
             $response->message = "Tidak ada data.";
             return json_encode($response);
         }
-        $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $userId)->get()->getRowObject();
+        $getCurrentUser = $this->_db->table('_users_profil_tb')->where('id', $user->data->id)->get()->getRowObject();
 
         if (!$getCurrentUser) {
             $response = new \stdClass;

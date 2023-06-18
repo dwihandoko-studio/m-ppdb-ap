@@ -97,7 +97,7 @@
                                                     <div class="comment-inner">
                                                         <div class="comment-info">
                                                             <h5 class="name"><?= $v->nama ?></h5>
-                                                            <span class="date"><?= $v->creaated_at ?></span>
+                                                            <span class="date"><?= $v->created_at ?></span>
                                                         </div>
                                                         <div class="text"><?= $v->komentar ?></div>
                                                     </div>

@@ -59,7 +59,7 @@
                                 <div class="icon-actions">
                                     <a href="#">
                                         <i class="ni ni-chat-round"></i>
-                                        <span class="text-muted"><?= (isset($komentars)) ? (count($komentars) > 0 ? count($komentars) : '0') : '0' ?></span>
+                                        <span class="text-muted jumlah-balasan-comment" id="jumlah-balasan-comment"><?= (isset($komentars)) ? (count($komentars) > 0 ? count($komentars) : '0') : '0' ?></span>
                                     </a>
                                 </div>
                             </div>
@@ -222,6 +222,7 @@
 
                     // Menambahkan elemen baru ke dalam elemen target
                     targetElementContentKometar.appendChild(newDivKomentar);
+                    document.getElementById('jumlah-balasan-comment')[0].value = msg.data.replayed;
 
                 }
             },

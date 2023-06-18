@@ -237,7 +237,7 @@
                                             <div class="help-block _kelurahan"></div>
                                         </div>
                                     </div>
-                                    <!--<div class="col-md-6">
+                                    <div class="col-md-6">
                                         <div class="form-group _dusun-block">
                                             <label for="_dusun" class="form-control-label">Dusun</label>
                                             <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
@@ -256,7 +256,7 @@
                                             </select>
                                             <div class="help-block _dusun"></div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group _alamat-block">
                                             <label for="_alamat" class="form-control-label">Alamat</label>
@@ -581,7 +581,7 @@
             const kabupaten = document.getElementsByName('_kabupaten')[0].value;
             const kecamatan = document.getElementsByName('_kecamatan')[0].value;
             const kelurahan = document.getElementsByName('_kelurahan')[0].value;
-            // const dusun = document.getElementsByName('_dusun')[0].value;
+            const dusun = document.getElementsByName('_dusun')[0].value;
             const email = document.getElementsByName('_email')[0].value;
             const nohp = document.getElementsByName('_nohp')[0].value;
             const alamat = document.getElementsByName('_alamat')[0].value;
@@ -620,11 +620,11 @@
                 $("select#_kelurahan").css("border-color", "#dc3545");
                 $('._kelurahan').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih kelurahan dulu.</li></ul>');
             }
-            // if (dusun === "") {
-            //     $("select#_dusun").css("color", "#dc3545");
-            //     $("select#_dusun").css("border-color", "#dc3545");
-            //     $('._dusun').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih dusun dulu.</li></ul>');
-            // }
+            if (dusun === "") {
+                $("select#_dusun").css("color", "#dc3545");
+                $("select#_dusun").css("border-color", "#dc3545");
+                $('._dusun').html('<ul role="alert" style="color: #dc3545; list-style: none; padding-inline-start: 10px;"><li style="color: #dc3545;">Siilahkan pilih dusun dulu.</li></ul>');
+            }
             if (alamat === "") {
                 $("textarea#_alamat").css("color", "#dc3545");
                 $("textarea#_alamat").css("border-color", "#dc3545");
@@ -636,8 +636,8 @@
                 $('._file').html('<ul role="alert" style="color: #dc3545; list-style: none;padding-inline-start: 10px;"><li style="color: #dc3545;">Alamat tidak boleh kosong.</li></ul>');
             }
 
-            if (email === "" || nohp === "" || foto === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || alamat === "") {
-                // if (foto === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || dusun === "" || alamat === "") {
+            // if (email === "" || nohp === "" || foto === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || alamat === "") {
+            if (email === "" || nohp === "" || foto === "" || provinsi === "" || kabupaten === "" || kecamatan === "" || kelurahan === "" || dusun === "" || alamat === "") {
                 return;
             }
 
@@ -647,7 +647,7 @@
             formUpload.append('kabupaten', kabupaten);
             formUpload.append('kecamatan', kecamatan);
             formUpload.append('kelurahan', kelurahan);
-            // formUpload.append('dusun', dusun);
+            formUpload.append('dusun', dusun);
             formUpload.append('email', email);
             formUpload.append('nohp', nohp);
             formUpload.append('alamat', alamat);
@@ -790,7 +790,7 @@
         initSelect2Panel('_kabupaten');
         initSelect2Panel('_kelurahan');
         initSelect2Panel('_kecamatan');
-        // initSelect2Panel('_dusun');
+        initSelect2Panel('_dusun');
         <?php if (isset($pemilik)) {
             if ($pemilik->tgl_lahir != null) { ?>
                 initializeDatetime('_tgl_lahir', '<?= $pemilik->tgl_lahir ?>');
@@ -900,7 +900,7 @@
                     $('.kabupaten').html('<option value="" selected>--Pilih Provinsi Dulu--</option>');
                     $('.kecamatan').html('<option value="" selected>--Pilih Kabupaten Dulu--</option>');
                     $('.kelurahan').html('<option value="" selected>--Pilih Kecamatan Dulu--</option>');
-                    // $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
+                    $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
                     $('div._kabupaten-block').block({
                         message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                     });
@@ -910,16 +910,16 @@
                     $('div._kelurahan-block').block({
                         message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                     });
-                    // $('div._dusun-block').block({
-                    //     message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    // });
+                    $('div._dusun-block').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
                 },
                 success: function(msg) {
                     // console.log(msg);
                     $('div._kabupaten-block').unblock();
                     $('div._kecamatan-block').unblock();
                     $('div._kelurahan-block').unblock();
-                    // $('div._dusun-block').unblock();
+                    $('div._dusun-block').unblock();
                     // const msg = JSON.parse(resMsg);
                     // const msg = JSON.parse(JSON.stringify(resMsg));
                     if (msg.code == 200) {
@@ -944,7 +944,7 @@
                     $('div._kabupaten-block').unblock();
                     $('div._kecamatan-block').unblock();
                     $('div._kelurahan-block').unblock();
-                    // $('div._dusun-block').unblock();
+                    $('div._dusun-block').unblock();
                 }
             })
         }
@@ -967,22 +967,22 @@
                 beforeSend: function() {
                     $('.kecamatan').html('<option value="" selected>--Pilih Kabupaten Dulu--</option>');
                     $('.kelurahan').html('<option value="" selected>--Pilih Kecamatan Dulu--</option>');
-                    // $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
+                    $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
                     $('div._kecamatan-block').block({
                         message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                     });
                     $('div._kelurahan-block').block({
                         message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                     });
-                    // $('div._dusun-block').block({
-                    //     message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    // });
+                    $('div._dusun-block').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
                 },
                 success: function(msg) {
                     // console.log(msg);
                     $('div._kecamatan-block').unblock();
                     $('div._kelurahan-block').unblock();
-                    // $('div._dusun-block').unblock();
+                    $('div._dusun-block').unblock();
                     if (msg.code == 200) {
                         let html = "";
                         html += '<option value="">--Pilih Kecamatan--</option>';
@@ -1004,7 +1004,7 @@
                     console.log(data);
                     $('div._kecamatan-block').unblock();
                     $('div._kelurahan-block').unblock();
-                    // $('div._dusun-block').unblock();
+                    $('div._dusun-block').unblock();
                 }
             })
         }
@@ -1026,18 +1026,18 @@
                 dataType: 'JSON',
                 beforeSend: function() {
                     $('.kelurahan').html('<option value="" selected>--Pilih Kecamatan Dulu--</option>');
-                    // $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
+                    $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
                     $('div._kelurahan-block').block({
                         message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                     });
-                    // $('div._dusun-block').block({
-                    //     message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                    // });
+                    $('div._dusun-block').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
                 },
                 success: function(msg) {
                     // console.log(msg);
                     $('div._kelurahan-block').unblock();
-                    // $('div._dusun-block').unblock();
+                    $('div._dusun-block').unblock();
                     if (msg.code == 200) {
                         let html = "";
                         html += '<option value="">--Pilih Kelurahan--</option>';
@@ -1058,7 +1058,7 @@
                 error: function(data) {
                     console.log(data);
                     $('div._kelurahan-block').unblock();
-                    // $('div._dusun-block').unblock();
+                    $('div._dusun-block').unblock();
                 }
             })
         }
@@ -1070,46 +1070,46 @@
         $('.' + color).html('');
         // $( "label#"+color ).css("color", "#555");
 
-        // if (event.value !== "") {
-        //     $.ajax({
-        //         url: BASE_URL + '/peserta/referensi/getDusun',
-        //         type: 'POST',
-        //         data: {
-        //             id: event.value,
-        //         },
-        //         dataType: 'JSON',
-        //         beforeSend: function() {
-        //             $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
-        //             $('div._dusun-block').block({
-        //                 message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-        //             });
-        //         },
-        //         success: function(msg) {
-        //             // console.log(msg);
-        //             $('div._dusun-block').unblock();
-        //             if (msg.code == 200) {
-        //                 let html = "";
-        //                 html += '<option value="">--Pilih Dusun--</option>';
-        //                 if (msg.data.length > 0) {
-        //                     for (let step = 0; step < msg.data.length; step++) {
-        //                         html += '<option value="';
-        //                         html += msg.data[step].id;
-        //                         html += '">';
-        //                         html += msg.data[step].nama;
-        //                         html += '</option>';
-        //                     }
+        if (event.value !== "") {
+            $.ajax({
+                url: BASE_URL + '/peserta/referensi/getDusun',
+                type: 'POST',
+                data: {
+                    id: event.value,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
+                    $('.dusun').html('<option value="" selected>--Pilih Kelurahan Dulu--</option>');
+                    $('div._dusun-block').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
+                },
+                success: function(msg) {
+                    // console.log(msg);
+                    $('div._dusun-block').unblock();
+                    if (msg.code == 200) {
+                        let html = "";
+                        html += '<option value="">--Pilih Dusun--</option>';
+                        if (msg.data.length > 0) {
+                            for (let step = 0; step < msg.data.length; step++) {
+                                html += '<option value="';
+                                html += msg.data[step].id;
+                                html += '">';
+                                html += msg.data[step].nama;
+                                html += '</option>';
+                            }
 
-        //                 }
+                        }
 
-        //                 $('.dusun').html(html);
-        //             }
-        //         },
-        //         error: function(data) {
-        //             console.log(data);
-        //             $('div._dusun-block').unblock();
-        //         }
-        //     })
-        // }
+                        $('.dusun').html(html);
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                    $('div._dusun-block').unblock();
+                }
+            })
+        }
     }
 
     function onChangeDusun(event) {

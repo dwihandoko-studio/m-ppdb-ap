@@ -2,42 +2,40 @@
 
 <?= $this->section('content') ?>
 <?= $this->include('new-web/template/header') ?>
-<section class="feature-style-13">
-    <!-- <div class="anim-icons">
-        <div class="icon icon-1"></div>
-        <div class="icon icon-2"></div>
-    </div> -->
-    <div class="container">
-        <div class="inner-box">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12 content-column">
-                    <div id="content_block_38">
-                        <div class="content-box wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <div class="sec-title">
-                                <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
-                                <p>Hallo <?= $data->nama ?>,<br />Kamu bisa menulis komentar dikolom komentar dan update status pengaduan kamu.</p>
-                                <div style="padding: 20px; border: 2px solid #777777;">
-                                    <table border="0">
-                                        <thead>
-                                            <tr>
-                                                <td style="padding-right: 20px;">
-                                                    No. Tiket
-                                                </td>
-                                                <td style="padding-right: 20px;">:</td>
-                                                <th><?= $data->token ?></th>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding-right: 20px;">
-                                                    No. Handphone
-                                                </td>
-                                                <td style="padding-right: 20px;">:</td>
-                                                <th><?= $data->no_hp ?></th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
+<section class="pricing-section centred _profil_sekolah" id="_profil_sekolah">
+    <div class="container" style="margin-top: 100px;">
+        <div class="sec-title center">
+            <h4>DETAIL PENGADUAN DENGAN TICKET <?= $data->token ?></h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 content-column">
+                <div id="content_block_38">
+                    <div class="content-box wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="sec-title">
+                            <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
+                            <p>Hallo <?= $data->nama ?>,<br />Kamu bisa menulis komentar dikolom komentar dan update status pengaduan kamu.</p>
+                            <div style="padding: 20px; border: 2px solid #777777;">
+                                <table border="0">
+                                    <thead>
+                                        <tr>
+                                            <td style="padding-right: 20px;">
+                                                No. Tiket
+                                            </td>
+                                            <td style="padding-right: 20px;">:</td>
+                                            <th><?= $data->token ?></th>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-right: 20px;">
+                                                No. Handphone
+                                            </td>
+                                            <td style="padding-right: 20px;">:</td>
+                                            <th><?= $data->no_hp ?></th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
-                            <!-- <div class="lower-content">
+                        </div>
+                        <!-- <div class="lower-content">
                                 <div class="single-item">
                                     <div class="icon-box"><i class="flaticon-growth"></i></div>
                                     <h3><a href="#">Detailing and Analysis</a></h3>
@@ -49,26 +47,25 @@
                                     <div class="text">Naff are you taking the piss say blow off faff about wellies richard.</div>
                                 </div>
                             </div> -->
-                        </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 image-column">
-                    <div id="image_block_36">
-                        <div class="image-box wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
-                            <div class="lower-content">
-                                <div class="single-item">
-                                    <div class="icon-box"><i class="flaticon-growth"></i></div>
-                                    <h4><?= $data->nama ?></h3>
-                                        <div class="text"><?= $data->deskripsi ?></div>
-                                </div>
-                                <div class="single-item">
-                                    <form action="#" method="post" class="subscribe-form">
-                                        <div class="form-group">
-                                            <input type="text" name="_komentar" id="_komentar" placeholder="Tulis komentar" required="">
-                                            <button type="submit">Kirim</button>
-                                        </div>
-                                    </form>
-                                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 image-column">
+                <div id="image_block_36">
+                    <div class="image-box wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <div class="lower-content">
+                            <div class="single-item">
+                                <div class="icon-box"><i class="flaticon-growth"></i></div>
+                                <h4><?= $data->nama ?></h3>
+                                    <div class="text"><?= $data->deskripsi ?></div>
+                            </div>
+                            <div class="single-item">
+                                <form action="#" method="post" class="subscribe-form">
+                                    <div class="form-group">
+                                        <input type="text" name="_komentar" id="_komentar" placeholder="Tulis komentar" required="">
+                                        <button type="submit">Kirim</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

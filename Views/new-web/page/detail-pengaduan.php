@@ -89,16 +89,22 @@
                             <hr style="margin-bottom: 30px;" />
                             <div class="content-komentar-aduan" id="content-komentar-aduan">
                                 <?php if ($data->status == 1) { ?>
-                                    <div class="comment replay-comment" style="margin-bottom: 30px;">
-                                        <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-2.png" alt=""></figure>
-                                        <div class="comment-inner">
-                                            <div class="comment-info">
-                                                <h5 class="name">Admin</h5>
-                                                <span class="date">October 5, 2019</span>
-                                            </div>
-                                            <div class="text">Masih dalam proses</div>
-                                        </div>
-                                    </div>
+                                    <?php if (isset($comments)) { ?>
+                                        <?php if (count($comments) > 0) { ?>
+                                            <?php foreach ($comments as $key => $v) { ?>
+                                                <div class="comment replay-comment" style="margin-bottom: 30px;">
+                                                    <figure class="author-thumb"><img src="<?= base_url('themes') ?>/images/resource/comment-2.png" alt=""></figure>
+                                                    <div class="comment-inner">
+                                                        <div class="comment-info">
+                                                            <h5 class="name"><?= $v->nama ?></h5>
+                                                            <span class="date"><?= $v->creaated_at ?></span>
+                                                        </div>
+                                                        <div class="text"><?= $v->komentar ?></div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    <?php } ?>
                                 <?php } ?>
                             </div>
                         </div>

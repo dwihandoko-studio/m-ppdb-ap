@@ -31,6 +31,20 @@
                                             <td style="padding-right: 20px;">:</td>
                                             <th><?= $data->no_hp ?></th>
                                         </tr>
+                                        <tr>
+                                            <td style="padding-right: 20px;">
+                                                Klasifikasi
+                                            </td>
+                                            <td style="padding-right: 20px;">:</td>
+                                            <th><?= $data->klasifikasi ?></th>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-right: 20px;">
+                                                Tujuan
+                                            </td>
+                                            <td style="padding-right: 20px;">:</td>
+                                            <th><?= $data->tujuan ?></th>
+                                        </tr>
                                     </thead>
                                 </table>
                             </div>

@@ -64,8 +64,8 @@ class Zonasi extends BaseController
             $andWhere = "a.bentuk_pendidikan_id IN (5,9,30,31,32,33,38)";
         }
 
-        // $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND a.kelurahan_id = '{$getCurrentUser->kelurahan}' AND a.dusun_id = '{$getCurrentUser->dusun}' AND ($andWhere)";
-        $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND ($andWhere)";
+        $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND a.kelurahan_id = '{$getCurrentUser->kelurahan}' AND a.dusun_id = '{$getCurrentUser->dusun}' AND ($andWhere)";
+        // $where = "a.provinsi_id = '{$getCurrentUser->provinsi}' AND a.kabupaten_id = '{$getCurrentUser->kabupaten}' AND a.kecamatan_id = '{$getCurrentUser->kecamatan}' AND ($andWhere)";
 
         if ($keyword !== "") {
             $where .= " AND (a.npsn = '$keyword' OR a.nama LIKE '%$keyword%')";
@@ -101,8 +101,8 @@ class Zonasi extends BaseController
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->message = "Permintaan diizinkan";
-                $response->data = view('peserta/pendaftaran/zonasi/pilihan', $data);
-                // $response->pagination = view('peserta/pendaftaran/zonasi/pilihan-pagination', $data);
+                // $response->data = view('peserta/pendaftaran/zonasi/pilihan', $data);
+                $response->pagination = view('peserta/pendaftaran/zonasi/pilihan-pagination', $data);
                 return json_encode($response);
             } else {
                 $response = new \stdClass;

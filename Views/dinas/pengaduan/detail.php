@@ -120,7 +120,7 @@
                                             </button>
                                             <button style="margin-top: 10px;" type="button" onclick="closePengaduan(this, '<?= $aduan->id ?>');" class="btn btn-danger btn-icon">
                                                 <span class="btn-inner--icon">
-                                                    <i class="ni ni-send"></i>
+                                                    <i class="ni ni-button-power"></i>
                                                 </span>
                                                 <span class="btn-inner--text">Close Aduan Ini?</span>
                                             </button>

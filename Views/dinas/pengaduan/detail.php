@@ -110,7 +110,7 @@
                                 <div class="media-body">
                                     <form>
                                         <textarea class="form-control" id="_balas_komentar" name="_balas_komentar" placeholder="Write your comment" rows="2"></textarea>
-                                        <button style="margin-top: 20px;" type="button" onclick="sendBalasKomentar(this, '<?= $aduan->id ?>');" class="btn btn-primary btn-icon">
+                                        <button style="margin-top: 10px;" type="button" onclick="sendBalasKomentar(this, '<?= $aduan->id ?>');" class="btn btn-primary btn-icon">
                                             <span class="btn-inner--icon">
                                                 <i class="ni ni-send"></i>
                                             </span>

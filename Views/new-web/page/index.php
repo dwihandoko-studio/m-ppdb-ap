@@ -192,7 +192,7 @@
                         </div>
                         <div class="text">Tersedia di platform android,<br>Silahkan download aplikasi di playStore pada link berikut:</div>
                         <div class="download-btn">
-                            <a href="#" class="google-play-btn">
+                            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.kntechline.ppdb.duatiga.lamtim&hl=id-ID" class="google-play-btn">
                                 <i class="fab fa-android"></i>
                                 <span>Get on it</span>
                                 Google Play

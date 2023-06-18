@@ -34,23 +34,43 @@
                         <p>Daftar Sekolah Yang Dalam Ruang Lingkup Zonasi.</p>
                     </div>
                     <div class="card-header py-0">
-                        <form>
-                            <div class="form-group mb-0">
-                                <div class="input-group input-group-lg input-group-flush">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><span class="fas fa-search"></span></div>
-                                    </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NPSN / Nama Sekolah. . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
+                        <?php if (!isset($error)) { ?>
+                            <form>
+                                <div class="form-group mb-0">
+                                    <div class="input-group input-group-lg input-group-flush">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><span class="fas fa-search"></span></div>
+                                        </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NPSN / Nama Sekolah. . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        <?php } ?>
                     </div>
                     <div class="card-body">
-                        <ul class="list-group list-group-flush list my--3 content_zonasi" id="content_zonasi">
+                        <?php if (isset($error)) { ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <center><span class="alert-icon"><i class="ni ni-bell-55 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
+                                <br />
+                                <?php if (isset($sekolah_pilihan)) { ?>
+                                    <center>
+                                        <ol>
+                                            <li style="list-style: none;"><?= $sekolah_pilihan->tujuan_sekolah_id_2 !== NULL ? 'Sekolah Pilihan Pertama' : 'Sekolah yang dituju' ?> : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                            <?php if ($sekolah_pilihan->tujuan_sekolah_id_2 !== NULL) { ?>
+                                                <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
+                                                <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
+                                            <?php } ?>
+                                        </ol>
+                                    </center>
+                                <?php } ?>
+                            </div>
+                        <?php } else { ?>
+                            <ul class="list-group list-group-flush list my--3 content_zonasi" id="content_zonasi">
 
-                        </ul>
-                        <div style="margin-top: 40px;" class="col-md-12 content_pagination" id="content_pagination">
+                            </ul>
+                            <div style="margin-top: 40px;" class="col-md-12 content_pagination" id="content_pagination">
 
-                        </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -565,7 +585,9 @@
     }
 
     $(document).ready(function() {
-        getDataSekolah();
+        <?php if (!isset($error)) { ?>
+            getDataSekolah();
+        <?php } ?>
     });
 
     function loadFilePdf(event) {

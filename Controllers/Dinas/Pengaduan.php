@@ -8,6 +8,7 @@ use Config\Services;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use App\Libraries\Profilelib;
+use App\Libraries\Emaillib;
 use App\Libraries\Apilib;
 use App\Libraries\Helplib;
 // use App\Libraries\Situgu\NotificationLib;
@@ -209,13 +210,14 @@ class Pengaduan extends BaseController
 
 
                 $this->_db->transCommit();
-                // try {
-                //     $emailLib = new Emaillib();
-                //     $emailLib->sendActivation($data['email']);
-                // } catch (\Throwable $th) {
-                // }
-
                 $response = new \stdClass;
+                try {
+                    $emailLib = new Emaillib();
+                    $emailLib->sendNotificationKomentar($posted->email, $posted->token, $posted->no_hp, $komentar);
+                } catch (\Throwable $th) {
+                    $response->error = $th;
+                }
+
                 $response->code = 200;
                 $response->data = $data;
                 $jumlahKomentar = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $id_post)->countAllResults();

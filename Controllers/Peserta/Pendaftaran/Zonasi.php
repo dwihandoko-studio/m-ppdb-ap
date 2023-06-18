@@ -284,7 +284,7 @@ class Zonasi extends BaseController
         // $data['countData'] = $this->_db->table('ref_provinsi a')->where($where)->countAllResults();
         $data['usernya'] = $getCurrentUser;
 
-        return view('peserta/pendaftaran/zonasi/index-new', $data);
+        return view('peserta/pendaftaran/zonasi/index', $data);
     }
 
     public function aksidaftar()

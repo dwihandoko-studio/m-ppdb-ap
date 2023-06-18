@@ -2,73 +2,75 @@
 
 <?= $this->section('content') ?>
 <?= $this->include('new-web/template/header') ?>
-<!-- <section class="banner-style-14 centred" style="padding-bottom: 0px;">
-    <div class="container">
-        <div class="content-box">
-            <h2>PENGADUAN PPDB TA. 2023/2024</h2>
-            <div class="text">Kabupaten Pesawaran.</div>
-            <div class="mail-box">
-                <form action="#" method="post">
-                    <div class="form-group-custom">
-                        <input class="custom-input-form" type="text" name="_tiket" id="_tiket" placeholder="No tiket" required="">
-                        <input class="custom-input-form-1" type="text" name="_nohp_tiket" id="_nohp_tiket" placeholder="No handphone" required="">
-                        <button class="custom-button-form" type="submit">Cari Pengaduan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<section class="feature-style-13">
+    <div class="anim-icons">
+        <div class="icon icon-1"></div>
+        <div class="icon icon-2"></div>
     </div>
-</section> -->
-<section class="subscribe-style-five home-18">
-    <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/layer-image-6.png);"></div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                <div id="image_block_38">
-                    <div class="image-box">
-                        <div class="bg-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/user-icon.png);"></div>
-                        <figure class="image float-bob-y clearfix"><img src="<?= base_url('themes') ?>/images/resource/user-16.png" alt=""></figure>
+        <div class="inner-box">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12 content-column">
+                    <div id="content_block_38">
+                        <div class="content-box wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms">
+                            <div class="sec-title">
+                                <div class="feature-btn"><a href="#" class="theme-btn-two">Open</a></div>
+                                <p>Hallo <?= $data->nama ?>,<br />Kamu bisa menulis komentar dikolom komentar dan update status pengaduan kamu.</p>
+                                <div style="padding: 20px; border: 2px solid #777777;">
+                                    <table border="0">
+                                        <thead>
+                                            <tr>
+                                                <td style="padding-right: 20px;">
+                                                    No. Tiket
+                                                </td>
+                                                <td style="padding-right: 20px;">:</td>
+                                                <th><?= $data->token ?></th>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 20px;">
+                                                    No. Handphone
+                                                </td>
+                                                <td style="padding-right: 20px;">:</td>
+                                                <th><?= $data->no_hp ?></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- <div class="lower-content">
+                                <div class="single-item">
+                                    <div class="icon-box"><i class="flaticon-growth"></i></div>
+                                    <h3><a href="#">Detailing and Analysis</a></h3>
+                                    <div class="text">Naff are you taking the piss say blow off faff about wellies richard.</div>
+                                </div>
+                                <div class="single-item">
+                                    <div class="icon-box"><i class="flaticon-art-and-design"></i></div>
+                                    <h3><a href="#">Specialized SEO Audit</a></h3>
+                                    <div class="text">Naff are you taking the piss say blow off faff about wellies richard.</div>
+                                </div>
+                            </div> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                <div id="content_block_41">
-                    <div class="content-box">
-                        <div class="sec-title">
-                            <h2>Terima Kasih, <?= $data->nama ?></h2>
-                        </div>
-                        <div class="text">Pengduan kamu dengan klasifikasi <b><?= $data->klasifikasi ?></b> yang ditujukan kepada <b><?= $data->tujuan ?></b> berhasil dikirim.<br /><br />Silahkan Catat No Tiket dan No Handphone kamu dibawah ini untuk proses pencarian dan memantau status pengaduan kamu:</div>
-                        <div class="text">
-                            <div style="padding: 20px; border: 2px dashed #777777;">
-                                <table border="0">
-                                    <thead>
-                                        <tr>
-                                            <td style="padding-right: 20px;">
-                                                No. Tiket
-                                            </td>
-                                            <td style="padding-right: 20px;">:</td>
-                                            <th><?= $data->token ?></th>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding-right: 20px;">
-                                                No. Handphone
-                                            </td>
-                                            <td style="padding-right: 20px;">:</td>
-                                            <th><?= $data->no_hp ?></th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                                <!-- <span>No. Tiket : </span></br>
-                                <span><b><?= $data->token ?></b></span><br />
-                                <span>No. Handphone</span><br />
-                                <span><b><?= $data->no_hp ?></b></span><br /> -->
+                <div class="col-lg-8 col-md-12 col-sm-12 image-column">
+                    <div id="image_block_36">
+                        <div class="image-box wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
+                            <div class="lower-content">
+                                <div class="single-item">
+                                    <div class="icon-box"><i class="flaticon-growth"></i></div>
+                                    <h4><?= $data->nama ?></h3>
+                                        <div class="text"><?= $data->deskripsi ?></div>
+                                </div>
+                                <div class="single-item">
+                                    <form action="#" method="post" class="subscribe-form">
+                                        <div class="form-group">
+                                            <input type="text" name="_komentar" id="_komentar" placeholder="Tulis komentar" required="">
+                                            <button type="submit">Kirim</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <form action="<?= base_url('web/pengaduan/data') ?>" method="GET" class="subscribe-form">
-                            <div class="form-group">
-                                <button type="submit" class="theme-btn-two">OK, Terima Kasih</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -69,7 +69,7 @@ class ProfilsekolahModel extends Model
             $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
         }
 
-        $this->dt->groupBy('a.npsn');
+        // $this->dt->groupBy('a.npsn');
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -89,7 +89,7 @@ class ProfilsekolahModel extends Model
             $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
         }
 
-        $this->dt->groupBy('a.npsn');
+        // $this->dt->groupBy('a.npsn');
 
         return $this->dt->countAllResults();
     }
@@ -106,7 +106,7 @@ class ProfilsekolahModel extends Model
             $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
         }
 
-        $this->dt->groupBy('a.npsn');
+        // $this->dt->groupBy('a.npsn');
 
         return $this->dt->countAllResults();
     }

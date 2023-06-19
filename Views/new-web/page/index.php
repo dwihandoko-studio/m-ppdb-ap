@@ -12,7 +12,7 @@
                 <form action="#" method="post">
                     <div class="form-group">
                         <input type="text" name="_search" id="_search" placeholder="Masukkan NISN/NIK" required="">
-                        <button type="submit">Cari Data Siswa</button>
+                        <button onclick="cariDataSiswa(this)" type="button">Cari Data Siswa</button>
                     </div>
                 </form>
             </div>

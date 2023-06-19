@@ -11,12 +11,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-12" style="text-align: left !important;">
                         <p>Nama Kepala Sekolah : <?= (isset($sekolah)) ? ($sekolah->nama_ks ? $sekolah->nama_ks : '-') : '-' ?></p>
-                        <p>NIP Kepala Sekolah : <?= (isset($sekolah)) ? ($sekolah->nip_ks ? $sekolah->nip_ks : '-') : '-' ?></p>
+                        <p>NIP Kepala Sekolah &nbsp;: <?= (isset($sekolah)) ? ($sekolah->nip_ks ? $sekolah->nip_ks : '-') : '-' ?></p>
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <div class="btn-box"><a target="_blank" href="<?= (isset($sekolah)) ? $sekolah->url_profil : '#' ?>" class="theme-btn">Lihat Profil Sekolah Dapodik<i class="fas fa-angle-right"></i></a></div>
+                        <div class="btn-box">
+                            <a target="_blank" href="<?= (isset($sekolah)) ? $sekolah->url_profil : '#' ?>" class="theme-btn">Lihat Profil Sekolah Dapodik<i class="fas fa-angle-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,9 +46,11 @@
                                     <?php if (isset($panitia)) { ?>
                                         <?php if (count($panitia) > 0) { ?>
                                             <?php foreach ($panitia as $key => $v) { ?>
-                                                <td><?= $key + 1 ?></td>
-                                                <td><?= $v->nama ?></td>
-                                                <td><?= $v->no_hp ?></td>
+                                                <tr>
+                                                    <td><?= $key + 1 ?></td>
+                                                    <td><?= $v->nama ?></td>
+                                                    <td><?= $v->no_hp ?></td>
+                                                </tr>
                                             <?php } ?>
                                         <?php } ?>
                                     <?php } ?>

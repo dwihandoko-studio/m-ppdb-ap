@@ -47,7 +47,7 @@ class Sekolah extends BaseController
                             <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
                         </div>
                         <div class="dropdown-menu">
-                            <a href="https://www.google.com/maps/search/?api=1&query=' . $list->latitude . '%2C' . $list->longitude . '" class="dropdown-item">
+                            <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=' . $list->latitude . '%2C' . $list->longitude . '" class="dropdown-item">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </a>

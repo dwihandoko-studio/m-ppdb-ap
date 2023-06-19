@@ -5,7 +5,7 @@ namespace App\Controllers\Dinas\Masterdata;
 use App\Controllers\BaseController;
 use App\Models\Dinas\Masterdata\SekolahModel;
 use Config\Services;
- 
+
 use App\Libraries\Profilelib;
 use App\Libraries\Uuid;
 use Firebase\JWT\JWT;
@@ -47,10 +47,14 @@ class Sekolah extends BaseController
                             <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
                         </div>
                         <div class="dropdown-menu">
-                            <a href="javascript:actionDetail(\'' . $list->id . '\', \' ' . $list->nama . '\');" class="dropdown-item">
+                            <a href="https://www.google.com/maps/search/?api=1&query=' . $list->latitude . '%2C' . $list->longitude . '" class="dropdown-item">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </a>
+                            <!--<a href="javascript:actionDetail(\'' . $list->id . '\', \' ' . $list->nama . '\');" class="dropdown-item">
+                                <i class="fa fa-eye"></i>
+                                <span>Detail</span>
+                            </a>-->
                             <a href="javascript:actionEdit(\'' . $list->id . '\', \' ' . $list->nama . '\');" class="dropdown-item">
                                 <i class="ni ni-ruler-pencil"></i>
                                 <span>Edit</span>
@@ -96,19 +100,19 @@ class Sekolah extends BaseController
             session()->destroy();
             return redirect()->to(base_url('web/home'));
         }
-        
+
         $data['user'] = $user->data;
 
         $data['kecamatans'] = $this->_db->table('ref_kecamatan')
             ->where('id_kabupaten', getenv('ppdb.default.wilayahppdb'))
             ->orderBy('nama', 'asc')->get()->getResult();
         $data['jenjangs'] = $this->_db->table('ref_bentuk_pendidikan')
-            ->whereIn('id', [5,6])
+            ->whereIn('id', [5, 6])
             ->orderBy('nama', 'asc')->get()->getResult();
-            
+
         return view('dinas/masterdata/sekolah/index', $data);
     }
-    
+
     public function edit()
     {
         if ($this->request->getMethod() != 'post') {
@@ -117,18 +121,18 @@ class Sekolah extends BaseController
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
-        
+
         $id = htmlspecialchars($this->request->getVar('id'), true);
-        
+
         $sekolah = $this->_db->table('ref_sekolah')->where('id', $id)->get()->getRowObject();
-        
-        if(!$sekolah) {
+
+        if (!$sekolah) {
             $response = new \stdClass;
             $response->code = 400;
             $response->message = "Data tidak ditemukan.";
             return json_encode($response);
         }
-        
+
         $x['data'] = $sekolah;
 
         $response = new \stdClass;
@@ -189,7 +193,7 @@ class Sekolah extends BaseController
                     if ($decoded) {
                         $userId = $decoded->data->id;
                         $role = $decoded->data->role;
-                        
+
                         $cekData = $this->_db->table('ref_sekolah')->where('id', $id)->get()->getRowObject();
 
                         if (!$cekData) {
@@ -262,5 +266,4 @@ class Sekolah extends BaseController
             }
         }
     }
-
 }

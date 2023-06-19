@@ -348,47 +348,47 @@ class Home extends BaseController
         } else {
             $id = htmlspecialchars($this->request->getVar('keyword'), true);
 
-            $current = $this->_db->table('tb_pengaduan')
-                ->where('id', $id)
-                ->get()->getRowObject();
-
-            if ($current) {
-
-                $this->_db->transBegin();
-                try {
-                    $this->_db->table('tb_pengaduan')->where('id', $current->id)->update([
-                        'status' => 2,
-                        'updated_at' => date('Y-m-d H:i:s'),
-                    ]);
-                } catch (\Throwable $th) {
-                    $this->_db->transRollback();
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    $response->error = var_dump($th);
-                    $response->message = "Aduan gagal ditutup.";
-                    return json_encode($response);
-                }
-
-                if ($this->_db->affectedRows() > 0) {
-                    $this->_db->transCommit();
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Data aduan berhasil ditutup.";
-                    return json_encode($response);
-                } else {
-                    $this->_db->transRollback();
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    $response->message = "Data aduan gagal ditutup.";
-                    return json_encode($response);
-                }
-            } else {
+            if ($id == "") {
                 $response = new \stdClass;
                 $response->code = 400;
                 $response->message = "Data tidak ditemukan";
                 return json_encode($response);
             }
+
+            $siswa = $this->_db->table('_users_profil_tb')->select('peserta_didik_id')->where("nisn = '$id' OR nip = '$id'")->get()->getRowObject();
+
+            if (!$siswa) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            if ($siswa->peserta_didik_id == NULL || $siswa->peserta_didik_id == "") {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Dataditemukan.";
+            $response->url = base_url('web/home/detail') . '?token=' . $siswa->peserta_didik_id;
+            return json_encode($response);
         }
+    }
+
+    public function detail()
+    {
+        $id = htmlspecialchars($this->request->getGet('token'), true);
+
+        // if ($id == "") {
+        $response = new \stdClass;
+        $response->code = 400;
+        $response->message = "Data tidak ditemukan";
+        return json_encode($response);
+        // }
     }
 
     public function indexold()

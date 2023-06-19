@@ -228,6 +228,15 @@
     function cariDataSiswa(event) {
         const keyword = document.getElementsByName('_search')[0].value;
 
+        if (keyword.lenght < 10) {
+            Swal.fire(
+                'Peringatan!',
+                "Silahkan masukkan NISN / NIK dengan benar.",
+                'warning'
+            );
+            return;
+        }
+
         $.ajax({
             type: "POST",
             url: BASE_URL + '/web/home/cari',

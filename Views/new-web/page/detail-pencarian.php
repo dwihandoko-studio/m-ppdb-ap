@@ -27,7 +27,7 @@
                         ?>
                         <ul class="info-list clearfix">
                             <li><span>NISN</span><?= $siswa->nisn ?></li>
-                            <li><span>NIK</span><?= $s->details->nik ?></li>
+                            <li><span>NIK</span><?= $siswa->details->nik ?></li>
                             <li><span>Live demo</span><a href="#">www.envato.com</a></li>
                         </ul>
                         <ul class="social-icons">

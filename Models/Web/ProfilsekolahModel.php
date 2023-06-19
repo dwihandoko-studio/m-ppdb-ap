@@ -61,9 +61,9 @@ class ProfilsekolahModel extends Model
         $this->_get_datatables_query();
         // $this->dt->where('a.role_user', '4');
 
-        // if ($filterJenajng != "") {
-        //     $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
-        // }
+        if ($filterJenajng != "") {
+            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        }
 
         if ($filterKecamatan != "") {
             $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
@@ -81,9 +81,9 @@ class ProfilsekolahModel extends Model
         $this->_get_datatables_query();
         // $this->dt->where('a.role_user', '4');
 
-        // if ($filterJenajng != "") {
-        //     $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
-        // }
+        if ($filterJenajng != "") {
+            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        }
 
         if ($filterKecamatan != "") {
             $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
@@ -98,9 +98,9 @@ class ProfilsekolahModel extends Model
         $this->_get_datatables_query();
         // $this->dt->where('a.role_user', '4');
 
-        // if ($filterJenajng != "") {
-        //     $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
-        // }
+        if ($filterJenajng != "") {
+            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        }
 
         if ($filterKecamatan != "") {
             $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");

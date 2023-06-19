@@ -6,7 +6,7 @@
     <div class="container">
         <div class="donate-form-area" style="background: none; border: none;">
             <h2 style="color: #fff;">PPDB ONLINE TP. 2023 - 2024</h2>
-            <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Login Panitia Sekolah, silahkan login menggunakan email dan password yang sudah didaftarkan pada layanan.</span></h6>
+            <h6 style="margin-bottom: 20px; color: #fff;background: rgb(255 255 255 / 19%);padding: 15px 20px; border-radius: 20px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);"><span>Untuk Login Panitia Sekolah, silahkan login menggunakan email dan password yang sudah didaftarkan pada layanan.</span><br/>Untuk Peserta didik, password defaultnya adalah tanggal lahir dengan format DDMMYY  contoh: (31072017)</h6>
             <div id="content_block_51">
                 <div class="content-box">
                     <div class="donation-box" style="visibility: visible;">

@@ -939,6 +939,7 @@
                                             <span class="sidenav-normal"> Jalur Zonasi </span>
                                         </a>
                                     </li>
+
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "pendaftaran"  && $uri->getSegment(3) == "prestasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('peserta/pendaftaran/prestasi') ?>">
                                             <span class="sidenav-mini-icon"> JP </span>

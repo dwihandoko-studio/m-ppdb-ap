@@ -156,6 +156,7 @@ class Profilsekolah extends BaseController
             return redirect()->to(base_url('dinas/setting/profilsekolah/data'));
         }
 
+        $data['sekolah'] = $sekolah;
         $data['user'] = $user->data;
         return view('dinas/setting/profilsekolah/detail', $data);
     }

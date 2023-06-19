@@ -4,7 +4,7 @@
 <?= $this->include('new-web/template/header') ?>
 <section class="portfolio-details">
     <div class="lower-box">
-        <div class="container">
+        <div class="container" style="padding-top: 100px;">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12 image-column">
                     <div class="image-content">
@@ -27,16 +27,18 @@
                         <ul class="info-list clearfix">
                             <li><span>NISN</span><?= $siswa->nisn ?></li>
                             <li><span>NIK</span><?= $s->nik ?></li>
-                            <li><span>Live demo</span><a href="#">www.envato.com</a></li>
+                            <li><span>Tempat Lahir</span><?= $s->tempat_lahir ?></li>
+                            <li><span>Tanggal Lahir</span><?= $s->tanggal_lahir ?></li>
+                            <!-- <li><span>Sekolah Asal</span><a href="#"><? $s->npsn ?></a></li> -->
                         </ul>
-                        <ul class="social-icons">
+                        <!-- <ul class="social-icons">
                             <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
                             <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
                             <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                             <li><a href="#"><i class="fab fa-dribbble-square"></i></a></li>
                             <li><a href="#"><i class="fab fa-behance"></i></a></li>
                             <li><a href="#"><i class="fab fa-pinterest-square"></i></a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>

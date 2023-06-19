@@ -56,6 +56,10 @@
                     </div>
                     <div class="card-body">
                         <p class="mb-4"><?= $aduan->deskripsi ?></p>
+                        <?php if ($aduan->nisn  == "" || $aduan->nisn == NULL) {
+                        } else { ?>
+                            <p class="mb-4"><?= $aduan->nisn ?> - <?= $aduan->npsn ?></p>
+                        <?php } ?>
                         <div class="row align-items-center my-3 pb-3 border-bottom">
                             <div class="col-sm-6">
                                 <div class="icon-actions">

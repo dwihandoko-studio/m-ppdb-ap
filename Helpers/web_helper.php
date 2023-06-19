@@ -560,7 +560,7 @@ function statusVerifikasiZonasiSekolah($sekolah_id)
 {
 	// SELECT COUNT(*) as total FROM _tb_pendaftar WHERE peserta_didik_id = ? AND via_jalur = 'PELIMPAHAN'
 	$db      = \Config\Database::connect();
-	$data = $db->table('_setting_zonasi_tb')
+	$data = $db->table('_setting_zonasi_tb') 
 		->select("COUNT(*) as total")
 		// ->join('ref_kelurahan b', 'a.kelurahan_id = b.id')
 		// ->join('ref_dusun c', 'a.dusun_id = c.id')

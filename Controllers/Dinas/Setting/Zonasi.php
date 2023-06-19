@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Dinas\ZonasiModel;
 use App\Models\Dinas\ZonasiallModel;
 use App\Models\Dinas\KuotaModel;
+use App\Models\Dinas\KuotamapModel;
 use Config\Services;
 
 use App\Libraries\Profilelib;
@@ -29,7 +30,7 @@ class Zonasi extends BaseController
     public function getAllSekolah()
     {
         $request = Services::request();
-        $datamodel = new KuotaModel($request);
+        $datamodel = new KuotamapModel($request);
 
         // $verifikasiAksesLib = new Verifikasihakakseslib();
         // $hakAksesMenu = $verifikasiAksesLib->cekHakAkses();

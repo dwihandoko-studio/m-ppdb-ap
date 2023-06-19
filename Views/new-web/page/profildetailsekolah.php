@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12" style="text-align: left !important;">
+                    <div class="col-lg-6 col-md-12" style="text-align: left !important; padding-left: 40px;">
                         <p>Nama Kepala Sekolah : <?= (isset($sekolah)) ? ($sekolah->nama_ks ? $sekolah->nama_ks : '-') : '-' ?></p>
                         <p>NIP Kepala Sekolah &nbsp;: <?= (isset($sekolah)) ? ($sekolah->nip_ks ? $sekolah->nip_ks : '-') : '-' ?></p>
                     </div>

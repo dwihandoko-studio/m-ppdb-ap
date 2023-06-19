@@ -48,7 +48,7 @@
                                             <?php foreach ($panitia as $key => $v) { ?>
                                                 <tr>
                                                     <td width="5%"><?= $key + 1 ?></td>
-                                                    <td style="text-align: left;"></td><?= $v->nama ?></td>
+                                                    <td style="text-align: left;"><?= $v->nama ?></td>
                                                     <td><?= $v->no_hp ?></td>
                                                 </tr>
                                             <?php } ?>

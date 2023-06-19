@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 content-column">
-                    <div class="content-box" style="padding-top: 50px;">
+                    <div class="content-box" style="padding-top: 100px;">
                         <h5><?= $siswa->fullname ?></h5>
                         <!-- <div class="text">
                             <p>Great code deserves an equally stunning visual representation, and this is what we deliver. Our Product Design team combines beautiful interfaces with captivating user experience. Top-notch blockchain developers, designers, and product owners - ready to build your product. </p>

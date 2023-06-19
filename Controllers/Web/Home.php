@@ -395,15 +395,20 @@ class Home extends BaseController
             }
         }
 
-        $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
-        if ($currentApprove) {
-            $pendaftaran = $currentApprove;
-        } else {
-            $pendaftaran = $this->_db->table('v_tb_pendaftar_temp')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
-        }
+        // $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
+        // if ($currentApprove) {
+        //     $pendaftaran = $currentApprove;
+        // } else {
+        //     $pendaftaran = $this->_db->table('v_tb_pendaftar_temp')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
 
-        $x['data'] = $pendaftaran;
-        return view('peserta/riwayat/cetak-pendaftaran', $x);
+        //     if (!$pendaftaran) {
+        $pendaftaran = $this->_db->table('_users_profil_tg')->where('peserta_didik_id', $id)->get()->getRowObject();
+        //     }
+        // }
+
+        $x['siswa'] = $pendaftaran;
+
+        return view('new-page/page/detail-pencarian', $x);
     }
 
     public function indexold()

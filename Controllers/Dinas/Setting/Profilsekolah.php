@@ -4,7 +4,7 @@ namespace App\Controllers\Dinas\Setting;
 
 use App\Controllers\BaseController;
 use App\Models\Dinas\ProfilsekolahModel;
-use App\Models\Sekolah\PanitiaModel;
+use App\Models\Dinas\PanitiaModel;
 use Config\Services;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

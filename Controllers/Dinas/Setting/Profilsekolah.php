@@ -72,9 +72,92 @@ class Profilsekolah extends BaseController
         echo json_encode($output);
     }
 
+    public function getAllPanitia()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('auth'));
+        }
+        $request = Services::request();
+        $datamodel = new PanitiaModel($request);
+
+        if ($request->getMethod(true) == 'POST') {
+            $userId = htmlspecialchars($request->getVar('sekolah'), true) ?? "";
+
+            $lists = $datamodel->get_datatables($userId);
+            $data = [];
+            $no = $request->getPost("start");
+            foreach ($lists as $list) {
+                $no++;
+                $row = [];
+
+                $row[] = $no;
+                $action = '<div class="dropup">
+                        <div class="btn btn-primary btn-sm" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <!--<button onclick="actionDetail(\'' . $list->id . '\')" type="button" class="dropdown-item">
+                                <i class="fa fa-eye"></i>
+                                <span>Detail</span>
+                            </button>-->
+                            <button onclick="actionEdit(\'' . $list->id . '\')" type="button" class="dropdown-item">
+                                <i class="ni ni-ruler-pencil"></i>
+                                <span>Edit</span>
+                            </button>
+                            <button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->nama . '\')" type="button" class="dropdown-item">
+                                <i class="fa fa-trash"></i>
+                                <span>Hapus</span>
+                            </button>
+                        </div>
+                    </div>';
+                // $row[] = $action;
+
+                $row[] = $list->nama;
+                $row[] = $list->no_hp;
+
+                $data[] = $row;
+            }
+            $output = [
+                "draw" => $request->getPost('draw'),
+                // "recordsTotal" => 0,
+                // "recordsFiltered" => 0,
+                "recordsTotal" => $datamodel->count_all($userId),
+                "recordsFiltered" => $datamodel->count_filtered($userId),
+                "data" => $data,
+                // "er" => $userId
+            ];
+            echo json_encode($output);
+        }
+    }
+
     public function index()
     {
         return redirect()->to(base_url('dinas/setting/profilsekolah/data'));
+    }
+
+    public function sekolah()
+    {
+        $data['title'] = 'DATA DETAIL PROFIL SEKOLAH';
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('auth'));
+        }
+
+        $id = htmlspecialchars($this->request->getGet('token'), true);
+        $sekolah = $this->_db->table('ref_sekolah')->where('id', $id)->get()->getRowObject();
+        if (!$sekolah) {
+            return redirect()->to(base_url('dinas/setting/profilsekolah/data'));
+        }
+
+        $data['user'] = $user->data;
+        return view('dinas/setting/profilsekolah/detail', $data);
     }
 
     public function data()

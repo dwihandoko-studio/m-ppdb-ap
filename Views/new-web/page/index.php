@@ -8,7 +8,7 @@
         <div class="content-box">
             <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Lampung Timur Tahun Pelajaran 2023/2024</h2>
             <div class="text">Website ini dipersiapkan sebagai pusat informasi dan pengolahan data seleksi penerimaan peserta didik baru Dinas Pendidikan Kabupaten Lampung Timur Tahun Pelajaran 2023/2024 secara online dan realtime.</div>
-            <div class="mail-box">
+            <div class="mail-box loading-cari-data">
                 <form action="#" method="post">
                     <div class="form-group">
                         <input type="text" name="_search" id="_search" placeholder="Masukkan NISN/NIK" required="">
@@ -236,46 +236,19 @@
             },
             dataType: 'JSON',
             beforeSend: function() {
-                loading = true;
-                $('div.donate-form-area').block({
+                $('div.loading-cari-data').block({
                     message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                 });
             },
             success: function(msg) {
-                console.log(msg);
                 if (msg.code != 200) {
-                    if (msg.code !== 201) {
-                        if (msg.code !== 202) {
-                            $('div.donate-form-area').unblock();
-                            loading = false;
-                            Swal.fire(
-                                'Gagal!',
-                                msg.message,
-                                'warning'
-                            );
-                        } else {
-                            Swal.fire(
-                                'Warning!',
-                                msg.message,
-                                'warning'
-                            ).then((valRes) => {
-                                // setTimeout(function() {
-                                document.location.href = msg.url;
-                                // }, 2000);
-
-                            })
-                        }
-                    } else {
-                        Swal.fire(
-                            'Berhasil!',
-                            msg.message,
-                            'success'
-                        ).then((valRes) => {
-                            // setTimeout(function() {
-                            document.location.href = msg.url;
-                            // }, 2000);
-                        })
-                    }
+                    $('div.loading-cari-data').unblock();
+                    loading = false;
+                    Swal.fire(
+                        'Gagal!',
+                        msg.message,
+                        'warning'
+                    );
                 } else {
                     Swal.fire(
                         'Berhasil!',
@@ -290,20 +263,14 @@
                 }
             },
             error: function(data) {
-                console.log(data);
-                if (data.status === 200 && (data.statusText === "parsererror" || data.statusText === "OK")) {
-                    // setTimeout(function() {
-                    document.location.href = BASE_URL + '/dahboard';
-                    // }, 2000);
-                } else {
-                    loading = false;
-                    $('div.donate-form-area').unblock();
-                    Swal.fire(
-                        'Gagal!',
-                        "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                        'warning'
-                    );
-                }
+
+                $('div.loading-cari-data').unblock();
+                Swal.fire(
+                    'Gagal!',
+                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                    'warning'
+                );
+
             }
         });
     }

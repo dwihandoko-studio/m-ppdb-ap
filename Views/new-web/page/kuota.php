@@ -51,9 +51,9 @@
                         <thead style="border: 1px solid #273581;">
                             <tr>
                                 <th data-orderable="false" style="vertical-align: middle;">#</th>
-                                <th style="vertical-align: middle;">Nama Sekolah</th>
+                                <th style="vertical-align: middle; text-align: left;">Nama Sekolah</th>
                                 <th style="vertical-align: middle;">NPSN</th>
-                                <th style="vertical-align: middle;">Nama Kecamatan</th>
+                                <th style="vertical-align: middle; text-align: left;">Nama Kecamatan</th>
                                 <th style="vertical-align: middle;">Daya Tampung</th>
                             </tr>
 

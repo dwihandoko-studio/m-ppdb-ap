@@ -55,7 +55,7 @@
                                         <th data-orderable="false">No</th>
                                         <!-- <th></th> -->
                                         <th>NPSN Sekolah</th>
-                                        <th>Nama Sekolah</th>
+                                        <th style="text-align: left;">Nama Sekolah</th>
                                         <th data-orderable="false">&nbsp;</th>
                                     </tr>
                                 </thead>

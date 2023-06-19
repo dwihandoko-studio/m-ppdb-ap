@@ -38,7 +38,7 @@
                                 <thead style="border: 1px solid #273581;">
                                     <tr>
                                         <th data-orderable="false">No</th>
-                                        <th data-orderable="false">Nama Panitia</th>
+                                        <th data-orderable="false" style="text-align: left;">Nama Panitia</th>
                                         <th data-orderable="false">No Handphone</th>
                                     </tr>
                                 </thead>

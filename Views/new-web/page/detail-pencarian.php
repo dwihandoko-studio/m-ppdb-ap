@@ -13,7 +13,7 @@
                             <h2>Detail Data Siswa</h2>
                         </div>
                         <div class="image-box wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
-                            <figure class="image"><a href="<?= base_url('uploads/peserta/user') . '/' . $user->profile_picture ?>" class="lightbox-image" data-fancybox="gallery"><img src="<?= base_url('uploads/peserta/user') . '/' . $user->profile_picture ?>" alt=""></a></figure>
+                            <figure class="image"><a href="<?= base_url('uploads/peserta/user') . '/' . $siswa->profile_picture ?>" class="lightbox-image" data-fancybox="gallery"><img src="<?= base_url('uploads/peserta/user') . '/' . $siswa->profile_picture ?>" alt=""></a></figure>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <!-- <div class="text">
                             <p>Great code deserves an equally stunning visual representation, and this is what we deliver. Our Product Design team combines beautiful interfaces with captivating user experience. Top-notch blockchain developers, designers, and product owners - ready to build your product. </p>
                         </div> -->
-                        <?= $s = json_decode($user->details) ?>
+                        <?= $s = json_decode($siswa->details) ?>
                         <ul class="info-list clearfix">
                             <li><span>NISN</span><?= $siswa->nisn ?></li>
                             <li><span>NIK</span><?= $s->nik ?></li>

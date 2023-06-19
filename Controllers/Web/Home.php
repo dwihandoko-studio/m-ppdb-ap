@@ -408,6 +408,9 @@ class Home extends BaseController
 
         $x['siswa'] = $pendaftaran;
 
+        var_dump($pendaftaran);
+        die;
+
         return View('new-web/page/detail-pencarian', $x);
     }
 

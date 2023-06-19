@@ -207,7 +207,7 @@ class Sekolah extends BaseController
             $data = [
                 'latitude' => $latitude,
                 'longitude' => $longitude,
-                'updated_at' => date('Y-m-d H:i:s')
+                // 'updated_at' => date('Y-m-d H:i:s')
             ];
 
             try {

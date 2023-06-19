@@ -402,7 +402,7 @@ class Home extends BaseController
         //     $pendaftaran = $this->_db->table('v_tb_pendaftar_temp')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
 
         //     if (!$pendaftaran) {
-        $pendaftaran = $this->_db->table('_users_profil_tg')->where('peserta_didik_id', $id)->get()->getRowObject();
+        $pendaftaran = $this->_db->table('_users_profil_tb')->where('peserta_didik_id', $id)->get()->getRowObject();
         //     }
         // }
 

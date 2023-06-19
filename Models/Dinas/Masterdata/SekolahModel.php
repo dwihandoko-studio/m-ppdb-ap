@@ -9,8 +9,8 @@ class SekolahModel extends Model
 {
     protected $table = "ref_sekolah a";
     protected $column_order = array(null, null, 'a.npsn', 'a.nama', 'a.status_sekolah', 'a.latitude', 'a.longitude');
-    protected $column_search = array('a.npsn','a.nama');
-    protected $order = array('a.bentuk_pendidikan_id' => 'asc','a.nama' => 'asc');
+    protected $column_search = array('a.npsn', 'a.nama');
+    protected $order = array('a.bentuk_pendidikan_id' => 'asc', 'a.nama' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -56,14 +56,15 @@ class SekolahModel extends Model
     function get_datatables($filterKecamatan, $filterJenjang)
     {
         $this->_get_datatables_query();
-        $this->dt->whereIn('a.bentuk_pendidikan_id', [5,6]);
-        $this->dt->where('LEFT(a.kode_wilayah,4)', substr(getenv('ppdb.default.wilayahppdb'),0,4));
-        
-        if($filterKecamatan != "") {
+        // $this->dt->whereIn('a.bentuk_pendidikan_id', [5,6]);
+        $this->dt->where('LEFT(a.kode_wilayah,4)', substr(getenv('ppdb.default.wilayahppdb'), 0, 4));
+        $this->dt->where('a.bentuk_pendidikan_id', 6);
+
+        if ($filterKecamatan != "") {
             $this->dt->where('a.kode_wilayah', $filterKecamatan);
         }
 
-        if($filterJenjang != "") {
+        if ($filterJenjang != "") {
             $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
         }
 
@@ -75,14 +76,15 @@ class SekolahModel extends Model
     function count_filtered($filterKecamatan, $filterJenjang)
     {
         $this->_get_datatables_query();
-        $this->dt->whereIn('a.bentuk_pendidikan_id', [5,6]);
-        $this->dt->where('LEFT(a.kode_wilayah,4)', substr(getenv('ppdb.default.wilayahppdb'),0,4));
-        
-        if($filterKecamatan != "") {
+        // $this->dt->whereIn('a.bentuk_pendidikan_id', [5,6]);
+        $this->dt->where('LEFT(a.kode_wilayah,4)', substr(getenv('ppdb.default.wilayahppdb'), 0, 4));
+        $this->dt->where('a.bentuk_pendidikan_id', 6);
+
+        if ($filterKecamatan != "") {
             $this->dt->where('a.kode_wilayah', $filterKecamatan);
         }
 
-        if($filterJenjang != "") {
+        if ($filterJenjang != "") {
             $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
         }
 
@@ -91,14 +93,15 @@ class SekolahModel extends Model
     public function count_all($filterKecamatan, $filterJenjang)
     {
         $this->_get_datatables_query();
-        $this->dt->whereIn('a.bentuk_pendidikan_id', [5,6]);
-        $this->dt->where('LEFT(a.kode_wilayah,4)', substr(getenv('ppdb.default.wilayahppdb'),0,4));
+        // $this->dt->whereIn('a.bentuk_pendidikan_id', [5,6]);
+        $this->dt->where('LEFT(a.kode_wilayah,4)', substr(getenv('ppdb.default.wilayahppdb'), 0, 4));
+        $this->dt->where('a.bentuk_pendidikan_id', 6);
 
-        if($filterKecamatan != "") {
+        if ($filterKecamatan != "") {
             $this->dt->where('a.kode_wilayah', $filterKecamatan);
         }
 
-        if($filterJenjang != "") {
+        if ($filterJenjang != "") {
             $this->dt->where('a.bentuk_pendidikan_id', $filterJenjang);
         }
 

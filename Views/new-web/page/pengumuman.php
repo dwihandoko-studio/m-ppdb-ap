@@ -54,7 +54,7 @@
                                     <tr>
                                         <th></th>
                                         <th>#</th>
-                                        <th style="text-align: left;">NAMA</th>
+                                        <th>NAMA</th>
                                         <th>NPSN</th>
                                     </tr>
                                 </thead>

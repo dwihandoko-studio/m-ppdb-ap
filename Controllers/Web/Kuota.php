@@ -70,8 +70,8 @@ class Kuota extends BaseController
                 $row['npsn'] = $list->npsn;
                 $row['kecamatan'] = $list->nama_kecamatan;
                 $row['jumlah'] = (int)$list->zonasi + (int)$list->afirmasi + (int)$list->mutasi + (int)$list->prestasi;
-                $row['zonasi'] = $list->zonasi;
                 $row['afirmasi'] = $list->afirmasi;
+                $row['zonasi'] = $list->zonasi;
                 $row['mutasi'] = $list->mutasi;
                 $row['prestasi'] = $list->prestasi;
                 $row['id'] = $list->id;

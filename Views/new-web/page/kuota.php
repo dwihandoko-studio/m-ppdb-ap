@@ -84,15 +84,15 @@
             '<td></td>' +
             '</tr>' +
             '<tr>' +
-            '<td>Zonasi:</td>' +
-            '<td>' +
-            d.zonasi +
-            '</td>' +
-            '</tr>' +
-            '<tr>' +
             '<td>Afirmasi:</td>' +
             '<td>' +
             d.afirmasi +
+            '</td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td>Zonasi:</td>' +
+            '<td>' +
+            d.zonasi +
             '</td>' +
             '</tr>' +
             '<tr>' +

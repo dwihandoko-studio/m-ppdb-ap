@@ -10,7 +10,7 @@
                     <div class="image-content">
                         <div class="title-box">
                             <!-- <span>Graphic Design , Digital marketing</span> -->
-                            <h2>Detail Data Siswa</h2>
+                            <h2 style="text-align: center;">Detail Data Siswa</h2>
                         </div>
                         <div class="image-box wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
                             <figure class="image"><a href="<?= base_url('uploads/peserta/user') . '/' . $siswa->profile_picture ?>" class="lightbox-image" data-fancybox="gallery"><img src="<?= base_url('uploads/peserta/user') . '/' . $siswa->profile_picture ?>" alt=""></a></figure>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 content-column">
-                    <div class="content-box">
+                    <div class="content-box" style="padding-top: 50px;">
                         <h5><?= $siswa->fullname ?></h5>
                         <!-- <div class="text">
                             <p>Great code deserves an equally stunning visual representation, and this is what we deliver. Our Product Design team combines beautiful interfaces with captivating user experience. Top-notch blockchain developers, designers, and product owners - ready to build your product. </p>

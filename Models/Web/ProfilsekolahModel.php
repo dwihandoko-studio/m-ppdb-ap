@@ -7,10 +7,10 @@ use CodeIgniter\Model;
 
 class ProfilsekolahModel extends Model
 {
-    protected $table = "_users_profil_tb a";
-    protected $column_order = array(null, 'b.npsn', 'b.nama_sekolah', null);
-    protected $column_search = array('b.nama_sekolah', 'b.npsn');
-    protected $order = array('b.nama_sekolah' => 'asc');
+    protected $table = "_ref_profil_sekolah a";
+    protected $column_order = array(null, 'a.npsn', 'b.nama', null);
+    protected $column_search = array('b.nama', 'a.npsn');
+    protected $order = array('b.nama' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -26,10 +26,11 @@ class ProfilsekolahModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.*, a.npsn as npsn_sekolah, count(b.id) as jumlah, a.role_user";
+        $select = "a.*, b.nama as nama_sekolah, b.kode_wilayah, c.role_user";
 
         $this->dt->select($select);
-        $this->dt->join('v_profil_sekolah b', 'a.sekolah_id = b.id', 'LEFT');
+        $this->dt->join('ref_sekolah b', 'a.id = b.id');
+        $this->dt->join('_users_profil_tb c', 'a.id = c.sekolah_id');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
         // $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');
 
@@ -58,17 +59,17 @@ class ProfilsekolahModel extends Model
     function get_datatables($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
-        $this->dt->where('a.role_user', '4');
+        // $this->dt->where('a.role_user', '4');
 
-        if ($filterJenajng != "") {
-            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
-        }
+        // if ($filterJenajng != "") {
+        //     $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        // }
 
         if ($filterKecamatan != "") {
-            $this->dt->where('b.kecamatan', $filterKecamatan);
+            $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
         }
 
-        $this->dt->groupBy('b.npsn');
+        $this->dt->groupBy('a.npsn');
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -78,34 +79,34 @@ class ProfilsekolahModel extends Model
     function count_filtered($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
-        $this->dt->where('a.role_user', '4');
+        // $this->dt->where('a.role_user', '4');
 
-        if ($filterJenajng != "") {
-            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
-        }
+        // if ($filterJenajng != "") {
+        //     $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        // }
 
         if ($filterKecamatan != "") {
-            $this->dt->where('b.kecamatan', $filterKecamatan);
+            $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
         }
 
-        $this->dt->groupBy('b.npsn');
+        $this->dt->groupBy('a.npsn');
 
         return $this->dt->countAllResults();
     }
     public function count_all($filterJenajng, $filterKecamatan)
     {
         $this->_get_datatables_query();
-        $this->dt->where('a.role_user', '4');
+        // $this->dt->where('a.role_user', '4');
 
-        if ($filterJenajng != "") {
-            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
-        }
+        // if ($filterJenajng != "") {
+        //     $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        // }
 
         if ($filterKecamatan != "") {
-            $this->dt->where('b.kecamatan', $filterKecamatan);
+            $this->dt->where("LEFT(b.kode_wilayah,6) = '$filterKecamatan'");
         }
 
-        $this->dt->groupBy('b.npsn');
+        $this->dt->groupBy('a.npsn');
 
         return $this->dt->countAllResults();
     }

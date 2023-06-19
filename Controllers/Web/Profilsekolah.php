@@ -82,7 +82,7 @@ class Profilsekolah extends BaseController
                 $row[] = $no;
                 // $row[] = '<button type="button" onclick="actionDetailZonasi(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
                 // $row[] = $list->id;
-                $row[] = $list->npsn_sekolah;
+                $row[] = $list->npsn;
                 $row[] = $list->nama_sekolah;
                 $row[] = '<a href="' . base_url('web/profilsekolah/detail') . '?id=' . $list->id . '" style="btn btn-sm btn-primary"><i class="fas fa-eye"></i> Detail</a>';
                 // $row['no'] = $no;

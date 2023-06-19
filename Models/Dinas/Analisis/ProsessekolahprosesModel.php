@@ -79,7 +79,7 @@ class ProsessekolahprosesModel extends Model
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
         }
 
-        $this->dt->groupBy('a.tujuan_sekolah_id');
+        $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -99,7 +99,7 @@ class ProsessekolahprosesModel extends Model
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
         }
 
-        $this->dt->groupBy('a.tujuan_sekolah_id');
+        $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         return $this->dt->countAllResults();
     }
@@ -116,7 +116,7 @@ class ProsessekolahprosesModel extends Model
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
         }
 
-        $this->dt->groupBy('a.tujuan_sekolah_id');
+        $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         return $this->dt->countAllResults();
     }

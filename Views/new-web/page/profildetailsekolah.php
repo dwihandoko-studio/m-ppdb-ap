@@ -47,7 +47,7 @@
                                         <?php if (count($panitia) > 0) { ?>
                                             <?php foreach ($panitia as $key => $v) { ?>
                                                 <tr>
-                                                    <td width="5%"><?= $key + 1 ?></td>
+                                                    <td><?= $key + 1 ?></td>
                                                     <td style="text-align: left;"><?= $v->nama ?></td>
                                                     <td><?= $v->no_hp ?></td>
                                                 </tr>

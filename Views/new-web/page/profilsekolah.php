@@ -16,7 +16,7 @@
                             <div class="card-body">
                                 <div class="callout callout-info">
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                             <div class="form-group jenjang_zonasi-block">
                                                 <label for="filter_jenjang_zonasi" class="form-control-label">Filter Jenjang</label>
                                                 <select class="form-control filter-jenjang-zonasi" name="filter_jenjang_zonasi" id="filter_jenjang_zonasi" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
@@ -25,7 +25,7 @@
                                                     <option value="5">SD</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                             <div class="form-group kecamatan-block">
                                                 <label for="filter_kecamatan" class="form-control-label">Filter Kecamatan</label>
@@ -76,7 +76,7 @@
 <script>
     function initSelect2(event) {
         $('#' + event).select2({
-            dropdownParent: "#_zonasi_sekolah"
+            dropdownParent: "#_profil_sekolah"
         });
     }
 

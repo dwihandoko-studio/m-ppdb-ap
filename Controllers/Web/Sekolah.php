@@ -314,7 +314,8 @@ class Sekolah extends BaseController
         $id_kec = htmlspecialchars($this->request->getGet('id'), true);
         $jenjang = htmlspecialchars($this->request->getGet('j'), true);
 
-        $data['sekolahs'] = $this->_db->table('ref_sekolah')->where(['kode_wilayah' => $id_kec, 'bentuk_pendidikan_id' => $jenjang])->orderBy('nama', 'asc')->get()->getResult();
+        // $data['sekolahs'] = $this->_db->table('ref_sekolah')->where(['kode_wilayah' => $id_kec, 'bentuk_pendidikan_id' => $jenjang])->orderBy('nama', 'asc')->get()->getResult();
+        $data['sekolahs'] = $this->_db->table('ref_sekolah')->where("LEFT(kode_wilayah, 6) = '$id_kec' AND bentuk_pendidikan_id = '$jenjang'")->orderBy('nama', 'asc')->get()->getResult();
 
         // $data['jumlah_kuota'] = $this->_db->table('v_jumlah_kuota')
         //     ->select("SUM(zonasi) as zonasi, SUM(afirmasi) as afirmasi, SUM(prestasi) as prestasi, SUM(mutasi) as mutasi, SUM(pendaftar_zonasi_terverifikasi) as pendaftar_zonasi_terverifikasi, SUM(pendaftar_zonasi_antrian) as pendaftar_zonasi_antrian, SUM(pendaftar_afirmasi_terverifikasi) as pendaftar_afirmasi_terverifikasi, SUM(pendaftar_afirmasi_antrian) as pendaftar_afirmasi_antrian, SUM(pendaftar_mutasi_terverifikasi) as pendaftar_mutasi_terverifikasi, SUM(pendaftar_mutasi_antrian) as pendaftar_mutasi_antrian, SUM(pendaftar_prestasi_terverifikasi) as pendaftar_prestasi_terverifikasi, SUM(pendaftar_prestasi_antrian) as pendaftar_prestasi_antrian, SUM(pendaftar_swasta_terverifikasi) as pendaftar_swasta_terverifikasi, SUM(pendaftar_swasta_antrian) as pendaftar_swasta_antrian")

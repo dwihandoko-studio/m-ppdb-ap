@@ -10,6 +10,17 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <p>Nama Kepala Sekolah : <?= (isset($sekolah)) ? ($sekolah->nama_ks ? $sekolah->nama_ks : '-') : '-' ?></p>
+                        <p>NIP Kepala Sekolah : <?= (isset($sekolah)) ? ($sekolah->nip_ks ? $sekolah->nip_ks : '-') : '-' ?></p>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="btn-box"><a target="_blank" href="<?= (isset($sekolah)) ? $sekolah->url_profil : '#' ?>" class="theme-btn">Lihat Profil Sekolah Dapodik<i class="fas fa-angle-right"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
                 <div class="cardcus loading-content-card">
                     <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card card-default" style="border-bottom: none;">

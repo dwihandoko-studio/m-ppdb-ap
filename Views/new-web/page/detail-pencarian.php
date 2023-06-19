@@ -23,7 +23,7 @@
                         <!-- <div class="text">
                             <p>Great code deserves an equally stunning visual representation, and this is what we deliver. Our Product Design team combines beautiful interfaces with captivating user experience. Top-notch blockchain developers, designers, and product owners - ready to build your product. </p>
                         </div> -->
-                        <?= $s = json_decode($d) ?>
+                        <?php $s = json_decode($siswa->details) ?>
                         <ul class="info-list clearfix">
                             <li><span>NISN</span><?= $siswa->nisn ?></li>
                             <li><span>NIK</span><?= $s->nik ?></li>

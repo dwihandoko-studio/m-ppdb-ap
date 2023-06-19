@@ -407,7 +407,7 @@ class Home extends BaseController
         // }
 
         $x['siswa'] = $pendaftaran;
-        $x['d'] = json_encode($pendaftaran->details);
+        // $x['d'] = json_encode($pendaftaran->details);
 
         return View('new-web/page/detail-pencarian', $x);
     }

@@ -74,7 +74,7 @@ class Riwayat extends BaseController
             session()->destroy();
             return redirect()->to(base_url('web/home'));
         }
-        
+
         $data['user'] = $user->data;
 
         return view('peserta/riwayat/aktifitas', $data);
@@ -200,7 +200,7 @@ class Riwayat extends BaseController
                 $response->message = "Session anda telah habis. Silahkan login ulang ke aplikasi.";
                 return json_encode($response);
             }
-            
+
             $id = htmlspecialchars($this->request->getVar('id'), true);
             $kode = htmlspecialchars($this->request->getVar('kode'), true);
             $jalur = htmlspecialchars($this->request->getVar('jalur'), true);
@@ -269,7 +269,7 @@ class Riwayat extends BaseController
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
-        
+
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
         if ($user->code != 200) {
@@ -331,7 +331,7 @@ class Riwayat extends BaseController
         // var_dump($pendaftaran);
         // die;
         // ->select("*, , ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
-        
+
         $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
         if ($currentApprove) {
             $pendaftaran = $currentApprove;

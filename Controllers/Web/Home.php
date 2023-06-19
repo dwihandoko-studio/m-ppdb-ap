@@ -383,13 +383,27 @@ class Home extends BaseController
     {
         $id = htmlspecialchars($this->request->getGet('token'), true);
 
-        // if ($id == "") {
-        $response = new \stdClass;
-        $response->code = 400;
-        $response->token = $id;
-        $response->message = "Data tidak ditemukan";
-        return json_encode($response);
-        // }
+
+        $data = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $id)->get()->getRowObject();
+        if (!$data) {
+            $data = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $id)->get()->getRowObject();
+            if (!$data) {
+                $data = $this->_db->table('_tb_pendaftar_tolak')->where('peserta_didik_id', $id)->get()->getRowObject();
+                if (!$data) {
+                    return View('new-web/page/404');
+                }
+            }
+        }
+
+        $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
+        if ($currentApprove) {
+            $pendaftaran = $currentApprove;
+        } else {
+            $pendaftaran = $this->_db->table('v_tb_pendaftar_temp')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
+        }
+
+        $x['data'] = $pendaftaran;
+        return view('peserta/riwayat/cetak-pendaftaran', $x);
     }
 
     public function indexold()

@@ -386,6 +386,7 @@ class Home extends BaseController
         // if ($id == "") {
         $response = new \stdClass;
         $response->code = 400;
+        $response->token = $id;
         $response->message = "Data tidak ditemukan";
         return json_encode($response);
         // }

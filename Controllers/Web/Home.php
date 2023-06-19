@@ -384,16 +384,16 @@ class Home extends BaseController
         $id = htmlspecialchars($this->request->getGet('token'), true);
 
 
-        $data = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $id)->get()->getRowObject();
-        if (!$data) {
-            $data = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $id)->get()->getRowObject();
-            if (!$data) {
-                $data = $this->_db->table('_tb_pendaftar_tolak')->where('peserta_didik_id', $id)->get()->getRowObject();
-                if (!$data) {
-                    return View('new-web/page/404');
-                }
-            }
-        }
+        // $data = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $id)->get()->getRowObject();
+        // if (!$data) {
+        //     $data = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $id)->get()->getRowObject();
+        //     if (!$data) {
+        //         $data = $this->_db->table('_tb_pendaftar_tolak')->where('peserta_didik_id', $id)->get()->getRowObject();
+        //         if (!$data) {
+        //             return View('new-web/page/404');
+        //         }
+        //     }
+        // }
 
         // $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
         // if ($currentApprove) {

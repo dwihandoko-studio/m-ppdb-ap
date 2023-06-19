@@ -408,7 +408,7 @@ class Home extends BaseController
 
         $x['siswa'] = $pendaftaran;
 
-        return view('new-page/page/detail-pencarian', $x);
+        return View('new-page/page/detail-pencarian', $x);
     }
 
     public function indexold()

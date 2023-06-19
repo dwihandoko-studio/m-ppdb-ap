@@ -52,7 +52,7 @@
                             <thead>
                                 <tr>
                                     <th data-orderable="false">#</th>
-                                    <th data-orderable="false">Aksi</th>
+                                    <!-- <th data-orderable="false">Aksi</th> -->
                                     <th>Nama Panitia</th>
                                     <th>Nomor Handphone</th>
                                 </tr>

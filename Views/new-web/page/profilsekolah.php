@@ -76,7 +76,7 @@
 <script>
     function initSelect2(event) {
         $('#' + event).select2({
-            dropdownParent: "#_zonasi_sekolah"
+            dropdownParent: "#_profil_sekolah"
         });
     }
 

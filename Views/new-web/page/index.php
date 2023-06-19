@@ -7,11 +7,11 @@
         <div class="content-box">
             <h2>Penerimaan Peserta Didik Baru Dinas Pendidikan dan Kebudayaan<br>Kabupaten Pesawaran Tahun Pelajaran 2023/2024</h2>
             <div class="text">Website ini dipersiapkan sebagai pusat informasi dan pengolahan data seleksi penerimaan peserta didik baru Dinas Pendidikan Kabupaten Pesawaran Tahun Pelajaran 2023/2024 secara online dan realtime.</div>
-            <div class="mail-box">
+            <div class="mail-box loading-cari-data">
                 <form action="#" method="post">
                     <div class="form-group">
                         <input type="text" name="_search" id="_search" placeholder="Masukkan NISN/NIK" required="">
-                        <button type="submit">Cari Data Siswa</button>
+                        <button onclick="cariDataSiswa(this)" type="button">Cari Data Siswa</button>
                     </div>
                 </form>
             </div>
@@ -222,7 +222,69 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptBottom'); ?>
+<script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script>
+    function cariDataSiswa(event) {
+        const keyword = document.getElementsByName('_search')[0].value;
+
+        if (keyword.lenght < 10) {
+            Swal.fire(
+                'Peringatan!',
+                "Silahkan masukkan NISN / NIK dengan benar.",
+                'warning'
+            );
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: BASE_URL + '/web/home/cari',
+            data: {
+                keyword: keyword,
+            },
+            dataType: 'JSON',
+            beforeSend: function() {
+                $('div.loading-cari-data').block({
+                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                });
+            },
+            success: function(msg) {
+                if (msg.code != 200) {
+                    $('div.loading-cari-data').unblock();
+                    loading = false;
+                    Swal.fire(
+                        'Peringatan!',
+                        msg.message,
+                        'warning'
+                    );
+                } else {
+                    // Swal.fire(
+                    //     'Berhasil!',
+                    //     msg.message,
+                    //     'success'
+                    // ).then((valRes) => {
+                    // setTimeout(function() {
+                    document.location.href = msg.url;
+                    // }, 2000);
+                    // document.location.href = window.location.href + "dashboard";
+                    // })
+                }
+            },
+            error: function(data) {
+
+                $('div.loading-cari-data').unblock();
+                Swal.fire(
+                    'Gagal!',
+                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                    'warning'
+                );
+
+            }
+        });
+    }
+</script>
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptTop'); ?>
+<link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <?= $this->endSection(); ?>

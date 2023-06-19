@@ -322,6 +322,96 @@ class Home extends BaseController
         return view('new-web/page/index', $data);
     }
 
+    public function cari()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'keyword' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Keyword tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('keyword');
+            return json_encode($response);
+        } else {
+            $id = htmlspecialchars($this->request->getVar('keyword'), true);
+
+            if ($id == "") {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan";
+                return json_encode($response);
+            }
+
+            $siswa = $this->_db->table('_users_profil_tb')->select('peserta_didik_id')->where("nisn = '$id' OR nip = '$id'")->get()->getRowObject();
+
+            if (!$siswa) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            if ($siswa->peserta_didik_id == NULL || $siswa->peserta_didik_id == "") {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Dataditemukan.";
+            $response->url = base_url('web/home/detail') . '?token=' . $siswa->peserta_didik_id;
+            return json_encode($response);
+        }
+    }
+
+    public function detail()
+    {
+        $id = htmlspecialchars($this->request->getGet('token'), true);
+
+
+        $data = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $id)->get()->getRowObject();
+        if (!$data) {
+            $data = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $id)->get()->getRowObject();
+            if (!$data) {
+                $data = $this->_db->table('_tb_pendaftar_tolak')->where('peserta_didik_id', $id)->get()->getRowObject();
+                if (!$data) {
+                    return View('new-web/page/404');
+                }
+            }
+        }
+
+        // $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
+        // if ($currentApprove) {
+        //     $pendaftaran = $currentApprove;
+        // } else {
+        //     $pendaftaran = $this->_db->table('v_tb_pendaftar_temp')->where('peserta_didik_id', $id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
+
+        //     if (!$pendaftaran) {
+        $pendaftaran = $this->_db->table('_users_profil_tb')->where('peserta_didik_id', $id)->get()->getRowObject();
+        //     }
+        // }
+
+        $x['siswa'] = $pendaftaran;
+        // $x['d'] = json_encode($pendaftaran->details);
+
+        return View('new-web/page/detail-pencarian', $x);
+    }
+
     public function indexold()
     {
         $Profilelib = new Profilelib();

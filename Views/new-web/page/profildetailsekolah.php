@@ -33,9 +33,11 @@
                                     <?php if (isset($panitia)) { ?>
                                         <?php if (count($panitia) > 0) { ?>
                                             <?php foreach ($panitia as $key => $v) { ?>
-                                                <td><?= $key + 1 ?></td>
-                                                <td><?= $v->nama ?></td>
-                                                <td><?= $v->no_hp ?></td>
+                                                <tr>
+                                                    <td><?= $key + 1 ?></td>
+                                                    <td><?= $v->nama ?></td>
+                                                    <td><?= $v->no_hp ?></td>
+                                                </tr>
                                             <?php } ?>
                                         <?php } ?>
                                     <?php } ?>

@@ -85,7 +85,7 @@
             <h4>Contact Info</h4>
             <ul>
                 <li>Jl. Buay Selagai Kompleks Perkantoran Pemda Lampung Timur, Sukadana</li>
-                <li><a href="tel:082185581129">082185581129</a></li>
+                <li><a href="tel:0725625037">(0725) 625037</a></li>
                 <!-- <li><a href="mailto:lamtim.ppdb@kntechline.com">lamtim.ppdb@kntechline.com</a></li> -->
             </ul>
         </div>

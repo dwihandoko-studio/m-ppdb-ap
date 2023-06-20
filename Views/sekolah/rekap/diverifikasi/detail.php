@@ -210,12 +210,260 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button onclick="aksiCabutBerkas('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Cabut Berkas Pendaftaran</button>
                 <!--<button onclick="aksiUbahKoordinat('<?= $data->id ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Benahi Koordinat Peserta</button> -->
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
             </div>
         </form>
 
         <script>
+            function aksiCabutBerkas(id, name) {
+                Swal.fire({
+                    title: 'Apakah anda yakin ingin mencabut berkas pendaftaran peserta didik dari sekolah anda?',
+                    text: "Cabut berkas pendaftaran peserta didik atas nama: " + name,
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Cabut Berkas!',
+                    cancelButtonText: 'Tidak',
+                }).then((result) => {
+                    if (result.value) {
+                        let cabutHtml = '';
+                        cabutHtml += '<form>';
+                        cabutHtml += '<div class="modal-body">';
+                        cabutHtml += '<div class="form-group">';
+                        cabutHtml += '<label for="_keterangan_pencabutan">Keterangan Pencabutan</label>';
+                        cabutHtml += '<textarea class="form-control" id="_keterangan_pencabutan" name="_keterangan_pencabutan" placeholder="Masukkan keterangan pencabutan . . ." rows="5"></textarea>';
+                        cabutHtml += '<input type="hidden" id="_id_pendaftar" name="_id_pendaftar" value="';
+                        cabutHtml += id;
+                        cabutHtml += '">';
+                        cabutHtml += '<input type="hidden" id="_nama_pendaftar" name="_nama_pendaftar" value="';
+                        cabutHtml += name;
+                        cabutHtml += '">';
+                        cabutHtml += '</div>';
+
+                        cabutHtml += '<hr/><h5 class="heading-small" style="margin-top: 20px;">Upload Surat Pernyataan</h5>';
+                        // cabutHtml += '<div class="row">';
+                        // cabutHtml += '<div class="col-md-6">';
+                        cabutHtml += '<div class="form-group" id="file-error">';
+                        cabutHtml += '<h5>Pass Foto<span class="required">*</span></h5>';
+                        cabutHtml += '<div class="controls">';
+                        cabutHtml += '<input type="file" class="form-control" id="_file" name="_file" onFocus="inputFocus(this);" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this)" required>';
+                        cabutHtml += '<div class="help-block _file" for="file"></div>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '<p>Pilih gambar/pdf dengan ukuran maksimal 2 Mb.</p>';
+                        cabutHtml += '</div>';
+                        // cabutHtml += '</div>';
+                        // cabutHtml += '<div class="col-md-6">';
+                        // cabutHtml += '<label>&nbsp;</label>';
+                        cabutHtml += '<div class="form-group">';
+                        cabutHtml += '<div class="preview-image-upload">';
+                        cabutHtml += '<img style="max-height: 100px;" class="imagePreviewUpload" id="imagePreviewUpload" />';
+                        cabutHtml += '<button type="button" class="btn-remove-preview-image">Remove</button>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '</div>';
+                        // cabutHtml += '</div>';
+                        // cabutHtml += '</div>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '<div class="modal-footer">';
+                        cabutHtml += '<div class="row">';
+                        cabutHtml += '<div class="col-md-12">';
+                        cabutHtml += '<div class="progress-wrapper progress-_progress_laporan" style="display: none;">';
+                        cabutHtml += '<div class="progress-info">';
+                        cabutHtml += '<div class="progress-label">';
+                        cabutHtml += '<span class="status-_progress_laporan" id="status-_progress_laporan">Memulai Upload . . .</span>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '<div class="progress-percentage progress-percent-_progress_laporan" id="progress-percent-_progress_laporan">';
+                        cabutHtml += '<span>0%</span>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '<div class="progress">';
+                        cabutHtml += '<div class="progress-bar bg-info progressbar-_progress_laporan" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '<div class="col-md-12">';
+                        cabutHtml += '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>';
+                        cabutHtml += '<button onclick="saveCabutBerkas(event)" type="button" class="btn btn-outline-success">CABUT & SIMPAN</button>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '</div>';
+                        cabutHtml += '</form>';
+
+                        $('#cabutModalLabel').html('CABUT BERKAS PENDAFTARAN PESERTA DIDIK AN. ' + name.toUpperCase());
+                        $('.cabutBodyModal').html(cabutHtml);
+                        $('#cabutModal').modal({
+                            backdrop: 'static',
+                            keyboard: false
+                        }, 'show');
+                    }
+                })
+            }
+
+            function saveCabutBerkas() {
+                const keterangan = document.getElementsByName('_keterangan_pencabutan')[0].value;
+                const surat_pernyataan = document.getElementsByName('_file')[0].value;
+
+                if (keterangan === "") {
+                    $("input#_keterangan_pencabutan").css("color", "#dc3545");
+                    $("input#_keterangan_pencabutan").css("border-color", "#dc3545");
+                    $('._keterangan_pencabutan').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Keterangan pencabutan tidak boleh kosong.</li></ul>');
+                    return;
+                }
+                if (surat_pernyataan === "") {
+                    $("input#_file").css("color", "#dc3545");
+                    $("input#_file").css("border-color", "#dc3545");
+                    $('._file').html('<ul role="alert" style="color: #dc3545; list-style: none;padding-inline-start: 10px;"><li style="color: #dc3545;">Surat pernyataan tidak boleh kosong.</li></ul>');
+                    return;
+                }
+
+                const formUpload = new FormData();
+                const file = document.getElementsByName('_file')[0].files[0];
+                formUpload.append('keterangan', keterangan);
+                formUpload.append('file', file);
+
+                $.ajax({
+                    xhr: function() {
+                        let xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                let percent = (evt.loaded / evt.total) * 100;
+                                $('#status-_progress_laporan').html("Sedang mengupload . . . " + evt.loaded + " byte Dari " + evt.total + " byte");
+                                $('#progress-percent-_progress_laporan').html("<span>" + Math.round(percent) + "%</span>");
+                                $('.progressbar-_progress_laporan').attr('aria-valuenow', Math.round(percent)).css('width', Math.round(percent) + '%');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    url: BASE_URL + '/sekolah/rekap/diverifikasi/simpanCabutBerkas',
+                    type: 'POST',
+                    data: formUpload,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: 'JSON',
+                    beforeSend: function() {
+                        // loading = true;
+                        $('.progress-_progress_laporan').css('display', 'block');
+                        $('.status-_progress_laporan').innerHTML = "Memulai mengupload . . .";
+                        $('.progress-percent-_progress_laporan').innerHTML = "<span>0%</span>";
+                        $('.progressbar-_progress_laporan').attr('aria-valuenow', '0').css('width', '0%');
+                        $('div.modal-cabut-loading').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                        });
+                    },
+                    success: function(msg) {
+                        if (msg.code !== 200) {
+                            $('div.modal-cabut-loading').unblock();
+                            if (msg.code === 401) {
+                                Swal.fire(
+                                    'Failed!',
+                                    msg.message,
+                                    'warning'
+                                ).then((valRes) => {
+                                    document.location.href = BASE_URL + '/dashboard';
+                                });
+                            } else {
+                                $('.progress-_progress_laporan').css('display', 'none');
+                                $('.status-_progress_laporan').innerHTML = "";
+                                $('.progress-percent-_progress_laporan').innerHTML = "<span>0%</span>";
+                                $('.progressbar-_progress_laporan').attr('aria-valuenow', '0').css('width', '0%');
+                                Swal.fire(
+                                    'Gagal!',
+                                    msg.message,
+                                    'warning'
+                                );
+                            }
+                        } else {
+                            $('.progress-_progress_laporan').css('display', 'none');
+                            $('.status-_progress_laporan').innerHTML = "";
+                            $('.progress-percent-_progress_laporan').innerHTML = "<span>0%</span>";
+                            $('.progressbar-_progress_laporan').attr('aria-valuenow', '0').css('width', '0%');
+                            Swal.fire(
+                                'Berhasil!',
+                                msg.message,
+                                'success'
+                            ).then((valRes) => {
+                                document.location.href = msg.url;
+                            })
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        $('div.modal-cabut-loading').unblock();
+                        $('.progress-_progress_laporan').css('display', 'none');
+                        $('.status-_progress_laporan').innerHTML = "";
+                        $('.progress-percent-_progress_laporan').innerHTML = "<span>0%</span>";
+                        $('.progressbar-_progress_laporan').attr('aria-valuenow', '0').css('width', '0%');
+                        Swal.fire(
+                            'Gagal!',
+                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                            'warning'
+                        );
+
+                    }
+                })
+            }
+
+            function loadFilePdf(event) {
+                // console.log(event);
+                // const input = document.getElementsByName('_file')[0];
+                const input = event;
+                if (input.files && input.files[0]) {
+                    let file = input.files[0];
+
+                    // allowed MIME types
+                    let mime_types = ['application/pdf', 'image/jpg', 'image/png', 'image/jpeg'];
+
+                    if (mime_types.indexOf(file.type) == -1) {
+                        input.value = "";
+                        // const color = event.name
+                        $('.' + event.name).css('display', 'block');
+                        $("input#" + event.name).css("color", "#dc3545");
+                        $("input#" + event.name).css("border-color", "#dc3545");
+                        $('.' + event.name).html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Hanya file type gambar/pdf yang diizinkan.</li></ul>');
+                        // $('.imagePreviewUpload').attr('src', '');
+                        Swal.fire(
+                            'Warning!!!',
+                            "Hanya file type gambar/pdf yang diizinkan.",
+                            'warning'
+                        );
+                        return;
+                    }
+
+                    // console.log(file.size);
+
+                    // validate file size
+                    if (file.size > 1 * 2048 * 1000) {
+                        input.value = "";
+                        $('.' + event.name).css('display', 'block');
+                        $("input#" + event.name).css("color", "#dc3545");
+                        $("input#" + event.name).css("border-color", "#dc3545");
+                        $('.' + event.name).html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Ukuran file tidak boleh lebih dari 2 Mb.</li></ul>');
+                        Swal.fire(
+                            'Warning!!!',
+                            "Ukuran file tidak boleh lebih dari 2 Mb.",
+                            'warning'
+                        );
+                        return;
+                    }
+                    $('.' + event.name).css('display', 'none');
+                    $('.' + event.name).html('');
+
+                    $(event.name).removeAttr('style');
+
+                    if (file.type !== 'application/pdf') {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('.imagePreviewUpload').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                } else {
+                    console.log("failed Load");
+                }
+            }
+
+
             function aksiUbahKoordinat(event) {
                 $.ajax({
                     url: "<?= base_url('sekolah/rekap/diverifikasi/edit') ?>",

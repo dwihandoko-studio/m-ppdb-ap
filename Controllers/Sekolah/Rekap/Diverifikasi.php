@@ -9,6 +9,9 @@ use Config\Services;
 use App\Libraries\Profilelib;
 use App\Libraries\Uuid;
 use App\Libraries\Sekolah\Riwayatlib;
+use App\Libraries\Dinas\Updatedatalib;
+use App\Libraries\Notificationlib;
+use App\Libraries\Fcmlib;
 use Firebase\JWT\JWT;
 
 class Diverifikasi extends BaseController
@@ -126,6 +129,143 @@ class Diverifikasi extends BaseController
         return view('sekolah/rekap/diverifikasi/index', $data);
     }
 
+
+    public function aksicabutberkas()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        // $dataLib = new Datalib();
+        // $canDaftar = $dataLib->canRegister("AFIRMASI");
+
+        // if ($canDaftar->code !== 200) {
+        //     return json_encode($canDaftar);
+        // }
+
+        $rules = [
+            'name' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Name tidak boleh kosong. ',
+                ]
+            ],
+            'keterangan' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Keterangan tidak boleh kosong. ',
+                ]
+            ],
+            'id' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('keterangan') . $this->validator->getError('name') . $this->validator->getError('id');
+            return json_encode($response);
+        } else {
+            $name = htmlspecialchars($this->request->getVar('name'), true);
+            $id = htmlspecialchars($this->request->getVar('id'), true);
+            $keterangan = htmlspecialchars($this->request->getVar('keterangan'), true);
+
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->userSekolah();
+            if ($user->code != 200) {
+                delete_cookie('jwt');
+                session()->destroy();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Sessio telah habis.";
+                return json_encode($response);
+            }
+            $cekRegisterTemp = $this->_db->table('_tb_pendaftar')->where('id', $id)->get()->getRowArray();
+
+            if (!$cekRegisterTemp) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $cekRegisterTemp['updated_at'] = date('Y-m-d H:i:s');
+            $cekRegisterTemp['update_reject'] = date('Y-m-d H:i:s');
+            $cekRegisterTemp['admin_approval'] = $user->data->id;
+            $cekRegisterTemp['keterangan_penolakan'] = $keterangan;
+            $cekRegisterTemp['status_pendaftaran'] = 3;
+
+            $this->_db->transBegin();
+            $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
+            if ($this->_db->affectedRows() > 0) {
+                $this->_db->table('_tb_pendaftar')->where('id', $cekRegisterTemp['id'])->delete();
+                if ($this->_db->affectedRows() > 0) {
+                    $updatelockLib = new Updatedatalib();
+                    $berhasil = $updatelockLib->unlockUpdate($cekRegisterTemp['user_id']);
+
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        if ($cekRegisterTemp['via_jalur'] == "ZONASI") {
+                            $viaJalur = "Zonasi";
+                        } else if ($cekRegisterTemp['via_jalur'] == "AFIRMASI") {
+                            $viaJalur = "Afirmasi";
+                        } else if ($cekRegisterTemp['via_jalur'] == "MUTASI") {
+                            $viaJalur = "Mutasi";
+                        } else if ($cekRegisterTemp['via_jalur'] == "PRESTASI") {
+                            $viaJalur = "Mutasi";
+                        } else {
+                            $viaJalur = "Swasta";
+                        }
+                        $riwayatLib->insert("Mencabut Berkas Pendaftaran $name via Jalur $viaJalur dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Cabut Berkas Pendaftaran Jalur $viaJalur", "tolak");
+
+                        $saveNotifSystem = new Notificationlib();
+                        $saveNotifSystem->send([
+                            'judul' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
+                            'isi' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
+                            'action_web' => 'peserta/riwayat/pendaftaran',
+                            'action_app' => 'riwayat_pendaftaran_page',
+                            'token' => $cekRegisterTemp['kode_pendaftaran'],
+                            'send_from' => $user->data->id,
+                            'send_to' => $cekRegisterTemp['user_id'],
+                        ]);
+
+                        $onesignal = new Fcmlib();
+                        $send = $onesignal->pushNotifToUser([
+                            'title' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
+                            'content' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
+                            'send_to' => $cekRegisterTemp['user_id'],
+                            'app_url' => 'riwayat_pendaftaran_page',
+                        ]);
+                    } catch (\Throwable $th) {
+                    }
+                    $this->_db->transCommit();
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "Cabut Berkas Verifikasi pendaftaran $name berhasil dilakukan.";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Gagal mencabut berkas verifikasi status pendaftaran peserta. $name";
+                    return json_encode($response);
+                }
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal mencabut berkas verifikasi pendaftaran peserta. $name";
+                return json_encode($response);
+            }
+        }
+    }
 
     public function detail()
     {

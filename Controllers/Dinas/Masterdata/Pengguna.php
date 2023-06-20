@@ -330,7 +330,7 @@ class Pengguna extends BaseController
                 $referensidapodikLib = new ReferensidapodikLib();
                 $dataSyn = $referensidapodikLib->getDetailSiswa($nisn, $npsn);
 
-                var_dump(getenv('ppdb.default.wilayahppdb'));
+                var_dump(getenv('ppdb.default.wilayahppdb'), [getenv('api.referensi.dapodik.token')]);
                 die;
 
                 if ($dataSyn->code == 200) {

@@ -330,17 +330,24 @@ class Pengguna extends BaseController
                 $referensidapodikLib = new ReferensidapodikLib();
                 $dataSyn = $referensidapodikLib->getDetailSiswa($nisn, $npsn);
 
-                // var_dump($dataSyn);
-                // die;
+                var_dump(getenv('ppdb.default.wilayahppdb'));
+                die;
 
                 if ($dataSyn->code == 200) {
-                    var_dump($dataSyn);
-                    die;
+                    // var_dump($dataSyn);
+                    // die;
                     if ($dataSyn->data) {
                         if (is_array($dataSyn->data)) {
                             if (count($dataSyn->data) > 0) {
 
                                 $dataSiswa = $dataSyn->data[0];
+                                if (isset($dataSiswa->Keterangan)) {
+                                    $response = new \stdClass;
+                                    $response->code = 400;
+                                    $response->error = $dataSiswa->Keterangan;
+                                    $response->message = "Data tidak ditemukan";
+                                    return json_encode($response);
+                                }
 
                                 if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
                                     $dataSiswa->lintang = '0.0';

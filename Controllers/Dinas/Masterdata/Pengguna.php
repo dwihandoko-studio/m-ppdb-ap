@@ -336,9 +336,10 @@ class Pengguna extends BaseController
                 if ($dataSyn->code == 200) {
                     if ($dataSyn->data) {
                         if (is_array($dataSyn->data)) {
-                            // var_dump($dataSyn);
-                            // die;
                             if (count($dataSyn->data) > 0) {
+                                var_dump($dataSyn);
+                                die;
+
                                 $dataSiswa = $dataSyn->data[0];
 
                                 if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {

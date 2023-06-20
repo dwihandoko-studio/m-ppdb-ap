@@ -56,6 +56,22 @@
                     </div>
                 </div>
                 <hr />
+                <h4>Informasi Kontak</h4>
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Nomor Handphone</label>
+                            <input type="text" value="<?= ($data->no_hp == NULL || $data->no_hp == "") ? '-' : $data->no_hp ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Email</label>
+                            <input type="text" value="<?= ($data->email == NULL || $data->email == "") ? '-' : $data->email ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
+                </div>
+                <hr />
                 <h4>Data Alamat Siswa</h4>
                 <div class="row col-md-12">
                     <div class="col-md-4">
@@ -93,22 +109,6 @@
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Alamat</label>
                             <input type="text" value="<?= $data->alamat ?>" class="form-control judul" id="_nama" readonly />
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <h4>Informasi Kontak</h4>
-                <div class="row col-md-12">
-                    <div class="col-md-6">
-                        <div class="form-group _nama-block">
-                            <label for="_nama" class="form-control-label">Nomor Handphone</label>
-                            <input type="text" value="<?= ($data->no_hp == NULL || $data->no_hp == "") ? '-' : $data->no_hp ?>" class="form-control judul" id="_nama" readonly />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group _nama-block">
-                            <label for="_nama" class="form-control-label">Email</label>
-                            <input type="text" value="<?= ($data->email == NULL || $data->email == "") ? '-' : $data->email ?>" class="form-control judul" id="_nama" readonly />
                         </div>
                     </div>
                 </div>

@@ -247,6 +247,22 @@ class Pengguna extends BaseController
         }
     }
 
+    public function add()
+    {
+        if ($this->request->getMethod() != 'get') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $response = new \stdClass;
+        $response->code = 200;
+        $response->message = "Permintaan diizinkan";
+        $response->data = View('dinas/masterdata/pengguna/add-peserta');
+        return json_encode($response);
+    }
+
     public function cekData()
     {
         if ($this->request->getMethod() != 'post') {

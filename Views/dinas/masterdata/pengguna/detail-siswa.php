@@ -61,21 +61,21 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_email_d">EMAIL PESERTA</label>
-                    <input type="email" class="form-control" placeholder="E-mail..." id="_email_d" name="_email_d" required>
+                    <input type="email" class="form-control" onfocusin="inputFocus(this);" placeholder="E-mail..." id="_email_d" name="_email_d" required>
                     <div class="help-block _email_d"></div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_nohp_d">NO HP PESERTA</label>
-                    <input type="phone" class="form-control" placeholder="08xxxxxxxxxxx..." id="_nohp_d" name="_nohp_d" required>
+                    <input type="phone" class="form-control" onfocusin="inputFocus(this);" placeholder="08xxxxxxxxxxx..." id="_nohp_d" name="_nohp_d" required>
                     <div class="help-block _nohp_d"></div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_peserta_didik_id_d">PESERTA DIDIK ID</label>
-                    <input type="phone" class="form-control" placeholder="xxxxxxx-xxxx-xxxxxxxx..." id="_peserta_didik_id_d" name="_peserta_didik_id_d" required>
+                    <input type="phone" class="form-control" onfocusin="inputFocus(this);" placeholder="xxxxxxx-xxxx-xxxxxxxx..." id="_peserta_didik_id_d" name="_peserta_didik_id_d" required>
                     <div class="help-block _peserta_didik_id_d"></div>
                 </div>
             </div>

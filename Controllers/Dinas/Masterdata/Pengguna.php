@@ -19,7 +19,7 @@ class Pengguna extends BaseController
 
     function __construct()
     {
-        helper(['text', 'file', 'form', 'session', 'array', 'imageurl', 'web', 'filesystem']);
+        helper(['text', 'file', 'form', 'session', 'array', 'imageurl', 'web', 'enskripdes', 'filesystem']);
         $this->_db      = \Config\Database::connect();
     }
 

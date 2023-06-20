@@ -134,8 +134,8 @@
                     });
                 },
                 success: function(msg) {
-                    $('div.modal-content-loading').unblock();
                     if (msg.code !== 200) {
+                        $('div.modal-content-loading').unblock();
 
                         Swal.fire(
                             'Gagal!',
@@ -149,7 +149,7 @@
                             msg.message,
                             'success'
                         ).then((valRes) => {
-                            document.location.href = '<?= current_url(true); ?>';
+                            reloadPage(msg.url);
                         })
                     }
                 },

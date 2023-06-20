@@ -16,7 +16,7 @@
         </div>
 
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer ">
         <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
         <button type="button" onclick="cekData(this)" class="btn btn-outline-primary">CEK DATA</button>
     </div>

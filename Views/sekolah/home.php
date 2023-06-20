@@ -237,7 +237,7 @@
     }
 
     $(document).ready(function() {
-        // loadStatistik();
+        loadStatistik();
         disabledLoad();
 
         <?php if (isset($informasi)) { ?>

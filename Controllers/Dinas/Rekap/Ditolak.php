@@ -151,7 +151,7 @@ class Ditolak extends BaseController
             if (!$oldData) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Data tidak ditemukan.";
+                $response->message = "Data tidak ditemukan.1";
                 return json_encode($response);
             }
 

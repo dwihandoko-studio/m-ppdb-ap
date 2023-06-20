@@ -9,7 +9,7 @@
                     <div class="col-md-6">
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Nama</label>
-                            <input type="text" value="<?= str_replace("&#039;","`",str_replace("'","`",$data->fullname)) ?>" class="form-control judul" id="_nama" readonly />
+                            <input type="text" value="<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>" class="form-control judul" id="_nama" readonly />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -85,7 +85,8 @@
                     <!--<div class="col-md-4">-->
                     <!--    <div class="form-group _nama-block">-->
                     <!--        <label for="_nama" class="form-control-label">Dusun</label>-->
-                    <!--        <input type="text" value="<?php // $data->nama_dusun ?>" class="form-control judul" id="_nama" readonly />-->
+                    <!--        <input type="text" value="<?php // $data->nama_dusun 
+                                                            ?>" class="form-control judul" id="_nama" readonly />-->
                     <!--    </div>-->
                     <!--</div>-->
                     <div class="col-md-6">
@@ -96,6 +97,22 @@
                     </div>
                 </div>
                 <hr />
+                <h4>Informasi Kontak</h4>
+                <hr />
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Nomor Handphone</label>
+                            <input type="text" value="<?= ($data->no_hp == NULL || $data->no_hp == "") ? '-' : $data->no_hp ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Email</label>
+                            <input type="text" value="<?= ($data->email == NULL || $data->email == "") ? '-' : $data->email ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
+                </div>
                 <h4>Data Sekolah Asal</h4>
                 <div class="row col-md-12">
                     <div class="col-md-6">
@@ -181,8 +198,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                <button onclick="aksiTolakVerifikasi('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;","`",str_replace("'","`",$data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Tolak Verifikasi</button>
-                <button onclick="aksiVerifikasi('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;","`",str_replace("'","`",$data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Verifikasi</button>
+                <button onclick="aksiTolakVerifikasi('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Tolak Verifikasi</button>
+                <button onclick="aksiVerifikasi('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Verifikasi</button>
             </div>
         </form>
 <?php }

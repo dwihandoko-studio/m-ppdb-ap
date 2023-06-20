@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="contentModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content modal-content-loading">
                     <div class="modal-header">
                         <h5 class="modal-title" id="contentModalLabel">Modal title</h5>

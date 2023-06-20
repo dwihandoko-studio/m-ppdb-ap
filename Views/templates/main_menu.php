@@ -990,7 +990,7 @@
                         <?php if (isset($sekolah_pilihan)) { ?>
                             <?php if ($sekolah_pilihan) { ?>
                                 <li class="nav-item">
-                                    <a target="_blank" href="<?= base_url('peserta/riwayat/cetakpendaftaran') ?>" role="button" aria-expanded="true">
+                                    <a class="nav-link" href="<?= base_url('peserta/riwayat/cetakpendaftaran'); ?>" role="button" aria-expanded="true">
                                         <i class="ni ni-folder-17"></i>
                                         <span class="nav-link-text">Cetak Kartu Pendaftaran</span>
                                     </a>

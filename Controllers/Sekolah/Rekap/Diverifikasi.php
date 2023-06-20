@@ -282,6 +282,7 @@ class Diverifikasi extends BaseController
                         $this->_db->transCommit();
                         $response = new \stdClass;
                         $response->code = 200;
+                        $response->url = base_url('sekolah/rekap/diverifikasi');
                         $response->message = "Cabut Berkas Verifikasi pendaftaran $name berhasil dilakukan.";
                         return json_encode($response);
                     } else {

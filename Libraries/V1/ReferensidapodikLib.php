@@ -29,7 +29,7 @@ class ReferensidapodikLib
 
     public function getDetailSiswa($nisn, $npsn)
     {
-        $kodeWiilayah = getenv('ppdb.default.wilayahppdb');
+        $kodeWiilayah = getenv('ppdb.default.wilayahppdb') . "1";
         $add         = $this->_send_get("getSiswa?kode_wilayah=$kodeWiilayah&nisn=$nisn&npsn=$npsn");
         $headers = [];
         curl_setopt(
@@ -47,7 +47,7 @@ class ReferensidapodikLib
             }
         );
         $send_data         = curl_exec($add);
-        
+
         // var_dump($send_data);die;
 
         $httpCodeCure = curl_getinfo($add, CURLINFO_HTTP_CODE);

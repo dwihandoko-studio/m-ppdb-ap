@@ -47,7 +47,7 @@ class Ditolak extends BaseController
                                         <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
                                     </div>
                                     <div class="dropdown-menu">
-                                        <button onclick="actionDetail(\'' . $list->id . '\')" type="button" class="dropdown-item">
+                                        <button onclick="actionDetail(\'' . $list->id_pendaftaran . '\')" type="button" class="dropdown-item">
                                             <i class="fa fa-eye"></i>
                                             <span>Detail</span>
                                         </button>

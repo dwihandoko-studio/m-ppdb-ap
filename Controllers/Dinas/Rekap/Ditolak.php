@@ -157,7 +157,7 @@ class Ditolak extends BaseController
             $response = new \stdClass;
             $response->code = 200;
             $response->result = $oldData;
-            $response->data = view('dinas/rekap/diverifikasi/detail-tolak', $data);
+            $response->data = view('dinas/rekap/ditolak/detail-tolak', $data);
             $response->message = "Data ditemukan.";
             return json_encode($response);
         }

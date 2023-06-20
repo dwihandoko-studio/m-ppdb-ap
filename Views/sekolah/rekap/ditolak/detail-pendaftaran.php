@@ -179,6 +179,22 @@
                             </div>
                         </div>
                     <?php } ?>
+                    <?php if ($data->lampiran_foto_rumah !== null) { ?>
+                        <div class="col-md-3">
+                            <div class="form-group _nama-block">
+                                <label for="_nama" class="form-control-label">Foto Rumah</label>
+                                <a target="_blank" href="<?= base_url('uploads/peserta/fotorumah') . '/' . $data->lampiran_foto_rumah ?>" class="btn btn-block btn-info">Lampiran Foto Rumah</a>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php if ($data->lampiran_pernyataan !== null) { ?>
+                        <div class="col-md-3">
+                            <div class="form-group _nama-block">
+                                <label for="_nama" class="form-control-label">Bukti Pernyataan</label>
+                                <a target="_blank" href="<?= base_url('uploads/peserta/pernyataan') . '/' . $data->lampiran_pernyataan ?>" class="btn btn-block btn-info">Lampiran Pernyataan</a>
+                            </div>
+                        </div>
+                    <?php } ?>
                     <?php if ($data->lampiran_mutasi !== null) { ?>
                         <div class="col-md-3">
                             <div class="form-group _nama-block">

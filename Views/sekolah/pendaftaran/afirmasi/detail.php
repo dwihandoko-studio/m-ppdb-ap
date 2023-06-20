@@ -98,7 +98,6 @@
                 </div>
                 <hr />
                 <h4>Informasi Kontak</h4>
-                <hr />
                 <div class="row col-md-12">
                     <div class="col-md-6">
                         <div class="form-group _nama-block">
@@ -113,6 +112,7 @@
                         </div>
                     </div>
                 </div>
+                <hr />
                 <h4>Data Sekolah Asal</h4>
                 <div class="row col-md-12">
                     <div class="col-md-6">
@@ -144,6 +144,12 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Akta Kelahiran</label>
+                            <a target="_blank" href="<?= base_url('uploads/peserta/akta') . '/' . $data->lampiran_akta_kelahiran ?>" class="btn btn-block btn-info">Lampiran Akta Kelahiran</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Kartu Keluarga</label>
                             <a target="_blank" href="<?= base_url('uploads/peserta/kk') . '/' . $data->lampiran_kk ?>" class="btn btn-block btn-info">Lampiran Kartu Keluarga</a>
                         </div>
@@ -167,6 +173,14 @@
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Afirmasi</label>
                                 <a target="_blank" href="<?= base_url('uploads/peserta/afirmasi') . '/' . $data->lampiran_afirmasi ?>" class="btn btn-block btn-info">Lampiran Afirmasi</a>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php if ($data->lampiran_foto_rumah !== null) { ?>
+                        <div class="col-md-3">
+                            <div class="form-group _nama-block">
+                                <label for="_nama" class="form-control-label">Foto Rumah</label>
+                                <a target="_blank" href="<?= base_url('uploads/peserta/fotorumah') . '/' . $data->lampiran_foto_rumah ?>" class="btn btn-block btn-info">Lampiran Foto Rumah</a>
                             </div>
                         </div>
                     <?php } ?>

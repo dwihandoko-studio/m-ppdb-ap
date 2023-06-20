@@ -55,6 +55,7 @@ class Home extends BaseController
         if ($cekRegisterApprove) {
             $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
             $data['sekolah_pilihan'] = $cekRegisterApprove;
+            $data['sekolah_pilihan_approved'] = $cekRegisterApprove;
         }
 
         $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();

@@ -985,6 +985,16 @@
                                 </ul>
                             </div>
                         </li>
+                        <?php if (isset($sekolah_pilihan_approved)) { ?>
+                            <?php if ($sekolah_pilihan_approved) { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url('peserta/riwayat/cetakpendaftaran'); ?>" role="button" aria-expanded="true">
+                                        <i class="ni ni-folder-17"></i>
+                                        <span class="nav-link-text">Cetak Kartu Pendaftaran</span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        <?php } ?>
                     </ul>
                 <?php endif; ?>
             </div>

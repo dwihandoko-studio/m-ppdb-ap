@@ -114,6 +114,55 @@
                 $('._peserta_didik_id_d').html('<ul role="alert" style="color: #dc3545;"><li style="color: #dc3545;">Peserta didik id tidak valid.</li></ul>');
                 return;
             }
+
+            $.ajax({
+                url: BASE_URL + '/dinas/masterdata/pengguna/savePenguna',
+                type: 'POST',
+                data: {
+                    nisn: nisn,
+                    key: keyD,
+                    npsn: npsn,
+                    email: email,
+                    nohp: nohp,
+                    peserta_didik_id: peserta_didik_id,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
+                    loading = true;
+                    $('div.modal-content-loading').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
+                },
+                success: function(msg) {
+                    $('div.modal-content-loading').unblock();
+                    if (msg.code !== 200) {
+
+                        Swal.fire(
+                            'Gagal!',
+                            msg.message,
+                            'warning'
+                        );
+
+                    } else {
+                        Swal.fire(
+                            'Berhasil!',
+                            msg.message,
+                            'success'
+                        ).then((valRes) => {
+                            document.location.href = reloadPage();
+                        })
+                    }
+                },
+                error: function(data) {
+                    $('div.modal-content-loading').unblock();
+                    Swal.fire(
+                        'Gagal!',
+                        "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                        'warning'
+                    );
+
+                }
+            })
         }
     </script>
 <?php } ?>

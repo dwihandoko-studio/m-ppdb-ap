@@ -307,7 +307,7 @@ class Pengguna extends BaseController
                 $response = new \stdClass;
                 $response->code = 200;
                 $response->message = "Data ditemukan.";
-                $response->data = view('dinas/masterdata/pengguna/detail-siswa', $x);
+                $response->data = View('dinas/masterdata/pengguna/detail-siswa', $x);
                 return json_encode($response);
             } else {
 
@@ -325,54 +325,28 @@ class Pengguna extends BaseController
                             if (count($dataSyn->data) > 0) {
                                 $dataSiswa = $dataSyn->data[0];
 
-                                if ($dataSiswa->peserta_didik_id == NULL || $dataSiswa->peserta_didik_id == "") {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->nisn = $nisn;
-                                    $response->npsn = $npsn;
-                                    $response->redirrect = base_url('web/pengaduan');
-                                    $response->message = "Referensi Data Peserta Didik ditemukan tidak Valid, Silahkan Ajukan Pencarian Data dari Dapodik Kemdikbud melalui Layanan Aduan PPDB yang terdapat pada sistem aplikasi PPDB ini.";
-                                    return json_encode($response);
+                                if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
+                                    $dataSiswa->lintang = '0.0';
+                                    $dataSiswa->bujur = '-0.0';
                                 }
-                                // var_dump($dataSiswa);die;
-                                // $tingkatAkhirs = [6, 9, 72, 71, 73];
-                                // $any = in_array((int)$dataSiswa->tingkat_pendidikan, $tingkatAkhirs);
-                                // if ($any) {
-                                if ($tglLahir == $dataSiswa->tanggal_lahir) {
-                                    if ($dataSiswa->lintang == null || $dataSiswa->lintang == '' || $dataSiswa->lintang == 'null' || $dataSiswa->lintang == '-') {
-                                        $dataSiswa->lintang = '0.0';
-                                        $dataSiswa->bujur = '-0.0';
-                                    }
 
-                                    $x['data'] = $dataSiswa;
+                                $x['data'] = $dataSiswa;
 
-                                    // $referensiLayananLib = new ReferensiLayananLib();
-                                    // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
+                                // $referensiLayananLib = new ReferensiLayananLib();
+                                // $dataSekolah = $referensiLayananLib->getSekolah($dataSiswa->sekolah_id);
 
-                                    $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
+                                $dataSekolah = $this->_db->table('ref_sekolah')->where('id', $dataSiswa->sekolah_id)->get()->getRowObject();
 
-                                    if ($dataSekolah) {
-                                        // if ($dataSekolah->data->code == 200) {
-                                        $x['sekolah'] = $dataSekolah;
-                                        // }
-                                    }
-                                    $response = new \stdClass;
-                                    $response->code = 200;
-                                    $response->message = "Data ditemukan.";
-                                    $response->data = view('new-web/template/detail-after-sekolah', $x);
-                                    return json_encode($response);
-                                } else {
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Data terdeteksi tidak sesuai dengan data dapodik. Silahkan hubungi operator sekolah asal.";
-                                    return json_encode($response);
+                                if ($dataSekolah) {
+                                    // if ($dataSekolah->data->code == 200) {
+                                    $x['sekolah'] = $dataSekolah;
+                                    // }
                                 }
-                                // } else {
-                                //     $response = new \stdClass;
-                                //     $response->code = 400;
-                                //     $response->message = "Mohon maaf, Data terdeteksi berada bukan di jenjang kelas akhir. Silahkan hubungi operator sekolah asal.";
-                                //     return json_encode($response);
-                                // }
+                                $response = new \stdClass;
+                                $response->code = 200;
+                                $response->message = "Data ditemukan.";
+                                $response->data = View('dinas/masterdata/pengguna/detail-siswa', $x);
+                                return json_encode($response);
                             } else {
                                 $response = new \stdClass;
                                 $response->code = 400;
@@ -397,6 +371,179 @@ class Pengguna extends BaseController
                     $response->message = $dataSyn->message;
                     return json_encode($response);
                 }
+            }
+        }
+    }
+
+    public function savePenguna()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'nisn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NISN tidak boleh kosong. ',
+                ]
+            ],
+            'npsn' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'NPSN tidak boleh kosong. ',
+                ]
+            ],
+            'key' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Key tidak boleh kosong. ',
+                ]
+            ],
+            'email' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong. ',
+                ]
+            ],
+            'nohp' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'No handphone tidak boleh kosong. ',
+                ]
+            ],
+            'peserta_didik_id' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Peserta didik id tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('nisn')
+                . $this->validator->getError('key')
+                . $this->validator->getError('email')
+                . $this->validator->getError('nohp')
+                . $this->validator->getError('npsn')
+                . $this->validator->getError('peserta_didik_id');
+            return json_encode($response);
+        } else {
+            $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
+            $keyD = htmlspecialchars($this->request->getVar('key'), true);
+
+            $key = json_decode(safeDecryptMe($keyD, 'Aswertyuioasdfghjkqwertyuiqwerty'));
+
+            $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+            $email = htmlspecialchars($this->request->getVar('email'), true);
+            $nohp = htmlspecialchars($this->request->getVar('nohp'), true) ?? "";
+            $peserta_didik_id = htmlspecialchars($this->request->getVar('peserta_didik_id'), true) ?? "";
+
+            $cekData = $this->_db->table('_users_tb')->where('email', $nisn)->get()->getRowObject();
+
+            if ($cekData) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "NISN sudah terdaftar, silahkan login ke aplikasi.";
+                return json_encode($response);
+            }
+
+            $pass = "12345678";
+            try {
+                $pass = date("dmY", strtotime($key->tanggal_lahir));
+            } catch (\Throwable $th) {
+                $pass = "12345678";
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $data = [
+                'id' => $uuid,
+                'email' => $nisn,
+                'password' => password_hash($pass, PASSWORD_BCRYPT),
+                // 'role_user' => 6,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+
+            try {
+                $this->_db->table('_users_tb')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal mendaftarkan user.";
+                return json_encode($response);
+            }
+
+            $latitudeInput = ($key->lintang == null || $key->lintang == "" || $key->lintang == "null" || $key->lintang == "NULL") ? "-4.9452477" : $key->lintang;
+            $longitudeInput = ($key->bujur == null || $key->bujur == "" || $key->bujur == "null" || $key->bujur == "NULL") ? "103.770643" : $key->bujur;
+
+            if ($this->_db->affectedRows() > 0) {
+                $key->peserta_didik_id = $peserta_didik_id;
+                try {
+                    unset($data['password']);
+                    // unset($data['role_user']);
+                    unset($data['email']);
+                    $data['fullname'] = $key->nama;
+                    // $data['no_hp'] = $nohp;
+                    $data['nisn'] = $nisn;
+                    $data['role_user'] = 6;
+                    $data['email'] = $email;
+                    $data['sekolah_asal'] = $key->sekolah_id;
+                    $data['npsn_asal'] = $npsn;
+                    $data['latitude'] = $latitudeInput;
+                    $data['longitude'] = $longitudeInput;
+                    $data['peserta_didik_id'] = $peserta_didik_id;
+                    $data['details'] = json_encode($key);
+
+                    $this->_db->table('_users_profil_tb')->insert($data);
+                } catch (\Throwable $th) {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Gagal menyimpan informasi user.";
+                    return json_encode($response);
+                }
+
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    // try {
+                    //     $emailLib = new Emaillib();
+                    //     $emailLib->sendActivation($data['email']);
+                    // } catch (\Throwable $th) {
+                    // }
+
+                    unset($data['details']);
+                    unset($data['peserta_didik_id']);
+                    unset($data['sekolah_asal']);
+
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->data = $data;
+                    $response->url = base_url('web/home');
+                    $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NISN dan passwordnya adalah tanggal lahir anda dengan format ddmmyyyy ($pass).";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Gagal menyimpan informasi user.";
+                    return json_encode($response);
+                }
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Gagal menyimpan user.";
+                return json_encode($response);
             }
         }
     }

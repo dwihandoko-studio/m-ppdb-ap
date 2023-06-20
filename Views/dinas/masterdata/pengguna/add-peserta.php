@@ -40,59 +40,54 @@
             return;
         }
 
-        $.ajax({
-            url: BASE_URL + '/auth/saveregis',
-            type: 'POST',
-            data: {
-                nisn: nisn,
-                key: keyD,
-                npsn: npsn,
-                email: email,
-                nohp: nohp,
-                password: password,
-                repassword: repassword,
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                loading = true;
-                $('div.loading-content-card').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(msg) {
-                loading = false;
-                // console.log(msg);
-                $('div.loading-content-card').unblock();
-                if (msg.code !== 200) {
+        if (nisn === "" || npsn === "") {
+            return;
+        } else {
+            $.ajax({
+                url: BASE_URL + "/dinas/masterdata/pengguna/cekData",
+                type: 'POST',
+                data: {
+                    nisn: nisn,
+                    npsn: npsn,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
+                    $('div.modal-content-loading').block({
+                        message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                    });
+                },
+                success: function(resul) {
+                    $('div.modal-content-loading').unblock();
 
+                    if (resul.code !== 200) {
+                        if (resul.code === 401) {
+                            Swal.fire(
+                                'Failed!',
+                                resul.message,
+                                'warning'
+                            ).then((valRes) => {
+                                document.location.href = BASE_URL + '/dashboard';
+                            });
+                        } else {
+                            Swal.fire(
+                                'GAGAL!',
+                                resul.message,
+                                'warning'
+                            );
+                        }
+                    } else {
+                        $('.contentBodyModal').html(resul.data);
+                    }
+                },
+                error: function() {
+                    $('div.modal-content-loading').unblock();
                     Swal.fire(
-                        'Gagal!',
-                        msg.message,
+                        'PERINGATAN!',
+                        "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
                         'warning'
                     );
-
-                } else {
-                    Swal.fire(
-                        'Berhasil!',
-                        msg.message,
-                        'success'
-                    ).then((valRes) => {
-                        document.location.href = msg.url;
-                    })
                 }
-            },
-            error: function(data) {
-                console.log(data);
-                loading = false;
-
-                $('div.loading-content-card').unblock();
-                Swal.fire(
-                    'Gagal!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
-
-            }
-        })
+            });
+        }
     }
 </script>

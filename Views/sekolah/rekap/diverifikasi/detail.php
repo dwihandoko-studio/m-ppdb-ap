@@ -9,7 +9,7 @@
                     <div class="col-md-6">
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Nama</label>
-                            <input type="text" value="<?= str_replace("&#039;","`",str_replace("'","`",$data->fullname)) ?>" class="form-control judul" id="_nama" readonly />
+                            <input type="text" value="<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>" class="form-control judul" id="_nama" readonly />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -52,6 +52,23 @@
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Nama Ibu Kandung</label>
                             <input type="text" value="<?= $siswa->nama_ibu_kandung ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <h4>Informasi Kontak</h4>
+                <hr />
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Nomor Handphone</label>
+                            <input type="text" value="<?= ($data->no_hp == NULL || $data->no_hp == "") ? '-' : $data->no_hp ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Email</label>
+                            <input type="text" value="<?= ($data->email == NULL || $data->email == "") ? '-' : $data->email ?>" class="form-control judul" id="_nama" readonly />
                         </div>
                     </div>
                 </div>
@@ -173,64 +190,62 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                <!--<button onclick="aksiUbahKoordinat('<?= $data->id ?>', '<?= str_replace("&#039;","`",str_replace("'","`",$data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Benahi Koordinat Peserta</button> -->
+                <!--<button onclick="aksiUbahKoordinat('<?= $data->id ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Benahi Koordinat Peserta</button> -->
             </div>
         </form>
-        
-        <script>
-            
-    function aksiUbahKoordinat(event) {
-        $.ajax({
-            url: "<?= base_url('sekolah/rekap/diverifikasi/edit') ?>",
-            type: 'POST',
-            data: {
-                id: event,
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                $('div.modal-content-loading').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(resul) {
-                $('div.modal-content-loading').unblock();
 
-                if (resul.code !== 200) {
-                    if (resul.code === 401) {
-                        Swal.fire(
-                            'Failed!',
-                            resul.message,
-                            'warning'
-                        ).then((valRes) => {
-                            document.location.href = BASE_URL + '/dashboard';
+        <script>
+            function aksiUbahKoordinat(event) {
+                $.ajax({
+                    url: "<?= base_url('sekolah/rekap/diverifikasi/edit') ?>",
+                    type: 'POST',
+                    data: {
+                        id: event,
+                    },
+                    dataType: 'JSON',
+                    beforeSend: function() {
+                        $('div.modal-content-loading').block({
+                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                         });
-                    } else {
+                    },
+                    success: function(resul) {
+                        $('div.modal-content-loading').unblock();
+
+                        if (resul.code !== 200) {
+                            if (resul.code === 401) {
+                                Swal.fire(
+                                    'Failed!',
+                                    resul.message,
+                                    'warning'
+                                ).then((valRes) => {
+                                    document.location.href = BASE_URL + '/dashboard';
+                                });
+                            } else {
+                                Swal.fire(
+                                    'Failed!',
+                                    resul.message,
+                                    'warning'
+                                );
+                            }
+                        } else {
+                            $('#contentModalUpdateLabel').html('EDIT KOORDINAT PESERTA');
+                            $('.contentBodyModalUpdate').html(resul.data);
+                            $('#contentModalUpdate').modal({
+                                backdrop: 'static',
+                                keyboard: false
+                            }, 'show');
+                        }
+                    },
+                    error: function() {
+                        $('div.modal-content-loading').unblock();
                         Swal.fire(
                             'Failed!',
-                            resul.message,
+                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
                             'warning'
                         );
                     }
-                } else {
-                    $('#contentModalUpdateLabel').html('EDIT KOORDINAT PESERTA');
-                    $('.contentBodyModalUpdate').html(resul.data);
-                    $('#contentModalUpdate').modal({
-                        backdrop: 'static',
-                        keyboard: false
-                    }, 'show');
-                }
-            },
-            error: function() {
-                $('div.modal-content-loading').unblock();
-                Swal.fire(
-                    'Failed!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
+                });
             }
-        });
-    }
-
         </script>
 <?php }
 } ?>

@@ -150,7 +150,7 @@ class Diverifikasi extends BaseController
             'nama' => [
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => 'Name tidak boleh kosong. ',
+                    'required' => 'Nama tidak boleh kosong. ',
                 ]
             ],
             'keterangan' => [

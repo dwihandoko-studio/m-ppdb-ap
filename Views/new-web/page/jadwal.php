@@ -27,7 +27,8 @@
                                                 Buka : <br>
                                                 <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_afirmasi) ?> WIB<br>
                                                 Tutup : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> WIB
+                                                <i class="far fa-calendar"></i> 20 Juni 2023<?php //= tgl_indo($data->tgl_akhir_pendaftaran_afirmasi) 
+                                                                                            ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> WIB
                                             </li>
                                             <li>
                                                 <b>Verifikasi </b><br>

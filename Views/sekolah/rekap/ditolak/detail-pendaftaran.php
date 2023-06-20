@@ -153,6 +153,12 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Akta Kelahiran</label>
+                            <a target="_blank" href="<?= base_url('uploads/peserta/akta') . '/' . $data->lampiran_akta_kelahiran ?>" class="btn btn-block btn-info">Lampiran Akta Kelahiran</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Kartu Keluarga</label>
                             <a target="_blank" href="<?= base_url('uploads/peserta/kk') . '/' . $data->lampiran_kk ?>" class="btn btn-block btn-info">Lampiran Kartu Keluarga</a>
                         </div>

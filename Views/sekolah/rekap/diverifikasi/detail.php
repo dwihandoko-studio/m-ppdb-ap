@@ -301,6 +301,8 @@
 
             function saveCabutBerkas() {
                 const keterangan = document.getElementsByName('_keterangan_pencabutan')[0].value;
+                const id_pendaftaran = document.getElementsByName('_id_pendaftar')[0].value;
+                const nama_pendaftaran = document.getElementsByName('_nama_pendaftar')[0].value;
                 const surat_pernyataan = document.getElementsByName('_file')[0].value;
 
                 if (keterangan === "") {
@@ -319,6 +321,8 @@
                 const formUpload = new FormData();
                 const file = document.getElementsByName('_file')[0].files[0];
                 formUpload.append('keterangan', keterangan);
+                formUpload.append('id', id_pendaftaran);
+                formUpload.append('nama', nama_pendaftaran);
                 formUpload.append('file', file);
 
                 $.ajax({

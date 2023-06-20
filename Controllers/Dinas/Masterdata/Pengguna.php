@@ -334,11 +334,11 @@ class Pengguna extends BaseController
                 // die;
 
                 if ($dataSyn->code == 200) {
+                    var_dump($dataSyn);
+                    die;
                     if ($dataSyn->data) {
                         if (is_array($dataSyn->data)) {
                             if (count($dataSyn->data) > 0) {
-                                var_dump($dataSyn);
-                                die;
 
                                 $dataSiswa = $dataSyn->data[0];
 

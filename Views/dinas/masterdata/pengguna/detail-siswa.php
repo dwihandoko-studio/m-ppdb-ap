@@ -6,76 +6,76 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_nisn_d">NISN (Pada Dapodik)</label>
-                    <input type="text" value="<?= trim($data->nisn) ?>" class="formcus-control" id="_nisn_d" name="_nisn_d" placeholder="NISN" readonly>
+                    <input type="text" value="<?= trim($data->nisn) ?>" class="form-control" id="_nisn_d" name="_nisn_d" placeholder="NISN" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_nik_d">NIK (Pada Dapodik)</label>
-                    <input type="text" value="<?= trim($data->nik) ?>" class="formcus-control" id="_nik_d" name="_nik_d" readonly>
+                    <input type="text" value="<?= trim($data->nik) ?>" class="form-control" id="_nik_d" name="_nik_d" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_nama_d">NAMA LENGKAP (Pada Dapodik)</label>
-                    <input type="text" value="<?= trim($data->nama) ?>" class="formcus-control" id="_nama_d" name="_nama_d" readonly>
+                    <input type="text" value="<?= trim($data->nama) ?>" class="form-control" id="_nama_d" name="_nama_d" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_tempat_lahir_d">TEMPAT LAHIR (Pada Dapodik)</label>
-                    <input type="text" value="<?= trim($data->tempat_lahir) ?>" class="formcus-control" id="_tempat_lahir_d" name="_tempat_lahir_d" readonly>
+                    <input type="text" value="<?= trim($data->tempat_lahir) ?>" class="form-control" id="_tempat_lahir_d" name="_tempat_lahir_d" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_tgl_lahir_d">TANGGAL LAHIR (Pada Dapodik)</label>
-                    <input type="text" value="<?= trim($data->tanggal_lahir) ?>" class="formcus-control" id="_tgl_lahir_d" name="_tgl_lahir_d" readonly>
+                    <input type="text" value="<?= trim($data->tanggal_lahir) ?>" class="form-control" id="_tgl_lahir_d" name="_tgl_lahir_d" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_jk_d">JENIS KELAMIN (Pada Dapodik)</label>
-                    <input type="text" value="<?= (trim($data->jenis_kelamin) == "L") ? 'Laki-Laki' : ((trim($data->jenis_kelamin) == "P") ? 'Perempuan' : '') ?>" class="formcus-control" id="_jk_d" name="_jk_d" readonly>
+                    <input type="text" value="<?= (trim($data->jenis_kelamin) == "L") ? 'Laki-Laki' : ((trim($data->jenis_kelamin) == "P") ? 'Perempuan' : '') ?>" class="form-control" id="_jk_d" name="_jk_d" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_nama_ibu_d">NAMA IBU KANDUNG (Pada Dapodik)</label>
-                    <input type="text" value="<?= trim($data->nama_ibu_kandung) ?>" class="formcus-control" id="_nama_ibu_d" name="_nama_ibu_d" readonly>
+                    <input type="text" value="<?= trim($data->nama_ibu_kandung) ?>" class="form-control" id="_nama_ibu_d" name="_nama_ibu_d" readonly>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_npsn_d">NPSN SEKOLAH ASAL (Pada Dapodik)</label>
-                    <input type="text" value="<?= (isset($sekolah)) ? trim($sekolah->npsn) : '' ?>" class="formcus-control" id="_npsn_d" name="_npsn_d" readonly>
+                    <input type="text" value="<?= (isset($sekolah)) ? trim($sekolah->npsn) : '' ?>" class="form-control" id="_npsn_d" name="_npsn_d" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_nama_sekolah_d">NAMA SEKOLAH ASAL (Pada Dapodik)</label>
-                    <input type="text" value="<?= (isset($sekolah)) ? trim($sekolah->nama) : '' ?>" class="formcus-control" id="_nama_sekolah_d" name="_nama_sekolah_d" readonly>
+                    <input type="text" value="<?= (isset($sekolah)) ? trim($sekolah->nama) : '' ?>" class="form-control" id="_nama_sekolah_d" name="_nama_sekolah_d" readonly>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_email_d">EMAIL PESERTA</label>
-                    <input type="email" class="formcus-control" placeholder="E-mail..." id="_email_d" name="_email_d" required>
+                    <input type="email" class="form-control" placeholder="E-mail..." id="_email_d" name="_email_d" required>
                     <div class="help-block _email_d"></div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_nohp_d">NO HP PESERTA</label>
-                    <input type="phone" class="formcus-control" placeholder="08xxxxxxxxxxx..." id="_nohp_d" name="_nohp_d" required>
+                    <input type="phone" class="form-control" placeholder="08xxxxxxxxxxx..." id="_nohp_d" name="_nohp_d" required>
                     <div class="help-block _nohp_d"></div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="_peserta_didik_id_d">PESERTA DIDIK ID</label>
-                    <input type="phone" class="formcus-control" placeholder="xxxxxxx-xxxx-xxxxxxxx..." id="_peserta_didik_id_d" name="_peserta_didik_id_d" required>
+                    <input type="phone" class="form-control" placeholder="xxxxxxx-xxxx-xxxxxxxx..." id="_peserta_didik_id_d" name="_peserta_didik_id_d" required>
                     <div class="help-block _peserta_didik_id_d"></div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ class DitolakModel extends Model
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
         $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT');
+        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
         $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id_1 = i.id', 'LEFT');
         $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
         $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');
@@ -66,7 +66,7 @@ class DitolakModel extends Model
     function get_datatables($filterKecamatan, $filterKelurahan, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
         if ($filterKecamatan != "") {
             $this->dt->where('a.kecamatan', $filterKecamatan);
@@ -84,7 +84,7 @@ class DitolakModel extends Model
     function count_filtered($filterKecamatan, $filterKelurahan, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
         if ($filterKecamatan != "") {
             $this->dt->where('a.kecamatan', $filterKecamatan);
@@ -99,7 +99,7 @@ class DitolakModel extends Model
     public function count_all($filterKecamatan, $filterKelurahan, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
         if ($filterKecamatan != "") {
             $this->dt->where('a.kecamatan', $filterKecamatan);

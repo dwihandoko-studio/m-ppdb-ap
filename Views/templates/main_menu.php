@@ -791,17 +791,17 @@
                                 <ul class="nav nav-sm flex-column">
                                     <?php if ((int)$user->statusSekolah === 1) { ?>
                                         <li class="nav-item">
-                                            <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "pendaftaran"  && $uri->getSegment(3) == "zonasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/pendaftaran/zonasi') ?>">
-                                                <span class="sidenav-mini-icon"> JZ </span>
-                                                <i class="fas fa-map-marked-alt"></i>
-                                                <span class="sidenav-normal"> Jalur Zonasi </span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "pendaftaran"  && $uri->getSegment(3) == "afirmasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/pendaftaran/afirmasi') ?>">
                                                 <span class="sidenav-mini-icon"> JA </span>
                                                 <i class="ni ni-app"></i>
                                                 <span class="sidenav-normal"> Jalur Afirmasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "pendaftaran"  && $uri->getSegment(3) == "zonasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/pendaftaran/zonasi') ?>">
+                                                <span class="sidenav-mini-icon"> JZ </span>
+                                                <i class="fas fa-map-marked-alt"></i>
+                                                <span class="sidenav-normal"> Jalur Zonasi </span>
                                             </a>
                                         </li>
                                         <li class="nav-item">

@@ -210,41 +210,41 @@ class Diverifikasi extends BaseController
                     $updatelockLib = new Updatedatalib();
                     $berhasil = $updatelockLib->unlockUpdate($cekRegisterTemp['user_id']);
 
-                    try {
-                        $riwayatLib = new Riwayatlib();
-                        if ($cekRegisterTemp['via_jalur'] == "ZONASI") {
-                            $viaJalur = "Zonasi";
-                        } else if ($cekRegisterTemp['via_jalur'] == "AFIRMASI") {
-                            $viaJalur = "Afirmasi";
-                        } else if ($cekRegisterTemp['via_jalur'] == "MUTASI") {
-                            $viaJalur = "Mutasi";
-                        } else if ($cekRegisterTemp['via_jalur'] == "PRESTASI") {
-                            $viaJalur = "Mutasi";
-                        } else {
-                            $viaJalur = "Swasta";
-                        }
-                        $riwayatLib->insert("Mencabut Berkas Pendaftaran $name via Jalur $viaJalur dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Cabut Berkas Pendaftaran Jalur $viaJalur", "tolak");
+                    // try {
+                    //     $riwayatLib = new Riwayatlib();
+                    //     if ($cekRegisterTemp['via_jalur'] == "ZONASI") {
+                    //         $viaJalur = "Zonasi";
+                    //     } else if ($cekRegisterTemp['via_jalur'] == "AFIRMASI") {
+                    //         $viaJalur = "Afirmasi";
+                    //     } else if ($cekRegisterTemp['via_jalur'] == "MUTASI") {
+                    //         $viaJalur = "Mutasi";
+                    //     } else if ($cekRegisterTemp['via_jalur'] == "PRESTASI") {
+                    //         $viaJalur = "Mutasi";
+                    //     } else {
+                    //         $viaJalur = "Swasta";
+                    //     }
+                    //     $riwayatLib->insert("Mencabut Berkas Pendaftaran $name via Jalur $viaJalur dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Cabut Berkas Pendaftaran Jalur $viaJalur", "tolak");
 
-                        $saveNotifSystem = new Notificationlib();
-                        $saveNotifSystem->send([
-                            'judul' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
-                            'isi' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
-                            'action_web' => 'peserta/riwayat/pendaftaran',
-                            'action_app' => 'riwayat_pendaftaran_page',
-                            'token' => $cekRegisterTemp['kode_pendaftaran'],
-                            'send_from' => $user->data->id,
-                            'send_to' => $cekRegisterTemp['user_id'],
-                        ]);
+                    //     $saveNotifSystem = new Notificationlib();
+                    //     $saveNotifSystem->send([
+                    //         'judul' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
+                    //         'isi' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
+                    //         'action_web' => 'peserta/riwayat/pendaftaran',
+                    //         'action_app' => 'riwayat_pendaftaran_page',
+                    //         'token' => $cekRegisterTemp['kode_pendaftaran'],
+                    //         'send_from' => $user->data->id,
+                    //         'send_to' => $cekRegisterTemp['user_id'],
+                    //     ]);
 
-                        $onesignal = new Fcmlib();
-                        $send = $onesignal->pushNotifToUser([
-                            'title' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
-                            'content' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
-                            'send_to' => $cekRegisterTemp['user_id'],
-                            'app_url' => 'riwayat_pendaftaran_page',
-                        ]);
-                    } catch (\Throwable $th) {
-                    }
+                    //     $onesignal = new Fcmlib();
+                    //     $send = $onesignal->pushNotifToUser([
+                    //         'title' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
+                    //         'content' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
+                    //         'send_to' => $cekRegisterTemp['user_id'],
+                    //         'app_url' => 'riwayat_pendaftaran_page',
+                    //     ]);
+                    // } catch (\Throwable $th) {
+                    // }
                     $this->_db->transCommit();
                     $response = new \stdClass;
                     $response->code = 200;

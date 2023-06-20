@@ -125,8 +125,8 @@ class Diverifikasi extends BaseController
 
         return view('sekolah/rekap/diverifikasi/index', $data);
     }
-    
-    
+
+
     public function detail()
     {
         if ($this->request->getMethod() != 'post') {
@@ -154,10 +154,10 @@ class Diverifikasi extends BaseController
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
             $oldData = $this->_db->table('_tb_pendaftar a')
-                ->select("b.*, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
+                ->select("b.*, k.lampiran_akta_kelahiran, k.lampiran_foto_rumah, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT')
                 ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
                 ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
@@ -194,18 +194,18 @@ class Diverifikasi extends BaseController
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
-        
+
         $id = htmlspecialchars($this->request->getVar('id'), true);
-        
+
         $users = $this->_db->table('_users_profil_tb')->where('id', $id)->get()->getRowObject();
-        
-        if(!$users) {
+
+        if (!$users) {
             $response = new \stdClass;
             $response->code = 400;
             $response->message = "Data tidak ditemukan.";
             return json_encode($response);
         }
-        
+
         $x['data'] = $users;
 
         $response = new \stdClass;
@@ -266,7 +266,7 @@ class Diverifikasi extends BaseController
                     if ($decoded) {
                         $userId = $decoded->data->id;
                         $role = $decoded->data->role;
-                        
+
                         $cekData = $this->_db->table('_users_profil_tb')->where('id', $id)->get()->getRowObject();
 
                         if (!$cekData) {
@@ -339,5 +339,4 @@ class Diverifikasi extends BaseController
             }
         }
     }
-
 }

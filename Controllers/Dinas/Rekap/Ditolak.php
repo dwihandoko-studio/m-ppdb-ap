@@ -103,4 +103,63 @@ class Ditolak extends BaseController
 
         return view('dinas/rekap/ditolak/index', $data);
     }
+
+    public function detail()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'id' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id');
+            return json_encode($response);
+        } else {
+            $id = htmlspecialchars($this->request->getVar('id'), true);
+
+            $oldData = $this->_db->table('_tb_pendaftar_tolak a')
+                ->select("b.*, a.keterangan_penolakan, k.lampiran_akta_kelahiran, k.lampiran_foto_rumah, k.lampiran_kk, k.lampiran_lulus, k.lampiran_pernyataan, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
+                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT')
+                ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
+                ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
+                ->join('ref_kecamatan f', 'b.kecamatan = f.id', 'LEFT')
+                ->join('ref_kelurahan g', 'b.kelurahan = g.id', 'LEFT')
+                ->join('ref_dusun h', 'b.dusun = h.id', 'LEFT')
+                ->join('_upload_kelengkapan_berkas k', 'b.id = k.user_id', 'LEFT')
+                ->where('a.id', $id)
+                ->get()->getRowObject();
+
+            if (!$oldData) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Data tidak ditemukan.";
+                return json_encode($response);
+            }
+
+            $data['data'] = $oldData;
+
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->result = $oldData;
+            $response->data = view('dinas/rekap/diverifikasi/detail-tolak', $data);
+            $response->message = "Data ditemukan.";
+            return json_encode($response);
+        }
+    }
 }

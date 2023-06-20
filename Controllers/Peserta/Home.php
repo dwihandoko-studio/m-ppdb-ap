@@ -64,7 +64,6 @@ class Home extends BaseController
             $data['sekolah_pilihan'] = $cekRegisterTemp;
         }
 
-
         // var_dump($data);
         // die;
 

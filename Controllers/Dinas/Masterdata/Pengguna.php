@@ -544,7 +544,7 @@ class Pengguna extends BaseController
                     $response = new \stdClass;
                     $response->code = 200;
                     $response->data = $data;
-                    $response->url = base_url('web/home');
+                    $response->url = base_url('dinas/masterdata/pengguna');
                     $response->message = "Registrasi Berhasil. Silahkan login dengan menggunakan NISN dan passwordnya adalah tanggal lahir anda dengan format ddmmyyyy ($pass).";
                     return json_encode($response);
                 } else {

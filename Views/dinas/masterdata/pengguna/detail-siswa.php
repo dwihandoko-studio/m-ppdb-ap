@@ -149,7 +149,7 @@
                             msg.message,
                             'success'
                         ).then((valRes) => {
-                            document.location.href = reloadPage();
+                            document.location.href = '<?= current_url(true); ?>';
                         })
                     }
                 },

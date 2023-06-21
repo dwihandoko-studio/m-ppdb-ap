@@ -35,7 +35,7 @@
                                 <div class="col-lg-6 col-7">
                                     <h5 class="h3 mb-0">ANALISIS PPDB <?= $sekolahname->nama ?> - (<?= $sekolahname->npsn ?>)</h5>
                                 </div>
-                                <div class="col-lg-6 col-7" style="">
+                                <div class="col-lg-6 col-7">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group jenjang-block">

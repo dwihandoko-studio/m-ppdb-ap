@@ -277,7 +277,7 @@
                             // htmlRekapB +=                  numberBer;
                             // htmlRekapB +=              '</td>';
                             htmlRekapB += '<td>';
-                            htmlRekapB += msg.data_terverifikasi[stepr].via_jalur;
+                            htmlRekapB += msg.data_terverifikasi[stepb].via_jalur;
                             htmlRekapB += '</td>';
                             htmlRekapB += '<td>';
                             htmlRekapB += msg.data_belum_verifikasi[stepb].fullname;

@@ -277,7 +277,7 @@
                             htmlRekap += ')';
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
                             htmlRekap += '</td>';
                             htmlRekap += '</tr>';
                         }
@@ -318,7 +318,7 @@
                             htmlRekapA += ')';
                             htmlRekapA += '</td>';
                             htmlRekapA += '<td>';
-                            htmlRekapA += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekapA += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
                             htmlRekapA += '</td>';
                             htmlRekapA += '</tr>';
                         }
@@ -359,7 +359,7 @@
                             htmlRekapAB += ')';
                             htmlRekapAB += '</td>';
                             htmlRekapAB += '<td>';
-                            htmlRekapAB += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekapAB += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
                             htmlRekapAB += '</td>';
                             htmlRekapAB += '</tr>';
                         }
@@ -400,7 +400,7 @@
                             htmlRekapABC += ')';
                             htmlRekapABC += '</td>';
                             htmlRekapABC += '<td>';
-                            htmlRekapABC += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekapABC += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
                             htmlRekapABC += '</td>';
                             htmlRekapABC += '</tr>';
                         }
@@ -466,7 +466,7 @@
                             htmlRekap += ')';
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
                             htmlRekap += '</td>';
                             htmlRekap += '</tr>';
                         }

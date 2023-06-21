@@ -23,7 +23,7 @@ class Datalib
 
     private function registeredAndVerified($peserta_didik_id)
     {
-        return $this->_db->table('_tb_pendaftar')->where("peserta_didik_id = '{$peserta_didik_id}' AND (status_pendaftaran IN (1,2))")->get()->getRowObject();
+        return $this->_db->table('_tb_pendaftar')->where("peserta_didik_id = '{$peserta_didik_id}' AND (status_pendaftaran = 1 OR status_pendaftaran = 2)")->get()->getRowObject();
     }
 
     public function canRegister($jalur = "ZONASI")

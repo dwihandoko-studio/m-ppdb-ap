@@ -103,8 +103,8 @@ class Statistik extends BaseController
                 "draw" => $request->getPost('draw'),
                 // "recordsTotal" => 0,
                 // "recordsFiltered" => 0,
-                "recordsTotal" => $datamodel->count_all($filterJenjang, $filterKecamatan),
-                "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterKecamatan),
+                "recordsTotal" => $datamodel->count_all($filterKecamatan, $filterJenjang),
+                "recordsFiltered" => $datamodel->count_filtered($filterKecamatan, $filterJenjang),
                 "data" => $data
             ];
             echo json_encode($output);

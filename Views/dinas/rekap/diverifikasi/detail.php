@@ -212,7 +212,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                <button onclick="aksiCabutBerkas('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Cabut Berkas Pendaftaran</button>
+                <?php if ($data->status_pendaftaran == 1) { ?>
+                    <button onclick="aksiCabutBerkas('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Cabut Berkas Pendaftaran</button>
+                <?php } ?>
             </div>
         </form>
         <script>

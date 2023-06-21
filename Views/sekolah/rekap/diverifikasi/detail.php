@@ -211,7 +211,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button onclick="aksiCabutBerkas('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Cabut Berkas Pendaftaran</button>
+                <?php if ($data->status_pendaftaran == 1) { ?>
+                    <button onclick="aksiCabutBerkas('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Cabut Berkas Pendaftaran</button>
+                <?php } ?>
                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
                 <!--<button onclick="aksiUbahKoordinat('<?= $data->id ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Benahi Koordinat Peserta</button> -->
             </div>

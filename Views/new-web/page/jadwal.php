@@ -33,9 +33,10 @@
                                             <li>
                                                 <b>Verifikasi </b><br>
                                                 Buka : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_afirmasi) ?> WIB<br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_verifikasi_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_pendaftaran_afirmasi) ?> WIB<br>
                                                 Tutup : <br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_pendaftaran_afirmasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_verifikasi_afirmasi) ?> <i class="far fa-clock"></i> Pukul 16:00<?php //echo waktu_indo($data->tgl_akhir_pendaftaran_afirmasi); 
+                                                                                                                                                                                ?> WIB
                                             </li>
                                             <li>
                                                 <b>Analisis </b><br>

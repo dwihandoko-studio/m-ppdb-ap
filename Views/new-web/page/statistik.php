@@ -39,7 +39,7 @@
                     <div class="text">Jalur Prestasi</div>
                 </div>
             </div>
-            <div class="row center">
+            <div class="row center" style="margin-top: 50px;">
                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                     <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                         <div class="progress-box">

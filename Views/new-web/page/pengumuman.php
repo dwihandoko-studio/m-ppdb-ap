@@ -51,7 +51,7 @@
                                 <thead style="border: 1px solid #273581;">
                                     <tr class="_tampilan-display-inherit">
                                         <th>#</th>
-                                        <th>NAMA</th>
+                                        <th class="_tampilan-display-inherit">NAMA</th>
                                         <th>NPSN</th>
                                         <th>STATUS SEKOLAH</th>
                                     </tr>
@@ -504,7 +504,7 @@
                 "url": "<?= base_url('web/pengumuman/getPengumuman') ?>",
                 "type": "POST",
                 "data": function(data) {
-                    data.filter_kecamatan = $('#filter_jalur').val();
+                    data.filter_jalur = $('#filter_jalur').val();
                     data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },

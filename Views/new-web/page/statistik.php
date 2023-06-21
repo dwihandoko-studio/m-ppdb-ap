@@ -102,9 +102,9 @@
                         <div class="table-responsive" style="background-color: #fff; padding: 12px;border-radius: 5px; margin-top: -8px;">
                             <table class="table table-hover" id="tabelPendaftarSekolah">
                                 <thead style="border: 1px solid #273581;">
-                                    <tr>
-                                        <th data-orderable="false">#</th>
-                                        <th>Nama Sekolah</th>
+                                    <tr class="_tampilan-display-inherit">
+                                        <th data-orderable="false" class="_tampilan-display-inherit">#</th>
+                                        <th class="_tampilan-display-inherit">Nama Sekolah</th>
                                         <th data-orderable="false">Jalur Afirmasi</th>
                                         <th data-orderable="false">Jalur Zonasi</th>
                                         <th data-orderable="false">Jalur Mutasi</th>
@@ -428,7 +428,7 @@
 <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/DataTables/datatables.css" type="text/css">
 <style>
     ._tampilan-display-inherit {
-        vertical-align: inherit;
+        vertical-align: inherit !important;
     }
 </style>
 <?= $this->endSection(); ?>

@@ -98,7 +98,7 @@
             cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
             cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            // cRekapD +=              '<th>Jarak</th>';
+            cRekapD += '<th>Status</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
@@ -125,7 +125,7 @@
             cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
-            cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
+            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
             cRekapD += '</tr>';
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
@@ -133,7 +133,7 @@
             cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
             cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            // cRekapD +=              '<th>Jarak</th>';
+            cRekapD += '<th>Status</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
@@ -141,7 +141,7 @@
             cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
-            cRekapD += '<td colspan="5" style="text-align: center; align-items: center;">';
+            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
             cRekapD += '......LOADING.......';
             cRekapD += '</td>';
             cRekapD += '</tr>';
@@ -152,7 +152,7 @@
             cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
-            cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR ZONASI ';
+            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR ZONASI ';
             cRekapD += '</th>';
             cRekapD += '</tr>';
             cRekapD += '<tr>';
@@ -161,7 +161,7 @@
             cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
             cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            // cRekapD +=              '<th>Jarak</th>';
+            cRekapD += '<th>Status</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
@@ -169,7 +169,7 @@
             cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
-            cRekapD += '<td colspan="5" style="text-align: center; align-items: center;">';
+            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
             cRekapD += '......LOADING.......';
             cRekapD += '</td>';
             cRekapD += '</tr>';
@@ -189,7 +189,7 @@
             cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
             cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            // cRekapD +=              '<th>Jarak</th>';
+            cRekapD += '<th>Status</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
@@ -217,7 +217,7 @@
             cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
             cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            // cRekapD +=              '<th>Jarak</th>';
+            cRekapD += '<th>Status</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
@@ -276,9 +276,9 @@
                             htmlRekap += msg.data_lolos_zonasi[stepr].npsn_sekolah_asal;
                             htmlRekap += ')';
                             htmlRekap += '</td>';
-                            // htmlRekap +=              '<td>';
-                            // htmlRekap +=                  msg.data_lolos_zonasi[stepr].jarak;
-                            // htmlRekap +=              ' Km</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekap += '</td>';
                             htmlRekap += '</tr>';
                         }
 
@@ -317,9 +317,9 @@
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].npsn_sekolah_asal;
                             htmlRekapA += ')';
                             htmlRekapA += '</td>';
-                            // htmlRekapA +=              '<td>';
-                            // htmlRekapA +=                  msg.data_lolos_afirmasi[steprA].jarak;
-                            // htmlRekapA +=              ' Km</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekap += '</td>';
                             htmlRekapA += '</tr>';
                         }
 
@@ -358,9 +358,9 @@
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].npsn_sekolah_asal;
                             htmlRekapAB += ')';
                             htmlRekapAB += '</td>';
-                            // htmlRekapAB +=              '<td>';
-                            // htmlRekapAB +=                  msg.data_lolos_mutasi[steprAB].jarak;
-                            // htmlRekapAB +=              ' Km</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekap += '</td>';
                             htmlRekapAB += '</tr>';
                         }
 
@@ -399,9 +399,9 @@
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].npsn_sekolah_asal;
                             htmlRekapABC += ')';
                             htmlRekapABC += '</td>';
-                            // htmlRekapABC +=              '<td>';
-                            // htmlRekapABC +=                  msg.data_lolos_prestasi[steprABC].jarak;
-                            // htmlRekapABC +=              ' Km</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekap += '</td>';
                             htmlRekapABC += '</tr>';
                         }
 
@@ -465,9 +465,9 @@
                             htmlRekap += msg.data_lolos[stepr].npsn_sekolah_asal;
                             htmlRekap += ')';
                             htmlRekap += '</td>';
-                            // htmlRekap +=              '<td>';
-                            // htmlRekap +=                  msg.data_lolos_zonasi[stepr].jarak;
-                            // htmlRekap +=              ' Km</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekap += '</td>';
                             htmlRekap += '</tr>';
                         }
 

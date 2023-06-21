@@ -122,24 +122,24 @@ class User extends BaseController
         return view('peserta/lengkapi-profile', $data);
     }
 
-    // public function location()
-    // {
-    //     if ($this->request->getMethod() != 'post') {
-    //         $response = new \stdClass;
-    //         $response->code = 400;
-    //         $response->message = "Permintaan tidak diizinkan";
-    //         return json_encode($response);
-    //     }
+    public function location()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
 
-    //     $data['lat'] = htmlspecialchars($this->request->getVar('lat'), true) ?? "";
-    //     $data['long'] = htmlspecialchars($this->request->getVar('long'), true) ?? "";
+        $data['lat'] = htmlspecialchars($this->request->getVar('lat'), true) ?? "";
+        $data['long'] = htmlspecialchars($this->request->getVar('long'), true) ?? "";
 
-    //     $response = new \stdClass;
-    //     $response->code = 200;
-    //     $response->message = "Permintaan diizinkan";
-    //     $response->data = view('peserta/pick-maps', $data);
-    //     return json_encode($response);
-    // }
+        $response = new \stdClass;
+        $response->code = 200;
+        $response->message = "Permintaan diizinkan";
+        $response->data = view('peserta/pick-maps', $data);
+        return json_encode($response);
+    }
 
     public function gantiPassword()
     {

@@ -271,9 +271,9 @@
                                                 <input type="hidden" name="_latitude" id="_latitude" value="<?= (isset($user)) ? $user->latitude : '' ?>">
                                                 <input type="hidden" name="_longitude" id="_longitude" value="<?= (isset($user)) ? $user->longitude : '' ?>">
                                                 <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?= (isset($user)) ? '(' . $user->latitude . ';' . $user->longitude . ')' : '' ?>" onFocus="inputFocus(this);" readonly>
-                                                <!-- <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
+                                                <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
                                                     <span class="input-group-text action-location-icon" style="background-color: transparent;"><i class="fas fa-map-marker"></i></span>
-                                                </div> -->
+                                                </div>
                                             </div>
 
                                             <div class="help-block _koordinat"></div>

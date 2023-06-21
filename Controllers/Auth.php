@@ -2073,7 +2073,7 @@ class Auth extends BaseController
 
         $today = date("Y-m-d H:i:s");
         $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
+        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
 
         if ($startdate < $enddateAwal) {
             $response = new \stdClass;
@@ -2082,7 +2082,7 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
+        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
         if ($startdate > $enddateAkhir) {
             $response = new \stdClass;
             $response->code = 400;
@@ -2481,7 +2481,7 @@ class Auth extends BaseController
 
         $today = date("Y-m-d H:i:s");
         $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
+        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
 
         if ($startdate < $enddateAwal) {
             $response = new \stdClass;
@@ -2490,7 +2490,7 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
+        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
         if ($startdate > $enddateAkhir) {
             $response = new \stdClass;
             $response->code = 400;
@@ -2674,7 +2674,7 @@ class Auth extends BaseController
 
         $today = date("Y-m-d H:i:s");
         $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
+        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
 
         if ($startdate < $enddateAwal) {
             $response = new \stdClass;
@@ -2683,7 +2683,7 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
+        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
         if ($startdate > $enddateAkhir) {
             $response = new \stdClass;
             $response->code = 400;
@@ -2958,7 +2958,7 @@ class Auth extends BaseController
 
         $today = date("Y-m-d H:i:s");
         $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
+        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
 
         if ($startdate < $enddateAwal) {
             $response = new \stdClass;
@@ -2967,7 +2967,7 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
+        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
         if ($startdate > $enddateAkhir) {
             $response = new \stdClass;
             $response->code = 400;
@@ -3249,7 +3249,7 @@ class Auth extends BaseController
 
         $today = date("Y-m-d H:i:s");
         $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
+        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
 
         if ($startdate < $enddateAwal) {
             $response = new \stdClass;
@@ -3258,7 +3258,7 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
+        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
         if ($startdate > $enddateAkhir) {
             $response = new \stdClass;
             $response->code = 400;

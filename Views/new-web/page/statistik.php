@@ -39,26 +39,26 @@
                     <div class="text">Jalur Prestasi</div>
                 </div>
             </div>
-            <div class="row center" style="margin-top: 50px;">
-                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                    <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="progress-box">
-                            <div class="piechart" data-fg-color="#ff0000" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? $grafik_statistik->mutasi / $grafik_statistik->total : '.0') : '.0' ?>">
-                                <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? $grafik_statistik->mutasi : '0') : '0' ?></span>
-                            </div>
+        </div>
+        <div class="row center" style="margin-top: 50px;">
+            <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="progress-box">
+                        <div class="piechart" data-fg-color="#ff0000" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? $grafik_statistik->mutasi / $grafik_statistik->total : '.0') : '.0' ?>">
+                            <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? $grafik_statistik->mutasi : '0') : '0' ?></span>
                         </div>
-                        <div class="text">Jalur Mutasi</div>
                     </div>
+                    <div class="text">Jalur Mutasi</div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                    <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="progress-box">
-                            <div class="piechart" data-fg-color="#ff00da" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? $grafik_statistik->swasta / $grafik_statistik->total : '.0') : '.0' ?>">
-                                <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? $grafik_statistik->swasta : '0') : '0' ?></span>
-                            </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="progress-box">
+                        <div class="piechart" data-fg-color="#ff00da" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? $grafik_statistik->swasta / $grafik_statistik->total : '.0') : '.0' ?>">
+                            <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? $grafik_statistik->swasta : '0') : '0' ?></span>
                         </div>
-                        <div class="text">Swasta</div>
                     </div>
+                    <div class="text">Swasta</div>
                 </div>
             </div>
         </div>

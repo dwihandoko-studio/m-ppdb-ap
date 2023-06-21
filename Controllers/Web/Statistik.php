@@ -66,7 +66,7 @@ class Statistik extends BaseController
                 $row['button'] = '<button type="button" onclick="actionDetailPendaftar(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
                 $row['id'] = $list->id;
                 // $row['npsn'] = $list->npsn;
-                $row['nama'] = $list->nama . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan;
+                $row['nama'] = $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan;
                 $row['zonasi'] = 'Kuota : ' . $list->zonasi
                     . '<br/>' . 'Pendaftar : ' . $list->pendaftar_zonasi
                     . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_zonasi

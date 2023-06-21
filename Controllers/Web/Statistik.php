@@ -63,10 +63,10 @@ class Statistik extends BaseController
                 $row = [];
 
                 $row['no'] = $no;
-                $row['button'] = '<button type="button" onclick="actionDetailPendaftar(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
+                $row['button'] = '<div style="vertical-align: inherit;"><button type="button" onclick="actionDetailPendaftar(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button></div>';
                 $row['id'] = $list->id;
                 // $row['npsn'] = $list->npsn;
-                $row['nama'] = '<div style="font-size: 13px;">' . $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan . '</div>';
+                $row['nama'] = '<div style="font-size: 13px; vertical-align: inherit;">' . $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan . '</div>';
                 $row['zonasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->zonasi . '</b>'
                     . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_zonasi . '</b>'
                     . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_zonasi . '</b>'

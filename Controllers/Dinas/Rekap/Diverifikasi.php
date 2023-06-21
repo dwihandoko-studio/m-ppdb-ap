@@ -33,9 +33,10 @@ class Diverifikasi extends BaseController
 
 
         $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+        $filterJalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
         $filterSekolah = htmlspecialchars($request->getVar('filter_sekolah'), true) ?? "";
 
-        $lists = $datamodel->get_datatables($filterJenjang, $filterSekolah);
+        $lists = $datamodel->get_datatables($filterJenjang, $filterJalur, $filterSekolah);
         // $lists = [];
         $data = [];
         $no = $request->getPost("start");
@@ -74,8 +75,8 @@ class Diverifikasi extends BaseController
             "draw" => $request->getPost('draw'),
             // "recordsTotal" => 0,
             // "recordsFiltered" => 0,
-            "recordsTotal" => $datamodel->count_all($filterJenjang, $filterSekolah),
-            "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterSekolah),
+            "recordsTotal" => $datamodel->count_all($filterJenjang, $filterJalur, $filterSekolah),
+            "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterJalur, $filterSekolah),
             "data" => $data
         ];
         echo json_encode($output);

@@ -239,7 +239,7 @@
                         <?php if (isset($sekolah_pilihan)) { ?>
                             <center>
                                 <ol>
-                                    <li style="list-style: none;">Sekolah yang dituju : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                    <li style="list-style: none;">Sekolah yang dituju : <b><?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></b></li>
                                 </ol>
                             </center>
                         <?php } ?>
@@ -256,7 +256,7 @@
                             <?php if (isset($sekolah_pilihan)) { ?>
                                 <center>
                                     <ol>
-                                        <li style="list-style: none;">Sekolah yang dituju : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                        <li style="list-style: none;">Sekolah yang dituju : <b><?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></b></li>
                                     </ol>
                                 </center>
                             <?php } ?>

@@ -63,7 +63,7 @@ class Statistik extends BaseController
                 $row = [];
 
                 $row['no'] = $no;
-                $row['button'] = '<div style="vertical-align: inherit;"><button type="button" onclick="actionDetailPendaftar(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button></div>';
+                $row['button'] = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: bottom; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailPendaftar(\'' . $list->id . '\', \'' . $list->npsn . '\');"><i class="fas fa-search-plus"></i></button></div>';
                 $row['id'] = $list->id;
                 // $row['npsn'] = $list->npsn;
                 $row['nama'] = '<div style="font-size: 13px; vertical-align: inherit;">' . $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan . '</div>';

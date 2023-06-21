@@ -103,7 +103,7 @@
                             <table class="table table-hover" id="tabelPendaftarSekolah">
                                 <thead style="border: 1px solid #273581;">
                                     <tr>
-                                        <th data-orderable="false">Detail</th>
+                                        <th data-orderable="false">#</th>
                                         <th>Nama Sekolah</th>
                                         <th data-orderable="false">Jalur Afirmasi</th>
                                         <th data-orderable="false">Jalur Zonasi</th>

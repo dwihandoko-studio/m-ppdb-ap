@@ -44,7 +44,8 @@
                                             </li>
                                             <li>
                                                 <b>Pengumuman </b><br>
-                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_pengumuman_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_pengumuman_afirmasi) ?> WIB
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_pengumuman_afirmasi) ?> <i class="far fa-clock"></i> Pukul 23:30<?php //echo waktu_indo($data->tgl_pengumuman_afirmasi); 
+                                                                                                                                                                        ?> WIB
                                             </li>
                                         </ul>
                                     </div>

@@ -143,8 +143,14 @@ class Prestasi extends BaseController
             $data['error'] = $canDaftar->message;
         }
 
-        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->whereIn('status_pendaftaran', [1, 2, 3])->get()->getRowObject();
         if ($cekRegisterApprove) {
+            if ($cekRegisterApprove->status_pendaftaran == 2) {
+                $data['success'] = "Anda dinyatakan lolos pada seleksi PPDB Tahun Ajaran 2023/2024 Via Jalur " . $cekRegisterApprove->via_jalur . " pada sekolah " . getNamaAndNpsnSekolah($cekRegisterApprove->id) . ". Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";
+            }
+            if ($cekRegisterApprove->status_pendaftaran == 3) {
+                $data['warning'] = "Anda dinyatakan TIDAK LOLOS pada seleksi PPDB Tahun Ajaran 2023/2024 Via Jalur " . $cekRegisterApprove->via_jalur . " pada sekolah " . getNamaAndNpsnSekolah($cekRegisterApprove->id) . ". Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";
+            }
             $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
             $data['sekolah_pilihan'] = $cekRegisterApprove;
         }
@@ -259,7 +265,7 @@ class Prestasi extends BaseController
                 return json_encode($response);
             }
 
-            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where("peserta_didik_id = '{$peserta->peserta_didik_id}' AND (status_pendaftaran NOT IN (3))")->get()->getRowObject();
             if ($cekRegisterApprove) {
                 $response = new \stdClass;
                 $response->code = 400;

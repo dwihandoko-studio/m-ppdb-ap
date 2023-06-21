@@ -12,7 +12,7 @@ use App\Libraries\Profilelib;
 
 use App\Models\Dinas\Analisis\ProsesModel;
 use App\Models\Dinas\Analisis\ProsessekolahModel;
-use App\Models\Dinas\Analisis\ProsessekolahprosesModel;
+use App\Models\Dinas\Analisis\ProsessekolahproseshasilModel;
 
 
 class Pengumuman extends BaseController
@@ -48,7 +48,7 @@ class Pengumuman extends BaseController
     public function getPengumuman()
     {
         $request = Services::request();
-        $datamodel = new ProsessekolahprosesModel($request);
+        $datamodel = new ProsessekolahproseshasilModel($request);
 
 
         $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
@@ -71,22 +71,22 @@ class Pengumuman extends BaseController
             //</button>';
 
             if ((int)$list->status_sekolah == 1) {
-                $action = '<button type="button" onclick="actionDetailAnalisis(\'' . $list->tujuan_sekolah_id . '\')" class="btn btn-primary btn-sm">
+                $action = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: inherit; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailAnalisis(\'' . $list->tujuan_sekolah_id_1 . '\')" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
-                            </button>';
+                            </button></div>';
             } else {
-                $action = '<button type="button" onclick="actionDetailAnalisisSwasta(\'' . $list->tujuan_sekolah_id . '\')" class="btn btn-primary btn-sm">
+                $action = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: inherit; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailAnalisisSwasta(\'' . $list->tujuan_sekolah_id_1 . '\')" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
-                            </button>';
+                            </button></div>';
             }
 
             $row['aksi'] = $action;
             $row['nama_sekolah_tujuan'] = $list->nama_sekolah_tujuan;
             $row['npsn_sekolah_tujuan'] = $list->npsn_sekolah_tujuan;
-            $row['jumlah_pendaftar'] = $list->jumlah_pendaftar;
-            $row['tujuan_sekolah_id'] = $list->tujuan_sekolah_id;
+            // $row['jumlah_pendaftar'] = $list->jumlah_pendaftar;
+            $row['tujuan_sekolah_id'] = $list->tujuan_sekolah_id_1;
             $row['status_sekolah'] = $list->status_sekolah;
 
             $data[] = $row;
@@ -155,8 +155,8 @@ class Pengumuman extends BaseController
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id', $id)
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'SWASTA')
                     ->orderBy('jarak', 'ASC')
@@ -178,8 +178,8 @@ class Pengumuman extends BaseController
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id', $id)
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'AFIRMASI')
                     ->orderBy('jarak', 'ASC')
@@ -191,8 +191,8 @@ class Pengumuman extends BaseController
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id', $id)
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'MUTASI')
                     ->orderBy('jarak', 'ASC')
@@ -204,8 +204,8 @@ class Pengumuman extends BaseController
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id', $id)
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'PRESTASI')
                     ->orderBy('jarak', 'ASC')
@@ -228,8 +228,8 @@ class Pengumuman extends BaseController
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id', $id)
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'ZONASI')
                     ->orderBy('jarak', 'ASC')

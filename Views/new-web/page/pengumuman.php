@@ -26,22 +26,20 @@
                                                 </select>
                                             </div>
                                         </div>
+
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                            <div class="form-group kecamatan-block">
-                                                <label for="filter_kecamatan" class="form-control-label">Filter Kecamatan</label>
-                                                <select class="form-control filter-kecamatan" name="filter_kecamatan" id="filter_kecamatan" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                    <option value="">-- Pilih --</option>
-                                                    <?php if (isset($kecamatans)) {
-                                                        if (count($kecamatans) > 0) {
-                                                            foreach ($kecamatans as $key => $value) {
-                                                                echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
-                                                            }
-                                                        }
-                                                    }
-                                                    ?>
+                                            <div class="form-group jalur-block">
+                                                <label for="filter_jalur" class="form-control-label">Pilih Jalur</label>
+                                                <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <option value="AFIRMASI" selected>AFIRMASI</option>
+                                                    <option value="ZONASI">ZONASI</option>
+                                                    <option value="MUTASI">MUTASI</option>
+                                                    <option value="PRESTASI">PRESTASI</option>
+                                                    <option value="SWASTA">SWASTA</option>
                                                 </select>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -52,10 +50,10 @@
                             <table class="table table-hover" id="tabelRekapPpdb">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th>#</th>
                                         <th>NAMA</th>
                                         <th>NPSN</th>
+                                        <th>STATUS SEKOLAH</th>
                                     </tr>
                                 </thead>
 
@@ -80,7 +78,7 @@
         });
     }
 
-    function formatAnalisis(d) {
+    function formatAnalisis(d, ja) {
         if (parseInt(d.status_sekolah) === 2) {
             let cRekapD = '<h4>REKAPITULASI LOLOS PPDB ';
             cRekapD += d.nama_sekolah_tujuan;
@@ -105,7 +103,7 @@
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-swasta-';
-            cRekapD += d.tujuan_sekolah_id;
+            cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -123,6 +121,32 @@
             cRekapD += d.npsn_sekolah_tujuan;
             cRekapD += ' ) ';
             cRekapD += '</h4><br>';
+
+            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<thead>';
+            cRekapD += '<tr>';
+            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
+            cRekapD += '</tr>';
+            cRekapD += '<tr>';
+            cRekapD += '<th>No</th>';
+            cRekapD += '<th>Jalur</th>';
+            cRekapD += '<th>Nama</th>';
+            cRekapD += '<th>NISN</th>';
+            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            // cRekapD +=              '<th>Jarak</th>';
+            // cRekapD +=              '<th>Ranking</th>';
+            cRekapD += '</tr>';
+            cRekapD += '</thead>';
+            cRekapD += '<tbody class="detail-jalur-afirmasi-';
+            cRekapD += d.tujuan_sekolah_id_1;
+            cRekapD += '">';
+            cRekapD += '<tr>';
+            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
+            cRekapD += '......LOADING.......';
+            cRekapD += '</td>';
+            cRekapD += '</tr>';
+            cRekapD += '</tbody>';
+            cRekapD += '</table>';
             cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
@@ -140,34 +164,7 @@
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-zonasi-';
-            cRekapD += d.tujuan_sekolah_id;
-            cRekapD += '">';
-            cRekapD += '<tr>';
-            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
-            cRekapD += '......LOADING.......';
-            cRekapD += '</td>';
-            cRekapD += '</tr>';
-            cRekapD += '</tbody>';
-            cRekapD += '</table>';
-
-            cRekapD += '<br>';
-            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
-            cRekapD += '<thead>';
-            cRekapD += '<tr>';
-            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
-            cRekapD += '</tr>';
-            cRekapD += '<tr>';
-            cRekapD += '<th>No</th>';
-            cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th>Nama</th>';
-            cRekapD += '<th>NISN</th>';
-            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
-            // cRekapD +=              '<th>Jarak</th>';
-            // cRekapD +=              '<th>Ranking</th>';
-            cRekapD += '</tr>';
-            cRekapD += '</thead>';
-            cRekapD += '<tbody class="detail-jalur-afirmasi-';
-            cRekapD += d.tujuan_sekolah_id;
+            cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -195,7 +192,7 @@
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-mutasi-';
-            cRekapD += d.tujuan_sekolah_id;
+            cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -223,7 +220,7 @@
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-prestasi-';
-            cRekapD += d.tujuan_sekolah_id;
+            cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -494,7 +491,7 @@
 
     $(document).ready(function() {
         loadedAll = true;
-        initSelect2('filter_kecamatan');
+        initSelect2('filter_jalur');
         initSelect2('filter_jenjang');
 
         let tableRekapitulasiSekolah = $('#tabelRekapPpdb').DataTable({
@@ -505,7 +502,7 @@
                 "url": "<?= base_url('web/pengumuman/getPengumuman') ?>",
                 "type": "POST",
                 "data": function(data) {
-                    data.filter_kecamatan = $('#filter_kecamatan').val();
+                    data.filter_kecamatan = $('#filter_jalur').val();
                     data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },
@@ -517,20 +514,18 @@
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
             'columns': [{
-                    orderable: false,
-                    data: 'no',
-                },
-                {
                     className: 'dt-control',
                     orderable: false,
                     data: 'aksi',
                     defaultContent: '',
                 },
                 {
-                    data: 'nama_sekolah_tujuan'
+                    data: 'nama_sekolah_tujuan',
+                    orderable: false,
                 },
                 {
-                    data: 'npsn_sekolah_tujuan'
+                    data: 'npsn_sekolah_tujuan',
+                    orderable: false,
                 },
                 // { defaultContent: '', }, 
                 // { defaultContent: '', }, 
@@ -563,7 +558,7 @@
             tableRekapitulasiSekolah.draw();
         });
 
-        $('#filter_kecamatan').change(function() {
+        $('#filter_jalur').change(function() {
             tableRekapitulasiSekolah.draw();
         });
 

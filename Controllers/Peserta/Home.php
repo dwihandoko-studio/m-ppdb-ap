@@ -51,8 +51,14 @@ class Home extends BaseController
 
         // $data['status_pendaftaran'] = $statusDaftar;
 
-        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->whereIn('status_pendaftaran', [1, 2, 3])->get()->getRowObject();
         if ($cekRegisterApprove) {
+            if ($cekRegisterApprove->status_pendaftaran == 2) {
+                $data['success'] = "Anda dinyatakan lolos pada seleksi PPDB Tahun Ajaran 2023/2024 Via Jalur " . $cekRegisterApprove->via_jalur . " pada sekolah " . getNamaAndNpsnSekolah($cekRegisterApprove->id) . ". Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";
+            }
+            if ($cekRegisterApprove->status_pendaftaran == 3) {
+                $data['warning'] = "Anda dinyatakan TIDAK LOLOS pada seleksi PPDB Tahun Ajaran 2023/2024 Via Jalur " . $cekRegisterApprove->via_jalur . " pada sekolah " . getNamaAndNpsnSekolah($cekRegisterApprove->id) . ". Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";
+            }
             $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
             $data['sekolah_pilihan'] = $cekRegisterApprove;
             $data['sekolah_pilihan_approved'] = $cekRegisterApprove;

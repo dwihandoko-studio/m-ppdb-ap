@@ -265,30 +265,30 @@ class Swasta extends BaseController
                 $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
                 if ($this->_db->affectedRows() > 0) {
 
-                    // try {
-                    $riwayatLib = new Riwayatlib();
-                    $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Swasta dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Swasta", "submit");
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Swasta dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Swasta", "submit");
 
-                    $saveNotifSystem = new Notificationlib();
-                    $saveNotifSystem->send([
-                        'judul' => "Pendaftaran Jalur Swasta Telah Diverifikasi.",
-                        'isi' => "Pendaftaran anda melalui jalur swasta telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                        'action_web' => 'peserta/riwayat/pendaftaran',
-                        'action_app' => 'riwayat_pendaftaran_page',
-                        'token' => $cekRegisterTemp['id'],
-                        'send_from' => $user->data->id,
-                        'send_to' => $cekRegisterTemp['user_id'],
-                    ]);
+                        $saveNotifSystem = new Notificationlib();
+                        $saveNotifSystem->send([
+                            'judul' => "Pendaftaran Jalur Swasta Telah Diverifikasi.",
+                            'isi' => "Pendaftaran anda melalui jalur swasta telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                            'action_web' => 'peserta/riwayat/pendaftaran',
+                            'action_app' => 'riwayat_pendaftaran_page',
+                            'token' => $cekRegisterTemp['id'],
+                            'send_from' => $user->data->id,
+                            'send_to' => $cekRegisterTemp['user_id'],
+                        ]);
 
-                    $onesignal = new Fcmlib();
-                    $send = $onesignal->pushNotifToUser([
-                        'title' => "Pendaftaran Jalur Swasta Telah Diverifikasi.",
-                        'content' => "Pendaftaran anda melalui jalur swasta telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                        'send_to' => $cekRegisterTemp['user_id'],
-                        'app_url' => 'riwayat_pendaftaran_page',
-                    ]);
-                    // } catch (\Throwable $th) {
-                    // }
+                        $onesignal = new Fcmlib();
+                        $send = $onesignal->pushNotifToUser([
+                            'title' => "Pendaftaran Jalur Swasta Telah Diverifikasi.",
+                            'content' => "Pendaftaran anda melalui jalur swasta telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                            'send_to' => $cekRegisterTemp['user_id'],
+                            'app_url' => 'riwayat_pendaftaran_page',
+                        ]);
+                    } catch (\Throwable $th) {
+                    }
                     $this->_db->transCommit();
                     $response = new \stdClass;
                     $response->code = 200;
@@ -398,30 +398,30 @@ class Swasta extends BaseController
                     $updatelockLib = new Updatedatalib();
                     $berhasil = $updatelockLib->unlockUpdate($cekRegisterTemp['user_id']);
 
-                    // try {
-                    $riwayatLib = new Riwayatlib();
-                    $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Swasta dengan NISN : " . $nisn, "Tolak Pendaftaran Jalur Swasta", "tolak");
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Swasta dengan NISN : " . $nisn, "Tolak Pendaftaran Jalur Swasta", "tolak");
 
-                    $saveNotifSystem = new Notificationlib();
-                    $saveNotifSystem->send([
-                        'judul' => "Pendaftaran Jalur Swasta Ditolak.",
-                        'isi' => "Pendaftaran anda melalui jalur swasta ditolak dengan keterangan: $keterangan.",
-                        'action_web' => 'peserta/riwayat/pendaftaran',
-                        'action_app' => 'riwayat_pendaftaran_page',
-                        'token' => $cekRegisterTemp['id'],
-                        'send_from' => $user->data->id,
-                        'send_to' => $cekRegisterTemp['user_id'],
-                    ]);
+                        $saveNotifSystem = new Notificationlib();
+                        $saveNotifSystem->send([
+                            'judul' => "Pendaftaran Jalur Swasta Ditolak.",
+                            'isi' => "Pendaftaran anda melalui jalur swasta ditolak dengan keterangan: $keterangan.",
+                            'action_web' => 'peserta/riwayat/pendaftaran',
+                            'action_app' => 'riwayat_pendaftaran_page',
+                            'token' => $cekRegisterTemp['id'],
+                            'send_from' => $user->data->id,
+                            'send_to' => $cekRegisterTemp['user_id'],
+                        ]);
 
-                    $onesignal = new Fcmlib();
-                    $send = $onesignal->pushNotifToUser([
-                        'title' => "Pendaftaran Jalur Swasta Ditolak.",
-                        'content' => "Pendaftaran anda melalui jalur swasta ditolak dengan keterangan: $keterangan.",
-                        'send_to' => $cekRegisterTemp['user_id'],
-                        'app_url' => 'riwayat_pendaftaran_page',
-                    ]);
-                    // } catch (\Throwable $th) {
-                    // }
+                        $onesignal = new Fcmlib();
+                        $send = $onesignal->pushNotifToUser([
+                            'title' => "Pendaftaran Jalur Swasta Ditolak.",
+                            'content' => "Pendaftaran anda melalui jalur swasta ditolak dengan keterangan: $keterangan.",
+                            'send_to' => $cekRegisterTemp['user_id'],
+                            'app_url' => 'riwayat_pendaftaran_page',
+                        ]);
+                    } catch (\Throwable $th) {
+                    }
                     $this->_db->transCommit();
                     $response = new \stdClass;
                     $response->code = 200;

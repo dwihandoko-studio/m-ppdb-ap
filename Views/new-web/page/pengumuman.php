@@ -48,8 +48,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="table-responsive" style="background-color: #fff; padding: 12px;border-radius: 5px; margin-top: -8px;">
                             <table class="table table-hover" id="tabelRekapPpdb">
-                                <thead>
-                                    <tr>
+                                <thead style="border: 1px solid #273581;">
+                                    <tr class="_tampilan-display-inherit">
                                         <th>#</th>
                                         <th>NAMA</th>
                                         <th>NPSN</th>
@@ -569,4 +569,9 @@
 <?= $this->section('scriptTop'); ?>
 <link rel="stylesheet" href="<?= base_url('new-assets') ?>/assets/vendor/select2/dist/css/select2.min.css">
 <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/DataTables/datatables.css" type="text/css">
+<style>
+    ._tampilan-display-inherit {
+        vertical-align: inherit !important;
+    }
+</style>
 <?= $this->endSection(); ?>

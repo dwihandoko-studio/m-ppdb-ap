@@ -63,17 +63,21 @@ class DitolakModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filterJenjang, $filterSekolah)
+    function get_datatables($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.kecamatan', $filterJenjang);
+        if ($filterJalur != "") {
+            $this->dt->where('a.via_jalur', $filterJalur);
         }
 
         if ($filterSekolah != "") {
-            $this->dt->where('a.kelurahan', $filterSekolah);
+            $this->dt->where('j.id', $filterSekolah);
+        }
+
+        if ($filterJenjang != "") {
+            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
         }
 
         if ($this->request->getPost('length') != -1)
@@ -81,32 +85,40 @@ class DitolakModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filterJenjang, $filterSekolah)
+    function count_filtered($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.kecamatan', $filterJenjang);
+        if ($filterJalur != "") {
+            $this->dt->where('a.via_jalur', $filterJalur);
         }
 
         if ($filterSekolah != "") {
-            $this->dt->where('a.kelurahan', $filterSekolah);
+            $this->dt->where('j.id', $filterSekolah);
+        }
+
+        if ($filterJenjang != "") {
+            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
         }
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filterJenjang, $filterSekolah)
+    public function count_all($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.kecamatan', $filterJenjang);
+        if ($filterJalur != "") {
+            $this->dt->where('a.via_jalur', $filterJalur);
         }
 
         if ($filterSekolah != "") {
-            $this->dt->where('a.kelurahan', $filterSekolah);
+            $this->dt->where('j.id', $filterSekolah);
+        }
+
+        if ($filterJenjang != "") {
+            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
         }
 
         return $this->dt->countAllResults();

@@ -10,7 +10,7 @@ class ProsesModel extends Model
     protected $table = "_tb_pendaftar_lolos a";
     protected $column_order = array('jarak', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'jarak');
     protected $column_search = array('b.nisn');
-    protected $order = array('status_pendaftaran' => 'desc', 'jarak' => 'asc', 'a.created_at' => 'asc');
+    protected $order = array('a.status_pendaftaran' => 'desc', 'jarak' => 'asc', 'a.created_at' => 'asc');
     protected $request;
     protected $db;
     protected $dt;

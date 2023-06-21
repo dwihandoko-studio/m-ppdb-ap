@@ -61,8 +61,8 @@ class Antrian extends BaseController
             $row[] = $list->nisn;
             $row[] = $list->kode_pendaftaran;
             $row[] = $list->via_jalur;
-            $row[] = $list->nama_sekolah_asal;
-            $row[] = ($list->npsn_sekolah_asal == '10000001') ? '-' : $list->npsn_sekolah_asal;
+            $row[] = $list->nama_sekolah_tujuan;
+            $row[] = ($list->npsn_sekolah_tujuan == '10000001') ? '-' : $list->npsn_sekolah_tujuan;
 
             $data[] = $row;
         }

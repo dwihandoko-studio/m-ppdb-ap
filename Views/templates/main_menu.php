@@ -695,10 +695,17 @@
                             <div class="collapse<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' show' : '' ?>" id="navbar-analisis">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan"  && $uri->getSegment(3) == "sd") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/proses') ?>">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "proses") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/proses') ?>">
                                             <span class="sidenav-mini-icon"> P </span>
                                             <!--<i class="ni ni-app"></i>-->
-                                            <span class="sidenav-normal"> Rekap </span>
+                                            <span class="sidenav-normal"> Proses </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "hasil") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/hasil') ?>">
+                                            <span class="sidenav-mini-icon"> H </span>
+                                            <!--<i class="ni ni-app"></i>-->
+                                            <span class="sidenav-normal"> Hasil </span>
                                         </a>
                                     </li>
                                 </ul>

@@ -171,7 +171,7 @@ class Zonasi extends BaseController
             }
 
             $oldData = $this->_db->table('_tb_pendaftar_temp a')
-                ->select("b.*, k.lampiran_akta_kelahiran, k.lampiran_kk, k.lampiran_lulus, k.lampiran_pernyataan, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, i.nama as nama_bentuk_pendidikan")
+                ->select("b.*, k.lampiran_foto_rumah, k.lampiran_akta_kelahiran, k.lampiran_kk, k.lampiran_lulus, k.lampiran_pernyataan, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
                 // ->select("b.*, k.lampiran_akta_kelahiran, k.lampiran_kk, k.lampiran_lulus, k.lampiran_pernyataan, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
@@ -181,7 +181,7 @@ class Zonasi extends BaseController
                 ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
                 ->join('ref_kecamatan f', 'b.kecamatan = f.id', 'LEFT')
                 ->join('ref_kelurahan g', 'b.kelurahan = g.id', 'LEFT')
-                // ->join('ref_dusun h', 'b.dusun = h.id', 'LEFT')
+                ->join('ref_dusun h', 'b.dusun = h.id', 'LEFT')
                 ->join('_upload_kelengkapan_berkas k', 'b.id = k.user_id', 'LEFT')
                 ->where('a.id', $id)
                 ->get()->getRowObject();
@@ -280,30 +280,30 @@ class Zonasi extends BaseController
                 $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
                 if ($this->_db->affectedRows() > 0) {
 
-                    // try {
-                    $riwayatLib = new Riwayatlib();
-                    $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Zonasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Zonasi", "submit");
+                    try {
+                        $riwayatLib = new Riwayatlib();
+                        $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Zonasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Zonasi", "submit");
 
-                    $saveNotifSystem = new Notificationlib();
-                    $saveNotifSystem->send([
-                        'judul' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
-                        'isi' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                        'action_web' => 'peserta/riwayat/pendaftaran',
-                        'action_app' => 'riwayat_pendaftaran_page',
-                        'token' => $cekRegisterTemp['id'],
-                        'send_from' => $user->data->id,
-                        'send_to' => $cekRegisterTemp['user_id'],
-                    ]);
+                        $saveNotifSystem = new Notificationlib();
+                        $saveNotifSystem->send([
+                            'judul' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
+                            'isi' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                            'action_web' => 'peserta/riwayat/pendaftaran',
+                            'action_app' => 'riwayat_pendaftaran_page',
+                            'token' => $cekRegisterTemp['id'],
+                            'send_from' => $user->data->id,
+                            'send_to' => $cekRegisterTemp['user_id'],
+                        ]);
 
-                    $onesignal = new Fcmlib();
-                    $send = $onesignal->pushNotifToUser([
-                        'title' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
-                        'content' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                        'send_to' => $cekRegisterTemp['user_id'],
-                        'app_url' => 'riwayat_pendaftaran_page',
-                    ]);
-                    // } catch (\Throwable $th) {
-                    // }
+                        $onesignal = new Fcmlib();
+                        $send = $onesignal->pushNotifToUser([
+                            'title' => "Pendaftaran Jalur Zonasi Telah Diverifikasi.",
+                            'content' => "Pendaftaran anda melalui jalur zonasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                            'send_to' => $cekRegisterTemp['user_id'],
+                            'app_url' => 'riwayat_pendaftaran_page',
+                        ]);
+                    } catch (\Throwable $th) {
+                    }
                     $this->_db->transCommit();
                     $response = new \stdClass;
                     $response->code = 200;

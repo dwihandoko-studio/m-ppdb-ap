@@ -211,7 +211,7 @@
 
 
     function actionDetailPendaftar(event, title) {
-        console.log(event);
+        // console.log(event);
 
         $.ajax({
             url: "<?= base_url('web/statistik/getDetailPendaftaran') ?>",

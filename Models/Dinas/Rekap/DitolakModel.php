@@ -27,7 +27,7 @@ class DitolakModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.*, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan, a.keterangan_penolakan";
+        $select = "b.*, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, j.bentuk_pendidikan_id as bentuk_pendidikan_id_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan, a.keterangan_penolakan";
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
@@ -63,17 +63,21 @@ class DitolakModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filterJenjang, $filterSekolah)
+    function get_datatables($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.kecamatan', $filterJenjang);
+        if ($filterJalur != "") {
+            $this->dt->where('a.via_jalur', $filterJalur);
         }
 
         if ($filterSekolah != "") {
-            $this->dt->where('a.kelurahan', $filterSekolah);
+            $this->dt->where('j.id', $filterSekolah);
+        }
+
+        if ($filterJenjang != "") {
+            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
         }
 
         if ($this->request->getPost('length') != -1)
@@ -81,32 +85,40 @@ class DitolakModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filterJenjang, $filterSekolah)
+    function count_filtered($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.kecamatan', $filterJenjang);
+        if ($filterJalur != "") {
+            $this->dt->where('a.via_jalur', $filterJalur);
         }
 
         if ($filterSekolah != "") {
-            $this->dt->where('a.kelurahan', $filterSekolah);
+            $this->dt->where('j.id', $filterSekolah);
+        }
+
+        if ($filterJenjang != "") {
+            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
         }
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filterJenjang, $filterSekolah)
+    public function count_all($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 3) AND (a.batal_pendaftar = 0)");
 
-        if ($filterJenjang != "") {
-            $this->dt->where('a.kecamatan', $filterJenjang);
+        if ($filterJalur != "") {
+            $this->dt->where('a.via_jalur', $filterJalur);
         }
 
         if ($filterSekolah != "") {
-            $this->dt->where('a.kelurahan', $filterSekolah);
+            $this->dt->where('j.id', $filterSekolah);
+        }
+
+        if ($filterJenjang != "") {
+            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
         }
 
         return $this->dt->countAllResults();

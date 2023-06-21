@@ -14,71 +14,84 @@ class Prosesluluslib
         helper(['text', 'array', 'filesystem']);
         $this->_db      = \Config\Database::connect();
     }
-    
-    public function prosesLulusAfirmasi($data) {
-        if(count($data) > 0) {
+
+    public function prosesLulusAfirmasi($data, $jumlah)
+    {
+        if (count($data) > 0) {
             foreach ($data as $key => $value) {
-                $this->luluskanA($value->id_pendaftaran);
+                $jumlahData = $this->_db->table('_tb_pendaftar_lolos')->where(['status_pendaftara' => 2, 'tujuan_sekolah_id_1' => $value->tujuan_sekolah_id_1])->countAllResults();
+                if ($jumlahData < $jumlah) {
+                    $this->luluskanA($value->id_pendaftaran);
+                } else {
+                    continue;
+                }
             }
-            
+
             return true;
         }
-        
+
         return true;
     }
-    
-    public function prosesLulusMutasi($data) {
-        if(count($data) > 0) {
+
+    public function prosesLulusMutasi($data)
+    {
+        if (count($data) > 0) {
             foreach ($data as $key => $value) {
                 $this->luluskanM($value->id_pendaftaran);
             }
-            
+
             return true;
         }
-        
+
         return true;
     }
-    
-    public function prosesLulusPrestasi($data) {
-        if(count($data) > 0) {
+
+    public function prosesLulusPrestasi($data)
+    {
+        if (count($data) > 0) {
             foreach ($data as $key => $value) {
                 $this->luluskanP($value->id_pendaftaran);
             }
-            
+
             return true;
         }
-        
+
         return true;
     }
-    
-    public function prosesLulusZonasi($data) {
-        if(count($data) > 0) {
+
+    public function prosesLulusZonasi($data)
+    {
+        if (count($data) > 0) {
             foreach ($data as $key => $value) {
                 $this->luluskanZ($value->id_pendaftaran);
             }
-            
+
             return true;
         }
-        
+
         return true;
     }
-    
-    private function luluskanA($id) {
+
+    private function luluskanA($id)
+    {
+        return $data = $this->_db->table('_tb_pendaftar_lolos')->where('id', $id)->update(['status_pendaftaran' => 2]);
+    }
+
+    private function luluskanM($id)
+    {
         return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
     }
-    
-    private function luluskanM($id) {
+
+    private function luluskanP($id)
+    {
         return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
     }
-    
-    private function luluskanP($id) {
+
+    private function luluskanZ($id)
+    {
         return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
     }
-    
-    private function luluskanZ($id) {
-        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
-    }
-    
+
 
     // public function insert($keterangan, $aksi = "merubah data", $icon = "submit")
     // {

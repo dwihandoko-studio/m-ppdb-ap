@@ -35,7 +35,7 @@ class Upload extends BaseController
         }
 
         $data['user'] = $user->data;
-        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->whereIn('status_pendaftaran', [1, 2, 3])->get()->getRowObject();
+        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->whereIn('status_pendaftaran', [1, 2, 3])->orderBy('created_at', 'DESC')->limit(1)->get()->getRowObject();
         if ($cekRegisterApprove) {
             if ($cekRegisterApprove->status_pendaftaran == 2) {
                 $data['success'] = "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1) . "</b> Via Jalur " . $cekRegisterApprove->via_jalur . ". <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";

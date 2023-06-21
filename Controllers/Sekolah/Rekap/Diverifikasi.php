@@ -39,10 +39,10 @@ class Diverifikasi extends BaseController
             return redirect()->to(base_url('web/home'));
         }
         if ($request->getMethod(true) == 'POST') {
-            $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
-            $filterKelurahan = htmlspecialchars($request->getVar('filter_kelurahan'), true) ?? "";
+            $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+            $filterJalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
 
-            $lists = $datamodel->get_datatables($filterKecamatan, $filterKelurahan, $user->data->id);
+            $lists = $datamodel->get_datatables($filterJenjang, $filterJalur, $user->data->id);
             // $lists = [];
             $data = [];
             $no = $request->getPost("start");
@@ -73,8 +73,8 @@ class Diverifikasi extends BaseController
                 "draw" => $request->getPost('draw'),
                 // "recordsTotal" => 0,
                 // "recordsFiltered" => 0,
-                "recordsTotal" => $datamodel->count_all($filterKecamatan, $filterKelurahan, $user->data->id),
-                "recordsFiltered" => $datamodel->count_filtered($filterKecamatan, $filterKelurahan, $user->data->id),
+                "recordsTotal" => $datamodel->count_all($filterJenjang, $filterJalur, $user->data->id),
+                "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterJalur, $user->data->id),
                 "data" => $data
             ];
             echo json_encode($output);

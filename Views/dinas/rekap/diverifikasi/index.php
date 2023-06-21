@@ -266,7 +266,6 @@
             ]
         });
 
-
         $('#filter_jalur').change(function() {
             tableUsulan.draw();
         });

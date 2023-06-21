@@ -389,8 +389,8 @@
                 "orderable": false,
             }],
             lengthMenu: [
-                [10, 25],
-                ['10 Data', '25 Data']
+                [5, 10, 25],
+                ['5 Data', '10 Data', '25 Data']
             ],
         });
 

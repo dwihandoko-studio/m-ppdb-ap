@@ -9,7 +9,7 @@
             <h2>STATISTIK PPDB 2023<br>KABUPATEN LAMPUNG TIMUR</h2>
         </div>
         <div class="row center">
-            <div class="col-lg-2 col-md-6 col-sm-12 single-column">
+            <div class="col-lg-4 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="900ms" data-wow-duration="1500ms">
                     <div class="progress-box">
                         <div class="piechart" data-fg-color="#2eb100" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->afirmasi) ? $grafik_statistik->afirmasi / $grafik_statistik->total : '.0') : '.0' ?>">
@@ -19,7 +19,7 @@
                     <div class="text">Jalur Afirmasi</div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-12 single-column">
+            <div class="col-lg-4 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                     <div class="progress-box">
                         <div class="piechart" data-fg-color="#393e95" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->zonasi) ? $grafik_statistik->zonasi / $grafik_statistik->total : '.0') : '.0' ?>">
@@ -29,7 +29,7 @@
                     <div class="text">Jalur Zonasi</div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-12 single-column">
+            <div class="col-lg-4 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                     <div class="progress-box">
                         <div class="piechart" data-fg-color="#ff8500" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->prestasi) ? $grafik_statistik->prestasi / $grafik_statistik->total : '.0') : '.0' ?>">
@@ -39,7 +39,7 @@
                     <div class="text">Jalur Prestasi</div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-12 single-column">
+            <div class="col-lg-4 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="progress-box">
                         <div class="piechart" data-fg-color="#ff0000" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? $grafik_statistik->mutasi / $grafik_statistik->total : '.0') : '.0' ?>">
@@ -49,7 +49,7 @@
                     <div class="text">Jalur Mutasi</div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-12 single-column">
+            <div class="col-lg-4 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="progress-box">
                         <div class="piechart" data-fg-color="#ff00da" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? $grafik_statistik->swasta / $grafik_statistik->total : '.0') : '.0' ?>">

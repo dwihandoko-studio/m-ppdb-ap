@@ -453,13 +453,13 @@
                             htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos[stepr].via_jalur;
                             htmlRekap += '</td>';
-                            htmlRekap += '<td>';
+                            htmlRekap += '<td style="text-align: left;>';
                             htmlRekap += msg.data_lolos[stepr].fullname;
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos[stepr].nisn;
                             htmlRekap += '</td>';
-                            htmlRekap += '<td>';
+                            htmlRekap += '<td style="text-align: left;>';
                             htmlRekap += msg.data_lolos[stepr].nama_sekolah_asal;
                             htmlRekap += ' (';
                             htmlRekap += msg.data_lolos[stepr].npsn_sekolah_asal;

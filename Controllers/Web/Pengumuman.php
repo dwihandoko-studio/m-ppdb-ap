@@ -71,14 +71,12 @@ class Pengumuman extends BaseController
             //</button>';
 
             if ((int)$list->status_sekolah == 1) {
-                $action = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: inherit; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailAnalisis(\'' . $list->tujuan_sekolah_id_1 . '\')" class="btn btn-primary btn-sm">
-                                <i class="fa fa-eye"></i>
-                                <span>Detail</span>
+                $action = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: inherit; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailAnalisis(\'' . $list->tujuan_sekolah_id_1 . '\')">
+                <i class="fas fa-search-plus"></i>
                             </button></div>';
             } else {
-                $action = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: inherit; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailAnalisisSwasta(\'' . $list->tujuan_sekolah_id_1 . '\')" class="btn btn-primary btn-sm">
-                                <i class="fa fa-eye"></i>
-                                <span>Detail</span>
+                $action = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: inherit; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailAnalisisSwasta(\'' . $list->tujuan_sekolah_id_1 . '\')">
+                <i class="fas fa-search-plus"></i>
                             </button></div>';
             }
 

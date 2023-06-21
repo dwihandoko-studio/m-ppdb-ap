@@ -553,7 +553,7 @@
             } else {
                 // Open this row
 
-                row.child(formatAnalisis(row.data())).show();
+                row.child(formatAnalisis(row.data()), 'a').show();
                 tr.addClass('shown');
             }
         });

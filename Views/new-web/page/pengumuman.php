@@ -122,7 +122,7 @@
             cRekapD += ' ) ';
             cRekapD += '</h4><br>';
 
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
@@ -149,7 +149,7 @@
             cRekapD += '</table></div>';
 
             cRekapD += '<br/>';
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR ZONASI ';
@@ -177,7 +177,7 @@
             cRekapD += '</table></div>';
 
             cRekapD += '<br/>';
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR MUTASI</th>';
@@ -205,7 +205,7 @@
             cRekapD += '</table></div>';
 
             cRekapD += '<br>';
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR PRESTASI</th>';

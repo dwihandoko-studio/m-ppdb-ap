@@ -232,7 +232,7 @@
         <?php if (isset($error)) { ?>
             <?php if (isset($success)) { ?>
                 <div class="card">
-                    <div class="card-body bg-gradient-success p-0" style="border-radius: 5px;">
+                    <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
                         <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
                         <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $success ?></span></button></center>
                         <br />
@@ -249,7 +249,7 @@
             <?php } else { ?>
                 <?php if (isset($warning)) { ?>
                     <div class="card">
-                        <div class="card-body bg-gradient-success p-0" style="border-radius: 5px;">
+                        <div class="card-body bg-gradient-danger p-0" style="border-radius: 5px; color: #fff;">
                             <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
                             <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $warning ?></span></button></center>
                             <br />
@@ -265,7 +265,7 @@
                     </div>
                 <?php } else { ?>
                     <div class="card">
-                        <div class="card-body bg-gradient-success p-0" style="border-radius: 5px;">
+                        <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
                             <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
                             <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
                             <br />

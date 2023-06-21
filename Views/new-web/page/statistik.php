@@ -377,7 +377,7 @@
         });
 
 
-        $('#tabelZonasiSekolah tbody').on('click', 'td.dt-control', function() {
+        $('#tabelPendaftarSekolah tbody').on('click', 'td.dt-control', function() {
             var tr = $(this).closest('tr');
             var row = tableZonasiSekolah.row(tr);
 

@@ -60,12 +60,12 @@ class KuotapendaftaranModel extends Model
     {
         $this->_get_datatables_query();
 
-        if ($filterKecamatan != "") {
-            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
+        if ($filterJenajng != "") {
+            $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
 
-        if ($filterJenajng != "") {
-            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        if ($filterKecamatan != "") {
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
         }
 
         if ($this->request->getPost('length') != -1)
@@ -77,12 +77,12 @@ class KuotapendaftaranModel extends Model
     {
         $this->_get_datatables_query();
 
-        if ($filterKecamatan != "") {
-            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
+        if ($filterJenajng != "") {
+            $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
 
-        if ($filterJenajng != "") {
-            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
+        if ($filterKecamatan != "") {
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
         }
 
         return $this->dt->countAllResults();
@@ -91,12 +91,11 @@ class KuotapendaftaranModel extends Model
     {
         $this->_get_datatables_query();
 
+        if ($filterJenajng != "") {
+            $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
+        }
         if ($filterKecamatan != "") {
             $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
-        }
-
-        if ($filterJenajng != "") {
-            $this->dt->where('b.bentuk_pendidikan_id', $filterJenajng);
         }
 
         return $this->dt->countAllResults();

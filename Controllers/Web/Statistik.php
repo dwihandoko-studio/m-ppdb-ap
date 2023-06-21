@@ -83,7 +83,7 @@ class Statistik extends BaseController
                     . '<br/>' . 'Pendaftar : ' . $list->pendaftar_prestasi
                     . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_prestasi
                     . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_prestasi;
-                $row['swasta'] = 'Kuota : ' . $list->swasta
+                $row['swasta'] = 'Kuota : ' . ((int)$list->zonasi + (int)$list->afirmasi + (int)$list->mutasi + (int)$list->prestasi)
                     . '<br/>' . 'Pendaftar : ' . $list->pendaftar_swasta
                     . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_swasta
                     . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_swasta;

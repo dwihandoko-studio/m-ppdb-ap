@@ -264,7 +264,7 @@
                             htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos_zonasi[stepr].via_jalur;
                             htmlRekap += '</td>';
-                            htmlRekap += '<td>';
+                            htmlRekap += '<td style="text-align: left;">';
                             htmlRekap += msg.data_lolos_zonasi[stepr].fullname;
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
@@ -305,7 +305,7 @@
                             htmlRekapA += '<td>';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].via_jalur;
                             htmlRekapA += '</td>';
-                            htmlRekapA += '<td>';
+                            htmlRekapA += '<td style="text-align: left;">';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].fullname;
                             htmlRekapA += '</td>';
                             htmlRekapA += '<td>';
@@ -346,7 +346,7 @@
                             htmlRekapAB += '<td>';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].via_jalur;
                             htmlRekapAB += '</td>';
-                            htmlRekapAB += '<td>';
+                            htmlRekapAB += '<td style="text-align: left;">';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].fullname;
                             htmlRekapAB += '</td>';
                             htmlRekapAB += '<td>';
@@ -387,7 +387,7 @@
                             htmlRekapABC += '<td>';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].via_jalur;
                             htmlRekapABC += '</td>';
-                            htmlRekapABC += '<td>';
+                            htmlRekapABC += '<td style="text-align: left;">';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].fullname;
                             htmlRekapABC += '</td>';
                             htmlRekapABC += '<td>';

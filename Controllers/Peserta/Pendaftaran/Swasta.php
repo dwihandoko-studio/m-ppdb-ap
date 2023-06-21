@@ -146,10 +146,14 @@ class Swasta extends BaseController
         $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->whereIn('status_pendaftaran', [1, 2, 3])->get()->getRowObject();
         if ($cekRegisterApprove) {
             if ($cekRegisterApprove->status_pendaftaran == 2) {
-                $data['success'] = "Anda dinyatakan lolos pada seleksi PPDB Tahun Ajaran 2023/2024 Via Jalur " . $cekRegisterApprove->via_jalur . " pada sekolah " . getNamaAndNpsnSekolah($cekRegisterApprove->id) . ". Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";
+                $data['success'] = "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1) . "</b> Via Jalur " . $cekRegisterApprove->via_jalur . ". <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";
             }
             if ($cekRegisterApprove->status_pendaftaran == 3) {
-                $data['warning'] = "Anda dinyatakan TIDAK LOLOS pada seleksi PPDB Tahun Ajaran 2023/2024 Via Jalur " . $cekRegisterApprove->via_jalur . " pada sekolah " . getNamaAndNpsnSekolah($cekRegisterApprove->id) . ". Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan.";
+                if ($cekRegisterApprove->via_jalur == "AFIRMASI") {
+                    $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1) . "</b> Via Jalur " . $cekRegisterApprove->via_jalur . ". <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
+                } else {
+                    $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1) . "</b> Via Jalur " . $cekRegisterApprove->via_jalur . ".";
+                }
             }
             $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
             $data['sekolah_pilihan'] = $cekRegisterApprove;

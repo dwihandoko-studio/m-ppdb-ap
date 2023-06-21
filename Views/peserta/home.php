@@ -236,13 +236,8 @@
                         <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
                         <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $success ?></span></button></center>
                         <br />
-                        <?php if (isset($sekolah_pilihan)) { ?>
-                            <center>
-                                <ol>
-                                    <li style="list-style: none;">Sekolah yang dituju : <b><?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></b></li>
-                                </ol>
-                            </center>
-                        <?php } ?>
+                        <br />
+
                         <!-- </div> -->
                     </div>
                 </div>
@@ -253,13 +248,7 @@
                             <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
                             <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $warning ?></span></button></center>
                             <br />
-                            <?php if (isset($sekolah_pilihan)) { ?>
-                                <center>
-                                    <ol>
-                                        <li style="list-style: none;">Sekolah yang dituju : <b><?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></b></li>
-                                    </ol>
-                                </center>
-                            <?php } ?>
+                            <br />
                             <!-- </div> -->
                         </div>
                     </div>

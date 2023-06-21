@@ -447,7 +447,7 @@ class Prestasi extends BaseController
                 return json_encode($response);
             }
 
-            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where("peserta_didik_id = '{$peserta->peserta_didik_id}' AND (status_pendaftaran = 1 OR status_pendaftaran = 2)")->get()->getRowObject();
             if ($cekRegisterApprove) {
                 $response = new \stdClass;
                 $response->code = 400;

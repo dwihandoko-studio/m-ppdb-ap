@@ -252,13 +252,22 @@
                         </div> -->
                     </div>
                     <div class="card-footer">
-                        <?php if (!(isset($error))) { ?>
+                        <?php if (isset($error)) { ?>
+                            <?php if (isset($warning)) { ?>
+                                <?php if (isset($result)) { ?>
+                                    <?php if (count($result) > 0) { ?>
+                                        <button type="button" onclick="actionDaftarSimpan(this);" class="btn btn-primary btn-lg btn-block _daftar_simpan" id="_daftar_simpan">DAFTAR DAN SIMPAN</button>
+                                    <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } else { ?>
                             <?php if (isset($result)) { ?>
                                 <?php if (count($result) > 0) { ?>
                                     <button type="button" onclick="actionDaftarSimpan(this);" class="btn btn-primary btn-lg btn-block _daftar_simpan" id="_daftar_simpan">DAFTAR DAN SIMPAN</button>
                                 <?php } ?>
                             <?php } ?>
                         <?php } ?>
+
                     </div>
                 </div>
             </div>

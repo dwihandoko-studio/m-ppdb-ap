@@ -19,7 +19,7 @@ class Prosesluluslib
     {
         if (count($data) > 0) {
             foreach ($data as $key => $value) {
-                $jumlahData = $this->_db->table('_tb_pendaftar_lolos')->where(['status_pendaftara' => 2, 'tujuan_sekolah_id_1' => $value->tujuan_sekolah_id_1])->countAllResults();
+                $jumlahData = $this->_db->table('_tb_pendaftar_lolos')->where(['status_pendaftaran' => 2, 'tujuan_sekolah_id_1' => $value->tujuan_sekolah_id_1])->countAllResults();
                 if ($jumlahData < $jumlah) {
                     $this->luluskanA($value->id_pendaftaran);
                 } else {

@@ -317,9 +317,9 @@
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].npsn_sekolah_asal;
                             htmlRekapA += ')';
                             htmlRekapA += '</td>';
-                            htmlRekap += '<td>';
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
-                            htmlRekap += '</td>';
+                            htmlRekapA += '<td>';
+                            htmlRekapA += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekapA += '</td>';
                             htmlRekapA += '</tr>';
                         }
 
@@ -358,9 +358,9 @@
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].npsn_sekolah_asal;
                             htmlRekapAB += ')';
                             htmlRekapAB += '</td>';
-                            htmlRekap += '<td>';
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
-                            htmlRekap += '</td>';
+                            htmlRekapAB += '<td>';
+                            htmlRekapAB += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekapAB += '</td>';
                             htmlRekapAB += '</tr>';
                         }
 
@@ -399,9 +399,9 @@
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].npsn_sekolah_asal;
                             htmlRekapABC += ')';
                             htmlRekapABC += '</td>';
-                            htmlRekap += '<td>';
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
-                            htmlRekap += '</td>';
+                            htmlRekapABC += '<td>';
+                            htmlRekapABC += '<span class="badge badge-success" style="padding: 10px;">NEGERI</span>';
+                            htmlRekapABC += '</td>';
                             htmlRekapABC += '</tr>';
                         }
 

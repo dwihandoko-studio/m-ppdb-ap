@@ -52,7 +52,7 @@
         </div>
     </div>
 </section>
-<section class="pricing-section centred _pendaftaran_sekolah" id="_pendaftaran_sekolah">
+<section class="pricing-section _pendaftaran_sekolah" id="_pendaftaran_sekolah">
     <div class="container">
         <!-- <div class="container" style="margin-top: 100px;"> -->
         <div class="sec-title center">

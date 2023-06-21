@@ -427,6 +427,13 @@
 <link rel="stylesheet" href="<?= base_url('new-assets') ?>/assets/vendor/select2/dist/css/select2.min.css">
 <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/DataTables/datatables.css" type="text/css">
 <style>
+    @media only screen and (max-width: 2000px) {
+        canvas {
+            width: 200px !important;
+            height: 200px !important;
+        }
+    }
+
     ._tampilan-display-inherit {
         vertical-align: inherit !important;
     }

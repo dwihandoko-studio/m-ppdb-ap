@@ -69,7 +69,7 @@ class ProsessekolahModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
-        $this->dt->where('a.status_pendaftaran', 2);
+        $this->dt->where('a.status_pendaftaran', 1);
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
@@ -89,7 +89,7 @@ class ProsessekolahModel extends Model
     function count_filtered($filter_jenjang, $filter_jalur)
     {
         $this->_get_datatables_query();
-        $this->dt->where('a.status_pendaftaran', 2);
+        $this->dt->where('a.status_pendaftaran', 1);
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
@@ -106,7 +106,7 @@ class ProsessekolahModel extends Model
     public function count_all($filter_jenjang, $filter_jalur)
     {
         $this->_get_datatables_query();
-        $this->dt->where('a.status_pendaftaran', 2);
+        $this->dt->where('a.status_pendaftaran', 1);
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);

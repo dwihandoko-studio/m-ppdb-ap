@@ -31,81 +31,51 @@ class Diverifikasi extends BaseController
         $request = Services::request();
         $datamodel = new DiverifikasiModel($request);
 
-        $jwt = get_cookie('jwt');
-        $token_jwt = getenv('token_jwt.default.key');
-        if ($jwt) {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->userSekolah();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+        if ($request->getMethod(true) == 'POST') {
+            $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
+            $filterKelurahan = htmlspecialchars($request->getVar('filter_kelurahan'), true) ?? "";
 
-            try {
+            $lists = $datamodel->get_datatables($filterKecamatan, $filterKelurahan, $user->data->id);
+            // $lists = [];
+            $data = [];
+            $no = $request->getPost("start");
+            foreach ($lists as $list) {
+                $no++;
+                $row = [];
 
-                $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                if ($decoded) {
-                    $userId = $decoded->data->id;
-                    $role = $decoded->data->role;
-                    if ($request->getMethod(true) == 'POST') {
-                        $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
-                        $filterKelurahan = htmlspecialchars($request->getVar('filter_kelurahan'), true) ?? "";
-
-                        $lists = $datamodel->get_datatables($filterKecamatan, $filterKelurahan, $userId);
-                        // $lists = [];
-                        $data = [];
-                        $no = $request->getPost("start");
-                        foreach ($lists as $list) {
-                            $no++;
-                            $row = [];
-
-                            $row[] = $no;
-                            // if($hakAksesMenu) {
-                            //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
-                            $action = '
+                $row[] = $no;
+                // if($hakAksesMenu) {
+                //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
+                $action = '
                             <button onclick="actionDetail(\'' . $list->id_pendaftaran . '\')" type="button" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </button>';
-                            $row[] = $action;
+                $row[] = $action;
 
-                            $row[] = $list->fullname;
-                            $row[] = $list->nisn;
-                            $row[] = $list->kode_pendaftaran;
-                            $row[] = $list->via_jalur;
-                            $row[] = $list->nama_sekolah_asal;
-                            $row[] = ($list->npsn_sekolah_asal == '10000001') ? '-' : $list->npsn_sekolah_asal;
+                $row[] = $list->fullname;
+                $row[] = $list->nisn;
+                $row[] = $list->kode_pendaftaran;
+                $row[] = $list->via_jalur;
+                $row[] = $list->nama_sekolah_asal;
+                $row[] = ($list->npsn_sekolah_asal == '10000001') ? '-' : $list->npsn_sekolah_asal;
 
-                            $data[] = $row;
-                        }
-                        $output = [
-                            "draw" => $request->getPost('draw'),
-                            // "recordsTotal" => 0,
-                            // "recordsFiltered" => 0,
-                            "recordsTotal" => $datamodel->count_all($filterKecamatan, $filterKelurahan, $userId),
-                            "recordsFiltered" => $datamodel->count_filtered($filterKecamatan, $filterKelurahan, $userId),
-                            "data" => $data
-                        ];
-                        echo json_encode($output);
-                    }
-                } else {
-                    $output = [
-                        "draw" => "1",
-                        "recordsTotal" => 0,
-                        "recordsFiltered" => 0,
-                        "data" => []
-                    ];
-                    echo json_encode($output);
-                }
-            } catch (\Exception $e) {
-                $output = [
-                    "draw" => "1",
-                    "recordsTotal" => 0,
-                    "recordsFiltered" => 0,
-                    "data" => []
-                ];
-                echo json_encode($output);
+                $data[] = $row;
             }
-        } else {
             $output = [
-                "draw" => "1",
-                "recordsTotal" => 0,
-                "recordsFiltered" => 0,
-                "data" => []
+                "draw" => $request->getPost('draw'),
+                // "recordsTotal" => 0,
+                // "recordsFiltered" => 0,
+                "recordsTotal" => $datamodel->count_all($filterKecamatan, $filterKelurahan, $user->data->id),
+                "recordsFiltered" => $datamodel->count_filtered($filterKecamatan, $filterKelurahan, $user->data->id),
+                "data" => $data
             ];
             echo json_encode($output);
         }

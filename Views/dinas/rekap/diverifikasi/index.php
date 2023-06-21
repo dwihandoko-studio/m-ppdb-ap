@@ -232,7 +232,10 @@
             "ajax": {
                 "url": "<?= base_url('dinas/rekap/diverifikasi/getAll') ?>",
                 "type": "POST",
-
+                "data": function(data) {
+                    data.filter_jalur = $('#filter_jalur').val();
+                    data.filter_jenjang = $('#filter_jenjang').val();
+                }
             },
             language: {
                 paginate: {
@@ -245,6 +248,15 @@
                 "targets": 0,
                 "orderable": false,
             }],
+        });
+
+
+        $('#filter_jalur').change(function() {
+            tableUsulan.draw();
+        });
+
+        $('#filter_jenjang').change(function() {
+            tableUsulan.draw();
         });
 
     });

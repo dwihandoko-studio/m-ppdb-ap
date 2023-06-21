@@ -3,7 +3,7 @@
 namespace App\Controllers\Web;
 
 use App\Controllers\BaseController;
-use App\Models\Web\KuotaModel;
+use App\Models\Web\KuotapendaftaranModel;
 use App\Models\Web\ZonasiModel;
 
 use App\Models\Web\RekapModel;
@@ -43,6 +43,105 @@ class Statistik extends BaseController
         $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
         return view('new-web/page/statistik', $data);
+    }
+
+    public function getPendaftaranSekolah()
+    {
+        $request = Services::request();
+        $datamodel = new KuotapendaftaranModel($request);
+
+        if ($request->getMethod(true) == 'POST') {
+            $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+            $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
+
+            $lists = $datamodel->get_datatables($filterJenjang, $filterKecamatan);
+            // $lists = [];
+            $data = [];
+            $no = $request->getPost("start");
+            foreach ($lists as $list) {
+                $no++;
+                $row = [];
+
+                $row['no'] = $no;
+                $row['button'] = '<button type="button" onclick="actionDetailPendaftar(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
+                $row['id'] = $list->id;
+                // $row['npsn'] = $list->npsn;
+                $row['nama'] = $list->nama . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan;
+                $row['zonasi'] = 'Kuota : ' . $list->zonasi
+                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_zonasi
+                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_zonasi
+                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_zonasi;
+                $row['afirmasi'] = 'Kuota : ' . $list->afirmasi
+                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_afirmasi
+                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_afirmasi
+                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_afirmasi;
+                $row['mutasi'] = 'Kuota : ' . $list->mutasi
+                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_mutasi
+                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_mutasi
+                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_mutasi;
+                $row['prestasi'] = 'Kuota : ' . $list->prestasi
+                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_prestasi
+                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_prestasi
+                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_prestasi;
+                $row['swasta'] = 'Kuota : ' . $list->swasta
+                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_swasta
+                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_swasta
+                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_swasta;
+                // $row['datazonasi'] = zonasiDetailWeb($list->npsn);
+
+                $data[] = $row;
+            }
+            $output = [
+                "draw" => $request->getPost('draw'),
+                // "recordsTotal" => 0,
+                // "recordsFiltered" => 0,
+                "recordsTotal" => $datamodel->count_all($filterJenjang, $filterKecamatan),
+                "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterKecamatan),
+                "data" => $data
+            ];
+            echo json_encode($output);
+        }
+    }
+
+    public function getDetailZonasi()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'id' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Id tidak boleh kosong. ',
+                ]
+            ],
+            'name' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Name tidak boleh kosong. ',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('id') . $this->validator->getError('name');
+            return json_encode($response);
+        } else {
+            $id = htmlspecialchars($this->request->getVar('id'), true);
+            $name = htmlspecialchars($this->request->getVar('name'), true);
+
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Data ditemukan.";
+            $response->data = zonasiDetailWebNew($name);
+            return json_encode($response);
+        }
     }
 
     public function getPengumuman()

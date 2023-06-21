@@ -78,7 +78,7 @@
         });
     }
 
-    function formatAnalisis(d, ja) {
+    function formatAnalisis(d) {
         if (parseInt(d.status_sekolah) === 2) {
             let cRekapD = '<h4>REKAPITULASI LOLOS PPDB ';
             cRekapD += d.nama_sekolah_tujuan;
@@ -125,7 +125,7 @@
             cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
-            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
+            cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
             cRekapD += '</tr>';
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
@@ -141,7 +141,7 @@
             cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
-            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
+            cRekapD += '<td colspan="5" style="text-align: center; align-items: center;">';
             cRekapD += '......LOADING.......';
             cRekapD += '</td>';
             cRekapD += '</tr>';
@@ -150,7 +150,7 @@
             cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
-            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR ZONASI ';
+            cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR ZONASI ';
             cRekapD += '</th>';
             cRekapD += '</tr>';
             cRekapD += '<tr>';
@@ -167,7 +167,7 @@
             cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
-            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
+            cRekapD += '<td colspan="5" style="text-align: center; align-items: center;">';
             cRekapD += '......LOADING.......';
             cRekapD += '</td>';
             cRekapD += '</tr>';
@@ -514,12 +514,13 @@
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
             'columns': [{
-                    className: 'dt-control',
+                    className: 'dt-control  _tampilan-display-inherit',
                     orderable: false,
                     data: 'aksi',
                     defaultContent: '',
                 },
                 {
+                    className: '_tampilan-display-inherit',
                     data: 'nama_sekolah_tujuan',
                     orderable: false,
                 },
@@ -553,7 +554,7 @@
             } else {
                 // Open this row
 
-                row.child(formatAnalisis(row.data()), 'a').show();
+                row.child(formatAnalisis(row.data())).show();
                 tr.addClass('shown');
             }
         });

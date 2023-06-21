@@ -26,12 +26,12 @@ class ProsessekolahprosesModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "a.id as id_pendaftaran, a.tujuan_sekolah_id, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.status_sekolah, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
+        $select = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.status_sekolah, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
 
         $this->dt->select($select);
         // $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
         // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT');
+        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
         // $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');
@@ -78,8 +78,8 @@ class ProsessekolahprosesModel extends Model
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
         }
-        
-        $this->dt->groupBy('a.tujuan_sekolah_id');
+
+        $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -90,7 +90,7 @@ class ProsessekolahprosesModel extends Model
     {
         $this->_get_datatables_query();
         $this->dt->where('a.status_pendaftaran', 2);
-        
+
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
         }
@@ -98,8 +98,8 @@ class ProsessekolahprosesModel extends Model
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
         }
-        
-        $this->dt->groupBy('a.tujuan_sekolah_id');
+
+        $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         return $this->dt->countAllResults();
     }
@@ -107,7 +107,7 @@ class ProsessekolahprosesModel extends Model
     {
         $this->_get_datatables_query();
         $this->dt->where('a.status_pendaftaran', 2);
-        
+
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
         }
@@ -115,8 +115,8 @@ class ProsessekolahprosesModel extends Model
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
         }
-        
-        $this->dt->groupBy('a.tujuan_sekolah_id');
+
+        $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         return $this->dt->countAllResults();
     }

@@ -14,7 +14,7 @@ use App\Libraries\Dinas\Riwayatlib;
 use App\Libraries\Dinas\Prosesluluslib;
 use Firebase\JWT\JWT;
 
-class Proses extends BaseController
+class Hasil extends BaseController
 {
     var $folderImage = 'masterdata';
     private $_db;

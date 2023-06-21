@@ -62,7 +62,7 @@ class Statistik extends BaseController
             $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
             $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
 
-            $lists = $datamodel->get_datatables($filterJenjang, $filterKecamatan);
+            $lists = $datamodel->get_datatables($filterKecamatan, $filterJenjang);
             // $lists = [];
             $data = [];
             $no = $request->getPost("start");

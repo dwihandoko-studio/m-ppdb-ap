@@ -527,6 +527,10 @@
                     data: 'npsn_sekolah_tujuan',
                     orderable: false,
                 },
+                {
+                    data: 'status_sekolah',
+                    orderable: false,
+                },
                 // { defaultContent: '', }, 
                 // { defaultContent: '', }, 
                 // { defaultContent: '', }, 

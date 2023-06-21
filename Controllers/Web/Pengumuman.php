@@ -85,7 +85,11 @@ class Pengumuman extends BaseController
             $row['npsn_sekolah_tujuan'] = $list->npsn_sekolah_tujuan;
             // $row['jumlah_pendaftar'] = $list->jumlah_pendaftar;
             $row['tujuan_sekolah_id'] = $list->tujuan_sekolah_id_1;
-            $row['status_sekolah'] = $list->status_sekolah;
+            if ($list->status_sekolah == 1) {
+                $row['status_sekolah'] = '<span class="badge badge-success">NEGERI</span>';
+            } else {
+                $row['status_sekolah'] = '<span class="badge badge-info">SWASTA</span>';
+            }
 
             $data[] = $row;
         }

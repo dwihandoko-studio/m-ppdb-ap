@@ -122,7 +122,7 @@
             cRekapD += ' ) ';
             cRekapD += '</h4><br>';
 
-            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
@@ -146,8 +146,10 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table>';
-            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '</table></div>';
+
+            cRekapD += '<br/>';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">JALUR ZONASI ';
@@ -172,10 +174,10 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table>';
+            cRekapD += '</table></div>';
 
-            cRekapD += '<br>';
-            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<br/>';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR MUTASI</th>';
@@ -200,10 +202,10 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table>';
+            cRekapD += '</table></div>';
 
             cRekapD += '<br>';
-            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR PRESTASI</th>';
@@ -228,7 +230,7 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table>';
+            cRekapD += '</table></div>';
 
             return cRekapD;
         }

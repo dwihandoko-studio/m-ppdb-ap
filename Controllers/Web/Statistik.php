@@ -66,27 +66,27 @@ class Statistik extends BaseController
                 $row['button'] = '<button type="button" onclick="actionDetailPendaftar(\'' . $list->id . '\', \'' . $list->npsn . '\');" style="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i></button>';
                 $row['id'] = $list->id;
                 // $row['npsn'] = $list->npsn;
-                $row['nama'] = $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan;
-                $row['zonasi'] = 'Kuota : ' . $list->zonasi
-                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_zonasi
-                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_zonasi
-                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_zonasi;
-                $row['afirmasi'] = 'Kuota : ' . $list->afirmasi
-                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_afirmasi
-                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_afirmasi
-                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_afirmasi;
-                $row['mutasi'] = 'Kuota : ' . $list->mutasi
-                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_mutasi
-                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_mutasi
-                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_mutasi;
-                $row['prestasi'] = 'Kuota : ' . $list->prestasi
-                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_prestasi
-                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_prestasi
-                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_prestasi;
-                $row['swasta'] = 'Kuota : ' . ((int)$list->zonasi + (int)$list->afirmasi + (int)$list->mutasi + (int)$list->prestasi)
-                    . '<br/>' . 'Pendaftar : ' . $list->pendaftar_swasta
-                    . '<br/>' . 'Terverifikasi : ' . $list->terverifikasi_swasta
-                    . '<br/>' . 'Belum Verifikasi : ' . $list->belum_verifikasi_swasta;
+                $row['nama'] = '<div style="font-size: 13px;">' . $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan . '</div>';
+                $row['zonasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->zonasi . '</b>'
+                    . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_zonasi . '</b>'
+                    . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_zonasi . '</b>'
+                    . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_zonasi . '</b></div>';
+                $row['afirmasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->afirmasi . '</b>'
+                    . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_afirmasi . '</b>'
+                    . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_afirmasi . '</b>'
+                    . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_afirmasi . '</b></div>';
+                $row['mutasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->mutasi . '</b>'
+                    . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_mutasi . '</b>'
+                    . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_mutasi . '</b>'
+                    . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_mutasi . '</b></div>';
+                $row['prestasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->prestasi . '</b>'
+                    . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_prestasi . '</b>'
+                    . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_prestasi . '</b>'
+                    . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_prestasi . '</b></div>';
+                $row['swasta'] = '<div style="font-size: 13px;">Kuota : <b>' . ((int)$list->zonasi + (int)$list->afirmasi + (int)$list->mutasi + (int)$list->prestasi) . '</b>'
+                    . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_swasta . '</b>'
+                    . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_swasta . '</b>'
+                    . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_swasta . '</b></div>';
                 // $row['datazonasi'] = zonasiDetailWeb($list->npsn);
 
                 $data[] = $row;

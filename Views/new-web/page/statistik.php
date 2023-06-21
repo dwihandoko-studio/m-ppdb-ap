@@ -135,7 +135,7 @@
 
     function formatDataPendaftar(d) {
         let cRekapD = '';
-        cRekapD += '<div class="col-md-12"><table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
+        cRekapD += '<div class="col-md-12"><table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
         cRekapD += '<thead>';
         cRekapD += '<tr>';
         cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG TERVERIFIKASI</th>';
@@ -170,7 +170,7 @@
         cRekapD += '</table>';
 
         cRekapD += '<br>';
-        cRekapD += '<div class="col-md-12"><table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
+        cRekapD += '<div class="col-md-12"><table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
         cRekapD += '<thead>';
         cRekapD += '<tr>';
         cRekapD += '<th colspan="4" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG BELUM TERVERIFIKASI</th>';

@@ -84,6 +84,21 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="cabutModal" tabindex="-1" role="dialog" aria-labelledby="cabutModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modal-cabut-loading">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cabutModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="cabutBodyModal">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?= $this->endSection(); ?>

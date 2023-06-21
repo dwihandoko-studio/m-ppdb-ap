@@ -135,7 +135,7 @@
 
     function formatDataPendaftar(d) {
         let cRekapD = '';
-        cRekapD += '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
+        cRekapD += '<div class="col-md-12"><table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
         cRekapD += '<thead>';
         cRekapD += '<tr>';
         cRekapD += '<th colspan="5" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG TERVERIFIKASI</th>';
@@ -170,7 +170,7 @@
         cRekapD += '</table>';
 
         cRekapD += '<br>';
-        cRekapD += '<table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
+        cRekapD += '<div class="col-md-12"><table cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">';
         cRekapD += '<thead>';
         cRekapD += '<tr>';
         cRekapD += '<th colspan="4" style="text-align: center; align-items: center;">DATA PENDAFTAR YANG BELUM VERIFIKASI</th>';
@@ -238,7 +238,7 @@
                             // const numberBer = stepr +1;
                             htmlRekap += '<tr>';
                             htmlRekap += '<td>';
-                            htmlRekap += msg.data_terverifikasi[stepr].jalur;
+                            htmlRekap += msg.data_terverifikasi[stepr].via_jalur;
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
                             htmlRekap += msg.data_terverifikasi[stepr].kode_pendaftaran;
@@ -277,7 +277,7 @@
                             // htmlRekapB +=                  numberBer;
                             // htmlRekapB +=              '</td>';
                             htmlRekapB += '<td>';
-                            htmlRekapB += msg.data_terverifikasi[stepr].jalur;
+                            htmlRekapB += msg.data_terverifikasi[stepr].via_jalur;
                             htmlRekapB += '</td>';
                             htmlRekapB += '<td>';
                             htmlRekapB += msg.data_belum_verifikasi[stepb].fullname;

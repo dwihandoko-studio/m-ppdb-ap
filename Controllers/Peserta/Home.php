@@ -58,7 +58,7 @@ class Home extends BaseController
             }
             if ($cekRegisterApprove->status_pendaftaran == 3) {
                 if ($cekRegisterApprove->via_jalur == "AFIRMASI") {
-                    $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1) . "</b> Via Jalur " . $cekRegisterApprove->via_jalur . ". <br/>Selanjutnya anda dapat melakukan pendaftaran menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
+                    $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1) . "</b> Via Jalur " . $cekRegisterApprove->via_jalur . ". <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
                 } else {
                     $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1) . "</b> Via Jalur " . $cekRegisterApprove->via_jalur . ".";
                 }

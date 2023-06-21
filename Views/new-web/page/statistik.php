@@ -353,15 +353,14 @@
                 },
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
-            'columns': [
-
-                {
-                    className: 'dt-control',
+            'columns': [{
+                    className: 'dt-control _tampilan-display-inherit',
                     orderable: false,
                     data: 'button',
                     defaultContent: '',
                 },
                 {
+                    className: '_tampilan-display-inherit',
                     data: 'nama'
                 },
                 {
@@ -427,4 +426,9 @@
 <?= $this->section('scriptTop'); ?>
 <link rel="stylesheet" href="<?= base_url('new-assets') ?>/assets/vendor/select2/dist/css/select2.min.css">
 <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/DataTables/datatables.css" type="text/css">
+<style>
+    ._tampilan-display-inherit {
+        vertical-align: inherit;
+    }
+</style>
 <?= $this->endSection(); ?>

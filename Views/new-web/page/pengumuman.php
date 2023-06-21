@@ -86,7 +86,7 @@
             cRekapD += d.npsn_sekolah_tujuan;
             cRekapD += ' ) ';
             cRekapD += '</h4><br>';
-            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR SWASTA ';
@@ -95,9 +95,9 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th>Nama</th>';
+            cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
             // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
@@ -111,7 +111,7 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table>';
+            cRekapD += '</table></div>';
 
             return cRekapD;
         } else {
@@ -130,9 +130,9 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th>Nama</th>';
+            cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
             // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
@@ -158,9 +158,9 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th>Nama</th>';
+            cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
             // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
@@ -186,9 +186,9 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th>Nama</th>';
+            cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
             // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
@@ -214,9 +214,9 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th>Nama</th>';
+            cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
             // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
@@ -270,7 +270,7 @@
                             htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos_zonasi[stepr].nisn;
                             htmlRekap += '</td>';
-                            htmlRekap += '<td>';
+                            htmlRekap += '<td style="text-align: left;">';
                             htmlRekap += msg.data_lolos_zonasi[stepr].nama_sekolah_asal;
                             htmlRekap += ' (';
                             htmlRekap += msg.data_lolos_zonasi[stepr].npsn_sekolah_asal;
@@ -311,7 +311,7 @@
                             htmlRekapA += '<td>';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].nisn;
                             htmlRekapA += '</td>';
-                            htmlRekapA += '<td>';
+                            htmlRekapA += '<td style="text-align: left;">';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].nama_sekolah_asal;
                             htmlRekapA += ' (';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].npsn_sekolah_asal;
@@ -352,7 +352,7 @@
                             htmlRekapAB += '<td>';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].nisn;
                             htmlRekapAB += '</td>';
-                            htmlRekapAB += '<td>';
+                            htmlRekapAB += '<td style="text-align: left;">';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].nama_sekolah_asal;
                             htmlRekapAB += ' (';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].npsn_sekolah_asal;
@@ -393,7 +393,7 @@
                             htmlRekapABC += '<td>';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].nisn;
                             htmlRekapABC += '</td>';
-                            htmlRekapABC += '<td>';
+                            htmlRekapABC += '<td style="text-align: left;">';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].nama_sekolah_asal;
                             htmlRekapABC += ' (';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].npsn_sekolah_asal;

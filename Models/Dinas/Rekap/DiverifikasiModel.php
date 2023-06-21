@@ -9,7 +9,7 @@ class DiverifikasiModel extends Model
 {
     protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'c.npsn');
-    protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'a.kode_pendaftaran');
+    protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'a.kode_pendaftaran', 'd.npsn');
     protected $order = array('b.fullname' => 'asc', 'c.nama' => 'asc');
     protected $request;
     protected $db;

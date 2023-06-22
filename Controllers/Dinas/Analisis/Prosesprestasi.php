@@ -158,7 +158,7 @@ class Prosesprestasi extends BaseController
 
         $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
         $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
-        $data['title'] = 'Rekapitulasi Proses Analysis ' . $data['sekolahname']->nama;
+        $data['title'] =  $data['sekolahname']->nama . ' Rekapitulasi Proses Analysis';
 
         return view('dinas/analisis/prosesprestasi/index', $data);
     }

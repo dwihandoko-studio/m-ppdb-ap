@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 class ProsesprestasiModel extends Model
 {
     protected $table = "_tb_pendaftar a";
-    protected $column_order = array('jarak', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'jarak');
+    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', null, 'd.nilai_akumulative', 'd.nilai_prestasi', 'jarak');
     protected $column_search = array('b.nisn');
-    protected $order = array('c.nilai_akumulative' => 'desc', 'c.nilai_prestasi' => 'desc');
+    protected $order = array('d.nilai_akumulative' => 'desc', 'd.nilai_prestasi' => 'desc');
     protected $request;
     protected $db;
     protected $dt;

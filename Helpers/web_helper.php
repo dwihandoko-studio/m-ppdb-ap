@@ -623,3 +623,8 @@ function getNamaAndNpsnSekolah($id)
 		return '-';
 	}
 }
+
+function getUrlImageUpload($url)
+{
+	return getenv('url.upload.file') . $url;
+}

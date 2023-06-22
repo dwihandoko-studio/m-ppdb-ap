@@ -76,7 +76,6 @@
                                 <th>Nama Sekolah Pilihan 3</th>
                                 <th>Jarak (Km) Pilihan 3</th>
                                 <th>Sekolah Asal</th>
-                                <th>Sekolah Tujuan</th>
                             </tr>
                         </thead>
 

@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 class ProseszonasiModel extends Model
 {
     protected $table = "_tb_pendaftar a";
-    protected $column_order = array('jarak1', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'jarak1');
+    protected $column_order = array('jarak1', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', null, null);
     protected $column_search = array('b.nisn');
-    protected $order = array('jarak' => 'asc', 'a.created_at' => 'asc');
+    protected $order = array('jarak1' => 'asc', 'a.created_at' => 'asc');
     protected $request;
     protected $db;
     protected $dt;

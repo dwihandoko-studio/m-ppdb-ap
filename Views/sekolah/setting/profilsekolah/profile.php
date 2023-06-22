@@ -57,7 +57,7 @@
                                             <div class="help-block _nip_ks"></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="form-group _koordinat-block">
                                             <label for="_koordinat" class="form-control-label">Koordinat Sekolah</label>
                                             <div class="input-group input-group-merge">
@@ -72,7 +72,7 @@
 
                                             <div class="help-block _koordinat"></div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <hr style="margin-top: 30px;">
@@ -466,8 +466,8 @@
         const nama_ks = document.getElementsByName('_nama_ks')[0].value;
         const nip_ks = document.getElementsByName('_nip_ks')[0].value;
         const koordinat = document.getElementsByName('_koordinat')[0].value;
-        const latitude = document.getElementsByName('_latitude')[0].value;
-        const longitude = document.getElementsByName('_longitude')[0].value;
+        // const latitude = document.getElementsByName('_latitude')[0].value;
+        // const longitude = document.getElementsByName('_longitude')[0].value;
 
         if (nama_sekolah === "") {
             $("input#_nama_sekolah").css("color", "#dc3545");
@@ -492,8 +492,8 @@
         formUpload.append('nama_sekolah', nama_sekolah);
         formUpload.append('nama_ks', nama_ks);
         formUpload.append('nip_ks', nip_ks);
-        formUpload.append('latitude', latitude);
-        formUpload.append('longitude', longitude);
+        // formUpload.append('latitude', latitude);
+        // formUpload.append('longitude', longitude);
 
         $.ajax({
             xhr: function() {

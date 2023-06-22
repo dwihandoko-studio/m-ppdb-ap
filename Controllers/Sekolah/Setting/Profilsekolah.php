@@ -105,18 +105,18 @@ class Profilsekolah extends BaseController
                     'required' => 'NIP kepala sekolah tidak boleh kosong. ',
                 ]
             ],
-            'latitude' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Latitude tidak boleh kosong.',
-                ]
-            ],
-            'longitude' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Longitude tidak boleh kosong.',
-                ]
-            ],
+            // 'latitude' => [
+            //     'rules' => 'required|trim',
+            //     'errors' => [
+            //         'required' => 'Latitude tidak boleh kosong.',
+            //     ]
+            // ],
+            // 'longitude' => [
+            //     'rules' => 'required|trim',
+            //     'errors' => [
+            //         'required' => 'Longitude tidak boleh kosong.',
+            //     ]
+            // ],
         ];
 
         if (!$this->validate($rules)) {
@@ -175,24 +175,25 @@ class Profilsekolah extends BaseController
                     $this->_db->table('_ref_profil_sekolah')->where('id', $oldData->id)->update($data);
 
                     if ($this->_db->affectedRows() > 0) {
-                        $this->_db->table('ref_sekolah')->where('id', $oldData->id)->update([
-                            'latitude' => $latitude,
-                            'longitude' => $longitude,
-                            'nama' => $nama_sekolah,
-                        ]);
-                        if ($this->_db->affectedRows() > 0) {
-                            $this->_db->transCommit();
-                            $response = new \stdClass;
-                            $response->code = 200;
-                            $response->message = "Update Profil Sekolah Berhasil Disimpan.";
-                            return json_encode($response);
-                        } else {
-                            $this->_db->transRollback();
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Update Profil Sekolah Gagal Disimpan.";
-                            return json_encode($response);
-                        }
+                        // $this->_db->table('ref_sekolah')->where('id', $oldData->id)->update([
+                        //     'latitude' => $latitude,
+                        //     'longitude' => $longitude,
+                        //     'nama' => $nama_sekolah,
+                        // ]);
+
+                        // if ($this->_db->affectedRows() > 0) {
+                        $this->_db->transCommit();
+                        $response = new \stdClass;
+                        $response->code = 200;
+                        $response->message = "Update Profil Sekolah Berhasil Disimpan.";
+                        return json_encode($response);
+                        // } else {
+                        //     $this->_db->transRollback();
+                        //     $response = new \stdClass;
+                        //     $response->code = 400;
+                        //     $response->message = "Update Profil Sekolah Gagal Disimpan.";
+                        //     return json_encode($response);
+                        // }
                     } else {
                         $this->_db->transRollback();
                         $response = new \stdClass;

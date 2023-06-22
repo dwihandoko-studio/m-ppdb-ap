@@ -124,7 +124,7 @@
 
     function actionDetail(event) {
         $.ajax({
-            url: "<?= base_url('dinas/analisis/hasil/detail') ?>",
+            url: "<?= base_url('dinas/rekap/diverifikasi/detail') ?>",
             type: 'POST',
             data: {
                 id: event,

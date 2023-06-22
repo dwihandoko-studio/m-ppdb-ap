@@ -709,7 +709,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "prosespmutasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/prosesmutasi') ?>">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "prosesmutasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/prosesmutasi') ?>">
                                             <span class="sidenav-mini-icon"> PM </span>
                                             <!--<i class="ni ni-app"></i>-->
                                             <span class="sidenav-normal"> Proses Mutasi </span>

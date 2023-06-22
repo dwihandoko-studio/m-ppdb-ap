@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-lg-6 col-7">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <!-- <div class="col-lg-6">
                                         <div class="form-group jenjang-block">
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
@@ -46,12 +46,12 @@
                                                 <option value="6">SMP</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-6">
                                         <div class="form-group jalur-block">
                                             <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
                                             <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <option value="" selected>--PILIH--</option>
+                                                <!-- <option value="" selected>--PILIH--</option> -->
                                                 <!--<option value="ZONASI">ZONASI</option>-->
                                                 <option value="ZONASI" selected>ZONASI</option>
                                                 <option value="AFIRMASI">AFIRMASI</option>
@@ -219,7 +219,7 @@
                 "data": function(data) {
                     data.sekolah_id = '<?= $sekolah_id ?>';
                     data.filter_jalur = $('#filter_jalur').val();
-                    data.filter_jenjang = $('#filter_jenjang').val();
+                    // data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },
             language: {
@@ -255,9 +255,9 @@
             tableUsulan.draw();
         });
 
-        $('#filter_jenjang').change(function() {
-            tableUsulan.draw();
-        });
+        // $('#filter_jenjang').change(function() {
+        //     tableUsulan.draw();
+        // });
 
     });
 

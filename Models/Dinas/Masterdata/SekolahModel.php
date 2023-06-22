@@ -9,7 +9,7 @@ class SekolahModel extends Model
 {
     protected $table = "ref_sekolah a";
     protected $column_order = array(null, null, 'a.npsn', 'a.nama', 'a.status_sekolah', 'a.latitude', 'a.longitude');
-    protected $column_search = array('a.npsn','a.nama');
+    protected $column_search = array('a.npsn');
     protected $order = array('a.bentuk_pendidikan_id' => 'asc','a.nama' => 'asc');
     protected $request;
     protected $db;

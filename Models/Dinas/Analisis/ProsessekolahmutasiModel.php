@@ -26,7 +26,7 @@ class ProsessekolahmutasiModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE via_jalur = 'ZONASI' AND tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1) as jumlah_pendaftar";  //14
+        $select = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE via_jalur = 'MUTASI' AND tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1) as jumlah_pendaftar";  //14
 
         $this->dt->select($select);
         // $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');

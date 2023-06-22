@@ -44,20 +44,19 @@ class Hasil extends BaseController
             $no++;
             $row = [];
 
-            $row[] = $no;
-            // if($hakAksesMenu) {
-            //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
-            // $action = '<div class="dropup">
-            //             <div class="btn btn-primary btn-sm" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            //                 <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
-            //             </div>
-            //             <div class="dropdown-menu">
-            //                 <button onclick="actionDetail(\'' . $list->id . '\')" type="button" class="dropdown-item">
-            //                     <i class="fa fa-eye"></i>
-            //                     <span>Detail</span>
-            //                 </button>
-            //             </div>
-            //         </div>';
+            // $row[] = $no;
+            $action = '<div class="dropup">
+                        <div class="btn btn-primary btn-sm" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <button onclick="actionDetail(\'' . $list->id_pendaftaran . '\')" type="button" class="dropdown-item">
+                                <i class="fa fa-eye"></i>
+                                <span>Detail</span>
+                            </button>
+                        </div>
+                    </div>';
+            $row[] = $action;
             $row[] = $no;
 
             $row[] = $list->fullname;

@@ -32,77 +32,77 @@
                     <!-- Card header -->
                     <div class="card-header border-0" style="padding-bottom: 0px; margin-bottom: 0px;">
                         <div class="row align-items-center">
-                                <div class="col-lg-6 col-7">
-                                    <h5 class="h3 mb-0">ANALISIS PPDB <?= $sekolahname->nama ?> - (<?= $sekolahname->npsn ?>)</h5>
-                                </div>
-                                <div class="col-lg-6 col-7">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group jenjang-block">
-                                                <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
-                                                <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                        <option value="" selected>--PILIH--</option>
-                                                        <option value="5">SD</option>
-                                                        <option value="6">SMP</option>
-                                                </select>
-                                            </div>
+                            <div class="col-lg-6 col-7">
+                                <h5 class="h3 mb-0">ANALISIS PPDB <?= $sekolahname->nama ?> - (<?= $sekolahname->npsn ?>)</h5>
+                            </div>
+                            <div class="col-lg-6 col-7">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group jenjang-block">
+                                            <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
+                                            <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                <option value="" selected>--PILIH--</option>
+                                                <option value="5">SD</option>
+                                                <option value="6">SMP</option>
+                                            </select>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group jalur-block">
-                                                <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
-                                                <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                        <option value="" selected>--PILIH--</option>
-                                                        <!--<option value="ZONASI">ZONASI</option>-->
-                                                        <option value="ZONASI" selected>ZONASI</option>
-                                                        <option value="AFIRMASI">AFIRMASI</option>
-                                                        <option value="MUTASI">MUTASI</option>
-                                                        <option value="PRESTASI">PRESTASI</option>
-                                                        <option value="SWASTA">SWASTA</option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group jalur-block">
+                                            <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
+                                            <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                <option value="" selected>--PILIH--</option>
+                                                <!--<option value="ZONASI">ZONASI</option>-->
+                                                <option value="ZONASI" selected>ZONASI</option>
+                                                <option value="AFIRMASI">AFIRMASI</option>
+                                                <option value="MUTASI">MUTASI</option>
+                                                <option value="PRESTASI">PRESTASI</option>
+                                                <option value="SWASTA">SWASTA</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive" style="margin-top: 0px;">
-                        <table id="data-table-id" class="table align-items-center table-flush">
-                            <thead>
-                                <tr>
-                                    <th data-orderable="false">&nbsp;</th>
-                                    <th>Rangking</th>
-                                    <th>Nama Pendaftarn</th>
-                                    <th>NISN</th>
-                                    <th>Jalur PPDB</th>
-                                    <th>Jarak (Km)</th>
-                                    <!--<th>Koordinat</th>-->
-                                    <th>Sekolah Asal</th>
-                                    <th>Sekolah Tujuan</th>
-                                </tr>
-                            </thead>
-
-                        </table>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="contentModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-                <div class="modal-content modal-content-loading">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="contentModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="contentBodyModal">
+                <div class="table-responsive" style="margin-top: 0px;">
+                    <table id="data-table-id" class="table align-items-center table-flush">
+                        <thead>
+                            <tr>
+                                <th data-orderable="false">&nbsp;</th>
+                                <th>Rangking</th>
+                                <th>Nama Pendaftarn</th>
+                                <th>NISN</th>
+                                <th>Jalur PPDB</th>
+                                <th>Jarak (Km)</th>
+                                <!--<th>Koordinat</th>-->
+                                <th>Sekolah Asal</th>
+                                <th>Sekolah Tujuan</th>
+                            </tr>
+                        </thead>
 
-                    </div>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="contentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content modal-content-loading">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contentModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="contentBodyModal">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 <?= $this->endSection(); ?>
 
@@ -234,8 +234,8 @@
                 "orderable": false,
             }],
             lengthMenu: [
-                [ -1, 10, 25, 50, 100, 500, -1 ],
-                [ 'All','10 rows', '25 rows', '50 rows', '100 rows', '500 rows', 'Show all' ]
+                [-1, 10, 25, 50, 100, 500, -1],
+                ['All', '10 rows', '25 rows', '50 rows', '100 rows', '500 rows', 'Show all']
             ],
             dom: 'Blfrtip',
             buttons: [
@@ -254,11 +254,11 @@
         $('#filter_jalur').change(function() {
             tableUsulan.draw();
         });
-        
+
         $('#filter_jenjang').change(function() {
             tableUsulan.draw();
         });
-        
+
     });
 
     function initSelect2(event, parrent) {

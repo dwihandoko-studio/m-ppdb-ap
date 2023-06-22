@@ -243,9 +243,9 @@
         //     tableUsulan.draw();
         // });
 
-        // $('#filter_jenjang').change(function() {
-        //     tableUsulan.draw();
-        // });
+        $('#filter_jenjang').change(function() {
+            tableUsulan.draw();
+        });
 
     });
 

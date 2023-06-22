@@ -125,7 +125,7 @@ class Diverifikasi extends BaseController
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
             $oldData = $this->_db->table('_tb_pendaftar a')
-                ->select("b.*, k.lampiran_akta_kelahiran, k.lampiran_foto_rumah, k.lampiran_kk, k.lampiran_lulus, k.lampiran_pernyataan, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.status_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
+                ->select("b.*, l.jenis_prestasi, l.tingkat_prestasi, l.juara_prestasi, l.peringkat_prestasi, l.akreditasi_prestasi, l.nilai_prestasi, l.nilai_akumulative, k.lampiran_akta_kelahiran, k.lampiran_foto_rumah, k.lampiran_kk, k.lampiran_lulus, k.lampiran_pernyataan, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.status_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
@@ -136,6 +136,7 @@ class Diverifikasi extends BaseController
                 ->join('ref_kelurahan g', 'b.kelurahan = g.id', 'LEFT')
                 ->join('ref_dusun h', 'b.dusun = h.id', 'LEFT')
                 ->join('_upload_kelengkapan_berkas k', 'b.id = k.user_id', 'LEFT')
+                ->join('tb_nilai_prestasi l', 'a.id = l.id', 'LEFT')
                 ->where('a.id', $id)
                 ->get()->getRowObject();
 

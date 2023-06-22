@@ -128,6 +128,66 @@
                         </div>
                     </div>
                 </div>
+                <?php if (isset($data->jenis_prestasi)) { ?>
+                    <hr />
+                    <h4>PRESTASI</h4>
+                    <div class="row col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group _nama-block">
+                                <label for="_nama" class="form-control-label">Jenis Prestasi</label>
+                                <input type="text" value="<?= ($data->jenis_prestasi == NULL || $data->jenis_prestasi == "") ? '-' : $data->jenis_prestasi ?>" class="form-control judul" id="_nama" readonly />
+                            </div>
+                        </div>
+                        <?php if ($data->jenis_prestasi == NULL || $data->jenis_prestasi == "") {
+                        } else { ?>
+                            <?php if ($data->jenis_prestasi == "NON AKADEMIK") { ?>
+                                <div class="col-md-6">
+                                    <div class="form-group _nama-block">
+                                        <label for="_nama" class="form-control-label">Tingkat Prestasi</label>
+                                        <input type="text" value="<?= ($data->tingkat_prestasi == NULL || $data->tingkat_prestasi == "") ? '-' : $data->tingkat_prestasi ?>" class="form-control judul" id="_nama" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group _nama-block">
+                                        <label for="_nama" class="form-control-label">Juara Prestasi</label>
+                                        <input type="text" value="<?= ($data->juara_prestasi == NULL || $data->juara_prestasi == "") ? '-' : $data->juara_prestasi ?>" class="form-control judul" id="_nama" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group _nama-block">
+                                        <label for="_nama" class="form-control-label">Nilai Akumulative</label>
+                                        <input type="text" value="<?= ($data->nilai_akumulative == NULL || $data->nilai_akumulative == "") ? '-' : $data->nilai_akumulative ?>" class="form-control judul" id="_nama" readonly />
+                                    </div>
+                                </div>
+                            <?php } else { ?>
+                                <div class="col-md-6">
+                                    <div class="form-group _nama-block">
+                                        <label for="_nama" class="form-control-label">Akreditasi Sekolah Asal</label>
+                                        <input type="text" value="<?= ($data->akreditasi_prestasi == NULL || $data->akreditasi_prestasi == "") ? '-' : $data->akreditasi_prestasi ?>" class="form-control judul" id="_nama" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group _nama-block">
+                                        <label for="_nama" class="form-control-label">Peringkat Prestasi</label>
+                                        <input type="text" value="<?= ($data->peringkat_prestasi == NULL || $data->peringkat_prestasi == "") ? '-' : $data->peringkat_prestasi ?>" class="form-control judul" id="_nama" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group _nama-block">
+                                        <label for="_nama" class="form-control-label">Nilai Rata-rata Ijazah/SKL</label>
+                                        <input type="text" value="<?= ($data->nilai_prestasi == NULL || $data->nilai_prestasi == "") ? '-' : $data->nilai_prestasi ?>" class="form-control judul" id="_nama" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group _nama-block">
+                                        <label for="_nama" class="form-control-label">Nilai Akumulative</label>
+                                        <input type="text" value="<?= ($data->nilai_akumulative == NULL || $data->nilai_akumulative == "") ? '-' : $data->nilai_akumulative ?>" class="form-control judul" id="_nama" readonly />
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
                 <hr />
                 <h4>Dokumen Pedaftaran</h4>
                 <div class="row col-md-12">

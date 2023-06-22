@@ -46,7 +46,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <!-- <div class="col-lg-6">
                                         <div class="form-group jalur-block">
                                             <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
                                             <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
@@ -57,7 +57,7 @@
                                                 <option value="SWASTA">SWASTA</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -72,6 +72,7 @@
                                 <th>Nama Sekolah Tujuan</th>
                                 <th>NPSN Sekolah Tujuan</th>
                                 <th>Jumlah Pendaftar</th>
+                                <th>Kuota</th>
                             </tr>
                         </thead>
 
@@ -209,10 +210,10 @@
             "ajax": {
                 "url": "<?= base_url('dinas/analisis/hasil/getAllSekolah') ?>",
                 "type": "POST",
-                // "data": function(data) {
-                //     data.filter_jalur = $('#filter_jalur').val();
-                //     data.filter_jenjang = $('#filter_jenjang').val();
-                // }
+                "data": function(data) {
+                    // data.filter_jalur = $('#filter_jalur').val();
+                    data.filter_jenjang = $('#filter_jenjang').val();
+                }
             },
             language: {
                 paginate: {
@@ -231,9 +232,9 @@
         //     tableUsulan.draw();
         // });
 
-        // $('#filter_jenjang').change(function() {
-        //     tableUsulan.draw();
-        // });
+        $('#filter_jenjang').change(function() {
+            tableUsulan.draw();
+        });
 
     });
 

@@ -50,7 +50,7 @@
                                         <div class="form-group jalur-block">
                                             <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
                                             <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <option value="PRESTASI" selected>PRESTASI</option>
+                                                <option value="ZONASI" selected>ZONASI</option>
                                             </select>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@
 
     function actionDetail(event) {
         $.ajax({
-            url: "<?= base_url('dinas/analisis/prosesprestasi/detail') ?>",
+            url: "<?= base_url('dinas/analisis/proseszonasi/detail') ?>",
             type: 'POST',
             data: {
                 id: event,
@@ -203,7 +203,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('dinas/analisis/prosesprestasi/getAllSekolah') ?>",
+                "url": "<?= base_url('dinas/analisis/proseszonasi/getAllSekolah') ?>",
                 "type": "POST",
                 // "data": function(data) {
                 //     data.filter_jalur = $('#filter_jalur').val();

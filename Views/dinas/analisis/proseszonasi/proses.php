@@ -118,7 +118,7 @@
 
     function actionDetail(event) {
         $.ajax({
-            url: "<?= base_url('dinas/analisis/prosesprestasi/detail') ?>",
+            url: "<?= base_url('dinas/analisis/proseszonasi/detail') ?>",
             type: 'POST',
             data: {
                 id: event,
@@ -315,7 +315,7 @@
 
     function actionDetailAnalisis(event) {
         $.ajax({
-            url: "<?= base_url('dinas/analisis/proses/detailanalisis') ?>",
+            url: "<?= base_url('dinas/analisis/proseszonasi/detailanalisis') ?>",
             type: 'POST',
             data: {
                 id: event,
@@ -515,7 +515,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('dinas/analisis/prosesprestasi/getAllProses') ?>",
+                "url": "<?= base_url('dinas/analisis/proseszonasi/getAllProses') ?>",
                 "type": "POST",
                 "data": function(data) {
                     // data.filter_jalur = $('#filter_jalur').val();

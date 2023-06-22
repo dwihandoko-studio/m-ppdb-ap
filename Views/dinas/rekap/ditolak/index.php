@@ -78,6 +78,7 @@
                                     <th>Nama Sekolah Tujuan</th>
                                     <th>NPSN Seklah Tujuan</th>
                                     <th>Keterangan Penolakan</th>
+                                    <th>Waktu Penolakan</th>
                                 </tr>
                             </thead>
 

@@ -205,10 +205,10 @@
             "ajax": {
                 "url": "<?= base_url('dinas/analisis/proseszonasi/getAllSekolah') ?>",
                 "type": "POST",
-                // "data": function(data) {
-                //     data.filter_jalur = $('#filter_jalur').val();
-                //     data.filter_jenjang = $('#filter_jenjang').val();
-                // }
+                "data": function(data) {
+                    // data.filter_jalur = $('#filter_jalur').val();
+                    data.filter_jenjang = $('#filter_jenjang').val();
+                }
             },
             language: {
                 paginate: {

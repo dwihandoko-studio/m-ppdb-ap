@@ -146,7 +146,6 @@ class Prosesprestasi extends BaseController
 
     public function sekolah()
     {
-        $data['title'] = 'Rekapitulasi Proses Analysis';
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
         if ($user->code != 200) {
@@ -159,6 +158,7 @@ class Prosesprestasi extends BaseController
 
         $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
         $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
+        $data['title'] = 'Rekapitulasi Proses Analysis ' . $data['sekolahname']->nama;
 
         return view('dinas/analisis/prosesprestasi/index', $data);
     }

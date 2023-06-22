@@ -112,6 +112,7 @@ class Prosesprestasi extends BaseController
             $row[] = $list->nama_sekolah_tujuan;
             $row[] = $list->npsn_sekolah_tujuan;
             $row[] = $list->jumlah_pendaftar;
+            $row[] = $list->jumlah_kuota;
 
             $data[] = $row;
         }

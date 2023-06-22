@@ -72,8 +72,8 @@ class Ditolak extends BaseController
             $row[] = $list->via_jalur;
             $row[] = $list->nama_sekolah_tujuan;
             $row[] = ($list->npsn_sekolah_tujuan == '10000001') ? '-' : $list->npsn_sekolah_tujuan;
-            $row[] = $list->keterangan_penolakan;
             $row[] = $list->waktu_penolakan;
+            $row[] = $list->keterangan_penolakan;
 
             $data[] = $row;
         }

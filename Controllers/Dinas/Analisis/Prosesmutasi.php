@@ -65,8 +65,8 @@ class Prosesmutasi extends BaseController
             $row[] = $list->via_jalur;
             $row[] = $list->jarak . ' Km';
             // $row[] = $list->latitude . ' - ' . $list->longitude;
-            $row[] = $list->nama_sekolah_asal . ' (' . $list->npsn_sekolah_asal . ')';
             $row[] = $list->nama_sekolah_tujuan . ' (' . $list->npsn_sekolah_tujuan . ')';
+            $row[] = $list->nama_sekolah_asal . ' (' . $list->npsn_sekolah_asal . ')';
 
             $data[] = $row;
         }

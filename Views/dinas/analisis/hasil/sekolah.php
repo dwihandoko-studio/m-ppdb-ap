@@ -71,7 +71,7 @@
                                 <th data-orderable="false">Aksi</th>
                                 <th>Nama Sekolah Tujuan</th>
                                 <th>NPSN Sekolah Tujuan</th>
-                                <th>Jumlah Pendaftar</th>
+                                <th>Jumlah Diterima</th>
                                 <th>Kuota</th>
                             </tr>
                         </thead>

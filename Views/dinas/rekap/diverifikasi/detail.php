@@ -193,7 +193,7 @@
                 <div class="row col-md-12">
                     <div class="col-md-2">
                         <div class="form-group _nama-block">
-                            <img style="min-width: 100px; max-width: 100px;" src="<?= base_url('uploads/peserta/user') . '/' . $data->profile_picture ?>" alt="Pas Foto">
+                            <img style="min-width: 100px; max-width: 100px;" src="<?= getenv('url.upload.file') . 'uploads/peserta/user' . '/' . $data->profile_picture ?>" alt="Pas Foto">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -205,26 +205,26 @@
                     <div class="col-md-3">
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Lampiran Akta Kelahiran</label>
-                            <a target="_blank" href="<?= base_url('uploads/peserta/akta') . '/' . $data->lampiran_akta_kelahiran ?>" class="btn btn-block btn-info">Lampiran Akta Kelahiran</a>
+                            <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/akta' . '/' . $data->lampiran_akta_kelahiran ?>" class="btn btn-block btn-info">Lampiran Akta Kelahiran</a>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Kartu Keluarga</label>
-                            <a target="_blank" href="<?= base_url('uploads/peserta/kk') . '/' . $data->lampiran_kk ?>" class="btn btn-block btn-info">Lampiran Kartu Keluarga</a>
+                            <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/kk' . '/' . $data->lampiran_kk ?>" class="btn btn-block btn-info">Lampiran Kartu Keluarga</a>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Surat Kelulusan</label>
-                            <a target="_blank" href="<?= base_url('uploads/peserta/kelulusan') . '/' . $data->lampiran_lulus ?>" class="btn btn-block btn-info">Lampiran Surat Kelulusan</a>
+                            <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/kelulusan' . '/' . $data->lampiran_lulus ?>" class="btn btn-block btn-info">Lampiran Surat Kelulusan</a>
                         </div>
                     </div>
                     <?php if ($data->lampiran_prestasi !== null) { ?>
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Pestasi</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/prestasi') . '/' . $data->lampiran_prestasi ?>" class="btn btn-block btn-info">Lampiran Prestasi</a>
+                                <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/prestasi' . '/' . $data->lampiran_prestasi ?>" class="btn btn-block btn-info">Lampiran Prestasi</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -232,7 +232,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Afirmasi</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/afirmasi') . '/' . $data->lampiran_afirmasi ?>" class="btn btn-block btn-info">Lampiran Afirmasi</a>
+                                <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/afirmasi' . '/' . $data->lampiran_afirmasi ?>" class="btn btn-block btn-info">Lampiran Afirmasi</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -240,7 +240,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Foto Rumah</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/fotorumah') . '/' . $data->lampiran_foto_rumah ?>" class="btn btn-block btn-info">Lampiran Foto Rumah</a>
+                                <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/fotorumah' . '/' . $data->lampiran_foto_rumah ?>" class="btn btn-block btn-info">Lampiran Foto Rumah</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -248,7 +248,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Pernyataan</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/pernyataan') . '/' . $data->lampiran_pernyataan ?>" class="btn btn-block btn-info">Lampiran Pernyataan</a>
+                                <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/pernyataan' . '/' . $data->lampiran_pernyataan ?>" class="btn btn-block btn-info">Lampiran Pernyataan</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -256,7 +256,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Mutasi</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/mutasi') . '/' . $data->lampiran_mutasi ?>" class="btn btn-block btn-info">Lampiran Mutasi</a>
+                                <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/mutasi' . '/' . $data->lampiran_mutasi ?>" class="btn btn-block btn-info">Lampiran Mutasi</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -264,7 +264,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Lainnya</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/lainnya') . '/' . $data->lampiran_lainnya ?>" class="btn btn-block btn-info">Lampiran Lainnya</a>
+                                <a target="_blank" href="<?= getenv('url.upload.file') . 'uploads/peserta/lainnya' . '/' . $data->lampiran_lainnya ?>" class="btn btn-block btn-info">Lampiran Lainnya</a>
                             </div>
                         </div>
                     <?php } ?>

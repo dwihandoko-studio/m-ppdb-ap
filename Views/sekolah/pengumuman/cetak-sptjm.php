@@ -66,7 +66,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                 </tr>
                 <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
                     <td style="text-align: center;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-                        TAHUN AJARAN 2022/2023
+                        TAHUN AJARAN 2023/2024
                     </td>
                 </tr> -->
             </table>
@@ -92,10 +92,10 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
             <p>Dengan ini saya menyatakan bahwa :</p>
             <ol>
                 <li>Proses kegiatan PPDB dilakukan secara daring, mengacu pada peraturan yang telah ditetapkan, Pelaksanaan PPDB secara transparan, akuntable, Non Diskriminatif dan Berkeadilan.</li>
-                <li>Seleksi proses penerimaan peserta didik baru 2022/2023 dilaksanakan sesuai dengan peraturan yang telah di tetapkan dan dapat di pertanggungjawabkan.</li>
-                <li>Data Peserta PPDB TA. 2022/2023 yang terlampir pada surat ini, dinyatakan lulus dan di terima di sekolah.</li>
+                <li>Seleksi proses penerimaan peserta didik baru 2023/2024 dilaksanakan sesuai dengan peraturan yang telah di tetapkan dan dapat di pertanggungjawabkan.</li>
+                <li>Data Peserta PPDB TA. 2023/2024 yang terlampir pada surat ini, dinyatakan lulus dan di terima di sekolah.</li>
             </ol>
-            <p style="text-align:justify;">Demikian Surat Pernyataan Tanggung Jawab Mutlak ini dibuat dengan sebenarnya dan penuh tanggung jawab. Apabila di kemudian hari ternyata data PPDB 2022/2023 yang telah Lulus ini tidak benar, maka saya siap menerima sanksi secara hukum yang berlaku.</p><br><br>
+            <p style="text-align:justify;">Demikian Surat Pernyataan Tanggung Jawab Mutlak ini dibuat dengan sebenarnya dan penuh tanggung jawab. Apabila di kemudian hari ternyata data PPDB 2023/2024 yang telah Lulus ini tidak benar, maka saya siap menerima sanksi secara hukum yang berlaku.</p><br><br>
         </div>
         <div style="max-width: 100%; padding-left: 20px; padding-right: 20px;">
             <table width="100%" style="border: 0; ">

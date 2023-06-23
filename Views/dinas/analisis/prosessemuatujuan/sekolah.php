@@ -72,7 +72,7 @@
                                 <th>Nama Sekolah Tujuan</th>
                                 <th>NPSN Sekolah Tujuan</th>
                                 <th>Jumlah Pendaftar</th>
-                                <th>Jumlah Kuota</th>
+                                <!-- <th>Jumlah Kuota</th> -->
                             </tr>
                         </thead>
 

@@ -340,7 +340,7 @@ class Prosesterdekat extends BaseController
                     ->limit((int)$kuota->afirmasi)
                     ->get()->getResult();
 
-                $mutasiData = $this->_db->table('_tb_pendaftar_proses_an a')
+                $mutasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
@@ -353,7 +353,7 @@ class Prosesterdekat extends BaseController
                     ->limit((int)$kuota->mutasi)
                     ->get()->getResult();
 
-                $prestasiData = $this->_db->table('_tb_pendaftar_proses_an a')
+                $prestasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
@@ -377,7 +377,7 @@ class Prosesterdekat extends BaseController
 
                 $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
 
-                $zonasiData = $this->_db->table('_tb_pendaftar_proses_an a')
+                $zonasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')

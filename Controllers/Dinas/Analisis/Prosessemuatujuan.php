@@ -66,6 +66,15 @@ class Prosessemuatujuan extends BaseController
             $row[] = $list->jarak . ' Km';
             // $row[] = $list->latitude . ' - ' . $list->longitude;
             $row[] = $list->nama_sekolah_tujuan . ' (' . $list->npsn_sekolah_tujuan . ')';
+            if ($list->pilihan == 1) {
+                $row[] = '<span class="badge badge-success">Pilihan 1</span>';
+            } else if ($list->pilihan == 2) {
+                $row[] = '<span class="badge badge-info">Pilihan 2</span>';
+            } else if ($list->pilihan == 3) {
+                $row[] = '<span class="badge badge-warning">Pilihan 3</span>';
+            } else {
+                $row[] = '<span class="badge badge-danger">Tidak Diketahui</span>';
+            }
             $row[] = $list->nama_sekolah_asal . ' (' . $list->npsn_sekolah_asal . ')';
 
             $data[] = $row;

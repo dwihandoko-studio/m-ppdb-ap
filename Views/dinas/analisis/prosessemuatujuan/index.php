@@ -76,9 +76,9 @@
                                 <th>NISN</th>
                                 <th>Jalur PPDB</th>
                                 <th>Jarak (Km)</th>
-                                <!--<th>Koordinat</th>-->
-                                <th>Sekolah Asal</th>
                                 <th>Sekolah Tujuan</th>
+                                <th>Pilihan</th>
+                                <th>Sekolah Asal</th>
                             </tr>
                         </thead>
 

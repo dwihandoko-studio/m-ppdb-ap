@@ -294,8 +294,9 @@ class Prosesterdekat extends BaseController
             ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->groupBy('a.tujuan_sekolah_id_1')
-            ->where('j.bentuk_pendidikan_id', 5)
-            // ->where("j.bentuk_pendidikan_id = 6 AND (j.npsn IN (SELECT nisn FROM a_a_a))")
+            // ->where('j.bentuk_pendidikan_id', 5)
+            // ->limit(50, 0)
+            ->where("j.bentuk_pendidikan_id = 5 AND (j.npsn IN (SELECT nisn FROM a_a_a))")
             ->get()->getResult();
 
         if (count($dataSekolahs) > 0) {

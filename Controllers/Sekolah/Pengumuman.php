@@ -13,7 +13,7 @@ use App\Libraries\Notificationlib;
 use App\Libraries\Fcmlib;
 use Firebase\JWT\JWT;
 
-class Pengumumans extends BaseController
+class Pengumuman extends BaseController
 {
     var $folderImage = 'masterdata';
     private $_db;

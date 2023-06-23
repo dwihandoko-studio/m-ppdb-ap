@@ -73,13 +73,14 @@
 <script src="<?= base_url('new-assets') ?>/assets/vendor/bootstrap-datetimepicker.js"></script>
 <script src="<?= base_url('new-assets'); ?>/assets/vendor/select2/dist/js/select2.min.js"></script>
 
+
 <script>
     function initSelect2Panel(event) {
         $('#' + event).select2({
             dropdownParent: "#panel"
         });
     }
-    
+
     function downloadSptjm() {
         window.open('<?= base_url('sekolah/pengumuman/downloadsptjm') ?>', '_blank').focus();
     }
@@ -89,7 +90,7 @@
     }
 
     $(document).ready(function() {
-        
+
     });
 
     function changeValidation(event) {
@@ -110,7 +111,6 @@
         $('.imagePreviewUpload').removeAttr('src');
         document.getElementsByName("_file")[0].value = "";
     });
-
 </script>
 <?= $this->endSection(); ?>
 

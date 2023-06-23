@@ -74,9 +74,9 @@ class ProsesterdekatModel extends Model
         // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         // $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        $this->dt->where('a.via_jalur', 'ZONASI');
+        // }
 
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
@@ -94,9 +94,9 @@ class ProsesterdekatModel extends Model
         // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         // $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        $this->dt->where('a.via_jalur', 'ZONASI');
+        // }
 
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
@@ -111,9 +111,9 @@ class ProsesterdekatModel extends Model
         // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         // $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        $this->dt->where('a.via_jalur', 'ZONASI');
+        // }
 
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);

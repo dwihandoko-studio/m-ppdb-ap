@@ -1,19 +1,21 @@
 <?php ob_start();
 // var_dump(FCPATH . "temp/");die;
-include APPPATH . "Libraries/phpqrcode/qrlib.php";
+// include APPPATH . "Libraries/phpqrcode/qrlib.php";
 // session_start();
-$tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
+// $tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
 // if (!file_exists($tempdir)) //Buat folder bername temp
 // 	mkdir($tempdir);
 
 //isi qrcode jika di scan
 // $siswa = json_decode($data->details);
-$codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $data->id;
+// $codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $data->id;
 
 //simpan file kedalam temp
 //nilai konfigurasi Frame di bawah 4 tidak direkomendasikan
 
-QRcode::png($codeContents, $tempdir . $data->id . '.png', QR_ECLEVEL_M, 4);
+// QRcode::png($codeContents, $tempdir . $data->id . '.png', QR_ECLEVEL_M, 4);
+
+$qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . base_url('web/home/pengumumanpeserta') . '?sekolah=' . $data->id . '&choe=UTF-8'));
 
 ?>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -49,7 +51,7 @@ QRcode::png($codeContents, $tempdir . $data->id . '.png', QR_ECLEVEL_M, 4);
                         <span style="margin-top: 8px; font-size: 20px;">PEMERERINTAH KABUPATEN PESAWARAN</span><br>
                         <span style="margin-top: 8px; font-size: 18px;">DINAS PENDIDIKAN DAN KEBUDAYAAN</span><br>
                         <span style="margin-top: 8px; font-size: 20px;"><?= $data->nama ?></span><br>
-                        <span style="margin-top: 8px; font-size: 14;"><?= $data->npsn ?> - TAHUN PELAJARAN 2022/2023</span>
+                        <span style="margin-top: 8px; font-size: 14;"><?= $data->npsn ?> - TAHUN PELAJARAN 2023/2024</span>
                     </td>
                 </tr>
                 <!-- <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
@@ -72,9 +74,11 @@ QRcode::png($codeContents, $tempdir . $data->id . '.png', QR_ECLEVEL_M, 4);
 
         <!-- kolom atas -->
         <div style="max-width: 100%; padding-left: 20px; padding-right: 20px; text-align: center; align-items: center;">
-            <center></center><h4>SURAT PERTANGGUNGJAWABAN MUTLAK<br>
-            PENDAFTARAN PESERTA DIDIK BARU (PPDB)<br>
-            TAHUN PELAJARAN 2022/2023</h4></center>
+            <center></center>
+            <h4>SURAT PERTANGGUNGJAWABAN MUTLAK<br>
+                PENDAFTARAN PESERTA DIDIK BARU (PPDB)<br>
+                TAHUN PELAJARAN 2023/2024</h4>
+            </center>
         </div>
 
         <div style="max-width: 100%; padding-left: 20px; padding-right: 20px;">
@@ -82,17 +86,22 @@ QRcode::png($codeContents, $tempdir . $data->id . '.png', QR_ECLEVEL_M, 4);
             <p>&nbsp;</p>
             <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: …………………………………………………………………………..</p>
             <p>NIP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: …………………………………………………………………………..</p>
-            <p>Jabatan  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: …………………………………………………………………………..</p>
-            <p>Satuan Pendidikan  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : …………………………………………………………………………..</p>
+            <p>Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: …………………………………………………………………………..</p>
+            <p>Satuan Pendidikan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : …………………………………………………………………………..</p>
             <p>NPSN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: …………………………………………………………………………..</p>
-            <p>Dengan ini saya menyatakan bahwa :</p><ol><li>Proses kegiatan PPDB dilakukan secara daring, mengacu pada peraturan yang telah ditetapkan, Pelaksanaan PPDB secara transparan, akuntable, Non Diskriminatif dan Berkeadilan.</li><li>Seleksi proses penerimaan peserta didik baru 2022/2023 dilaksanakan sesuai dengan peraturan yang telah di tetapkan dan dapat di pertanggungjawabkan.</li><li>Data Peserta PPDB TA. 2022/2023 yang terlampir pada surat ini, dinyatakan lulus dan di terima di sekolah.</li></ol>
+            <p>Dengan ini saya menyatakan bahwa :</p>
+            <ol>
+                <li>Proses kegiatan PPDB dilakukan secara daring, mengacu pada peraturan yang telah ditetapkan, Pelaksanaan PPDB secara transparan, akuntable, Non Diskriminatif dan Berkeadilan.</li>
+                <li>Seleksi proses penerimaan peserta didik baru 2022/2023 dilaksanakan sesuai dengan peraturan yang telah di tetapkan dan dapat di pertanggungjawabkan.</li>
+                <li>Data Peserta PPDB TA. 2022/2023 yang terlampir pada surat ini, dinyatakan lulus dan di terima di sekolah.</li>
+            </ol>
             <p style="text-align:justify;">Demikian Surat Pernyataan Tanggung Jawab Mutlak ini dibuat dengan sebenarnya dan penuh tanggung jawab. Apabila di kemudian hari ternyata data PPDB 2022/2023 yang telah Lulus ini tidak benar, maka saya siap menerima sanksi secara hukum yang berlaku.</p><br><br>
         </div>
         <div style="max-width: 100%; padding-left: 20px; padding-right: 20px;">
             <table width="100%" style="border: 0; ">
                 <tr style=" font-size: 14px;">
                     <td>
-                        <img class="img" src="<?= base_url() ?>/temp/<?= $data->id ?>.png" ec="H" style="width: 20mm; background-color: white; color: black;">
+                        <img class="img" src="<?= $qrCode ?>" ec="H" style="width: 20mm; background-color: white; color: black;">
                     </td>
                     <td style="text-align: left; padding-bottom: 10px; padding-top: 10px; font-size: 14px;">
                         Mengetahui,<br>
@@ -108,11 +117,12 @@ QRcode::png($codeContents, $tempdir . $data->id . '.png', QR_ECLEVEL_M, 4);
                     </td>
                     <td>
                         &nbsp;&nbsp;
-                    </td><td>
+                    </td>
+                    <td>
                         &nbsp;&nbsp;
                     </td>
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px; font-size: 14px;">
-                        ................, .... Juni 2022<br>
+                        ................, .... Juni 2023<br>
                         Yang membuat,<br><br><br><br><br>
                         materai<br><br><br><br>
                         .........................<br>

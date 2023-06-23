@@ -723,6 +723,13 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "prosessemuatujuan") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/prosessemuatujuan') ?>">
+                                            <span class="sidenav-mini-icon"> PP </span>
+                                            <!--<i class="ni ni-app"></i>-->
+                                            <span class="sidenav-normal"> Proses Semua Tujuan Zonasi </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "hasil") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/hasil') ?>">
                                             <span class="sidenav-mini-icon"> H </span>
                                             <!--<i class="ni ni-app"></i>-->

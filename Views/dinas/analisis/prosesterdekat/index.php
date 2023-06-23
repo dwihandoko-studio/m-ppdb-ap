@@ -41,9 +41,8 @@
                                         <div class="form-group jenjang-block">
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <option value="" selected>--PILIH--</option>
                                                 <option value="5">SD</option>
-                                                <option value="6">SMP</option>
+                                                <option value="6" selected>SMP</option>
                                             </select>
                                         </div>
                                     </div>
@@ -217,7 +216,7 @@
                 "data": function(data) {
                     // data.sekolah_id = '<?php //echo $sekolah_id; 
                                             ?>';
-                    data.filter_jalur = $('#filter_jalur').val();
+                    // data.filter_jalur = $('#filter_jalur').val();
                     data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },
@@ -250,9 +249,9 @@
             ]
         });
 
-        $('#filter_jalur').change(function() {
-            tableUsulan.draw();
-        });
+        // $('#filter_jalur').change(function() {
+        //     tableUsulan.draw();
+        // });
 
         $('#filter_jenjang').change(function() {
             tableUsulan.draw();

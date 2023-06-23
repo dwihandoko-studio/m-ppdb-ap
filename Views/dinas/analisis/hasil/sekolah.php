@@ -226,6 +226,22 @@
                 "targets": 0,
                 "orderable": false,
             }],
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            dom: 'Blfrtip',
+            buttons: [
+                'copy', 'csv', 'excel',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    // messageTop: 'Rekapitulasi Data Pendaftar PPDB DISDIKBUD Kab. Lampung Tengah Tahun 2021',
+                    title: 'Rekap Data Total',
+                    text: 'PDF',
+                }
+            ]
         });
 
         // $('#filter_jalur').change(function() {

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class ProseshasilModel extends Model
 {
-    protected $table = "_tb_pendaftar_hasil a";
+    protected $table = "_tb_pendaftar_zonasi a";
     protected $column_order = array('jarak', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'jarak');
     protected $column_search = array('b.nisn');
     protected $order = array('jarak' => 'asc', 'a.created_at' => 'asc');

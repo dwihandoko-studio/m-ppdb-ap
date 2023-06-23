@@ -260,6 +260,31 @@ class Prosesterdekat extends BaseController
         return view('dinas/analisis/proseszonasi/proses', $data);
     }
 
+    public function prosesluluspersekolah()
+    {
+        $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, a.status_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan_1, j.npsn as npsn_sekolah_tujuan_1, j.latitude as latitude_sekolah_tujuan_1, j.longitude as longitude_sekolah_tujuan_1, k.nama as nama_sekolah_tujuan_2, k.npsn as npsn_sekolah_tujuan_2, k.latitude as latitude_sekolah_tujuan_2, k.longitude as longitude_sekolah_tujuan_2, l.nama as nama_sekolah_tujuan_3, l.npsn as npsn_sekolah_tujuan_3, l.latitude as latitude_sekolah_tujuan_3, l.longitude as longitude_sekolah_tujuan_3, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak1, ROUND(getDistanceKm(b.latitude,b.longitude,k.latitude,k.longitude), 2) AS jarak2, ROUND(getDistanceKm(b.latitude,b.longitude,l.latitude,l.longitude), 2) AS jarak3";  //14
+        $zonasiData = $this->_db->table('_tb_pendaftar_proses_an a')
+            ->select($select)
+            ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+            ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah k', 'a.tujuan_sekolah_id_2 = k.id', 'LEFT')
+            ->join('ref_sekolah l', 'a.tujuan_sekolah_id_3 = l.id', 'LEFT')
+            ->where("(a.tujuan_sekolah_id_1 = 'F019FA74-8B18-E111-BA17-A569BE39D1A0' OR a.tujuan_sekolah_id_2 = 'F019FA74-8B18-E111-BA17-A569BE39D1A0' OR a.tujuan_sekolah_id_3 = 'F019FA74-8B18-E111-BA17-A569BE39D1A0')")
+            ->where('a.status_pendaftaran', 1)
+            ->where('a.via_jalur', 'ZONASI')
+            ->orderBy('jarak', 'ASC')
+            ->orderBy('a.created_at', 'ASC')
+            // ->limit($limitZonasi)
+            ->get()->getResult();
+
+        $lulusLib = new Prosesluluslib();
+
+        if (count($afirmasiData) > 0) {
+            $lulusLib->prosesLulusAfirmasi($afirmasiData, (int)$kuota->afirmasi);
+        }
+    }
+
     // public function proseskelulusan()
     // {
 

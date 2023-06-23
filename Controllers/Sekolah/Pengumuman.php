@@ -56,6 +56,7 @@ class Pengumuman extends BaseController
 
         if ($sekolah) {
             $data['data'] = $sekolah;
+            $data['psekolah'] = $this->_db->table('_ref_profil_sekolah')->where('id', $sekolah->id)->get()->getRowObject();
             $response = new \stdClass;
             $response->code = 200;
             $response->message = "Permintaan diizinkan";

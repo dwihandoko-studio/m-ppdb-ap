@@ -64,7 +64,7 @@
                         <thead>
                             <tr>
                                 <th data-orderable="false">&nbsp;</th>
-                                <th>Rangking</th>
+                                <th>No</th>
                                 <th>Terdekat</th>
                                 <th>Nama Pendaftarn</th>
                                 <th>NISN</th>

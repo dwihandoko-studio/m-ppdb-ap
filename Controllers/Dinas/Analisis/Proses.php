@@ -63,10 +63,11 @@ class Proses extends BaseController
             $row[] = $list->fullname;
             $row[] = $list->nisn;
             $row[] = $list->via_jalur;
+            $row[] = $list->pilihan;
             $row[] = $list->jarak . ' Km';
+            $row[] = $list->nama_sekolah_tujuan . ' (' . $list->npsn_sekolah_tujuan . ')';
             // $row[] = $list->latitude . ' - ' . $list->longitude;
             $row[] = $list->nama_sekolah_asal . ' (' . $list->npsn_sekolah_asal . ')';
-            $row[] = $list->nama_sekolah_tujuan . ' (' . $list->npsn_sekolah_tujuan . ')';
 
             $data[] = $row;
         }

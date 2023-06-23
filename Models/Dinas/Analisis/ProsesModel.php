@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class ProsesModel extends Model
 {
-    protected $table = "_tb_pendaftar a";
+    protected $table = "_tb_pendaftar_kelompok_sekolah a";
     protected $column_order = array('jarak', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'jarak');
     protected $column_search = array('b.nisn');
     protected $order = array('jarak' => 'asc', 'a.created_at' => 'asc');
@@ -26,7 +26,7 @@ class ProsesModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, a.status_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";  //14
+        $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.pilihan, a.id_pendaftaran, a.status_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";  //14
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
@@ -68,8 +68,8 @@ class ProsesModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
-        $this->dt->where('a.status_pendaftaran', 1);
-        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        // $this->dt->where('a.status_pendaftaran', 1);
+        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
         if ($filter_jalur != "") {
@@ -88,8 +88,8 @@ class ProsesModel extends Model
     function count_filtered($filter_jenjang, $filter_jalur, $sekolah_id)
     {
         $this->_get_datatables_query();
-        $this->dt->where('a.status_pendaftaran', 1);
-        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        // $this->dt->where('a.status_pendaftaran', 1);
+        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
         if ($filter_jalur != "") {
@@ -105,8 +105,8 @@ class ProsesModel extends Model
     public function count_all($filter_jenjang, $filter_jalur, $sekolah_id)
     {
         $this->_get_datatables_query();
-        $this->dt->where('a.status_pendaftaran', 1);
-        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        // $this->dt->where('a.status_pendaftaran', 1);
+        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
         if ($filter_jalur != "") {

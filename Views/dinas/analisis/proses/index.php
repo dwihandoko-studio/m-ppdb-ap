@@ -75,10 +75,11 @@
                                 <th>Nama Pendaftarn</th>
                                 <th>NISN</th>
                                 <th>Jalur PPDB</th>
+                                <th>Pilihan</th>
                                 <th>Jarak (Km)</th>
                                 <!--<th>Koordinat</th>-->
-                                <th>Sekolah Asal</th>
                                 <th>Sekolah Tujuan</th>
+                                <th>Sekolah Asal</th>
                             </tr>
                         </thead>
 

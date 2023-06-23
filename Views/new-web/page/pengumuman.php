@@ -277,7 +277,15 @@
                             htmlRekap += ')';
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
+                            if (msg.data_lolos_zonasi[stepr].npsn_sekolah_asal === 1) {
+                                htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA VIA PILIHAN 1</span>';
+                            } else if (msg.data_lolos_zonasi[stepr].npsn_sekolah_asal === 2) {
+                                htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA VIA PILIHAN 2</span>';
+                            } else if (msg.data_lolos_zonasi[stepr].npsn_sekolah_asal === 3) {
+                                htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA VIA PILIHAN 3</span>';
+                            } else {
+                                htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
+                            }
                             htmlRekap += '</td>';
                             htmlRekap += '</tr>';
                         }

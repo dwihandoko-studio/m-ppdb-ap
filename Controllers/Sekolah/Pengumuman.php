@@ -93,67 +93,70 @@ class Pengumuman extends BaseController
         }
 
         if ((int)$sekolah->status_sekolah != 1) {
-            $select = "b.id, b.nisn, b.nip, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.kode_pendaftaran, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+            // $select = "b.id, b.nisn, b.nip, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.kode_pendaftaran, a.id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+            $select = "b.id, a.pilihan, b.nisn, b.nip, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.kode_pendaftaran, a.id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at";
 
 
-            $afirmasiData = $this->_db->table('_tb_pendaftar a')
+            $afirmasiData = $this->_db->table('_tb_pendaftar_zonasi a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                ->where('a.tujuan_sekolah_id', $id)
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_id = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id_id', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'SWASTA')
-                ->orderBy('jarak', 'ASC')
+                // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
                 // ->limit((int)$kuota->afirmasi)
                 ->get()->getResult();
 
             $data['data_lolos'] = $afirmasiData;
             $data['sekolah'] = $sekolah;
+            $data['psekolah'] = $this->_db->table('_ref_profil_sekolah')->where('id', $sekolah->id)->get()->getRowObject();
             return view('sekolah/pengumuman/cetak-lampiran-swasta', $data);
         } else {
 
-            $select = "b.id, b.nisn, b.nip, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.kode_pendaftaran, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+            // $select = "b.id, a.pilihan, b.nisn, b.nip, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.kode_pendaftaran, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+            $select = "b.id, a.pilihan, b.nisn, b.nip, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.kode_pendaftaran, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at";
 
 
-            $afirmasiData = $this->_db->table('_tb_pendaftar a')
+            $afirmasiData = $this->_db->table('_tb_pendaftar_zonasi a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                ->where('a.tujuan_sekolah_id', $id)
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'AFIRMASI')
-                ->orderBy('jarak', 'ASC')
+                // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->afirmasi)
+                // ->limit((int)$kuota->afirmasi)
                 ->get()->getResult();
 
-            $mutasiData = $this->_db->table('_tb_pendaftar a')
+            $mutasiData = $this->_db->table('_tb_pendaftar_zonasi a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                ->where('a.tujuan_sekolah_id', $id)
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'MUTASI')
-                ->orderBy('jarak', 'ASC')
+                // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->mutasi)
+                // ->limit((int)$kuota->mutasi)
                 ->get()->getResult();
 
-            $prestasiData = $this->_db->table('_tb_pendaftar a')
+            $prestasiData = $this->_db->table('_tb_pendaftar_zonasi a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                ->where('a.tujuan_sekolah_id', $id)
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'PRESTASI')
-                ->orderBy('jarak', 'ASC')
+                // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->prestasi)
+                // ->limit((int)$kuota->prestasi)
                 ->get()->getResult();
 
             $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
@@ -167,17 +170,17 @@ class Pengumuman extends BaseController
 
             $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
 
-            $zonasiData = $this->_db->table('_tb_pendaftar a')
+            $zonasiData = $this->_db->table('_tb_pendaftar_zonasi a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                ->where('a.tujuan_sekolah_id', $id)
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'ZONASI')
-                ->orderBy('jarak', 'ASC')
+                // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit($limitZonasi)
+                // ->limit($limitZonasi)
                 ->get()->getResult();
 
             $data['data_lolos_zonasi'] = $zonasiData;
@@ -193,6 +196,7 @@ class Pengumuman extends BaseController
             // $response->data_lolos_afirmasi = $afirmasiData;
             // $response->data_lolos_mutasi = $mutasiData;
             // $response->data_lolos_prestasi = $prestasiData;
+            $data['psekolah'] = $this->_db->table('_ref_profil_sekolah')->where('id', $sekolah->id)->get()->getRowObject();
             return view('sekolah/pengumuman/cetak-lampiran', $data);
             // $response->data = view('sekolah/riwayat/cetak-pendaftaran', $data);
             // return json_encode($response);

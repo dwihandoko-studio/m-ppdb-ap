@@ -1,19 +1,20 @@
 <?php ob_start();
 // var_dump(FCPATH . "temp/");die;
-include APPPATH . "Libraries/phpqrcode/qrlib.php";
+// include APPPATH . "Libraries/phpqrcode/qrlib.php";
 // session_start();
-$tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
+// $tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
 // if (!file_exists($tempdir)) //Buat folder bername temp
 // 	mkdir($tempdir);
 
 //isi qrcode jika di scan
 // $siswa = json_decode($data->details);
-$codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $sekolah->id;
+// $codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $sekolah->id;
 
 //simpan file kedalam temp
 //nilai konfigurasi Frame di bawah 4 tidak direkomendasikan
 
-QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
+// QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
+$qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . base_url('web/pengumuman') . '?sekolah=' . $data->id . '&choe=UTF-8'));
 
 ?>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -41,12 +42,12 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
     <div style="border: 2px  dashed #cbd4dd;">
         <div style="max-width: 100%; padding-left: 10px; padding-right: 8px;">
             <p>LAMPIRAN 1<br>
-            DATA PESERTA YANG LULUS PPDB TA. 2022/2023<br>
-            KABUPATEN PESAWARAN<br><br>
-            Satuan Pendidikan : <?= $sekolah->nama ?><br>
-            NPSN              : <?= $sekolah->npsn ?></p>
+                DATA PESERTA YANG LULUS PPDB TA. 2023/2024<br>
+                KABUPATEN PESAWARAN<br><br>
+                Satuan Pendidikan : <?= $sekolah->nama ?><br>
+                NPSN : <?= $sekolah->npsn ?></p>
         </div>
-        
+
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR ZONASI</h4>
             <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
@@ -58,11 +59,12 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                         <th style="font-size: 12px">No Pendaftaran</th>
                         <th style="font-size: 12px">Jalur PPDB</th>
                         <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if(isset($data_lolos_zonasi)) { 
-                        if(count($data_lolos_zonasi) > 0) { 
+                    <?php if (isset($data_lolos_zonasi)) {
+                        if (count($data_lolos_zonasi) > 0) {
                             $no = 1;
                             foreach ($data_lolos_zonasi as $key => $value) { ?>
                                 <tr>
@@ -73,7 +75,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                                         <?= $value->fullname ?>
                                     </td>
                                     <td style="font-size: 12px">
-                                        <?php if(substr($value->nisn,0,2) == 'BS') {
+                                        <?php if (substr($value->nisn, 0, 2) == 'BS') {
                                             $nisn = $value->nip;
                                         } else {
                                             $nisn = $value->nisn;
@@ -89,22 +91,33 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                                     <td style="font-size: 12px">
                                         <?= $value->npsn_sekolah_asal ?>
                                     </td>
+                                    <td style="font-size: 12px">
+                                        <?php if ($value->pilihan == 1) { ?>
+                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA LEWAT PILIHAN 1</span>
+                                        <?php } else if ($value->pilihan == 2) { ?>
+                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA LEWAT PILIHAN 2</span>
+                                        <?php } else if ($value->pilihan == 3) { ?>
+                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA LEWAT PILIHAN 3</span>
+                                        <?php } else { ?>
+                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA</span>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
-                            <?php 
-                            $no++;
+                            <?php
+                                $no++;
                             } ?>
-                        
+
                         <?php } else { ?>
+                            <tr>
+                                <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
+                            </tr>
+                        <?php } ?>
+                    <?php } else { ?>
                         <tr>
                             <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
                         </tr>
-                        <?php } ?>
-                    <?php } else { ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
-                    </tr>
                     <?php } ?>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -123,8 +136,8 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if(isset($data_lolos_afirmasi)) { 
-                        if(count($data_lolos_afirmasi) > 0) { 
+                    <?php if (isset($data_lolos_afirmasi)) {
+                        if (count($data_lolos_afirmasi) > 0) {
                             $no = 1;
                             foreach ($data_lolos_afirmasi as $key => $value) { ?>
                                 <tr>
@@ -147,21 +160,21 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                                         <?= $value->npsn_sekolah_asal ?>
                                     </td>
                                 </tr>
-                            <?php 
-                            $no++;
+                            <?php
+                                $no++;
                             } ?>
-                        
+
                         <?php } else { ?>
+                            <tr>
+                                <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
+                            </tr>
+                        <?php } ?>
+                    <?php } else { ?>
                         <tr>
                             <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
                         </tr>
-                        <?php } ?>
-                    <?php } else { ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
-                    </tr>
                     <?php } ?>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -180,8 +193,8 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if(isset($data_lolos_mutasi)) { 
-                        if(count($data_lolos_mutasi) > 0) { 
+                    <?php if (isset($data_lolos_mutasi)) {
+                        if (count($data_lolos_mutasi) > 0) {
                             $no = 1;
                             foreach ($data_lolos_mutasi as $key => $value) { ?>
                                 <tr>
@@ -204,21 +217,21 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                                         <?= $value->npsn_sekolah_asal ?>
                                     </td>
                                 </tr>
-                            <?php 
-                            $no++;
+                            <?php
+                                $no++;
                             } ?>
-                        
+
                         <?php } else { ?>
+                            <tr>
+                                <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
+                            </tr>
+                        <?php } ?>
+                    <?php } else { ?>
                         <tr>
                             <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
                         </tr>
-                        <?php } ?>
-                    <?php } else { ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
-                    </tr>
                     <?php } ?>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -237,8 +250,8 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if(isset($data_lolos_prestasi)) { 
-                        if(count($data_lolos_prestasi) > 0) { 
+                    <?php if (isset($data_lolos_prestasi)) {
+                        if (count($data_lolos_prestasi) > 0) {
                             $no = 1;
                             foreach ($data_lolos_prestasi as $key => $value) { ?>
                                 <tr>
@@ -261,21 +274,21 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                                         <?= $value->npsn_sekolah_asal ?>
                                     </td>
                                 </tr>
-                            <?php 
-                            $no++;
+                            <?php
+                                $no++;
                             } ?>
-                        
+
                         <?php } else { ?>
+                            <tr>
+                                <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
+                            </tr>
+                        <?php } ?>
+                    <?php } else { ?>
                         <tr>
                             <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
                         </tr>
-                        <?php } ?>
-                    <?php } else { ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
-                    </tr>
                     <?php } ?>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -285,10 +298,10 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
             <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
                 <tr>
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px;">
-                        <img class="img" src="<?= base_url() ?>/temp/<?= $sekolah->id ?>.png" ec="H" style="width: 30mm; background-color: white; color: black;">
+                        <img class="img" src="<?= $qrCode ?>" ec="H" style="width: 30mm; background-color: white; color: black;">
                         <!--<b>INFORMASI</b><br>-->
-                        <!--1. Pada saat pengumuman PPDB 2022/2023. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
-                        <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2022.<br>-->
+                        <!--1. Pada saat pengumuman PPDB 2023/2024. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
+                        <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2023.<br>-->
                         <!--2. Peserta yang tidak lolos dan kemudian mendaftar kembali melalui PPDB Dalam Jaringan, akan otomatis dapat melihat Sekolah-Sekolah<br>-->
                         <!--   yang Kuotanya Belum Tercukupi.<br>-->
                         <!--3. Panitia PPDB Sekolah tidak lagi wajib untuk melakukan verifikasi (Sistem Otomatis) dan Peserta yang mendaftar ke sekolah tersebut, otomatis diterima di sekolah tersebut.<br>-->

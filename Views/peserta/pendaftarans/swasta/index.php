@@ -41,7 +41,7 @@
                 <?php } ?>
                 <div class="card loading-content">
                     <div class="card-header">
-                        <h5 class="h3 mb-0">PENDAFTARAN VIA JALUR SWASTA</h5>
+                        <h5 class="h3 mb-0">PENDAFTARAN Melalui Jalur SWASTA</h5>
                         <p>Daftar Sekolah Swasta Yang Tersedia.</p>
                     </div>
                     <div class="card-header py-0">

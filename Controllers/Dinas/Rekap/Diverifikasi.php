@@ -248,7 +248,7 @@ class Diverifikasi extends BaseController
                     //     } else {
                     //         $viaJalur = "Swasta";
                     //     }
-                    //     $riwayatLib->insert("Mencabut Berkas Pendaftaran $name via Jalur $viaJalur dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Cabut Berkas Pendaftaran Jalur $viaJalur", "tolak");
+                    //     $riwayatLib->insert("Mencabut Berkas Pendaftaran $name Melalui Jalur $viaJalur dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Cabut Berkas Pendaftaran Jalur $viaJalur", "tolak");
 
                     //     $saveNotifSystem = new Notificationlib();
                     //     $saveNotifSystem->send([

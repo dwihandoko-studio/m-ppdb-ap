@@ -184,7 +184,7 @@ class Prosesprestasi extends BaseController
                         // try {
 
                         // $riwayatLib = new Riwayatlib();
-                        // $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Afirmasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Afirmasi", "submit");
+                        // $riwayatLib->insert("Memverifikasi Pendaftaran $name Melalui Jalur Afirmasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Afirmasi", "submit");
 
                         // $saveNotifSystem = new Notificationlib();
                         // $saveNotifSystem->send([

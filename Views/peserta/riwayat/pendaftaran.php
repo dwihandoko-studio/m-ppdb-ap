@@ -72,7 +72,7 @@
                                                         <small class="text-muted font-weight-bold"><?= tgl_indo2($pendaftaran->updated_aproval) ?></small>
                                                         <h5 class="mt-3 mb-0">Proses Validasi</h5>
                                                         <p class="text-sm mt-1 mb-0">
-                                                            <?= $pendaftaran->fullname ?> telah memvalidasi pendaftaran Via Jalur <?= $pendaftaran->via_jalur ?> anda.
+                                                            <?= $pendaftaran->fullname ?> telah memvalidasi pendaftaran Melalui Jalur <?= $pendaftaran->via_jalur ?> anda.
                                                         </p>
                                                         <div class="mt-3">
                                                             <?php if ((int)$pendaftaran->status_pendaftaran > 1) { ?>
@@ -93,7 +93,7 @@
                                                         <small class="text-muted font-weight-bold"><?= tgl_indo2($pendaftaran->updated_at) ?></small>
                                                         <h5 class="mt-3 mb-0">Proses Validasi</h5>
                                                         <p class="text-sm mt-1 mb-0">
-                                                            <?= $pendaftaran->fullname ?> telah memvalidasi pendaftaran Via Jalur <?= $pendaftaran->via_jalur ?> Anda.
+                                                            <?= $pendaftaran->fullname ?> telah memvalidasi pendaftaran Melalui Jalur <?= $pendaftaran->via_jalur ?> Anda.
                                                         </p>
                                                         <div class="mt-3">
                                                             <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>
@@ -108,7 +108,7 @@
                                                         <small class="text-muted font-weight-bold"><?= tgl_indo2($pendaftaran->update_reject) ?></small>
                                                         <h5 class="mt-3 mb-0">Validasi Pendaftaran Ditolak</h5>
                                                         <p class="text-sm mt-1 mb-0">
-                                                            <?= $pendaftaran->fullname ?> telah menolak validasi pendaftaran Via Jalur <?= $pendaftaran->via_jalur ?> dengan keterangan : <br><b><?= $pendaftaran->keterangan_penolakan ?>.</b>
+                                                            <?= $pendaftaran->fullname ?> telah menolak validasi pendaftaran Melalui Jalur <?= $pendaftaran->via_jalur ?> dengan keterangan : <br><b><?= $pendaftaran->keterangan_penolakan ?>.</b>
                                                         </p>
                                                         <div class="mt-3">
                                                             <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>
@@ -123,7 +123,7 @@
                                                             <small class="text-muted font-weight-bold"><?= tgl_indo2($pendaftaran->updated_aproval) ?></small>
                                                             <h5 class="mt-3 mb-0">Proses Validasi</h5>
                                                             <p class="text-sm mt-1 mb-0">
-                                                                <?= $pendaftaran->fullname ?> telah memvalidasi pendaftaran Via Jalur <?= $pendaftaran->via_jalur ?> Anda.
+                                                                <?= $pendaftaran->fullname ?> telah memvalidasi pendaftaran Melalui Jalur <?= $pendaftaran->via_jalur ?> Anda.
                                                             </p>
                                                             <div class="mt-3">
                                                                 <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>
@@ -137,7 +137,7 @@
                                                             <small class="text-muted font-weight-bold"><?= tgl_indo2($pendaftaran->update_reject) ?></small>
                                                             <h5 class="mt-3 mb-0">Validasi Pendaftaran Ditolak</h5>
                                                             <p class="text-sm mt-1 mb-0">
-                                                                <?= $pendaftaran->fullname ?> telah menolak validasi pendaftaran Via Jalur <?= $pendaftaran->via_jalur ?> dengan keterangan : <br><b><?= $pendaftaran->keterangan_penolakan ?>.</b>
+                                                                <?= $pendaftaran->fullname ?> telah menolak validasi pendaftaran Melalui Jalur <?= $pendaftaran->via_jalur ?> dengan keterangan : <br><b><?= $pendaftaran->keterangan_penolakan ?>.</b>
                                                             </p>
                                                             <div class="mt-3">
                                                                 <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>
@@ -155,7 +155,7 @@
                                                         <small class="text-muted font-weight-bold"><?= tgl_indo2($pendaftaran->updated_aproval) ?></small>
                                                         <h5 class="mt-3 mb-0">PENGUMUMAN</h5>
                                                         <p class="text-sm mt-1 mb-0">
-                                                            Pendaftaran Via Jalur <?= $pendaftaran->via_jalur ?> telah diumumkan dan anda dinyatakan <b>LOLOS</b> seleksi PPDB pada sekolah tujuan anda.</b>.
+                                                            Pendaftaran Melalui Jalur <?= $pendaftaran->via_jalur ?> telah diumumkan dan anda dinyatakan <b>LOLOS</b> seleksi PPDB pada sekolah tujuan anda.</b>.
                                                         </p>
                                                         <div class="mt-3">
                                                             <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>
@@ -170,7 +170,7 @@
                                                             <small class="text-muted font-weight-bold"><?= tgl_indo2($pendaftaran->updated_at) ?></small>
                                                             <h5 class="mt-3 mb-0">PENGUMUMAN</h5>
                                                             <p class="text-sm mt-1 mb-0">
-                                                                Pendaftaran Via Jalur <?= $pendaftaran->via_jalur ?> telah diumumkan dan anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB pada sekolah tujuan anda.</b>.
+                                                                Pendaftaran Melalui Jalur <?= $pendaftaran->via_jalur ?> telah diumumkan dan anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB pada sekolah tujuan anda.</b>.
                                                             </p>
                                                             <div class="mt-3">
                                                                 <span class="badge badge-pill badge-success"><i class="ni ni-check-bold"></i></span>

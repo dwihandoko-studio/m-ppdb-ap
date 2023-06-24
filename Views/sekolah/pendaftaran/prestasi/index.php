@@ -30,8 +30,8 @@
             <div class="col">
                 <div class="card loading-content">
                     <div class="card-header">
-                        <h5 class="h3 mb-0">PENDAFTAR VIA JALUR PRESTASI</h5>
-                        <p>Daftar Peserta Yang Mendaftar Via Jalur Prestasi.</p>
+                        <h5 class="h3 mb-0">PENDAFTAR Melalui Jalur PRESTASI</h5>
+                        <p>Daftar Peserta Yang Mendaftar Melalui Jalur Prestasi.</p>
                     </div>
                     <div class="card-header py-0">
                         <form>
@@ -39,7 +39,7 @@
                                 <div class="input-group input-group-lg input-group-flush">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><span class="fas fa-search"></span></div>
-                                   </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NISN / Kode Pendaftaran. . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
+                                    </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NISN / Kode Pendaftaran. . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
                                 </div>
                             </div>
                         </form>
@@ -99,9 +99,10 @@
 
 <script>
     let loading = false;
+
     function cariData(event) {
         const cari = document.getElementsByName('_search_item')[0].value;
-        if(cari !== "") {
+        if (cari !== "") {
             $.ajax({
                 url: "<?= base_url('sekolah/pendaftaran/prestasi/getAll') ?>",
                 type: 'POST',
@@ -117,7 +118,7 @@
                 },
                 success: function(resul) {
                     $('div.loading-content').unblock();
-    
+
                     if (resul.code !== 200) {
                         if (resul.code === 401) {
                             Swal.fire(

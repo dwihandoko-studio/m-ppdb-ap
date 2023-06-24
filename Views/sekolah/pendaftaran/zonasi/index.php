@@ -30,8 +30,8 @@
             <div class="col">
                 <div class="card loading-content">
                     <div class="card-header">
-                        <h5 class="h3 mb-0">PENDAFTAR VIA JALUR ZONASI</h5>
-                        <p>Daftar Peserta Yang Mendaftar Via Jalur Zonasi.</p>
+                        <h5 class="h3 mb-0">PENDAFTAR Melalui Jalur ZONASI</h5>
+                        <p>Daftar Peserta Yang Mendaftar Melalui Jalur Zonasi.</p>
                     </div>
                     <div class="card-header py-0">
                         <form>

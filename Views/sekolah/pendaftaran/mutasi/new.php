@@ -31,7 +31,7 @@
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header">
-                        <h5 class="h3 mb-0">PENDAFTARAN VIA JALUR ZONASI</h5>
+                        <h5 class="h3 mb-0">PENDAFTARAN Melalui Jalur ZONASI</h5>
                         <!-- <p>Daftar Sekolah Yang Dalam Ruang Lingkup Zonasi.</p> -->
                     </div>
                     <!-- <div class="card-header py-0">

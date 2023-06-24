@@ -41,8 +41,8 @@
                                         <div class="form-group jenjang-block">
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                    <option value="5" selected>SD</option>
-                                                    <option value="6">SMP</option>
+                                                <option value="5" selected>SD</option>
+                                                <option value="6">SMP</option>
                                             </select>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                                     <th>Nama Sekolah Pelimpahan</th>
                                     <th>Jarak (Km)</th>
                                     <th>Kode Pendaftaran</th>
-                                    <th>Via Jalur</th>
+                                    <th>Melalui Jalur</th>
                                     <th>Nama Sekolah Asal</th>
                                     <th>NPSN Seklah Asal</th>
                                     <th data-orderable="false">Aksi</th>
@@ -218,8 +218,8 @@
                 "orderable": false,
             }],
             lengthMenu: [
-                [ 10, 25, 50, -1 ],
-                [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
             ],
             dom: 'Blfrtip',
             buttons: [

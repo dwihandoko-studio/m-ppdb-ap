@@ -282,7 +282,7 @@ class Zonasi extends BaseController
 
                     try {
                         $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Zonasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Zonasi", "submit");
+                        $riwayatLib->insert("Memverifikasi Pendaftaran $name Melalui Jalur Zonasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Zonasi", "submit");
 
                         $saveNotifSystem = new Notificationlib();
                         $saveNotifSystem->send([
@@ -415,7 +415,7 @@ class Zonasi extends BaseController
 
                     try {
                         $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Zonasi NISN: " . $nisn, "Tolak Pendaftaran Jalur Zonasi", "tolak");
+                        $riwayatLib->insert("Menolak Pendaftaran $name Melalui Jalur Zonasi NISN: " . $nisn, "Tolak Pendaftaran Jalur Zonasi", "tolak");
 
                         $saveNotifSystem = new Notificationlib();
                         $saveNotifSystem->send([

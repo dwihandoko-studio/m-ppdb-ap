@@ -267,7 +267,7 @@ class Swasta extends BaseController
 
                     try {
                         $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Swasta dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Swasta", "submit");
+                        $riwayatLib->insert("Memverifikasi Pendaftaran $name Melalui Jalur Swasta dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Swasta", "submit");
 
                         $saveNotifSystem = new Notificationlib();
                         $saveNotifSystem->send([
@@ -400,7 +400,7 @@ class Swasta extends BaseController
 
                     try {
                         $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Swasta dengan NISN : " . $nisn, "Tolak Pendaftaran Jalur Swasta", "tolak");
+                        $riwayatLib->insert("Menolak Pendaftaran $name Melalui Jalur Swasta dengan NISN : " . $nisn, "Tolak Pendaftaran Jalur Swasta", "tolak");
 
                         $saveNotifSystem = new Notificationlib();
                         $saveNotifSystem->send([

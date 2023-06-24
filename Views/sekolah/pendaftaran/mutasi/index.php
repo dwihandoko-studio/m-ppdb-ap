@@ -30,8 +30,8 @@
             <div class="col">
                 <div class="card loading-content">
                     <div class="card-header">
-                        <h5 class="h3 mb-0">PENDAFTAR VIA JALUR MUTASI</h5>
-                        <p>Daftar Peserta Yang Mendaftar Via Jalur Mutasi.</p>
+                        <h5 class="h3 mb-0">PENDAFTAR Melalui Jalur MUTASI</h5>
+                        <p>Daftar Peserta Yang Mendaftar Melalui Jalur Mutasi.</p>
                     </div>
                     <div class="card-header py-0">
                         <form>
@@ -99,9 +99,10 @@
 
 <script>
     let loading = false;
+
     function cariData(event) {
         const cari = document.getElementsByName('_search_item')[0].value;
-        if(cari !== "") {
+        if (cari !== "") {
             $.ajax({
                 url: "<?= base_url('sekolah/pendaftaran/mutasi/getAll') ?>",
                 type: 'POST',
@@ -117,7 +118,7 @@
                 },
                 success: function(resul) {
                     $('div.loading-content').unblock();
-    
+
                     if (resul.code !== 200) {
                         if (resul.code === 401) {
                             Swal.fire(

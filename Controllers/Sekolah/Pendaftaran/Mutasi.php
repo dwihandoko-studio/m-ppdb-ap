@@ -268,7 +268,7 @@ class Mutasi extends BaseController
                     try {
 
                         $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Mutasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Mutasi", "submit");
+                        $riwayatLib->insert("Memverifikasi Pendaftaran $name Melalui Jalur Mutasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Mutasi", "submit");
 
                         $saveNotifSystem = new Notificationlib();
                         $saveNotifSystem->send([
@@ -402,7 +402,7 @@ class Mutasi extends BaseController
 
                     try {
                         $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Menolak Pendaftaran $name via Jalur Mutasi dengan NISN : " . $nisn, "Tolak Pendaftaran Jalur Mutasi", "tolak");
+                        $riwayatLib->insert("Menolak Pendaftaran $name Melalui Jalur Mutasi dengan NISN : " . $nisn, "Tolak Pendaftaran Jalur Mutasi", "tolak");
 
                         $saveNotifSystem = new Notificationlib();
                         $saveNotifSystem->send([

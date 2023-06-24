@@ -166,7 +166,7 @@
                                                     <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">3</div>
                                                 </div>
                                             </div>
-                                            <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran via jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
+                                            <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran Melalui Jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
                                         </div>
                                     <?php } else { ?>
                                         <?php if (isset($warning)) { ?>
@@ -179,7 +179,7 @@
                                                         <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">3</div>
                                                     </div>
                                                 </div>
-                                                <p class="mt-3 mb-0 text-sm"><span class="text-danger mr-2"><i class="ni ni-fat-remove"></i> Tidak lolos pendaftaran via jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
+                                                <p class="mt-3 mb-0 text-sm"><span class="text-danger mr-2"><i class="ni ni-fat-remove"></i> Tidak lolos pendaftaran Melalui Jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
                                             </div>
                                         <?php } else { ?>
                                             <div class="card-body">
@@ -191,7 +191,7 @@
                                                         <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">3</div>
                                                     </div>
                                                 </div>
-                                                <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran via jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
+                                                <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran Melalui Jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
                                             </div>
                                         <?php } ?>
                                     <?php } ?>

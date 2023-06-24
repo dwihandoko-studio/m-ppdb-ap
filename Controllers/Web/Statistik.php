@@ -96,13 +96,13 @@ class Statistik extends BaseController
                         . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_prestasi . '</b>'
                         . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_prestasi . '</b>'
                         . '<br/>' . 'Diterima : <b>' . $list->diterima_prestasi . '</b></div>';
-                    $row['swasta'] = '< style="font-size: 13px;">Kuota : <b>0</b>'
+                    $row['swasta'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
                         . '<br/>' . 'Belum Verifikasi : <b>0</b>'
                         . '<br/>' . 'Diterima : <b>0</b></div>';
                 } else {
-                    $row['zonasi'] = '< style="font-size: 13px;">Kuota : <b>0</b>'
+                    $row['zonasi'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
                         . '<br/>' . 'Belum Verifikasi : <b>0</b>'

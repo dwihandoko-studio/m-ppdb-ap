@@ -26,7 +26,7 @@ class ProsessekolahModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "a.id_pendaftaran, a.pilihan, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
+        $select = "a.id as id_pendaftaran, a.pilihan, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
 
         $this->dt->select($select);
         // $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');

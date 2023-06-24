@@ -47,7 +47,7 @@ $siswa = json_decode($data->details);
                     </td>
                     <td style="text-align: center;">
                         <span style="margin-top: 8px; font-size: 20px;">KARTU TANDA PESERTA PPDB ONLINE</span><br>
-                        <span style="margin-top: 8px; font-size: 18px;">KABUPATEN LAMPUNG TIMUR</span><br>
+                        <span style="margin-top: 8px; font-size: 18px;">KABUPATEN LAMPUNG TENGAH</span><br>
                         <span style="margin-top: 8px; font-size: 18px;">PROVINSI LAMPUNG</span><br>
                         <span style="margin-top: 8px; font-size: 16;">TAHUN PELAJARAN 2023/2024</span>
                     </td>
@@ -57,7 +57,7 @@ $siswa = json_decode($data->details);
                 </tr>
                 <!-- <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
                     <td style="text-align: center;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-                        KABUPATEN LAMPUNG TIMUR
+                        KABUPATEN LAMPUNG TENGAH
                     </td>
                 </tr>
                 <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
@@ -67,7 +67,7 @@ $siswa = json_decode($data->details);
                 </tr>
                 <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
                     <td style="text-align: center;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-                        TAHUN AJARAN 2022/2023
+                        TAHUN AJARAN 2023/2024
                     </td>
                 </tr> -->
             </table>

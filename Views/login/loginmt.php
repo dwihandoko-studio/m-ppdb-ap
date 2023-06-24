@@ -10,12 +10,12 @@
     <meta name="description" content="Sistem Informasi Usulan Tunjangan Profesi Guru">
     <meta name="author" content="BJ-Hands (handokowae.my.id)">
 
-    <meta property="og:title" content="PPDB KAB. LAMPUNG TIMUR" />
+    <meta property="og:title" content="PPDB KAB. LAMPUNG TENGAH" />
     <meta property="og:url" content="https://si-utpg.lampungtengahkab.go.id" />
     <meta property="og:image" content="<?= base_url('favicon/android-icon-192x192.png'); ?>" />
     <meta property="og:description" content="Aplikasi untuk pengusulan Tunjangan Profesi Guru." />
 
-    <meta itemprop="name" content="SI-UTPG DISDIKBUD KAB. LAMPUNG TIMUR" />
+    <meta itemprop="name" content="SI-UTPG DISDIKBUD KAB. LAMPUNG TENGAH" />
     <meta itemprop="description" content="Aplikasi untuk pengusulan Tunjangan Profesi Guru." />
     <meta itemprop="image" content="<?= base_url('favicon/android-icon-192x192.png'); ?>" />
 

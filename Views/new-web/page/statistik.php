@@ -6,7 +6,7 @@
     <div class="image-layer" style="background-image: url(<?= base_url('themes') ?>/images/icons/crm-bg.webp);"></div>
     <div class="container" style="margin-top: 90px;">>
         <div class="sec-title center">
-            <h2>STATISTIK PPDB 2023<br>KABUPATEN LAMPUNG TIMUR</h2>
+            <h2>STATISTIK PPDB 2023<br>KABUPATEN LAMPUNG TENGAH</h2>
         </div>
         <div class="row center">
             <div class="col-lg-2 col-md-6 col-sm-12 single-column">
@@ -69,7 +69,7 @@
         <!-- <div class="container" style="margin-top: 100px;"> -->
         <div class="sec-title center">
             <h2>DATA PENDAFTARAN</h2>
-            <p>Informasi data pendaftaran pada pelaksanaan PPDB Tahun 2023 Kab. Lampung Timur, sebagai berikut:</p>
+            <p>Informasi data pendaftaran pada pelaksanaan PPDB Tahun 2023 Kab. Lampung Tengah, sebagai berikut:</p>
         </div>
         <div class="row">
             <div class="col-lg-12">

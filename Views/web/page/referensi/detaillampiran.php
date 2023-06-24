@@ -59,7 +59,7 @@
             </nav>
             <!-- offcanvas-menu end -->
 
-            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TENGAH</p>
         </div>
     </div>
 </div>
@@ -150,7 +150,7 @@
                     <!-- <div class="icon">
                             <img src="<?= base_url('template/pringo'); ?>/assets/images/icon/pencile.png" alt="Icon_not_found" />
                         </div> -->
-                    <h5 class="title" style="font-size: 25px;">DETAIL PENGUMUMAN PESERTA PPDB 2022 YANG LULUS SELEKSI DI <?= $sekolah->nama ?> - <?= $sekolah->npsn ?></h5>
+                    <h5 class="title" style="font-size: 25px;">DETAIL PENGUMUMAN PESERTA PPDB 2023 YANG LULUS SELEKSI DI <?= $sekolah->nama ?> - <?= $sekolah->npsn ?></h5>
                     <!-- <span class="hr-secodary"></span> -->
                 </div>
             </div>

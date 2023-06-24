@@ -6,7 +6,7 @@
     <div class="container" style="margin-top: 100px;">
         <div class="sec-title center">
             <h2>PROFIL <?= (isset($sekolah)) ? strtoupper($sekolah->nama_sekolah) : ' SEKOLAH' ?></h2>
-            <p>Informasi profil <?= (isset($sekolah)) ? $sekolah->nama_sekolah : ' sekolah' ?> pada pelaksanaan PPDB Tahun 2023 Kab. Lampung Timur, sebagai berikut:</p>
+            <p>Informasi profil <?= (isset($sekolah)) ? $sekolah->nama_sekolah : ' sekolah' ?> pada pelaksanaan PPDB Tahun 2023 Kab. Lampung Tengah, sebagai berikut:</p>
         </div>
         <div class="row">
             <div class="col-lg-12">

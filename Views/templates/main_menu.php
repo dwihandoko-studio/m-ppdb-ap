@@ -3,7 +3,7 @@
     <div class="scrollbar-inner">
         <div class="sidenav-header  d-flex  align-items-center">
             <a class="navbar-brand" href="#">
-                <h2>PPDB LAMTIM</h2>
+                <h2>PPDB LAMTENG</h2>
             </a>
             <div class=" ml-auto ">
                 <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">

@@ -25,8 +25,8 @@ class Emaillib
     private function _sendEmail($emailTo, $title, $content)
     {
         $email = \Config\Services::email();
-        // $email->setFrom('lamtim.ppdb@ngehoster.com', 'PPDB KAB. LAMPUNG TIMUR');
-        $email->setFrom('lamtim.ppdb@kntechline.com', 'PPDB KAB. LAMPUNG TIMUR');
+        // $email->setFrom('lamteng.ppdb@ngehoster.com', 'PPDB KAB. LAMPUNG TENGAH');
+        $email->setFrom('noreplay.disdikbud@lampungtengahkab.go.id', 'PPDB KAB. LAMPUNG TENGAH');
         $email->setTo($emailTo);
 
         $email->setSubject($title);
@@ -50,7 +50,7 @@ class Emaillib
     private function _sendEmailNotifikasi($emailTo, $title, $content)
     {
         $email = \Config\Services::email();
-        $email->setFrom('lamtim.ppdb@kntechline.com', 'PPDB KAB. LAMPUNG TIMUR');
+        $email->setFrom('noreplay.disdikbud@lampungtengahkab.go.id', 'PPDB KAB. LAMPUNG TENGAH');
         $email->setTo($emailTo);
 
         $email->setSubject($title);
@@ -88,12 +88,12 @@ class Emaillib
                                 <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
                                     <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">Halo ' . $email . '</h1>
                                     <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                                        Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk akun PPDB Kab. Lampung Timur.
+                                        Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk akun PPDB Kab. Lampung Tengah.
                                         Untuk menyelesaikan proses ini, kami akan melakukan verifikasi untuk memastikan bahwa surel ini milik anda.
                                     </p>
 
                                     <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                                        Kode untuk memverifikasi email akun PPDB Kab. Lampung Timur anda adalah sebagai berikut :
+                                        Kode untuk memverifikasi email akun PPDB Kab. Lampung Tengah anda adalah sebagai berikut :
                                     </p>
 
                                     <table align="center" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;margin:30px auto;padding:0;text-align:center;width:100%">
@@ -120,12 +120,12 @@ class Emaillib
                                         Mengapa saya terima email ini?<br>
                                         Email ini dikirimkan jika seseroang atau perubahan terjadi atas akun PPDB anda.
                                         Jika anda tidak melakukan perubahan apapun, jangan khawatir.
-                                        Akun email anda tidak dapat digunakan sebagai kontak dalam akun PPDB Kab. Lampung Timur tanpa verifikasi yang anda lakukan
+                                        Akun email anda tidak dapat digunakan sebagai kontak dalam akun PPDB Kab. Lampung Tengah tanpa verifikasi yang anda lakukan
                                     </p>
 
                                     <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                                         Terima kasih,<br>
-                                        Tim PPDB Kab. Lampung Timur
+                                        Tim PPDB Kab. Lampung Tengah
                                     </p>
 
                                 </td>
@@ -180,7 +180,7 @@ class Emaillib
                                 <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
                                     <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">Halo ' . $email . '</h1>
                                     <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                                        Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk mereset akun PPDB Kab. Lampung Timur.
+                                        Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk mereset akun PPDB Kab. Lampung Tengah.
                                         
                                     </p>
 
@@ -210,14 +210,14 @@ class Emaillib
 
                                     <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                                         Mengapa saya terima email ini?<br>
-                                        Email ini dikirimkan jika seseroang atau perubahan terjadi atas akun PPDB Kab. Lampung Timur anda.
+                                        Email ini dikirimkan jika seseroang atau perubahan terjadi atas akun PPDB Kab. Lampung Tengah anda.
                                         Jika anda tidak melakukan perubahan apapun, jangan khawatir.
-                                        Akun email anda tidak dapat digunakan sebagai kontak dalam akun PPDB Kab. Lampung Timur tanpa verifikasi yang anda lakukan
+                                        Akun email anda tidak dapat digunakan sebagai kontak dalam akun PPDB Kab. Lampung Tengah tanpa verifikasi yang anda lakukan
                                     </p>
 
                                     <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                                         Terima kasih,<br>
-                                        Tim PPDB Kab. Lampung Timur
+                                        Tim PPDB Kab. Lampung Tengah
                                     </p>
 
                                 </td>
@@ -266,7 +266,7 @@ class Emaillib
                     <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
                         <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">Halo ' . $email . '</h1>
                         <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                            Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk pengaduan pada webiste PPDB Kab. Lampung Timur.
+                            Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk pengaduan pada webiste PPDB Kab. Lampung Tengah.
                         </p>
                         <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                             Aduan kamu dengan <br/>
@@ -282,7 +282,7 @@ class Emaillib
                         <p>Untuk melihat status aduan kamu, <a href="' . base_url('web/pengaduan/detail') . '?token=' . $token . '" target="_blank">PERGI KE KONTENT ADUAN</a></p><br/><br/>
                         <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                             Terima kasih,<br>
-                            Tim PPDB Kab. Lampung Timur
+                            Tim PPDB Kab. Lampung Tengah
                         </p>
 
                     </td>
@@ -312,14 +312,14 @@ class Emaillib
                     <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
                         <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">Halo ' . $email . '</h1>
                         <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                            Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk akun PPDB Kab. Lampung Timur.
+                            Anda telah memasukkan alamat surat elektronik (surel) <strong><a href="mailto:' . $email . '" target="_blank">' . $email . '</a></strong> sebagai kontak untuk akun PPDB Kab. Lampung Tengah.
                         </p>';
 
         $content    .=  $text;
 
         $content    .=  '<p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                             Terima kasih,<br>
-                            Tim PPDB Kab. Lampung Timur
+                            Tim PPDB Kab. Lampung Tengah
                         </p>
 
                     </td>

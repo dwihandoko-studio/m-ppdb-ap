@@ -65,10 +65,10 @@
                                         </li>
                                         <li>
                                             <span class="icon"><i class="icofont-send-mail"></i></span>
-                                            <a href="mailto:lamtim.ppdb@kntechline.id">-</a>
+                                            <a href="mailto:ppdb.disdikbud@lampungtengahkab.go.id">-</a>
                                         </li>
                                         <li>
-                                            <span class="icon"><i class="icofont-google-map"></i></span> Kab. Lampung TImur
+                                            <span class="icon"><i class="icofont-google-map"></i></span> Kab. Lampung Tengah
                                         </li>
                                     </ul>
                                 </div>
@@ -79,12 +79,12 @@
                                     <ul class="footer-menu">
                                         <li>
                                             <a class="footer-link" href="#">
-                                                <i class="icofont-rounded-double-right"></i>Persiapan PPDB 2022/2023
+                                                <i class="icofont-rounded-double-right"></i>Persiapan PPDB 2023/2024
                                             </a>
                                         </li>
                                         <li>
                                             <a class="footer-link" href="#">
-                                                <i class="icofont-rounded-double-right"></i>Pelaksanaan PPDB 2022/2023
+                                                <i class="icofont-rounded-double-right"></i>Pelaksanaan PPDB 2023/2024
                                             </a>
                                         </li>
                                         <li>

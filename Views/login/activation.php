@@ -81,7 +81,7 @@
         <div class="logo">
             <a href="javascript:void(0);"><b>SI-UTPG</b></a>
             <small>Sistem Informasi Usulan Tunjangan Profesi Guru</small>
-            <small>Kab. Lampung Timur</small>
+            <small>Kab. Lampung Tengah</small>
         </div>
         <div class="card">
             <div class="body">

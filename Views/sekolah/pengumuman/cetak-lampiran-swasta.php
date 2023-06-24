@@ -41,8 +41,8 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
     <div style="border: 2px  dashed #cbd4dd;">
         <div style="max-width: 100%; padding-left: 10px; padding-right: 8px;">
             <p>LAMPIRAN 1<br>
-                DATA PESERTA YANG LULUS PPDB TA. 2022/2023<br>
-                KABUPATEN LAMPUNG TIMUR<br><br>
+                DATA PESERTA YANG LULUS PPDB TA. 2023/2024<br>
+                KABUPATEN LAMPUNG TENGAH<br><br>
                 Satuan Pendidikan : <?= $sekolah->nama ?><br>
                 NPSN : <?= $sekolah->npsn ?></p>
         </div>
@@ -116,8 +116,8 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px;">
                         <img class="img" src="<?= base_url() ?>/temp/<?= $sekolah->id ?>.png" ec="H" style="width: 30mm; background-color: white; color: black;">
                         <!--<b>INFORMASI</b><br>-->
-                        <!--1. Pada saat pengumuman PPDB 2022/2023. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
-                        <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2022.<br>-->
+                        <!--1. Pada saat pengumuman PPDB 2023/2024. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
+                        <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2023.<br>-->
                         <!--2. Peserta yang tidak lolos dan kemudian mendaftar kembali melalui PPDB Dalam Jaringan, akan otomatis dapat melihat Sekolah-Sekolah<br>-->
                         <!--   yang Kuotanya Belum Tercukupi.<br>-->
                         <!--3. Panitia PPDB Sekolah tidak lagi wajib untuk melakukan verifikasi (Sistem Otomatis) dan Peserta yang mendaftar ke sekolah tersebut, otomatis diterima di sekolah tersebut.<br>-->

@@ -59,7 +59,7 @@
             </nav>
             <!-- offcanvas-menu end -->
 
-            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TENGAH</p>
         </div>
     </div>
 </div>

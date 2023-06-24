@@ -48,7 +48,7 @@ QRcode::png($codeContents, $tempdir . $siswa->nisn . '.png', QR_ECLEVEL_M, 4);
                         <span style="margin-top: 8px; font-size: 20px;">KARTU TANDA PESERTA PPDB ONLINE</span><br>
                         <span style="margin-top: 8px; font-size: 18px;">KABUPATEN LAMPUNG TENGAH</span><br>
                         <span style="margin-top: 8px; font-size: 18px;">PROVINSI LAMPUNG</span><br>
-                        <span style="margin-top: 8px; font-size: 16;">TAHUN PELAJARAN 2022/2023</span>
+                        <span style="margin-top: 8px; font-size: 16;">TAHUN PELAJARAN 2023/2024</span>
                     </td>
                     <td width="10%" style="border:none;">
                         <img class="img" src="<?= base_url('tutwuri.png') ?>" ec="H" style="width: 30mm; background-color: white; color: black;">
@@ -56,7 +56,7 @@ QRcode::png($codeContents, $tempdir . $siswa->nisn . '.png', QR_ECLEVEL_M, 4);
                 </tr>
                 <!-- <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
                     <td style="text-align: center;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-                        KABUPATEN LAMPUNG TIMUR
+                        KABUPATEN LAMPUNG TENGAH
                     </td>
                 </tr>
                 <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
@@ -66,7 +66,7 @@ QRcode::png($codeContents, $tempdir . $siswa->nisn . '.png', QR_ECLEVEL_M, 4);
                 </tr>
                 <tr style="margin-top: 0px; margin-bottom: 0px;padding-top: 0px; padding-bottom: 0px;">
                     <td style="text-align: center;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-                        TAHUN AJARAN 2022/2023
+                        TAHUN AJARAN 2023/2024
                     </td>
                 </tr> -->
             </table>

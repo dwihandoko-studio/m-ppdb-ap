@@ -59,7 +59,7 @@
             </nav>
             <!-- offcanvas-menu end -->
 
-            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TENGAH</p>
         </div>
     </div>
 </div>
@@ -150,7 +150,7 @@
                     <!-- <div class="icon">
                             <img src="<?= base_url('template/pringo'); ?>/assets/images/icon/pencile.png" alt="Icon_not_found" />
                         </div> -->
-                    <h3 class="title" style="font-size: 35px;">PENGUMUMAN PESERTA PPDB 2022 YANG LULUS SELEKSI </h3>
+                    <h3 class="title" style="font-size: 35px;">PENGUMUMAN PESERTA PPDB 2023 YANG LULUS SELEKSI </h3>
                     <!-- <span class="hr-secodary"></span> -->
                 </div>
             </div>

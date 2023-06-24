@@ -6,7 +6,7 @@
 
     <meta charset="UTF-8">
     <title>Slamdung | Disclaimer</title>
-    <meta name="description" content="PPDB TA. 2023/2024 Kabupaten Lampung Timur">
+    <meta name="description" content="PPDB TA. 2023/2024 Kabupaten Lampung Tengah">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -275,11 +275,11 @@
 
         <h1>Disclaimer :</h1>
 
-        <p>Dengan memasukkan Nomor Identias Kependudukan, Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur dapat mengakses data pemohon pada database Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur. Dalam melayani pemohon, Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur berkewajiban untuk menjaga kualitas layanan dari perilaku-perilaku yang dapat membahayakan kualitas layanan dan kenyamanan pemohon. Sehubungan dengan itu maka Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur berhak untuk membatasi dan melakukan pemblokiran layanan maupun data terhadap pemohon yang diketahui menggunakan layanan Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur dengan indikasi itikad tidak baik dan memalsukan data.</p>
+        <p>Dengan memasukkan Nomor Identias Kependudukan, Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah dapat mengakses data pemohon pada database Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah. Dalam melayani pemohon, Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah berkewajiban untuk menjaga kualitas layanan dari perilaku-perilaku yang dapat membahayakan kualitas layanan dan kenyamanan pemohon. Sehubungan dengan itu maka Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah berhak untuk membatasi dan melakukan pemblokiran layanan maupun data terhadap pemohon yang diketahui menggunakan layanan Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah dengan indikasi itikad tidak baik dan memalsukan data.</p>
 
-        <p>Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur tidak bertanggung jawab atas penyalahgunaan Produk Dokumen Kependudukan yang diterbitkan oleh Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur oleh pihak lain.</p>
+        <p>Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah tidak bertanggung jawab atas penyalahgunaan Produk Dokumen Kependudukan yang diterbitkan oleh Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah oleh pihak lain.</p>
 
-        <p>Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Timur berhak menarik kembali/reclaim layanan dari pemohon baik sementara waktu maupun sepenuhnya dalam hal terjadi kesalahan teknis.</p>
+        <p>Dinas Kependudukan dan Pencatatan Sipil Kabupaten Lampung Tengah berhak menarik kembali/reclaim layanan dari pemohon baik sementara waktu maupun sepenuhnya dalam hal terjadi kesalahan teknis.</p>
 
 
 
@@ -290,7 +290,7 @@
     <footer>
 
         <div class="copyrights">
-            <p>&copy; 2020 SLAMDUNG, supported by: Disdukcapil Kabupaten Lampung Timur.</p>
+            <p>&copy; 2020 SLAMDUNG, supported by: Disdukcapil Kabupaten Lampung Tengah.</p>
 
         </div>
 

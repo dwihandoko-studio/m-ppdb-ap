@@ -63,8 +63,8 @@
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border border-light rounded p-4 p-lg-5 w-100 fmxw-500">
                         <div class="text-center text-md-center mb-4 mt-md-0">
-                            <h1 class="mb-3 h3">Reset Password PPDB Kab. Lampung Timur</h1>
-                            <p class="text-gray">Silahkan masukkan email yang terdaftar pada Website / Aplikasi PPDB Kab. Lampung Timur.</p>
+                            <h1 class="mb-3 h3">Reset Password PPDB Kab. Lampung Tengah</h1>
+                            <p class="text-gray">Silahkan masukkan email yang terdaftar pada Website / Aplikasi PPDB Kab. Lampung Tengah.</p>
                             <?php if (isset($errorLogin)) { ?>
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <span class="alert-icon"><i class="ni ni-like-2"></i></span>

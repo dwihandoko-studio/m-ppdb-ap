@@ -37,7 +37,7 @@
     <meta name="msapplication-TileImage" content="<?= base_url('favicons/ms-icon-144x144.png'); ?>">
     <meta name="theme-color" content="#ffffff">
 
-    <title>DATA LOLOS PPDB KAB. LAMPUNG TIMUR TAHUN 2023/2024</title>
+    <title>DATA LOLOS PPDB KAB. LAMPUNG TENGAH TAHUN 2023/2024</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/vendor/nucleo/css/nucleo.css" type="text/css">
@@ -98,7 +98,7 @@
         <div class="scrollbar-inner">
             <div class="sidenav-header  d-flex  align-items-center">
                 <a class="navbar-brand" href="#">
-                    <h2>PPDB LAMPUNG TIMUR</h2>
+                    <h2>PPDB LAMPUNG TENGAH</h2>
                 </a>
                 <div class=" ml-auto ">
                     <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">

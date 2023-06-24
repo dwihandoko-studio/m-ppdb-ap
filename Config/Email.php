@@ -49,22 +49,23 @@ class Email extends BaseConfig
 	 * @var string
 	 */
 	// 	public $SMTPHost = 'srv133.niagahoster.com';
-	public $SMTPHost = 'server.kntechline.com';
+	public $SMTPHost = 'vpspdn.lampungtengahkab.go.id';
+	// public $SMTPHost = 'server.kntechline.com';
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var string
 	 */
-	// 	public $SMTPUser = 'lamtim.ppdb@ngehoster.com';
-	public $SMTPUser = 'lamtim.ppdb@kntechline.com';
+	// 	public $SMTPUser = 'lamteng.ppdb@ngehoster.com';
+	public $SMTPUser = 'noreplay.disdikbud@lampungtengahkab.go.id';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var string
 	 */
-	public $SMTPPass = 'Baseng@123';
+	public $SMTPPass = 'kominfo@2020';
 	// 	public $SMTPPass = 'Kominfo@2020';
 
 	/**

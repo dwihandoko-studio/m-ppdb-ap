@@ -40,7 +40,7 @@
 
                 </ul>
             </nav>
-            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TIMUR</p>
+            <p class="text-gradient mt-3">PPDB KAB. LAMPUNG TENGAH</p>
         </div>
     </div>
 </div>
@@ -262,7 +262,7 @@
             <div class="col-12">
                 <div class="brand-card brand-carousel" style="padding-bottom: 20px;">
                     <p class="text-center">
-                        <span class="text-gradient">Jadwal Pendaftaran Tahun Pelajaran 2022/2023</span>
+                        <span class="text-gradient">Jadwal Pendaftaran Tahun Pelajaran 2023/2024</span>
                     </p>
                     <section id="dashboard" class="flat-row element-countdown bg-black">
                         <div class="container session-content-jadwal" id="session-content-jadwal">
@@ -270,7 +270,7 @@
                                 <div class="row">
                                     <!--<div class="col-md-3 p-2">-->
                                     <!--    <div class="card p-2 pt-3" data-aos="fade-up" data-aos-delay="150">-->
-                                    <!--        <h5 class="text-center" style="margin-bottom: 0;">Persiapan PPDB 2022/2023</h5>-->
+                                    <!--        <h5 class="text-center" style="margin-bottom: 0;">Persiapan PPDB 2023/2024</h5>-->
                                     <!--        <hr class="m-3">-->
                                     <!--        <div class="user-activity user-activity-sm">-->
                                     <!--            <div class="media">-->
@@ -278,7 +278,7 @@
                                     <!--                    <div>-->
                                     <!--                        <h6 class="d-block">Tanggal Persiapan</h6>-->
                                     <!--                        <span class="d-block mb-5"><i class="fa fa-calendar"></i>-->
-                                    <!--                            25-Mei-2022 <i class="fa fa-arrow-right"></i> 26-Juni-2022-->
+                                    <!--                            25-Mei-2023 <i class="fa fa-arrow-right"></i> 26-Juni-2023-->
                                     <!--                        </span>-->
                                     <!--                    </div>-->
                                     <!--                </div>-->
@@ -288,7 +288,7 @@
                                     <!--                    <div>-->
                                     <!--                        <h6 class="d-block">Dibuka</h6>-->
                                     <!--                        <span class="d-block mb-5"><i class="fa fa-calendar"></i>-->
-                                    <!--                            25-Mei-2022 <br>-->
+                                    <!--                            25-Mei-2023 <br>-->
                                     <!--                            <i class="fa fa-clock"></i> Pukul 07:00 WIB-->
                                     <!--                        </span>-->
                                     <!--                    </div>-->
@@ -299,7 +299,7 @@
                                     <!--                    <div>-->
                                     <!--                        <h6 class="d-block">Ditutup</h6>-->
                                     <!--                        <span class="d-block mb-5"><i class="fa fa-calendar"></i>-->
-                                    <!--                            26-Juni-2022 <br><i class="fa fa-clock"></i> Pukul 17:00 WIB-->
+                                    <!--                            26-Juni-2023 <br><i class="fa fa-clock"></i> Pukul 17:00 WIB-->
                                     <!--                        </span>-->
                                     <!--                    </div>-->
                                     <!--                </div>-->
@@ -309,7 +309,7 @@
                                     <!--</div>-->
                                     <div class="col-md-3 p-2">
                                         <div class="card p-2 pt-3" data-aos="fade-up" data-aos-delay="200">
-                                            <h5 class="text-center" style="margin-bottom: 0;">Pelaksanaan PPDB 2022/2023</h5>
+                                            <h5 class="text-center" style="margin-bottom: 0;">Pelaksanaan PPDB 2023/2024</h5>
                                             <hr class="m-3">
                                             <div class="user-activity user-activity-sm">
                                                 <div class="media">
@@ -317,7 +317,7 @@
                                                         <div>
                                                             <h6 class="d-block">Tanggal Pelaksanaan</h6>
                                                             <span class="d-block mb-5"><i class="fa fa-calendar"></i>
-                                                                <?= tgl_indo($jadwal->tgl_awal_pendaftaran_zonasi) ?> <i class="fa fa-arrow-right"></i> 24 Juni 2022<?php //echo tgl_indo($jadwal->tgl_akhir_pendaftaran_zonasi) 
+                                                                <?= tgl_indo($jadwal->tgl_awal_pendaftaran_zonasi) ?> <i class="fa fa-arrow-right"></i> 24 Juni 2023<?php //echo tgl_indo($jadwal->tgl_akhir_pendaftaran_zonasi) 
                                                                                                                                                                     ?>
                                                             </span>
                                                         </div>
@@ -337,7 +337,7 @@
                                                     <div class="media-body">
                                                         <div>
                                                             <h6 class="d-block">Ditutup</h6>
-                                                            <span class="d-block mb-5"><i class="fa fa-calendar"></i> 24 Juni 2022
+                                                            <span class="d-block mb-5"><i class="fa fa-calendar"></i> 24 Juni 2023
                                                                 <?php //echo tgl_indo($jadwal->tgl_akhir_pendaftaran_zonasi) 
                                                                 ?> <br><i class="fa fa-clock"></i> Pukul <?= waktu_indo($jadwal->tgl_akhir_pendaftaran_zonasi) ?> WIB
                                                             </span>
@@ -627,7 +627,7 @@
                                 Pendaftar <span>Jalur Zonasi.</span>
                             </p> -->
                         <h3 class="title">
-                            <a href="#">Syarat Pendataran dan Jadwal Pendaftaran PPDB 2022 JALUR ZONASI.</a>
+                            <a href="#">Syarat Pendataran dan Jadwal Pendaftaran PPDB 2023 JALUR ZONASI.</a>
                         </h3>
                     </div>
                 </div>
@@ -646,7 +646,7 @@
                                 </p> -->
                             <h3 class="title">
                                 <a href="#">
-                                    Syarat Pendataran dan Jadwal Pendaftaran PPDB 2022 JALUR PRESTASI.
+                                    Syarat Pendataran dan Jadwal Pendaftaran PPDB 2023 JALUR PRESTASI.
                                 </a>
                             </h3>
                         </div>
@@ -664,7 +664,7 @@
                                 </p> -->
                             <h3 class="title">
                                 <a href="#">
-                                    Syarat Pendataran dan Jadwal Pendaftaran PPDB 2022 JALUR AFIRMASI.
+                                    Syarat Pendataran dan Jadwal Pendaftaran PPDB 2023 JALUR AFIRMASI.
                                 </a>
                             </h3>
                         </div>
@@ -682,7 +682,7 @@
                                 </p> -->
                             <h3 class="title">
                                 <a href="#">
-                                    Syarat Pendataran dan Jadwal Pendaftaran PPDB 2022 JALUR MUTASI ORANG TUA/WALI.
+                                    Syarat Pendataran dan Jadwal Pendaftaran PPDB 2023 JALUR MUTASI ORANG TUA/WALI.
                                 </a>
                             </h3>
                         </div>
@@ -940,7 +940,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                     <div class="col-lg-8" style="margin-bottom: 50px;">
-                                        <h2 style="color: #fff; margin-bottom: 40px;">Download berbagai macam informasi terkait pendaftaran PPDB Kabupaten Lampung Timur</h2>
+                                        <h2 style="color: #fff; margin-bottom: 40px;">Download berbagai macam informasi terkait pendaftaran PPDB Kabupaten Lampung Tengah</h2>
                                         <div class="row">
                                             <div class="col-md-6" style="color: #fff;">
                                                 <a href="<?= base_url('uploads/panduan/panduan_panitia.pdf') ?>" style="color: #fff;" target="_blank">
@@ -963,8 +963,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4" style="color: #fff;">
-                                        Download juga aplikasi PPDB Kabupaten Lampung Timur di Playstore untuk pengalaman lebih baik.<br>
-                                        <a href="https://play.google.com/store/apps/details?id=com.kntechline.ppdb.duatiga.lamtim" target="_blank">
+                                        Download juga aplikasi PPDB Kabupaten Lampung Tengah di Playstore untuk pengalaman lebih baik.<br>
+                                        <a href="https://play.google.com/store/apps/details?id=com.kntechline.ppdb.duatiga.lamteng" target="_blank">
                                             <img src="<?= base_url() ?>/template/pringo/playstore.png" alt="" class="mr-2 align-items-center">
                                         </a>
                                     </div>
@@ -1309,7 +1309,7 @@
             text: false
         },
         xAxis: {
-            categories: ['Kab. Lampung Timur'],
+            categories: ['Kab. Lampung Tengah'],
             title: {
                 text: null
             }

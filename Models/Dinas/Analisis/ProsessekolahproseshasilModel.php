@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class ProsessekolahproseshasilModel extends Model
 {
-    protected $table = "_tb_pendaftar_zonasi a";
+    protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, null, 'j.nama', 'j.npsn', null);
     protected $column_search = array('j.npsn');
     protected $order = array('jumlah_pendaftar' => 'desc');

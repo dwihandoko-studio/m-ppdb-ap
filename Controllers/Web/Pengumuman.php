@@ -154,7 +154,7 @@ class Pengumuman extends BaseController
 
                 $limitZonasi = (int)$kuota->zonasi + (int)$kuota->afirmasi + (int)$kuota->mutasi + (int)$kuota->prestasi;
 
-                $zonasiData = $this->_db->table('_tb_pendaftar_zonasi a')
+                $zonasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
@@ -178,7 +178,7 @@ class Pengumuman extends BaseController
                 $select = "b.id, a.pilihan, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at";
 
 
-                $afirmasiData = $this->_db->table('_tb_pendaftar_zonasi a')
+                $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
@@ -191,7 +191,7 @@ class Pengumuman extends BaseController
                     // ->limit((int)$kuota->afirmasi)
                     ->get()->getResult();
 
-                $mutasiData = $this->_db->table('_tb_pendaftar_zonasi a')
+                $mutasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
@@ -204,7 +204,7 @@ class Pengumuman extends BaseController
                     // ->limit((int)$kuota->mutasi)
                     ->get()->getResult();
 
-                $prestasiData = $this->_db->table('_tb_pendaftar_zonasi a')
+                $prestasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
@@ -228,7 +228,7 @@ class Pengumuman extends BaseController
 
                 $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
 
-                $zonasiData = $this->_db->table('_tb_pendaftar_zonasi a')
+                $zonasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')

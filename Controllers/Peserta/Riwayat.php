@@ -74,7 +74,7 @@ class Riwayat extends BaseController
             session()->destroy();
             return redirect()->to(base_url('web/home'));
         }
-        
+
         $data['user'] = $user->data;
 
         return view('peserta/riwayat/aktifitas', $data);
@@ -154,112 +154,112 @@ class Riwayat extends BaseController
         }
     }
 
-    public function aksibatal()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+    // public function aksibatal()
+    // {
+    //     if ($this->request->getMethod() != 'post') {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = "Permintaan tidak diizinkan";
+    //         return json_encode($response);
+    //     }
 
-        $rules = [
-            'id' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
-                ]
-            ],
-            'kode' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Kode tidak boleh kosong. ',
-                ]
-            ],
-            'jalur' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Jalur tidak boleh kosong. ',
-                ]
-            ],
-        ];
+    //     $rules = [
+    //         'id' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Id tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'kode' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Kode tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'jalur' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Jalur tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //     ];
 
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('id') . $this->validator->getError('kode') . $this->validator->getError('jalur');
-            return json_encode($response);
-        } else {
-            $Profilelib = new Profilelib();
-            $user = $Profilelib->user();
-            if ($user->code != 200) {
-                delete_cookie('jwt');
-                session()->destroy();
-                $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session anda telah habis. Silahkan login ulang ke aplikasi.";
-                return json_encode($response);
-            }
-            
-            $id = htmlspecialchars($this->request->getVar('id'), true);
-            $kode = htmlspecialchars($this->request->getVar('kode'), true);
-            $jalur = htmlspecialchars($this->request->getVar('jalur'), true);
+    //     if (!$this->validate($rules)) {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = $this->validator->getError('id') . $this->validator->getError('kode') . $this->validator->getError('jalur');
+    //         return json_encode($response);
+    //     } else {
+    //         $Profilelib = new Profilelib();
+    //         $user = $Profilelib->user();
+    //         if ($user->code != 200) {
+    //             delete_cookie('jwt');
+    //             session()->destroy();
+    //             $response = new \stdClass;
+    //             $response->code = 401;
+    //             $response->message = "Session anda telah habis. Silahkan login ulang ke aplikasi.";
+    //             return json_encode($response);
+    //         }
 
-            $dataLib = new Datalib();
-            $canDaftar = $dataLib->canRegister(strtoupper($jalur));
+    //         $id = htmlspecialchars($this->request->getVar('id'), true);
+    //         $kode = htmlspecialchars($this->request->getVar('kode'), true);
+    //         $jalur = htmlspecialchars($this->request->getVar('jalur'), true);
 
-            if ($canDaftar->code !== 200) {
-                return json_encode($canDaftar);
-            }
+    //         $dataLib = new Datalib();
+    //         $canDaftar = $dataLib->canRegister(strtoupper($jalur));
 
-            $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp a')
-                ->where('a.id', $id)->get()->getRowArray();
+    //         if ($canDaftar->code !== 200) {
+    //             return json_encode($canDaftar);
+    //         }
 
-            if (!($cekRegisterTemp)) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Data tidak ditemukan";
-                return json_encode($response);
-            }
+    //         $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp a')
+    //             ->where('a.id', $id)->get()->getRowArray();
 
-            $cekRegisterTemp['updated_at'] = date('Y-m-d H:i:s');
-            $cekRegisterTemp['admin_approval'] = session()->get('userId');
-            $cekRegisterTemp['keterangan_penolakan'] = "Dibatalkan oleh pendaftar";
-            $cekRegisterTemp['status_pendaftaran'] = 0;
-            $cekRegisterTemp['batal_pendaftar'] = 1;
+    //         if (!($cekRegisterTemp)) {
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Data tidak ditemukan";
+    //             return json_encode($response);
+    //         }
 
-            $this->_db->transBegin();
-            $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
-            if ($this->_db->affectedRows() > 0) {
-                $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
+    //         $cekRegisterTemp['updated_at'] = date('Y-m-d H:i:s');
+    //         $cekRegisterTemp['admin_approval'] = session()->get('userId');
+    //         $cekRegisterTemp['keterangan_penolakan'] = "Dibatalkan oleh pendaftar";
+    //         $cekRegisterTemp['status_pendaftaran'] = 0;
+    //         $cekRegisterTemp['batal_pendaftar'] = 1;
 
-                if ($this->_db->affectedRows() > 0) {
-                    $this->_db->transCommit();
-                    try {
-                        $riwayatLib = new Riwayatlib();
-                        $riwayatLib->insert("Membatalkan pendaftaran dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Batal Daftar Jalur " . $cekRegisterTemp['via_jalur'], "batal");
-                    } catch (\Throwable $th) {
-                    }
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Pendaftaran berhasil dibatalkan";
-                    return json_encode($response);
-                } else {
-                    $this->_db->transRollback();
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    $response->message = "Pendaftaran gagal dibatalkan.";
-                    return json_encode($response);
-                }
-            } else {
-                $this->_db->transRollback();
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Pendaftaran gagal dibatalkan.";
-                return json_encode($response);
-            }
-        }
-    }
+    //         $this->_db->transBegin();
+    //         $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
+    //         if ($this->_db->affectedRows() > 0) {
+    //             $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
+
+    //             if ($this->_db->affectedRows() > 0) {
+    //                 $this->_db->transCommit();
+    //                 try {
+    //                     $riwayatLib = new Riwayatlib();
+    //                     $riwayatLib->insert("Membatalkan pendaftaran dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Batal Daftar Jalur " . $cekRegisterTemp['via_jalur'], "batal");
+    //                 } catch (\Throwable $th) {
+    //                 }
+    //                 $response = new \stdClass;
+    //                 $response->code = 200;
+    //                 $response->message = "Pendaftaran berhasil dibatalkan";
+    //                 return json_encode($response);
+    //             } else {
+    //                 $this->_db->transRollback();
+    //                 $response = new \stdClass;
+    //                 $response->code = 400;
+    //                 $response->message = "Pendaftaran gagal dibatalkan.";
+    //                 return json_encode($response);
+    //             }
+    //         } else {
+    //             $this->_db->transRollback();
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Pendaftaran gagal dibatalkan.";
+    //             return json_encode($response);
+    //         }
+    //     }
+    // }
 
     public function cetakpendaftaran()
     {
@@ -269,7 +269,7 @@ class Riwayat extends BaseController
             $response->message = "Permintaan tidak diizinkan";
             return json_encode($response);
         }
-        
+
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
         if ($user->code != 200) {
@@ -331,7 +331,7 @@ class Riwayat extends BaseController
         // var_dump($pendaftaran);
         // die;
         // ->select("*, , ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
-        
+
         $currentApprove = $this->_db->table('v_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->orderBy('waktu_pendaftaran', 'DESC')->limit(1)->get()->getRowObject();
         if ($currentApprove) {
             $pendaftaran = $currentApprove;

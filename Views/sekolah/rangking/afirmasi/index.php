@@ -56,6 +56,7 @@
                             </div> -->
                         </div>
                     </div>
+                    <hr />
                     <div class="card-body">
                         <div class="table-responsive" style="margin-top: 0px;">
                             <table id="data-table-id" class="table align-items-center table-flush">

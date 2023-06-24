@@ -27,7 +27,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                             <div class="form-group jalur-block">
                                                 <label for="filter_jalur" class="form-control-label">Pilih Jalur</label>
                                                 <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
@@ -38,7 +38,7 @@
                                                     <option value="SWASTA">SWASTA</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </div>
@@ -512,7 +512,7 @@
                 "url": "<?= base_url('web/pengumuman/getPengumuman') ?>",
                 "type": "POST",
                 "data": function(data) {
-                    data.filter_jalur = $('#filter_jalur').val();
+                    // data.filter_jalur = $('#filter_jalur').val();
                     data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },
@@ -573,9 +573,9 @@
             tableRekapitulasiSekolah.draw();
         });
 
-        $('#filter_jalur').change(function() {
-            tableRekapitulasiSekolah.draw();
-        });
+        // $('#filter_jalur').change(function() {
+        //     tableRekapitulasiSekolah.draw();
+        // });
 
     });
 </script>

@@ -15,7 +15,7 @@
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="<?= base_url('sekolah/home'); ?>"><i class="fas fa-home"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Ranking PPDB</li>
+                                <li class="breadcrumb-item active" aria-current="page">Ranking Swasta PPDB</li>
                             </ol>
                         </nav>
                     </div>
@@ -33,24 +33,27 @@
                     <div class="card-header border-0" style="padding-bottom: 0px; margin-bottom: 0px;">
                         <div class="row align-items-center">
                             <div class="col-lg-6 col-7">
-                                <h5 class="h3 mb-0">RANGKING PPDB</h5>
+                                <h5 class="h3 mb-0">RANGKING SWASTA PPDB</h5>
                             </div>
-                            <div class="col-lg-6 col-7" style="">
+                            <!-- <div class="col-lg-6 col-7" style="">
                                 <div class="form-group jalur-block">
                                     <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
                                     <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                        <?php if ($user->statusSekolah != '1') { ?>
+                                        <?php //if ($user->statusSekolah != '1') { 
+                                        ?>
                                             <option value="SWASTA" selected>SWASTA</option>
-                                        <?php } else { ?>
+                                        <?php //} else { 
+                                        ?>
                                             <option value="ZONASI" selected>ZONASI</option>
                                             <option value="AFIRMASI">AFIRMASI</option>
                                             <option value="MUTASI">MUTASI</option>
                                             <option value="PRESTASI">PRESTASI</option>
                                             <option value="SWASTA">SWASTA</option>
-                                        <?php } ?>
+                                        <?php //} 
+                                        ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -111,7 +114,7 @@
 
     function actionDetail(event) {
         $.ajax({
-            url: "<?= base_url('sekolah/rekap/rangking/detail') ?>",
+            url: "./detail",
             type: 'POST',
             data: {
                 id: event,
@@ -201,10 +204,10 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('sekolah/rekap/rangking/getAll') ?>",
+                "url": "./getAll",
                 "type": "POST",
                 "data": function(data) {
-                    data.filter_jalur = $('#filter_jalur').val();
+                    data.filter_jalur = 'SWASTA';
                 }
             },
             language: {
@@ -218,6 +221,22 @@
                 "targets": 0,
                 "orderable": false,
             }],
+            lengthMenu: [
+                [-1, 10, 25, 50],
+                ['Show All', '10 rows', '25 rows', '50 rows']
+            ],
+            dom: 'Blfrtip',
+            buttons: [
+                'copy', 'csv', 'excel',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    // messageTop: 'Rekapitulasi Data Pendaftar PPDB DISDIKBUD Kab. Lampung Tengah Tahun 2021',
+                    title: 'Rekap Data Total',
+                    text: 'PDF',
+                }
+            ]
         });
 
         $('#filter_jalur').change(function() {

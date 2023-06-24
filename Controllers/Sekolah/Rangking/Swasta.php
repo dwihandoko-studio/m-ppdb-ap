@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controllers\Sekolah\Rekap;
+namespace App\Controllers\Sekolah\Rangking;
 
 use App\Controllers\BaseController;
-use App\Models\Sekolah\Rekap\RankingModel;
+use App\Models\Sekolah\Rangking\SwastaModel;
 use Config\Services;
 
 use App\Libraries\Profilelib;
@@ -11,7 +11,7 @@ use App\Libraries\Uuid;
 use App\Libraries\Sekolah\Riwayatlib;
 use Firebase\JWT\JWT;
 
-class Rangking extends BaseController
+class Swasta extends BaseController
 {
     var $folderImage = 'masterdata';
     private $_db;
@@ -26,85 +26,55 @@ class Rangking extends BaseController
     public function getAll()
     {
         $request = Services::request();
-        $datamodel = new RankingModel($request);
+        $datamodel = new SwastaModel($request);
 
-        $jwt = get_cookie('jwt');
-        $token_jwt = getenv('token_jwt.default.key');
-        if ($jwt) {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->userSekolah();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+        if ($request->getMethod(true) == 'POST') {
+            $filter_jalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
 
-            try {
+            $lists = $datamodel->get_datatables($filter_jalur, $user->data->id);
+            // $lists = [];
+            $data = [];
+            $no = $request->getPost("start");
+            foreach ($lists as $list) {
+                $no++;
+                $row = [];
 
-                $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                if ($decoded) {
-                    $userId = $decoded->data->id;
-                    $role = $decoded->data->role;
-                    if ($request->getMethod(true) == 'POST') {
-                        $filter_jalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
+                $row[] = '';
+                $row[] = $no;
+                // if($hakAksesMenu) {
+                //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
+                $action = '
+                <button onclick="actionDetail(\'' . $list->id_pendaftaran . '\')" type="button" class="btn btn-primary btn-sm">
+                    <i class="fa fa-eye"></i>
+                    <span>Detail</span>
+                </button>';
+                // $row[] = $action;
 
-                        $lists = $datamodel->get_datatables($filter_jalur, $userId);
-                        // $lists = [];
-                        $data = [];
-                        $no = $request->getPost("start");
-                        foreach ($lists as $list) {
-                            $no++;
-                            $row = [];
+                // $row[] = $list->jarak;
+                $row[] = $list->fullname;
+                $row[] = $list->nisn;
+                $row[] = $list->kode_pendaftaran;
+                $row[] = $list->via_jalur;
+                $row[] = $list->nama_sekolah_asal;
+                $row[] = (round($list->jarak, 2)) . ' Km';
+                // $row[] = getJarak2Koordinat($list->latitude, $list->longitude, $list->latitude_sekolah_tujuan, $list->longitude_sekolah_tujuan, 'kilometers') . ' Km';
 
-                            $row[] = '';
-                            $row[] = $no;
-                            // if($hakAksesMenu) {
-                            //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
-                            $action = '
-                            <button onclick="actionDetail(\'' . $list->id_pendaftaran . '\')" type="button" class="btn btn-primary btn-sm">
-                                <i class="fa fa-eye"></i>
-                                <span>Detail</span>
-                            </button>';
-                            // $row[] = $action;
-
-                            // $row[] = $list->jarak;
-                            $row[] = $list->fullname;
-                            $row[] = $list->nisn;
-                            $row[] = $list->kode_pendaftaran;
-                            $row[] = $list->via_jalur;
-                            $row[] = $list->nama_sekolah_asal;
-                            $row[] = (round($list->jarak, 2)) . ' Km';
-                            // $row[] = getJarak2Koordinat($list->latitude, $list->longitude, $list->latitude_sekolah_tujuan, $list->longitude_sekolah_tujuan, 'kilometers') . ' Km';
-
-                            $data[] = $row;
-                        }
-                        $output = [
-                            "draw" => $request->getPost('draw'),
-                            // "recordsTotal" => 0,
-                            // "recordsFiltered" => 0,
-                            "recordsTotal" => $datamodel->count_all($filter_jalur, $userId),
-                            "recordsFiltered" => $datamodel->count_filtered($filter_jalur, $userId),
-                            "data" => $data
-                        ];
-                        echo json_encode($output);
-                    }
-                } else {
-                    $output = [
-                        "draw" => "1",
-                        "recordsTotal" => 0,
-                        "recordsFiltered" => 0,
-                        "data" => []
-                    ];
-                    echo json_encode($output);
-                }
-            } catch (\Exception $e) {
-                $output = [
-                    "draw" => "1",
-                    "recordsTotal" => 0,
-                    "recordsFiltered" => 0,
-                    "data" => []
-                ];
-                echo json_encode($output);
+                $data[] = $row;
             }
-        } else {
             $output = [
-                "draw" => "1",
-                "recordsTotal" => 0,
-                "recordsFiltered" => 0,
-                "data" => []
+                "draw" => $request->getPost('draw'),
+                // "recordsTotal" => 0,
+                // "recordsFiltered" => 0,
+                "recordsTotal" => $datamodel->count_all($filter_jalur, $user->data->id),
+                "recordsFiltered" => $datamodel->count_filtered($filter_jalur, $user->data->id),
+                "data" => $data
             ];
             echo json_encode($output);
         }
@@ -112,12 +82,12 @@ class Rangking extends BaseController
 
     public function index()
     {
-        return redirect()->to(base_url('sekolah/rekap/rangking/data'));
+        return redirect()->to(base_url('sekolah/rangking/swasta/data'));
     }
 
     public function data()
     {
-        $data['title'] = 'Rekapitulasi Peringkingan';
+        $data['title'] = 'Rekapitulasi Rangking Swasta';
         $Profilelib = new Profilelib();
         $user = $Profilelib->userSekolah();
         if ($user->code != 200) {
@@ -130,7 +100,7 @@ class Rangking extends BaseController
 
         // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
 
-        return view('sekolah/rekap/ranking/index', $data);
+        return view('sekolah/rangking/swasta/index', $data);
     }
 
 
@@ -187,7 +157,7 @@ class Rangking extends BaseController
             $response = new \stdClass;
             $response->code = 200;
             $response->result = $oldData;
-            $response->data = view('sekolah/riwayat/detail-pendaftaran', $data);
+            $response->data = view('sekolah/rangking/swasta/detail', $data);
             $response->message = "Data ditemukan.";
             return json_encode($response);
         }

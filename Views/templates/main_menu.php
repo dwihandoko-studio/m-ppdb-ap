@@ -851,13 +851,61 @@
                                             <span class="sidenav-normal"> Ditolak Verifikasi </span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rekap"  && $uri->getSegment(3) == "rangking") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/rekap/rangking') ?>">
                                             <span class="sidenav-mini-icon"> RP </span>
                                             <i class="ni ni-check-bold"></i>
                                             <span class="sidenav-normal"> Ranking PPDB </span>
                                         </a>
-                                    </li>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? '' : ' collapsed' ?>" href="#navbar-rekap" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? 'true' : 'false' ?>" aria-controls="navbar-rangking">
+                                <i class="ni ni-books" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
+                                <span class="nav-link-text" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>>Rangking</span>
+                            </a>
+                            <div class="collapse<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? ' show' : '' ?>" id="navbar-rangking">
+                                <ul class="nav nav-sm flex-column">
+                                    <?php if ((int)$user->statusSekolah === 1) { ?>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "afirmasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/rangking/afirmasi') ?>">
+                                                <span class="sidenav-mini-icon"> RA </span>
+                                                <!-- <i class="ni ni-app"></i> -->
+                                                <span class="sidenav-normal"> Afirmasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "zonasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/rangking/zonasi') ?>">
+                                                <span class="sidenav-mini-icon"> RZ </span>
+                                                <!-- <i class="">X</i> -->
+                                                <span class="sidenav-normal"> Zonasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "mutasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/rangking/mutasi') ?>">
+                                                <span class="sidenav-mini-icon"> RM </span>
+                                                <!-- <i class="ni ni-check-bold"></i> -->
+                                                <span class="sidenav-normal"> Mutasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "prestasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/rangking/prestasi') ?>">
+                                                <span class="sidenav-mini-icon"> RP </span>
+                                                <!-- <i class="ni ni-check-bold"></i> -->
+                                                <span class="sidenav-normal"> Prestasi </span>
+                                            </a>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "swasta") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/rangking/swasta') ?>">
+                                                <span class="sidenav-mini-icon"> RS </span>
+                                                <!-- <i class="ni ni-check-bold"></i> -->
+                                                <span class="sidenav-normal"> Swasta </span>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </li>

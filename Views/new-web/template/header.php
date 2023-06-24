@@ -100,7 +100,7 @@
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>Jl. H Muchtar RT. 03 /RW. 01, Komplek Perkantoran Gunung Sugih No. 1, Lampung Tengah, Gn. Sugih, Kec. Gn. Sugih, Metro Lampung, Lampung 34161</li>
+                <li>Jl. H Muchtar RT. 03 /RW. 01, Komplek Perkantoran Gunung Sugih No. 1, Lampung Tengah, Lampung 34161</li>
                 <li><a href="tel:0725xxxxx">(0725) xxxxx</a></li>
                 <!-- <li><a href="mailto:disdikbud@lampungtengahkab.go.id">disdikbud@lampungtengahkab.go.id</a></li> -->
             </ul>

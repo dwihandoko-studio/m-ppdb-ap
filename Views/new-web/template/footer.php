@@ -34,7 +34,7 @@
                             <h4 class="widget-title">Hubungi Kami</h4>
                             <div class="widget-content">
                                 <ul class="contact-info clearfix">
-                                    <li><i class="fas fa-map-marker-alt"></i> Jl. H Muchtar RT. 03 /RW. 01, Komplek Perkantoran Gunung Sugih No. 1, Lampung Tengah, Gn. Sugih, Kec. Gn. Sugih, Metro Lampung, Lampung 34161</li>
+                                    <li><i class="fas fa-map-marker-alt"></i> Jl. H Muchtar RT. 03 /RW. 01, Komplek Perkantoran Gunung Sugih No. 1, Lampung Tengah, Lampung 34161</li>
                                     <li><i class="fas fa-phone"></i><a href="tel:0725xxxxxx">(0725) xxxxxx</a></li>
                                     <!-- <li><i class="fas fa-phone"></i><a href="tel:082185581129">082185581129</a></li> -->
                                     <!-- <li><i class="fas fa-envelope"></i><a href="mailto:disdikbud@lampungtengahkab.go.id">disdikbud@lampungtengahkab.go.id</a></li> -->
@@ -69,9 +69,9 @@
         <div class="container clearfix">
             <div class="copyright pull-left">&copy; 2023 PPDB Online - All rights reserved. Version 2.0. Powered By: <a href="https://kntecline.id">KNTechline</a></div>
             <ul class="footer-nav pull-right">
-                <li><a target="_blank" href="https://www.termsofservicegenerator.net/live.php?token=EhRpevkb8fPB9uY2KGkCBGs1GpbdNg9q">Terms of Service</a></li>
-                <li><a target="_blank" href="https://www.privacypolicyonline.com/live.php?token=hjFCWfyRvl0zzMsHfGWPALbpChFVHpA2">Privacy Policy</a></li>
-                <li><a target="_blank" href="https://www.disclaimergenerator.net/live.php?token=aiO2LQJ9SnuOZtyiZD8F70ZDnP90vYLl">Legal</a></li>
+                <li><a target="_blank" href="https://www.termsofservicegenerator.net/live.php?token=dY5xFJhtyNx2nD2Isi6Mu7PCikDSYOrw">Terms of Service</a></li>
+                <li><a target="_blank" href="https://www.privacypolicyonline.com/live.php?token=nIBUVBtqCw4R1iKlhfOM2gFwKbx7yx8w">Privacy Policy</a></li>
+                <li><a target="_blank" href="https://www.privacypolicyonline.com/live.php?token=moEOhwcYpkCOlkbw8pUzQDADf0eaULv7">Legal</a></li>
             </ul>
         </div>
     </div>

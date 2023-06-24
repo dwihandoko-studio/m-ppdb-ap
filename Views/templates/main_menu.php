@@ -863,8 +863,8 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? '' : ' collapsed' ?>" href="#navbar-rekap" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? 'true' : 'false' ?>" aria-controls="navbar-rangking">
-                                <i class="ni ni-books" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
+                            <a class="nav-link<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? '' : ' collapsed' ?>" href="#navbar-rangking" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? 'true' : 'false' ?>" aria-controls="navbar-rangking">
+                                <i class="ni ni-sound-wave" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>>Rangking</span>
                             </a>
                             <div class="collapse<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rangking") ? ' show' : '' ?>" id="navbar-rangking">

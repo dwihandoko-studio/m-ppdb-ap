@@ -59,7 +59,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                         <th style="font-size: 12px">No Pendaftaran</th>
                         <th style="font-size: 12px">Jalur PPDB</th>
                         <th style="font-size: 12px">NPSN Asal Sekolah</th>
-                        <th style="font-size: 12px">Status</th>
+                        <th style="font-size: 12px">Diterima Pada</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,13 +93,13 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                                     </td>
                                     <td style="font-size: 12px">
                                         <?php if ($value->pilihan == 1) { ?>
-                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA LEWAT PILIHAN 1</span>
+                                            PILIHAN 1
                                         <?php } else if ($value->pilihan == 2) { ?>
-                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA LEWAT PILIHAN 2</span>
+                                            PILIHAN 2
                                         <?php } else if ($value->pilihan == 3) { ?>
-                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA LEWAT PILIHAN 3</span>
+                                            PILIHAN 3
                                         <?php } else { ?>
-                                            <span class="badge badge-success" style="padding: 10px;">DITERIMA</span>
+                                            &nbsp;
                                         <?php } ?>
                                     </td>
                                 </tr>

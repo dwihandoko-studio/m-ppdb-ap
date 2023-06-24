@@ -50,16 +50,16 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR ZONASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
-                        <th style="font-size: 12px">Diterima Pada</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">Diterima Pada</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,15 +124,15 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR AFIRMASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -181,15 +181,15 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR MUTASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -238,15 +238,15 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR PRESTASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
                     </tr>
                 </thead>
                 <tbody>

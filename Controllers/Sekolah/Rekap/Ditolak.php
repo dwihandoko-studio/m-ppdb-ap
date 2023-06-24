@@ -176,7 +176,7 @@ class Ditolak extends BaseController
                 ->join('ref_kelurahan g', 'b.kelurahan = g.id', 'LEFT')
                 ->join('ref_dusun h', 'b.dusun = h.id', 'LEFT')
                 ->join('_upload_kelengkapan_berkas k', 'b.id = k.user_id', 'LEFT')
-                ->join('tb_nilai_prestasi l', 'l.id = a.id')
+                ->join('tb_nilai_prestasi l', 'a.id = l.id', 'LEFT')
                 ->where('a.id', $id)
                 ->get()->getRowObject();
 

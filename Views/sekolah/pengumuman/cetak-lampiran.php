@@ -14,7 +14,7 @@
 //nilai konfigurasi Frame di bawah 4 tidak direkomendasikan
 
 // QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
-$qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . base_url('web/pengumuman') . '?sekolah=' . $data->id . '&choe=UTF-8'));
+$qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . base_url('web/pengumuman') . '?sekolah=' . $sekolah->id . '&choe=UTF-8'));
 
 ?>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">

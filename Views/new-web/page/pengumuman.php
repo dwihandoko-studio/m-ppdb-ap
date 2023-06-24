@@ -451,44 +451,44 @@
                     console.log(msg.message);
                 } else {
                     if (msg.data_lolos.length > 0) {
-                        let htmlRekap = "";
-                        for (let stepr = 0; stepr < msg.data_lolos.length; stepr++) {
-                            const numberBer = stepr + 1;
-                            htmlRekap += '<tr>';
-                            htmlRekap += '<td>';
-                            htmlRekap += numberBer;
-                            htmlRekap += '</td>';
-                            htmlRekap += '<td>';
-                            htmlRekap += msg.data_lolos[stepr].via_jalur;
-                            htmlRekap += '</td>';
-                            htmlRekap += '<td style="text-align: left;>';
-                            htmlRekap += msg.data_lolos[stepr].fullname;
-                            htmlRekap += '</td>';
-                            htmlRekap += '<td>';
-                            htmlRekap += msg.data_lolos[stepr].nisn;
-                            htmlRekap += '</td>';
-                            htmlRekap += '<td style="text-align: left;>';
-                            htmlRekap += msg.data_lolos[stepr].nama_sekolah_asal;
-                            htmlRekap += ' (';
-                            htmlRekap += msg.data_lolos[stepr].npsn_sekolah_asal;
-                            htmlRekap += ')';
-                            htmlRekap += '</td>';
-                            htmlRekap += '<td>';
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
-                            htmlRekap += '</td>';
-                            htmlRekap += '</tr>';
+                        let htmlRekapSwas = "";
+                        for (let steprswas = 0; steprswas < msg.data_lolos.length; steprswas++) {
+                            const numberBerSwas = steprswas + 1;
+                            htmlRekapSwas += '<tr>';
+                            htmlRekapSwas += '<td>';
+                            htmlRekapSwas += numberBerSwas;
+                            htmlRekapSwas += '</td>';
+                            htmlRekapSwas += '<td>';
+                            htmlRekapSwas += msg.data_lolos[steprswas].via_jalur;
+                            htmlRekapSwas += '</td>';
+                            htmlRekapSwas += '<td style="text-align: left;>';
+                            htmlRekapSwas += msg.data_lolos[steprswas].fullname;
+                            htmlRekapSwas += '</td>';
+                            htmlRekapSwas += '<td>';
+                            htmlRekapSwas += msg.data_lolos[steprswas].nisn;
+                            htmlRekapSwas += '</td>';
+                            htmlRekapSwas += '<td style="text-align: left;>';
+                            htmlRekapSwas += msg.data_lolos[steprswas].nama_sekolah_asal;
+                            htmlRekapSwas += ' (';
+                            htmlRekapSwas += msg.data_lolos[steprswas].npsn_sekolah_asal;
+                            htmlRekapSwas += ')';
+                            htmlRekapSwas += '</td>';
+                            htmlRekapSwas += '<td>';
+                            htmlRekapSwas += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
+                            htmlRekapSwas += '</td>';
+                            htmlRekapSwas += '</tr>';
                         }
 
-                        $('.detail-jalur-swasta-' + event).html(htmlRekap);
+                        $('.detail-jalur-swasta-' + event).html(htmlRekapSwas);
 
                     } else {
-                        let htmlRekap = '<tr>';
-                        htmlRekap += '<td colspan="6" style="text-align: center; align-items: center;">';
-                        htmlRekap += 'Tidak ada data.';
-                        htmlRekap += '</td>';
-                        htmlRekap += '</tr>';
+                        let htmlRekapSwas = '<tr>';
+                        htmlRekapSwas += '<td colspan="6" style="text-align: center; align-items: center;">';
+                        htmlRekapSwas += 'Tidak ada data.';
+                        htmlRekapSwas += '</td>';
+                        htmlRekapSwas += '</tr>';
 
-                        $('.detail-jalur-swasta-' + event).html(htmlRekap);
+                        $('.detail-jalur-swasta-' + event).html(htmlRekapSwas);
                     }
                 }
             },

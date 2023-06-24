@@ -869,7 +869,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rekap") ? '' : ' collapsed' ?>" href="#navbar-rekap" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rekap") ? 'true' : 'false' ?>" aria-controls="navbar-rekap">
                                 <i class="ni ni-books" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rekap") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rekap") ? ' style="color: #00BCD4 !important"' : '' ?>>Rekapitulasi</span>
@@ -890,22 +890,22 @@
                                             <span class="sidenav-normal"> Ditolak Verifikasi </span>
                                         </a>
                                     </li>
-                                    <!-- <li class="nav-item">
+                                    <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "rekap"  && $uri->getSegment(3) == "rangking") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('sekolah/rekap/rangking') ?>">
                                             <span class="sidenav-mini-icon"> RP </span>
                                             <i class="ni ni-check-bold"></i>
                                             <span class="sidenav-normal"> Ranking PPDB </span>
                                         </a>
-                                    </li> -->
+                                    </li>
                                 </ul>
                             </div>
-                        </li>
-                        <!-- <li class="nav-item">
+                        </li> -->
+                        <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "pengumuman") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('sekolah/pengumuman'); ?>" role="button" aria-expanded="true">
                                 <i class="ni ni-single-copy-04"></i>
                                 <span class="nav-link-text">Pengumuman Peserta</span>
                             </a>
-                        </li> -->
+                        </li>
                         <!-- <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "konfirmasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('sekolah/konfirmasi'); ?>" role="button" aria-expanded="true">
                                 <i class="ni ni-compass-04"></i>

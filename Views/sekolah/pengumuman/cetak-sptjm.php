@@ -109,7 +109,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                         Dinas Pendidikan dan Kebudayaan<br>
                         Kabupaten Pesawan<br><br><br>
                         <br><br><br><br>
-                        M. ANDI JAYA, S.P.<br>
+                        <u>M. ANDI JAYA, S.P.</u><br>
                         NIP. 19750113 200212 1 002
                     </td>
                     <td>

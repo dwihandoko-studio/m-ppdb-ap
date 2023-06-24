@@ -125,7 +125,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                         Pesawaran, .... Juni 2023<br>
                         Yang membuat,<br><br><br><br><br>
                         materai<br><br><br><br>
-                        <?= (isset($psekolah)) ? $psekolah->nama_ks : "............................." ?><br>
+                        <u><?= (isset($psekolah)) ? $psekolah->nama_ks : "............................." ?></u><br>
                         NIP. <?= (isset($psekolah)) ? $psekolah->nip_ks : "............................." ?>
                     </td>
                 </tr>

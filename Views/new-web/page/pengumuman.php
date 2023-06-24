@@ -454,7 +454,7 @@
                         let htmlRekapSwas = "";
                         for (let steprswas = 0; steprswas < msg.data_lolos.length; steprswas++) {
                             const numberBerSwas = steprswas + 1;
-                            console.log(msg.data_lolos[steprswas].fullname);
+                            // console.log(msg.data_lolos[steprswas].fullname);
                             htmlRekapSwas += '<tr>';
                             htmlRekapSwas += '<td>';
                             htmlRekapSwas += numberBerSwas;

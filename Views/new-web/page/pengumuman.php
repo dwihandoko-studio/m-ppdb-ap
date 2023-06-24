@@ -79,7 +79,7 @@
     }
 
     function formatAnalisis(d) {
-        if (parseInt(d.status_sekolah) === 2) {
+        if (parseInt(d.status_sekolah_code) === 2) {
             let cRekapD = '<h4>REKAPITULASI LOLOS PPDB ';
             cRekapD += d.nama_sekolah_tujuan;
             cRekapD += ' ( ';

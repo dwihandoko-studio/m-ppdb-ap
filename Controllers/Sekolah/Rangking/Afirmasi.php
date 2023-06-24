@@ -46,16 +46,12 @@ class Afirmasi extends BaseController
                 $no++;
                 $row = [];
 
-                $row[] = '';
-                $row[] = $no;
-                // if($hakAksesMenu) {
-                //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
-                $action = '
-                <button onclick="actionDetail(\'' . $list->id_pendaftaran . '\')" type="button" class="btn btn-primary btn-sm">
+                $action = '<button onclick="actionDetail(\'' . $list->id_pendaftaran . '\')" type="button" class="btn btn-primary btn-sm">
                     <i class="fa fa-eye"></i>
                     <span>Detail</span>
-                </button>';
-                // $row[] = $action;
+                    </button>';
+                $row[] = $action;
+                $row[] = $no;
 
                 // $row[] = $list->jarak;
                 $row[] = $list->fullname;

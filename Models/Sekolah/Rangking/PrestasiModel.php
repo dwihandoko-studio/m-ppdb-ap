@@ -10,7 +10,7 @@ class PrestasiModel extends Model
     protected $table = "_tb_pendaftar a";
     protected $column_order = array('jarak', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'jarak');
     protected $column_search = array('b.fullname', 'b.nisn', 'c.nama', 'c.npsn', 'a.kode_pendaftaran');
-    protected $order = array('l.nilai_akumulative' => 'desc', 'jarak' => 'asc', 'a.created_at' => 'asc');
+    // protected $order = array('l.nilai_akumulative' => 'desc', 'jarak' => 'asc', 'a.created_at' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -56,6 +56,10 @@ class PrestasiModel extends Model
             }
             $i++;
         }
+
+        $this->dt->orderBy('l.nilai_akumulative', 'DESC');
+        $this->dt->orderBy('jarak', 'ASC');
+        $this->dt->orderBy('a.created_at', 'ASC');
 
         if ($this->request->getPost('order')) {
             $this->dt->orderBy($this->column_order[$this->request->getPost('order')['0']['column']], $this->request->getPost('order')['0']['dir']);

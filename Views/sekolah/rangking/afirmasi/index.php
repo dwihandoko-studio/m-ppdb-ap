@@ -56,7 +56,7 @@
                             </div> -->
                         </div>
                     </div>
-                    <hr style="padding: 0px 0px;" />
+                    <hr style="padding: 0px 0px; margin: 0px 0px" />
                     <div class="card-body">
                         <div class="table-responsive" style="margin-top: 0px;">
                             <table id="data-table-id" class="table align-items-center table-flush">

@@ -451,10 +451,10 @@
                     console.log(msg.message);
                 } else {
                     if (msg.data_lolos.length > 0) {
-                        console.log(msg.data_lolos);
                         let htmlRekapSwas = "";
                         for (let steprswas = 0; steprswas < msg.data_lolos.length; steprswas++) {
                             const numberBerSwas = steprswas + 1;
+                            console.log(msg.data_lolos[steprswas].fullname);
                             htmlRekapSwas += '<tr>';
                             htmlRekapSwas += '<td>';
                             htmlRekapSwas += numberBerSwas;
@@ -462,13 +462,13 @@
                             htmlRekapSwas += '<td>';
                             htmlRekapSwas += msg.data_lolos[steprswas].via_jalur;
                             htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '<td style="text-align: left;>';
+                            htmlRekapSwas += '<td style="text-align: left;">';
                             htmlRekapSwas += msg.data_lolos[steprswas].fullname;
                             htmlRekapSwas += '</td>';
                             htmlRekapSwas += '<td>';
                             htmlRekapSwas += msg.data_lolos[steprswas].nisn;
                             htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '<td style="text-align: left;>';
+                            htmlRekapSwas += '<td style="text-align: left;">';
                             htmlRekapSwas += msg.data_lolos[steprswas].nama_sekolah_asal;
                             htmlRekapSwas += ' (';
                             htmlRekapSwas += msg.data_lolos[steprswas].npsn_sekolah_asal;

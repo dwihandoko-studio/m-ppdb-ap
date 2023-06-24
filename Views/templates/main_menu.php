@@ -1003,7 +1003,7 @@
                                 </ul>
                             </div>
                         </li> -->
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat") ? '' : ' collapsed' ?>" href="#navbar-riwayat" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat") ? 'true' : 'false' ?>" aria-controls="navbar-riwayat">
                                 <i class="ni ni-ui-04" <?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text" <?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat") ? ' style="color: #00BCD4 !important"' : '' ?>>Riwayat</span>
@@ -1026,7 +1026,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                         <?php if (isset($sekolah_pilihan_approved)) { ?>
                             <?php if ($sekolah_pilihan_approved) { ?>
                                 <li class="nav-item">

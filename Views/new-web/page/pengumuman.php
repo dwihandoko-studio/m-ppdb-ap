@@ -451,6 +451,7 @@
                     console.log(msg.message);
                 } else {
                     if (msg.data_lolos.length > 0) {
+                        console.log(msg.data_lolos);
                         let htmlRekapSwas = "";
                         for (let steprswas = 0; steprswas < msg.data_lolos.length; steprswas++) {
                             const numberBerSwas = steprswas + 1;

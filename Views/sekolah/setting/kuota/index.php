@@ -52,44 +52,46 @@
                             </div>
                         <?php endif; ?>
                     </div>
-                    <!-- Light table -->
-                    <div class="table-responsive">
-                        <table id="data-table-id" class="table align-items-center table-flush">
-                            <thead>
-                                <tr>
-                                    <!--<th rowspan="2" data-orderable="false">#</th>-->
-                                    <th rowspan="2" style="text-align: center;">Kebutuhan Rombel</th>
-                                    <th colspan="5" style="text-align: center;">Kuota</th>
-                                    <th rowspan="2" style="text-align: center;">Radius Zonasi</th>
-                                </tr>
-                                <tr>
-                                    <th style="text-align: center;">Zonasi</th>
-                                    <th style="text-align: center;">Afirmasi</th>
-                                    <th style="text-align: center;">Mutasi</th>
-                                    <th style="text-align: center;">Prestasi</th>
-                                    <th style="text-align: center;">Jumlah</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (isset($kuota)) { ?>
+                    <hr style="padding: 0px 0px; margin: 20px 0px 0px 0px" />
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="data-table-id" class="table align-items-center table-flush">
+                                <thead>
                                     <tr>
-                                        <!--<td>#</th>-->
-                                        <th style="text-align: center;"><?= $kuota->jumlah_rombel_kebutuhan ?> Kelas</th>
-                                        <th style="text-align: center;"><?= $kuota->zonasi ?> </th>
-                                        <th style="text-align: center;"><?= $kuota->afirmasi ?></th>
-                                        <th style="text-align: center;"><?= $kuota->mutasi ?></th>
-                                        <th style="text-align: center;"><?= $kuota->prestasi ?></th>
-                                        <th style="text-align: center;"><?= (int)$kuota->zonasi + (int)$kuota->afirmasi + (int)$kuota->mutasi + (int)$kuota->prestasi ?></th>
-                                        <th style="text-align: center;"><?= $kuota->radius_zonasi ?> Km</th>
+                                        <!--<th rowspan="2" data-orderable="false">#</th>-->
+                                        <th rowspan="2" style="text-align: center;">Kebutuhan Rombel</th>
+                                        <th colspan="5" style="text-align: center;">Kuota</th>
+                                        <th rowspan="2" style="text-align: center;">Radius Zonasi</th>
                                     </tr>
-                                <?php } else { ?>
                                     <tr>
-                                        <td rowspan="7" style="text-align: center;"> Belum Set Kuota </th>
+                                        <th style="text-align: center;">Zonasi</th>
+                                        <th style="text-align: center;">Afirmasi</th>
+                                        <th style="text-align: center;">Mutasi</th>
+                                        <th style="text-align: center;">Prestasi</th>
+                                        <th style="text-align: center;">Jumlah</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
+                                </thead>
+                                <tbody>
+                                    <?php if (isset($kuota)) { ?>
+                                        <tr>
+                                            <!--<td>#</th>-->
+                                            <th style="text-align: center;"><?= $kuota->jumlah_rombel_kebutuhan ?> Kelas</th>
+                                            <th style="text-align: center;"><?= $kuota->zonasi ?> </th>
+                                            <th style="text-align: center;"><?= $kuota->afirmasi ?></th>
+                                            <th style="text-align: center;"><?= $kuota->mutasi ?></th>
+                                            <th style="text-align: center;"><?= $kuota->prestasi ?></th>
+                                            <th style="text-align: center;"><?= (int)$kuota->zonasi + (int)$kuota->afirmasi + (int)$kuota->mutasi + (int)$kuota->prestasi ?></th>
+                                            <th style="text-align: center;"><?= $kuota->radius_zonasi ?> Km</th>
+                                        </tr>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td rowspan="7" style="text-align: center;"> Belum Set Kuota </th>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -56,45 +56,47 @@
                             </div> -->
                         </div>
                     </div>
-                </div>
-                <div class="table-responsive" style="margin-top: 0px;">
-                    <table id="data-table-id" class="table align-items-center table-flush">
-                        <thead>
-                            <tr>
-                                <th data-orderable="false">&nbsp;</th>
-                                <th>Rangking</th>
-                                <th>Nama Peserta</th>
-                                <th>NISN</th>
-                                <th>Kode Pendaftaran</th>
-                                <th>Jalur PPDB</th>
-                                <th>Nama Sekolah Asal</th>
-                                <th>Jenis Prestasi</th>
-                                <th>Nilai Akumulative</th>
-                                <th>Jarak (Km)</th>
-                            </tr>
-                        </thead>
+                    <hr style="padding: 0px 0px; margin: 20px 0px 0px 0px" />
+                    <div class="card-body">
+                        <div class="table-responsive" style="margin-top: 0px;">
+                            <table id="data-table-id" class="table align-items-center table-flush">
+                                <thead>
+                                    <tr>
+                                        <th data-orderable="false">&nbsp;</th>
+                                        <th>Rangking</th>
+                                        <th>Nama Peserta</th>
+                                        <th>NISN</th>
+                                        <th>Kode Pendaftaran</th>
+                                        <th>Jalur PPDB</th>
+                                        <th>Nama Sekolah Asal</th>
+                                        <th>Jenis Prestasi</th>
+                                        <th>Nilai Akumulative</th>
+                                        <th>Jarak (Km)</th>
+                                    </tr>
+                                </thead>
 
-                    </table>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="contentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content modal-content-loading">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contentModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="contentBodyModal">
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="contentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-            <div class="modal-content modal-content-loading">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contentModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="contentBodyModal">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 <?= $this->endSection(); ?>
 

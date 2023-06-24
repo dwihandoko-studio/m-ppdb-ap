@@ -46,19 +46,21 @@
                             </div>
                         <?php endif; ?>
                     </div>
-                    <!-- Light table -->
-                    <div class="table-responsive">
-                        <table id="data-table-id" class="table align-items-center table-flush">
-                            <thead>
-                                <tr>
-                                    <th data-orderable="false">#</th>
-                                    <th data-orderable="false">Aksi</th>
-                                    <th>Nama Panitia</th>
-                                    <th>Nomor Handphone</th>
-                                </tr>
-                            </thead>
+                    <hr style="padding: 0px 0px; margin: 20px 0px 0px 0px" />
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="data-table-id" class="table align-items-center table-flush">
+                                <thead>
+                                    <tr>
+                                        <th data-orderable="false">#</th>
+                                        <th data-orderable="false">Aksi</th>
+                                        <th>Nama Panitia</th>
+                                        <th>Nomor Handphone</th>
+                                    </tr>
+                                </thead>
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

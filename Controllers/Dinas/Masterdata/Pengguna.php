@@ -247,6 +247,22 @@ class Pengguna extends BaseController
         }
     }
 
+    public function addSekolah()
+    {
+        if ($this->request->getMethod() != 'get') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $response = new \stdClass;
+        $response->code = 200;
+        $response->message = "Permintaan diizinkan";
+        $response->data = View('dinas/masterdata/pengguna/add-sekolah');
+        return json_encode($response);
+    }
+
     public function add()
     {
         if ($this->request->getMethod() != 'get') {
@@ -819,6 +835,128 @@ class Pengguna extends BaseController
             }
         }
     }
+
+    public function savePengunaSekolah()
+    {
+        if ($this->request->getMethod() != 'post') {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Permintaan tidak diizinkan";
+            return json_encode($response);
+        }
+
+        $rules = [
+            'npsn' => [
+                'rules' => 'required|min_length[8]',
+                'errors' => [
+                    'required' => 'Silahkan pilih role.',
+                    'min_length' => 'Npsn tidak valid.',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $this->validator->getError('npsn');
+            return json_encode($response);
+        } else {
+            $npsn = htmlspecialchars($this->request->getVar('npsn'), true);
+
+            $cekData = $this->_db->table('_users_tb')->where('email', $npsn . '@ppdb.lt')->get()->getRowObject();
+
+            if ($cekData) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Akun sekolah sudah terdaftar, silahkan login.";
+                return json_encode($response);
+            }
+
+            $sekolah = $this->_db->table('ref_sekolah')->where('npsn', $npsn)->get()->getRowObject();
+
+            if (!$sekolah) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Sekolah tidak ditemukan pada referensi.";
+                return json_encode($response);
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $data = [
+                'id' => $uuid,
+                'email' => $sekolah->npsn . '@ppdb.lt',
+                'password' => password_hash($sekolah->npsn, PASSWORD_BCRYPT),
+                // 'role_user' => 6,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+
+            try {
+                $this->_db->table('_users_tb')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Akun Sekolah gagal dibuat.";
+                return json_encode($response);
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+                try {
+                    unset($data['password']);
+                    unset($data['email']);
+                    $data['fullname'] = $sekolah->nama;
+                    // $data['no_hp'] = $nohp;
+                    $data['npsn'] = $sekolah->npsn;
+                    $data['role_user'] = 4;
+                    $data['email'] = $sekolah->npsn . '@ppdb.lt';
+                    $data['provinsi'] = '120000';
+                    $data['kabupaten'] = '120200';
+                    $data['kelurahan'] = $sekolah->kode_wilayah;
+                    $data['alamat'] = $sekolah->alamat_jalan;
+                    $data['kecamatan'] = substr($sekolah->kode_wilayah, 0, 6);
+                    $data['latitude'] = $sekolah->latitude;
+                    $data['longitude'] = $sekolah->longitude;
+                    $data['sekolah_id'] = $sekolah->id;
+                    $data['created_at'] = date('Y-m-d H:i:s');
+                    $data['updated_at'] = date('Y-m-d H:i:s');
+
+                    $this->_db->table('_users_profil_tb')->insert($data);
+                } catch (\Throwable $th) {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Akun Sekolah gagal dibuat.";
+                    return json_encode($response);
+                }
+
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 200;
+                    $response->message = "Akun Sekolah berhasil dibuat.";
+                    return json_encode($response);
+                } else {
+                    $this->_db->transRollback();
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->message = "Akun Sekolah gagal dibuat.";
+                    return json_encode($response);
+                }
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Akun Sekolah gagal dibuat.";
+                return json_encode($response);
+            }
+        }
+    }
+
 
 
     //     public function addSave() {

@@ -21,7 +21,8 @@
                     </div>
 
                     <div class="col-lg-6 col-5 text-right">
-                        <button type="button" onclick="actionAdd(this)" class="btn btn-sm btn-neutral">Tambah Penguna</button>
+                        <button type="button" onclick="actionAdd(this)" class="btn btn-sm btn-neutral">Tambah Penguna Peserta</button>
+                        <button type="button" onclick="actionAddSekolah(this)" class="btn btn-sm btn-neutral">Tambah Penguna Sekolah</button>
                     </div>
 
                 </div>
@@ -222,6 +223,55 @@
                     }
                 } else {
                     $('#contentModalLabel').html('TAMBAH PENGGUNA PESERTA');
+                    $('.contentBodyModal').html(resul.data);
+                    $('#contentModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    }, 'show');
+                }
+            },
+            error: function() {
+                $('div.main-content').unblock();
+                Swal.fire(
+                    'Failed!',
+                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                    'warning'
+                );
+            }
+        });
+    }
+
+    function actionAddSekolah(event) {
+        $.ajax({
+            url: "<?= base_url('dinas/masterdata/pengguna/addSekolah') ?>",
+            type: 'GET',
+            dataType: 'JSON',
+            beforeSend: function() {
+                $('div.main-content').block({
+                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                });
+            },
+            success: function(resul) {
+                $('div.main-content').unblock();
+
+                if (resul.code !== 200) {
+                    if (resul.code === 401) {
+                        Swal.fire(
+                            'Failed!',
+                            resul.message,
+                            'warning'
+                        ).then((valRes) => {
+                            document.location.href = BASE_URL + '/dashboard';
+                        });
+                    } else {
+                        Swal.fire(
+                            'Failed!',
+                            resul.message,
+                            'warning'
+                        );
+                    }
+                } else {
+                    $('#contentModalLabel').html('TAMBAH PENGGUNA SEKOLAH');
                     $('.contentBodyModal').html(resul.data);
                     $('#contentModal').modal({
                         backdrop: 'static',

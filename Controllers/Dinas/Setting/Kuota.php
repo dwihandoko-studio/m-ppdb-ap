@@ -647,13 +647,13 @@ class Kuota extends BaseController
                 $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
                 $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
                 $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kMutasi = floor(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                 $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
             } else {
                 $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
                 $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
                 $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kMutasi = floor(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                 $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
             }
 
@@ -803,13 +803,13 @@ class Kuota extends BaseController
                 $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
                 $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
                 $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kMutasi = floor(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                 $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
             } else {
                 $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
                 $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
                 $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kMutasi = floor(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                 $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
             }
 
@@ -1037,15 +1037,15 @@ class Kuota extends BaseController
                 $jumlahSiswa = 32 * (int)$jumlahRombelKebutuhan;
                 $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
                 $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kMutasi = floor(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
                 $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
             } else {
                 $jumlahSiswa = 28 * (int)$jumlahRombelKebutuhan;
                 $kZonasi = ceil(($prosentaseJalur->zonasi / 100) * $jumlahSiswa);
                 $kAfirmasi = ceil(($prosentaseJalur->afirmasi / 100) * $jumlahSiswa);
-                $kMutasi = $jumlahSiswa - ($kZonasi + $kAfirmasi);
-                // $kMutasi = ceil(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
-                $kPrestasi = 0;
+                // $kMutasi = $jumlahSiswa - ($kZonasi + $kAfirmasi);
+                $kMutasi = floor(($prosentaseJalur->mutasi / 100) * $jumlahSiswa);
+                $kPrestasi = $jumlahSiswa - ($kZonasi + $kAfirmasi + $kMutasi);
             }
 
             $data = [

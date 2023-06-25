@@ -154,7 +154,11 @@ class User extends BaseController
             if ($oldData) {
                 if (password_verify($oldPassword, $oldData->password) == true) {
                     $this->_db->transBegin();
-                    $builder->set(['password' => password_hash($newPassword, PASSWORD_BCRYPT), 'updated_at' => date('Y-m-d H:i:s')])->where('id', $oldData->id)->update();
+                    $builder->set([
+                        'password' => password_hash($newPassword, PASSWORD_BCRYPT),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                        'update_firs_login' => date('Y-m-d H:i:s'),
+                    ])->where('id', $oldData->id)->update();
                     $res = $this->_db->affectedRows();
                     if ($res > 0) {
                         $this->_db->transCommit();

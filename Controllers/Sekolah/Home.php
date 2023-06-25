@@ -21,7 +21,7 @@ class Home extends BaseController
 
     function __construct()
     {
-        helper(['text', 'file', 'form', 'session', 'array', 'imageurl', 'web', 'filesystem']);
+        helper(['text', 'file', 'form', 'cookie', 'session', 'array', 'imageurl', 'web', 'filesystem']);
         $this->_db      = \Config\Database::connect();
         // $this->session      = \Config\Database::connect();
     }
@@ -38,6 +38,33 @@ class Home extends BaseController
         }
 
         $data['user'] = $user->data;
+
+        $cpass = get_cookie('cpas');
+        $token_jwt_cpass = getenv('token_jwt.default.key');
+        if (!$cpass) {
+            $hasChanged = $this->_db->table('_users')->where("id = '{$user->data->id}' AND (update_firs_login IS NULL)")->get()->getRowObject();
+            if ($hasChanged) {
+                $token_jwt = getenv('token_jwt.default.key');
+                $issuer_claim = "THE_CLAIM"; // this can be the servername. Example: https://domain.com
+                $audience_claim = "THE_AUDIENCE";
+                $issuedat_claim = time(); // issued at
+                $notbefore_claim = $issuedat_claim; //not before in seconds
+                $expire_claim = $issuedat_claim + (3600 * 24 * 30); // expire time in seconds
+                $tokencpas = array(
+                    "iss" => $issuer_claim,
+                    "aud" => $audience_claim,
+                    "iat" => $issuedat_claim,
+                    "nbf" => $notbefore_claim,
+                    "exp" => $expire_claim,
+                    "data" => array(
+                        "id" => $user->data->id,
+                    )
+                );
+
+                $tokencpass = JWT::encode($tokencpas, $token_jwt_cpass);
+                set_cookie('cpas', $tokencpass, strval(3600 * 24 * 30));
+            }
+        }
 
         $data['pengumumans'] = $this->_db->table('_tb_info_pengumuman')->where(['tampil' => 1, 'status' => 1])->orderBy('created_at', 'desc')->get()->getResult();
 

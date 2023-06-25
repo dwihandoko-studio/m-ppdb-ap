@@ -99,7 +99,7 @@ class Swasta extends BaseController
             //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
             $action =
                 '
-                            <a target="_blank" href="' . base_url('dinas/ranking/swasta/sekolah') . '?token=' . $list->tujuan_sekolah_id . '" class="btn btn-primary btn-sm">
+                            <a target="_blank" href="' . base_url('dinas/rangking/swasta/sekolah') . '?token=' . $list->tujuan_sekolah_id_1 . '" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </a>';

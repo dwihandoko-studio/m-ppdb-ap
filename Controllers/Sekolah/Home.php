@@ -71,8 +71,8 @@ class Home extends BaseController
         $cpaspr = get_cookie('cpaspr');
         $token_jwt_cpaspr = getenv('token_jwt.default.key');
         if (!$cpaspr) {
-            $hasChanged = $this->_db->table('_ref_profil_sekolah')->where("id = '{$user->data->sekolah_id}' AND (nama_ks IS NULL)")->get()->getRowObject();
-            if ($hasChanged) {
+            $hasChangedPRofil = $this->_db->table('_ref_profil_sekolah')->where("id = '{$user->data->sekolah_id}' AND (nama_ks IS NULL)")->get()->getRowObject();
+            if ($hasChangedPRofil) {
                 $data['sprofilc'] = true;
             } else {
                 $issuer_claim = "THE_CLAIM"; // this can be the servername. Example: https://domain.com

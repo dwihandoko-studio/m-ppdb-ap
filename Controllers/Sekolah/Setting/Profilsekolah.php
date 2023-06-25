@@ -79,10 +79,10 @@ class Profilsekolah extends BaseController
 
     public function save()
     {
-        $response = new \stdClass;
-        $response->code = 400;
-        $response->message = "Perbaikan profil sekolah sudah ditutup.";
-        return json_encode($response);
+        // $response = new \stdClass;
+        // $response->code = 400;
+        // $response->message = "Perbaikan profil sekolah sudah ditutup.";
+        // return json_encode($response);
 
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;

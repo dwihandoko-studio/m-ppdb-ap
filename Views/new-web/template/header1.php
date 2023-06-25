@@ -16,34 +16,72 @@
                             <ul class="navigation clearfix">
                                 <li class="current"><a href="<?= base_url() ?>">Home</a></li>
                                 <li class="dropdown"><a href="#">Sekolah</a>
-
-                                    <ul class="megamenu clearfix">
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120717&j=6' ?>">Kec. Bandar Sribhawono</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120702&j=6' ?>">Kec. Batanghari</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120724&j=6' ?>">Kec. Batanghari Nuban</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120716&j=6' ?>">Kec. Braja Selebah</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120713&j=6' ?>">Kec. Bumi Agung</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120720&j=6' ?>">Kec. Gunung Pelindung</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120706&j=6' ?>">Kec. Jabung</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120707&j=6' ?>">Kec. Labuhan Maringgai</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120723&j=6' ?>">Kec. Labuhan Ratu</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120726&j=6' ?>">Kec. Marga Sekampung</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120704&j=6' ?>">Kec. Margatiga</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120718&j=6' ?>">Kec. Mataram Baru</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120719&j=6' ?>">Kec. Melinting</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120701&j=6' ?>">Kec. Metro Kibang</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120722&j=6' ?>">Kec. Pasir Sakti</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120710&j=6' ?>">Kec. Pekalongan</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120712&j=6' ?>">Kec. Purbolinggo</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120711&j=6' ?>">Kec. Raman Utara</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120703&j=6' ?>">Kec. Sekampung</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120705&j=6' ?>">Kec. Sekampung Udik</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120709&j=6' ?>">Kec. Sukadana</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120721&j=6' ?>">Kec. Waway Karya</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120725&j=6' ?>">Kec. Way Bungur</a></li>
-                                        <li><a href="<?= base_url('web/sekolah/kec') . '?id=120708&j=6' ?>">Kec. Way Jepara</a></li>
+                                    <ul>
+                                        <li class="dropdown"><a href="#">SMP</a>
+                                            <ul class="megamenu clearfix">
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120227&j=6' ?>">Kec. Anak Ratu Aji</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120219&j=6' ?>">Kec. Anak Tuha</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120217&j=6' ?>">Kec. Bandar Mataram</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120221&j=6' ?>">Kec. Bandar Surabaya</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120203&j=6' ?>">Kec. Bangunrejo</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120226&j=6' ?>">Kec. Bekri</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120222&j=6' ?>">Kec. Bumi Nabung</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120214&j=6' ?>">Kec. Bumi Ratu Nuban</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120204&j=6' ?>">Kec. Gunung Sugih</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120202&j=6' ?>">Kec. Kalirejo</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120224&j=6' ?>">Kec. Kota Gajah</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120201&j=6' ?>">Kec. Padang Ratu</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120220&j=6' ?>">Kec. Pubian</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120206&j=6' ?>">Kec. Punggur</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120228&j=6' ?>">Kec. Putra Rumbia</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120212&j=6' ?>">Kec. Rumbia</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120225&j=6' ?>">Kec. Selagai Lingga</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120218&j=6' ?>">Kec. Sendang Agung</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120216&j=6' ?>">Kec. Seputih Agung</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120211&j=6' ?>">Kec. Seputih Banyak</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120210&j=6' ?>">Kec. Seputih Mataram</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120207&j=6' ?>">Kec. Seputih Raman</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120213&j=6' ?>">Kec. Seputih Surabaya</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120208&j=6' ?>">Kec. Terbanggi Besar</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120209&j=6' ?>">Kec. Terusan Nunyai</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120205&j=6' ?>">Kec. Trimurjo</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120215&j=6' ?>">Kec. Way Pengubuan</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120223&j=6' ?>">Kec. Way Seputih</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="#">SD</a>
+                                            <ul class="megamenu clearfix">
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120227&j=5' ?>">Kec. Anak Ratu Aji</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120219&j=5' ?>">Kec. Anak Tuha</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120217&j=5' ?>">Kec. Bandar Mataram</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120221&j=5' ?>">Kec. Bandar Surabaya</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120203&j=5' ?>">Kec. Bangunrejo</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120226&j=5' ?>">Kec. Bekri</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120222&j=5' ?>">Kec. Bumi Nabung</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120214&j=5' ?>">Kec. Bumi Ratu Nuban</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120204&j=5' ?>">Kec. Gunung Sugih</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120202&j=5' ?>">Kec. Kalirejo</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120224&j=5' ?>">Kec. Kota Gajah</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120201&j=5' ?>">Kec. Padang Ratu</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120220&j=5' ?>">Kec. Pubian</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120206&j=5' ?>">Kec. Punggur</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120228&j=5' ?>">Kec. Putra Rumbia</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120212&j=5' ?>">Kec. Rumbia</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120225&j=5' ?>">Kec. Selagai Lingga</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120218&j=5' ?>">Kec. Sendang Agung</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120216&j=5' ?>">Kec. Seputih Agung</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120211&j=5' ?>">Kec. Seputih Banyak</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120210&j=5' ?>">Kec. Seputih Mataram</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120207&j=5' ?>">Kec. Seputih Raman</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120213&j=5' ?>">Kec. Seputih Surabaya</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120208&j=5' ?>">Kec. Terbanggi Besar</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120209&j=5' ?>">Kec. Terusan Nunyai</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120205&j=5' ?>">Kec. Trimurjo</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120215&j=5' ?>">Kec. Way Pengubuan</a></li>
+                                                <li><a href="<?= base_url('web/sekolah/kec') . '?id=120223&j=5' ?>">Kec. Way Seputih</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
-
                                 </li>
                                 <li><a href="<?= base_url('web/jadwal') ?>">Jadwal</a></li>
                                 <li><a href="<?= base_url('web/statistik') ?>">Statistik</a></li>

@@ -72,7 +72,28 @@ class User extends BaseController
         return view('sekolah/lengkapi-profile', $data);
     }
 
-    public function gantiPassword()
+    public function gantipassword()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->userSekolah();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $data['user'] = $user->data;
+        $data['title'] = 'Dashboard';
+
+        $data['page'] = "Dashboard";
+        $data['file_upload'] = FALSE;
+        $data['title'] = 'Dashboard';
+        $data['datatables'] = false;
+
+        return view('dinas/ganti-password', $data);
+    }
+
+    public function savePassword()
     {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
@@ -114,65 +135,51 @@ class User extends BaseController
             $oldPassword = htmlspecialchars($this->request->getVar('oldPassword'), true);
             $newPassword = htmlspecialchars($this->request->getVar('newPassword'), true);
 
-            $jwt = get_cookie('jwt');
             $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
+            $Profilelib = new Profilelib();
+            $user = $Profilelib->userSekolah();
+            if ($user->code != 200) {
+                delete_cookie('jwt');
+                session()->destroy();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Session telah habis.";
+                return json_encode($response);
+            }
 
-                try {
-
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $builder = $this->_db->table('_users_tb');
-                        $oldData = $builder->where('id', $userId)->get()->getRowObject();
-                        if ($oldData) {
-                            if (password_verify($oldPassword, $oldData->password) == true) {
-                                $this->_db->transBegin();
-                                $builder->set(['password' => password_hash($newPassword, PASSWORD_DEFAULT), 'updated_at' => date('Y-m-d H:i:s')])->where('id', $oldData->id)->update();
-                                $res = $this->_db->affectedRows();
-                                if ($res > 0) {
-                                    $this->_db->transCommit();
-                                    $response = new \stdClass;
-                                    $response->code = 200;
-                                    $response->message = "Update Password Baru Berhasil.";
-                                    $response->url = base_url('v1/ptk/home');
-                                    return json_encode($response);
-                                } else {
-                                    $this->_db->transRollback();
-                                    $response = new \stdClass;
-                                    $response->code = 400;
-                                    $response->message = "Update Password Baru Gagal.";
-                                    return json_encode($response);
-                                }
-                            } else {
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Password Lama Salah!!!";
-                                return json_encode($response);
-                            }
-                        } else {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Pengguna tidak ditemukan.";
-                            return json_encode($response);
-                        }
-                    } else {
+            $userId = $user->data->id;
+            $role = $user->data->role_user;
+            $builder = $this->_db->table('_users_tb');
+            $oldData = $builder->where('id', $userId)->get()->getRowObject();
+            if ($oldData) {
+                if (password_verify($oldPassword, $oldData->password) == true) {
+                    $this->_db->transBegin();
+                    $builder->set(['password' => password_hash($newPassword, PASSWORD_BCRYPT), 'updated_at' => date('Y-m-d H:i:s')])->where('id', $oldData->id)->update();
+                    $res = $this->_db->affectedRows();
+                    if ($res > 0) {
+                        $this->_db->transCommit();
                         $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
+                        $response->code = 200;
+                        $response->message = "Update Password Baru Berhasil.";
+                        $response->url = base_url('sekolah/home');
+                        return json_encode($response);
+                    } else {
+                        $this->_db->transRollback();
+                        $response = new \stdClass;
+                        $response->code = 400;
+                        $response->message = "Update Password Baru Gagal.";
                         return json_encode($response);
                     }
-                } catch (\Exception $e) {
+                } else {
                     $response = new \stdClass;
-                    $response->code = 401;
-                    $response->message = "Session telah habis.";
+                    $response->code = 400;
+                    $response->message = "Password Lama Salah!!!";
                     return json_encode($response);
                 }
             } else {
                 $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
+                $response->code = 400;
+                $response->message = "Pengguna tidak ditemukan.";
                 return json_encode($response);
             }
         }

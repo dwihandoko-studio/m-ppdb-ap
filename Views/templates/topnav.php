@@ -44,7 +44,7 @@
                                 <i class="ni ni-single-02"></i>
                                 <span>Profil Saya</span>
                             </a>
-                            <a href="#" class="dropdown-item button-ganti-password">
+                            <a href="<?= base_url('sekolah/user/gantipassword') ?>" class="dropdown-item button-ganti-password">
                                 <i class="ni ni-key-25"></i>
                                 <span>Ganti Password</span>
                             </a>

@@ -172,6 +172,7 @@
 <script src="<?= base_url('new-assets') ?>/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="<?= base_url('new-assets/assets'); ?>/js/jquery-block-ui.js"></script>
 <script src="<?= base_url('new-assets') ?>/assets/vendor/datatables/datatables.min.js"></script>
+<script src="<?= base_url('new-assets') ?>/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <script>
     function loadStatistik() {
@@ -247,6 +248,42 @@
                 backdrop: 'static',
                 keyboard: false
             }, 'show');
+        <?php } ?>
+    <?php } else { ?>
+        <?php if (isset($sprofilc)) { ?>
+            <?php if ($sprofilc) { ?>
+                const animIn = $(this).attr('data-animation-in');
+                const animOut = $(this).attr('data-animation-out');
+                $.notify({
+                    icon: 'ni ni-bell-55',
+                    title: ' Peringatan!!!',
+                    message: 'Profil sekolah terdeteksi belum dilengkapi, silahkan untuk dilengkapi terlebih dahulu.',
+                    url: '<?= base_url('sekolah/setting/profilsekolah') ?>'
+                }, {
+                    element: 'body',
+                    type: 'warning',
+                    allow_dismiss: true,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    },
+                    offset: {
+                        x: 15,
+                        y: 15
+                    },
+                    spacing: 10,
+                    z_index: 1080,
+                    delay: 2500,
+                    timer: 25000,
+                    url_target: '_blank',
+                    mouse_over: false,
+                    animate: {
+                        enter: animIn,
+                        exit: animOut
+                    },
+                    template: '<div data-notify="container" class="alert alert-dismissible alert-{0} alert-notify" role="alert">' + '<span class="alert-icon" data-notify="icon"></span> ' + '<div class="alert-text"</div> ' + '<span class="alert-title" data-notify="title">{1}</span> ' + '<span data-notify="message">{2}</span>' + '</div>' + '<button type="button" class="close" data-notify="dismiss" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + '</div>'
+                });
+            <?php } ?>
         <?php } ?>
     <?php } ?>
 

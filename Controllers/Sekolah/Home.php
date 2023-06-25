@@ -68,6 +68,34 @@ class Home extends BaseController
             }
         }
 
+        $cpaspr = get_cookie('cpaspr');
+        $token_jwt_cpaspr = getenv('token_jwt.default.key');
+        if (!$cpaspr) {
+            $hasChanged = $this->_db->table('_ref_profil_sekolah')->where("id = '{$user->data->sekolah_id}' AND (nama_ks IS NULL)")->get()->getRowObject();
+            if ($hasChanged) {
+                $data['sprofilc'] = true;
+            } else {
+                $issuer_claim = "THE_CLAIM"; // this can be the servername. Example: https://domain.com
+                $audience_claim = "THE_AUDIENCE";
+                $issuedat_claim = time(); // issued at
+                $notbefore_claim = $issuedat_claim; //not before in seconds
+                $expire_claim = $issuedat_claim + (3600 * 24 * 30); // expire time in seconds
+                $tokenccpaspr = array(
+                    "iss" => $issuer_claim,
+                    "aud" => $audience_claim,
+                    "iat" => $issuedat_claim,
+                    "nbf" => $notbefore_claim,
+                    "exp" => $expire_claim,
+                    "data" => array(
+                        "id" => $user->data->sekolah_id,
+                    )
+                );
+
+                $tokencpaspr = JWT::encode($tokenccpaspr, $token_jwt_cpaspr);
+                set_cookie('cpaspr', $tokencpaspr, strval(3600 * 24 * 30));
+            }
+        }
+
         $data['pengumumans'] = $this->_db->table('_tb_info_pengumuman')->where(['tampil' => 1, 'status' => 1])->orderBy('created_at', 'desc')->get()->getResult();
 
         $data['page'] = "Dashboard";

@@ -162,6 +162,7 @@ class Pengaduan extends BaseController
                 . $this->validator->getError('komentar');
             return json_encode($response);
         } else {
+
             $nama = htmlspecialchars($this->request->getVar('nama'), true);
             $komentar = htmlspecialchars($this->request->getVar('komentar'), true);
             $id_post = htmlspecialchars($this->request->getVar('id_post'), true);

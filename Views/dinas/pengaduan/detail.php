@@ -117,7 +117,9 @@
                                     <img alt="Image placeholder" class="avatar avatar-lg rounded-circle mr-4" src="<?= base_url('new-assets'); ?>/assets/img/theme/team-1.jpg">
                                     <div class="media-body">
                                         <form>
-                                            <textarea class="form-control" id="_balas_komentar" name="_balas_komentar" placeholder="Write your comment" rows="2"></textarea>
+                                            <div id="editor" data-toggle="quill" data-quill-placeholder="Quill WYSIWYG"></div>
+
+                                            <!-- <textarea class="form-control" id="_balas_komentar" name="_balas_komentar" placeholder="Write your comment" rows="2"></textarea> -->
                                             <button style="margin-top: 10px;" type="button" onclick="sendBalasKomentar(this, '<?= $aduan->id ?>');" class="btn btn-primary btn-icon">
                                                 <span class="btn-inner--icon">
                                                     <i class="ni ni-send"></i>
@@ -160,6 +162,7 @@
 
 <?= $this->section('scriptBottom'); ?>
 <script src="<?= base_url('new-assets/assets/js'); ?>/jquery-block-ui.js"></script>
+<script src="<?= base_url('new-assets'); ?>/assets/vendor/quill/dist/quill.min.js"></script>
 <!--<script src="<?= base_url('assets/js'); ?>/ckeditor5/build/build/ckeditor.js"></script>-->
 <!--<script src="<?= base_url('new-assets'); ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>-->
 <!-- <script src="<?= base_url('new-assets') ?>/assets/vendor/datatables/datatables.min.js"></script> -->
@@ -348,6 +351,22 @@
     }
 
     $(document).ready(function() {
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic'],
+                    ['link', 'image'],
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }]
+                ]
+            },
+            placeholder: 'Tulis komentar...',
+            theme: 'snow'
+        });
+
         // initSelect2('filter_jenjang', '#panel');
         // initSelect2('filter_kecamatan', '#panel');
 

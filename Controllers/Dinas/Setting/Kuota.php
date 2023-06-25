@@ -95,10 +95,10 @@ class Kuota extends BaseController
                 // $row[] = $no;
 
                 $row[] = $list->jumlah_rombel_kebutuhan;
-                $row[] = $list->nama_kecamatan;
-                $row[] = $list->nama_jenjang;
                 $row[] = $list->npsn;
+                $row[] = $list->nama_jenjang;
                 $row[] = $list->nama_sekolah;
+                $row[] = $list->nama_kecamatan;
                 $row[] = $list->zonasi;
                 $row[] = $list->afirmasi;
                 $row[] = $list->mutasi;

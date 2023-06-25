@@ -85,10 +85,10 @@
                                         <th rowspan="2" data-orderable="false">Status</th>
                                         <th rowspan="2" data-orderable="false">Aksi</th>
                                         <th rowspan="2">Kebutuhan Rombel</th>
-                                        <th rowspan="2">Nama Kecamatan</th>
-                                        <th rowspan="2">Jenjang</th>
                                         <th rowspan="2">NPSN</th>
+                                        <th rowspan="2">Jenjang</th>
                                         <th rowspan="2">Nama Sekolah</th>
+                                        <th rowspan="2">Nama Kecamatan</th>
                                         <th colspan="5" style="text-align: center;">Kuota</th>
                                     </tr>
                                     <tr>

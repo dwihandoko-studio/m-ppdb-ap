@@ -71,7 +71,7 @@ class Home extends BaseController
         $cpaspr = get_cookie('cpaspr');
         $token_jwt_cpaspr = getenv('token_jwt.default.key');
         if (!$cpaspr) {
-            $hasChangedPRofil = $this->_db->table('_ref_profil_sekolah')->where("id = '{$user->data->sekolah_id}')")->get()->getRowObject();
+            $hasChangedPRofil = $this->_db->table('_ref_profil_sekolah')->where("id = '{$user->data->sekolah_id}'")->get()->getRowObject();
             if ($hasChangedPRofil) {
                 if ($hasChangedPRofil->nama_ks == NULL || $hasChangedPRofil->nama_ks == "") {
                     $data['sprofilc'] = true;

@@ -145,7 +145,7 @@ class Swasta extends BaseController
         return view('dinas/rangking/swasta/sekolah', $data);
     }
 
-    public function data()
+    public function sekolah()
     {
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();

@@ -44,6 +44,8 @@ class Home extends BaseController
         if (!$cpass) {
             $hasChanged = $this->_db->table('_users_tb')->where("id = '{$user->data->id}' AND (update_firs_login IS NULL)")->get()->getRowObject();
             if ($hasChanged) {
+                $data['changednow'] = true;
+            } else {
                 $token_jwt = getenv('token_jwt.default.key');
                 $issuer_claim = "THE_CLAIM"; // this can be the servername. Example: https://domain.com
                 $audience_claim = "THE_AUDIENCE";

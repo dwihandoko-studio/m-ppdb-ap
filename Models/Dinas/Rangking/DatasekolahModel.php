@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Dinas\Ranking;
+namespace App\Models\Dinas\Rangking;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\Model;

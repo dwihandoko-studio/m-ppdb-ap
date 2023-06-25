@@ -11,7 +11,7 @@
                         <div class="about-widget footer-widget">
                             <figure class="footer-logo"><a href="<?= base_url() ?>"><img src="<?= base_url('themes') ?>/images/footer-logo-2.webp" alt=""></a></figure>
                             <div class="text">Layanan Kegiatan Penerimaan Peserta Didik Baru Dalam Jaringan Tahun Ajaran 2023/2024 Kabupaten Lampung Tengah.</div>
-                            <h3 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:0725625037">CS (0725) 625037</a></h3>
+                            <h3 class="phone"><i class="fas fa-phone-volume"></i><a href="https:://wa.me/+6285840023554">0858-4002-3554</a></h3>
                             <!-- <h2 class="phone"><i class="fas fa-phone-volume"></i><a href="tel:081398091467">CS SD(+62) 813-9809-1467</a></h2> -->
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                             <div class="widget-content">
                                 <ul class="contact-info clearfix">
                                     <li><i class="fas fa-map-marker-alt"></i> Jl. H Muchtar RT. 03 /RW. 01, Komplek Perkantoran Gunung Sugih No. 1, Lampung Tengah, Lampung 34161</li>
-                                    <li><i class="fas fa-phone"></i><a href="tel:0725xxxxxx">(0725) xxxxxx</a></li>
+                                    <li><i class="fas fa-phone"></i><a href="tel:072526212">(0725) 26212</a></li>
                                     <!-- <li><i class="fas fa-phone"></i><a href="tel:082185581129">082185581129</a></li> -->
                                     <!-- <li><i class="fas fa-envelope"></i><a href="mailto:disdikbud@lampungtengahkab.go.id">disdikbud@lampungtengahkab.go.id</a></li> -->
                                 </ul>

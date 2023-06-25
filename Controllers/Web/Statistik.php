@@ -74,49 +74,59 @@ class Statistik extends BaseController
                 $row['button'] = '<div style="vertical-align: inherit;"><button style="height: 38px; width: 38px; border-radius: 50%; padding: 0.75rem 0; justify-content: center;margin: 0; display: inline-flex; cursor: pointer; user-select: none; align-items: center; vertical-align: inherit; text-align: center; overflow: hidden; position: relative; font-size: 1rem; transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s; color: #fff; background: #4527a4; border: 1px solid #4527a4;" type="button" onclick="actionDetailPendaftar(\'' . $list->sekolah_id . '\', \'' . $list->npsn . '\');"><i class="fas fa-search-plus"></i></button></div>';
                 $row['id'] = $list->sekolah_id;
                 // $row['npsn'] = $list->npsn;
-                $row['nama'] = '<div style="font-size: 13px; vertical-align: inherit;">' . $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan . '</div>';
+                $row['nama'] = '<div style="font-size: 13px; vertical-align: inherit;">' . $list->nama_sekolah . '<br/>' . $list->npsn . '<br/>' . $list->nama_kecamatan . '<br/><b>Total Kuota : ' . ($list->zonasi + $list->afirmasi + $list->mutasi + $list->prestasi) . '</b><br/><b>Total Diterima : ' . ($list->diterima_zonasi + $list->diterima_afirmasi + $list->diterima_mutasi + $list->diterima_prestasi + $list->diterima_swasta) . '</b><br/><b>Sisa Kuota : ' . (($list->zonasi + $list->afirmasi + $list->mutasi + $list->prestasi) - ($list->diterima_zonasi + $list->diterima_afirmasi + $list->diterima_mutasi + $list->diterima_prestasi + $list->diterima_swasta)) . '</b></div>';
                 if ($list->status_sekolah == 1) {
                     $row['zonasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->zonasi . '</b>'
                         . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_zonasi . '</b>'
                         . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_zonasi . '</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_zonasi . '</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_zonasi . '</b>'
+                        . '<br/>' . 'Diterima : <b>' . $list->diterima_zonasi . '</b></div>';
                     $row['afirmasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->afirmasi . '</b>'
                         . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_afirmasi . '</b>'
                         . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_afirmasi . '</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_afirmasi . '</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_afirmasi . '</b>'
+                        . '<br/>' . 'Diterima : <b>' . $list->diterima_afirmasi . '</b></div>';
                     $row['mutasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->mutasi . '</b>'
                         . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_mutasi . '</b>'
                         . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_mutasi . '</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_mutasi . '</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_mutasi . '</b>'
+                        . '<br/>' . 'Diterima : <b>' . $list->diterima_mutasi . '</b></div>';
                     $row['prestasi'] = '<div style="font-size: 13px;">Kuota : <b>' . $list->prestasi . '</b>'
                         . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_prestasi . '</b>'
                         . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_prestasi . '</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_prestasi . '</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_prestasi . '</b>'
+                        . '<br/>' . 'Diterima : <b>' . $list->diterima_prestasi . '</b></div>';
                     $row['swasta'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>0</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>0</b>'
+                        . '<br/>' . 'Diterima : <b>0</b></div>';
                 } else {
                     $row['zonasi'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>0</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>0</b>'
+                        . '<br/>' . 'Diterima : <b>0</b></div>';
                     $row['afirmasi'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>0</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>0</b>'
+                        . '<br/>' . 'Diterima : <b>0</b></div>';
                     $row['mutasi'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>0</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>0</b>'
+                        . '<br/>' . 'Diterima : <b>0</b></div>';
                     $row['prestasi'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>0</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>0</b>'
+                        . '<br/>' . 'Diterima : <b>0</b></div>';
                     $row['swasta'] = '<div style="font-size: 13px;">Kuota : <b>' . ((int)$list->zonasi + (int)$list->afirmasi + (int)$list->mutasi + (int)$list->prestasi) . '</b>'
                         . '<br/>' . 'Pendaftar : <b>' . $list->pendaftar_swasta . '</b>'
                         . '<br/>' . 'Terverifikasi : <b>' . $list->terverifikasi_swasta . '</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_swasta . '</b></div>';
+                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_swasta . '</b>'
+                        . '<br/>' . 'Diterima : <b>' . $list->diterima_swasta . '</b></div>';
                 }
                 // $row['datazonasi'] = zonasiDetailWeb($list->npsn);
 

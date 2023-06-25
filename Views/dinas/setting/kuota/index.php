@@ -47,12 +47,12 @@
                                             <label for="filter_kecamatan" class="form-control-label">Filter Kecamatan</label>
                                             <select class="form-control filter-kecamatan" name="filter_kecamatan" id="filter_kecamatan" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                                                 <option value="">-- Pilih --</option>
-                                                <?php if(isset($instansis)) {
-                                                if(count($instansis) > 0) {
-                                                    foreach ($instansis as $key => $value) {
-                                                        echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
+                                                <?php if (isset($instansis)) {
+                                                    if (count($instansis) > 0) {
+                                                        foreach ($instansis as $key => $value) {
+                                                            echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
+                                                        }
                                                     }
-                                                }
                                                 } ?>
                                             </select>
                                         </div>
@@ -62,12 +62,12 @@
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                                                 <option value="">-- Pilih --</option>
-                                                <?php if(isset($jenjang_sekolas)) {
-                                                if(count($jenjang_sekolas) > 0) {
-                                                    foreach ($jenjang_sekolas as $key => $value) {
-                                                        echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
+                                                <?php if (isset($jenjang_sekolas)) {
+                                                    if (count($jenjang_sekolas) > 0) {
+                                                        foreach ($jenjang_sekolas as $key => $value) {
+                                                            echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
+                                                        }
                                                     }
-                                                }
                                                 } ?>
                                             </select>
                                         </div>
@@ -84,11 +84,11 @@
                                     <tr>
                                         <th rowspan="2" data-orderable="false">Status</th>
                                         <th rowspan="2" data-orderable="false">Aksi</th>
+                                        <th rowspan="2">Kebutuhan Rombel</th>
                                         <th rowspan="2">Nama Kecamatan</th>
                                         <th rowspan="2">Jenjang</th>
                                         <th rowspan="2">NPSN</th>
                                         <th rowspan="2">Nama Sekolah</th>
-                                        <th rowspan="2">Kebutuhan Rombel</th>
                                         <th colspan="5" style="text-align: center;">Kuota</th>
                                     </tr>
                                     <tr>
@@ -99,7 +99,7 @@
                                         <th>Jumlah</th>
                                     </tr>
                                 </thead>
-    
+
                             </table>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
             document.location.href = action;
         }
     }
-    
+
     function actionDetail(event) {
         $.ajax({
             url: "<?= base_url('dinas/setting/kuota/detail') ?>",
@@ -300,7 +300,7 @@
             }
         });
     }
-    
+
     function actionHapus(event, title = "") {
         Swal.fire({
             title: 'Apakah anda yakin ingin menghapus data ini?',
@@ -538,7 +538,7 @@
             "ajax": {
                 "url": "<?= base_url('dinas/setting/kuota/getAll') ?>",
                 "type": "POST",
-                "data": function(data){
+                "data": function(data) {
                     data.filter_kecamatan = $('#filter_kecamatan').val();
                     data.filter_jenjang = $('#filter_jenjang').val();
                 }
@@ -546,19 +546,17 @@
             language: {
                 paginate: {
                     next: '<i class="ni ni-bold-right">',
-                    previous: '<i class="ni ni-bold-left">'  
+                    previous: '<i class="ni ni-bold-left">'
                 },
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
-            "columnDefs": [
-                {
-                    "targets": 0,
-                    "orderable": false,
-                }
-            ],
+            "columnDefs": [{
+                "targets": 0,
+                "orderable": false,
+            }],
             lengthMenu: [
-                [ 10, 25, 50, -1 ],
-                [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
             ],
             dom: 'Blfrtip',
             buttons: [
@@ -576,12 +574,11 @@
         $('#filter_kecamatan').change(function() {
             tableUsulan.draw();
         });
-    
+
         $('#filter_jenjang').change(function() {
             tableUsulan.draw();
         });
     });
-
 </script>
 <?= $this->endSection(); ?>
 

@@ -17,7 +17,7 @@
                             <ul class="navigation clearfix">
                                 <li class="current"><a href="<?= base_url() ?>">Home</a></li>
                                 <li class="dropdown"><a href="#">Sekolah</a>
-                                    <ul>
+                                    <ul class="clearfix">
                                         <li class="dropdown"><a href="#">SMP</a>
                                             <ul class="megamenu clearfix">
                                                 <li><a href="<?= base_url('web/sekolah/kec') . '?id=120227&j=6' ?>">Kec. Anak Ratu Aji</a></li>

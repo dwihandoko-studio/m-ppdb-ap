@@ -4,6 +4,7 @@ namespace App\Controllers\Dinas\Rangking;
 
 use App\Controllers\BaseController;
 use App\Models\Dinas\Rangking\MutasiModel;
+use App\Models\Dinas\Rangking\DatasekolahModel;
 use Config\Services;
 
 use App\Libraries\Profilelib;

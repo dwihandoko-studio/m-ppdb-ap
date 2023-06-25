@@ -20,8 +20,7 @@
                                             <div class="form-group jenjang_zonasi-block">
                                                 <label for="filter_jenjang_zonasi" class="form-control-label">Filter Jenjang</label>
                                                 <select class="form-control filter-jenjang-zonasi" name="filter_jenjang_zonasi" id="filter_jenjang_zonasi" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                    <option value="">-- Pilih --</option>
-                                                    <option value="6">SMP</option>
+                                                    <option value="6" selected>SMP</option>
                                                     <option value="5">SD</option>
                                                 </select>
                                             </div>

@@ -10,7 +10,7 @@ class KuotaModel extends Model
     protected $table = "_setting_kuota_tb a";
     protected $column_order = array(null, 'b.nama', 'b.npsn', 'c.nama', null);
     protected $column_search = array('b.nama', 'b.npsn');
-    protected $order = array('b.nama' => 'asc');
+    protected $order = array('a.jumlah_rombel_kebutuhan' => 'desc');
     protected $request;
     protected $db;
     protected $dt;

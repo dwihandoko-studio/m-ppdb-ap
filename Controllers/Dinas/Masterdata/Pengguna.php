@@ -1271,4 +1271,81 @@ class Pengguna extends BaseController
     //             }
     //         }
     //     }
+
+
+    public function generatePengunaSekolah()
+    {
+        $sekolahs = $this->_db->table('_setting_kuota_tb a')
+            ->select("a.zonasi, b.*")
+            ->join('ref_sekolah b', 'b.id = a.sekolah_id')
+            ->get()->getResult();
+
+        foreach ($sekolahs as $key => $v) {
+            $cekData = $this->_db->table('_users_tb')->where('email', $v->npsn . '@ppdb.lt')->get()->getRowObject();
+
+            if ($cekData) {
+                echo "NPSN sudah terdaftar, silahkan login ke aplikasi.";
+                continue;
+            }
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $data = [
+                'id' => $uuid,
+                'email' => $v->npsn . '@ppdb.lt',
+                'password' => password_hash($v->npsn, PASSWORD_BCRYPT),
+                // 'role_user' => 6,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+
+            try {
+                $this->_db->table('_users_tb')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                continue;
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+                try {
+                    unset($data['password']);
+                    unset($data['email']);
+                    $data['fullname'] = $v->nama;
+                    // $data['no_hp'] = $nohp;
+                    $data['npsn'] = $v->npsn;
+                    $data['role_user'] = 4;
+                    $data['email'] = $v->npsn . '@ppdb.lt';
+                    $data['provinsi'] = '120000';
+                    $data['kabupaten'] = '120200';
+                    $data['kelurahan'] = $v->kode_wilayah;
+                    $data['alamat'] = $v->alamat_jalan;
+                    $data['kecamatan'] = substr($v->kode_wilayah, 0, 6);
+                    $data['latitude'] = $v->latitude;
+                    $data['longitude'] = $v->longitude;
+                    $data['sekolah_id'] = $v->id;
+                    $data['created_at'] = date('Y-m-d H:i:s');
+                    $data['updated_at'] = date('Y-m-d H:i:s');
+
+                    $this->_db->table('_users_profil_tb')->insert($data);
+                } catch (\Throwable $th) {
+                    $this->_db->transRollback();
+                    continue;
+                }
+
+                if ($this->_db->affectedRows() > 0) {
+                    $this->_db->transCommit();
+                    continue;
+                } else {
+                    $this->_db->transRollback();
+                    continue;
+                }
+            } else {
+                $this->_db->transRollback();
+                continue;
+            }
+        }
+        echo "Selesai Proses";
+    }
 }

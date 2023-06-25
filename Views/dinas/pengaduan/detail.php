@@ -169,94 +169,7 @@
 <!-- <script src="<?= base_url('new-assets'); ?>/assets/vendor/select2/dist/js/select2.min.js"></script> -->
 
 <script>
-    function sendBalasKomentar(event, id) {
-        const komentar = document.getElementsByName('_balas_komentar')[0].value;
-        // const tujuan = "teknis";
-
-        if (komentar === "") {
-            Swal.fire(
-                'Peringatan!',
-                "Komentar tidak boleh kosong.",
-                'warning'
-            );
-            return;
-        }
-
-        $.ajax({
-            type: "POST",
-            url: BASE_URL + '/dinas/pengaduan/balascomment',
-            data: {
-                id_post: id,
-                nama: 'Admin',
-                komentar: komentar,
-            },
-            dataType: 'JSON',
-            beforeSend: function() {
-                $('div.loading-comentar').block({
-                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                });
-            },
-            success: function(msg) {
-                console.log(msg);
-                if (msg.code != 200) {
-                    $('div.loading-comentar').unblock();
-                    loading = false;
-                    Swal.fire(
-                        'Gagal!',
-                        msg.message,
-                        'warning'
-                    );
-                } else {
-                    $('div.loading-comentar').unblock();
-                    document.getElementsByName('_balas_komentar')[0].value = "";
-                    const newDivKomentar = document.createElement('div');
-                    newDivKomentar.className = 'media media-comment';
-
-                    // Mengisi konten HTML pada elemen div
-                    const newKomentarnya = `
-                        <img alt="Image placeholder" class="avatar avatar-lg media-comment-avatar rounded-circle" src="<?= base_url('new-assets'); ?>/assets/img/theme/team-1.jpg">
-                        <div class="media-body">
-                            <div class="media-comment-text">
-                                <h6 class="h5 mt-0">{{nama}}</h6>
-                                <p class="text-sm lh-160">{{komentar}}</p>
-                                <div class="icon-actions">
-                                    <a href="javascript:;">
-                                        <i class="ni ni-watch-time"></i>
-                                        <span class="text-muted">{{date}}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    const htmlWithReplacement = newKomentarnya.replace("{{nama}}", msg.data.nama);
-                    const htmlWithReplacement1 = htmlWithReplacement.replace("{{date}}", msg.data.created_at);
-                    const htmlWithReplacement2 = htmlWithReplacement1.replace("{{komentar}}", msg.data.komentar);
-
-                    newDivKomentar.innerHTML = htmlWithReplacement2;
-
-                    // Menemukan elemen target berdasarkan ID
-                    var targetElementContentKometar = document.getElementById('content-komentar-replay');
-
-                    // Menambahkan elemen baru ke dalam elemen target
-                    targetElementContentKometar.appendChild(newDivKomentar);
-                    document.getElementById('jumlah-balasan-comment').textContent = msg.replayed;
-
-                }
-            },
-            error: function(data) {
-
-                // loading = false;
-                $('div.loading-comentar').unblock();
-                Swal.fire(
-                    'Gagal!',
-                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                    'warning'
-                );
-
-            }
-        });
-    }
+    var editorContent;
 
     function closePengaduan(event, id) {
         Swal.fire({
@@ -351,7 +264,7 @@
     }
 
     $(document).ready(function() {
-        var quill = new Quill('#editor', {
+        var quillContent = new Quill('#editor', {
             modules: {
                 toolbar: [
                     ['bold', 'italic'],
@@ -367,43 +280,99 @@
             theme: 'snow'
         });
 
-        // initSelect2('filter_jenjang', '#panel');
-        // initSelect2('filter_kecamatan', '#panel');
-
-        // let tableUsulan = $('#data-table-id').DataTable({
-        //     "processing": true,
-        //     "serverSide": true,
-        //     "order": [],
-        //     "ajax": {
-        //         "url": "<?= base_url('dinas/setting/zonasi/getAllSekolah') ?>",
-        //         "type": "POST",
-        //         "data": function(data) {
-        //             data.filter_kecamatan = $('#filter_kecamatan').val();
-        //             data.filter_jenjang = $('#filter_jenjang').val();
-        //         }
-        //     },
-        //     language: {
-        //         paginate: {
-        //             next: '<i class="ni ni-bold-right">',
-        //             previous: '<i class="ni ni-bold-left">'
-        //         },
-        //         processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
-        //     },
-        //     "columnDefs": [{
-        //         "targets": 0,
-        //         "orderable": false,
-        //     }],
-        // });
-
-        // $('#filter_jenjang').change(function() {
-        //     tableUsulan.draw();
-        // });
-
-        // $('#filter_kecamatan').change(function() {
-        //     tableUsulan.draw();
-        // });
+        editorContent = quillContent.root.innerHTML;
 
     });
+
+    function sendBalasKomentar(event, id) {
+        // const komentar = document.getElementsByName('_balas_komentar')[0].value;
+        const komentar = editorContent;
+        // const tujuan = "teknis";
+
+        if (komentar === "") {
+            Swal.fire(
+                'Peringatan!',
+                "Komentar tidak boleh kosong.",
+                'warning'
+            );
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: BASE_URL + '/dinas/pengaduan/balascomment',
+            data: {
+                id_post: id,
+                nama: 'Admin',
+                komentar: komentar,
+            },
+            dataType: 'JSON',
+            beforeSend: function() {
+                $('div.loading-comentar').block({
+                    message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+                });
+            },
+            success: function(msg) {
+                console.log(msg);
+                if (msg.code != 200) {
+                    $('div.loading-comentar').unblock();
+                    loading = false;
+                    Swal.fire(
+                        'Gagal!',
+                        msg.message,
+                        'warning'
+                    );
+                } else {
+                    $('div.loading-comentar').unblock();
+                    document.getElementsByName('_balas_komentar')[0].value = "";
+                    const newDivKomentar = document.createElement('div');
+                    newDivKomentar.className = 'media media-comment';
+
+                    // Mengisi konten HTML pada elemen div
+                    const newKomentarnya = `
+                        <img alt="Image placeholder" class="avatar avatar-lg media-comment-avatar rounded-circle" src="<?= base_url('new-assets'); ?>/assets/img/theme/team-1.jpg">
+                        <div class="media-body">
+                            <div class="media-comment-text">
+                                <h6 class="h5 mt-0">{{nama}}</h6>
+                                <p class="text-sm lh-160">{{komentar}}</p>
+                                <div class="icon-actions">
+                                    <a href="javascript:;">
+                                        <i class="ni ni-watch-time"></i>
+                                        <span class="text-muted">{{date}}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    const htmlWithReplacement = newKomentarnya.replace("{{nama}}", msg.data.nama);
+                    const htmlWithReplacement1 = htmlWithReplacement.replace("{{date}}", msg.data.created_at);
+                    const htmlWithReplacement2 = htmlWithReplacement1.replace("{{komentar}}", msg.data.komentar);
+
+                    newDivKomentar.innerHTML = htmlWithReplacement2;
+
+                    // Menemukan elemen target berdasarkan ID
+                    var targetElementContentKometar = document.getElementById('content-komentar-replay');
+
+                    // Menambahkan elemen baru ke dalam elemen target
+                    targetElementContentKometar.appendChild(newDivKomentar);
+                    document.getElementById('jumlah-balasan-comment').textContent = msg.replayed;
+
+                }
+            },
+            error: function(data) {
+
+                // loading = false;
+                $('div.loading-comentar').unblock();
+                Swal.fire(
+                    'Gagal!',
+                    "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+                    'warning'
+                );
+
+            }
+        });
+    }
 </script>
 <?= $this->endSection(); ?>
 

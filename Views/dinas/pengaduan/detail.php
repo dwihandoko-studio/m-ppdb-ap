@@ -289,6 +289,9 @@
         const komentar = editorContent;
         // const tujuan = "teknis";
 
+        console.log('Komentar', komentar);
+        return;
+
         if (komentar === "") {
             Swal.fire(
                 'Peringatan!',

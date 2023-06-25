@@ -80,9 +80,9 @@
                                 <div class="callout callout-info">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                            <div class="form-group jenjang_zonasi-block">
-                                                <label for="filter_jenjang_zonasi" class="form-control-label">Filter Jenjang</label>
-                                                <select class="form-control filter-jenjang-zonasi" name="filter_jenjang_zonasi" id="filter_jenjang_zonasi" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                            <div class="form-group jenjang-block">
+                                                <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
+                                                <select class="form-control filter-jenjang-zonasi" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                                                     <option value="6" selected>SMP</option>
                                                     <option value="5">SD</option>
                                                 </select>

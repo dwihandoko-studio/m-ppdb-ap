@@ -169,7 +169,7 @@
 <!-- <script src="<?= base_url('new-assets'); ?>/assets/vendor/select2/dist/js/select2.min.js"></script> -->
 
 <script>
-    var editorContent;
+    var quillContent;
 
     function closePengaduan(event, id) {
         Swal.fire({
@@ -264,7 +264,7 @@
     }
 
     $(document).ready(function() {
-        var quillContent = new Quill('#editor', {
+        quillContent = new Quill('#editor', {
             modules: {
                 toolbar: [
                     ['bold', 'italic'],
@@ -280,13 +280,13 @@
             theme: 'snow'
         });
 
-        editorContent = quillContent.root.innerHTML;
+        // editorContent = quillContent.root.innerHTML;
 
     });
 
     function sendBalasKomentar(event, id) {
         // const komentar = document.getElementsByName('_balas_komentar')[0].value;
-        const komentar = editorContent;
+        const komentar = quillContent.root.innerHTML;
         // const tujuan = "teknis";
 
         console.log(komentar);

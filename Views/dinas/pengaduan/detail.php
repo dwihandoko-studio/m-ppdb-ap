@@ -117,7 +117,7 @@
                                     <img alt="Image placeholder" class="avatar avatar-lg rounded-circle mr-4" src="<?= base_url('new-assets'); ?>/assets/img/theme/team-1.jpg">
                                     <div class="media-body">
                                         <form>
-                                            <div id="editor" data-toggle="quill" data-quill-placeholder="Quill WYSIWYG"></div>
+                                            <div id="editor" data-toggle="quills" data-quill-placeholder="Quill WYSIWYG"></div>
 
                                             <!-- <textarea class="form-control" id="_balas_komentar" name="_balas_komentar" placeholder="Write your comment" rows="2"></textarea> -->
                                             <button style="margin-top: 10px;" type="button" onclick="sendBalasKomentar(this, '<?= $aduan->id ?>');" class="btn btn-primary btn-icon">

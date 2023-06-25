@@ -691,6 +691,54 @@
                             </div>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? '' : ' collapsed' ?>" href="#navbar-rangking" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? 'true' : 'false' ?>" aria-controls="navbar-rangking">
+                                <i class="ni ni-sound-wave" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
+                                <span class="nav-link-text" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>>Rangking</span>
+                            </a>
+                            <div class="collapse<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? ' show' : '' ?>" id="navbar-rangking">
+                                <ul class="nav nav-sm flex-column">
+                                    <?php if ((int)$user->statusSekolah === 1) { ?>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "afirmasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/rangking/afirmasi') ?>">
+                                                <span class="sidenav-mini-icon"> RA </span>
+                                                <i class="ni ni-app"></i>
+                                                <span class="sidenav-normal"> Afirmasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "zonasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/rangking/zonasi') ?>">
+                                                <span class="sidenav-mini-icon"> RZ </span>
+                                                <i class="fas fa-map-marked-alt"></i>
+                                                <span class="sidenav-normal"> Zonasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "mutasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/rangking/mutasi') ?>">
+                                                <span class="sidenav-mini-icon"> RM </span>
+                                                <i class="ni ni-vector"></i>
+                                                <span class="sidenav-normal"> Mutasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "prestasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/rangking/prestasi') ?>">
+                                                <span class="sidenav-mini-icon"> RP </span>
+                                                <i class="ni ni-trophy"></i>
+                                                <span class="sidenav-normal"> Prestasi </span>
+                                            </a>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li class="nav-item">
+                                            <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking"  && $uri->getSegment(3) == "swasta") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/rangking/swasta') ?>">
+                                                <span class="sidenav-mini-icon"> RS </span>
+                                                <i class="ni ni-shop"></i>
+                                                <span class="sidenav-normal"> Swasta </span>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? '' : ' collapsed' ?>" href="#navbar-analisis" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? 'true' : 'false' ?>" aria-controls="navbar-analisis">
                                 <i class="ni ni-vector" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>>Analisis</span>
@@ -700,13 +748,13 @@
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan"  && $uri->getSegment(3) == "sd") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/proses') ?>">
                                             <span class="sidenav-mini-icon"> P </span>
-                                            <!--<i class="ni ni-app"></i>-->
+                                            <i class="ni ni-app"></i>
                                             <span class="sidenav-normal"> Rekap </span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('dinas/pengaduan'); ?>" role="button" aria-expanded="true">
                                 <i class="ni ni-headphones" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? ' style="color: #00BCD4 !important"' : '' ?>></i>

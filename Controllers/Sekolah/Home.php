@@ -71,28 +71,32 @@ class Home extends BaseController
         $cpaspr = get_cookie('cpaspr');
         $token_jwt_cpaspr = getenv('token_jwt.default.key');
         if (!$cpaspr) {
-            $hasChangedPRofil = $this->_db->table('_ref_profil_sekolah')->where("id = '{$user->data->sekolah_id}' AND (nama_ks IS NULL)")->get()->getRowObject();
+            $hasChangedPRofil = $this->_db->table('_ref_profil_sekolah')->where("id = '{$user->data->sekolah_id}')")->get()->getRowObject();
             if ($hasChangedPRofil) {
-                $data['sprofilc'] = true;
-            } else {
-                $issuer_claim = "THE_CLAIM"; // this can be the servername. Example: https://domain.com
-                $audience_claim = "THE_AUDIENCE";
-                $issuedat_claim = time(); // issued at
-                $notbefore_claim = $issuedat_claim; //not before in seconds
-                $expire_claim = $issuedat_claim + (3600 * 24 * 30); // expire time in seconds
-                $tokenccpaspr = array(
-                    "iss" => $issuer_claim,
-                    "aud" => $audience_claim,
-                    "iat" => $issuedat_claim,
-                    "nbf" => $notbefore_claim,
-                    "exp" => $expire_claim,
-                    "data" => array(
-                        "id" => $user->data->sekolah_id,
-                    )
-                );
+                if ($hasChangedPRofil->nama_ks == NULL || $hasChangedPRofil->nama_ks == "") {
+                    $data['sprofilc'] = true;
+                } else {
+                    $issuer_claim_profil = "THE_CLAIM"; // this can be the servername. Example: https://domain.com
+                    $audience_claim_profil = "THE_AUDIENCE";
+                    $issuedat_claim_profil = time(); // issued at
+                    $notbefore_claim_profil = $issuedat_claim_profil; //not before in seconds
+                    $expire_claim_profil = $issuedat_claim_profil + (3600 * 24 * 30); // expire time in seconds
+                    $tokenccpaspr = array(
+                        "iss" => $issuer_claim_profil,
+                        "aud" => $audience_claim_profil,
+                        "iat" => $issuedat_claim_profil,
+                        "nbf" => $notbefore_claim_profil,
+                        "exp" => $expire_claim_profil,
+                        "data" => array(
+                            "id" => $user->data->sekolah_id,
+                        )
+                    );
 
-                $tokencpaspr = JWT::encode($tokenccpaspr, $token_jwt_cpaspr);
-                set_cookie('cpaspr', $tokencpaspr, strval(3600 * 24 * 30));
+                    $tokencpaspr = JWT::encode($tokenccpaspr, $token_jwt_cpaspr);
+                    set_cookie('cpaspr', $tokencpaspr, strval(3600 * 24 * 30));
+                }
+            } else {
+                $data['sprofilc'] = true;
             }
         }
 

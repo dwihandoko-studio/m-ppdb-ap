@@ -236,23 +236,23 @@
         $('.jumlah_mutasi_belum_verifikasi').html('');
     }
 
+    <?php if (isset($changednow)) { ?>
+        <?php if ($changednow) { ?>
+            let contenChangePassword = '';
+            contenChangePassword += '<div class="modal-content bg-gradient-danger"><div class="modal-header"><h6 class="modal-title" id="modal-title-notification">Peringatan ganti password...!!!!</h6><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><div class="py-3 text-center"><i class="ni ni-bell-55 ni-3x"></i><h4 class="heading mt-4">Akun anda masih menggunakan Password Default!</h4><p>Untuk keamanan dan kenyamanan anda, silahkan ganti password anda terlebih dahulu.</p></div></div><div class="modal-footer"><a href="<?= base_url('sekolah/user/gantipassword') ?>" class="btn btn-white">Ok, Ganti Sekarang</a> <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button></div></div>';
+
+            // $('#documentModalLabel').html('PEMBERITAHUAN');
+            $('.content-danger-data').html(contenChangePassword);
+            $('#contentDangerModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        <?php } ?>
+    <?php } ?>
+
     $(document).ready(function() {
         loadStatistik();
         disabledLoad();
-
-        <?php if (isset($changednow)) { ?>
-            <?php if ($changednow) { ?>
-                let contenChangePassword = '';
-                contenChangePassword += '<div class="modal-content bg-gradient-danger"><div class="modal-header"><h6 class="modal-title" id="modal-title-notification">Peringatan ganti password...!!!!</h6><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><div class="py-3 text-center"><i class="ni ni-bell-55 ni-3x"></i><h4 class="heading mt-4">Akun anda masih menggunakan Password Default!</h4><p>Untuk keamanan dan kenyamanan anda, silahkan ganti password anda terlebih dahulu.</p></div></div><div class="modal-footer"><a href="<?= base_url('sekolah/user/gantipassword') ?>" class="btn btn-white">Ok, Ganti Sekarang</a> <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button></div></div>';
-
-                // $('#documentModalLabel').html('PEMBERITAHUAN');
-                $('.content-danger-data').html(contenChangePassword);
-                $('#contentDangerModal').modal({
-                    backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-            <?php } ?>
-        <?php } ?>
 
         <?php if (isset($informasi)) { ?>
             let contentInformation = '';

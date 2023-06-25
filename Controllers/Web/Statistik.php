@@ -62,7 +62,7 @@ class Statistik extends BaseController
             $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
             $filterKecamatan = htmlspecialchars($request->getVar('filter_kecamatan'), true) ?? "";
 
-            $lists = $datamodel->get_datatables($filterJenjang, $filterKecamatan);
+            $lists = $datamodel->get_datatables($filterKecamatan, $filterJenjang);
             // $lists = [];
             $data = [];
             $no = $request->getPost("start");
@@ -136,8 +136,8 @@ class Statistik extends BaseController
                 "draw" => $request->getPost('draw'),
                 // "recordsTotal" => 0,
                 // "recordsFiltered" => 0,
-                "recordsTotal" => $datamodel->count_all($filterJenjang, $filterKecamatan),
-                "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterKecamatan),
+                "recordsTotal" => $datamodel->count_all($filterKecamatan, $filterJenjang),
+                "recordsFiltered" => $datamodel->count_filtered($filterKecamatan, $filterJenjang),
                 "data" => $data
             ];
             echo json_encode($output);

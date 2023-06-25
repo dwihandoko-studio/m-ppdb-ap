@@ -331,6 +331,7 @@
         initSelect2('filter_kecamatan');
         initSelect2('filter_jenjang');
 
+
         // loadGrafikPendaftaran();
 
         let tableZonasiSekolah = $('#tabelPendaftarSekolah').DataTable({

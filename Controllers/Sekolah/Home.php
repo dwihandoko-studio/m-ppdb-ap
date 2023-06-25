@@ -42,7 +42,7 @@ class Home extends BaseController
         $cpass = get_cookie('cpas');
         $token_jwt_cpass = getenv('token_jwt.default.key');
         if (!$cpass) {
-            $hasChanged = $this->_db->table('_users')->where("id = '{$user->data->id}' AND (update_firs_login IS NULL)")->get()->getRowObject();
+            $hasChanged = $this->_db->table('_users_tb')->where("id = '{$user->data->id}' AND (update_firs_login IS NULL)")->get()->getRowObject();
             if ($hasChanged) {
                 $token_jwt = getenv('token_jwt.default.key');
                 $issuer_claim = "THE_CLAIM"; // this can be the servername. Example: https://domain.com

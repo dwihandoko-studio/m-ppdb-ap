@@ -54,8 +54,8 @@
                                     <tr>
                                         <th data-orderable="false">#</th>
                                         <th data-orderable="false">Aksi</th>
-                                        <!-- <th>Dusun</th> -->
-                                        <!-- <th>Kelurahan</th> -->
+                                        <th>Dusun</th>
+                                        <th>Kelurahan</th>
                                         <th>Kecamatan</th>
                                         <th>Kabupaten</th>
                                         <th>Provinsi</th>

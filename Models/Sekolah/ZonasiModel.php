@@ -9,8 +9,8 @@ use Firebase\JWT\JWT;
 class ZonasiModel extends Model
 {
     protected $table = "_setting_zonasi_tb a";
-    // protected $column_order = array(null, null, 'f.nama', 'e.nama', 'd.nama', 'c.nama', 'b.nama', 'a.nama');
-    protected $column_order = array(null, null, 'e.nama', 'd.nama', 'c.nama', 'b.nama', 'a.nama');
+    protected $column_order = array(null, null, 'f.nama', 'e.nama', 'd.nama', 'c.nama', 'b.nama', 'a.nama');
+    // protected $column_order = array(null, null, 'e.nama', 'd.nama', 'c.nama', 'b.nama', 'a.nama');
     protected $column_search = array('e.nama', 'd.nama', 'c.nama', 'b.nama');
     protected $order = array('b.nama' => 'asc', 'c.nama' => 'asc', 'd.nama' => 'asc', 'e.nama' => 'asc');
     protected $request;
@@ -28,15 +28,15 @@ class ZonasiModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan";
-        // $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun";
+        // $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan";
+        $select = "a.*, b.nama as namaProvinsi, c.nama as namaKabupaten, d.nama as namaKecamatan, e.nama as namaKelurahan, f.nama as namaDusun";
 
         $this->dt->select($select);
         $this->dt->join('ref_provinsi b', 'a.provinsi = b.id', 'LEFT');
         $this->dt->join('ref_kabupaten c', 'a.kabupaten = c.id', 'LEFT');
         $this->dt->join('ref_kecamatan d', 'a.kecamatan = d.id', 'LEFT');
         $this->dt->join('ref_kelurahan e', 'a.kelurahan = e.id', 'LEFT');
-        // $this->dt->join('ref_dusun f', 'a.dusun = f.id', 'LEFT');
+        $this->dt->join('ref_dusun f', 'a.dusun = f.id', 'LEFT');
 
         $i = 0;
         foreach ($this->column_search as $item) {

@@ -63,16 +63,27 @@ class Zonasi extends BaseController
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
                             </button>
-                            <!--<button onclick="actionEdit(\'' . $list->id . '\')" type="button" class="dropdown-item">
-                                <i class="ni ni-ruler-pencil"></i>
-                                <span>Edit</span>
-                            </button> -->
-                            <!--<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
-                                <i class="fa fa-trash"></i>
-                                <span>Hapus</span>
-                            </button>-->
                         </div>
                     </div>';
+                            //         $action = '<div class="dropup">
+                            //     <div class="btn btn-primary btn-sm" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            //         <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
+                            //     </div>
+                            //     <div class="dropdown-menu">
+                            //         <button onclick="actionDetail(\'' . $list->id . '\')" type="button" class="dropdown-item">
+                            //             <i class="fa fa-eye"></i>
+                            //             <span>Detail</span>
+                            //         </button>
+                            //         <!--<button onclick="actionEdit(\'' . $list->id . '\')" type="button" class="dropdown-item">
+                            //             <i class="ni ni-ruler-pencil"></i>
+                            //             <span>Edit</span>
+                            //         </button> -->
+                            //         <!--<button onclick="actionHapus(\'' . $list->id . '\', \' ' . $list->namaKelurahan . '\')" type="button" class="dropdown-item">
+                            //             <i class="fa fa-trash"></i>
+                            //             <span>Hapus</span>
+                            //         </button>-->
+                            //     </div>
+                            // </div>';
                             $row[] = $action;
                             // $row[] = '<a href="javascript:;" class="btn btn-primary btn-sm action-detail" data-id="' . $list->id . '"><i class="fa fa-eye"></i><span>Detail</span></a>';
                             //     } else {
@@ -85,8 +96,8 @@ class Zonasi extends BaseController
 
                             // $row[] = $no;
 
-                            // $row[] = $list->namaDusun;
-                            // $row[] = $list->namaKelurahan;
+                            $row[] = $list->namaDusun;
+                            $row[] = $list->namaKelurahan;
                             $row[] = $list->namaKecamatan;
                             $row[] = $list->namaKabupaten;
                             $row[] = $list->namaProvinsi;
@@ -159,12 +170,12 @@ class Zonasi extends BaseController
 
     public function add()
     {
-        if ($this->request->getMethod() != 'get') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+        // if ($this->request->getMethod() != 'get') {
+        $response = new \stdClass;
+        $response->code = 400;
+        $response->message = "Permintaan tidak diizinkan";
+        return json_encode($response);
+        // }
 
         $jwt = get_cookie('jwt');
         $token_jwt = getenv('token_jwt.default.key');

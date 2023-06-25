@@ -34,11 +34,19 @@
                                 <i class="ni ni-single-02"></i>
                                 <span>Profil Saya</span>
                             </a>
+                            <a href="#" class="dropdown-item button-ganti-password">
+                                <i class="ni ni-key-25"></i>
+                                <span>Ganti Password</span>
+                            </a>
                         <?php endif; ?>
                         <?php if ((int)$user->role_user == 4) : ?>
                             <a href="<?= base_url('sekolah/user') ?>" class="dropdown-item">
                                 <i class="ni ni-single-02"></i>
                                 <span>Profil Saya</span>
+                            </a>
+                            <a href="#" class="dropdown-item button-ganti-password">
+                                <i class="ni ni-key-25"></i>
+                                <span>Ganti Password</span>
                             </a>
                         <?php endif; ?>
                         <?php if ((int)$user->role_user == 6) : ?>

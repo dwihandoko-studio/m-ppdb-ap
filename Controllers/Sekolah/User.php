@@ -90,7 +90,7 @@ class User extends BaseController
         $data['title'] = 'Dashboard';
         $data['datatables'] = false;
 
-        return view('dinas/ganti-password', $data);
+        return view('sekolah/ganti-password', $data);
     }
 
     public function savePassword()

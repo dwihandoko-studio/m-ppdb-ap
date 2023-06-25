@@ -289,7 +289,7 @@
         const komentar = editorContent;
         // const tujuan = "teknis";
 
-        console.log('Komentar', komentar);
+        console.log(komentar);
         return;
 
         if (komentar === "") {

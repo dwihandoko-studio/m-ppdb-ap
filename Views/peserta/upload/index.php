@@ -175,7 +175,7 @@
                                                         <?php if ((int)$dataUpload->is_locked === 0) {
                                                         ?>
                                                             <!-- <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-warning action-edit" href="javascript:actionEdit('_file_prestasi', '<?= $dataUpload->id ?>', 'Lampiran Keterangan Prestasi / Sertifikat')" data-id="_file_prestasi">EDIT</a> -->
-                                                            <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-danger action-hapus" href="javascript:actionHapus('_file_afirmasi', '<?= $dataUpload->id ?>', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KIS)')" data-id="_file_afirmasi" data-token="<?= '' ?>">HAPUS</a>
+                                                            <a style="margin-left: 5px; padding-top: 12px;" class="btn btn-sm btn-danger action-hapus" href="javascript:actionHapus('_file_afirmasi', '<?= $dataUpload->id ?>', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KIS / Surat Dinsos)')" data-id="_file_afirmasi" data-token="<?= '' ?>">HAPUS</a>
                                                         <?php }
                                                         ?>
                                                     </div>
@@ -183,7 +183,7 @@
                                             </div>
                                         <?php } else { ?>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input file-afirmasi" id="_file_afirmasi" name="_file_afirmasi" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_afirmasi', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KIS)')">
+                                                <input type="file" class="custom-file-input file-afirmasi" id="_file_afirmasi" name="_file_afirmasi" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_afirmasi', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KIS / Surat Dinsos)')">
                                                 <label class="custom-file-label" for="_file_afirmasi"></label>
                                                 <div class="progress-wrapper progress-_file_afirmasi" style="display: none;">
                                                     <div class="progress-info">

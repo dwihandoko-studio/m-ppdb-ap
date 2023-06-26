@@ -12,7 +12,7 @@
             <div class="col-lg-2 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="900ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#2eb100" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->afirmasi) ? $grafik_statistik->afirmasi / $grafik_statistik->total : '.0') : '.0' ?>">
+                        <div class="piechart" data-fg-color="#2eb100" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->afirmasi) ? ($grafik_statistik->total == 0 ? '.0' : $grafik_statistik->afirmasi / $grafik_statistik->total) : '.0') : '.0' ?>">
                             <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->afirmasi) ? $grafik_statistik->afirmasi : '0') : '0' ?></span>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
             <div class="col-lg-2 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#393e95" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->zonasi) ? $grafik_statistik->zonasi / $grafik_statistik->total : '.0') : '.0' ?>">
+                        <div class="piechart" data-fg-color="#393e95" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->zonasi) ? ($grafik_statistik->total == 0 ? '.0' : $grafik_statistik->zonasi / $grafik_statistik->total) : '.0') : '.0' ?>">
                             <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->zonasi) ? $grafik_statistik->zonasi : '0') : '0' ?></span>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
             <div class="col-lg-2 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#ff8500" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->prestasi) ? $grafik_statistik->prestasi / $grafik_statistik->total : '.0') : '.0' ?>">
+                        <div class="piechart" data-fg-color="#ff8500" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->prestasi) ? ($grafik_statistik->total == 0 ? '.0' : $grafik_statistik->prestasi / $grafik_statistik->total) : '.0') : '.0' ?>">
                             <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->prestasi) ? $grafik_statistik->prestasi : '0') : '0' ?></span>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
             <div class="col-lg-2 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#ff0000" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? $grafik_statistik->mutasi / $grafik_statistik->total : '.0') : '.0' ?>">
+                        <div class="piechart" data-fg-color="#ff0000" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? ($grafik_statistik->total == 0 ? '.0' : $grafik_statistik->mutasi / $grafik_statistik->total) : '.0') : '.0' ?>">
                             <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->mutasi) ? $grafik_statistik->mutasi : '0') : '0' ?></span>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
             <div class="col-lg-2 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="progress-box">
-                        <div class="piechart" data-fg-color="#ff00da" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? $grafik_statistik->swasta / $grafik_statistik->total : '.0') : '.0' ?>">
+                        <div class="piechart" data-fg-color="#ff00da" data-value="<?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? ($grafik_statistik->total == 0 ? '.0' : $grafik_statistik->swasta / $grafik_statistik->total) : '.0') : '.0' ?>">
                             <span><?= isset($grafik_statistik) ? (isset($grafik_statistik->swasta) ? $grafik_statistik->swasta : '0') : '0' ?></span>
                         </div>
                     </div>
@@ -80,11 +80,10 @@
                                 <div class="callout callout-info">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                            <div class="form-group jenjang_zonasi-block">
-                                                <label for="filter_jenjang_zonasi" class="form-control-label">Filter Jenjang</label>
-                                                <select class="form-control filter-jenjang-zonasi" name="filter_jenjang_zonasi" id="filter_jenjang_zonasi" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                    <option value="">-- Pilih --</option>
-                                                    <option value="6">SMP</option>
+                                            <div class="form-group jenjang-block">
+                                                <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
+                                                <select class="form-control filter-jenjang-zonasi" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <option value="6" selected>SMP</option>
                                                     <option value="5">SD</option>
                                                 </select>
                                             </div>
@@ -331,6 +330,7 @@
         loadedAll = true;
         initSelect2('filter_kecamatan');
         initSelect2('filter_jenjang');
+
 
         // loadGrafikPendaftaran();
 

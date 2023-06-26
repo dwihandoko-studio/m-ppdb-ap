@@ -326,10 +326,10 @@ class User extends BaseController
                 ]
             ],
             'file' => [
-                'rules' => 'uploaded[file]|max_size[file,512]|mime_in[file,image/jpeg,image/jpg,image/png]',
+                'rules' => 'uploaded[file]|max_size[file,2048]|mime_in[file,image/jpeg,image/jpg,image/png]',
                 'errors' => [
                     'uploaded' => 'Pilih gambar terlebih dahulu.',
-                    'max_size' => 'Ukuran gambar terlalu besar, Maksimal 512 Kb.',
+                    'max_size' => 'Ukuran gambar terlalu besar, Maksimal 2048 Mb.',
                     'mime_in' => 'File yang anda upload harus type image.'
                 ]
             ],
@@ -592,10 +592,10 @@ class User extends BaseController
         if ($filename != '') {
             $lampiran = [
                 'file' => [
-                    'rules' => 'uploaded[file]|max_size[file, 512]|mime_in[file,image/jpg,image/png,image/gif,image/jpeg]',
+                    'rules' => 'uploaded[file]|max_size[file, 2048]|mime_in[file,image/jpg,image/png,image/gif,image/jpeg]',
                     'errors' => [
                         'uploaded' => 'File belum terupload. ',
-                        'max_size' => 'Ukuran file terlalu besar, maksimal 500 Kb. ',
+                        'max_size' => 'Ukuran file terlalu besar, maksimal 2 Mb. ',
                         'mime_in' => 'Ekstensi File tidak diizinkan, type file harus gambar. ',
                     ]
                 ],

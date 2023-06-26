@@ -435,12 +435,12 @@
             // console.log(file.size);
 
             // validate file size
-            if (file.size > 1 * 1024 * 1000) {
+            if (file.size > 2 * 1024 * 1000) {
                 input.value = "";
                 $('.imagePreviewUpload').attr('src', '');
                 Swal.fire(
                     'Warning!!!',
-                    "Ukuran file tidak boleh lebih dari 1 Mb.",
+                    "Ukuran file tidak boleh lebih dari 2 Mb.",
                     'warning'
                 );
                 return;
@@ -813,7 +813,7 @@
             // console.log(file.size);
 
             // validate file size
-            if (file.size > 1 * 512 * 1000) {
+            if (file.size > 2 * 1024 * 1000) {
                 input.value = "";
                 $('.' + event.name).css('display', 'block');
                 $("input#" + event.name).css("color", "#dc3545");

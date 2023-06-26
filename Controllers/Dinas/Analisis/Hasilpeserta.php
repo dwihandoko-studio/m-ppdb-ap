@@ -12,7 +12,7 @@ use App\Libraries\Dinas\Riwayatlib;
 use App\Libraries\Dinas\Prosesluluslib;
 use Firebase\JWT\JWT;
 
-class Hasil extends BaseController
+class Hasilpeserta extends BaseController
 {
     var $folderImage = 'masterdata';
     private $_db;
@@ -140,7 +140,7 @@ class Hasil extends BaseController
     //     return view('dinas/analisis/hasil/sekolah', $data);
     // }
 
-    public function sekolah()
+    public function index()
     {
         $data['title'] = 'Rekapitulasi Hasil Analysis Peserta';
         $Profilelib = new Profilelib();
@@ -156,7 +156,7 @@ class Hasil extends BaseController
         // $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
         // $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
 
-        return view('dinas/analisis/hasil/index', $data);
+        return view('dinas/analisis/hasilpeserta/index', $data);
     }
 
     // public function verified()

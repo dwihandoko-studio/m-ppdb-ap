@@ -9,7 +9,7 @@ class ProsessekolahhasilModel extends Model
 {
     protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, null, 'j.nama', 'j.npsn', null);
-    protected $column_search = array('j.npsn');
+    protected $column_search = array('j.npsn', 'b.nisn', 'b.fullname');
     protected $order = array('jumlah_pendaftar' => 'desc');
     protected $request;
     protected $db;
@@ -29,7 +29,7 @@ class ProsessekolahhasilModel extends Model
         $select = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar, (SELECT (mutasi + zonasi + prestasi + afirmasi) as jumlah FROM _setting_kuota_tb WHERE sekolah_id = a.tujuan_sekolah_id_1) as jumlah_kuota";  //14
 
         $this->dt->select($select);
-        // $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
+        $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
         // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
         $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');

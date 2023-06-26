@@ -77,7 +77,7 @@
                                 <th>Jalur PPDB</th>
                                 <th>Jarak (Km)</th>
                                 <!--<th>Koordinat</th>-->
-                                <th>Sekolah Asal</th>
+                                <!-- <th>Sekolah Asal</th> -->
                                 <th>Sekolah Tujuan</th>
                             </tr>
                         </thead>

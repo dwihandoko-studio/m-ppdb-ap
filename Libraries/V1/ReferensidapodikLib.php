@@ -16,7 +16,8 @@ class ReferensidapodikLib
 
     private function _send_get($url)
     {
-        $urlendpoint = getenv('api.referensi.dapodik.url') . $url . '&token=' . getenv('api.referensi.dapodik.token');
+        // $urlendpoint = getenv('api.referensi.dapodik.url') . $url . '&token=' . getenv('api.referensi.dapodik.token');
+        $urlendpoint = getenv('api.referensi.dapodik.url') . $url . '&token=8E045E88-3C2A-454B-952F-3353E67B6787';
 
         $curlHandle = curl_init($urlendpoint);
         curl_setopt($curlHandle, CURLOPT_CUSTOMREQUEST, "GET");
@@ -29,7 +30,8 @@ class ReferensidapodikLib
 
     public function getDetailSiswa($nisn, $npsn)
     {
-        $kodeWiilayah = getenv('ppdb.default.wilayahppdb');
+        // $kodeWiilayah = getenv('ppdb.default.wilayahppdb');
+        $kodeWiilayah = '120700';
         $add         = $this->_send_get("getSiswa?kode_wilayah=$kodeWiilayah&nisn=$nisn&npsn=$npsn");
         $headers = [];
         curl_setopt(

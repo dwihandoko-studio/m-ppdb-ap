@@ -51,9 +51,9 @@
                                         <div class="form-group jalur-block">
                                             <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
                                             <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <!-- <option value="" selected>--PILIH--</option> -->
+                                                <option value="" selected>--PILIH--</option>
                                                 <!--<option value="ZONASI">ZONASI</option>-->
-                                                <option value="ZONASI" selected>ZONASI</option>
+                                                <option value="ZONASI">ZONASI</option>
                                                 <option value="AFIRMASI">AFIRMASI</option>
                                                 <option value="MUTASI">MUTASI</option>
                                                 <option value="PRESTASI">PRESTASI</option>

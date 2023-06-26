@@ -77,8 +77,8 @@
                                 <th>Jalur PPDB</th>
                                 <th>Jarak (Km)</th>
                                 <!--<th>Koordinat</th>-->
-                                <!-- <th>Sekolah Asal</th> -->
                                 <th>Sekolah Tujuan</th>
+                                <!-- <th>Sekolah Asal</th> -->
                             </tr>
                         </thead>
 
@@ -214,7 +214,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('dinas/analisis/hasil/getAll') ?>",
+                "url": "<?= base_url('dinas/analisis/hasilpeserta/getAll') ?>",
                 "type": "POST",
                 "data": function(data) {
                     // data.sekolah_id = '<?php //= $sekolah_id 

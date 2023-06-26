@@ -164,7 +164,8 @@ class Pengaduan extends BaseController
         } else {
 
             $nama = htmlspecialchars($this->request->getVar('nama'), true);
-            $komentar = htmlspecialchars($this->request->getVar('komentar'), true);
+            $komentar = $this->_db->escapeString($this->request->getVar('komentar'));
+            // $komentar = htmlspecialchars($this->request->getVar('komentar'), true);
             $id_post = htmlspecialchars($this->request->getVar('id_post'), true);
 
             $posted = $this->_db->table('tb_pengaduan')->where('id', $id_post)->get()->getRowObject();

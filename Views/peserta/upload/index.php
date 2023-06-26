@@ -165,7 +165,7 @@
                                 <?php } ?>
                                 <div class="row">
                                     <div class="col-md-6 _file_afirmasi-block">
-                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Dinas Sosial)</h4>
+                                        <h4>Khusus Jalur Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Dinas Sosial)</h4>
                                         <?php if ($dataUpload->lampiran_afirmasi != null) { ?>
                                             <div class="form-group">
                                                 <div class="input-group">
@@ -206,7 +206,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 _file_pernyataan-block">
-                                        <h4>Afirmasi (Surat Pernyataan Orang Tua / Wali Bermaterai)</h4>
+                                        <h4>Khusus Jalur Afirmasi (Surat Pernyataan Orang Tua / Wali Bermaterai)</h4>
                                         <?php if ($dataUpload->lampiran_pernyataan != null) { ?>
                                             <div class="form-group">
                                                 <div class="input-group">
@@ -247,7 +247,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 _file_foto_rumah-block">
-                                        <h4>Afirmasi (Foto Rumah Tempat Tinggal Siswa)</h4>
+                                        <h4>Khusus Jalur Afirmasi (Foto Rumah Tempat Tinggal Siswa)</h4>
                                         <?php if ($dataUpload->lampiran_foto_rumah != null) { ?>
                                             <div class="form-group">
                                                 <div class="input-group">
@@ -288,7 +288,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 _file_mutasi-block">
-                                        <h4>Mutasi Orang Tua / Wali (Surat Keterangan Pindah Kerja Orang Tua / Wali)</h4>
+                                        <h4>Khusus Jalur Mutasi Orang Tua / Wali (Surat Keterangan Pindah Kerja Orang Tua / Wali)</h4>
                                         <?php if ($dataUpload->lampiran_mutasi != null) { ?>
                                             <div class="form-group">
                                                 <div class="input-group">
@@ -446,7 +446,7 @@
                                 <?php } ?>
                                 <div class="row">
                                     <div class="col-md-6 _file_prestasi-block" style="padding-top: 10px;">
-                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Kelurahan/Kampung/Desa)</h4>
+                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Dinas Sosial)</h4>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input file-afirmasi" id="_file_afirmasi" name="_file_afirmasi" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_afirmasi', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Kelurahan/Kampung/Desa)')">
                                             <label class="custom-file-label" for="_file_afirmasi"></label>

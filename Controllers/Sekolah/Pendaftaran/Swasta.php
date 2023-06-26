@@ -199,7 +199,7 @@ class Swasta extends BaseController
         }
 
         $dataLib = new Datalib();
-        $canDaftar = $dataLib->canRegister("ZONASI");
+        $canDaftar = $dataLib->canRegister("SWASTA");
 
         if ($canDaftar->code !== 200) {
             return json_encode($canDaftar);
@@ -256,7 +256,7 @@ class Swasta extends BaseController
             $cekRegisterTemp['updated_aproval'] = date('Y-m-d H:i:s');
             $cekRegisterTemp['admin_approval'] = $user->data->id;
             $cekRegisterTemp['status_pendaftaran'] = 1;
-            $cekRegisterTemp['kode_pendaftaran'] = createKodePendaftaran("SWASTA", $cekRegisterTemp['nisn']);
+            // $cekRegisterTemp['kode_pendaftaran'] = createKodePendaftaran("SWASTA", $cekRegisterTemp['nisn']);
 
             $this->_db->transBegin();
             unset($cekRegisterTemp['nisn']);

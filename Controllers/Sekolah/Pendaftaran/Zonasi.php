@@ -270,7 +270,7 @@ class Zonasi extends BaseController
             $cekRegisterTemp['updated_aproval'] = date('Y-m-d H:i:s');
             $cekRegisterTemp['admin_approval'] = $user->data->id;
             $cekRegisterTemp['status_pendaftaran'] = 1;
-            $cekRegisterTemp['kode_pendaftaran'] = createKodePendaftaran("ZONAZI", $cekRegisterTemp['nisn']);
+            // $cekRegisterTemp['kode_pendaftaran'] = createKodePendaftaran("ZONAZI", $cekRegisterTemp['nisn']);
 
             $this->_db->transBegin();
             unset($cekRegisterTemp['nisn']);

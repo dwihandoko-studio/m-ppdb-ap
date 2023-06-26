@@ -228,13 +228,13 @@ class Pengaduan extends BaseController
                         $token = "";
                         $data = [
                             'phone' => '62' . $noHpNya,
-                            'message' => 'hello there',
+                            'message' => 'Balasan pengaduan anda: ' . $komentar,
                         ];
                         curl_setopt(
                             $curl,
                             CURLOPT_HTTPHEADER,
                             array(
-                                "Authorization: $token",
+                                "Authorization: ",
                             )
                         );
                         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");

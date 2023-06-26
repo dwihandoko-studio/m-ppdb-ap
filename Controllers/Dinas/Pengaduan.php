@@ -220,6 +220,36 @@ class Pengaduan extends BaseController
                     $response->error = $th;
                 }
 
+                try {
+                    $noHpNya = $this->replaceAndValidateMobileNumber($posted->no_hp);
+
+                    if ($noHpNya) {
+                        $curl = curl_init();
+                        $token = "";
+                        $data = [
+                            'phone' => '62' . $noHpNya,
+                            'message' => 'hello there',
+                        ];
+                        curl_setopt(
+                            $curl,
+                            CURLOPT_HTTPHEADER,
+                            array(
+                                "Authorization: $token",
+                            )
+                        );
+                        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+                        curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/send-message");
+                        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                        $result = curl_exec($curl);
+                        curl_close($curl);
+                    }
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+
                 $response->code = 200;
                 $response->data = $data;
                 $jumlahKomentar = $this->_db->table('tb_pengaduan_komentar')->where('id_post', $id_post)->countAllResults();
@@ -234,6 +264,18 @@ class Pengaduan extends BaseController
                 return json_encode($response);
             }
         }
+    }
+
+    private function replaceAndValidateMobileNumber($number)
+    {
+        // Validate the mobile number format
+        if (preg_match('/^(?:\+?62|0)[2-9]{1}[0-9]+$/', $number)) {
+            // Replace unwanted characters or prefixes
+            $number = str_replace(['+62', '0'], '', $number);
+            return $number;
+        }
+        // Invalid number
+        return false;
     }
 
     public function close()

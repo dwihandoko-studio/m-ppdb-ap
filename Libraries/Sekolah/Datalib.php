@@ -51,13 +51,13 @@ class Datalib
             $response->message = "Mohon maaf, saat ini proses pengajuan untuk pemetaan Kuota dan Zonasi PPDB telah ditutup.";
             return $response;
         }
-        
+
         $response = new \stdClass;
         $response->code = 200;
         $response->message = "Setting Kuota dan Zonasi PPDB telah dibuka.";
         return $response;
     }
-    
+
     private function verifiCanRegister($setting, $jalur)
     {
         if ($jalur == "ZONASI") {
@@ -137,6 +137,30 @@ class Datalib
 
             $startdate = strtotime($today);
             $enddateAwal = strtotime($setting->tgl_awal_verifikasi_mutasi);
+
+            if ($startdate < $enddateAwal) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Mohon maaf, saat ini proses verifikasi PPDB belum dibuka.";
+                return $response;
+            }
+
+            $enddateAkhir = strtotime($setting->tgl_akhir_verifikasi_mutasi);
+            if ($startdate > $enddateAkhir) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Mohon maaf, saat ini proses verifikasi PPDB telah ditutup.";
+                return $response;
+            }
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "verifikasi PPDB telah dibuka.";
+            return $response;
+        } else if ($jalur == "SWASTA") {
+            $today = date("Y-m-d H:i:s");
+
+            $startdate = strtotime($today);
+            $enddateAwal = strtotime($setting->tgl_awal_verifikasi_afirmasi);
 
             if ($startdate < $enddateAwal) {
                 $response = new \stdClass;

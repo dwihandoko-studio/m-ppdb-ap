@@ -68,17 +68,17 @@ class ProseshasilpesertaModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
-        // $this->dt->where('a.status_pendaftaran', 2);
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->where('a.status_pendaftaran', 2);
+        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         // $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        //     $this->dt->where('a.via_jalur', $filter_jalur);
+        // }
 
-        if ($filter_jenjang != "") {
-            $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
-        }
+        // if ($filter_jenjang != "") {
+        //     $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
+        // }
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -88,34 +88,34 @@ class ProseshasilpesertaModel extends Model
     function count_filtered($filter_jenjang, $filter_jalur)
     {
         $this->_get_datatables_query();
-        // $this->dt->where('a.status_pendaftaran', 2);
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->where('a.status_pendaftaran', 2);
+        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         // $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        //     $this->dt->where('a.via_jalur', $filter_jalur);
+        // }
 
-        if ($filter_jenjang != "") {
-            $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
-        }
+        // if ($filter_jenjang != "") {
+        //     $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
+        // }
 
         return $this->dt->countAllResults();
     }
     public function count_all($filter_jenjang, $filter_jalur)
     {
         $this->_get_datatables_query();
-        // $this->dt->where('a.status_pendaftaran', 2);
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->where('a.status_pendaftaran', 2);
+        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
         // $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        //     $this->dt->where('a.via_jalur', $filter_jalur);
+        // }
 
-        if ($filter_jenjang != "") {
-            $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
-        }
+        // if ($filter_jenjang != "") {
+        //     $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
+        // }
 
         return $this->dt->countAllResults();
     }

@@ -54,7 +54,7 @@ class Hasilpeserta extends BaseController
                         </div>
                     </div>';
             $row[] = $action;
-            $row[] = $no;
+            // $row[] = $no;
 
             $row[] = $list->fullname;
             $row[] = $list->nisn;

@@ -173,7 +173,7 @@ class Swasta extends BaseController
         }
 
         $dataLib = new Datalib();
-        $canDaftar = $dataLib->canRegister();
+        $canDaftar = $dataLib->canRegister('SWASTA');
 
         if ($canDaftar->code !== 200) {
             return json_encode($canDaftar);

@@ -694,7 +694,7 @@
                             </a>
                             <div class="collapse<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' show' : '' ?>" id="navbar-analisis">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "proses") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/proses') ?>">
                                             <span class="sidenav-mini-icon"> P </span>
                                             <span class="sidenav-normal"> Proses </span>
@@ -729,11 +729,17 @@
                                             <span class="sidenav-mini-icon"> PP </span>
                                             <span class="sidenav-normal"> Proses Semua Pendaftar Terdekat </span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "hasil") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/hasil') ?>">
                                             <span class="sidenav-mini-icon"> H </span>
                                             <span class="sidenav-normal"> Hasil </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "hasilpeserta") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/hasilpeserta') ?>">
+                                            <span class="sidenav-mini-icon"> H </span>
+                                            <span class="sidenav-normal"> Hasil Peserta </span>
                                         </a>
                                     </li>
                                 </ul>

@@ -742,6 +742,12 @@
                                             <span class="sidenav-normal"> Hasil Peserta </span>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "hasilpesertagagaldis") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/hasilpesertagagaldis') ?>">
+                                            <span class="sidenav-mini-icon"> H </span>
+                                            <span class="sidenav-normal"> Hasil Peserta Gagal/Diskualifikasi </span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

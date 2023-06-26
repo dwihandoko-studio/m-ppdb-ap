@@ -2481,7 +2481,7 @@ class Auth extends BaseController
 
         $today = date("Y-m-d H:i:s");
         $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
+        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
 
         if ($startdate < $enddateAwal) {
             $response = new \stdClass;
@@ -2490,7 +2490,7 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
+        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
         if ($startdate > $enddateAkhir) {
             $response = new \stdClass;
             $response->code = 400;

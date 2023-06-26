@@ -446,7 +446,7 @@
                                 <?php } ?>
                                 <div class="row">
                                     <div class="col-md-6 _file_prestasi-block" style="padding-top: 10px;">
-                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Dinas Sosial)</h4>
+                                        <h4>Khusus Jalur Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Dinas Sosial)</h4>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input file-afirmasi" id="_file_afirmasi" name="_file_afirmasi" lang="en" accept="application/pdf;image/jpg;image/jpeg;image/png" onchange="loadFilePdf(this, '_file_afirmasi', 'Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Kelurahan/Kampung/Desa)')">
                                             <label class="custom-file-label" for="_file_afirmasi"></label>

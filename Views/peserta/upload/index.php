@@ -165,7 +165,7 @@
                                 <?php } ?>
                                 <div class="row">
                                     <div class="col-md-6 _file_afirmasi-block">
-                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Kelurahan/Kampung/Desa)</h4>
+                                        <h4>Afirmasi (Kartu Jaminan Sosial: PKH / KIP / PIP / KKS / Surat Keterangan Keluarga Prasejahterah dari Dinas Sosial)</h4>
                                         <?php if ($dataUpload->lampiran_afirmasi != null) { ?>
                                             <div class="form-group">
                                                 <div class="input-group">

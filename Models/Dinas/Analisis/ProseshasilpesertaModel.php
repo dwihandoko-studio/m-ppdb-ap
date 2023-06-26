@@ -64,7 +64,7 @@ class ProseshasilpesertaModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filter_jenjang, $filter_jalur, $sekolah_id)
+    function get_datatables($filter_jenjang, $filter_jalur)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
@@ -85,7 +85,7 @@ class ProseshasilpesertaModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filter_jenjang, $filter_jalur, $sekolah_id)
+    function count_filtered($filter_jenjang, $filter_jalur)
     {
         $this->_get_datatables_query();
         // $this->dt->where('a.status_pendaftaran', 2);
@@ -102,7 +102,7 @@ class ProseshasilpesertaModel extends Model
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filter_jenjang, $filter_jalur, $sekolah_id)
+    public function count_all($filter_jenjang, $filter_jalur)
     {
         $this->_get_datatables_query();
         // $this->dt->where('a.status_pendaftaran', 2);

@@ -72,9 +72,9 @@ class ProsessekolahhasilModel extends Model
         // $this->dt->where('a.status_pendaftaran', 2);
         $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        //     $this->dt->where('a.via_jalur', $filter_jalur);
+        // }
 
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
@@ -93,9 +93,9 @@ class ProsessekolahhasilModel extends Model
         // $this->dt->where('a.status_pendaftaran', 2);
         $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        //     $this->dt->where('a.via_jalur', $filter_jalur);
+        // }
 
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);
@@ -111,9 +111,9 @@ class ProsessekolahhasilModel extends Model
         // $this->dt->where('a.status_pendaftaran', 2);
         $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
 
-        if ($filter_jalur != "") {
-            $this->dt->where('a.via_jalur', $filter_jalur);
-        }
+        // if ($filter_jalur != "") {
+        //     $this->dt->where('a.via_jalur', $filter_jalur);
+        // }
 
         if ($filter_jenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filter_jenjang);

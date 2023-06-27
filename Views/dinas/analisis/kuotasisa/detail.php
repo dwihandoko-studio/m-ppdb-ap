@@ -218,8 +218,8 @@
                 "orderable": false,
             }],
             lengthMenu: [
-                [-1, 10, 25, 50, 100, 500, -1],
-                ['All', '10 rows', '25 rows', '50 rows', '100 rows', '500 rows', 'Show all']
+                [10, 25, 50, 100, 500, -1],
+                ['10 rows', '25 rows', '50 rows', '100 rows', '500 rows', 'Show all']
             ],
             dom: 'Blfrtip',
             buttons: [

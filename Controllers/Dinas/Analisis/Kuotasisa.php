@@ -44,6 +44,8 @@ class Kuotasisa extends BaseController
                 $row = [];
 
                 $row[] = $no;
+                $row[] = '<p>' . $list->nama_sekolah . '<br/>' . $list->nama_kecamatan . '</p>';
+                $row[] = $list->npsn;
                 $row[] = ($list->zonasi + $list->afirmasi + $list->mutasi + $list->prestasi);
                 $row[] = (($list->zonasi + $list->afirmasi + $list->mutasi + $list->prestasi) - ($list->diterima_zonasi + $list->diterima_afirmasi + $list->diterima_mutasi + $list->diterima_prestasi + $list->diterima_swasta));
                 $row[] = ($list->diterima_zonasi + $list->diterima_afirmasi + $list->diterima_mutasi + $list->diterima_prestasi + $list->diterima_swasta);

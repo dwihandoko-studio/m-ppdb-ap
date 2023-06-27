@@ -70,10 +70,12 @@
                         <thead>
                             <tr>
                                 <th data-orderable="false">&nbsp;</th>
-                                <th>Jumlah Kuota</th>
-                                <th>Sisa Kuota</th>
-                                <th>Jumlah Diterima</th>
-                                <th>Jumlah Tidak Lolos</th>
+                                <th data-orderable="false">Nama Sekolah</th>
+                                <th data-orderable="false">NPSN</th>
+                                <th data-orderable="false">Jumlah Kuota</th>
+                                <th data-orderable="false">Sisa Kuota</th>
+                                <th data-orderable="false">Jumlah Diterima</th>
+                                <th data-orderable="false">Jumlah Tidak Lolos</th>
                             </tr>
                         </thead>
 

@@ -5,7 +5,7 @@ namespace App\Models\Dinas\Analisis;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\Model;
 
-class ProsesModel extends Model
+class ProseshasilModel extends Model
 {
     protected $table = "_tb_pendaftar a";
     protected $column_order = array('jarak', 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'jarak');

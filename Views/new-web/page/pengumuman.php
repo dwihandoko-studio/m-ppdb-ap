@@ -122,10 +122,10 @@
             cRekapD += ' ) ';
             cRekapD += '</h4><br>';
 
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
+            cRekapD += '<div class="col-md-12"><table cellpadding="7" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
-            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
+            cRekapD += '<th colspan="7" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
             cRekapD += '</tr>';
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
@@ -133,6 +133,7 @@
             cRekapD += '<th style="text-align: left;">Nama</th>';
             cRekapD += '<th>NISN</th>';
             cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
+            cRekapD += '<th style="text-align: left;">Keterangan</th>';
             cRekapD += '<th>Status</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
@@ -141,7 +142,7 @@
             cRekapD += d.tujuan_sekolah_id_1;
             cRekapD += '">';
             cRekapD += '<tr>';
-            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
+            cRekapD += '<td colspan="7" style="text-align: center; align-items: center;">';
             cRekapD += '......LOADING.......';
             cRekapD += '</td>';
             cRekapD += '</tr>';
@@ -325,6 +326,9 @@
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].npsn_sekolah_asal;
                             htmlRekapA += ')';
                             htmlRekapA += '</td>';
+                            htmlRekapA += '<td style="text-align: left;">';
+                            htmlRekapA += msg.data_lolos_afirmasi[steprA].ket;
+                            htmlRekapA += '</td>';
                             htmlRekapA += '<td>';
                             htmlRekapA += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
                             htmlRekapA += '</td>';
@@ -335,7 +339,7 @@
 
                     } else {
                         let htmlRekapA = '<tr>';
-                        htmlRekapA += '<td colspan="6" style="text-align: center; align-items: center;">';
+                        htmlRekapA += '<td colspan="7" style="text-align: center; align-items: center;">';
                         htmlRekapA += 'Tidak ada data.';
                         htmlRekapA += '</td>';
                         htmlRekapA += '</tr>';

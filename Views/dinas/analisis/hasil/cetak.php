@@ -121,6 +121,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                         <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
                         <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
                         <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -146,6 +147,9 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->npsn_sekolah_asal ?>
+                                    </td>
+                                    <td style="font-size: 12px">
+                                        <?= $value->ket ?? "-" ?>
                                     </td>
                                 </tr>
                             <?php

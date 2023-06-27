@@ -250,7 +250,7 @@ class Proses extends BaseController
     {
 
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
-        $dataSekolahs = $this->_db->table('_tb_pendaftar_proses_an a')
+        $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
             ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
@@ -338,7 +338,7 @@ class Proses extends BaseController
 
                 $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
 
-                $zonasiData = $this->_db->table('_tb_pendaftar_proses_an a')
+                $zonasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')

@@ -43,7 +43,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
         <div style="max-width: 100%; padding-left: 10px; padding-right: 8px;">
             <p>
                 DATA PESERTA YANG LULUS PPDB TA. 2023/2024<br>
-                KABUPATEN PESAWARAN<br><br>
+                KABUPATEN LAMPUNG TIMUR<br><br>
                 Satuan Pendidikan : <?= $sekolah->nama ?><br>
                 NPSN : <?= $sekolah->npsn ?></p>
         </div>

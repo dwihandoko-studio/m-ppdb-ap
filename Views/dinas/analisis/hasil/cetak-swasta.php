@@ -40,9 +40,9 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
 <body>
     <div style="border: 2px  dashed #cbd4dd;">
         <div style="max-width: 100%; padding-left: 10px; padding-right: 8px;">
-            <p>LAMPIRAN 1<br>
+            <p>
                 DATA PESERTA YANG LULUS PPDB TA. 2022/2023<br>
-                KABUPATEN PESAWARAN<br><br>
+                KABUPATEN LAMPUNG TIMUR<br><br>
                 Satuan Pendidikan : <?= $sekolah->nama ?><br>
                 NPSN : <?= $sekolah->npsn ?></p>
         </div>

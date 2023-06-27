@@ -736,7 +736,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? '' : ' collapsed' ?>" href="#navbar-hasil" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? 'true' : 'false' ?>" aria-controls="navbar-hasil">
-                                <i class="ni ni-vector" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
+                                <i class="ni ni-chart-bar-32" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>>Hasil</span>
                             </a>
                             <div class="collapse<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' show' : '' ?>" id="navbar-hasil">

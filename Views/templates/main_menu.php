@@ -955,12 +955,12 @@
                                 </ul>
                             </div>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "pengumuman") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('sekolah/pengumuman'); ?>" role="button" aria-expanded="true">
                                 <i class="ni ni-single-copy-04"></i>
                                 <span class="nav-link-text">Pengumuman Peserta</span>
                             </a>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "konfirmasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('sekolah/konfirmasi'); ?>" role="button" aria-expanded="true">
                                 <i class="ni ni-compass-04"></i>

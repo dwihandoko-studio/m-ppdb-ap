@@ -26,20 +26,22 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                            <div class="form-group jalur-block">
-                                                <label for="filter_jalur" class="form-control-label">Pilih Jalur</label>
-                                                <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                    <option value="AFIRMASI" selected>AFIRMASI</option>
-                                                    <option value="ZONASI">ZONASI</option>
-                                                    <option value="MUTASI">MUTASI</option>
-                                                    <option value="PRESTASI">PRESTASI</option>
-                                                    <option value="SWASTA">SWASTA</option>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group kecamatan-block">
+                                                <label for="filter_kecamatan" class="form-control-label">Filter Kecamatan</label>
+                                                <select class="form-control filter-kecamatan" name="filter_kecamatan" id="filter_kecamatan" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <option value="">-- Pilih --</option>
+                                                    <?php if (isset($kecamatans)) {
+                                                        if (count($kecamatans) > 0) {
+                                                            foreach ($kecamatans as $key => $value) {
+                                                                echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
+                                                            }
+                                                        }
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
-                                        </div> -->
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -48,12 +50,12 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="table-responsive" style="background-color: #fff; padding: 12px;border-radius: 5px; margin-top: -8px;">
                             <table class="table table-hover" id="tabelRekapPpdb">
-                                <thead style="border: 1px solid #273581;">
-                                    <tr class="_tampilan-display-inherit">
+                                <thead>
+                                    <tr>
+                                        <th></th>
                                         <th>#</th>
-                                        <th class="_tampilan-display-inherit">NAMA</th>
+                                        <th>NAMA</th>
                                         <th>NPSN</th>
-                                        <th>STATUS SEKOLAH</th>
                                     </tr>
                                 </thead>
 
@@ -79,14 +81,14 @@
     }
 
     function formatAnalisis(d) {
-        if (parseInt(d.status_sekolah_code) === 2) {
+        if (parseInt(d.status_sekolah) === 2) {
             let cRekapD = '<h4>REKAPITULASI LOLOS PPDB ';
             cRekapD += d.nama_sekolah_tujuan;
             cRekapD += ' ( ';
             cRekapD += d.npsn_sekolah_tujuan;
             cRekapD += ' ) ';
             cRekapD += '</h4><br>';
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
+            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR SWASTA ';
@@ -95,15 +97,15 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th style="text-align: left;">Nama</th>';
+            cRekapD += '<th>Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            cRekapD += '<th>Status</th>';
+            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-swasta-';
-            cRekapD += d.tujuan_sekolah_id_1;
+            cRekapD += d.tujuan_sekolah_id;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -111,7 +113,7 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table></div>';
+            cRekapD += '</table>';
 
             return cRekapD;
         } else {
@@ -121,35 +123,7 @@
             cRekapD += d.npsn_sekolah_tujuan;
             cRekapD += ' ) ';
             cRekapD += '</h4><br>';
-
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
-            cRekapD += '<thead>';
-            cRekapD += '<tr>';
-            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
-            cRekapD += '</tr>';
-            cRekapD += '<tr>';
-            cRekapD += '<th>No</th>';
-            cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th style="text-align: left;">Nama</th>';
-            cRekapD += '<th>NISN</th>';
-            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            cRekapD += '<th>Status</th>';
-            // cRekapD +=              '<th>Ranking</th>';
-            cRekapD += '</tr>';
-            cRekapD += '</thead>';
-            cRekapD += '<tbody class="detail-jalur-afirmasi-';
-            cRekapD += d.tujuan_sekolah_id_1;
-            cRekapD += '">';
-            cRekapD += '<tr>';
-            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
-            cRekapD += '......LOADING.......';
-            cRekapD += '</td>';
-            cRekapD += '</tr>';
-            cRekapD += '</tbody>';
-            cRekapD += '</table></div>';
-
-            cRekapD += '<br/>';
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
+            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR ZONASI ';
@@ -158,15 +132,15 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th style="text-align: left;">Nama</th>';
+            cRekapD += '<th>Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            cRekapD += '<th>Status</th>';
+            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-zonasi-';
-            cRekapD += d.tujuan_sekolah_id_1;
+            cRekapD += d.tujuan_sekolah_id;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -174,10 +148,37 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table></div>';
+            cRekapD += '</table>';
 
-            cRekapD += '<br/>';
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
+            cRekapD += '<br>';
+            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
+            cRekapD += '<thead>';
+            cRekapD += '<tr>';
+            cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR AFIRMASI</th>';
+            cRekapD += '</tr>';
+            cRekapD += '<tr>';
+            cRekapD += '<th>No</th>';
+            cRekapD += '<th>Jalur</th>';
+            cRekapD += '<th>Nama</th>';
+            cRekapD += '<th>NISN</th>';
+            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            // cRekapD +=              '<th>Jarak</th>';
+            // cRekapD +=              '<th>Ranking</th>';
+            cRekapD += '</tr>';
+            cRekapD += '</thead>';
+            cRekapD += '<tbody class="detail-jalur-afirmasi-';
+            cRekapD += d.tujuan_sekolah_id;
+            cRekapD += '">';
+            cRekapD += '<tr>';
+            cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
+            cRekapD += '......LOADING.......';
+            cRekapD += '</td>';
+            cRekapD += '</tr>';
+            cRekapD += '</tbody>';
+            cRekapD += '</table>';
+
+            cRekapD += '<br>';
+            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR MUTASI</th>';
@@ -186,15 +187,15 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th style="text-align: left;">Nama</th>';
+            cRekapD += '<th>Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            cRekapD += '<th>Status</th>';
+            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-mutasi-';
-            cRekapD += d.tujuan_sekolah_id_1;
+            cRekapD += d.tujuan_sekolah_id;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -202,10 +203,10 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table></div>';
+            cRekapD += '</table>';
 
             cRekapD += '<br>';
-            cRekapD += '<div class="col-md-12"><table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px; width: 100%;">';
+            cRekapD += '<table cellpadding="6" cellspacing="0" border="1" style="padding-left:50px;">';
             cRekapD += '<thead>';
             cRekapD += '<tr>';
             cRekapD += '<th colspan="6" style="text-align: center; align-items: center;">JALUR PRESTASI</th>';
@@ -214,15 +215,15 @@
             cRekapD += '<tr>';
             cRekapD += '<th>No</th>';
             cRekapD += '<th>Jalur</th>';
-            cRekapD += '<th style="text-align: left;">Nama</th>';
+            cRekapD += '<th>Nama</th>';
             cRekapD += '<th>NISN</th>';
-            cRekapD += '<th style="text-align: left;">Sekolah Asal (NPSN Asal)</th>';
-            cRekapD += '<th>Status</th>';
+            cRekapD += '<th>Sekolah Asal (NPSN Asal)</th>';
+            // cRekapD +=              '<th>Jarak</th>';
             // cRekapD +=              '<th>Ranking</th>';
             cRekapD += '</tr>';
             cRekapD += '</thead>';
             cRekapD += '<tbody class="detail-jalur-prestasi-';
-            cRekapD += d.tujuan_sekolah_id_1;
+            cRekapD += d.tujuan_sekolah_id;
             cRekapD += '">';
             cRekapD += '<tr>';
             cRekapD += '<td colspan="6" style="text-align: center; align-items: center;">';
@@ -230,7 +231,7 @@
             cRekapD += '</td>';
             cRekapD += '</tr>';
             cRekapD += '</tbody>';
-            cRekapD += '</table></div>';
+            cRekapD += '</table>';
 
             return cRekapD;
         }
@@ -259,34 +260,26 @@
                             const numberBer = stepr + 1;
                             htmlRekap += '<tr>';
                             htmlRekap += '<td>';
-                            htmlRekap += msg.data_lolos_zonasi[stepr].rangking;
+                            htmlRekap += numberBer;
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos_zonasi[stepr].via_jalur;
                             htmlRekap += '</td>';
-                            htmlRekap += '<td style="text-align: left;">';
+                            htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos_zonasi[stepr].fullname;
                             htmlRekap += '</td>';
                             htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos_zonasi[stepr].nisn;
                             htmlRekap += '</td>';
-                            htmlRekap += '<td style="text-align: left;">';
+                            htmlRekap += '<td>';
                             htmlRekap += msg.data_lolos_zonasi[stepr].nama_sekolah_asal;
                             htmlRekap += ' (';
                             htmlRekap += msg.data_lolos_zonasi[stepr].npsn_sekolah_asal;
                             htmlRekap += ')';
                             htmlRekap += '</td>';
-                            htmlRekap += '<td>';
-                            // if (msg.data_lolos_zonasi[stepr].pilihan === "1") {
-                            //     htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA VIA PILIHAN 1</span>';
-                            // } else if (msg.data_lolos_zonasi[stepr].pilihan === "2") {
-                            //     htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA VIA PILIHAN 2</span>';
-                            // } else if (msg.data_lolos_zonasi[stepr].pilihan === "3") {
-                            //     htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA VIA PILIHAN 3</span>';
-                            // } else {
-                            htmlRekap += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
-                            // }
-                            htmlRekap += '</td>';
+                            // htmlRekap +=              '<td>';
+                            // htmlRekap +=                  msg.data_lolos_zonasi[stepr].jarak;
+                            // htmlRekap +=              ' Km</td>';
                             htmlRekap += '</tr>';
                         }
 
@@ -308,26 +301,26 @@
                             const numberBerA = steprA + 1;
                             htmlRekapA += '<tr>';
                             htmlRekapA += '<td>';
-                            htmlRekapA += msg.data_lolos_afirmasi[steprA].rangking;
+                            htmlRekapA += numberBerA;
                             htmlRekapA += '</td>';
                             htmlRekapA += '<td>';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].via_jalur;
                             htmlRekapA += '</td>';
-                            htmlRekapA += '<td style="text-align: left;">';
+                            htmlRekapA += '<td>';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].fullname;
                             htmlRekapA += '</td>';
                             htmlRekapA += '<td>';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].nisn;
                             htmlRekapA += '</td>';
-                            htmlRekapA += '<td style="text-align: left;">';
+                            htmlRekapA += '<td>';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].nama_sekolah_asal;
                             htmlRekapA += ' (';
                             htmlRekapA += msg.data_lolos_afirmasi[steprA].npsn_sekolah_asal;
                             htmlRekapA += ')';
                             htmlRekapA += '</td>';
-                            htmlRekapA += '<td>';
-                            htmlRekapA += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
-                            htmlRekapA += '</td>';
+                            // htmlRekapA +=              '<td>';
+                            // htmlRekapA +=                  msg.data_lolos_afirmasi[steprA].jarak;
+                            // htmlRekapA +=              ' Km</td>';
                             htmlRekapA += '</tr>';
                         }
 
@@ -349,26 +342,26 @@
                             const numberBerAB = steprAB + 1;
                             htmlRekapAB += '<tr>';
                             htmlRekapAB += '<td>';
-                            htmlRekapAB += msg.data_lolos_mutasi[steprAB].rangking;
+                            htmlRekapAB += numberBerAB;
                             htmlRekapAB += '</td>';
                             htmlRekapAB += '<td>';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].via_jalur;
                             htmlRekapAB += '</td>';
-                            htmlRekapAB += '<td style="text-align: left;">';
+                            htmlRekapAB += '<td>';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].fullname;
                             htmlRekapAB += '</td>';
                             htmlRekapAB += '<td>';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].nisn;
                             htmlRekapAB += '</td>';
-                            htmlRekapAB += '<td style="text-align: left;">';
+                            htmlRekapAB += '<td>';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].nama_sekolah_asal;
                             htmlRekapAB += ' (';
                             htmlRekapAB += msg.data_lolos_mutasi[steprAB].npsn_sekolah_asal;
                             htmlRekapAB += ')';
                             htmlRekapAB += '</td>';
-                            htmlRekapAB += '<td>';
-                            htmlRekapAB += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
-                            htmlRekapAB += '</td>';
+                            // htmlRekapAB +=              '<td>';
+                            // htmlRekapAB +=                  msg.data_lolos_mutasi[steprAB].jarak;
+                            // htmlRekapAB +=              ' Km</td>';
                             htmlRekapAB += '</tr>';
                         }
 
@@ -390,26 +383,26 @@
                             const numberBerABC = steprABC + 1;
                             htmlRekapABC += '<tr>';
                             htmlRekapABC += '<td>';
-                            htmlRekapABC += msg.data_lolos_prestasi[steprABC].rangking;
+                            htmlRekapABC += numberBerABC;
                             htmlRekapABC += '</td>';
                             htmlRekapABC += '<td>';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].via_jalur;
                             htmlRekapABC += '</td>';
-                            htmlRekapABC += '<td style="text-align: left;">';
+                            htmlRekapABC += '<td>';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].fullname;
                             htmlRekapABC += '</td>';
                             htmlRekapABC += '<td>';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].nisn;
                             htmlRekapABC += '</td>';
-                            htmlRekapABC += '<td style="text-align: left;">';
+                            htmlRekapABC += '<td>';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].nama_sekolah_asal;
                             htmlRekapABC += ' (';
                             htmlRekapABC += msg.data_lolos_prestasi[steprABC].npsn_sekolah_asal;
                             htmlRekapABC += ')';
                             htmlRekapABC += '</td>';
-                            htmlRekapABC += '<td>';
-                            htmlRekapABC += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
-                            htmlRekapABC += '</td>';
+                            // htmlRekapABC +=              '<td>';
+                            // htmlRekapABC +=                  msg.data_lolos_prestasi[steprABC].jarak;
+                            // htmlRekapABC +=              ' Km</td>';
                             htmlRekapABC += '</tr>';
                         }
 
@@ -451,45 +444,44 @@
                     console.log(msg.message);
                 } else {
                     if (msg.data_lolos.length > 0) {
-                        let htmlRekapSwas = "";
-                        for (let steprswas = 0; steprswas < msg.data_lolos.length; steprswas++) {
-                            const numberBerSwas = steprswas + 1;
-                            // console.log(msg.data_lolos[steprswas].fullname);
-                            htmlRekapSwas += '<tr>';
-                            htmlRekapSwas += '<td>';
-                            htmlRekapSwas += data_lolos[steprswas].rangking;
-                            htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '<td>';
-                            htmlRekapSwas += msg.data_lolos[steprswas].via_jalur;
-                            htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '<td style="text-align: left;">';
-                            htmlRekapSwas += msg.data_lolos[steprswas].fullname;
-                            htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '<td>';
-                            htmlRekapSwas += msg.data_lolos[steprswas].nisn;
-                            htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '<td style="text-align: left;">';
-                            htmlRekapSwas += msg.data_lolos[steprswas].nama_sekolah_asal;
-                            htmlRekapSwas += ' (';
-                            htmlRekapSwas += msg.data_lolos[steprswas].npsn_sekolah_asal;
-                            htmlRekapSwas += ')';
-                            htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '<td>';
-                            htmlRekapSwas += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';
-                            htmlRekapSwas += '</td>';
-                            htmlRekapSwas += '</tr>';
+                        let htmlRekap = "";
+                        for (let stepr = 0; stepr < msg.data_lolos.length; stepr++) {
+                            const numberBer = stepr + 1;
+                            htmlRekap += '<tr>';
+                            htmlRekap += '<td>';
+                            htmlRekap += numberBer;
+                            htmlRekap += '</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_lolos[stepr].via_jalur;
+                            htmlRekap += '</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_lolos[stepr].fullname;
+                            htmlRekap += '</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_lolos[stepr].nisn;
+                            htmlRekap += '</td>';
+                            htmlRekap += '<td>';
+                            htmlRekap += msg.data_lolos[stepr].nama_sekolah_asal;
+                            htmlRekap += ' (';
+                            htmlRekap += msg.data_lolos[stepr].npsn_sekolah_asal;
+                            htmlRekap += ')';
+                            htmlRekap += '</td>';
+                            // htmlRekap +=              '<td>';
+                            // htmlRekap +=                  msg.data_lolos_zonasi[stepr].jarak;
+                            // htmlRekap +=              ' Km</td>';
+                            htmlRekap += '</tr>';
                         }
 
-                        $('.detail-jalur-swasta-' + event).html(htmlRekapSwas);
+                        $('.detail-jalur-swasta-' + event).html(htmlRekap);
 
                     } else {
-                        let htmlRekapSwas = '<tr>';
-                        htmlRekapSwas += '<td colspan="6" style="text-align: center; align-items: center;">';
-                        htmlRekapSwas += 'Tidak ada data.';
-                        htmlRekapSwas += '</td>';
-                        htmlRekapSwas += '</tr>';
+                        let htmlRekap = '<tr>';
+                        htmlRekap += '<td colspan="6" style="text-align: center; align-items: center;">';
+                        htmlRekap += 'Tidak ada data.';
+                        htmlRekap += '</td>';
+                        htmlRekap += '</tr>';
 
-                        $('.detail-jalur-swasta-' + event).html(htmlRekapSwas);
+                        $('.detail-jalur-swasta-' + event).html(htmlRekap);
                     }
                 }
             },
@@ -502,7 +494,7 @@
 
     $(document).ready(function() {
         loadedAll = true;
-        initSelect2('filter_jalur');
+        initSelect2('filter_kecamatan');
         initSelect2('filter_jenjang');
 
         let tableRekapitulasiSekolah = $('#tabelRekapPpdb').DataTable({
@@ -513,7 +505,7 @@
                 "url": "<?= base_url('web/pengumuman/getPengumuman') ?>",
                 "type": "POST",
                 "data": function(data) {
-                    // data.filter_jalur = $('#filter_jalur').val();
+                    data.filter_kecamatan = $('#filter_kecamatan').val();
                     data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },
@@ -525,23 +517,20 @@
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
             },
             'columns': [{
-                    className: 'dt-control  _tampilan-display-inherit',
+                    orderable: false,
+                    data: 'no',
+                },
+                {
+                    className: 'dt-control',
                     orderable: false,
                     data: 'aksi',
                     defaultContent: '',
                 },
                 {
-                    className: '_tampilan-display-inherit',
-                    data: 'nama_sekolah_tujuan',
-                    orderable: false,
+                    data: 'nama_sekolah_tujuan'
                 },
                 {
-                    data: 'npsn_sekolah_tujuan',
-                    orderable: false,
-                },
-                {
-                    data: 'status_sekolah',
-                    orderable: false,
+                    data: 'npsn_sekolah_tujuan'
                 },
                 // { defaultContent: '', }, 
                 // { defaultContent: '', }, 
@@ -574,9 +563,9 @@
             tableRekapitulasiSekolah.draw();
         });
 
-        // $('#filter_jalur').change(function() {
-        //     tableRekapitulasiSekolah.draw();
-        // });
+        $('#filter_kecamatan').change(function() {
+            tableRekapitulasiSekolah.draw();
+        });
 
     });
 </script>
@@ -585,9 +574,4 @@
 <?= $this->section('scriptTop'); ?>
 <link rel="stylesheet" href="<?= base_url('new-assets') ?>/assets/vendor/select2/dist/css/select2.min.css">
 <link rel="stylesheet" href="<?= base_url('new-assets'); ?>/assets/DataTables/datatables.css" type="text/css">
-<style>
-    ._tampilan-display-inherit {
-        vertical-align: inherit !important;
-    }
-</style>
 <?= $this->endSection(); ?>

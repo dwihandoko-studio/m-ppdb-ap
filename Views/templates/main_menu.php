@@ -1064,13 +1064,13 @@
                             </a>
                             <div class="collapse<?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat") ? ' show' : '' ?>" id="navbar-riwayat">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat"  && $uri->getSegment(3) == "pendaftaran") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('peserta/riwayat/pendaftaran') ?>">
                                             <span class="sidenav-mini-icon"> RP </span>
                                             <i class="ni ni-bullet-list-67"></i>
                                             <span class="sidenav-normal"> Riwayat Pendaftaran </span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat"  && $uri->getSegment(3) == "aktifitas") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('peserta/riwayat/aktifitas') ?>">
                                             <span class="sidenav-mini-icon"> RA </span>

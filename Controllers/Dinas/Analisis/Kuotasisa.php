@@ -71,7 +71,7 @@ class Kuotasisa extends BaseController
         }
     }
 
-    public function getAll()
+    public function getAllDetail()
     {
         $request = Services::request();
         $datamodel = new ProsesModel($request);

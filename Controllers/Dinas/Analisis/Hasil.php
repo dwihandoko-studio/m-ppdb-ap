@@ -155,7 +155,7 @@ class Hasil extends BaseController
 
         $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
 
-        return view('dinas/analisis/proseshasil/sekolah', $data);
+        return view('dinas/analisis/hasil/sekolah', $data);
     }
 
     public function sekolah()
@@ -174,7 +174,7 @@ class Hasil extends BaseController
         $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
         $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
 
-        return view('dinas/analisis/proseshasil/index', $data);
+        return view('dinas/analisis/hasil/index', $data);
     }
 
     public function getAllProses()

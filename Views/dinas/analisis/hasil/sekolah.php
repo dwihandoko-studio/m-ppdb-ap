@@ -207,7 +207,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('dinas/analisis/proseshasil/getAllSekolah') ?>",
+                "url": "<?= base_url('dinas/analisis/hasil/getAllSekolah') ?>",
                 "type": "POST",
                 // "data": function(data) {
                 //     data.filter_jalur = $('#filter_jalur').val();

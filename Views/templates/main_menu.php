@@ -649,13 +649,12 @@
                                             <span class="sidenav-normal"> Ditolak </span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "proses") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/proses') ?>">
                                             <span class="sidenav-mini-icon"> P </span>
-                                            <!--<i class="">X</i>-->
                                             <span class="sidenav-normal"> Proses </span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </li>
@@ -735,23 +734,23 @@
                                 </ul>
                             </div>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? '' : ' collapsed' ?>" href="#navbar-analisis" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? 'true' : 'false' ?>" aria-controls="navbar-analisis">
+                        <li class="nav-item">
+                            <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? '' : ' collapsed' ?>" href="#navbar-hasil" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? 'true' : 'false' ?>" aria-controls="navbar-hasil">
                                 <i class="ni ni-vector" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
-                                <span class="nav-link-text" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>>Analisis</span>
+                                <span class="nav-link-text" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' style="color: #00BCD4 !important"' : '' ?>>Hasil</span>
                             </a>
-                            <div class="collapse<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' show' : '' ?>" id="navbar-analisis">
+                            <div class="collapse<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis") ? ' show' : '' ?>" id="navbar-hasil">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan"  && $uri->getSegment(3) == "sd") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/proses') ?>">
+                                        <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "analisis"  && $uri->getSegment(3) == "kuotasisa") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/analisis/kuotasisa') ?>">
                                             <span class="sidenav-mini-icon"> P </span>
                                             <i class="ni ni-app"></i>
-                                            <span class="sidenav-normal"> Rekap </span>
+                                            <span class="sidenav-normal"> Kuota </span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('dinas/pengaduan'); ?>" role="button" aria-expanded="true">
                                 <i class="ni ni-headphones" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pengaduan") ? ' style="color: #00BCD4 !important"' : '' ?>></i>

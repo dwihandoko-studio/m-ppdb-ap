@@ -112,11 +112,11 @@ class Hasil extends BaseController
                         <span>&nbsp;&nbsp;Aksi&nbsp;&nbsp;</span>
                     </div>
                     <div class="dropdown-menu">
-                        <a target="_blank" href="' . base_url('dinas/analisis/proses/sekolah') . '?token=' . $list->tujuan_sekolah_id_id . '" class="btn btn-primary btn-sm">
+                        <a target="_blank" href="' . base_url('dinas/analisis/proses/sekolah') . '?token=' . $list->tujuan_sekolah_id_1 . '" class="btn btn-primary btn-sm">
                             <i class="fa fa-eye"></i>
                             <span>Detail</span>
                         </a>
-                        <a target="_blank" href="' . base_url('dinas/analisis/proses/download') . '?token=' . $list->tujuan_sekolah_id_id . '" class="btn btn-primary btn-sm">
+                        <a target="_blank" href="' . base_url('dinas/analisis/proses/download') . '?token=' . $list->tujuan_sekolah_id_1 . '" class="btn btn-primary btn-sm">
                             <i class="fa fa-eye"></i>
                             <span>Download Hasil</span>
                         </a>

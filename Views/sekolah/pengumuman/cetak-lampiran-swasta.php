@@ -1,19 +1,20 @@
 <?php ob_start();
 // var_dump(FCPATH . "temp/");die;
-include APPPATH . "Libraries/phpqrcode/qrlib.php";
+// include APPPATH . "Libraries/phpqrcode/qrlib.php";
 // session_start();
-$tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
+// $tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
 // if (!file_exists($tempdir)) //Buat folder bername temp
 // 	mkdir($tempdir);
 
 //isi qrcode jika di scan
 // $siswa = json_decode($data->details);
-$codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $sekolah->id;
+// $codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $sekolah->id;
 
 //simpan file kedalam temp
 //nilai konfigurasi Frame di bawah 4 tidak direkomendasikan
 
-QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
+// QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
+$qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . base_url('web/pengumuman') . '?sekolah=' . $sekolah->id . '&choe=UTF-8'));
 
 ?>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">

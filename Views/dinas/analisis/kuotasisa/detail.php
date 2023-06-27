@@ -57,6 +57,7 @@
                             <thead>
                                 <tr>
                                     <th data-orderable="false">&nbsp;</th>
+                                    <th>Status</th>
                                     <th>Nama Pendaftarn</th>
                                     <th>NISN</th>
                                     <th>Jalur PPDB</th>

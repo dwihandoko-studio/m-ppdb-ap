@@ -89,6 +89,12 @@ class Kuotasisa extends BaseController
             $no++;
             $row = [];
             $row[] = $no;
+            if ((int)$list->status_pendaftaran == 2) {
+                $status = '<span class="badge badge-success">Lolos</span>';
+            } else {
+                $status = '<span class="badge badge-danger">Tidak Lolos</span>';
+            }
+            $row[] = $status;
             $row[] = $list->fullname;
             $row[] = $list->nisn;
             $row[] = $list->via_jalur;

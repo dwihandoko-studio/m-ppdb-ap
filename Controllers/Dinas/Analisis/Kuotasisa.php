@@ -43,7 +43,7 @@ class Kuotasisa extends BaseController
                 $no++;
                 $row = [];
                 $action = '
-                            <a target="_blank" href="' . base_url('dinas/analisis/kuotasisa/detail') . '?token=' . $list->tujuan_sekolah_id . '" class="btn btn-primary btn-sm">
+                            <a target="_blank" href="' . base_url('dinas/analisis/kuotasisa/detail') . '?token=' . $list->sekolah_id . '" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i>
                             </a>';
 

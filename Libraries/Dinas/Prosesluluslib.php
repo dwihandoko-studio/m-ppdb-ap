@@ -15,6 +15,20 @@ class Prosesluluslib
         $this->_db      = \Config\Database::connect();
     }
 
+    public function prosesLulusAfirmasiSisa($data)
+    {
+        if (count($data) > 0) {
+            foreach ($data as $key => $value) {
+                $number = $value->jumlah_lolo_afirmasi;
+                $this->luluskanASisa($value->id_pendaftaran, $number + ($key + 1));
+            }
+
+            return true;
+        }
+
+        return true;
+    }
+
     public function prosesLulusAfirmasi($data)
     {
         if (count($data) > 0) {
@@ -80,12 +94,20 @@ class Prosesluluslib
         return true;
     }
 
-    private function luluskanA($id, $urut)
+    private function luluskanASisa($id, $urut)
     {
         return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
             'status_pendaftaran' => 2,
             'rangking' => $urut,
             'ket' => "tambahan kuota dari sisa zonasi.",
+        ]);
+    }
+
+    private function luluskanA($id, $urut)
+    {
+        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
+            'status_pendaftaran' => 2,
+            'rangking' => $urut,
         ]);
     }
 

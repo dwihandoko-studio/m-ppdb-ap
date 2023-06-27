@@ -4,8 +4,7 @@ namespace App\Controllers\Dinas\Analisis;
 
 use App\Controllers\BaseController;
 use App\Models\Dinas\Analisis\KuotapendaftaranModel;
-use App\Models\Dinas\Analisis\ProsessekolahhasilModel;
-use App\Models\Dinas\Analisis\ProsessekolahproseshasilModel;
+use App\Models\Dinas\Analisis\KuotapendaftarandetailModel;
 use Config\Services;
 
 use App\Libraries\Profilelib;
@@ -75,7 +74,7 @@ class Kuotasisa extends BaseController
     public function getAllDetail()
     {
         $request = Services::request();
-        $datamodel = new ProsesModel($request);
+        $datamodel = new KuotapendaftarandetailModel($request);
 
 
         $filterJenjang = htmlspecialchars($request->getVar('filter_jenis'), true) ?? "";

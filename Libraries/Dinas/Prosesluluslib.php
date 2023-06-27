@@ -67,6 +67,19 @@ class Prosesluluslib
         return true;
     }
 
+    public function prosesLulusSwasta($data)
+    {
+        if (count($data) > 0) {
+            foreach ($data as $key => $value) {
+                $this->luluskanS($value->id_pendaftaran);
+            }
+
+            return true;
+        }
+
+        return true;
+    }
+
     private function luluskanA($id)
     {
         return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
@@ -83,6 +96,11 @@ class Prosesluluslib
     }
 
     private function luluskanZ($id)
+    {
+        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
+    }
+
+    private function luluskanS($id)
     {
         return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
     }

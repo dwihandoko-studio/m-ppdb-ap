@@ -77,11 +77,10 @@ class Kuotasisa extends BaseController
         $datamodel = new KuotapendaftarandetailModel($request);
 
 
-        $filterJenjang = htmlspecialchars($request->getVar('filter_jenis'), true) ?? "";
-        $filterJalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
+        $filterJenis = htmlspecialchars($request->getVar('filter_jenis'), true) ?? "";
         $sekolah_id = htmlspecialchars($request->getVar('sekolah_id'), true) ?? "";
 
-        $lists = $datamodel->get_datatables($filterJenjang, $filterJalur, $sekolah_id);
+        $lists = $datamodel->get_datatables($filterJenis, $sekolah_id);
         // $lists = [];
         $data = [];
         $no = $request->getPost("start");
@@ -107,8 +106,8 @@ class Kuotasisa extends BaseController
             "draw" => $request->getPost('draw'),
             // "recordsTotal" => 0,
             // "recordsFiltered" => 0,
-            "recordsTotal" => $datamodel->count_all($filterJenjang, $filterJalur, $sekolah_id),
-            "recordsFiltered" => $datamodel->count_filtered($filterJenjang, $filterJalur, $sekolah_id),
+            "recordsTotal" => $datamodel->count_all($filterJenis, $sekolah_id),
+            "recordsFiltered" => $datamodel->count_filtered($filterJenis, $sekolah_id),
             "data" => $data
         ];
         echo json_encode($output);

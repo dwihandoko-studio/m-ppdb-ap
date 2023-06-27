@@ -343,7 +343,7 @@ class Proses extends BaseController
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
                     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_id)
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'ZONASI')
                     ->orderBy('jarak', 'ASC')

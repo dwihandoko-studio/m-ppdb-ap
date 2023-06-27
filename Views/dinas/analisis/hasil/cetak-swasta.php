@@ -67,7 +67,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                             foreach ($data_lolos as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>

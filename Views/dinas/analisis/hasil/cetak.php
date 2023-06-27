@@ -68,7 +68,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                             foreach ($data_lolos_zonasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>
@@ -130,7 +130,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                             foreach ($data_lolos_afirmasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>
@@ -187,7 +187,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                             foreach ($data_lolos_mutasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>
@@ -244,7 +244,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                             foreach ($data_lolos_prestasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>

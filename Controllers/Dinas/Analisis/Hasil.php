@@ -414,7 +414,7 @@ class Hasil extends BaseController
                 ->orderBy('a.rangking', 'ASC')
                 // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->afirmasi)
+                // ->limit((int)$kuota->afirmasi)
                 ->get()->getResult();
 
             $mutasiData = $this->_db->table('_tb_pendaftar a')
@@ -428,7 +428,7 @@ class Hasil extends BaseController
                 // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.rangking', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->mutasi)
+                // ->limit((int)$kuota->mutasi)
                 ->get()->getResult();
 
             $prestasiData = $this->_db->table('_tb_pendaftar a')
@@ -442,7 +442,7 @@ class Hasil extends BaseController
                 ->orderBy('a.rangking', 'ASC')
                 // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->prestasi)
+                // ->limit((int)$kuota->prestasi)
                 ->get()->getResult();
 
             $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
@@ -467,7 +467,7 @@ class Hasil extends BaseController
                 ->orderBy('a.rangking', 'ASC')
                 // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit($limitZonasi)
+                // ->limit($limitZonasi)
                 ->get()->getResult();
 
             $data['data_lolos_zonasi'] = $zonasiData;

@@ -149,7 +149,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                                         <?= $value->npsn_sekolah_asal ?>
                                     </td>
                                     <td style="font-size: 12px">
-                                        <?= $value->ket ?? "-" ?>
+                                        <?= $value->ket ?>
                                     </td>
                                 </tr>
                             <?php

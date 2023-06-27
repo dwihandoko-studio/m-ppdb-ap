@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 class DiverifikasiModel extends Model
 {
     protected $table = "_tb_pendaftar a";
-    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'c.npsn');
+    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', null, null);
     protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'a.kode_pendaftaran');
-    protected $order = array('b.fullname' => 'asc', 'c.nama' => 'asc');
+    protected $order = array('a.created_at' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -26,11 +26,11 @@ class DiverifikasiModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,d.latitude,d.longitude), 2) AS jarak, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
+        $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
-        $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
+        // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
         $this->dt->join('ref_sekolah d', 'a.tujuan_sekolah_id_1 = d.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
@@ -66,7 +66,7 @@ class DiverifikasiModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->whereIn('a.status_pendaftaran', [1, 2, 3]);
 
         if ($filterJalur != "") {
             $this->dt->where('a.via_jalur', $filterJalur);
@@ -89,7 +89,7 @@ class DiverifikasiModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->whereIn('a.status_pendaftaran', [1, 2, 3]);
 
         if ($filterJalur != "") {
             $this->dt->where('a.via_jalur', $filterJalur);
@@ -108,7 +108,7 @@ class DiverifikasiModel extends Model
     public function count_all($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->whereIn('a.status_pendaftaran', [1, 2, 3]);
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
 
         if ($filterJalur != "") {

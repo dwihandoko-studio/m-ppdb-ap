@@ -465,7 +465,7 @@
                             // console.log(msg.data_lolos[steprswas].fullname);
                             htmlRekapSwas += '<tr>';
                             htmlRekapSwas += '<td>';
-                            htmlRekapSwas += data_lolos[steprswas].rangking;
+                            htmlRekapSwas += msg.data_lolos[steprswas].rangking;
                             htmlRekapSwas += '</td>';
                             htmlRekapSwas += '<td>';
                             htmlRekapSwas += msg.data_lolos[steprswas].via_jalur;

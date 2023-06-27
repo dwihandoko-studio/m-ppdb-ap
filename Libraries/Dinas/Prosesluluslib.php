@@ -19,7 +19,7 @@ class Prosesluluslib
     {
         if (count($data) > 0) {
             foreach ($data as $key => $value) {
-                $this->luluskanA($value->id_pendaftaran);
+                $this->luluskanA($value->id_pendaftaran, $key + 1);
             }
 
             return true;
@@ -32,7 +32,7 @@ class Prosesluluslib
     {
         if (count($data) > 0) {
             foreach ($data as $key => $value) {
-                $this->luluskanM($value->id_pendaftaran);
+                $this->luluskanM($value->id_pendaftaran, $key + 1);
             }
 
             return true;
@@ -45,7 +45,7 @@ class Prosesluluslib
     {
         if (count($data) > 0) {
             foreach ($data as $key => $value) {
-                $this->luluskanP($value->id_pendaftaran);
+                $this->luluskanP($value->id_pendaftaran, $key + 1);
             }
 
             return true;
@@ -58,7 +58,7 @@ class Prosesluluslib
     {
         if (count($data) > 0) {
             foreach ($data as $key => $value) {
-                $this->luluskanZ($value->id_pendaftaran);
+                $this->luluskanZ($value->id_pendaftaran, $key + 1);
             }
 
             return true;
@@ -71,7 +71,7 @@ class Prosesluluslib
     {
         if (count($data) > 0) {
             foreach ($data as $key => $value) {
-                $this->luluskanS($value->id_pendaftaran);
+                $this->luluskanS($value->id_pendaftaran, $key + 1);
             }
 
             return true;
@@ -80,29 +80,44 @@ class Prosesluluslib
         return true;
     }
 
-    private function luluskanA($id)
+    private function luluskanA($id, $urut)
     {
-        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
+        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
+            'status_pendaftaran' => 2,
+            'rangking' => $urut
+        ]);
     }
 
-    private function luluskanM($id)
+    private function luluskanM($id, $urut)
     {
-        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
+        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
+            'status_pendaftaran' => 2,
+            'rangking' => $urut
+        ]);
     }
 
-    private function luluskanP($id)
+    private function luluskanP($id, $urut)
     {
-        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
+        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
+            'status_pendaftaran' => 2,
+            'rangking' => $urut
+        ]);
     }
 
-    private function luluskanZ($id)
+    private function luluskanZ($id, $urut)
     {
-        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
+        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
+            'status_pendaftaran' => 2,
+            'rangking' => $urut
+        ]);
     }
 
-    private function luluskanS($id)
+    private function luluskanS($id, $urut)
     {
-        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update(['status_pendaftaran' => 2]);
+        return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
+            'status_pendaftaran' => 2,
+            'rangking' => $urut
+        ]);
     }
 
 

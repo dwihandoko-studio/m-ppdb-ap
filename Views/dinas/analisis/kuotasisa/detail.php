@@ -52,20 +52,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive" style="margin-top: 0px;">
-                    <table id="data-table-id" class="table align-items-center table-flush">
-                        <thead>
-                            <tr>
-                                <th data-orderable="false">&nbsp;</th>
-                                <th>Nama Pendaftarn</th>
-                                <th>NISN</th>
-                                <th>Jalur PPDB</th>
-                                <th>Jarak (Km)</th>
-                                <th>Sekolah Asal</th>
-                            </tr>
-                        </thead>
+                <div class="card-body">
+                    <div class="table-responsive" style="margin-top: 0px;">
+                        <table id="data-table-id" class="table align-items-center table-flush">
+                            <thead>
+                                <tr>
+                                    <th data-orderable="false">&nbsp;</th>
+                                    <th>Nama Pendaftarn</th>
+                                    <th>NISN</th>
+                                    <th>Jalur PPDB</th>
+                                    <th>Jarak (Km)</th>
+                                    <th>Sekolah Asal</th>
+                                </tr>
+                            </thead>
 
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

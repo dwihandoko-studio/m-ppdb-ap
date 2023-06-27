@@ -64,23 +64,25 @@
                                 </div> -->
                         </div>
                     </div>
-                </div>
-                <div class="table-responsive" style="margin-top: 0px;">
-                    <table id="data-table-id" class="table align-items-center table-flush">
-                        <thead>
-                            <tr>
-                                <th data-orderable="false">&nbsp;</th>
-                                <th data-orderable="false">Nama Sekolah</th>
-                                <th data-orderable="false">NPSN</th>
-                                <th data-orderable="false">Jumlah Kuota</th>
-                                <th data-orderable="false">Sisa Kuota</th>
-                                <th data-orderable="false">Jumlah Diterima</th>
-                                <th data-orderable="false">Jumlah Tidak Lolos</th>
-                                <th data-orderable="false">Jumlah Pendaftar Terverifikasi</th>
-                            </tr>
-                        </thead>
+                    <div class="card-body">
+                        <div class="table-responsive" style="margin-top: 0px;">
+                            <table id="data-table-id" class="table align-items-center table-flush">
+                                <thead>
+                                    <tr>
+                                        <th data-orderable="false">&nbsp;</th>
+                                        <th data-orderable="false">Nama Sekolah</th>
+                                        <th data-orderable="false">NPSN</th>
+                                        <th data-orderable="false">Jumlah Kuota</th>
+                                        <th data-orderable="false">Sisa Kuota</th>
+                                        <th data-orderable="false">Jumlah Diterima</th>
+                                        <th data-orderable="false">Jumlah Tidak Lolos</th>
+                                        <th data-orderable="false">Jumlah Pendaftar Terverifikasi</th>
+                                    </tr>
+                                </thead>
 
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

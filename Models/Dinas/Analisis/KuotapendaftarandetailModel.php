@@ -31,7 +31,7 @@ class KuotapendaftarandetailModel extends Model
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
         $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT');
+        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
         // $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');
@@ -69,7 +69,7 @@ class KuotapendaftarandetailModel extends Model
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
         // $this->dt->where('a.status_pendaftaran', 2);
-        $this->dt->where('a.tujuan_sekolah_id', $sekolah_id);
+        $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
         if ($filter_jenis != "") {
             $this->dt->where('a.status_pendaftaran', $filter_jenis);
@@ -84,7 +84,7 @@ class KuotapendaftarandetailModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where('a.status_pendaftaran', 2);
-        $this->dt->where('a.tujuan_sekolah_id', $sekolah_id);
+        $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
         if ($filter_jenis != "") {
             $this->dt->where('a.status_pendaftaran', $filter_jenis);
@@ -96,7 +96,7 @@ class KuotapendaftarandetailModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where('a.status_pendaftaran', 2);
-        $this->dt->where('a.tujuan_sekolah_id', $sekolah_id);
+        $this->dt->where('a.tujuan_sekolah_id_1', $sekolah_id);
 
         if ($filter_jenis != "") {
             $this->dt->where('a.status_pendaftaran', $filter_jenis);

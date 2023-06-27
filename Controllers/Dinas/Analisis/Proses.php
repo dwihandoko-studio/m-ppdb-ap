@@ -374,11 +374,11 @@ class Proses extends BaseController
                 //     ->limit($limitZonasi)
                 //     ->get()->getResult();
 
-                $lulusLib = new Prosesluluslib();
+                // $lulusLib = new Prosesluluslib();
 
-                if (count($afirmasiData) > 0) {
-                    $lulusLib->prosesLulusAfirmasi($afirmasiData);
-                }
+                // if (count($afirmasiData) > 0) {
+                //     $lulusLib->prosesLulusAfirmasi($afirmasiData);
+                // }
 
                 // if (count($mutasiData) > 0) {
                 //     $lulusLib->prosesLulusMutasi($mutasiData);

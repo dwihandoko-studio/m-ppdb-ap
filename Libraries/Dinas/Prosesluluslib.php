@@ -84,7 +84,8 @@ class Prosesluluslib
     {
         return $data = $this->_db->table('_tb_pendaftar')->where('id', $id)->update([
             'status_pendaftaran' => 2,
-            'rangking' => $urut
+            'rangking' => $urut,
+            'ket' => "tambahan kuota dari sisa zonasi.",
         ]);
     }
 

@@ -281,75 +281,94 @@ class Proses extends BaseController
                     continue;
                 }
 
-                // $
+                $totalKuota = (int)$kuota->zonasi + (int)$kuota->mutasi + (int)$kuota->afirmasi + (int)$kuota->prestasi;
+
+                $jumlahLolos = $this->_db->table('_tb_pendaftar a')
+                    ->select("b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
+                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                    ->where('a.status_pendaftaran', 2)->countAllResults();
+
+                if ($jumlahLolos < $totalKuota) {
+
+                    $limitNextAfirm = $totalKuota - $jumlahLolos;
+
+                    $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+
+                    $afirmasiData = $this->_db->table('_tb_pendaftar a')
+                        ->select($select)
+                        ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                        ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                        ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                        ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                        ->where('a.status_pendaftaran', 1)
+                        ->where('a.via_jalur', 'AFIRMASI')
+                        ->orderBy('jarak', 'ASC')
+                        ->orderBy('a.created_at', 'ASC')
+                        ->limit($limitNextAfirm)
+                        ->get()->getResult();
+
+
+                    $lulusLib = new Prosesluluslib();
+
+                    if (count($afirmasiData) > 0) {
+                        $lulusLib->prosesLulusAfirmasi($afirmasiData);
+                    }
+                }
 
                 // $limitKuotaAfirmasi = 
 
-                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+                // $mutasiData = $this->_db->table('_tb_pendaftar a')
+                //     ->select($select)
+                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                //     ->where('a.status_pendaftaran', 1)
+                //     ->where('a.via_jalur', 'MUTASI')
+                //     ->orderBy('jarak', 'ASC')
+                //     ->orderBy('a.created_at', 'ASC')
+                //     ->limit((int)$kuota->mutasi)
+                //     ->get()->getResult();
 
+                // $prestasiData = $this->_db->table('_tb_pendaftar a')
+                //     ->select($select)
+                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                //     ->where('a.status_pendaftaran', 1)
+                //     ->where('a.via_jalur', 'PRESTASI')
+                //     ->orderBy('jarak', 'ASC')
+                //     ->orderBy('a.created_at', 'ASC')
+                //     ->limit((int)$kuota->prestasi)
+                //     ->get()->getResult();
 
-                $afirmasiData = $this->_db->table('_tb_pendaftar a')
-                    ->select($select)
-                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                    ->where('a.status_pendaftaran', 1)
-                    ->where('a.via_jalur', 'AFIRMASI')
-                    ->orderBy('jarak', 'ASC')
-                    ->orderBy('a.created_at', 'ASC')
-                    ->limit((int)$kuota->afirmasi)
-                    ->get()->getResult();
+                // $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
+                // $sisaAfirmasiFix = $sisaAfirmasi > 0 ? $sisaAfirmasi : 0;
 
-                $mutasiData = $this->_db->table('_tb_pendaftar a')
-                    ->select($select)
-                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                    ->where('a.status_pendaftaran', 1)
-                    ->where('a.via_jalur', 'MUTASI')
-                    ->orderBy('jarak', 'ASC')
-                    ->orderBy('a.created_at', 'ASC')
-                    ->limit((int)$kuota->mutasi)
-                    ->get()->getResult();
+                // $sisaMutasi = (int)$kuota->mutasi - count($mutasiData);
+                // $sisaMutasiFix = $sisaMutasi > 0 ? $sisaMutasi : 0;
 
-                $prestasiData = $this->_db->table('_tb_pendaftar a')
-                    ->select($select)
-                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                    ->where('a.status_pendaftaran', 1)
-                    ->where('a.via_jalur', 'PRESTASI')
-                    ->orderBy('jarak', 'ASC')
-                    ->orderBy('a.created_at', 'ASC')
-                    ->limit((int)$kuota->prestasi)
-                    ->get()->getResult();
+                // $sisaPrestasi = (int)$kuota->prestasi - count($prestasiData);
+                // $sisaPrestasiFix = $sisaPrestasi > 0 ? $sisaPrestasi : 0;
 
-                $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
-                $sisaAfirmasiFix = $sisaAfirmasi > 0 ? $sisaAfirmasi : 0;
+                // $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
 
-                $sisaMutasi = (int)$kuota->mutasi - count($mutasiData);
-                $sisaMutasiFix = $sisaMutasi > 0 ? $sisaMutasi : 0;
-
-                $sisaPrestasi = (int)$kuota->prestasi - count($prestasiData);
-                $sisaPrestasiFix = $sisaPrestasi > 0 ? $sisaPrestasi : 0;
-
-                $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
-
-                $zonasiData = $this->_db->table('_tb_pendaftar a')
-                    ->select($select)
-                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                    ->where('a.status_pendaftaran', 1)
-                    ->where('a.via_jalur', 'ZONASI')
-                    ->orderBy('jarak', 'ASC')
-                    ->orderBy('a.created_at', 'ASC')
-                    ->limit($limitZonasi)
-                    ->get()->getResult();
+                // $zonasiData = $this->_db->table('_tb_pendaftar a')
+                //     ->select($select)
+                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                //     ->where('a.status_pendaftaran', 1)
+                //     ->where('a.via_jalur', 'ZONASI')
+                //     ->orderBy('jarak', 'ASC')
+                //     ->orderBy('a.created_at', 'ASC')
+                //     ->limit($limitZonasi)
+                //     ->get()->getResult();
 
                 $lulusLib = new Prosesluluslib();
 
@@ -357,17 +376,17 @@ class Proses extends BaseController
                     $lulusLib->prosesLulusAfirmasi($afirmasiData);
                 }
 
-                if (count($mutasiData) > 0) {
-                    $lulusLib->prosesLulusMutasi($mutasiData);
-                }
+                // if (count($mutasiData) > 0) {
+                //     $lulusLib->prosesLulusMutasi($mutasiData);
+                // }
 
-                if (count($prestasiData) > 0) {
-                    $lulusLib->prosesLulusPrestasi($prestasiData);
-                }
+                // if (count($prestasiData) > 0) {
+                //     $lulusLib->prosesLulusPrestasi($prestasiData);
+                // }
 
-                if (count($zonasiData) > 0) {
-                    $lulusLib->prosesLulusZonasi($zonasiData);
-                }
+                // if (count($zonasiData) > 0) {
+                //     $lulusLib->prosesLulusZonasi($zonasiData);
+                // }
             }
             print_r("SELESAI PROSES KELULUSAN ");
         } else {

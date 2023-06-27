@@ -315,7 +315,11 @@ class Proses extends BaseController
 
                     if (count($afirmasiData) > 0) {
                         $lulusLib->prosesLulusAfirmasi($afirmasiData);
+                        print_r("EKSEKUSI TAMBAH KUOTA AFIRMASI <br/>");
+                        print_r($afirmasiData[0]->nama_sekolah_tujuan . "<br/>");
                     }
+                } else {
+                    print_r("KUOTA TELAH MEMENUHI <br/>");
                 }
 
                 // $limitKuotaAfirmasi = 

@@ -101,8 +101,8 @@ class Proses extends BaseController
             $row[] = $no;
             // if($hakAksesMenu) {
             //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
-            $action = 
-                        '
+            $action =
+                '
                             <a target="_blank" href="' . base_url('dinas/analisis/proses/sekolah') . '?token=' . $list->tujuan_sekolah_id . '" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
@@ -142,7 +142,7 @@ class Proses extends BaseController
 
         return view('dinas/analisis/proses/sekolah', $data);
     }
-    
+
     public function sekolah()
     {
         $data['title'] = 'Rekapitulasi Proses Analysis';
@@ -161,10 +161,11 @@ class Proses extends BaseController
 
         return view('dinas/analisis/proses/index', $data);
     }
-    
-    public function verified() {
+
+    public function verified()
+    {
         $data = $this->_db->table('_tb_pendaftar_temp')->get()->getResultArray();
-        if(count($data) > 0) {
+        if (count($data) > 0) {
             print_r("MULAI VERIFIED OTOMATIS<br>");
             foreach ($data as $key => $cekRegisterTemp) {
                 $cekRegisterTemp['updated_at'] = date('Y-m-d H:i:s');
@@ -179,31 +180,31 @@ class Proses extends BaseController
                     if ($this->_db->affectedRows() > 0) {
 
                         // try {
-                            
-                            // $riwayatLib = new Riwayatlib();
-                            // $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Afirmasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Afirmasi", "submit");
-                            
-                            // $saveNotifSystem = new Notificationlib();
-                            // $saveNotifSystem->send([
-                            //     'judul' => "Pendaftaran Jalur " . $cekRegisterTemp['via_jalur'] ." Telah Diverifikasi.",
-                            //     'isi' => "Pendaftaran anda melalui jalur " . $cekRegisterTemp['via_jalur'] ." telah diverifikasi otomatis by system karena proses verifikasi oleh sekolah sudah di, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                            //     'action_web' => 'peserta/riwayat/pendaftaran',
-                            //     'action_app' => 'riwayat_pendaftaran_page',
-                            //     'token' => $cekRegisterTemp['kode_pendaftaran'],
-                            //     'send_from' => $userId,
-                            //     'send_to' => $cekRegisterTemp['user_id'],
-                            // ]);
-            
-                            // $onesignal = new Fcmlib();
-                            // $send = $onesignal->pushNotifToUser([
-                            //     'title' => "Pendaftaran Jalur Afirmasi Telah Diverifikasi.",
-                            //     'content' => "Pendaftaran anda melalui jalur afirmasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
-                            //     'send_to' => $cekRegisterTemp['user_id'],
-                            //     'app_url' => 'riwayat_pendaftaran_page',
-                            // ]);
+
+                        // $riwayatLib = new Riwayatlib();
+                        // $riwayatLib->insert("Memverifikasi Pendaftaran $name via Jalur Afirmasi dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Memverifikasi Pendaftaran Jalur Afirmasi", "submit");
+
+                        // $saveNotifSystem = new Notificationlib();
+                        // $saveNotifSystem->send([
+                        //     'judul' => "Pendaftaran Jalur " . $cekRegisterTemp['via_jalur'] ." Telah Diverifikasi.",
+                        //     'isi' => "Pendaftaran anda melalui jalur " . $cekRegisterTemp['via_jalur'] ." telah diverifikasi otomatis by system karena proses verifikasi oleh sekolah sudah di, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                        //     'action_web' => 'peserta/riwayat/pendaftaran',
+                        //     'action_app' => 'riwayat_pendaftaran_page',
+                        //     'token' => $cekRegisterTemp['kode_pendaftaran'],
+                        //     'send_from' => $userId,
+                        //     'send_to' => $cekRegisterTemp['user_id'],
+                        // ]);
+
+                        // $onesignal = new Fcmlib();
+                        // $send = $onesignal->pushNotifToUser([
+                        //     'title' => "Pendaftaran Jalur Afirmasi Telah Diverifikasi.",
+                        //     'content' => "Pendaftaran anda melalui jalur afirmasi telah diverifikasi oleh sekolah tujuan, selanjutnya silahkan menunggu pengumuman sesuai jadwal yang telah ditentukan.",
+                        //     'send_to' => $cekRegisterTemp['user_id'],
+                        //     'app_url' => 'riwayat_pendaftaran_page',
+                        // ]);
                         // } catch (\Throwable $th) {
                         // }
-                        
+
                         $this->_db->transCommit();
                         print_r("BERHASIL VERIVIED AUTO<br>");
                         continue;
@@ -219,14 +220,14 @@ class Proses extends BaseController
                 } else {
                     $this->_db->transRollback();
                     print_r("GAGAL VERIVIED AUTO<br>" . $cekRegisterTemp['id']);
-                        continue;
+                    continue;
                 }
             }
         } else {
             print_r("TIDAK ADA DATA");
         }
     }
-    
+
     public function proses()
     {
         $data['title'] = 'Rekapitulasi Analysis Proses';
@@ -244,136 +245,137 @@ class Proses extends BaseController
 
         return view('dinas/analisis/proses/proses', $data);
     }
-    
-    // public function proseskelulusan() {
-        
-    //     $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
-    //     $dataSekolahs = $this->_db->table('_tb_pendaftar_proses_an a')
-    //                         ->select($selectSekolah)
-    //                         ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-    //                         ->where('a.status_pendaftaran', 1)
-    //                         ->groupBy('a.tujuan_sekolah_id')
-    //                         ->where('j.bentuk_pendidikan_id', 5)
-    //                         ->get()->getResult();
-                            
-    //     if(count($dataSekolahs) > 0 ) {
-    //         print_r("DATA SEKOLAH " . count($dataSekolahs));
-    //         foreach ($dataSekolahs as $key => $id) {
-    //             // print_r("SELESAI PROSES KELULUSAN ");
-    //             $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id)->get()->getRowObject();
-                
-    //             if(!$kuota) {
-    //                 print_r("KUOTA TIDAK DITEMUKAN ");
-    //                 continue;
-    //             }
-                
-    //             $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id)->get()->getRowObject();
-                
-    //             if(!$sekolah) {
-    //                 print_r("SEKOLAH TIDAK DITEMUKAN ");
-    //                 continue;
-    //             }
-                
-    //             if((int)$sekolah->status_sekolah != 1) {
-    //                 print_r("SEKOLAH SWASTA SKIP ");
-    //                 continue;
-    //             }
-                
-    //             // $
-                
-    //             // $limitKuotaAfirmasi = 
-                
-    //             $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak"; 
-                
-                
-    //             $afirmasiData = $this->_db->table('_tb_pendaftar_proses_an a')
-    //                                 ->select($select)
-    //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-    //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
-    //                                 ->where('a.status_pendaftaran', 1)
-    //                                 ->where('a.via_jalur', 'AFIRMASI')
-    //                                 ->orderBy('jarak', 'ASC')
-    //                                 ->orderBy('a.created_at', 'ASC')
-    //                                 ->limit((int)$kuota->afirmasi)
-    //                                 ->get()->getResult();
-                
-    //             $mutasiData = $this->_db->table('_tb_pendaftar_proses_an a')
-    //                                 ->select($select)
-    //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-    //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
-    //                                 ->where('a.status_pendaftaran', 1)
-    //                                 ->where('a.via_jalur', 'MUTASI')
-    //                                 ->orderBy('jarak', 'ASC')
-    //                                 ->orderBy('a.created_at', 'ASC')
-    //                                 ->limit((int)$kuota->mutasi)
-    //                                 ->get()->getResult();
-                
-    //             $prestasiData = $this->_db->table('_tb_pendaftar_proses_an a')
-    //                                 ->select($select)
-    //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-    //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
-    //                                 ->where('a.status_pendaftaran', 1)
-    //                                 ->where('a.via_jalur', 'PRESTASI')
-    //                                 ->orderBy('jarak', 'ASC')
-    //                                 ->orderBy('a.created_at', 'ASC')
-    //                                 ->limit((int)$kuota->prestasi)
-    //                                 ->get()->getResult();
-                                    
-    //             $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
-    //             $sisaAfirmasiFix = $sisaAfirmasi > 0 ? $sisaAfirmasi : 0;
-                                    
-    //             $sisaMutasi = (int)$kuota->mutasi - count($mutasiData);
-    //             $sisaMutasiFix = $sisaMutasi > 0 ? $sisaMutasi : 0;
-                                    
-    //             $sisaPrestasi = (int)$kuota->prestasi - count($prestasiData);
-    //             $sisaPrestasiFix = $sisaPrestasi > 0 ? $sisaPrestasi : 0;
-                                    
-    //             $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
-                
-    //             $zonasiData = $this->_db->table('_tb_pendaftar_proses_an a')
-    //                                 ->select($select)
-    //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-    //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
-    //                                 ->where('a.status_pendaftaran', 1)
-    //                                 ->where('a.via_jalur', 'ZONASI')
-    //                                 ->orderBy('jarak', 'ASC')
-    //                                 ->orderBy('a.created_at', 'ASC')
-    //                                 ->limit($limitZonasi)
-    //                                 ->get()->getResult();
-                                    
-    //             $lulusLib = new Prosesluluslib();
-                                    
-    //             if(count($afirmasiData) > 0) {
-    //                 $lulusLib->prosesLulusAfirmasi($afirmasiData);
-    //             }
-                
-    //             if(count($mutasiData) > 0) {
-    //                 $lulusLib->prosesLulusMutasi($mutasiData);
-    //             }
-                
-    //             if(count($prestasiData) > 0) {
-    //                 $lulusLib->prosesLulusPrestasi($prestasiData);
-    //             }
-                
-    //             if(count($zonasiData) > 0) {
-    //                 $lulusLib->prosesLulusZonasi($zonasiData);
-    //             }
-    //         }
-    //         print_r("SELESAI PROSES KELULUSAN ");
-    //     } else {
-    //         print_r("DATA SEKOLAH TIDAK DITEMUKAN");
-    //     }
-    // }
-    
-    
+
+    public function proseskelulusan()
+    {
+
+        $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
+        $dataSekolahs = $this->_db->table('_tb_pendaftar_proses_an a')
+            ->select($selectSekolah)
+            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->where('a.status_pendaftaran', 1)
+            ->groupBy('a.tujuan_sekolah_id_1')
+            ->where('j.bentuk_pendidikan_id', 6)
+            ->get()->getResult();
+
+        if (count($dataSekolahs) > 0) {
+            print_r("DATA SEKOLAH " . count($dataSekolahs));
+            foreach ($dataSekolahs as $key => $id) {
+                // print_r("SELESAI PROSES KELULUSAN ");
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$kuota) {
+                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    continue;
+                }
+
+                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$sekolah) {
+                    print_r("SEKOLAH TIDAK DITEMUKAN ");
+                    continue;
+                }
+
+                if ((int)$sekolah->status_sekolah != 1) {
+                    print_r("SEKOLAH SWASTA SKIP ");
+                    continue;
+                }
+
+                // $
+
+                // $limitKuotaAfirmasi = 
+
+                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+
+
+                $afirmasiData = $this->_db->table('_tb_pendaftar a')
+                    ->select($select)
+                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                    ->where('a.status_pendaftaran', 1)
+                    ->where('a.via_jalur', 'AFIRMASI')
+                    ->orderBy('jarak', 'ASC')
+                    ->orderBy('a.created_at', 'ASC')
+                    ->limit((int)$kuota->afirmasi)
+                    ->get()->getResult();
+
+                $mutasiData = $this->_db->table('_tb_pendaftar a')
+                    ->select($select)
+                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                    ->where('a.status_pendaftaran', 1)
+                    ->where('a.via_jalur', 'MUTASI')
+                    ->orderBy('jarak', 'ASC')
+                    ->orderBy('a.created_at', 'ASC')
+                    ->limit((int)$kuota->mutasi)
+                    ->get()->getResult();
+
+                $prestasiData = $this->_db->table('_tb_pendaftar a')
+                    ->select($select)
+                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                    ->where('a.status_pendaftaran', 1)
+                    ->where('a.via_jalur', 'PRESTASI')
+                    ->orderBy('jarak', 'ASC')
+                    ->orderBy('a.created_at', 'ASC')
+                    ->limit((int)$kuota->prestasi)
+                    ->get()->getResult();
+
+                $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
+                $sisaAfirmasiFix = $sisaAfirmasi > 0 ? $sisaAfirmasi : 0;
+
+                $sisaMutasi = (int)$kuota->mutasi - count($mutasiData);
+                $sisaMutasiFix = $sisaMutasi > 0 ? $sisaMutasi : 0;
+
+                $sisaPrestasi = (int)$kuota->prestasi - count($prestasiData);
+                $sisaPrestasiFix = $sisaPrestasi > 0 ? $sisaPrestasi : 0;
+
+                $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
+
+                $zonasiData = $this->_db->table('_tb_pendaftar_proses_an a')
+                    ->select($select)
+                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id)
+                    ->where('a.status_pendaftaran', 1)
+                    ->where('a.via_jalur', 'ZONASI')
+                    ->orderBy('jarak', 'ASC')
+                    ->orderBy('a.created_at', 'ASC')
+                    ->limit($limitZonasi)
+                    ->get()->getResult();
+
+                $lulusLib = new Prosesluluslib();
+
+                if (count($afirmasiData) > 0) {
+                    $lulusLib->prosesLulusAfirmasi($afirmasiData);
+                }
+
+                if (count($mutasiData) > 0) {
+                    $lulusLib->prosesLulusMutasi($mutasiData);
+                }
+
+                if (count($prestasiData) > 0) {
+                    $lulusLib->prosesLulusPrestasi($prestasiData);
+                }
+
+                if (count($zonasiData) > 0) {
+                    $lulusLib->prosesLulusZonasi($zonasiData);
+                }
+            }
+            print_r("SELESAI PROSES KELULUSAN ");
+        } else {
+            print_r("DATA SEKOLAH TIDAK DITEMUKAN");
+        }
+    }
+
+
     public function getAllProses()
     {
         $request = Services::request();
@@ -394,8 +396,8 @@ class Proses extends BaseController
             $row['no'] = $no;
             // if($hakAksesMenu) {
             //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
-            $action = 
-                        '
+            $action =
+                '
                             <button type="button" onclick="actionDetailAnalisis(\'' . $list->tujuan_sekolah_id . '\')" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i>
                                 <span>Detail</span>
@@ -419,7 +421,7 @@ class Proses extends BaseController
         echo json_encode($output);
     }
 
-    
+
     public function detailanalisis()
     {
         if ($this->request->getMethod() != 'post') {
@@ -445,98 +447,98 @@ class Proses extends BaseController
             return json_encode($response);
         } else {
             $id = htmlspecialchars($this->request->getVar('id'), true);
-            
+
             $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id)->get()->getRowObject();
-            
-            if(!$kuota) {
+
+            if (!$kuota) {
                 $response = new \stdClass;
                 $response->code = 400;
                 $response->message = "Kuota Sekolah Tidak Ditemukan";
                 return json_encode($response);
             }
-            
+
             $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id)->get()->getRowObject();
-            
-            if(!$sekolah) {
+
+            if (!$sekolah) {
                 $response = new \stdClass;
                 $response->code = 400;
                 $response->message = "Ref Sekolah Tidak Ditemukan";
                 return json_encode($response);
             }
-            
-            if((int)$sekolah->status_sekolah != 1) {
+
+            if ((int)$sekolah->status_sekolah != 1) {
                 $response = new \stdClass;
                 $response->code = 400;
                 $response->message = "Belum Mapping Proses Swasta";
                 return json_encode($response);
             }
-            
-            $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak"; 
-            
-            
+
+            $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+
+
             $afirmasiData = $this->_db->table('_tb_pendaftar a')
-                                ->select($select)
-                                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                                ->where('a.tujuan_sekolah_id', $id)
-                                ->where('a.status_pendaftaran', 2)
-                                ->where('a.via_jalur', 'AFIRMASI')
-                                ->orderBy('jarak', 'ASC')
-                                ->orderBy('a.created_at', 'ASC')
-                                ->limit((int)$kuota->afirmasi)
-                                ->get()->getResult();
-            
+                ->select($select)
+                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id', $id)
+                ->where('a.status_pendaftaran', 2)
+                ->where('a.via_jalur', 'AFIRMASI')
+                ->orderBy('jarak', 'ASC')
+                ->orderBy('a.created_at', 'ASC')
+                ->limit((int)$kuota->afirmasi)
+                ->get()->getResult();
+
             $mutasiData = $this->_db->table('_tb_pendaftar a')
-                                ->select($select)
-                                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                                ->where('a.tujuan_sekolah_id', $id)
-                                ->where('a.status_pendaftaran', 2)
-                                ->where('a.via_jalur', 'MUTASI')
-                                ->orderBy('jarak', 'ASC')
-                                ->orderBy('a.created_at', 'ASC')
-                                ->limit((int)$kuota->mutasi)
-                                ->get()->getResult();
-            
+                ->select($select)
+                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id', $id)
+                ->where('a.status_pendaftaran', 2)
+                ->where('a.via_jalur', 'MUTASI')
+                ->orderBy('jarak', 'ASC')
+                ->orderBy('a.created_at', 'ASC')
+                ->limit((int)$kuota->mutasi)
+                ->get()->getResult();
+
             $prestasiData = $this->_db->table('_tb_pendaftar a')
-                                ->select($select)
-                                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                                ->where('a.tujuan_sekolah_id', $id)
-                                ->where('a.status_pendaftaran', 2)
-                                ->where('a.via_jalur', 'PRESTASI')
-                                ->orderBy('jarak', 'ASC')
-                                ->orderBy('a.created_at', 'ASC')
-                                ->limit((int)$kuota->prestasi)
-                                ->get()->getResult();
-                                
+                ->select($select)
+                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id', $id)
+                ->where('a.status_pendaftaran', 2)
+                ->where('a.via_jalur', 'PRESTASI')
+                ->orderBy('jarak', 'ASC')
+                ->orderBy('a.created_at', 'ASC')
+                ->limit((int)$kuota->prestasi)
+                ->get()->getResult();
+
             $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
             $sisaAfirmasiFix = $sisaAfirmasi > 0 ? $sisaAfirmasi : 0;
-                                
+
             $sisaMutasi = (int)$kuota->mutasi - count($mutasiData);
             $sisaMutasiFix = $sisaMutasi > 0 ? $sisaMutasi : 0;
-                                
+
             $sisaPrestasi = (int)$kuota->prestasi - count($prestasiData);
             $sisaPrestasiFix = $sisaPrestasi > 0 ? $sisaPrestasi : 0;
-                                
+
             $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
-            
+
             $zonasiData = $this->_db->table('_tb_pendaftar a')
-                                ->select($select)
-                                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                                ->where('a.tujuan_sekolah_id', $id)
-                                ->where('a.status_pendaftaran', 2)
-                                ->where('a.via_jalur', 'ZONASI')
-                                ->orderBy('jarak', 'ASC')
-                                ->orderBy('a.created_at', 'ASC')
-                                ->limit($limitZonasi)
-                                ->get()->getResult();
-            
+                ->select($select)
+                ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->where('a.tujuan_sekolah_id', $id)
+                ->where('a.status_pendaftaran', 2)
+                ->where('a.via_jalur', 'ZONASI')
+                ->orderBy('jarak', 'ASC')
+                ->orderBy('a.created_at', 'ASC')
+                ->limit($limitZonasi)
+                ->get()->getResult();
+
             $response = new \stdClass;
             $response->code = 200;
             $response->message = "Data ditemukan.";
@@ -547,5 +549,4 @@ class Proses extends BaseController
             return json_encode($response);
         }
     }
-    
 }

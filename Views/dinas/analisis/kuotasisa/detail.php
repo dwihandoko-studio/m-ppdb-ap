@@ -41,8 +41,7 @@
                                         <div class="form-group jenjang-block">
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenis</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <option value="" selected>--PILIH--</option>
-                                                <option value="3">Tidak Lolos</option>
+                                                <option value="3" selected>Tidak Lolos</option>
                                                 <option value="2">Lolos</option>
                                             </select>
                                         </div>
@@ -199,7 +198,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('dinas/analisis/kuotasisa/getAllData') ?>",
+                "url": "<?= base_url('dinas/analisis/kuotasisa/getAllDetail') ?>",
                 "type": "POST",
                 "data": function(data) {
                     data.sekolah_id = '<?= $sekolah_id ?>';

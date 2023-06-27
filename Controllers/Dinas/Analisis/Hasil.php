@@ -352,11 +352,11 @@ class Hasil extends BaseController
     }
 
 
-    public function downloadlampiran()
+    public function download()
     {
         $data['title'] = 'Download SPTJM';
         $Profilelib = new Profilelib();
-        $user = $Profilelib->userSekolah();
+        $user = $Profilelib->user();
         if ($user->code != 200) {
             delete_cookie('jwt');
             session()->destroy();

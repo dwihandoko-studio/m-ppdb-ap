@@ -132,12 +132,12 @@ class Diverifikasi extends BaseController
 
     public function simpanCabutBerkas()
     {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+        // if ($this->request->getMethod() != 'post') {
+        $response = new \stdClass;
+        $response->code = 400;
+        $response->message = "Permintaan tidak diizinkan";
+        return json_encode($response);
+        // }
 
         // $dataLib = new Datalib();
         // $canDaftar = $dataLib->canRegister("AFIRMASI");

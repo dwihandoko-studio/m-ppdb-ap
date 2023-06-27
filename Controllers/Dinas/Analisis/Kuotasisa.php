@@ -51,6 +51,7 @@ class Kuotasisa extends BaseController
                 $row[] = ($list->diterima_zonasi + $list->diterima_afirmasi + $list->diterima_mutasi + $list->diterima_prestasi + $list->diterima_swasta);
                 $tidakLolos = ($list->terverifikasi_zonasi + $list->terverifikasi_afirmasi + $list->terverifikasi_mutasi + $list->terverifikasi_prestasi) - ($list->diterima_zonasi + $list->diterima_afirmasi + $list->diterima_mutasi + $list->diterima_prestasi + $list->diterima_swasta);
                 $row[] = $tidakLolos < 0 ? 0 : $tidakLolos;
+                $row[] = ($list->terverifikasi_zonasi + $list->terverifikasi_afirmasi + $list->terverifikasi_mutasi + $list->terverifikasi_prestasi + $list->terverifikasi_swasta);
 
                 $data[] = $row;
             }

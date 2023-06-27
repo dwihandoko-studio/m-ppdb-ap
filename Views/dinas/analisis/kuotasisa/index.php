@@ -76,6 +76,7 @@
                                 <th data-orderable="false">Sisa Kuota</th>
                                 <th data-orderable="false">Jumlah Diterima</th>
                                 <th data-orderable="false">Jumlah Tidak Lolos</th>
+                                <th data-orderable="false">Jumlah Pendaftar Terverifikasi</th>
                             </tr>
                         </thead>
 

@@ -327,7 +327,11 @@
                             htmlRekapA += ')';
                             htmlRekapA += '</td>';
                             htmlRekapA += '<td style="text-align: left;">';
-                            htmlRekapA += msg.data_lolos_afirmasi[steprA].ket;
+                            if (msg.data_lolos_afirmasi[steprA].ket) {
+                                htmlRekapA += msg.data_lolos_afirmasi[steprA].ket;
+                            } else {
+                                htmlRekapA += '&nbsp;';
+                            }
                             htmlRekapA += '</td>';
                             htmlRekapA += '<td>';
                             htmlRekapA += '<span class="badge badge-success" style="padding: 10px;">DITERIMA</span>';

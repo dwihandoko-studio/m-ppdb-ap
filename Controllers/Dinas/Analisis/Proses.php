@@ -389,25 +389,25 @@ class Proses extends BaseController
             ->get()->getResult();
 
         if (count($dataSekolahs) > 0) {
-            print_r("DATA SEKOLAH " . count($dataSekolahs));
+            print_r("DATA SEKOLAH " . count($dataSekolahs) . " <br/>");
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
                 $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br/> ");
                     continue;
                 }
 
                 $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
-                    print_r("SEKOLAH TIDAK DITEMUKAN ");
+                    print_r("SEKOLAH TIDAK DITEMUKAN <br/> ");
                     continue;
                 }
 
                 if ((int)$sekolah->status_sekolah == 1) {
-                    print_r("SEKOLAH SWASTA SKIP ");
+                    print_r("SEKOLAH NEGERI SKIP <br/> ");
                     continue;
                 }
 
@@ -499,9 +499,9 @@ class Proses extends BaseController
                     $lulusLib->prosesLulusSwasta($zonasiData);
                 }
             }
-            print_r("SELESAI PROSES KELULUSAN ");
+            print_r("SELESAI PROSES KELULUSAN  <br/> ");
         } else {
-            print_r("DATA SEKOLAH TIDAK DITEMUKAN");
+            print_r("DATA SEKOLAH TIDAK DITEMUKAN  <br/>");
         }
     }
 

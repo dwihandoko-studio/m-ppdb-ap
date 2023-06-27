@@ -44,6 +44,13 @@
                                                 <b>Pengumuman </b><br>
                                                 <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_pengumuman_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_pengumuman_afirmasi) ?> WIB
                                             </li>
+                                            <li>
+                                                <b>Daftar Ulang </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_daftar_ulang_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_daftar_ulang_afirmasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_daftar_ulang_afirmasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_daftar_ulang_afirmasi) ?> WIB
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="table-footer">
@@ -84,6 +91,13 @@
                                                 <b>Pengumuman </b><br>
                                                 <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_pengumuman_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_pengumuman_zonasi) ?> WIB
                                             </li>
+                                            <li>
+                                                <b>Daftar Ulang </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_daftar_ulang_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_daftar_ulang_zonasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_daftar_ulang_zonasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_daftar_ulang_zonasi) ?> WIB
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="table-footer">
@@ -123,6 +137,13 @@
                                             <li>
                                                 <b>Pengumuman </b><br>
                                                 <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_pengumuman_prestasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_pengumuman_prestasi) ?> WIB
+                                            </li>
+                                            <li>
+                                                <b>Daftar Ulang </b><br>
+                                                Buka : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_awal_daftar_ulang_prestasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_awal_daftar_ulang_prestasi) ?> WIB<br>
+                                                Tutup : <br>
+                                                <i class="far fa-calendar"></i> <?= tgl_indo($data->tgl_akhir_daftar_ulang_prestasi) ?> <i class="far fa-clock"></i> Pukul <?= waktu_indo($data->tgl_akhir_daftar_ulang_prestasi) ?> WIB
                                             </li>
                                         </ul>
                                     </div>

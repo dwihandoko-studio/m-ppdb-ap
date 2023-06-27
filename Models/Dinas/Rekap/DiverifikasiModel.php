@@ -26,12 +26,12 @@ class DiverifikasiModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
+        $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur";
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
         // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        $this->dt->join('ref_sekolah d', 'a.tujuan_sekolah_id_1 = d.id', 'LEFT');
+        // $this->dt->join('ref_sekolah d', 'a.tujuan_sekolah_id_1 = d.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
         // $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');
@@ -72,13 +72,13 @@ class DiverifikasiModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('d.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('d.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -95,13 +95,13 @@ class DiverifikasiModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('d.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('d.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         return $this->dt->countAllResults();
     }
@@ -115,13 +115,13 @@ class DiverifikasiModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('d.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('d.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         return $this->dt->countAllResults();
     }

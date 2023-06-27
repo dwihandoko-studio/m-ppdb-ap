@@ -47,6 +47,7 @@ class Kuotasisa extends BaseController
                                 <i class="fa fa-eye"></i>
                             </a>';
 
+                $row[] = $action;
                 $row[] = $no;
                 $row[] = '<p>' . $list->nama_sekolah . '<br/>' . $list->nama_kecamatan . '</p>';
                 $row[] = $list->npsn;

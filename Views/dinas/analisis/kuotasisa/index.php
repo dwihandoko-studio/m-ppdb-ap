@@ -70,6 +70,7 @@
                                 <thead>
                                     <tr>
                                         <th data-orderable="false">&nbsp;</th>
+                                        <th data-orderable="false">#</th>
                                         <th data-orderable="false">Nama Sekolah</th>
                                         <th data-orderable="false">NPSN</th>
                                         <th data-orderable="false">Jumlah Kuota</th>

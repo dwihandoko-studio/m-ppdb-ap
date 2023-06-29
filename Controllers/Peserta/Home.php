@@ -73,7 +73,7 @@ class Home extends BaseController
                     $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
                     $data['can_daftar'] = false;
                     $data['pendaft'] = $cekRegisterApprove;
-                    $data['success'] = "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur " . $cekRegisterApprove->via_jalur . ". <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan <br>sesuai jadwal yang telah ditentukan.";
+                    $data['success'] = "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>. <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan <br>sesuai jadwal yang telah ditentukan.";
                     break;
                 case 3:
                     $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
@@ -81,16 +81,16 @@ class Home extends BaseController
                     if ($cekRegisterApprove->via_jalur == "AFIRMASI") {
                         $data['can_daftar'] = true;
                         $data['pendaft'] = $cekRegisterApprove;
-                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur " . $cekRegisterApprove->via_jalur . ". <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
+                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
                     } else {
                         $data['can_daftar'] = false;
                         $data['pendaft'] = $cekRegisterApprove;
-                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur " . $cekRegisterApprove->via_jalur . ".";
+                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 di :<br/><b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>.";
                     }
                     break;
 
                 default:
-                    $data['error'] = "Anda sudah melakukan pendaftaran lewat jalur '{$cekRegisterApprove->via_jalur}' dan dalam status menunggu verifikasi berkas.";
+                    $data['error'] = "Anda sudah melakukan pendaftaran lewat jalur <b>'{$cekRegisterApprove->via_jalur}'</b> dan dalam status menunggu verifikasi berkas.";
                     $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
                     $data['pendaft'] = $cekRegisterApprove;
                     break;

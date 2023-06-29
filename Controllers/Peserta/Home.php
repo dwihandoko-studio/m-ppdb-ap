@@ -63,7 +63,7 @@ class Home extends BaseController
         if ($cekRegisterApprove) {
             switch ((int)$cekRegisterApprove->status_pendaftaran) {
                 case 1:
-                    $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                    $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. <br/>Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
                     $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
                     $data['pendaft'] = $cekRegisterApprove;
                     $data['can_daftar'] = false;

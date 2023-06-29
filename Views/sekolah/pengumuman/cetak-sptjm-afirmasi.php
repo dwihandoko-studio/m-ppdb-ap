@@ -77,6 +77,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
             <center></center>
             <h4>SURAT PERTANGGUNGJAWABAN MUTLAK<br>
                 PENDAFTARAN PESERTA DIDIK BARU (PPDB)<br>
+                JALUR AFIRMASI<br>
                 TAHUN PELAJARAN 2023/2024</h4>
             </center>
         </div>

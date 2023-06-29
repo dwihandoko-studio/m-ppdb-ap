@@ -249,6 +249,13 @@ class Proses extends BaseController
 
     public function proseskelulusanafirmasi()
     {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
 
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
@@ -287,7 +294,7 @@ class Proses extends BaseController
 
                 // $limitKuotaAfirmasi = 
 
-                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.tujuan_sekolah_id_1, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
 
 
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
@@ -306,7 +313,7 @@ class Proses extends BaseController
                 $lulusLib = new Prosesluluslib();
 
                 if (count($afirmasiData) > 0) {
-                    $lulusLib->prosesLulusAfirmasi($afirmasiData);
+                    $lulusLib->prosesLulusAfirmasi($afirmasiData, $user->data->id);
                 }
             }
             print_r("SELESAI PROSES KELULUSAN ");
@@ -317,6 +324,13 @@ class Proses extends BaseController
 
     public function proseskelulusan()
     {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
 
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
@@ -354,7 +368,7 @@ class Proses extends BaseController
 
                 // $limitKuotaAfirmasi = 
 
-                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.tujuan_sekolah_id_1, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
 
 
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
@@ -427,19 +441,19 @@ class Proses extends BaseController
                 $lulusLib = new Prosesluluslib();
 
                 if (count($afirmasiData) > 0) {
-                    $lulusLib->prosesLulusAfirmasi($afirmasiData);
+                    $lulusLib->prosesLulusAfirmasi($afirmasiData, $user->data->id);
                 }
 
                 if (count($mutasiData) > 0) {
-                    $lulusLib->prosesLulusMutasi($mutasiData);
+                    $lulusLib->prosesLulusMutasi($mutasiData, $user->data->id);
                 }
 
                 if (count($prestasiData) > 0) {
-                    $lulusLib->prosesLulusPrestasi($prestasiData);
+                    $lulusLib->prosesLulusPrestasi($prestasiData, $user->data->id);
                 }
 
                 if (count($zonasiData) > 0) {
-                    $lulusLib->prosesLulusZonasi($zonasiData);
+                    $lulusLib->prosesLulusZonasi($zonasiData, $user->data->id);
                 }
             }
             print_r("SELESAI PROSES KELULUSAN ");
@@ -450,6 +464,13 @@ class Proses extends BaseController
 
     public function proseskelulusansisa()
     {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
 
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
@@ -516,83 +537,13 @@ class Proses extends BaseController
                     $lulusLib = new Prosesluluslib();
 
                     if (count($afirmasiData) > 0) {
-                        $lulusLib->prosesLulusAfirmasiSisa($afirmasiData);
+                        $lulusLib->prosesLulusAfirmasiSisa($afirmasiData, $user->data->id);
                         print_r("EKSEKUSI TAMBAH KUOTA AFIRMASI <br/>");
                         print_r($afirmasiData[0]->nama_sekolah_tujuan . "<br/>");
                     }
                 } else {
                     print_r("KUOTA TELAH MEMENUHI <br/>");
                 }
-
-                // $limitKuotaAfirmasi = 
-
-                // $mutasiData = $this->_db->table('_tb_pendaftar a')
-                //     ->select($select)
-                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                //     ->where('a.status_pendaftaran', 1)
-                //     ->where('a.via_jalur', 'MUTASI')
-                //     ->orderBy('jarak', 'ASC')
-                //     ->orderBy('a.created_at', 'ASC')
-                //     ->limit((int)$kuota->mutasi)
-                //     ->get()->getResult();
-
-                // $prestasiData = $this->_db->table('_tb_pendaftar a')
-                //     ->select($select)
-                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                //     ->where('a.status_pendaftaran', 1)
-                //     ->where('a.via_jalur', 'PRESTASI')
-                //     ->orderBy('jarak', 'ASC')
-                //     ->orderBy('a.created_at', 'ASC')
-                //     ->limit((int)$kuota->prestasi)
-                //     ->get()->getResult();
-
-                // $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
-                // $sisaAfirmasiFix = $sisaAfirmasi > 0 ? $sisaAfirmasi : 0;
-
-                // $sisaMutasi = (int)$kuota->mutasi - count($mutasiData);
-                // $sisaMutasiFix = $sisaMutasi > 0 ? $sisaMutasi : 0;
-
-                // $sisaPrestasi = (int)$kuota->prestasi - count($prestasiData);
-                // $sisaPrestasiFix = $sisaPrestasi > 0 ? $sisaPrestasi : 0;
-
-                // $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
-
-                // $zonasiData = $this->_db->table('_tb_pendaftar a')
-                //     ->select($select)
-                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                //     ->where('a.status_pendaftaran', 1)
-                //     ->where('a.via_jalur', 'ZONASI')
-                //     ->orderBy('jarak', 'ASC')
-                //     ->orderBy('a.created_at', 'ASC')
-                //     ->limit($limitZonasi)
-                //     ->get()->getResult();
-
-                // $lulusLib = new Prosesluluslib();
-
-                // if (count($afirmasiData) > 0) {
-                //     $lulusLib->prosesLulusAfirmasi($afirmasiData);
-                // }
-
-                // if (count($mutasiData) > 0) {
-                //     $lulusLib->prosesLulusMutasi($mutasiData);
-                // }
-
-                // if (count($prestasiData) > 0) {
-                //     $lulusLib->prosesLulusPrestasi($prestasiData);
-                // }
-
-                // if (count($zonasiData) > 0) {
-                //     $lulusLib->prosesLulusZonasi($zonasiData);
-                // }
             }
             print_r("SELESAI PROSES KELULUSAN ");
         } else {
@@ -602,6 +553,13 @@ class Proses extends BaseController
 
     public function proseskelulusanswasta()
     {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
 
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
@@ -639,7 +597,7 @@ class Proses extends BaseController
 
                 // $limitKuotaAfirmasi = 
 
-                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.tujuan_sekolah_id_1, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
 
 
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
@@ -708,19 +666,19 @@ class Proses extends BaseController
                 $lulusLib = new Prosesluluslib();
 
                 if (count($afirmasiData) > 0) {
-                    $lulusLib->prosesLulusAfirmasi($afirmasiData);
+                    $lulusLib->prosesLulusAfirmasi($afirmasiData, $user->data->id);
                 }
 
                 if (count($mutasiData) > 0) {
-                    $lulusLib->prosesLulusMutasi($mutasiData);
+                    $lulusLib->prosesLulusMutasi($mutasiData, $user->data->id);
                 }
 
                 if (count($prestasiData) > 0) {
-                    $lulusLib->prosesLulusPrestasi($prestasiData);
+                    $lulusLib->prosesLulusPrestasi($prestasiData, $user->data->id);
                 }
 
                 if (count($zonasiData) > 0) {
-                    $lulusLib->prosesLulusSwasta($zonasiData);
+                    $lulusLib->prosesLulusSwasta($zonasiData, $user->data->id);
                 }
             }
             print_r("SELESAI PROSES KELULUSAN  <br/> ");

@@ -81,7 +81,7 @@ class Datalib
             if ($startdate < $enddateAwal) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka";
                 return $response;
             }
 
@@ -89,12 +89,12 @@ class Datalib
             if ($startdate > $enddateAkhir) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup";
                 return $response;
             }
             $response = new \stdClass;
             $response->code = 200;
-            $response->message = "Pendaftaran PPDB telah dibuka.";
+            $response->message = "Pendaftaran PPDB telah dibuka";
             return $response;
         } else if ($jalur == "AFIRMASI") {
             $today = date("Y-m-d H:i:s");
@@ -105,7 +105,7 @@ class Datalib
             if ($startdate < $enddateAwal) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka";
                 return $response;
             }
 
@@ -113,12 +113,12 @@ class Datalib
             if ($startdate > $enddateAkhir) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup";
                 return $response;
             }
             $response = new \stdClass;
             $response->code = 200;
-            $response->message = "Pendaftaran PPDB telah dibuka.";
+            $response->message = "Pendaftaran PPDB telah dibuka";
             return $response;
         } else if ($jalur == "PRESTASI") {
             $today = date("Y-m-d H:i:s");
@@ -129,7 +129,7 @@ class Datalib
             if ($startdate < $enddateAwal) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka";
                 return $response;
             }
 
@@ -137,12 +137,12 @@ class Datalib
             if ($startdate > $enddateAkhir) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup";
                 return $response;
             }
             $response = new \stdClass;
             $response->code = 200;
-            $response->message = "Pendaftaran PPDB telah dibuka.";
+            $response->message = "Pendaftaran PPDB telah dibuka";
             return $response;
         } else if ($jalur == "MUTASI") {
             $today = date("Y-m-d H:i:s");
@@ -153,7 +153,7 @@ class Datalib
             if ($startdate < $enddateAwal) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka";
                 return $response;
             }
 
@@ -161,12 +161,12 @@ class Datalib
             if ($startdate > $enddateAkhir) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup";
                 return $response;
             }
             $response = new \stdClass;
             $response->code = 200;
-            $response->message = "Pendaftaran PPDB telah dibuka.";
+            $response->message = "Pendaftaran PPDB telah dibuka";
             return $response;
         } else if ($jalur == "SWASTA") {
             $today = date("Y-m-d H:i:s");
@@ -177,7 +177,7 @@ class Datalib
             if ($startdate < $enddateAwal) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dibuka";
                 return $response;
             }
 
@@ -185,17 +185,17 @@ class Datalib
             if ($startdate > $enddateAkhir) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup.";
+                $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB telah ditutup";
                 return $response;
             }
             $response = new \stdClass;
             $response->code = 200;
-            $response->message = "Pendaftaran PPDB telah dibuka.";
+            $response->message = "Pendaftaran PPDB telah dibuka";
             return $response;
         } else {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dimulai.";
+            $response->message = "Mohon maaf, saat ini proses pendaftaran PPDB belum dimulai";
             return $response;
         }
     }

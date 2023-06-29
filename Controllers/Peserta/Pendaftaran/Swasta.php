@@ -140,7 +140,9 @@ class Swasta extends BaseController
         $canDaftar = $dataLib->canRegister("SWASTA");
 
         if ($canDaftar->code !== 200) {
-            $data['error'] = $canDaftar->message;
+            $data['jalur'] = "SWASTA";
+            $data['message'] = $canDaftar->message . " untuk <b>Sekolah Swasta</b>.";
+            return view('peserta/pendaftaran/tutup', $data);
         }
 
         $cekRegisterApprove = $this->_db->query("SELECT * FROM (

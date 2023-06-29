@@ -141,7 +141,7 @@ class Afirmasi extends BaseController
 
         if ($canDaftar->code !== 200) {
             $data['jalur'] = "AFIRMASI";
-            $data['message'] = "Pendaftaran via Jalur Afirmasi " . $canDaftar->message;
+            $data['message'] = $canDaftar->message . " untuk <b>Jalur Afirmasi</b>.";
             return view('peserta/pendaftaran/tutup', $data);
         }
 

@@ -140,7 +140,9 @@ class Prestasi extends BaseController
         $canDaftar = $dataLib->canRegister("PRESTASI");
 
         if ($canDaftar->code !== 200) {
-            $data['error'] = $canDaftar->message;
+            $data['jalur'] = "PRESTASI";
+            $data['message'] = $canDaftar->message . " untuk <b>Jalur Prestasi</b>.";
+            return view('peserta/pendaftaran/tutup', $data);
         }
 
         $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();

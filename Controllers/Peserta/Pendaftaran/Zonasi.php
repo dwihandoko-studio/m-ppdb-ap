@@ -136,7 +136,9 @@ class Zonasi extends BaseController
         $canDaftar = $dataLib->canRegister();
 
         if ($canDaftar->code !== 200) {
-            $data['error'] = $canDaftar->message;
+            $data['jalur'] = "ZONASI";
+            $data['message'] = $canDaftar->message . " untuk <b>Jalur Zonasi</b>.";
+            return view('peserta/pendaftaran/tutup', $data);
         }
 
         $cekRegisterApprove = $this->_db->query("SELECT * FROM (

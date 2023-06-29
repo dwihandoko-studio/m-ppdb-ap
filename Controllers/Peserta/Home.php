@@ -51,7 +51,14 @@ class Home extends BaseController
 
         // $data['status_pendaftaran'] = $statusDaftar;
 
-        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        // $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        $cekRegisterApprove = $this->_db->query("SELECT * FROM (
+			(SELECT * FROM _tb_pendaftar_temp WHERE peserta_didik_id = ?) 
+			UNION ALL 
+			(SELECT * FROM _tb_pendaftar WHERE peserta_didik_id = ?) 
+			UNION ALL 
+			(SELECT * FROM _tb_pendaftar_tolak WHERE peserta_didik_id = ?)
+		) AS a")
         if ($cekRegisterApprove) {
             $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
             $data['sekolah_pilihan'] = $cekRegisterApprove;

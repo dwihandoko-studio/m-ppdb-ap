@@ -58,7 +58,7 @@ class Home extends BaseController
 			(SELECT * FROM _tb_pendaftar WHERE peserta_didik_id = '{$user->data->peserta_didik_id}') 
 			UNION ALL 
 			(SELECT * FROM _tb_pendaftar_tolak WHERE peserta_didik_id = '{$user->data->peserta_didik_id}')
-		) AS a")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
+		) AS a ORDER BY a.created_at DESC LIMIT 1")->getRow();
 
         if ($cekRegisterApprove) {
             switch ((int)$cekRegisterApprove->status_pendaftaran) {

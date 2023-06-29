@@ -154,19 +154,47 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="card card-stats">
-                            <?php if (isset($error)) {
-                                if ($error) { ?>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">DAFTAR SEKOLAH</h5><span>Sudah Daftar</span>
+                            <?php if (isset($error)) { ?>
+                                <?php if ($error) { ?>
+                                    <?php if (isset($success)) { ?>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h5 class="card-title text-uppercase text-muted mb-0">DAFTAR SEKOLAH</h5><span>Lolos</span>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">3</div>
+                                                </div>
                                             </div>
-                                            <div class="col-auto">
-                                                <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">3</div>
-                                            </div>
+                                            <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah lolos pendaftaran Melalui Jalur <?= $pendaft->via_jalur ?>.</span></p>
                                         </div>
-                                        <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran via jalur <?= $sekolah_pilihan->via_jalur ?>.</span></p>
-                                    </div>
+                                    <?php } else { ?>
+                                        <?php if (isset($warning)) { ?>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5 class="card-title text-uppercase text-muted mb-0">DAFTAR SEKOLAH</h5><span>Tidak Lolos</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">3</div>
+                                                    </div>
+                                                </div>
+                                                <p class="mt-3 mb-0 text-sm"><span class="text-danger mr-2"><i class="ni ni-fat-remove"></i> Tidak lolos pendaftaran Melalui Jalur<?= $pendaft->via_jalur ?>.</span></p>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5 class="card-title text-uppercase text-muted mb-0">DAFTAR SEKOLAH</h5><span>Sudah Daftar</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">3</div>
+                                                    </div>
+                                                </div>
+                                                <p class="mt-3 mb-0 text-sm"><span class="text-success mr-2"><i class="fa fa-check"></i> Telah melakukan pendaftaran Melalui Jalur <?= $pendaft->via_jalur ?>.</span></p>
+                                            </div>
+                                        <?php } ?>
+                                    <?php } ?>
                                 <?php } else { ?>
                                     <div class="card-body">
                                         <div class="row">
@@ -202,25 +230,46 @@
     <div class="container-fluid mt--6">
 
         <?php if (isset($error)) { ?>
-            <div class="card">
-                <div class="card-body bg-gradient-success p-0" style="border-radius: 5px;">
-                    <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
-                    <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
-                    <br />
-                    <?php if (isset($sekolah_pilihan)) { ?>
-                        <center>
-                            <ol>
-                                <li style="list-style: none;"><?= $sekolah_pilihan->tujuan_sekolah_id_2 !== NULL ? 'Sekolah Pilihan Pertama' : 'Sekolah yang dituju' ?> : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
-                                <?php if ($sekolah_pilihan->tujuan_sekolah_id_2 !== NULL) { ?>
-                                    <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
-                                    <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
-                                <?php } ?>
-                            </ol>
-                        </center>
-                    <?php } ?>
-                    <!-- </div> -->
+            <?php if (isset($success)) { ?>
+                <div class="card">
+                    <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
+                        <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                        <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $success ?></span></button></center>
+                        <br />
+                        <br />
+
+                        <!-- </div> -->
+                    </div>
                 </div>
-            </div>
+            <?php } else { ?>
+                <?php if (isset($warning)) { ?>
+                    <div class="card">
+                        <div class="card-body bg-gradient-danger p-0" style="border-radius: 5px; color: #fff;">
+                            <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                            <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $warning ?></span></button></center>
+                            <br />
+                            <br />
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <div class="card">
+                        <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
+                            <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                            <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
+                            <br />
+                            <?php if (isset($pendaft)) { ?>
+                                <center>
+                                    <ol>
+                                        <li style="list-style: none;">Sekolah yang dituju : <?= $sekolah_pilihan ?></li>
+                                    </ol>
+                                </center>
+                            <?php } ?>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                <?php } ?>
+            <?php } ?>
         <?php } ?>
         <div class="card">
             <div class="card-header">

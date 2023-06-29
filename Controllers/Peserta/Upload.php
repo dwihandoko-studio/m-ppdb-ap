@@ -35,17 +35,49 @@ class Upload extends BaseController
         }
 
         $data['user'] = $user->data;
-        $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
+        $cekRegisterApprove = $this->_db->query("SELECT * FROM (
+			(SELECT * FROM _tb_pendaftar_temp WHERE peserta_didik_id = '{$user->data->peserta_didik_id}') 
+			UNION ALL 
+			(SELECT * FROM _tb_pendaftar WHERE peserta_didik_id = '{$user->data->peserta_didik_id}') 
+			UNION ALL 
+			(SELECT * FROM _tb_pendaftar_tolak WHERE peserta_didik_id = '{$user->data->peserta_didik_id}')
+		) AS a ORDER BY a.created_at DESC LIMIT 1")->getRow();
+
         if ($cekRegisterApprove) {
-            $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
-            $data['sekolah_pilihan'] = $cekRegisterApprove;
-        }
+            switch ((int)$cekRegisterApprove->status_pendaftaran) {
+                case 1:
+                    $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. <br/>Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                    $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
+                    $data['pendaft'] = $cekRegisterApprove;
+                    $data['can_daftar'] = false;
+                    break;
+                case 2:
+                    $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                    $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
+                    $data['can_daftar'] = false;
+                    $data['pendaft'] = $cekRegisterApprove;
+                    $data['success'] = "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>. <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan <br>sesuai jadwal yang telah ditentukan.";
+                    break;
+                case 3:
+                    $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                    $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
+                    if ($cekRegisterApprove->via_jalur == "AFIRMASI") {
+                        $data['can_daftar'] = true;
+                        $data['pendaft'] = $cekRegisterApprove;
+                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
+                    } else {
+                        $data['can_daftar'] = false;
+                        $data['pendaft'] = $cekRegisterApprove;
+                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>.";
+                    }
+                    break;
 
-        $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $user->data->peserta_didik_id)->get()->getRowObject();
-
-        if ($cekRegisterTemp) {
-            $data['error'] = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas.";
-            $data['sekolah_pilihan'] = $cekRegisterTemp;
+                default:
+                    $data['error'] = "Anda sudah melakukan pendaftaran lewat jalur <b>'{$cekRegisterApprove->via_jalur}'</b> dan dalam status menunggu verifikasi berkas.";
+                    $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
+                    $data['pendaft'] = $cekRegisterApprove;
+                    break;
+            }
         }
 
         $data['dataUpload'] = $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $user->data->id)->get()->getRowObject();

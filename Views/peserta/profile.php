@@ -27,63 +27,1373 @@
         <div class="row">
             <!-- Light table -->
             <div class="col">
-                <div class="card">
+                <?php if (isset($error)) { ?>
+                    <?php if (isset($success)) { ?>
+                        <div class="card">
+                            <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
+                                <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                                <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $success ?></span></button></center>
+                                <br />
+                                <br />
+
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>LENGKAPI DATA PROFIL</h2>
+                            </div>
+                            <?php
+                            $provinsi = "";
+                            $kabupaten = "";
+                            $kecamatan = "";
+                            $kelurahan = "";
+                            $dusun = "";
+                            $alamat = "";
+                            $dataDetail = null;
+                            if (isset($user)) {
+                                if (isset($details)) {
+                                    $dataDetail = $details;
+                                }
+                                if (!(isset($user->provinsi)) || $user->provinsi == null || $user->provinsi == "") {
+                                    if (isset($details)) {
+                                        $provinsi = substr(trim($details->kode_wilayah), 0, 2) . '0000';
+                                    }
+                                } else {
+                                    $provinsi = $user->provinsi;
+                                }
+                                if (!(isset($user->kabupaten)) || $user->kabupaten == null || $user->kabupaten == "") {
+                                    if (isset($details)) {
+                                        $kabupaten = substr(trim($details->kode_wilayah), 0, 4) . '00';
+                                    }
+                                } else {
+                                    $kabupaten = $user->kabupaten;
+                                }
+                                if (!(isset($user->kecamatan)) || $user->kecamatan == null || $user->kecamatan == "") {
+                                    if (isset($details)) {
+                                        $kecamatan = substr(trim($details->kode_wilayah), 0, 6);
+                                    }
+                                } else {
+                                    $kecamatan = $user->kecamatan;
+                                }
+                                if (!(isset($user->kelurahan)) || $user->kelurahan == null || $user->kelurahan == "") {
+                                    if (isset($details)) {
+                                        $kelurahan = substr(trim($details->kode_wilayah), 0, 8);
+                                    }
+                                } else {
+                                    $kelurahan = $user->kelurahan;
+                                }
+                                if (!(isset($user->dusun)) || $user->dusun == null || $user->dusun == "") {
+                                } else {
+                                    $dusun = $user->dusun;
+                                }
+                                if (!(isset($user->alamat)) || $user->alamat == null || $user->alamat == "") {
+                                    if (isset($details)) {
+                                        $alamat = trim($details->alamat_jalan);
+                                        // $alamat = $details->alamat_jalan;
+                                    }
+                                } else {
+                                    $alamat = $user->alamat;
+                                }
+                            } ?>
+                            <div class="card-body">
+                                <div class="col-lg-12">
+                                    <form>
+                                        <h5 class="heading-small">Data Pribadi</h5>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group _nama-block">
+                                                    <label for="_nama" class="form-control-label">Nama Lengkap <span class="required" style="color: indigo;">* Wajib</span></label>
+                                                    <input type="text" class="form-control" id="_nama" name="_nama" placeholder="Nama Lengkap . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->fullname) ? $user->fullname : '') : '' ?>" readonly>
+                                                    <div class="help-block _nama"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _nisn-block">
+                                                    <label for="_nisn" class="form-control-label">NISN</label>
+                                                    <input type="text" class="form-control" id="_nisn" name="_nisn" placeholder="NISN . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->nisn) ? $user->nisn : '') : '' ?>" readonly>
+                                                    <div class="help-block _nisn"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _nik-block">
+                                                    <label for="_nik" class="form-control-label">NIK</label>
+                                                    <input type="text" class="form-control" id="_nik" name="_nik" placeholder="NIK . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nik) ? $details->nik : '') : '' ?>" readonly>
+                                                    <div class="help-block _nik"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _jenis_kelamin-block">
+                                                    <label for="_jenis_kelamin" class="form-control-label">Jenis Kelamin</label>
+                                                    <input type="text" class="form-control" id="_jenis_kelamin" name="_jenis_kelamin" placeholder="Jenis kelamin . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->jenis_kelamin) ? $details->jenis_kelamin : '') : '' ?>" readonly>
+                                                    <div class="help-block _jenis_kelamin"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _tempat_lahir-block">
+                                                    <label for="_tempat_lahir" class="form-control-label">Tempat Lahir</label>
+                                                    <input type="text" class="form-control" id="_tempat_lahir" name="_tempat_lahir" placeholder="Tempat Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tempat_lahir) ? $details->tempat_lahir : '') : '' ?>" readonly>
+                                                    <div class="help-block _tempat_lahir"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _tanggal_lahir-block">
+                                                    <label for="_tanggal_lahir" class="form-control-label">Tanggal Lahir</label>
+                                                    <input type="text" class="form-control" id="_tanggal_lahir" name="_tanggal_lahir" placeholder="Tanggal Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tanggal_lahir) ? $details->tanggal_lahir : '') : '' ?>" readonly>
+                                                    <div class="help-block _tanggal_lahir"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _nama_ibu-block">
+                                                    <label for="_nama_ibu" class="form-control-label">Nama Ibu Kandung</label>
+                                                    <input type="text" class="form-control" id="_nama_ibu" name="_nama_ibu" placeholder="Nama ibu kandung . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nama_ibu_kandung) ? $details->nama_ibu_kandung : '') : '' ?>" readonly>
+                                                    <div class="help-block _nama_ibu"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _email-block">
+                                                    <label for="_email" class="form-control-label">Email</label>
+                                                    <input type="email" class="form-control" id="_email" name="_email" placeholder="Email . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->email) ? $user->email : '') : '' ?>" readonly>
+                                                    <div class="help-block _email"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _nohp-block">
+                                                    <label for="_nohp" class="form-control-label">No Handphone</label>
+                                                    <input type="phone" class="form-control" id="_nohp" name="_nohp" placeholder="08xxxxxxxx" onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->no_hp) ? $user->no_hp : '') : '' ?>" readonly>
+                                                    <div class="help-block _nohp"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                        <h5 class="heading-small" style="margin-top: 20px;">Data Tempat Tinggal</h5>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group _provinsi-block">
+                                                    <label for="_provinsi" class="form-control-label">Provinsi</label>
+                                                    <select class="form-control provinsi" name="_provinsi" id="_provinsi" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+
+                                                        <?php if (isset($provinsis)) {
+                                                            if (count($provinsis) > 0) {
+                                                                echo "<option value=''>--Pilih Provinsi--</option>";
+                                                                foreach ($provinsis as $key => $value) { ?>
+                                                                    <option value="<?= $value->id ?>" <?= ($provinsi == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                        <?php }
+                                                            } else {
+                                                                echo "<option value='' selected>--Tidak ada data--</option>";
+                                                            }
+                                                        } else {
+                                                            echo "<option value='' selected>--Tidak ada data--</option>";
+                                                        } ?>
+                                                    </select>
+                                                    <div class="help-block _provinsi"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _kabupaten-block">
+                                                    <label for="_kabupaten" class="form-control-label">Kabupaten</label>
+                                                    <select class="form-control kabupaten" name="_kabupaten" id="_kabupaten" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+                                                        <?php if (isset($kabupatens)) {
+                                                            if (count($kabupatens) > 0) {
+                                                                echo "<option value=''>--Pilih Kabupaten--</option>";
+                                                                foreach ($kabupatens as $key => $value) { ?>
+                                                                    <option value="<?= $value->id ?>" <?= ($kabupaten == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                        <?php }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                            }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                        } ?>
+                                                    </select>
+                                                    <div class="help-block _kabupaten"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _kecamatan-block">
+                                                    <label for="_kecamatan" class="form-control-label">Kecamatan</label>
+                                                    <select class="form-control kecamatan" name="_kecamatan" id="_kecamatan" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+                                                        <?php if (isset($kecamatans)) {
+                                                            if (count($kecamatans) > 0) {
+                                                                echo "<option value=''>--Pilih Kecamatan--</option>";
+                                                                foreach ($kecamatans as $key => $value) { ?>
+                                                                    <option value="<?= $value->id ?>" <?= ($kecamatan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                        <?php }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                            }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                        } ?>
+                                                    </select>
+                                                    <div class="help-block _kecamatan"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _kelurahan-block">
+                                                    <label for="_kelurahan" class="form-control-label">Kelurahan</label>
+                                                    <select class="form-control kelurahan" name="_kelurahan" id="_kelurahan" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+                                                        <?php if (isset($kelurahans)) {
+                                                            if (count($kelurahans) > 0) {
+                                                                echo "<option value=''>--Pilih Kelurahan--</option>";
+                                                                foreach ($kelurahans as $key => $value) { ?>
+                                                                    <option value="<?= $value->id ?>" <?= ($kelurahan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                        <?php }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                            }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                        } ?>
+                                                    </select>
+                                                    <div class="help-block _kelurahan"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _dusun-block">
+                                                    <label for="_dusun" class="form-control-label">Dusun</label>
+                                                    <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                        <?php if (isset($dusuns)) {
+                                                            if (count($dusuns) > 0) {
+                                                                echo "<option value=''>--Pilih Dusun--</option>";
+                                                                foreach ($dusuns as $key => $value) { ?>
+                                                                    <option value="<?= $value->id ?>" <?= ($dusun == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                        <?php }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                            }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                        } ?>
+                                                    </select>
+                                                    <div class="help-block _dusun"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group _alamat-block">
+                                                    <label for="_alamat" class="form-control-label">Alamat</label>
+                                                    <textarea class="form-control alamat" name="_alamat" id="_alamat" onFocus="inputFocus(this);" disabled><?= $alamat ?></textarea>
+                                                    <div class="help-block _alamat"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _koordinat-block">
+                                                    <label for="_koordinat" class="form-control-label">Koordinat Tempat Tinggal</label>
+                                                    <div class="input-group input-group-merge">
+                                                        <input type="hidden" name="_latitude" id="_latitude" value="<?= (isset($user)) ? $user->latitude : '' ?>">
+                                                        <input type="hidden" name="_longitude" id="_longitude" value="<?= (isset($user)) ? $user->longitude : '' ?>">
+                                                        <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?= (isset($user)) ? '(' . $user->latitude . ';' . $user->longitude . ')' : '' ?>" onFocus="inputFocus(this);" disabled>
+                                                        <!-- <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
+                                                                <span class="input-group-text action-location-icon" style="background-color: transparent;"><i class="fas fa-map-marker"></i></span>
+                                                            </div> -->
+                                                    </div>
+
+                                                    <div class="help-block _koordinat"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                        <h5 class="heading-small" style="margin-top: 20px;">Data Asal Sekolah</h5>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group _npsn_asal-block">
+                                                    <label for="_npsn_asal" class="form-control-label">NPSN Asal Sekolah</label>
+                                                    <input type="text" class="form-control alamat" name="_npsn_asal" id="_npsn_asal" value="<?= (isset($sekolah)) ? $sekolah->npsn : '' ?>" onFocus="inputFocus(this);" disabled>
+                                                    <div class="help-block _npsn_asal"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group _sekolah_asal-block">
+                                                    <label for="_sekolah_asal" class="form-control-label">Nama Asal Sekolah</label>
+                                                    <input type="text" class="form-control alamat" name="_sekolah_asal" id="_sekolah_asal" value="<?= (isset($sekolah)) ? $sekolah->nama : '' ?>" onFocus="inputFocus(this);" disabled>
+                                                    <div class="help-block _sekolah_asal"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                        <h5 class="heading-small" style="margin-top: 20px;">Upload Pas Foto</h5>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>&nbsp;</label>
+                                                <div class="form-group">
+                                                    <div class="preview-image-upload">
+                                                        <img class="imagePreviewUpload" <?= isset($user) ? (($user->profile_picture !== null) ? 'src="' . base_url('uploads/peserta/user') . '/' . $user->profile_picture . '"' : '') : '' ?> id="imagePreviewUpload" />
+                                                        <!-- <button type="button" class="btn-remove-preview-image">Remove</button> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin-top: 30px;">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-success">Simpan Profil</button>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="progress-wrapper progress-_progress_laporan" style="display: none;">
+                                                    <div class="progress-info">
+                                                        <div class="progress-label">
+                                                            <span class="status-_progress_laporan" id="status-_progress_laporan">Memulai Upload . . .</span>
+                                                        </div>
+                                                        <div class="progress-percentage progress-percent-_progress_laporan" id="progress-percent-_progress_laporan">
+                                                            <span>0%</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-info progressbar-_progress_laporan" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <?php if (isset($warning)) { ?>
+                            <div class="card">
+                                <div class="card-body bg-gradient-danger p-0" style="border-radius: 5px; color: #fff;">
+                                    <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                                    <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $warning ?></span></button></center>
+                                    <br />
+                                    <br />
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>UBAH DATA PROFIL</h2>
+                                </div>
+                                <?php
+                                $provinsi = "";
+                                $kabupaten = "";
+                                $kecamatan = "";
+                                $kelurahan = "";
+                                $dusun = "";
+                                $alamat = "";
+                                $dataDetail = null;
+                                if (isset($user)) {
+                                    if (isset($details)) {
+                                        $dataDetail = $details;
+                                    }
+                                    if (!(isset($user->provinsi)) || $user->provinsi == null || $user->provinsi == "") {
+                                        if (isset($details)) {
+                                            $provinsi = substr(trim($details->kode_wilayah), 0, 2) . '0000';
+                                        }
+                                    } else {
+                                        $provinsi = $user->provinsi;
+                                    }
+                                    if (!(isset($user->kabupaten)) || $user->kabupaten == null || $user->kabupaten == "") {
+                                        if (isset($details)) {
+                                            $kabupaten = substr(trim($details->kode_wilayah), 0, 4) . '00';
+                                        }
+                                    } else {
+                                        $kabupaten = $user->kabupaten;
+                                    }
+                                    if (!(isset($user->kecamatan)) || $user->kecamatan == null || $user->kecamatan == "") {
+                                        if (isset($details)) {
+                                            $kecamatan = substr(trim($details->kode_wilayah), 0, 6);
+                                        }
+                                    } else {
+                                        $kecamatan = $user->kecamatan;
+                                    }
+                                    if (!(isset($user->kelurahan)) || $user->kelurahan == null || $user->kelurahan == "") {
+                                        if (isset($details)) {
+                                            $kelurahan = substr(trim($details->kode_wilayah), 0, 8);
+                                        }
+                                    } else {
+                                        $kelurahan = $user->kelurahan;
+                                    }
+                                    if (!(isset($user->dusun)) || $user->dusun == null || $user->dusun == "") {
+                                    } else {
+                                        $dusun = $user->dusun;
+                                    }
+                                    if (!(isset($user->alamat)) || $user->alamat == null || $user->alamat == "") {
+                                        if (isset($details)) {
+                                            $alamat = trim($details->alamat_jalan);
+                                            // $alamat = $details->alamat_jalan;
+                                        }
+                                    } else {
+                                        $alamat = $user->alamat;
+                                    }
+                                } ?>
+                                <div class="card-body">
+                                    <div class="col-lg-12">
+                                        <form>
+                                            <h5 class="heading-small">Data Pribadi</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nama-block">
+                                                        <label for="_nama" class="form-control-label">Nama Lengkap <span class="required" style="color: indigo;">* Wajib</span></label>
+                                                        <input type="text" class="form-control" id="_nama" name="_nama" placeholder="Nama Lengkap . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->fullname) ? $user->fullname : '') : '' ?>" readonly>
+                                                        <div class="help-block _nama"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nisn-block">
+                                                        <label for="_nisn" class="form-control-label">NISN</label>
+                                                        <input type="text" class="form-control" id="_nisn" name="_nisn" placeholder="NISN . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->nisn) ? $user->nisn : '') : '' ?>" readonly>
+                                                        <div class="help-block _nisn"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nik-block">
+                                                        <label for="_nik" class="form-control-label">NIK</label>
+                                                        <input type="text" class="form-control" id="_nik" name="_nik" placeholder="NIK . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nik) ? $details->nik : '') : '' ?>" readonly>
+                                                        <div class="help-block _nik"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _jenis_kelamin-block">
+                                                        <label for="_jenis_kelamin" class="form-control-label">Jenis Kelamin</label>
+                                                        <input type="text" class="form-control" id="_jenis_kelamin" name="_jenis_kelamin" placeholder="Jenis kelamin . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->jenis_kelamin) ? $details->jenis_kelamin : '') : '' ?>" readonly>
+                                                        <div class="help-block _jenis_kelamin"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _tempat_lahir-block">
+                                                        <label for="_tempat_lahir" class="form-control-label">Tempat Lahir</label>
+                                                        <input type="text" class="form-control" id="_tempat_lahir" name="_tempat_lahir" placeholder="Tempat Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tempat_lahir) ? $details->tempat_lahir : '') : '' ?>" readonly>
+                                                        <div class="help-block _tempat_lahir"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _tanggal_lahir-block">
+                                                        <label for="_tanggal_lahir" class="form-control-label">Tanggal Lahir</label>
+                                                        <input type="text" class="form-control" id="_tanggal_lahir" name="_tanggal_lahir" placeholder="Tanggal Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tanggal_lahir) ? $details->tanggal_lahir : '') : '' ?>" readonly>
+                                                        <div class="help-block _tanggal_lahir"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nama_ibu-block">
+                                                        <label for="_nama_ibu" class="form-control-label">Nama Ibu Kandung</label>
+                                                        <input type="text" class="form-control" id="_nama_ibu" name="_nama_ibu" placeholder="Nama ibu kandung . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nama_ibu_kandung) ? $details->nama_ibu_kandung : '') : '' ?>" readonly>
+                                                        <div class="help-block _nama_ibu"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _email-block">
+                                                        <label for="_email" class="form-control-label">Email</label>
+                                                        <input type="email" class="form-control" id="_email" name="_email" placeholder="Email . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->email) ? $user->email : '') : '' ?>" required>
+                                                        <div class="help-block _email"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nohp-block">
+                                                        <label for="_nohp" class="form-control-label">No Handphone</label>
+                                                        <input type="phone" class="form-control" id="_nohp" name="_nohp" placeholder="08xxxxxxxx" onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->no_hp) ? $user->no_hp : '') : '' ?>" required>
+                                                        <div class="help-block _nohp"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                            <h5 class="heading-small" style="margin-top: 20px;">Data Tempat Tinggal</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group _provinsi-block">
+                                                        <label for="_provinsi" class="form-control-label">Provinsi</label>
+                                                        <select class="form-control provinsi" name="_provinsi" id="_provinsi" data-toggle="select22" title="Simple select" onChange="onChangeProvinsi(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+
+                                                            <?php if (isset($provinsis)) {
+                                                                if (count($provinsis) > 0) {
+                                                                    echo "<option value=''>--Pilih Provinsi--</option>";
+                                                                    foreach ($provinsis as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($provinsi == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Tidak ada data--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Tidak ada data--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _provinsi"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _kabupaten-block">
+                                                        <label for="_kabupaten" class="form-control-label">Kabupaten</label>
+                                                        <select class="form-control kabupaten" name="_kabupaten" id="_kabupaten" data-toggle="select22" title="Simple select" onChange="onChangeKabupaten(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                            <?php if (isset($kabupatens)) {
+                                                                if (count($kabupatens) > 0) {
+                                                                    echo "<option value=''>--Pilih Kabupaten--</option>";
+                                                                    foreach ($kabupatens as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($kabupaten == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _kabupaten"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _kecamatan-block">
+                                                        <label for="_kecamatan" class="form-control-label">Kecamatan</label>
+                                                        <select class="form-control kecamatan" name="_kecamatan" id="_kecamatan" data-toggle="select22" title="Simple select" onChange="onChangeKecamatan(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                            <?php if (isset($kecamatans)) {
+                                                                if (count($kecamatans) > 0) {
+                                                                    echo "<option value=''>--Pilih Kecamatan--</option>";
+                                                                    foreach ($kecamatans as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($kecamatan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _kecamatan"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _kelurahan-block">
+                                                        <label for="_kelurahan" class="form-control-label">Kelurahan</label>
+                                                        <select class="form-control kelurahan" name="_kelurahan" id="_kelurahan" data-toggle="select22" title="Simple select" onChange="onChangeKelurahan(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                            <?php if (isset($kelurahans)) {
+                                                                if (count($kelurahans) > 0) {
+                                                                    echo "<option value=''>--Pilih Kelurahan--</option>";
+                                                                    foreach ($kelurahans as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($kelurahan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _kelurahan"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _dusun-block">
+                                                        <label for="_dusun" class="form-control-label">Dusun</label>
+                                                        <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                            <?php if (isset($dusuns)) {
+                                                                if (count($dusuns) > 0) {
+                                                                    echo "<option value=''>--Pilih Dusun--</option>";
+                                                                    foreach ($dusuns as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($dusun == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _dusun"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group _alamat-block">
+                                                        <label for="_alamat" class="form-control-label">Alamat</label>
+                                                        <textarea class="form-control alamat" name="_alamat" id="_alamat" onFocus="inputFocus(this);"><?= $alamat ?></textarea>
+                                                        <div class="help-block _alamat"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _koordinat-block">
+                                                        <label for="_koordinat" class="form-control-label">Koordinat Tempat Tinggal</label>
+                                                        <div class="input-group input-group-merge">
+                                                            <input type="hidden" name="_old_picture" id="_old_picture" value="<?= (isset($user)) ? $user->profile_picture : '' ?>">
+                                                            <input type="hidden" name="_latitude" id="_latitude" value="<?= (isset($user)) ? $user->latitude : '' ?>">
+                                                            <input type="hidden" name="_longitude" id="_longitude" value="<?= (isset($user)) ? $user->longitude : '' ?>">
+                                                            <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?= (isset($user)) ? '(' . $user->latitude . ';' . $user->longitude . ')' : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                            <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
+                                                                <span class="input-group-text action-location-icon" style="background-color: transparent;"><i class="fas fa-map-marker"></i></span>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="help-block _koordinat"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                            <h5 class="heading-small" style="margin-top: 20px;">Data Asal Sekolah</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group _npsn_asal-block">
+                                                        <label for="_npsn_asal" class="form-control-label">NPSN Asal Sekolah</label>
+                                                        <input type="text" class="form-control alamat" name="_npsn_asal" id="_npsn_asal" value="<?= (isset($sekolah)) ? $sekolah->npsn : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                        <div class="help-block _npsn_asal"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _sekolah_asal-block">
+                                                        <label for="_sekolah_asal" class="form-control-label">Nama Asal Sekolah</label>
+                                                        <input type="text" class="form-control alamat" name="_sekolah_asal" id="_sekolah_asal" value="<?= (isset($sekolah)) ? $sekolah->nama : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                        <div class="help-block _sekolah_asal"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                            <h5 class="heading-small" style="margin-top: 20px;">Upload Pas Foto</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group" id="file-error">
+                                                        <h5>Pass Foto</h5>
+                                                        <div class="controls">
+                                                            <input type="file" class="form-control" id="_file" name="_file" onFocus="inputFocus(this);" accept="image/*" onchange="loadFileImage()" required>
+                                                            <div class="help-block _file" for="file"></div>
+                                                        </div>
+                                                        <p>Pilih gambar dengan ukuran maksimal 512 kb.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>&nbsp;</label>
+                                                    <div class="form-group">
+                                                        <div class="preview-image-upload">
+                                                            <img class="imagePreviewUpload" <?= isset($user) ? (($user->profile_picture !== null) ? 'src="' . base_url('uploads/peserta/user') . '/' . $user->profile_picture . '"' : '') : '' ?> id="imagePreviewUpload" />
+                                                            <!-- <button type="button" class="btn-remove-preview-image">Remove</button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 30px;">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <button type="button" onclick="actionSave(this)" class="btn btn-success">Simpan Profil</button>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="progress-wrapper progress-_progress_laporan" style="display: none;">
+                                                        <div class="progress-info">
+                                                            <div class="progress-label">
+                                                                <span class="status-_progress_laporan" id="status-_progress_laporan">Memulai Upload . . .</span>
+                                                            </div>
+                                                            <div class="progress-percentage progress-percent-_progress_laporan" id="progress-percent-_progress_laporan">
+                                                                <span>0%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-info progressbar-_progress_laporan" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } else { ?>
+                            <div class="card">
+                                <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
+                                    <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                                    <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $error ?></span></button></center>
+                                    <br />
+                                    <?php if (isset($sekolah_pilihan)) { ?>
+                                        <center>
+                                            <ol>
+                                                <li style="list-style: none;"><?= $sekolah_pilihan->tujuan_sekolah_id_2 !== NULL ? 'Sekolah Pilihan Pertama' : 'Sekolah yang dituju' ?> : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
+                                                <?php if ($sekolah_pilihan->tujuan_sekolah_id_2 !== NULL) { ?>
+                                                    <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
+                                                    <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
+                                                <?php } ?>
+                                            </ol>
+                                        </center>
+                                    <?php } ?>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>LENGKAPI DATA PROFIL</h2>
+                                </div>
+                                <?php
+                                $provinsi = "";
+                                $kabupaten = "";
+                                $kecamatan = "";
+                                $kelurahan = "";
+                                $dusun = "";
+                                $alamat = "";
+                                $dataDetail = null;
+                                if (isset($user)) {
+                                    if (isset($details)) {
+                                        $dataDetail = $details;
+                                    }
+                                    if (!(isset($user->provinsi)) || $user->provinsi == null || $user->provinsi == "") {
+                                        if (isset($details)) {
+                                            $provinsi = substr(trim($details->kode_wilayah), 0, 2) . '0000';
+                                        }
+                                    } else {
+                                        $provinsi = $user->provinsi;
+                                    }
+                                    if (!(isset($user->kabupaten)) || $user->kabupaten == null || $user->kabupaten == "") {
+                                        if (isset($details)) {
+                                            $kabupaten = substr(trim($details->kode_wilayah), 0, 4) . '00';
+                                        }
+                                    } else {
+                                        $kabupaten = $user->kabupaten;
+                                    }
+                                    if (!(isset($user->kecamatan)) || $user->kecamatan == null || $user->kecamatan == "") {
+                                        if (isset($details)) {
+                                            $kecamatan = substr(trim($details->kode_wilayah), 0, 6);
+                                        }
+                                    } else {
+                                        $kecamatan = $user->kecamatan;
+                                    }
+                                    if (!(isset($user->kelurahan)) || $user->kelurahan == null || $user->kelurahan == "") {
+                                        if (isset($details)) {
+                                            $kelurahan = substr(trim($details->kode_wilayah), 0, 8);
+                                        }
+                                    } else {
+                                        $kelurahan = $user->kelurahan;
+                                    }
+                                    if (!(isset($user->dusun)) || $user->dusun == null || $user->dusun == "") {
+                                    } else {
+                                        $dusun = $user->dusun;
+                                    }
+                                    if (!(isset($user->alamat)) || $user->alamat == null || $user->alamat == "") {
+                                        if (isset($details)) {
+                                            $alamat = trim($details->alamat_jalan);
+                                            // $alamat = $details->alamat_jalan;
+                                        }
+                                    } else {
+                                        $alamat = $user->alamat;
+                                    }
+                                } ?>
+                                <div class="card-body">
+                                    <div class="col-lg-12">
+                                        <form>
+                                            <h5 class="heading-small">Data Pribadi</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nama-block">
+                                                        <label for="_nama" class="form-control-label">Nama Lengkap <span class="required" style="color: indigo;">* Wajib</span></label>
+                                                        <input type="text" class="form-control" id="_nama" name="_nama" placeholder="Nama Lengkap . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->fullname) ? $user->fullname : '') : '' ?>" readonly>
+                                                        <div class="help-block _nama"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nisn-block">
+                                                        <label for="_nisn" class="form-control-label">NISN</label>
+                                                        <input type="text" class="form-control" id="_nisn" name="_nisn" placeholder="NISN . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->nisn) ? $user->nisn : '') : '' ?>" readonly>
+                                                        <div class="help-block _nisn"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nik-block">
+                                                        <label for="_nik" class="form-control-label">NIK</label>
+                                                        <input type="text" class="form-control" id="_nik" name="_nik" placeholder="NIK . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nik) ? $details->nik : '') : '' ?>" readonly>
+                                                        <div class="help-block _nik"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _jenis_kelamin-block">
+                                                        <label for="_jenis_kelamin" class="form-control-label">Jenis Kelamin</label>
+                                                        <input type="text" class="form-control" id="_jenis_kelamin" name="_jenis_kelamin" placeholder="Jenis kelamin . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->jenis_kelamin) ? $details->jenis_kelamin : '') : '' ?>" readonly>
+                                                        <div class="help-block _jenis_kelamin"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _tempat_lahir-block">
+                                                        <label for="_tempat_lahir" class="form-control-label">Tempat Lahir</label>
+                                                        <input type="text" class="form-control" id="_tempat_lahir" name="_tempat_lahir" placeholder="Tempat Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tempat_lahir) ? $details->tempat_lahir : '') : '' ?>" readonly>
+                                                        <div class="help-block _tempat_lahir"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _tanggal_lahir-block">
+                                                        <label for="_tanggal_lahir" class="form-control-label">Tanggal Lahir</label>
+                                                        <input type="text" class="form-control" id="_tanggal_lahir" name="_tanggal_lahir" placeholder="Tanggal Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tanggal_lahir) ? $details->tanggal_lahir : '') : '' ?>" readonly>
+                                                        <div class="help-block _tanggal_lahir"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nama_ibu-block">
+                                                        <label for="_nama_ibu" class="form-control-label">Nama Ibu Kandung</label>
+                                                        <input type="text" class="form-control" id="_nama_ibu" name="_nama_ibu" placeholder="Nama ibu kandung . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nama_ibu_kandung) ? $details->nama_ibu_kandung : '') : '' ?>" readonly>
+                                                        <div class="help-block _nama_ibu"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _email-block">
+                                                        <label for="_email" class="form-control-label">Email</label>
+                                                        <input type="email" class="form-control" id="_email" name="_email" placeholder="Email . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->email) ? $user->email : '') : '' ?>" readonly>
+                                                        <div class="help-block _email"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _nohp-block">
+                                                        <label for="_nohp" class="form-control-label">No Handphone</label>
+                                                        <input type="phone" class="form-control" id="_nohp" name="_nohp" placeholder="08xxxxxxxx" onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->no_hp) ? $user->no_hp : '') : '' ?>" readonly>
+                                                        <div class="help-block _nohp"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                            <h5 class="heading-small" style="margin-top: 20px;">Data Tempat Tinggal</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group _provinsi-block">
+                                                        <label for="_provinsi" class="form-control-label">Provinsi</label>
+                                                        <select class="form-control provinsi" name="_provinsi" id="_provinsi" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+
+                                                            <?php if (isset($provinsis)) {
+                                                                if (count($provinsis) > 0) {
+                                                                    echo "<option value=''>--Pilih Provinsi--</option>";
+                                                                    foreach ($provinsis as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($provinsi == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Tidak ada data--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Tidak ada data--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _provinsi"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _kabupaten-block">
+                                                        <label for="_kabupaten" class="form-control-label">Kabupaten</label>
+                                                        <select class="form-control kabupaten" name="_kabupaten" id="_kabupaten" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+                                                            <?php if (isset($kabupatens)) {
+                                                                if (count($kabupatens) > 0) {
+                                                                    echo "<option value=''>--Pilih Kabupaten--</option>";
+                                                                    foreach ($kabupatens as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($kabupaten == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _kabupaten"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _kecamatan-block">
+                                                        <label for="_kecamatan" class="form-control-label">Kecamatan</label>
+                                                        <select class="form-control kecamatan" name="_kecamatan" id="_kecamatan" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+                                                            <?php if (isset($kecamatans)) {
+                                                                if (count($kecamatans) > 0) {
+                                                                    echo "<option value=''>--Pilih Kecamatan--</option>";
+                                                                    foreach ($kecamatans as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($kecamatan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _kecamatan"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _kelurahan-block">
+                                                        <label for="_kelurahan" class="form-control-label">Kelurahan</label>
+                                                        <select class="form-control kelurahan" name="_kelurahan" id="_kelurahan" data-toggle="select22" title="Simple select" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
+                                                            <?php if (isset($kelurahans)) {
+                                                                if (count($kelurahans) > 0) {
+                                                                    echo "<option value=''>--Pilih Kelurahan--</option>";
+                                                                    foreach ($kelurahans as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($kelurahan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _kelurahan"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _dusun-block">
+                                                        <label for="_dusun" class="form-control-label">Dusun</label>
+                                                        <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                            <?php if (isset($dusuns)) {
+                                                                if (count($dusuns) > 0) {
+                                                                    echo "<option value=''>--Pilih Dusun--</option>";
+                                                                    foreach ($dusuns as $key => $value) { ?>
+                                                                        <option value="<?= $value->id ?>" <?= ($dusun == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                            <?php }
+                                                                } else {
+                                                                    echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                            } ?>
+                                                        </select>
+                                                        <div class="help-block _dusun"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group _alamat-block">
+                                                        <label for="_alamat" class="form-control-label">Alamat</label>
+                                                        <textarea class="form-control alamat" name="_alamat" id="_alamat" onFocus="inputFocus(this);" disabled><?= $alamat ?></textarea>
+                                                        <div class="help-block _alamat"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _koordinat-block">
+                                                        <label for="_koordinat" class="form-control-label">Koordinat Tempat Tinggal</label>
+                                                        <div class="input-group input-group-merge">
+                                                            <input type="hidden" name="_latitude" id="_latitude" value="<?= (isset($user)) ? $user->latitude : '' ?>">
+                                                            <input type="hidden" name="_longitude" id="_longitude" value="<?= (isset($user)) ? $user->longitude : '' ?>">
+                                                            <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?= (isset($user)) ? '(' . $user->latitude . ';' . $user->longitude . ')' : '' ?>" onFocus="inputFocus(this);" disabled>
+                                                            <!-- <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
+                                                                <span class="input-group-text action-location-icon" style="background-color: transparent;"><i class="fas fa-map-marker"></i></span>
+                                                            </div> -->
+                                                        </div>
+
+                                                        <div class="help-block _koordinat"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                            <h5 class="heading-small" style="margin-top: 20px;">Data Asal Sekolah</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group _npsn_asal-block">
+                                                        <label for="_npsn_asal" class="form-control-label">NPSN Asal Sekolah</label>
+                                                        <input type="text" class="form-control alamat" name="_npsn_asal" id="_npsn_asal" value="<?= (isset($sekolah)) ? $sekolah->npsn : '' ?>" onFocus="inputFocus(this);" disabled>
+                                                        <div class="help-block _npsn_asal"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group _sekolah_asal-block">
+                                                        <label for="_sekolah_asal" class="form-control-label">Nama Asal Sekolah</label>
+                                                        <input type="text" class="form-control alamat" name="_sekolah_asal" id="_sekolah_asal" value="<?= (isset($sekolah)) ? $sekolah->nama : '' ?>" onFocus="inputFocus(this);" disabled>
+                                                        <div class="help-block _sekolah_asal"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                            <h5 class="heading-small" style="margin-top: 20px;">Upload Pas Foto</h5>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>&nbsp;</label>
+                                                    <div class="form-group">
+                                                        <div class="preview-image-upload">
+                                                            <img class="imagePreviewUpload" <?= isset($user) ? (($user->profile_picture !== null) ? 'src="' . base_url('uploads/peserta/user') . '/' . $user->profile_picture . '"' : '') : '' ?> id="imagePreviewUpload" />
+                                                            <!-- <button type="button" class="btn-remove-preview-image">Remove</button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 30px;">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-success">Simpan Profil</button>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="progress-wrapper progress-_progress_laporan" style="display: none;">
+                                                        <div class="progress-info">
+                                                            <div class="progress-label">
+                                                                <span class="status-_progress_laporan" id="status-_progress_laporan">Memulai Upload . . .</span>
+                                                            </div>
+                                                            <div class="progress-percentage progress-percent-_progress_laporan" id="progress-percent-_progress_laporan">
+                                                                <span>0%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-info progressbar-_progress_laporan" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+                <?php } else { ?>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>UBAH DATA PROFIL</h2>
+                        </div>
+                        <?php
+                        $provinsi = "";
+                        $kabupaten = "";
+                        $kecamatan = "";
+                        $kelurahan = "";
+                        $dusun = "";
+                        $alamat = "";
+                        $dataDetail = null;
+                        if (isset($user)) {
+                            if (isset($details)) {
+                                $dataDetail = $details;
+                            }
+                            if (!(isset($user->provinsi)) || $user->provinsi == null || $user->provinsi == "") {
+                                if (isset($details)) {
+                                    $provinsi = substr(trim($details->kode_wilayah), 0, 2) . '0000';
+                                }
+                            } else {
+                                $provinsi = $user->provinsi;
+                            }
+                            if (!(isset($user->kabupaten)) || $user->kabupaten == null || $user->kabupaten == "") {
+                                if (isset($details)) {
+                                    $kabupaten = substr(trim($details->kode_wilayah), 0, 4) . '00';
+                                }
+                            } else {
+                                $kabupaten = $user->kabupaten;
+                            }
+                            if (!(isset($user->kecamatan)) || $user->kecamatan == null || $user->kecamatan == "") {
+                                if (isset($details)) {
+                                    $kecamatan = substr(trim($details->kode_wilayah), 0, 6);
+                                }
+                            } else {
+                                $kecamatan = $user->kecamatan;
+                            }
+                            if (!(isset($user->kelurahan)) || $user->kelurahan == null || $user->kelurahan == "") {
+                                if (isset($details)) {
+                                    $kelurahan = substr(trim($details->kode_wilayah), 0, 8);
+                                }
+                            } else {
+                                $kelurahan = $user->kelurahan;
+                            }
+                            if (!(isset($user->dusun)) || $user->dusun == null || $user->dusun == "") {
+                            } else {
+                                $dusun = $user->dusun;
+                            }
+                            if (!(isset($user->alamat)) || $user->alamat == null || $user->alamat == "") {
+                                if (isset($details)) {
+                                    $alamat = trim($details->alamat_jalan);
+                                    // $alamat = $details->alamat_jalan;
+                                }
+                            } else {
+                                $alamat = $user->alamat;
+                            }
+                        } ?>
+                        <div class="card-body">
+                            <div class="col-lg-12">
+                                <form>
+                                    <h5 class="heading-small">Data Pribadi</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group _nama-block">
+                                                <label for="_nama" class="form-control-label">Nama Lengkap <span class="required" style="color: indigo;">* Wajib</span></label>
+                                                <input type="text" class="form-control" id="_nama" name="_nama" placeholder="Nama Lengkap . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->fullname) ? $user->fullname : '') : '' ?>" readonly>
+                                                <div class="help-block _nama"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _nisn-block">
+                                                <label for="_nisn" class="form-control-label">NISN</label>
+                                                <input type="text" class="form-control" id="_nisn" name="_nisn" placeholder="NISN . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->nisn) ? $user->nisn : '') : '' ?>" readonly>
+                                                <div class="help-block _nisn"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _nik-block">
+                                                <label for="_nik" class="form-control-label">NIK</label>
+                                                <input type="text" class="form-control" id="_nik" name="_nik" placeholder="NIK . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nik) ? $details->nik : '') : '' ?>" readonly>
+                                                <div class="help-block _nik"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _jenis_kelamin-block">
+                                                <label for="_jenis_kelamin" class="form-control-label">Jenis Kelamin</label>
+                                                <input type="text" class="form-control" id="_jenis_kelamin" name="_jenis_kelamin" placeholder="Jenis kelamin . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->jenis_kelamin) ? $details->jenis_kelamin : '') : '' ?>" readonly>
+                                                <div class="help-block _jenis_kelamin"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _tempat_lahir-block">
+                                                <label for="_tempat_lahir" class="form-control-label">Tempat Lahir</label>
+                                                <input type="text" class="form-control" id="_tempat_lahir" name="_tempat_lahir" placeholder="Tempat Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tempat_lahir) ? $details->tempat_lahir : '') : '' ?>" readonly>
+                                                <div class="help-block _tempat_lahir"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _tanggal_lahir-block">
+                                                <label for="_tanggal_lahir" class="form-control-label">Tanggal Lahir</label>
+                                                <input type="text" class="form-control" id="_tanggal_lahir" name="_tanggal_lahir" placeholder="Tanggal Lahir . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->tanggal_lahir) ? $details->tanggal_lahir : '') : '' ?>" readonly>
+                                                <div class="help-block _tanggal_lahir"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _nama_ibu-block">
+                                                <label for="_nama_ibu" class="form-control-label">Nama Ibu Kandung</label>
+                                                <input type="text" class="form-control" id="_nama_ibu" name="_nama_ibu" placeholder="Nama ibu kandung . . ." onFocus="inputFocus(this);" value="<?= (isset($details)) ? (isset($details->nama_ibu_kandung) ? $details->nama_ibu_kandung : '') : '' ?>" readonly>
+                                                <div class="help-block _nama_ibu"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _email-block">
+                                                <label for="_email" class="form-control-label">Email</label>
+                                                <input type="email" class="form-control" id="_email" name="_email" placeholder="Email . . ." onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->email) ? $user->email : '') : '' ?>" required>
+                                                <div class="help-block _email"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _nohp-block">
+                                                <label for="_nohp" class="form-control-label">No Handphone</label>
+                                                <input type="phone" class="form-control" id="_nohp" name="_nohp" placeholder="08xxxxxxxx" onFocus="inputFocus(this);" value="<?= (isset($user)) ? (isset($user->no_hp) ? $user->no_hp : '') : '' ?>" required>
+                                                <div class="help-block _nohp"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                    <h5 class="heading-small" style="margin-top: 20px;">Data Tempat Tinggal</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group _provinsi-block">
+                                                <label for="_provinsi" class="form-control-label">Provinsi</label>
+                                                <select class="form-control provinsi" name="_provinsi" id="_provinsi" data-toggle="select22" title="Simple select" onChange="onChangeProvinsi(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+
+                                                    <?php if (isset($provinsis)) {
+                                                        if (count($provinsis) > 0) {
+                                                            echo "<option value=''>--Pilih Provinsi--</option>";
+                                                            foreach ($provinsis as $key => $value) { ?>
+                                                                <option value="<?= $value->id ?>" <?= ($provinsi == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                    <?php }
+                                                        } else {
+                                                            echo "<option value='' selected>--Tidak ada data--</option>";
+                                                        }
+                                                    } else {
+                                                        echo "<option value='' selected>--Tidak ada data--</option>";
+                                                    } ?>
+                                                </select>
+                                                <div class="help-block _provinsi"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _kabupaten-block">
+                                                <label for="_kabupaten" class="form-control-label">Kabupaten</label>
+                                                <select class="form-control kabupaten" name="_kabupaten" id="_kabupaten" data-toggle="select22" title="Simple select" onChange="onChangeKabupaten(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <?php if (isset($kabupatens)) {
+                                                        if (count($kabupatens) > 0) {
+                                                            echo "<option value=''>--Pilih Kabupaten--</option>";
+                                                            foreach ($kabupatens as $key => $value) { ?>
+                                                                <option value="<?= $value->id ?>" <?= ($kabupaten == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                    <?php }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                        }
+                                                    } else {
+                                                        echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                    } ?>
+                                                </select>
+                                                <div class="help-block _kabupaten"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _kecamatan-block">
+                                                <label for="_kecamatan" class="form-control-label">Kecamatan</label>
+                                                <select class="form-control kecamatan" name="_kecamatan" id="_kecamatan" data-toggle="select22" title="Simple select" onChange="onChangeKecamatan(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <?php if (isset($kecamatans)) {
+                                                        if (count($kecamatans) > 0) {
+                                                            echo "<option value=''>--Pilih Kecamatan--</option>";
+                                                            foreach ($kecamatans as $key => $value) { ?>
+                                                                <option value="<?= $value->id ?>" <?= ($kecamatan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                    <?php }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                        }
+                                                    } else {
+                                                        echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                    } ?>
+                                                </select>
+                                                <div class="help-block _kecamatan"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _kelurahan-block">
+                                                <label for="_kelurahan" class="form-control-label">Kelurahan</label>
+                                                <select class="form-control kelurahan" name="_kelurahan" id="_kelurahan" data-toggle="select22" title="Simple select" onChange="onChangeKelurahan(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <?php if (isset($kelurahans)) {
+                                                        if (count($kelurahans) > 0) {
+                                                            echo "<option value=''>--Pilih Kelurahan--</option>";
+                                                            foreach ($kelurahans as $key => $value) { ?>
+                                                                <option value="<?= $value->id ?>" <?= ($kelurahan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                    <?php }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                        }
+                                                    } else {
+                                                        echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                    } ?>
+                                                </select>
+                                                <div class="help-block _kelurahan"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _dusun-block">
+                                                <label for="_dusun" class="form-control-label">Dusun</label>
+                                                <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <?php if (isset($dusuns)) {
+                                                        if (count($dusuns) > 0) {
+                                                            echo "<option value=''>--Pilih Dusun--</option>";
+                                                            foreach ($dusuns as $key => $value) { ?>
+                                                                <option value="<?= $value->id ?>" <?= ($dusun == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
+                                                    <?php }
+                                                        } else {
+                                                            echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                        }
+                                                    } else {
+                                                        echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                    } ?>
+                                                </select>
+                                                <div class="help-block _dusun"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group _alamat-block">
+                                                <label for="_alamat" class="form-control-label">Alamat</label>
+                                                <textarea class="form-control alamat" name="_alamat" id="_alamat" onFocus="inputFocus(this);"><?= $alamat ?></textarea>
+                                                <div class="help-block _alamat"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _koordinat-block">
+                                                <label for="_koordinat" class="form-control-label">Koordinat Tempat Tinggal</label>
+                                                <div class="input-group input-group-merge">
+                                                    <input type="hidden" name="_old_picture" id="_old_picture" value="<?= (isset($user)) ? $user->profile_picture : '' ?>">
+                                                    <input type="hidden" name="_latitude" id="_latitude" value="<?= (isset($user)) ? $user->latitude : '' ?>">
+                                                    <input type="hidden" name="_longitude" id="_longitude" value="<?= (isset($user)) ? $user->longitude : '' ?>">
+                                                    <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?= (isset($user)) ? '(' . $user->latitude . ';' . $user->longitude . ')' : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                    <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
+                                                        <span class="input-group-text action-location-icon" style="background-color: transparent;"><i class="fas fa-map-marker"></i></span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="help-block _koordinat"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                    <h5 class="heading-small" style="margin-top: 20px;">Data Asal Sekolah</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group _npsn_asal-block">
+                                                <label for="_npsn_asal" class="form-control-label">NPSN Asal Sekolah</label>
+                                                <input type="text" class="form-control alamat" name="_npsn_asal" id="_npsn_asal" value="<?= (isset($sekolah)) ? $sekolah->npsn : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                <div class="help-block _npsn_asal"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group _sekolah_asal-block">
+                                                <label for="_sekolah_asal" class="form-control-label">Nama Asal Sekolah</label>
+                                                <input type="text" class="form-control alamat" name="_sekolah_asal" id="_sekolah_asal" value="<?= (isset($sekolah)) ? $sekolah->nama : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                <div class="help-block _sekolah_asal"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 0px;">
+                                    <h5 class="heading-small" style="margin-top: 20px;">Upload Pas Foto</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group" id="file-error">
+                                                <h5>Pass Foto</h5>
+                                                <div class="controls">
+                                                    <input type="file" class="form-control" id="_file" name="_file" onFocus="inputFocus(this);" accept="image/*" onchange="loadFileImage()" required>
+                                                    <div class="help-block _file" for="file"></div>
+                                                </div>
+                                                <p>Pilih gambar dengan ukuran maksimal 512 kb.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>&nbsp;</label>
+                                            <div class="form-group">
+                                                <div class="preview-image-upload">
+                                                    <img class="imagePreviewUpload" <?= isset($user) ? (($user->profile_picture !== null) ? 'src="' . base_url('uploads/peserta/user') . '/' . $user->profile_picture . '"' : '') : '' ?> id="imagePreviewUpload" />
+                                                    <!-- <button type="button" class="btn-remove-preview-image">Remove</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 30px;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <button type="button" onclick="actionSave(this)" class="btn btn-success">Simpan Profil</button>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="progress-wrapper progress-_progress_laporan" style="display: none;">
+                                                <div class="progress-info">
+                                                    <div class="progress-label">
+                                                        <span class="status-_progress_laporan" id="status-_progress_laporan">Memulai Upload . . .</span>
+                                                    </div>
+                                                    <div class="progress-percentage progress-percent-_progress_laporan" id="progress-percent-_progress_laporan">
+                                                        <span>0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-info progressbar-_progress_laporan" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <!-- <div class="card">
                     <div class="card-header">
                         <h2>UBAH DATA PROFIL</h2>
                     </div>
                     <?php
-                    $provinsi = "";
-                    $kabupaten = "";
-                    $kecamatan = "";
-                    $kelurahan = "";
-                    $dusun = "";
-                    $alamat = "";
-                    $dataDetail = null;
-                    if (isset($user)) {
-                        if (isset($details)) {
-                            $dataDetail = $details;
-                        }
-                        if (!(isset($user->provinsi)) || $user->provinsi == null || $user->provinsi == "") {
-                            if (isset($details)) {
-                                $provinsi = substr(trim($details->kode_wilayah), 0, 2) . '0000';
-                            }
-                        } else {
-                            $provinsi = $user->provinsi;
-                        }
-                        if (!(isset($user->kabupaten)) || $user->kabupaten == null || $user->kabupaten == "") {
-                            if (isset($details)) {
-                                $kabupaten = substr(trim($details->kode_wilayah), 0, 4) . '00';
-                            }
-                        } else {
-                            $kabupaten = $user->kabupaten;
-                        }
-                        if (!(isset($user->kecamatan)) || $user->kecamatan == null || $user->kecamatan == "") {
-                            if (isset($details)) {
-                                $kecamatan = substr(trim($details->kode_wilayah), 0, 6);
-                            }
-                        } else {
-                            $kecamatan = $user->kecamatan;
-                        }
-                        if (!(isset($user->kelurahan)) || $user->kelurahan == null || $user->kelurahan == "") {
-                            if (isset($details)) {
-                                $kelurahan = substr(trim($details->kode_wilayah), 0, 8);
-                            }
-                        } else {
-                            $kelurahan = $user->kelurahan;
-                        }
-                        if (!(isset($user->dusun)) || $user->dusun == null || $user->dusun == "") {
-                        } else {
-                            $dusun = $user->dusun;
-                        }
-                        if (!(isset($user->alamat)) || $user->alamat == null || $user->alamat == "") {
-                            if (isset($details)) {
-                                $alamat = trim($details->alamat_jalan);
-                                // $alamat = $details->alamat_jalan;
-                            }
-                        } else {
-                            $alamat = $user->alamat;
-                        }
-                    } ?>
+                    //$provinsi = "";
+                    //$kabupaten = "";
+                    //$kecamatan = "";
+                    // $kelurahan = "";
+                    // $dusun = "";
+                    // $alamat = "";
+                    // $dataDetail = null;
+                    // if (isset($user)) {
+                    //     if (isset($details)) {
+                    //         $dataDetail = $details;
+                    // }
+                    // if (!(isset($user->provinsi)) || $user->provinsi == null || $user->provinsi == "") {
+                    //     if (isset($details)) {
+                    //         $provinsi = substr(trim($details->kode_wilayah), 0, 2) . '0000';
+                    //     }
+                    // } else {
+                    //     $provinsi = $user->provinsi;
+                    // }
+                    // if (!(isset($user->kabupaten)) || $user->kabupaten == null || $user->kabupaten == "") {
+                    //     if (isset($details)) {
+                    //         $kabupaten = substr(trim($details->kode_wilayah), 0, 4) . '00';
+                    //     }
+                    // } else {
+                    //     $kabupaten = $user->kabupaten;
+                    // }
+                    // if (!(isset($user->kecamatan)) || $user->kecamatan == null || $user->kecamatan == "") {
+                    //     if (isset($details)) {
+                    //         $kecamatan = substr(trim($details->kode_wilayah), 0, 6);
+                    //     }
+                    // } else {
+                    //     $kecamatan = $user->kecamatan;
+                    // }
+                    // if (!(isset($user->kelurahan)) || $user->kelurahan == null || $user->kelurahan == "") {
+                    //     if (isset($details)) {
+                    //         $kelurahan = substr(trim($details->kode_wilayah), 0, 8);
+                    //     }
+                    // } else {
+                    //     $kelurahan = $user->kelurahan;
+                    // }
+                    // if (!(isset($user->dusun)) || $user->dusun == null || $user->dusun == "") {
+                    // } else {
+                    //     $dusun = $user->dusun;
+                    // }
+                    // if (!(isset($user->alamat)) || $user->alamat == null || $user->alamat == "") {
+                    //     if (isset($details)) {
+                    //         $alamat = trim($details->alamat_jalan);
+                    //         // $alamat = $details->alamat_jalan;
+                    //     }
+                    // } else {
+                    //     $alamat = $user->alamat;
+                    // }
+                    //} 
+                    ?>
                     <div class="card-body">
                         <div class="col-lg-12">
                             <form>
@@ -161,18 +1471,23 @@
                                             <label for="_provinsi" class="form-control-label">Provinsi</label>
                                             <select class="form-control provinsi" name="_provinsi" id="_provinsi" data-toggle="select22" title="Simple select" onChange="onChangeProvinsi(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
 
-                                                <?php if (isset($provinsis)) {
-                                                    if (count($provinsis) > 0) {
-                                                        echo "<option value=''>--Pilih Provinsi--</option>";
-                                                        foreach ($provinsis as $key => $value) { ?>
-                                                            <option value="<?= $value->id ?>" <?= ($provinsi == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
-                                                <?php }
-                                                    } else {
-                                                        echo "<option value='' selected>--Tidak ada data--</option>";
-                                                    }
-                                                } else {
-                                                    echo "<option value='' selected>--Tidak ada data--</option>";
-                                                } ?>
+                                                <?php //if (isset($provinsis)) {
+                                                // if (count($provinsis) > 0) {
+                                                //     echo "<option value=''>--Pilih Provinsi--</option>";
+                                                //foreach ($provinsis as $key => $value) { 
+                                                ?>
+                                                            <option value="<?php //echo $value->id 
+                                                                            ?>" <?php //echo ($provinsi == $value->id) ? 'selected' : '' 
+                                                                                ?>><?php //echo $value->nama 
+                                                                                    ?></option>
+                                                <?php //}
+                                                //     //} else {
+                                                //         echo "<option value='' selected>--Tidak ada data--</option>";
+                                                //     }
+                                                // } else {
+                                                //     echo "<option value='' selected>--Tidak ada data--</option>";
+                                                //} 
+                                                ?>
                                             </select>
                                             <div class="help-block _provinsi"></div>
                                         </div>
@@ -181,18 +1496,23 @@
                                         <div class="form-group _kabupaten-block">
                                             <label for="_kabupaten" class="form-control-label">Kabupaten</label>
                                             <select class="form-control kabupaten" name="_kabupaten" id="_kabupaten" data-toggle="select22" title="Simple select" onChange="onChangeKabupaten(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <?php if (isset($kabupatens)) {
-                                                    if (count($kabupatens) > 0) {
-                                                        echo "<option value=''>--Pilih Kabupaten--</option>";
-                                                        foreach ($kabupatens as $key => $value) { ?>
-                                                            <option value="<?= $value->id ?>" <?= ($kabupaten == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
-                                                <?php }
-                                                    } else {
-                                                        echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
-                                                    }
-                                                } else {
-                                                    echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
-                                                } ?>
+                                                <?php //if (isset($kabupatens)) {
+                                                // if (count($kabupatens) > 0) {
+                                                //     echo "<option value=''>--Pilih Kabupaten--</option>";
+                                                //foreach ($kabupatens as $key => $value) { 
+                                                ?>
+                                                            <option value="<?php //echo $value->id 
+                                                                            ?>" <?php //echo ($kabupaten == $value->id) ? 'selected' : '' 
+                                                                                ?>><?php //echo $value->nama 
+                                                                                    ?></option>
+                                                <?php //}
+                                                //     } else {
+                                                //         echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                //     }
+                                                // } else {
+                                                //     echo "<option value='' selected>--Pilih Provinsi Dulu--</option>";
+                                                //} 
+                                                ?>
                                             </select>
                                             <div class="help-block _kabupaten"></div>
                                         </div>
@@ -201,18 +1521,23 @@
                                         <div class="form-group _kecamatan-block">
                                             <label for="_kecamatan" class="form-control-label">Kecamatan</label>
                                             <select class="form-control kecamatan" name="_kecamatan" id="_kecamatan" data-toggle="select22" title="Simple select" onChange="onChangeKecamatan(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <?php if (isset($kecamatans)) {
-                                                    if (count($kecamatans) > 0) {
-                                                        echo "<option value=''>--Pilih Kecamatan--</option>";
-                                                        foreach ($kecamatans as $key => $value) { ?>
-                                                            <option value="<?= $value->id ?>" <?= ($kecamatan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
-                                                <?php }
-                                                    } else {
-                                                        echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
-                                                    }
-                                                } else {
-                                                    echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
-                                                } ?>
+                                                <?php //if (isset($kecamatans)) {
+                                                // if (count($kecamatans) > 0) {
+                                                //     echo "<option value=''>--Pilih Kecamatan--</option>";
+                                                //     foreach ($kecamatans as $key => $value) { 
+                                                ?>
+                                                            <option value="<?php //echo $value->id 
+                                                                            ?>" <?php //echo ($kecamatan == $value->id) ? 'selected' : '' 
+                                                                                ?>><?php //echo $value->nama 
+                                                                                    ?></option>
+                                                <?php //}
+                                                //     } else {
+                                                //         echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                //     }
+                                                // } else {
+                                                //     echo "<option value='' selected>--Pilih Kabupaten Dulu--</option>";
+                                                // } 
+                                                ?>
                                             </select>
                                             <div class="help-block _kecamatan"></div>
                                         </div>
@@ -221,18 +1546,23 @@
                                         <div class="form-group _kelurahan-block">
                                             <label for="_kelurahan" class="form-control-label">Kelurahan</label>
                                             <select class="form-control kelurahan" name="_kelurahan" id="_kelurahan" data-toggle="select22" title="Simple select" onChange="onChangeKelurahan(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <?php if (isset($kelurahans)) {
-                                                    if (count($kelurahans) > 0) {
-                                                        echo "<option value=''>--Pilih Kelurahan--</option>";
-                                                        foreach ($kelurahans as $key => $value) { ?>
-                                                            <option value="<?= $value->id ?>" <?= ($kelurahan == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
-                                                <?php }
-                                                    } else {
-                                                        echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
-                                                    }
-                                                } else {
-                                                    echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
-                                                } ?>
+                                                <?php //if (isset($kelurahans)) {
+                                                // if (count($kelurahans) > 0) {
+                                                //     echo "<option value=''>--Pilih Kelurahan--</option>";
+                                                //     foreach ($kelurahans as $key => $value) { 
+                                                ?>
+                                                            <option value="<?php //echo $value->id 
+                                                                            ?>" <?php //echo ($kelurahan == $value->id) ? 'selected' : '' 
+                                                                                ?>><?php //echo $value->nama 
+                                                                                    ?></option>
+                                                <?php //}
+                                                //     } else {
+                                                //         echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                //     }
+                                                // } else {
+                                                //     echo "<option value='' selected>--Pilih Kecamatan Dulu--</option>";
+                                                // } 
+                                                ?>
                                             </select>
                                             <div class="help-block _kelurahan"></div>
                                         </div>
@@ -241,18 +1571,23 @@
                                         <div class="form-group _dusun-block">
                                             <label for="_dusun" class="form-control-label">Dusun</label>
                                             <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                                <?php if (isset($dusuns)) {
-                                                    if (count($dusuns) > 0) {
-                                                        echo "<option value=''>--Pilih Dusun--</option>";
-                                                        foreach ($dusuns as $key => $value) { ?>
-                                                            <option value="<?= $value->id ?>" <?= ($dusun == $value->id) ? 'selected' : '' ?>><?= $value->nama ?></option>
-                                                <?php }
-                                                    } else {
-                                                        echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
-                                                    }
-                                                } else {
-                                                    echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
-                                                } ?>
+                                                <?php //if (isset($dusuns)) {
+                                                // if (count($dusuns) > 0) {
+                                                //     echo "<option value=''>--Pilih Dusun--</option>";
+                                                //     foreach ($dusuns as $key => $value) { 
+                                                ?>
+                                                            <option value="<?php //echo $value->id 
+                                                                            ?>" <?php //echo ($dusun == $value->id) ? 'selected' : '' 
+                                                                                ?>><?php //echo $value->nama 
+                                                                                    ?></option>
+                                                <?php //}
+                                                //     } else {
+                                                //         echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                //     }
+                                                // } else {
+                                                //     echo "<option value='' selected>--Pilih Kelurahan Dulu--</option>";
+                                                // } 
+                                                ?>
                                             </select>
                                             <div class="help-block _dusun"></div>
                                         </div>
@@ -268,10 +1603,14 @@
                                         <div class="form-group _koordinat-block">
                                             <label for="_koordinat" class="form-control-label">Koordinat Tempat Tinggal</label>
                                             <div class="input-group input-group-merge">
-                                                <input type="hidden" name="_old_picture" id="_old_picture" value="<?= (isset($user)) ? $user->profile_picture : '' ?>">
-                                                <input type="hidden" name="_latitude" id="_latitude" value="<?= (isset($user)) ? $user->latitude : '' ?>">
-                                                <input type="hidden" name="_longitude" id="_longitude" value="<?= (isset($user)) ? $user->longitude : '' ?>">
-                                                <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?= (isset($user)) ? '(' . $user->latitude . ';' . $user->longitude . ')' : '' ?>" onFocus="inputFocus(this);" readonly>
+                                                <input type="hidden" name="_old_picture" id="_old_picture" value="<?php //echo (isset($user)) ? $user->profile_picture : '' 
+                                                                                                                    ?>">
+                                                <input type="hidden" name="_latitude" id="_latitude" value="<?php //echo (isset($user)) ? $user->latitude : '' 
+                                                                                                            ?>">
+                                                <input type="hidden" name="_longitude" id="_longitude" value="<?php //echo (isset($user)) ? $user->longitude : '' 
+                                                                                                                ?>">
+                                                <input type="text" class="form-control koordinat" style="padding-left: 15px;" name="_koordinat" id="_koordinat" value="<?php //echo (isset($user)) ? '(' . $user->latitude . ';' . $user->longitude . ')' : '' 
+                                                                                                                                                                        ?>" onFocus="inputFocus(this);" readonly>
                                                 <div class="input-group-append action-location" onmouseover="actionMouseHoverLocation(this)" onmouseout="actionMouseOutHoverLocation(this)" onclick="pickCoordinat()">
                                                     <span class="input-group-text action-location-icon" style="background-color: transparent;"><i class="fas fa-map-marker"></i></span>
                                                 </div>
@@ -317,8 +1656,9 @@
                                         <label>&nbsp;</label>
                                         <div class="form-group">
                                             <div class="preview-image-upload">
-                                                <img class="imagePreviewUpload" <?= isset($user) ? (($user->profile_picture !== null) ? 'src="' . base_url('uploads/peserta/user') . '/' . $user->profile_picture . '"' : '') : '' ?> id="imagePreviewUpload" />
-                                                <!-- <button type="button" class="btn-remove-preview-image">Remove</button> -->
+                                                <img class="imagePreviewUpload" <?php //echo isset($user) ? (($user->profile_picture !== null) ? 'src="' . base_url('uploads/peserta/user') . '/' . $user->profile_picture . '"' : '') : '' 
+                                                                                ?> id="imagePreviewUpload" />
+                                                <button type="button" class="btn-remove-preview-image">Remove</button>
                                             </div>
                                         </div>
                                     </div>
@@ -347,7 +1687,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="contentModalLabel" aria-hidden="true">

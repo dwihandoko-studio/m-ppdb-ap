@@ -31,7 +31,7 @@ class Fcmlib
 
     //   $tokenFcm = (getenv('configurasifcm.default.key') == null || getenv('configurasifcm.default.key') == "") ? "AAAARhg838s:APA91bFxZAXjUmx_P-SLwRhF9qDSVPrKkTv6PSQ52uBfd2uJsSROjN6-gjNnHuv25Oda48uTO3EvkMomDK7T-CyBln0st_FFPTMmaR7-eXB8Kow20eyaMFVthXDgN5SPlPfwdXEmRCYW" : getenv('configurasifcm.default.key');
 
-    $tokenFcm = 'AAAA5icZrns:APA91bH4YM4599hgC2IYvh1ax7fFLw-UrEz_FYxleQiC5_HnTOLDP_DkE6JuQRYOcQTWF-x12r767AKM_zHgieywDru19i9pA0RL1wvMAZpYjq6Fkdxd3rE3NqXEMlDo6O8f8flWoq7_';
+    $tokenFcm = 'AAAAhWE_R_E:APA91bGIIX9buMHQ5Fhp0KPnhoxpUjcMbqNXZe8xhIgBH-y1_72rbH2VDmNwYuYSvTXwPrAUg9zhPIqsWLz2agcmQhSlQE0qcyle4Ms6fXpWL6r35MotgfQXVkZr_OTB-_sJMRPWMrtp';
 
     $token = "key= " . $tokenFcm;
     $to = $data['send_to'];

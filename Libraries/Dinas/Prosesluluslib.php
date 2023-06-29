@@ -208,13 +208,13 @@ class Prosesluluslib
                 'send_to' => $pen->id,
             ]);
 
-            // $onesignal = new Fcmlib();
-            // $send = $onesignal->pushNotifToUser([
-            //     'title' => "Pendaftaran Jalur Afirmasi Telah Lolos.",
-            //     'content' => "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan <br>sesuai jadwal yang telah ditentukan.",
-            //     'send_to' => $pen->id,
-            //     'app_url' => 'riwayat_pendaftaran_page',
-            // ]);
+            $onesignal = new Fcmlib();
+            $send = $onesignal->pushNotifToUser([
+                'title' => "Pendaftaran Jalur Afirmasi Tidak Lolos.",
+                'content' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).",
+                'send_to' => $pen->id,
+                'app_url' => 'riwayat_pendaftaran_page',
+            ]);
         } catch (\Throwable $th) {
         }
 
@@ -285,13 +285,13 @@ class Prosesluluslib
                 'send_to' => $pen->id,
             ]);
 
-            // $onesignal = new Fcmlib();
-            // $send = $onesignal->pushNotifToUser([
-            //     'title' => "Pendaftaran Jalur Afirmasi Telah Lolos.",
-            //     'content' => "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan <br>sesuai jadwal yang telah ditentukan.",
-            //     'send_to' => $pen->id,
-            //     'app_url' => 'riwayat_pendaftaran_page',
-            // ]);
+            $onesignal = new Fcmlib();
+            $send = $onesignal->pushNotifToUser([
+                'title' => "Pendaftaran Jalur Afirmasi Telah Lolos.",
+                'content' => "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan <br>sesuai jadwal yang telah ditentukan.",
+                'send_to' => $pen->id,
+                'app_url' => 'riwayat_pendaftaran_page',
+            ]);
         } catch (\Throwable $th) {
         }
 

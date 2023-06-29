@@ -47,15 +47,17 @@
                     <div class="card-header py-0">
                         <?php if (isset($error)) { ?>
                             <?php if (isset($warning)) { ?>
-                                <form>
-                                    <div class="form-group mb-0">
-                                        <div class="input-group input-group-lg input-group-flush">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><span class="fas fa-search"></span></div>
-                                            </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NPSN / Nama Sekolah. . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
+                                <?php if (isset($can_daftar)) { ?>
+                                    <form>
+                                        <div class="form-group mb-0">
+                                            <div class="input-group input-group-lg input-group-flush">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text"><span class="fas fa-search"></span></div>
+                                                </div><input type="search" class="form-control _search_item" id="_search_item" name="_search_item" placeholder="Cari NPSN / Nama Sekolah. . ."><button type="button" onclick="cariData(this)" class="btn btn-default"><span class="fas fa-search"></span></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                <?php } ?>
                             <?php } ?>
                         <?php } else { ?>
                             <form>
@@ -84,12 +86,30 @@
                                 </div>
                             <?php } else { ?>
                                 <?php if (isset($warning)) { ?>
-                                    <ul class="list-group list-group-flush list my--3 content_zonasi" id="content_zonasi">
+                                    <?php if (isset($can_daftar)) { ?>
+                                        <ul class="list-group list-group-flush list my--3 content_zonasi" id="content_zonasi">
 
-                                    </ul>
-                                    <div style="margin-top: 40px;" class="col-md-12 content_pagination" id="content_pagination">
+                                        </ul>
+                                        <div style="margin-top: 40px;" class="col-md-12 content_pagination" id="content_pagination">
 
-                                    </div>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="card">
+                                            <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
+                                                <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                                                <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br><?= $warning ?></span></button></center>
+                                                <br />
+                                                <?php if (isset($sekolah_pilihan)) { ?>
+                                                    <center>
+                                                        <ol>
+                                                            <li style="list-style: none;">Sekolah yang dituju : <?= $sekolah_pilihan ?></li>
+                                                        </ol>
+                                                    </center>
+                                                <?php } ?>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                 <?php } else { ?>
                                     <div class="card">
                                         <div class="card-body bg-gradient-success p-0" style="border-radius: 5px; color: #fff;">
@@ -546,7 +566,9 @@
     $(document).ready(function() {
         <?php if (isset($error)) { ?>
             <?php if (isset($warning)) { ?>
-                getDataSekolah();
+                <?php if (isset($can_daftar)) { ?>
+                    getDataSekolah();
+                <?php } ?>
             <?php } ?>
         <?php } else { ?>
             getDataSekolah();

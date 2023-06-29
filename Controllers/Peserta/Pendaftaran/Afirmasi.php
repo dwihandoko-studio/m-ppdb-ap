@@ -176,9 +176,15 @@ class Afirmasi extends BaseController
                         $data['pendaft'] = $cekRegisterApprove;
                         $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
                     } else {
-                        $data['can_daftar'] = false;
-                        $data['pendaft'] = $cekRegisterApprove;
-                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>.";
+                        if ($cekRegisterApprove->keterangan_penolakan == NULL || $cekRegisterApprove->keterangan_penolakan == "") {
+                            $data['can_daftar'] = false;
+                            $data['pendaft'] = $cekRegisterApprove;
+                            $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>.";
+                        } else {
+                            $data['can_daftar'] = true;
+                            $data['pendaft'] = $cekRegisterApprove;
+                            $data['warning'] = $cekRegisterApprove->keterangan_penolakan;
+                        }
                     }
                     break;
 

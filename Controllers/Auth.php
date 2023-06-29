@@ -10,6 +10,7 @@ use App\Libraries\Maintenancelib;
 use App\Libraries\Uuid;
 use App\Libraries\V1\ReferensidapodikLib;
 use App\Libraries\V1\ReferensilayananLib;
+use App\Libraries\Peserta\Datalib;
 use Firebase\JWT\JWT;
 
 class Auth extends BaseController
@@ -2062,31 +2063,13 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $jadwal = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("AKUN");
 
-        if (!$jadwal) {
+        if ($canDaftar->code !== 200) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $today = date("Y-m-d H:i:s");
-        $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
-
-        if ($startdate < $enddateAwal) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
-        if ($startdate > $enddateAkhir) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb telah ditutup.";
+            $response->message = $canDaftar->message;
             return json_encode($response);
         }
 
@@ -2267,33 +2250,15 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        // $jadwals = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("AKUN");
 
-        // if (!$jadwals) {
-        //     $response = new \stdClass;
-        //     $response->code = 400;
-        //     $response->message = "Pendaftaran ppdb belum dibuka.";
-        //     return json_encode($response);
-        // }
-
-        // $today = date("Y-m-d H:i:s");
-        // $startdate = strtotime($today);
-        // $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_zonasi);
-
-        // if ($startdate < $enddateAwal) {
-        //     $response = new \stdClass;
-        //     $response->code = 400;
-        //     $response->message = "Pendaftaran ppdb belum dibuka.";
-        //     return json_encode($response);
-        // }
-
-        // $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_zonasi);
-        // if ($startdate > $enddateAkhir) {
-        //     $response = new \stdClass;
-        //     $response->code = 400;
-        //     $response->message = "Pendaftaran ppdb telah ditutup.";
-        //     return json_encode($response);
-        // }
+        if ($canDaftar->code !== 200) {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = $canDaftar->message;
+            return json_encode($response);
+        }
 
         // if ($this->request->getMethod() != 'post') {
         // $response = new \stdClass;
@@ -2470,31 +2435,13 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $jadwal = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("AKUN");
 
-        if (!$jadwal) {
+        if ($canDaftar->code !== 200) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $today = date("Y-m-d H:i:s");
-        $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
-
-        if ($startdate < $enddateAwal) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
-        if ($startdate > $enddateAkhir) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb telah ditutup.";
+            $response->message = $canDaftar->message;
             return json_encode($response);
         }
 
@@ -2662,32 +2609,13 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("AKUN");
 
-        $jadwal = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
-
-        if (!$jadwal) {
+        if ($canDaftar->code !== 200) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $today = date("Y-m-d H:i:s");
-        $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
-
-        if ($startdate < $enddateAwal) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
-        if ($startdate > $enddateAkhir) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb telah ditutup.";
+            $response->message = $canDaftar->message;
             return json_encode($response);
         }
 
@@ -2947,31 +2875,13 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $jadwal = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("AKUN");
 
-        if (!$jadwal) {
+        if ($canDaftar->code !== 200) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $today = date("Y-m-d H:i:s");
-        $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
-
-        if ($startdate < $enddateAwal) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
-        if ($startdate > $enddateAkhir) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb telah ditutup.";
+            $response->message = $canDaftar->message;
             return json_encode($response);
         }
 
@@ -3238,31 +3148,13 @@ class Auth extends BaseController
             return json_encode($response);
         }
 
-        $jadwal = $this->_db->table('_setting_jadwal_tb')->get()->getRowObject();
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("AKUN");
 
-        if (!$jadwal) {
+        if ($canDaftar->code !== 200) {
             $response = new \stdClass;
             $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $today = date("Y-m-d H:i:s");
-        $startdate = strtotime($today);
-        $enddateAwal = strtotime($jadwal->tgl_awal_pendaftaran_afirmasi);
-
-        if ($startdate < $enddateAwal) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb belum dibuka.";
-            return json_encode($response);
-        }
-
-        $enddateAkhir = strtotime($jadwal->tgl_akhir_pendaftaran_afirmasi);
-        if ($startdate > $enddateAkhir) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Pendaftaran ppdb telah ditutup.";
+            $response->message = $canDaftar->message;
             return json_encode($response);
         }
 

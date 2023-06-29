@@ -192,6 +192,30 @@ class Datalib
             $response->code = 200;
             $response->message = "Pendaftaran PPDB telah dibuka";
             return $response;
+        } else if ($jalur == "AKUN") {
+            $today = date("Y-m-d H:i:s");
+
+            $startdate = strtotime($today);
+            $enddateAwal = strtotime($setting->tgl_awal_pendaftaran_afirmasi);
+
+            if ($startdate < $enddateAwal) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Mohon maaf, saat ini proses pendaftaran Akun PPDB belum dibuka";
+                return $response;
+            }
+
+            $enddateAkhir = strtotime($setting->tgl_akhir_pendaftaran_mutasi);
+            if ($startdate > $enddateAkhir) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Mohon maaf, saat ini proses pendaftaran Akun PPDB telah ditutup";
+                return $response;
+            }
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Pendaftaran PPDB telah dibuka";
+            return $response;
         } else {
             $response = new \stdClass;
             $response->code = 400;

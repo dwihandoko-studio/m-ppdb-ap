@@ -140,7 +140,9 @@ class Afirmasi extends BaseController
         $canDaftar = $dataLib->canRegister("AFIRMASI");
 
         if ($canDaftar->code !== 200) {
-            $data['error'] = $canDaftar->message;
+            $data['jalur'] = "AFIRMASI";
+            $data['message'] = "Pendaftaran via Jalur Afirmasi " . $canDaftar->message;
+            return view('peserta/pendaftaran/tutup', $data);
         }
 
         $cekRegisterApprove = $this->_db->query("SELECT * FROM (

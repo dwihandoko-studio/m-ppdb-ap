@@ -269,7 +269,7 @@ class Afirmasi extends BaseController
 
             $id = htmlspecialchars($this->request->getVar('id'), true);
 
-            $oldData = $this->_db->table('_users_profil_tg a')
+            $oldData = $this->_db->table('_users_profil_tb a')
                 ->where('a.id', $id)
                 ->get()->getRowObject();
 
@@ -345,7 +345,7 @@ class Afirmasi extends BaseController
             $latitude = htmlspecialchars($this->request->getVar('latitude'), true);
             $longitude = htmlspecialchars($this->request->getVar('longitude'), true);
 
-            $oldData = $this->_db->table('_users_profil_tg a')
+            $oldData = $this->_db->table('_users_profil_tb a')
                 ->where('a.id', $id)
                 ->get()->getRowObject();
 

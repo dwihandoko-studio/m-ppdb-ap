@@ -252,7 +252,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group _dusun-block">
                                                     <label for="_dusun" class="form-control-label">Dusun</label>
-                                                    <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                    <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
                                                         <?php if (isset($dusuns)) {
                                                             if (count($dusuns) > 0) {
                                                                 echo "<option value=''>--Pilih Dusun--</option>";
@@ -909,7 +909,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group _dusun-block">
                                                         <label for="_dusun" class="form-control-label">Dusun</label>
-                                                        <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                        <select class="form-control dusun" name="_dusun" id="_dusun" data-toggle="select22" title="Simple select" onChange="onChangeDusun(this)" onFocus="inputFocus(this);" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
                                                             <?php if (isset($dusuns)) {
                                                                 if (count($dusuns) > 0) {
                                                                     echo "<option value=''>--Pilih Dusun--</option>";

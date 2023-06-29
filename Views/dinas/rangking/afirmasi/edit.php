@@ -59,12 +59,12 @@
                     },
                     dataType: 'JSON',
                     beforeSend: function() {
-                        $('div.modal-content-loading').block({
+                        $('div.modal-content-update-loading').block({
                             message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
                         });
                     },
                     success: function(resul) {
-                        $('div.modal-content-loading').unblock();
+                        $('div.modal-content-update-loading').unblock();
 
                         if (resul.code !== 200) {
                             if (resul.code === 401) {
@@ -93,7 +93,7 @@
                         }
                     },
                     error: function() {
-                        $('div.modal-content-loading').unblock();
+                        $('div.modal-content-update-loading').unblock();
                         Swal.fire(
                             'PERINGATAN!',
                             "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",

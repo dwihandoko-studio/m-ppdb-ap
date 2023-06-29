@@ -27,23 +27,77 @@
         <div class="row">
             <!-- Light table -->
             <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>REKAPITULASI PESERTA LOLOS PPDB</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <button type="button" onclick="downloadSptjm()" class="btn btn-block btn-default">Download SPTJM</button>
-                                </div>
-                                <div class="col-lg-6">
-                                    <button type="button" onclick="downloadLampiran()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB</button>
-                                </div>
-                            </div>
+                <?php if (isset($pengumuman_afirmasi) || isset($pengumuman_zonasi)) { ?>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>REKAPITULASI PESERTA LOLOS PPDB</h2>
+                        </div>
+                        <div class="card-body">
+                            <?php if (isset($pengumuman_afirmasi)) { ?>
+                                <?php if ($pengumuman_afirmasi) { ?>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <button type="button" onclick="downloadSptjmAfirmasi()" class="btn btn-block btn-default">Download SPTJM Afirmasi</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" onclick="downloadLampiranAfirmasi()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB Jalur Afirmasi</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php if (isset($pengumuman_zonasi)) { ?>
+                                <?php if ($pengumuman_zonasi) { ?>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <button type="button" onclick="downloadSptjmZonasi()" class="btn btn-block btn-default">Download SPTJM Zonasi/Prestasi/Mutasi</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" onclick="downloadLampiranZonasi()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB Jalur Zonasi/Prestasi/Mutasi</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <?php if (isset($pengumuman_swasta)) { ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>REKAPITULASI PESERTA LOLOS PPDB</h2>
+                            </div>
+                            <div class="card-body">
+                                <?php if (isset($pengumuman_afirmasi)) { ?>
+                                    <?php if ($pengumuman_afirmasi) { ?>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" onclick="downloadSptjmSwasta()" class="btn btn-block btn-default">Download SPTJM</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button type="button" onclick="downloadLampiranSwasta()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB Sekolah Swasta</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <div class="card">
+                            <div class="card-body bg-gradient-info p-0" style="border-radius: 5px; color: #fff;">
+                                <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                                <center style="padding: 20px;"><span class="alert-icon"><i class="ni ni-notification-70 ni-3x"></i></span><br /><br /><span class="alert-text"><strong>INFORMASI !!!</strong> <br>Saat ini proses pengumuman belum dibuka.</span></button></center>
+                                <br />
+                                <br />
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
             </div>
         </div>
         <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="contentModalLabel" aria-hidden="true">
@@ -79,17 +133,33 @@
             dropdownParent: "#panel"
         });
     }
-    
-    function downloadSptjm() {
-        window.open('<?= base_url('sekolah/pengumuman/downloadsptjm') ?>', '_blank').focus();
+
+    function downloadSptjmAfirmasi() {
+        window.open('<?= base_url('sekolah/pengumuman/downloadsptjmafirmasi') ?>', '_blank').focus();
     }
 
-    function downloadLampiran() {
-        window.open('<?= base_url('sekolah/pengumuman/downloadlampiran') ?>', '_blank').focus();
+    function downloadLampiranAfirmasi() {
+        window.open('<?= base_url('sekolah/pengumuman/downloadlampiranafirmasi') ?>', '_blank').focus();
+    }
+
+    function downloadSptjmSwasta() {
+        window.open('<?= base_url('sekolah/pengumuman/downloadsptjmswasta') ?>', '_blank').focus();
+    }
+
+    function downloadLampiranSwasta() {
+        window.open('<?= base_url('sekolah/pengumuman/downloadlampiranswasta') ?>', '_blank').focus();
+    }
+
+    function downloadSptjmZonasi() {
+        window.open('<?= base_url('sekolah/pengumuman/downloadsptjmzonasi') ?>', '_blank').focus();
+    }
+
+    function downloadLampiranZonasi() {
+        window.open('<?= base_url('sekolah/pengumuman/downloadlampiranzonasi') ?>', '_blank').focus();
     }
 
     $(document).ready(function() {
-        
+
     });
 
     function changeValidation(event) {
@@ -110,7 +180,6 @@
         $('.imagePreviewUpload').removeAttr('src');
         document.getElementsByName("_file")[0].value = "";
     });
-
 </script>
 <?= $this->endSection(); ?>
 

@@ -42,44 +42,40 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
     <div style="border: 2px  dashed #cbd4dd;">
         <div style="max-width: 100%; padding-left: 10px; padding-right: 8px;">
             <p>LAMPIRAN 1<br>
-                DATA PESERTA YANG LULUS PPDB SEKOLAH SWASTA TA. 2022/2023<br>
+                DATA PESERTA YANG LULUS PPDB JALUR AFIRMASI TA. 2023/2024<br>
                 KABUPATEN LAMPUNG TENGAH<br><br>
                 Satuan Pendidikan : <?= $sekolah->nama ?><br>
                 NPSN : <?= $sekolah->npsn ?></p>
         </div>
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
-            <h4>JALUR SWASTA</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <h4>JALUR AFIRMASI</h4>
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (isset($data_lolos)) {
-                        if (count($data_lolos) > 0) {
+                    <?php if (isset($data_lolos_afirmasi)) {
+                        if (count($data_lolos_afirmasi) > 0) {
                             $no = 1;
-                            foreach ($data_lolos as $key => $value) { ?>
+                            foreach ($data_lolos_afirmasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $value->rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>
                                     </td>
                                     <td style="font-size: 12px">
-                                        <?php if (substr($value->nisn, 0, 2) == 'BS') {
-                                            $nisn = $value->nip;
-                                        } else {
-                                            $nisn = $value->nisn;
-                                        } ?>
-                                        <?= $nisn ?>
+                                        <?= $value->nisn ?>
                                     </td>
                                     <td style="font-size: 10px">
                                         <?= $value->kode_pendaftaran ?>
@@ -89,6 +85,9 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->npsn_sekolah_asal ?>
+                                    </td>
+                                    <td style="font-size: 12px">
+                                        <?= $value->ket ?? "" ?>
                                     </td>
                                 </tr>
                             <?php
@@ -115,10 +114,10 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
             <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
                 <tr>
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px;">
-                        <img class="img" src="<?= base_url() ?>/temp/<?= $sekolah->id ?>.png" ec="H" style="width: 30mm; background-color: white; color: black;">
+                        <img class="img" src="<?= $qrCode ?>" ec="H" style="width: 30mm; background-color: white; color: black;">
                         <!--<b>INFORMASI</b><br>-->
-                        <!--1. Pada saat pengumuman PPDB 2022/2023. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
-                        <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2022.<br>-->
+                        <!--1. Pada saat pengumuman PPDB 2023/2024. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
+                        <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2023.<br>-->
                         <!--2. Peserta yang tidak lolos dan kemudian mendaftar kembali melalui PPDB Dalam Jaringan, akan otomatis dapat melihat Sekolah-Sekolah<br>-->
                         <!--   yang Kuotanya Belum Tercukupi.<br>-->
                         <!--3. Panitia PPDB Sekolah tidak lagi wajib untuk melakukan verifikasi (Sistem Otomatis) dan Peserta yang mendaftar ke sekolah tersebut, otomatis diterima di sekolah tersebut.<br>-->
@@ -144,6 +143,6 @@ $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream("SPTJM_LAMPIRAN_SWASTA_" . $sekolah->npsn . ".pdf", array("Attachment" => false));
+$dompdf->stream("SPTJM_LAMPIRAN_AFIRMASI_" . $sekolah->npsn . ".pdf", array("Attachment" => false));
 exit(0);
 ?>

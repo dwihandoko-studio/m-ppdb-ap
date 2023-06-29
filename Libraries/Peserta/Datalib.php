@@ -216,6 +216,40 @@ class Datalib
             $response->code = 200;
             $response->message = "Pendaftaran PPDB telah dibuka";
             return $response;
+        } else if ($jalur == "PENGUMUMAN_AFIRMASI") {
+            $today = date("Y-m-d H:i:s");
+
+            $startdate = strtotime($today);
+            $enddateAwal = strtotime($setting->tgl_pengumuman_afirmasi);
+
+            if ($startdate < $enddateAwal) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Mohon maaf, saat ini proses pengumuman PPDB Jalur Afirmasi belum dibuka";
+                return $response;
+            }
+
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Pengumuman PPDB Jalur Afirmasi telah dibuka";
+            return $response;
+        } else if ($jalur == "PENGUMUMAN_ZONASI") {
+            $today = date("Y-m-d H:i:s");
+
+            $startdate = strtotime($today);
+            $enddateAwal = strtotime($setting->tgl_pengumuman_zonasi);
+
+            if ($startdate < $enddateAwal) {
+                $response = new \stdClass;
+                $response->code = 400;
+                $response->message = "Mohon maaf, saat ini proses pengumuman PPDB Jalur Zonasi/Prestasi/Mutasi belum dibuka";
+                return $response;
+            }
+
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->message = "Pengumuman PPDB Jalur Zonasi/Prestasi/Mutasi telah dibuka";
+            return $response;
         } else {
             $response = new \stdClass;
             $response->code = 400;

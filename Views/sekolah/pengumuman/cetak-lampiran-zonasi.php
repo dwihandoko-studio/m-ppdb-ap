@@ -1,19 +1,20 @@
 <?php ob_start();
 // var_dump(FCPATH . "temp/");die;
-include APPPATH . "Libraries/phpqrcode/qrlib.php";
+// include APPPATH . "Libraries/phpqrcode/qrlib.php";
 // session_start();
-$tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
+// $tempdir = FCPATH . "temp/"; //Nama folder tempat menyimpan file qrcode
 // if (!file_exists($tempdir)) //Buat folder bername temp
 // 	mkdir($tempdir);
 
 //isi qrcode jika di scan
 // $siswa = json_decode($data->details);
-$codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $sekolah->id;
+// $codeContents = base_url('web/home/pengumumanpeserta') . '?sekolah=' . $sekolah->id;
 
 //simpan file kedalam temp
 //nilai konfigurasi Frame di bawah 4 tidak direkomendasikan
 
-QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
+// QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
+$qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' . base_url('web/pengumuman') . '?sekolah=' . $sekolah->id . '&choe=UTF-8'));
 
 ?>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -41,7 +42,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
     <div style="border: 2px  dashed #cbd4dd;">
         <div style="max-width: 100%; padding-left: 10px; padding-right: 8px;">
             <p>LAMPIRAN 1<br>
-                DATA PESERTA YANG LULUS PPDB TA. 2023/2024<br>
+                DATA PESERTA YANG LULUS PPDB JALUR ZONASI, MUTASI, PRESTASI TA. 2023/2024<br>
                 KABUPATEN LAMPUNG TENGAH<br><br>
                 Satuan Pendidikan : <?= $sekolah->nama ?><br>
                 NPSN : <?= $sekolah->npsn ?></p>
@@ -49,15 +50,15 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR ZONASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,7 +68,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                             foreach ($data_lolos_zonasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $value->rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>
@@ -110,73 +111,16 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
         </div>
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
-            <h4>JALUR AFIRMASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
-                <thead>
-                    <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (isset($data_lolos_afirmasi)) {
-                        if (count($data_lolos_afirmasi) > 0) {
-                            $no = 1;
-                            foreach ($data_lolos_afirmasi as $key => $value) { ?>
-                                <tr>
-                                    <td style="font-size: 12px">
-                                        <?= $no ?>
-                                    </td>
-                                    <td style="font-size: 12px">
-                                        <?= $value->fullname ?>
-                                    </td>
-                                    <td style="font-size: 12px">
-                                        <?= $value->nisn ?>
-                                    </td>
-                                    <td style="font-size: 10px">
-                                        <?= $value->kode_pendaftaran ?>
-                                    </td>
-                                    <td style="font-size: 12px">
-                                        <?= $value->via_jalur ?>
-                                    </td>
-                                    <td style="font-size: 12px">
-                                        <?= $value->npsn_sekolah_asal ?>
-                                    </td>
-                                </tr>
-                            <?php
-                                $no++;
-                            } ?>
-
-                        <?php } else { ?>
-                            <tr>
-                                <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
-                            </tr>
-                        <?php } ?>
-                    <?php } else { ?>
-                        <tr>
-                            <td colspan="6" style="text-align: center; align-items: center;">Tidak ada peserta.</td>
-                        </tr>
-                    <?php } ?>
-
-                </tbody>
-            </table>
-        </div>
-
-        <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR MUTASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -186,7 +130,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                             foreach ($data_lolos_mutasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $value->rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>
@@ -225,15 +169,15 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
 
         <div style="max-width: 100%; padding-top: 5px; padding-left: 10px; padding-right: 8px;">
             <h4>JALUR PRESTASI</h4>
-            <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
+            <table width="100%" style="border: solid #cbd4dd; font-size: 12px;">
                 <thead>
                     <tr>
-                        <th style="font-size: 12px">No</th>
-                        <th style="font-size: 12px">Nama Peserta</th>
-                        <th style="font-size: 12px">NISN</th>
-                        <th style="font-size: 12px">No Pendaftaran</th>
-                        <th style="font-size: 12px">Jalur PPDB</th>
-                        <th style="font-size: 12px">NPSN Asal Sekolah</th>
+                        <th style="font-size: 12px; text-align: left;">No</th>
+                        <th style="font-size: 12px; text-align: left;">Nama Peserta</th>
+                        <th style="font-size: 12px; text-align: left;">NISN</th>
+                        <th style="font-size: 12px; text-align: left;">No Pendaftaran</th>
+                        <th style="font-size: 12px; text-align: left;">Jalur PPDB</th>
+                        <th style="font-size: 12px; text-align: left;">NPSN Asal Sekolah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -243,7 +187,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
                             foreach ($data_lolos_prestasi as $key => $value) { ?>
                                 <tr>
                                     <td style="font-size: 12px">
-                                        <?= $no ?>
+                                        <?= $value->rangking ?>
                                     </td>
                                     <td style="font-size: 12px">
                                         <?= $value->fullname ?>
@@ -285,7 +229,7 @@ QRcode::png($codeContents, $tempdir . $sekolah->id . '.png', QR_ECLEVEL_M, 4);
             <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
                 <tr>
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px;">
-                        <img class="img" src="<?= base_url() ?>/temp/<?= $sekolah->id ?>.png" ec="H" style="width: 30mm; background-color: white; color: black;">
+                        <img class="img" src="<?= $qrCode ?>" ec="H" style="width: 30mm; background-color: white; color: black;">
                         <!--<b>INFORMASI</b><br>-->
                         <!--1. Pada saat pengumuman PPDB 2023/2024. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
                         <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2023.<br>-->
@@ -314,6 +258,6 @@ $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream("SPTJM_" . $sekolah->npsn . ".pdf", array("Attachment" => false));
+$dompdf->stream("SPTJM_LAMPIRAN_ZONASI_MUTASI_PRESTASI_" . $sekolah->npsn . ".pdf", array("Attachment" => false));
 exit(0);
 ?>

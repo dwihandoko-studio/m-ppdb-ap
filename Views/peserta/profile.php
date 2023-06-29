@@ -689,11 +689,7 @@
                                     <?php if (isset($sekolah_pilihan)) { ?>
                                         <center>
                                             <ol>
-                                                <li style="list-style: none;"><?= $sekolah_pilihan->tujuan_sekolah_id_2 !== NULL ? 'Sekolah Pilihan Pertama' : 'Sekolah yang dituju' ?> : <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_1) ?></li>
-                                                <?php if ($sekolah_pilihan->tujuan_sekolah_id_2 !== NULL) { ?>
-                                                    <li style="list-style: none;">Sekolah Pilihan Kedua &nbsp;&nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_2) ?></li>
-                                                    <li style="list-style: none;">Sekolah Pilihan Ketiga &nbsp;: <?= getNamaAndNpsnSekolah($sekolah_pilihan->tujuan_sekolah_id_3) ?></li>
-                                                <?php } ?>
+                                                <li style="list-style: none;">Sekolah yang dituju <?= $sekolah_pilihan ?></li>
                                             </ol>
                                         </center>
                                     <?php } ?>

@@ -77,6 +77,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
             <center></center>
             <h4>SURAT PERTANGGUNGJAWABAN MUTLAK<br>
                 PENDAFTARAN PESERTA DIDIK BARU (PPDB)<br>
+                SEKOLAH SWASTA<br>
                 TAHUN PELAJARAN 2023/2024</h4>
             </center>
         </div>
@@ -116,7 +117,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                         &nbsp;&nbsp;
                     </td>
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px; font-size: 14px;">
-                        Lampung Tengah, .... Juni 2023<br>
+                        Lampung Tengah, .... Juli 2023<br>
                         Yang membuat,<br><br><br><br><br>
                         materai<br><br><br><br>
                         <u><?= (isset($psekolah)) ? $psekolah->nama_ks : "............................." ?></u><br>

@@ -77,6 +77,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
             <center></center>
             <h4>SURAT PERTANGGUNGJAWABAN MUTLAK<br>
                 PENDAFTARAN PESERTA DIDIK BARU (PPDB)<br>
+                JALUR ZONASI, MUTASI DAN PRESTASI<br>
                 TAHUN PELAJARAN 2023/2024</h4>
             </center>
         </div>
@@ -92,8 +93,8 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
             <p>Dengan ini saya menyatakan bahwa :</p>
             <ol>
                 <li>Proses kegiatan PPDB dilakukan secara daring, mengacu pada peraturan yang telah ditetapkan, Pelaksanaan PPDB secara transparan, akuntable, Non Diskriminatif dan Berkeadilan.</li>
-                <li>Seleksi proses penerimaan peserta didik baru 2023/2024 dilaksanakan sesuai dengan peraturan yang telah di tetapkan dan dapat di pertanggungjawabkan.</li>
-                <li>Data Peserta PPDB TA. 2023/2024 yang terlampir pada surat ini, dinyatakan lulus dan di terima di sekolah.</li>
+                <li>Seleksi proses penerimaan peserta didik baru TA. 2023/2024 Jalur Zonasi, Mutasi dan Prestasi dilaksanakan sesuai dengan peraturan yang telah di tetapkan dan dapat di pertanggungjawabkan.</li>
+                <li>Data Peserta PPDB TA. 2023/2024 Jalur Zonasi, Mutasi dan Prestasi yang terlampir pada surat ini, dinyatakan lulus dan di terima di sekolah.</li>
             </ol>
             <p style="text-align:justify;">Demikian Surat Pernyataan Tanggung Jawab Mutlak ini dibuat dengan sebenarnya dan penuh tanggung jawab. Apabila di kemudian hari ternyata data PPDB 2023/2024 yang telah Lulus ini tidak benar, maka saya siap menerima sanksi secara hukum yang berlaku.</p><br><br>
         </div>
@@ -116,7 +117,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
                         &nbsp;&nbsp;
                     </td>
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px; font-size: 14px;">
-                        Lampung Tengah, .... Juni 2023<br>
+                        Lampung Tengah, .... Juli 2023<br>
                         Yang membuat,<br><br><br><br><br>
                         materai<br><br><br><br>
                         <u><?= (isset($psekolah)) ? $psekolah->nama_ks : "............................." ?></u><br>

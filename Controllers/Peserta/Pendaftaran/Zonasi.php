@@ -258,22 +258,45 @@ class Zonasi extends BaseController
                 return json_encode($response);
             }
 
-            $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
-            if ($cekRegisterApprove) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
-                return json_encode($response);
+            $dataLib = new Datalib();
+            $cekAvailableRegistered = $dataLib->cekAlreadyRegistered($peserta->peserta_didik_id);
+            if ($cekAvailableRegistered) {
+                if ((int)$cekAvailableRegistered->status_pendaftaran !== 3) {
+                    $response = new \stdClass;
+                    $response->code = 400;
+                    $response->url = base_url('peserta/home');
+                    switch ((int)$cekAvailableRegistered->status_pendaftaran) {
+                        case 1:
+                            $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+                            break;
+                        case 2:
+                            $response->message = "Anda dinyatakan <b>LOLOS</b> pada seleksi PPDB Tahun Ajaran 2023/2024 <br/> Melalui Jalur <b>" . $cekAvailableRegistered->via_jalur . "</b>. <br/>Selanjutnya silahkan melakukan konfirmasi dan daftar ulang ke Sekolah Tujuan <br>sesuai jadwal yang telah ditentukan.";
+                            break;
+
+                        default:
+                            $response->message = "Anda sudah melakukan pendaftaran. Untuk merubah data silahkan batalkan pendaftaran melalui panitia PPDB Sekolah Tujuan.";
+                            break;
+                    }
+                    return json_encode($response);
+                }
             }
 
-            $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+            // $cekRegisterApprove = $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+            // if ($cekRegisterApprove) {
+            //     $response = new \stdClass;
+            //     $response->code = 400;
+            //     $response->message = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
+            //     return json_encode($response);
+            // }
 
-            if ($cekRegisterTemp) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
-                return json_encode($response);
-            }
+            // $cekRegisterTemp = $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta->peserta_didik_id)->get()->getRowObject();
+
+            // if ($cekRegisterTemp) {
+            //     $response = new \stdClass;
+            //     $response->code = 400;
+            //     $response->message = "Anda sudah melakukan pendaftaran dan dalam status menunggu verifikasi berkas. Silahkan menggunakan tombol batal pendaftaran pada menu riwayat / aktifitas.";
+            //     return json_encode($response);
+            // }
 
             $uuidLib = new Uuid();
             $uuid = $uuidLib->v4();

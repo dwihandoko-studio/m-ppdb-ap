@@ -14,17 +14,48 @@ class Datalib
 
     public function cekAlreadyRegistered($peserta_didik_id)
     {
-        $dataPeserta =  $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta_didik_id)->get()->getRowObject();
-        if ($dataPeserta) {
-            return $dataPeserta;
+        $cekRegisterApprove = $this->_db->query("SELECT * FROM (
+			(SELECT * FROM _tb_pendaftar_temp WHERE peserta_didik_id = '{$peserta_didik_id}') 
+			UNION ALL 
+			(SELECT * FROM _tb_pendaftar WHERE peserta_didik_id = '{$peserta_didik_id}') 
+			UNION ALL 
+			(SELECT * FROM _tb_pendaftar_tolak WHERE peserta_didik_id = '{$peserta_didik_id}')
+		) AS a ORDER BY a.created_at DESC LIMIT 1")->getRow();
+
+        if ($cekRegisterApprove) {
+            switch ((int)$cekRegisterApprove->status_pendaftaran) {
+                case 1:
+                    return $cekRegisterApprove;
+                    break;
+                case 2:
+                    return $cekRegisterApprove;
+                    break;
+                case 3:
+                    return false;
+                    break;
+
+                default:
+                    return $cekRegisterApprove;
+                    break;
+            }
+        } else {
+            return false;
         }
-        return $this->registeredAndVerified($peserta_didik_id);
     }
 
-    private function registeredAndVerified($peserta_didik_id)
-    {
-        return $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta_didik_id)->get()->getRowObject();
-    }
+    // public function cekAlreadyRegistered($peserta_didik_id)
+    // {
+    //     $dataPeserta =  $this->_db->table('_tb_pendaftar_temp')->where('peserta_didik_id', $peserta_didik_id)->get()->getRowObject();
+    //     if ($dataPeserta) {
+    //         return $dataPeserta;
+    //     }
+    //     return $this->registeredAndVerified($peserta_didik_id);
+    // }
+
+    // private function registeredAndVerified($peserta_didik_id)
+    // {
+    //     return $this->_db->table('_tb_pendaftar')->where('peserta_didik_id', $peserta_didik_id)->get()->getRowObject();
+    // }
 
     public function canRegister($jalur = "ZONASI")
     {

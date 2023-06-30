@@ -434,13 +434,13 @@ class Pengaduan extends BaseController
         $sender = $content['sender'];
         $timestamp = $content['timestamp'];
 
-        if ($sender == NULL || $sender == "") {
+        if ($phone == NULL || $phone == "") {
             $response = new \stdClass;
             $response->message = "Gagal mengirim komentar.";
             return json_encode($response);
         }
         // echo $message;
-        $posted = $this->_db->table('tb_pengaduan_test_webhook')->where("no_hp LIKE '%$sender%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
+        $posted = $this->_db->table('tb_pengaduan_test_webhook')->where("no_hp LIKE '%$phone%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
 
         if (!$posted) {
             $uuidLib = new Uuid();
@@ -453,7 +453,7 @@ class Pengaduan extends BaseController
                 'token' => $token,
                 'nama' => $pushName,
                 'email' => 'a@text.com',
-                'no_hp' => $sender,
+                'no_hp' => $phone,
                 'deskripsi' => $message,
                 'tujuan' => 'Via Whatsapp',
                 'klasifikasi' => 'Pengaduan Via Whatsapp',
@@ -486,7 +486,7 @@ class Pengaduan extends BaseController
                         "data" => [
                             [
                                 'phone' => $phone,
-                                'message' => 'Pengaduan anda berhasil di generate dengan token: ' . $token . ' dengan no hp: ' . $sender . '. Berikut link tautan detail Pengaduan : ' . base_url('web/pengaduan/success') . '?id=' . $uuid,
+                                'message' => 'Pengaduan anda berhasil di generate dengan token: ' . $token . ' dengan no hp: ' . $phone . '. Berikut link tautan detail Pengaduan : ' . base_url('web/pengaduan/success') . '?id=' . $uuid,
                             ]
                         ]
                     ];

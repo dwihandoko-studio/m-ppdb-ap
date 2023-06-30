@@ -67,7 +67,7 @@
                                     <div class="help-block _email"></div>
                                 </div>
                                 <div class="form-group">
-                                    <p style="color: #fff;">No Handphone *</p>
+                                    <p style="color: #fff;">No WhatsApp *</p>
                                     <input type="text" name="_nohp" id="_nohp" style="padding: 10px; width: 100% !important; background: transparent; border: 1px solid #fff !important; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; height: 50px; outline: medium none;" placeholder="">
                                     <div class="help-block _nohp"></div>
                                 </div>

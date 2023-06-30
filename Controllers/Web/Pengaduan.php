@@ -413,6 +413,12 @@ class Pengaduan extends BaseController
          */
         $content = json_decode(file_get_contents('php://input'), true);
 
+        try {
+            $this->_db->table('webhook')->insert(['content' => json_encode($content)]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         $id = $content['id'];
         $pushName = $content['pushName'];
         $isGroup = $content['isGroup'];

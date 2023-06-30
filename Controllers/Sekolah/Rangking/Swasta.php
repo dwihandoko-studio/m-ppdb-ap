@@ -37,8 +37,9 @@ class Swasta extends BaseController
         }
         if ($request->getMethod(true) == 'POST') {
             $filter_jalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
+            $filterJenis = htmlspecialchars($request->getVar('filter_jenis'), true) ?? "";
 
-            $lists = $datamodel->get_datatables($filter_jalur, $user->data->id);
+            $lists = $datamodel->get_datatables($filterJenis, $filter_jalur, $user->data->id);
             // $lists = [];
             $data = [];
             $no = $request->getPost("start");
@@ -79,8 +80,8 @@ class Swasta extends BaseController
                 "draw" => $request->getPost('draw'),
                 // "recordsTotal" => 0,
                 // "recordsFiltered" => 0,
-                "recordsTotal" => $datamodel->count_all($filter_jalur, $user->data->id),
-                "recordsFiltered" => $datamodel->count_filtered($filter_jalur, $user->data->id),
+                "recordsTotal" => $datamodel->count_all($filterJenis, $filter_jalur, $user->data->id),
+                "recordsFiltered" => $datamodel->count_filtered($filterJenis, $filter_jalur, $user->data->id),
                 "data" => $data
             ];
             echo json_encode($output);

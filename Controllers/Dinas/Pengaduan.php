@@ -272,7 +272,8 @@ class Pengaduan extends BaseController
         // Validate the mobile number format
         if (preg_match('/^(?:\+?62|0)[2-9]{1}[0-9]+$/', $number)) {
             // Replace unwanted characters or prefixes
-            $number = str_replace(['+62', '0'], '', $number);
+            $number = str_replace(['+62'], '', $number);
+            $number = substr($number, 0, 1) == "0" ? substr($number, 1) : $number;
             return $number;
         }
         // Invalid number

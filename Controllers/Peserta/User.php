@@ -89,9 +89,18 @@ class User extends BaseController
                     $data['error'] = "Anda sudah melakukan pendaftaran dan telah diverifikasi berkas. Silahkan menunggu pengumuman PPDB pada tanggal yang telah di tentukan.";
                     $data['sekolah_pilihan'] = getNamaAndNpsnSekolah($cekRegisterApprove->tujuan_sekolah_id_1);
                     if ($cekRegisterApprove->via_jalur == "AFIRMASI") {
-                        $data['can_daftar'] = true;
-                        $data['pendaft'] = $cekRegisterApprove;
-                        $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
+                        if ($cekRegisterApprove->keterangan_penolakan == NULL || $cekRegisterApprove->keterangan_penolakan == "") {
+                            $data['can_daftar'] = true;
+                            $data['pendaft'] = $cekRegisterApprove;
+                            $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>.";
+                        } else {
+                            $data['can_daftar'] = true;
+                            $data['pendaft'] = $cekRegisterApprove;
+                            $data['warning'] = $cekRegisterApprove->keterangan_penolakan;
+                        }
+                        // $data['can_daftar'] = true;
+                        // $data['pendaft'] = $cekRegisterApprove;
+                        // $data['warning'] = "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . $data['sekolah_pilihan'] . "</b> Melalui Jalur <b>" . $cekRegisterApprove->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).";
                     } else {
                         if ($cekRegisterApprove->keterangan_penolakan == NULL || $cekRegisterApprove->keterangan_penolakan == "") {
                             $data['can_daftar'] = false;

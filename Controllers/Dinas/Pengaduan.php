@@ -252,7 +252,7 @@ class Pengaduan extends BaseController
                             "data" => [
                                 [
                                     'phone' => '62' . $noHpNya,
-                                    'message' => 'Balasan pengaduan anda: ' . $posted->token . ' ' . $komentar,
+                                    'message' => $komentar,
                                 ]
                             ]
                         ];

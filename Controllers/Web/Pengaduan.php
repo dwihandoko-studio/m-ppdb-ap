@@ -389,4 +389,180 @@ class Pengaduan extends BaseController
             }
         }
     }
+
+    public function webhook()
+    {
+        header("Content-Type: text/plain");
+        /**
+         * all data POST sent from  https://jogja.wablas.com
+         * you must create URL what can receive POST data
+         * we will sent data like this:
+
+         * id = message ID - string
+         * phone = sender phone - string
+         * message = content of message - string
+         * pushName = Sender Name like contact name - string (optional)
+         * groupSubject = Group Name - string (optional)
+         * timestamp = time send message
+         * file = name of the file when receiving media message (optional)
+         * url = url file media message (optional)
+         * messageType = text/image/document/video/audio/location - string
+         * mimeType = type file (optional)
+         * deviceId = unix ID device
+         * sender = phone number device - integer
+         */
+        $content = json_decode(file_get_contents('php://input'), true);
+
+        $id = $content['id'];
+        $pushName = $content['pushName'];
+        $isGroup = $content['isGroup'];
+        if ($isGroup == true) {
+            return true;
+        }
+        $message = $content['message'];
+        $phone = $content['phone'];
+        $messageType = $content['messageType'];
+        $file = $content['file'];
+        $mimeType = $content['mimeType'];
+        $deviceId = $content['deviceId'];
+        $sender = $content['sender'];
+        $timestamp = $content['timestamp'];
+        // echo $message;
+        $posted = $this->_db->table('tb_pengaduan_test_webhook')->where("no_hp LIKE '%$phone%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
+
+        if (!$posted) {
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $token = time();
+
+            $data = [
+                'id' => $uuid,
+                'token' => $token,
+                'nama' => $pushName,
+                'email' => 'a@text.com',
+                'no_hp' => $phone,
+                'deskripsi' => $message,
+                'tujuan' => 'Via Whatsapp',
+                'klasifikasi' => 'Pengaduan Via Whatsapp',
+                'nisn' => NULL,
+                'npsn' => NULL,
+                'status' => 0,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+
+            try {
+                $this->_db->table('tb_pengaduan_test_webhook')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal mengirim pengaduan.";
+                return json_encode($response);
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+
+                $this->_db->transCommit();
+
+                try {
+                    $curl = curl_init();
+                    $tokenWa = "Pii5tjlkLFPa0mmXRIANDaYpYRBmUgqeIB7Mc96AQbGcghPvOle0iMxIVsmk39OX";
+                    $random = true;
+                    $payload = [
+                        "data" => [
+                            [
+                                'phone' => $phone,
+                                'message' => 'Pengaduan anda berhasil di generate dengan token: ' . $token . ' dengan no hp: ' . $phone . '. Berikut link tautan detail Pengaduan : ' . base_url('web/pengaduan/success') . '?id=' . $uuid,
+                            ]
+                        ]
+                    ];
+                    curl_setopt(
+                        $curl,
+                        CURLOPT_HTTPHEADER,
+                        array(
+                            "Authorization: $tokenWa",
+                            "Content-Type: application/json"
+                        )
+                    );
+                    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+                    curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/v2/send-message");
+                    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+                    $result = curl_exec($curl);
+                    curl_close($curl);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->redirrect = base_url('web/pengaduan/success') . '?id=' . $uuid;
+                $response->message = "Pengaduan berhasil dikirim.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal menyimpan user.";
+                return json_encode($response);
+            }
+        } else {
+
+            $uuidLib = new Uuid();
+            $uuid = $uuidLib->v4();
+
+            $token = time();
+
+            $data = [
+                'id' => $uuid,
+                'id_post' => $posted->id,
+                'nama' => $pushName,
+                'komentar' => $message,
+                'status' => 0,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->_db->transBegin();
+            if ($posted->status == 0) {
+                $this->_db->table('tb_pengaduan_test_webhook')->where('id', $posted->id)->update([
+                    'status' => 1,
+                    'updated_at' => $data['created_at'],
+                ]);
+            }
+
+            try {
+                $this->_db->table('tb_pengaduan_komentar_test_webhook')->insert($data);
+            } catch (\Throwable $th) {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal mengirim komentar.";
+                return json_encode($response);
+            }
+
+            if ($this->_db->affectedRows() > 0) {
+
+
+                $this->_db->transCommit();
+
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->data = $data;
+                $response->message = "Komentar berhasil dikirim.";
+                return json_encode($response);
+            } else {
+                $this->_db->transRollback();
+                $response = new \stdClass;
+                $response->code = 401;
+                $response->message = "Gagal menyimpan komentar.";
+                return json_encode($response);
+            }
+        }
+    }
 }

@@ -27,7 +27,7 @@ class SwastaModel extends Model
     {
 
         // $select = "b.*, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";  //14
-        $select = "b.*, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, i.nama as nama_bentuk_pendidikan, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";  //14
+        $select = "b.*, a.id as id_pendaftaran, a.status_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, i.nama as nama_bentuk_pendidikan, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";  //14
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
@@ -66,10 +66,14 @@ class SwastaModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filter_jalur, $userId)
+    function get_datatables($filterJenis, $filter_jalur, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId')");
+
+        if ($filterJenis != "") {
+            $this->dt->where('a.status_pendaftaran', $filterJenis);
+        }
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
@@ -80,10 +84,14 @@ class SwastaModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filter_jalur, $userId)
+    function count_filtered($filterJenis, $filter_jalur, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId')");
+
+        if ($filterJenis != "") {
+            $this->dt->where('a.status_pendaftaran', $filterJenis);
+        }
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
@@ -91,10 +99,14 @@ class SwastaModel extends Model
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filter_jalur, $userId)
+    public function count_all($filterJenis, $filter_jalur, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId')");
+
+        if ($filterJenis != "") {
+            $this->dt->where('a.status_pendaftaran', $filterJenis);
+        }
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);

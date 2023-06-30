@@ -440,7 +440,7 @@ class Pengaduan extends BaseController
             return json_encode($response);
         }
         // echo $message;
-        $posted = $this->_db->table('tb_pengaduan_test_webhook')->where("no_hp LIKE '%$phone%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
+        $posted = $this->_db->table('tb_pengaduan')->where("no_hp LIKE '%$phone%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
 
         if (!$posted) {
             $uuidLib = new Uuid();
@@ -466,7 +466,7 @@ class Pengaduan extends BaseController
             $this->_db->transBegin();
 
             try {
-                $this->_db->table('tb_pengaduan_test_webhook')->insert($data);
+                $this->_db->table('tb_pengaduan')->insert($data);
             } catch (\Throwable $th) {
                 $this->_db->transRollback();
                 $response = new \stdClass;
@@ -486,7 +486,7 @@ class Pengaduan extends BaseController
                         "data" => [
                             [
                                 'phone' => $phone,
-                                'message' => 'Pengaduan anda berhasil di generate dengan token: ' . $token . ' dengan no hp: ' . $phone . '. Berikut link tautan detail Pengaduan : ' . base_url('web/pengaduan/success') . '?id=' . $uuid,
+                                'message' => 'Pengaduan anda berhasil di generate dengan token: ' . $token . ' dengan no hp: ' . $phone . '. Berikut link tautan detail Pengaduan : ' . base_url('web/pengaduan/success') . '?id=' . $data['id'],
                             ]
                         ]
                     ];
@@ -538,14 +538,14 @@ class Pengaduan extends BaseController
 
             $this->_db->transBegin();
             if ($posted->status == 0) {
-                $this->_db->table('tb_pengaduan_test_webhook')->where('id', $posted->id)->update([
+                $this->_db->table('tb_pengaduan')->where('id', $posted->id)->update([
                     'status' => 1,
                     'updated_at' => $data['created_at'],
                 ]);
             }
 
             try {
-                $this->_db->table('tb_pengaduan_komentar_test_webhook')->insert($data);
+                $this->_db->table('tb_pengaduan_komentar')->insert($data);
             } catch (\Throwable $th) {
                 $this->_db->transRollback();
                 $response = new \stdClass;
@@ -554,7 +554,6 @@ class Pengaduan extends BaseController
             }
 
             if ($this->_db->affectedRows() > 0) {
-
 
                 $this->_db->transCommit();
 

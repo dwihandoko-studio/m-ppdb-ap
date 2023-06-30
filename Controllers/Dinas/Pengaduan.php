@@ -226,7 +226,7 @@ class Pengaduan extends BaseController
                     if ($noHpNya) {
                         $curl = curl_init();
                         $token = "Pii5tjlkLFPa0mmXRIANDaYpYRBmUgqeIB7Mc96AQbGcghPvOle0iMxIVsmk39OX";
-                        $data = [
+                        $dataMessage = [
                             'phone' => '62' . $noHpNya,
                             'message' => 'Balasan pengaduan anda: ' . $posted->token . '' . $komentar,
                         ];
@@ -239,7 +239,7 @@ class Pengaduan extends BaseController
                         );
                         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+                        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($dataMessage));
                         curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/send-message");
                         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
                         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);

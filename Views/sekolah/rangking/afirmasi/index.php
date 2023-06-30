@@ -35,25 +35,20 @@
                             <div class="col-lg-6 col-7">
                                 <h5 class="h3 mb-0">RANGKING AFIRMASI PPDB</h5>
                             </div>
-                            <!-- <div class="col-lg-6 col-7" style="">
-                                <div class="form-group jalur-block">
-                                    <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
-                                    <select class="form-control filter-jalur" name="filter_jalur" id="filter_jalur" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
-                                        <?php //if ($user->statusSekolah != '1') { 
-                                        ?>
-                                            <option value="SWASTA" selected>SWASTA</option>
-                                        <?php //} else { 
-                                        ?>
-                                            <option value="ZONASI" selected>ZONASI</option>
-                                            <option value="AFIRMASI">AFIRMASI</option>
-                                            <option value="MUTASI">MUTASI</option>
-                                            <option value="PRESTASI">PRESTASI</option>
-                                            <option value="SWASTA">SWASTA</option>
-                                        <?php //} 
-                                        ?>
-                                    </select>
+                            <div class="col-lg-6 col-7" style="">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group jenjang-block">
+                                            <label for="filter_jenjang" class="form-control-label">Filter Jenis</label>
+                                            <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
+                                                <option value="3" selected>TIDAK LOLOS</option>
+                                                <option value="2">LOLOS</option>
+                                                <option value="1">PROSES ANALISIS & RANGKING</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <hr style="padding: 0px 0px; margin: 20px 0px 0px 0px" />
@@ -212,6 +207,7 @@
                 "type": "POST",
                 "data": function(data) {
                     data.filter_jalur = 'AFIRMASI';
+                    data.filter_jenis = $('#filter_jenjang').val();
                 }
             },
             language: {
@@ -226,8 +222,8 @@
                 "orderable": false,
             }],
             lengthMenu: [
-                [-1, 10, 25, 50],
-                ['Show All', '10 rows', '25 rows', '50 rows']
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show All']
             ],
             dom: 'Blfrtip',
             buttons: [
@@ -243,7 +239,7 @@
             ]
         });
 
-        $('#filter_jalur').change(function() {
+        $('#filter_jenjang').change(function() {
             tableUsulan.draw();
         });
 

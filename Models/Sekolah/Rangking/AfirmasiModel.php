@@ -66,10 +66,14 @@ class AfirmasiModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filter_jalur, $userId)
+    function get_datatables($filterJenis, $filter_jalur, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1 OR a.status_pendaftaran = 2 OR a.status_pendaftaran = 3)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId')");
+
+        if ($filterJenis != "") {
+            $this->dt->where('a.status_pendaftaran', $filterJenis);
+        }
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
@@ -80,10 +84,14 @@ class AfirmasiModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filter_jalur, $userId)
+    function count_filtered($filterJenis, $filter_jalur, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1 OR a.status_pendaftaran = 2 OR a.status_pendaftaran = 3)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId')");
+
+        if ($filterJenis != "") {
+            $this->dt->where('a.status_pendaftaran', $filterJenis);
+        }
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);
@@ -91,10 +99,14 @@ class AfirmasiModel extends Model
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filter_jalur, $userId)
+    public function count_all($filterJenis, $filter_jalur, $userId)
     {
         $this->_get_datatables_query();
-        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1 OR a.status_pendaftaran = 2 OR a.status_pendaftaran = 3)");
+        $this->dt->where("a.tujuan_sekolah_id_1 = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId')");
+
+        if ($filterJenis != "") {
+            $this->dt->where('a.status_pendaftaran', $filterJenis);
+        }
 
         if ($filter_jalur != "") {
             $this->dt->where('a.via_jalur', $filter_jalur);

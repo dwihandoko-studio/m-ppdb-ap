@@ -245,6 +245,7 @@ class Pengaduan extends BaseController
                         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
                         $result = curl_exec($curl);
                         curl_close($curl);
+                        $response->message_wa = $result;
                     }
                 } catch (\Throwable $th) {
                     $response->error = $th;

@@ -52,8 +52,19 @@ class Afirmasi extends BaseController
                     </button>';
                 $row[] = $action;
                 $row[] = $no;
+                switch ((int)$list->status_pendaftaran) {
+                    case 2:
+                        $status = '<span class="badge badge-success">Lolos</span>';
+                        break;
+                    case 3:
+                        $status = '<span class="badge badge-danger">Tidak Lolos</span>';
+                        break;
 
-                // $row[] = $list->jarak;
+                    default:
+                        $status = '<span class="badge badge-info">Proses Analisis & Rangking</span>';
+                        break;
+                }
+                $row[] = $status;
                 $row[] = $list->fullname;
                 $row[] = $list->nisn;
                 $row[] = $list->kode_pendaftaran;

@@ -348,21 +348,21 @@
     }
 
     $(document).ready(function() {
-        var quill = new Quill('', {
-            modules: {
-                toolbar: [
-                    ['bold', 'italic'],
-                    ['link', 'blockquote', 'code', 'image'],
-                    [{
-                        'list': 'ordered'
-                    }, {
-                        'list': 'bullet'
-                    }]
-                ]
-            },
-            placeholder: placeholder,
-            theme: 'snow'
-        });
+        // var quill = new Quill('', {
+        //     modules: {
+        //         toolbar: [
+        //             ['bold', 'italic'],
+        //             ['link', 'blockquote', 'code', 'image'],
+        //             [{
+        //                 'list': 'ordered'
+        //             }, {
+        //                 'list': 'bullet'
+        //             }]
+        //         ]
+        //     },
+        //     placeholder: placeholder,
+        //     theme: 'snow'
+        // });
 
         // initSelect2('filter_jenjang', '#panel');
         // initSelect2('filter_kecamatan', '#panel');

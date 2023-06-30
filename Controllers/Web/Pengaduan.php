@@ -428,14 +428,13 @@ class Pengaduan extends BaseController
         $sender = $content['sender'];
         $timestamp = $content['timestamp'];
 
-        if ($phone == NULL || $phone == "") {
+        if ($sender == NULL || $sender == "") {
             $response = new \stdClass;
-            $response->code = 401;
             $response->message = "Gagal mengirim komentar.";
             return json_encode($response);
         }
         // echo $message;
-        $posted = $this->_db->table('tb_pengaduan_test_webhook')->where("no_hp LIKE '%$phone%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
+        $posted = $this->_db->table('tb_pengaduan_test_webhook')->where("no_hp LIKE '%$sender%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
 
         if (!$posted) {
             $uuidLib = new Uuid();
@@ -448,7 +447,7 @@ class Pengaduan extends BaseController
                 'token' => $token,
                 'nama' => $pushName,
                 'email' => 'a@text.com',
-                'no_hp' => $phone,
+                'no_hp' => $sender,
                 'deskripsi' => $message,
                 'tujuan' => 'Via Whatsapp',
                 'klasifikasi' => 'Pengaduan Via Whatsapp',
@@ -465,7 +464,6 @@ class Pengaduan extends BaseController
             } catch (\Throwable $th) {
                 $this->_db->transRollback();
                 $response = new \stdClass;
-                $response->code = 401;
                 $response->message = "Gagal mengirim pengaduan.";
                 return json_encode($response);
             }
@@ -482,7 +480,7 @@ class Pengaduan extends BaseController
                         "data" => [
                             [
                                 'phone' => $phone,
-                                'message' => 'Pengaduan anda berhasil di generate dengan token: ' . $token . ' dengan no hp: ' . $phone . '. Berikut link tautan detail Pengaduan : ' . base_url('web/pengaduan/success') . '?id=' . $uuid,
+                                'message' => 'Pengaduan anda berhasil di generate dengan token: ' . $token . ' dengan no hp: ' . $sender . '. Berikut link tautan detail Pengaduan : ' . base_url('web/pengaduan/success') . '?id=' . $uuid,
                             ]
                         ]
                     ];
@@ -507,7 +505,6 @@ class Pengaduan extends BaseController
                     //throw $th;
                 }
                 $response = new \stdClass;
-                $response->code = 200;
                 $response->data = $data;
                 $response->redirrect = base_url('web/pengaduan/success') . '?id=' . $uuid;
                 $response->message = "Pengaduan berhasil dikirim.";
@@ -515,7 +512,6 @@ class Pengaduan extends BaseController
             } else {
                 $this->_db->transRollback();
                 $response = new \stdClass;
-                $response->code = 401;
                 $response->message = "Gagal menyimpan user.";
                 return json_encode($response);
             }
@@ -547,7 +543,6 @@ class Pengaduan extends BaseController
             } catch (\Throwable $th) {
                 $this->_db->transRollback();
                 $response = new \stdClass;
-                $response->code = 401;
                 $response->message = "Gagal mengirim komentar.";
                 return json_encode($response);
             }
@@ -558,14 +553,12 @@ class Pengaduan extends BaseController
                 $this->_db->transCommit();
 
                 $response = new \stdClass;
-                $response->code = 200;
                 $response->data = $data;
                 $response->message = "Komentar berhasil dikirim.";
                 return json_encode($response);
             } else {
                 $this->_db->transRollback();
                 $response = new \stdClass;
-                $response->code = 401;
                 $response->message = "Gagal menyimpan komentar.";
                 return json_encode($response);
             }

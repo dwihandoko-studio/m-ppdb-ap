@@ -51,7 +51,6 @@ class Afirmasi extends BaseController
                     <span>Detail</span>
                     </button>';
                 $row[] = $action;
-                $row[] = $no;
                 switch ((int)$list->status_pendaftaran) {
                     case 2:
                         $status = '<span class="badge badge-success">Lolos</span>';
@@ -65,6 +64,7 @@ class Afirmasi extends BaseController
                         break;
                 }
                 $row[] = $status;
+                $row[] = $no;
                 $row[] = $list->fullname;
                 $row[] = $list->nisn;
                 $row[] = $list->kode_pendaftaran;

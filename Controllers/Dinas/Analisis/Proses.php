@@ -411,7 +411,7 @@ class Proses extends BaseController
         $dataSekolahs = $this->_db->table('_tb_pendaftar_temp a')
             ->select($selectSekolah)
             ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-            ->where('a.status_pendaftaran', 1)
+            ->where('a.status_pendaftaran', 0)
             ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
             ->where('j.bentuk_pendidikan_id', 5)

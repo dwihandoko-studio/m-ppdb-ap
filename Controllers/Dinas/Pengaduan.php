@@ -224,25 +224,53 @@ class Pengaduan extends BaseController
                     $noHpNya = $this->replaceAndValidateMobileNumber($posted->no_hp);
 
                     if ($noHpNya) {
+                        // $curl = curl_init();
+                        // $token = "Pii5tjlkLFPa0mmXRIANDaYpYRBmUgqeIB7Mc96AQbGcghPvOle0iMxIVsmk39OX";
+                        // $dataMessage = [
+                        //     'phone' => '62' . $noHpNya,
+                        //     'message' => 'Balasan pengaduan anda: ' . $posted->token . ' ' . $komentar,
+                        // ];
+                        // curl_setopt(
+                        //     $curl,
+                        //     CURLOPT_HTTPHEADER,
+                        //     array(
+                        //         "Authorization: $token",
+                        //     )
+                        // );
+                        // curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        // curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($dataMessage));
+                        // curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/send-message");
+                        // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                        // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                        // $result = curl_exec($curl);
+
                         $curl = curl_init();
                         $token = "Pii5tjlkLFPa0mmXRIANDaYpYRBmUgqeIB7Mc96AQbGcghPvOle0iMxIVsmk39OX";
-                        $dataMessage = [
-                            'phone' => '62' . $noHpNya,
-                            'message' => 'Balasan pengaduan anda: ' . $posted->token . ' ' . $komentar,
+                        $random = true;
+                        $payload = [
+                            "data" => [
+                                [
+                                    'phone' => '62' . $noHpNya,
+                                    'message' => 'Balasan pengaduan anda: ' . $posted->token . ' ' . $komentar,
+                                ]
+                            ]
                         ];
                         curl_setopt(
                             $curl,
                             CURLOPT_HTTPHEADER,
                             array(
                                 "Authorization: $token",
+                                "Content-Type: application/json"
                             )
                         );
                         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($dataMessage));
-                        curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/send-message");
+                        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+                        curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/v2/send-message");
                         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
                         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
                         $result = curl_exec($curl);
                         curl_close($curl);
                         $response->message_wa = $result;

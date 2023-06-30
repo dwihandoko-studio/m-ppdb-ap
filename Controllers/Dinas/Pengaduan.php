@@ -247,7 +247,7 @@ class Pengaduan extends BaseController
                         curl_close($curl);
                     }
                 } catch (\Throwable $th) {
-                    //throw $th;
+                    $response->error = $th;
                 }
 
                 $response->code = 200;

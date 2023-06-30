@@ -228,7 +228,7 @@ class Pengaduan extends BaseController
                         $token = "Pii5tjlkLFPa0mmXRIANDaYpYRBmUgqeIB7Mc96AQbGcghPvOle0iMxIVsmk39OX";
                         $dataMessage = [
                             'phone' => '62' . $noHpNya,
-                            'message' => 'Balasan pengaduan anda: ' . $posted->token . '' . $komentar,
+                            'message' => 'Balasan pengaduan anda: ' . $posted->token . ' ' . $komentar,
                         ];
                         curl_setopt(
                             $curl,

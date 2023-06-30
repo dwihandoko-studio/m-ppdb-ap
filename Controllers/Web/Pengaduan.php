@@ -427,6 +427,13 @@ class Pengaduan extends BaseController
         $deviceId = $content['deviceId'];
         $sender = $content['sender'];
         $timestamp = $content['timestamp'];
+
+        if ($phone == NULL || $phone == "") {
+            $response = new \stdClass;
+            $response->code = 401;
+            $response->message = "Gagal mengirim komentar.";
+            return json_encode($response);
+        }
         // echo $message;
         $posted = $this->_db->table('tb_pengaduan_test_webhook')->where("no_hp LIKE '%$phone%' AND (status = 0 OR status = 1)")->orderBy('created_at', 'DESC')->get()->getRowObject();
 
@@ -513,7 +520,6 @@ class Pengaduan extends BaseController
                 return json_encode($response);
             }
         } else {
-
             $uuidLib = new Uuid();
             $uuid = $uuidLib->v4();
 

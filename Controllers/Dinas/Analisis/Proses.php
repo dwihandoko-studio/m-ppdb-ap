@@ -397,6 +397,156 @@ class Proses extends BaseController
         }
     }
 
+    public function antrianprosestidaklulusafirmasisd()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
+        $dataSekolahs = $this->_db->table('_tb_pendaftar_temp a')
+            ->select($selectSekolah)
+            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->where('a.status_pendaftaran', 1)
+            ->where('a.via_jalur', 'AFIRMASI')
+            ->groupBy('a.tujuan_sekolah_id_1')
+            ->where('j.bentuk_pendidikan_id', 5)
+            ->get()->getResult();
+
+        if (count($dataSekolahs) > 0) {
+            print_r("DATA SEKOLAH " . count($dataSekolahs));
+            foreach ($dataSekolahs as $key => $id) {
+                // print_r("SELESAI PROSES KELULUSAN ");
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$kuota) {
+                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    continue;
+                }
+
+                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$sekolah) {
+                    print_r("SEKOLAH TIDAK DITEMUKAN ");
+                    continue;
+                }
+
+                if ((int)$sekolah->status_sekolah != 1) {
+                    print_r("SEKOLAH SWASTA SKIP ");
+                    continue;
+                }
+
+                // $
+
+                // $limitKuotaAfirmasi = 
+
+                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.tujuan_sekolah_id_1, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+
+
+                $afirmasiData = $this->_db->table('_tb_pendaftar_temp a')
+                    ->select($select)
+                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                    ->where('a.status_pendaftaran', 0)
+                    ->where('a.via_jalur', 'AFIRMASI')
+                    ->orderBy('jarak', 'ASC')
+                    ->orderBy('a.created_at', 'ASC')
+                    // ->limit((int)$kuota->afirmasi)
+                    ->get()->getResult();
+
+                $lulusLib = new Prosesluluslib();
+
+                if (count($afirmasiData) > 0) {
+                    $lulusLib->prosesTidakLulusAfirmasiAntrian($afirmasiData, $user->data->id);
+                }
+            }
+            print_r("SELESAI PROSES KELULUSAN ");
+        } else {
+            print_r("DATA SEKOLAH TIDAK DITEMUKAN");
+        }
+    }
+
+    public function antrianprosestidaklulusafirmasismp()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
+        $dataSekolahs = $this->_db->table('_tb_pendaftar_temp a')
+            ->select($selectSekolah)
+            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->where('a.status_pendaftaran', 0)
+            ->where('a.via_jalur', 'AFIRMASI')
+            ->groupBy('a.tujuan_sekolah_id_1')
+            ->where('j.bentuk_pendidikan_id', 6)
+            ->get()->getResult();
+
+        if (count($dataSekolahs) > 0) {
+            print_r("DATA SEKOLAH " . count($dataSekolahs));
+            foreach ($dataSekolahs as $key => $id) {
+                // print_r("SELESAI PROSES KELULUSAN ");
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$kuota) {
+                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    continue;
+                }
+
+                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$sekolah) {
+                    print_r("SEKOLAH TIDAK DITEMUKAN ");
+                    continue;
+                }
+
+                if ((int)$sekolah->status_sekolah != 1) {
+                    print_r("SEKOLAH SWASTA SKIP ");
+                    continue;
+                }
+
+                // $
+
+                // $limitKuotaAfirmasi = 
+
+                $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.tujuan_sekolah_id_1, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+
+
+                $afirmasiData = $this->_db->table('_tb_pendaftar_temp a')
+                    ->select($select)
+                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                    ->where('a.status_pendaftaran', 0)
+                    ->where('a.via_jalur', 'AFIRMASI')
+                    ->orderBy('jarak', 'ASC')
+                    ->orderBy('a.created_at', 'ASC')
+                    // ->limit((int)$kuota->afirmasi)
+                    ->get()->getResult();
+
+                $lulusLib = new Prosesluluslib();
+
+                if (count($afirmasiData) > 0) {
+                    $lulusLib->prosesTidakLulusAfirmasiAntrian($afirmasiData, $user->data->id);
+                }
+            }
+            print_r("SELESAI PROSES KELULUSAN ");
+        } else {
+            print_r("DATA SEKOLAH TIDAK DITEMUKAN");
+        }
+    }
+
     public function proseskelulusanafirmasisd()
     {
         $Profilelib = new Profilelib();

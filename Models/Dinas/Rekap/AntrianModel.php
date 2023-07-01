@@ -30,7 +30,7 @@ class AntrianModel extends Model
         $select = "b.fullname, b.nisn, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur";
 
         $this->dt->select($select);
-        $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
+        $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id');
         // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
         // $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');

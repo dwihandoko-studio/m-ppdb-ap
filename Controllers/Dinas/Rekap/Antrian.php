@@ -90,7 +90,7 @@ class Antrian extends BaseController
 
         $data['user'] = $user->data;
 
-        $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
+        // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
 
         return view('dinas/rekap/antrian/index', $data);
     }

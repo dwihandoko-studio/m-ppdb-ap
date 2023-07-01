@@ -259,6 +259,8 @@ $siswa = json_decode($data->details);
 $html = ob_get_clean();
 require_once APPPATH . "Libraries/vendor/autoload.php";
 
+$tanggalLnya = date('Y');
+
 use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
@@ -268,6 +270,6 @@ $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper('PENDAFTARAN', 'portrait');
 $dompdf->render();
-$dompdf->stream("PPDB2021_.pdf", array("Attachment" => false));
+$dompdf->stream("PPDB_$tanggalLnya_'{$siswa->nama}'.pdf", array("Attachment" => false));
 exit(0);
 ?>

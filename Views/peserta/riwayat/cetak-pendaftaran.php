@@ -270,6 +270,6 @@ $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper('PENDAFTARAN', 'portrait');
 $dompdf->render();
-$dompdf->stream("PPDB_$tanggalLnya_'{$siswa->nama}'.pdf", array("Attachment" => false));
+$dompdf->stream("PPDB_2023_" . $siswa->nama . ".pdf", array("Attachment" => false));
 exit(0);
 ?>

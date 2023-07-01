@@ -248,8 +248,8 @@
                 "orderable": false,
             }],
             lengthMenu: [
-                [10, 25, 50, -1],
-                ['10 rows', '25 rows', '50 rows', 'Show all']
+                [10, 25, 50],
+                ['10 rows', '25 rows', '50 rows']
             ],
             dom: 'Blfrtip',
             buttons: [

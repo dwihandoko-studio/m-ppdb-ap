@@ -266,10 +266,10 @@ class Zonasi extends BaseController
                 return json_encode($response);
             }
 
-            if ($peserta->lampiran_akta_kelahiran == null || $peserta->lampiran_kk == null || $peserta->lampiran_lulus == null) {
+            if ($peserta->lampiran_kk == null || $peserta->lampiran_lulus == null) {
                 $response = new \stdClass;
                 $response->code = 400;
-                $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen terlebih dahulu. (Akta, KK dan Lampiran Lulus).";
+                $response->message = "Lampiran dokumen anda belum lengkap, silahkan lengkapi lampiran dokumen terlebih dahulu. (Dokumen Akta, KK dan Lampiran Lulus).";
                 return json_encode($response);
             }
 

@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 class DiverifikasiModel extends Model
 {
     protected $table = "_tb_pendaftar a";
-    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'c.npsn');
+    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur');
     protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'a.kode_pendaftaran');
-    protected $order = array('b.fullname' => 'asc', 'c.nama' => 'asc');
+    protected $order = array('b.fullname' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -26,11 +26,12 @@ class DiverifikasiModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,d.latitude,d.longitude), 2) AS jarak, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
+        // $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,d.latitude,d.longitude), 2) AS jarak, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
+        $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
-        $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
+        // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
         $this->dt->join('ref_sekolah d', 'a.tujuan_sekolah_id_1 = d.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
@@ -72,13 +73,13 @@ class DiverifikasiModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('d.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('d.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -95,13 +96,13 @@ class DiverifikasiModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('d.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('d.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         return $this->dt->countAllResults();
     }
@@ -115,13 +116,13 @@ class DiverifikasiModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('d.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('d.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('d.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         return $this->dt->countAllResults();
     }

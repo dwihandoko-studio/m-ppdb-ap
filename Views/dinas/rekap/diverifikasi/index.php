@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-lg-12 col-7">
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <!-- <div class="col-lg-4">
                                         <div class="form-group jenjang-block">
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
@@ -46,7 +46,7 @@
                                                 <option value="6">SMP</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-4">
                                         <div class="form-group jalur-block">
                                             <label for="filter_jalur" class="form-control-label">Filter Jalur</label>
@@ -76,9 +76,9 @@
                                     <th>Kode Pendaftaran</th>
                                     <th>Via Jalur</th>
                                     <th>Nama Sekolah Tujuan</th>
-                                    <th>Nama Sekolah Asal</th>
+                                    <!-- <th>Nama Sekolah Asal</th>
                                     <th>NPSN Sekolah Asal</th>
-                                    <th>Jarak</th>
+                                    <th>Jarak</th> -->
                                 </tr>
                             </thead>
 
@@ -233,7 +233,7 @@
                 "type": "POST",
                 "data": function(data) {
                     data.filter_jalur = $('#filter_jalur').val();
-                    data.filter_jenjang = $('#filter_jenjang').val();
+                    // data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },
             language: {

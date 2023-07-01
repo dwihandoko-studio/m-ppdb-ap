@@ -30,9 +30,9 @@ class DiverifikasiModel extends Model
         $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
 
         $this->dt->select($select);
-        $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
+        $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id');
         // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        $this->dt->join('ref_sekolah d', 'a.tujuan_sekolah_id_1 = d.id', 'LEFT');
+        $this->dt->join('ref_sekolah d', 'a.tujuan_sekolah_id_1 = d.id');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
         // $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');

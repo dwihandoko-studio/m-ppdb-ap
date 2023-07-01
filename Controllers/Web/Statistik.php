@@ -105,7 +105,7 @@ class Statistik extends BaseController
                     $row['zonasi'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'
                         . '<br/>' . 'Terverifikasi : <b>0</b>'
-                        . '<br/>' . 'Belum Verifikasi : <b>0</b>'
+                        . '<br/>' . 'Belum Verifikasi : <b>' . $list->belum_verifikasi_zonasi . '</b>'
                         . '<br/>' . 'Diterima : <b>0</b></div>';
                     $row['afirmasi'] = '<div style="font-size: 13px;">Kuota : <b>0</b>'
                         . '<br/>' . 'Pendaftar : <b>0</b>'

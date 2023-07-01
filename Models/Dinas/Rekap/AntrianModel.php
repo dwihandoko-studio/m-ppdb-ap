@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 class AntrianModel extends Model
 {
     protected $table = "_tb_pendaftar_temp a";
-    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'c.npsn');
-    protected $column_search = array('b.fullname', 'b.nisn', 'c.nama', 'c.npsn', 'a.kode_pendaftaran');
-    protected $order = array('b.fullname' => 'asc', 'c.nama' => 'asc');
+    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur');
+    protected $column_search = array('b.fullname', 'b.nisn', 'a.kode_pendaftaran');
+    protected $order = array('b.fullname' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -72,9 +72,9 @@ class AntrianModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('j.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('j.id', $filterSekolah);
+        // }
 
         if ($filterJenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
@@ -94,9 +94,9 @@ class AntrianModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('j.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('j.id', $filterSekolah);
+        // }
 
         if ($filterJenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
@@ -113,9 +113,9 @@ class AntrianModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('j.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('j.id', $filterSekolah);
+        // }
 
         if ($filterJenjang != "") {
             $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);

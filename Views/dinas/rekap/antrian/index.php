@@ -75,7 +75,7 @@
                                     <th>NISN</th>
                                     <th>Kode Pendaftaran</th>
                                     <th>Via Jalur</th>
-                                    <!-- <th>Nama Sekolah Tujuan</th> -->
+                                    <th>Nama Sekolah Tujuan</th>
                                     <!-- <th>NPSN Seklah Tujuan</th> -->
                                 </tr>
                             </thead>

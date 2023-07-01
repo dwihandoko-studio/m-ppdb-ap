@@ -255,7 +255,7 @@ class Zonasi extends BaseController
                 return json_encode($response);
             }
             $peserta = $this->_db->table('_users_profil_tb a')
-                ->select("a.*, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
+                ->select("a.*, b.lampiran_akta_kelahiran, b.lampiran_kk, b.lampiran_lulus, b.lampiran_afirmasi, b.lampiran_prestasi, b.lampiran_mutasi, b.lampiran_lainnya")
                 ->join('_upload_kelengkapan_berkas b', 'a.id = b.user_id', 'LEFT')
                 ->where('a.id', $user->data->id)
                 ->get()->getRowObject();

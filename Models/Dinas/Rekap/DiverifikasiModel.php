@@ -10,7 +10,7 @@ class DiverifikasiModel extends Model
     protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur');
     protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'a.kode_pendaftaran');
-    protected $order = array('b.fullname' => 'asc');
+    protected $order = array('a.kode_pendaftaran' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -67,7 +67,7 @@ class DiverifikasiModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->where("(a.status_pendaftaran = 1 OR a.status_pendaftaran = 2)");
 
         if ($filterJalur != "") {
             $this->dt->where('a.via_jalur', $filterJalur);
@@ -90,7 +90,8 @@ class DiverifikasiModel extends Model
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->where("(a.status_pendaftaran = 1 OR a.status_pendaftaran = 2)");
 
         if ($filterJalur != "") {
             $this->dt->where('a.via_jalur', $filterJalur);
@@ -109,7 +110,8 @@ class DiverifikasiModel extends Model
     public function count_all($filterJenjang, $filterJalur, $filterSekolah)
     {
         $this->_get_datatables_query();
-        $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);
+        $this->dt->where("(a.status_pendaftaran = 1 OR a.status_pendaftaran = 2)");
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
 
         if ($filterJalur != "") {

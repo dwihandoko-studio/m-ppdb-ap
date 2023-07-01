@@ -34,11 +34,11 @@ class Home extends BaseController
 
         $data['user'] = $user->data;
 
-        $data['pengumumans'] = $this->_db->table('_tb_info_pengumuman')->where(['tampil' => 1, 'status' => 1])->orderBy('created_at', 'desc')->get()->getResult();
-        $data['jumlahPendaftar'] = $this->_db->table('_users_tb')
-            ->select("id, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'ZONASI') as pendaftarZonasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'AFIRMASI') as pendaftarAfirmasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'MUTASI') as pendaftarMutasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'PRESTASI') as pendaftarPrestasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'SWASTA') as pendaftarSwastaVerified, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'ZONASI') as pendaftarZonasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'AFIRMASI') as pendaftarAfirmasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'MUTASI') as pendaftarMutasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'PRESTASI') as pendaftarPrestasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'SWASTA') as pendaftarSwastaAntrian")
-            ->where('id', $user->data->id)
-            ->get()->getRowObject();
+        // $data['pengumumans'] = $this->_db->table('_tb_info_pengumuman')->where(['tampil' => 1, 'status' => 1])->orderBy('created_at', 'desc')->get()->getResult();
+        // $data['jumlahPendaftar'] = $this->_db->table('_users_tb')
+        //     ->select("id, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'ZONASI') as pendaftarZonasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'AFIRMASI') as pendaftarAfirmasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'MUTASI') as pendaftarMutasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'PRESTASI') as pendaftarPrestasiVerified, (SELECT count(*) from v_tb_pendaftar where via_jalur = 'SWASTA') as pendaftarSwastaVerified, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'ZONASI') as pendaftarZonasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'AFIRMASI') as pendaftarAfirmasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'MUTASI') as pendaftarMutasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'PRESTASI') as pendaftarPrestasiAntrian, (SELECT count(*) from v_tb_pendaftar_temp where via_jalur = 'SWASTA') as pendaftarSwastaAntrian")
+        //     ->where('id', $user->data->id)
+        //     ->get()->getRowObject();
 
         // var_dump($data['jumlahPendaftar']);
         // die;

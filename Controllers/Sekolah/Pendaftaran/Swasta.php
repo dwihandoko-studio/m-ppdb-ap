@@ -57,7 +57,8 @@ class Swasta extends BaseController
             $start = (($page - 1) * $limit_per_page);
         }
 
-        $where = "a.tujuan_sekolah_id_1 = '$getCurrentUser->sekolah_id' AND a.via_jalur = 'SWASTA' AND (a.status_pendaftaran = 0)";
+        // $where = "a.tujuan_sekolah_id_1 = '$getCurrentUser->sekolah_id' AND a.via_jalur = 'SWASTA' AND (a.status_pendaftaran = 0)";
+        $where = "a.tujuan_sekolah_id_1 = '$getCurrentUser->sekolah_id' AND (a.status_pendaftaran = 0)";
 
         if ($keyword !== "") {
             $where .= " AND (a.kode_pendaftaran LIKE '%$keyword%')";

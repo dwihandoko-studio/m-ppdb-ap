@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class DiverifikasiModel extends Model
 {
-    protected $table = "_users_profil_tb b";
+    protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur');
     protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'a.kode_pendaftaran');
     protected $order = array('a.kode_pendaftaran' => 'asc');
@@ -27,12 +27,12 @@ class DiverifikasiModel extends Model
     {
 
         // $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,d.latitude,d.longitude), 2) AS jarak, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
-        $select = "b.id, b.nisn, b.fullname, b.nip, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur";
+        $select = "b.id, b.nisn, b.fullname, b.nip, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'b.peserta_didik_id = a.peserta_didik_id');
         // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        // $this->dt->join('ref_sekolah d', 'd.id = a.tujuan_sekolah_id_1');
+        $this->dt->join('ref_sekolah d', 'd.id = a.tujuan_sekolah_id_1');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
         // $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');

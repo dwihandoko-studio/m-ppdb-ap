@@ -288,7 +288,7 @@
 </script>
 <?php if (isset($pengumuman)) { ?>
     <?php if ($pengumuman) { ?>
-        <div id="myModal" class="modal fade show" tabindex="-1" aria-labelledby="myModalLabel" style="display: block;" aria-modal="true" role="dialog">
+        <!-- <div id="myModal" class="modal fade show" tabindex="-1" aria-labelledby="myModalLabel" style="display: block;" aria-modal="true" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -330,10 +330,10 @@
                         <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div>
-        <!-- <div id="donate-popup" style="background: rgb(0 0 0 / 47%); width: 600px; overflow-x: hidden; overflow-y: auto;" class="donate-popup popup-visible">
+                </div>
+            </div>
+        </div> -->
+        <div id="donate-popup" style="background: rgb(0 0 0 / 47%); width: 600px; overflow-x: hidden; overflow-y: auto;" class="donate-popup popup-visible">
             <div class="popup-inner">
                 <div class="container" style="margin-right: auto !important; margin-left: auto !important; max-width: 600px;">
                     <div class="close-donate"><i class="far fa-window-close"></i></div>
@@ -345,7 +345,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     <?php } ?>
 <?php } ?>
 <?= $this->endSection(); ?>

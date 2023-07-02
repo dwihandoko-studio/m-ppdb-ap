@@ -290,7 +290,7 @@
     <?php if ($pengumuman) { ?>
         <div id="donate-popup" style="background: rgb(0 0 0 / 47%); width: 600px; overflow-x: hidden; overflow-y: auto;" class="donate-popup popup-visible">
             <div class="popup-inner">
-                <div class="container" style="margin-right: auto !important; margin-left: auto !important;">
+                <div class="container" style="margin-right: auto !important; margin-left: auto !important; max-width: 600px;">
                     <div class="close-donate"><i class="far fa-window-close"></i></div>
                     <div class="donate-form-area">
                         <h2>INFORMASI...!!!</h2>

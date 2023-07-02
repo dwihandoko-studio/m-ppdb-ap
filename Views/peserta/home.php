@@ -297,7 +297,26 @@
                 </div>
             </div>
         </div>
-
+        <?php if (isset($pengumumans)) { ?>
+            <?php if (count($pengumumans) > 0) { ?>
+                <div id="myModalPengumuman" class="modal fade" tabindex="-1" aria-labelledby="myModalPengumumanLabel" aria-modal="true" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalPengumumanLabel">INFORMASI</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <?= $pengumumans[0]->isi ?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
         <div class="modal fade" id="contentSuccessModal" tabindex="-1" role="dialog" aria-labelledby="contentSuccessModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-success modal-dialog-centered" role="document">
                 <div class="modal-content bg-gradient-success content-success-data">
@@ -451,6 +470,11 @@
 
     $(document).ready(function() {
         // loadLayananPpdbActive();
+        <?php if (isset($pengumumans)) { ?>
+            <?php if (count($pengumumans) > 0) { ?>
+                $('#myModalPengumuman').modal({}, 'show');
+            <?php } ?>
+        <?php } ?>
 
         <?php if (isset($informasi)) { ?>
             let contentInformation = '';

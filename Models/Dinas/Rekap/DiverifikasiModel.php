@@ -27,7 +27,7 @@ class DiverifikasiModel extends Model
     {
 
         // $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,d.latitude,d.longitude), 2) AS jarak, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan";
-        $select = "b.id, b.nisn, b.fullname, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur";
+        $select = "b.id, b.nisn, b.fullname, b.nip, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur";
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'b.peserta_didik_id = a.peserta_didik_id');

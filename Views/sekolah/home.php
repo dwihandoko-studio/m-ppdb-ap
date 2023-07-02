@@ -128,11 +128,11 @@
         </div>
         <?php if (isset($pengumumans)) { ?>
             <?php if (count($pengumumans) > 0) { ?>
-                <div id="myModal" class="modal fade show" tabindex="-1" aria-labelledby="myModalLabel" style="display: block;" aria-modal="true" role="dialog">
+                <div id="myModalPengumuman" class="modal fade" tabindex="-1" aria-labelledby="myModalPengumumanLabel" aria-modal="true" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="myModalLabel">INFORMASI</h5>
+                                <h5 class="modal-title" id="myModalPengumumanLabel">INFORMASI</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -302,6 +302,12 @@
                     },
                     template: '<div data-notify="container" class="alert alert-dismissible alert-{0} alert-notify" role="alert">' + '<span class="alert-icon" data-notify="icon"></span> ' + '<div class="alert-text"</div> ' + '<span class="alert-title" data-notify="title">{1}</span> ' + '<span data-notify="message">{2}</span>' + '</div>' + '<button type="button" class="close" data-notify="dismiss" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + '</div>'
                 });
+            <?php } ?>
+        <?php } else { ?>
+            <?php if (isset($pengumumans)) { ?>
+                <?php if (count($pengumumans) > 0) { ?>
+                    $('#myModalPengumuman').modal({}, 'show');
+                <?php } ?>
             <?php } ?>
         <?php } ?>
     <?php } ?>

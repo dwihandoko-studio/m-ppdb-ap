@@ -220,6 +220,8 @@
         </div>
     </div>
 </section>
+
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptBottom'); ?>
@@ -284,6 +286,23 @@
         });
     }
 </script>
+<?php if (isset($pengumuman)) { ?>
+    <?php if ($pengumuman) { ?>
+        <div id="donate-popup" class="donate-popup popup-visible">
+            <div class="close-donate"><i class="far fa-window-close"></i></div>
+            <div class="popup-inner">
+                <div class="container">
+                    <div class="donate-form-area">
+                        <h2>INFORMASI...!!!</h2>
+                        <div>
+                            <?= $pengumuman->isi ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+<?php } ?>
 <?= $this->endSection(); ?>
 
 <?= $this->section('scriptTop'); ?>

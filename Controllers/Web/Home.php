@@ -315,6 +315,8 @@ class Home extends BaseController
 
         $data['jumlah_kuota'] = $totalZonasi;
 
+        $data['pengumuman'] = $this->_db->table('_tb_info_pengumuman')->where(['tampil' => 1, 'status' => 1])->orderBy('created_at', 'DESC')->get()->getRowObject();
+
         // $data['jumlah_kuota'] = $this->_db->table('v_jumlah_kuota')
         //     ->select("SUM(zonasi) as zonasi, SUM(afirmasi) as afirmasi, SUM(prestasi) as prestasi, SUM(mutasi) as mutasi, SUM(pendaftar_zonasi_terverifikasi) as pendaftar_zonasi_terverifikasi, SUM(pendaftar_zonasi_antrian) as pendaftar_zonasi_antrian, SUM(pendaftar_afirmasi_terverifikasi) as pendaftar_afirmasi_terverifikasi, SUM(pendaftar_afirmasi_antrian) as pendaftar_afirmasi_antrian, SUM(pendaftar_mutasi_terverifikasi) as pendaftar_mutasi_terverifikasi, SUM(pendaftar_mutasi_antrian) as pendaftar_mutasi_antrian, SUM(pendaftar_prestasi_terverifikasi) as pendaftar_prestasi_terverifikasi, SUM(pendaftar_prestasi_antrian) as pendaftar_prestasi_antrian, SUM(pendaftar_swasta_terverifikasi) as pendaftar_swasta_terverifikasi, SUM(pendaftar_swasta_antrian) as pendaftar_swasta_antrian")
         //     ->get()->getRowObject();

@@ -288,7 +288,7 @@
 </script>
 <?php if (isset($pengumuman)) { ?>
     <?php if ($pengumuman) { ?>
-        <div id="donate-popup" class="donate-popup popup-visible">
+        <div id="donate-popup" style="background: rgb(0 0 0 / 47%);" class="donate-popup popup-visible">
             <div class="popup-inner">
                 <div class="container">
                     <div class="close-donate"><i class="far fa-window-close"></i></div>

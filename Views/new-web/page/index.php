@@ -288,10 +288,10 @@
 </script>
 <?php if (isset($pengumuman)) { ?>
     <?php if ($pengumuman) { ?>
-        <div id="donate-popup" style="width: 70%; height: 70%;" class="donate-popup popup-visible">
-            <div class="close-donate"><i class="far fa-window-close"></i></div>
-            <div class="popup-inner" style="margin: 15% auto;">
+        <div id="donate-popup" class="donate-popup popup-visible">
+            <div class="popup-inner">
                 <div class="container">
+                    <div class="close-donate"><i class="far fa-window-close"></i></div>
                     <div class="donate-form-area">
                         <h2>INFORMASI...!!!</h2>
                         <div>

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class DiverifikasiModel extends Model
 {
-    protected $table = "_tb_pendaftar a";
+    protected $table = "_users_profil_tb b";
     protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur');
     protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'a.kode_pendaftaran');
     protected $order = array('a.kode_pendaftaran' => 'asc');
@@ -30,7 +30,8 @@ class DiverifikasiModel extends Model
         $select = "b.id, b.nisn, b.fullname, b.nip, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur";
 
         $this->dt->select($select);
-        $this->dt->join('_users_profil_tb b', 'b.peserta_didik_id = a.peserta_didik_id');
+        $this->dt->join('_tb_pendaftar a', 'a.peserta_didik_id = b.peserta_didik_id');
+        // $this->dt->join('_users_profil_tb b', 'b.peserta_didik_id = a.peserta_didik_id');
         // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
         // $this->dt->join('ref_sekolah d', 'd.id = a.tujuan_sekolah_id_1');
         // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');

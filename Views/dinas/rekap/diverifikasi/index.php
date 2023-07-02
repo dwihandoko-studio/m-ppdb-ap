@@ -264,6 +264,10 @@
             ]
         });
 
+        $('#filter_jalur').change(function() {
+            tableUsulan.draw();
+        });
+
     });
 
     function initSelect2(event, parrent) {

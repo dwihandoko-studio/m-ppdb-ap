@@ -64,7 +64,7 @@ class DiverifikasiModel extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function get_datatables($filterJenjang, $filterJalur, $filterSekolah)
+    function get_datatables($filterJalur)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
@@ -87,7 +87,7 @@ class DiverifikasiModel extends Model
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($filterJenjang, $filterJalur, $filterSekolah)
+    function count_filtered($filterJalur)
     {
         $this->_get_datatables_query();
         // $this->dt->where("a.tujuan_sekolah_id = (SELECT sekolah_id FROM _users_profil_tb WHERE id = '$userId') AND (a.status_pendaftaran = 1)");
@@ -108,7 +108,7 @@ class DiverifikasiModel extends Model
 
         return $this->dt->countAllResults();
     }
-    public function count_all($filterJenjang, $filterJalur, $filterSekolah)
+    public function count_all($filterJalur)
     {
         $this->_get_datatables_query();
         // $this->dt->whereIn('a.status_pendaftaran', [1, 2]);

@@ -560,12 +560,50 @@ class Pengguna extends BaseController
                     //     $emailLib->sendActivation($data['email']);
                     // } catch (\Throwable $th) {
                     // }
+                    $response = new \stdClass;
+                    try {
+                        $noHpNya = $this->replaceAndValidateMobileNumber($nohp);
+
+                        if ($noHpNya) {
+                            $curl = curl_init();
+                            $token = "Pii5tjlkLFPa0mmXRIANDaYpYRBmUgqeIB7Mc96AQbGcghPvOle0iMxIVsmk39OX";
+                            $random = true;
+                            $payload = [
+                                "data" => [
+                                    [
+                                        'phone' => '62' . $noHpNya,
+                                        'message' => "Akun Anda Telah Berhasil Dibuat. Selanjutnya silahkan login dengan menggunakan NISN : $nisn dan passwordnya adalah tanggal lahir anda dengan format ddmmyyyy ($pass). Di website resmi PPDB 2023/2024 Kabupaten Lampung Tengah : " . base_url('web/login'),
+                                    ]
+                                ]
+                            ];
+                            curl_setopt(
+                                $curl,
+                                CURLOPT_HTTPHEADER,
+                                array(
+                                    "Authorization: $token",
+                                    "Content-Type: application/json"
+                                )
+                            );
+                            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+                            curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/v2/send-message");
+                            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+                            $result = curl_exec($curl);
+                            curl_close($curl);
+                            $response->message_wa = $result;
+                        }
+                    } catch (\Throwable $th) {
+                        $response->error = $th;
+                    }
 
                     unset($data['details']);
                     unset($data['peserta_didik_id']);
                     unset($data['sekolah_asal']);
 
-                    $response = new \stdClass;
+
                     $response->code = 200;
                     $response->data = $data;
                     $response->url = base_url('dinas/masterdata/pengguna');
@@ -586,6 +624,19 @@ class Pengguna extends BaseController
                 return json_encode($response);
             }
         }
+    }
+
+    private function replaceAndValidateMobileNumber($number)
+    {
+        // Validate the mobile number format
+        if (preg_match('/^(?:\+?62|0)[2-9]{1}[0-9]+$/', $number)) {
+            // Replace unwanted characters or prefixes
+            $number = str_replace(['+62'], '', $number);
+            $number = substr($number, 0, 1) == "0" ? substr($number, 1) : $number;
+            return $number;
+        }
+        // Invalid number
+        return false;
     }
 
     public function lock()

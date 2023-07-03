@@ -159,7 +159,7 @@ class Swasta extends BaseController
 
         $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
         $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
-        $data['title'] = $data['sekolahname']->nama . ' Rekapitulasi Rangking Afirmasi';
+        $data['title'] = $data['sekolahname']->nama . ' Rekapitulasi Rangking Swasta';
 
         return view('dinas/rangking/swasta/index', $data);
     }

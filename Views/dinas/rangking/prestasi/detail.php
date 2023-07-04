@@ -527,13 +527,13 @@
                 }
             }
 
-
-            function aksiUbahKoordinat(event) {
+            function aksiUbahKoordinat(event, name) {
                 $.ajax({
                     url: "./edit",
                     type: 'POST',
                     data: {
                         id: event,
+                        name: name,
                     },
                     dataType: 'JSON',
                     beforeSend: function() {

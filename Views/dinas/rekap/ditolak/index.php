@@ -76,7 +76,7 @@
                                     <th>Kode Pendaftaran</th>
                                     <th>Via Jalur</th>
                                     <th>Nama Sekolah Asal</th>
-                                    <th>NPSN Seklah Asal</th>
+                                    <!-- <th>NPSN Seklah Asal</th> -->
                                     <th>Keterangan Penolakan</th>
                                 </tr>
                             </thead>

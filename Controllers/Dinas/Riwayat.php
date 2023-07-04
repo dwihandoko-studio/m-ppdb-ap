@@ -171,6 +171,7 @@ class Riwayat extends BaseController
 
         // var_dump($pendaftaran);
         // die;
+        return view('404');
 
         if ($pendaftaran) {
             $data['data'] = $pendaftaran;

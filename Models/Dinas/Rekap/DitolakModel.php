@@ -8,9 +8,9 @@ use CodeIgniter\Model;
 class DitolakModel extends Model
 {
     protected $table = "_tb_pendaftar_tolak a";
-    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'c.nama', 'c.npsn', 'a.keterangan_penolakan');
-    protected $column_search = array('b.fullname', 'b.nisn', 'b.nip', 'c.nama', 'c.npsn', 'a.kode_pendaftaran');
-    protected $order = array('b.fullname' => 'asc', 'c.nama' => 'asc');
+    protected $column_order = array(null, null, 'b.fullname', 'b.nisn', 'a.kode_pendaftaran', 'a.via_jalur', 'a.keterangan_penolakan');
+    protected $column_search = array('b.nisn', 'a.kode_pendaftaran');
+    // protected $order = array('b.fullname' => 'asc', 'c.nama' => 'asc');
     protected $request;
     protected $db;
     protected $dt;
@@ -27,19 +27,23 @@ class DitolakModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.*, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan, a.keterangan_penolakan";
+        // $select = "b.*, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan, a.keterangan_penolakan";
+        $select = "b.id, b.nisn, b.fullname, b.nip, a.id as id_pendaftaran, a.kode_pendaftaran, a.via_jalur, d.nama as nama_sekolah_tujuan, d.npsn as npsn_sekolah_tujuan, a.keterangan_penolakan";
 
         $this->dt->select($select);
-        $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
-        $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
-        $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
-        $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
-        $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');
-        $this->dt->join('ref_kecamatan f', 'b.kecamatan = f.id', 'LEFT');
-        $this->dt->join('ref_kelurahan g', 'b.kelurahan = g.id', 'LEFT');
-        $this->dt->join('ref_dusun h', 'b.dusun = h.id', 'LEFT');
-        $this->dt->join('_upload_kelengkapan_berkas k', 'b.id = k.user_id', 'LEFT');
+        $this->dt->join('_users_profil_tb b', 'b.peserta_didik_id = a.peserta_didik_id');
+        // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
+        $this->dt->join('ref_sekolah d', 'd.id = a.tujuan_sekolah_id_1');
+        // $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
+        // $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
+        // $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
+        // $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
+        // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
+        // $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');
+        // $this->dt->join('ref_kecamatan f', 'b.kecamatan = f.id', 'LEFT');
+        // $this->dt->join('ref_kelurahan g', 'b.kelurahan = g.id', 'LEFT');
+        // $this->dt->join('ref_dusun h', 'b.dusun = h.id', 'LEFT');
+        // $this->dt->join('_upload_kelengkapan_berkas k', 'b.id = k.user_id', 'LEFT');
 
         $i = 0;
         foreach ($this->column_search as $item) {
@@ -72,13 +76,13 @@ class DitolakModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('j.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('j.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -94,13 +98,13 @@ class DitolakModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('j.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('j.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         return $this->dt->countAllResults();
     }
@@ -113,13 +117,13 @@ class DitolakModel extends Model
             $this->dt->where('a.via_jalur', $filterJalur);
         }
 
-        if ($filterSekolah != "") {
-            $this->dt->where('j.id', $filterSekolah);
-        }
+        // if ($filterSekolah != "") {
+        //     $this->dt->where('j.id', $filterSekolah);
+        // }
 
-        if ($filterJenjang != "") {
-            $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
-        }
+        // if ($filterJenjang != "") {
+        //     $this->dt->where('j.bentuk_pendidikan_id', $filterJenjang);
+        // }
 
         return $this->dt->countAllResults();
     }

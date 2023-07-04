@@ -314,14 +314,18 @@ class Proses extends BaseController
                     ->limit((int)$kuota->mutasi)
                     ->get()->getResult();
 
+                $selectPrestasi = "b.*, l.jenis_prestasi, l.nilai_akumulative, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, i.nama as nama_bentuk_pendidikan, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+
                 $prestasiData = $this->_db->table('_tb_pendaftar a')
-                    ->select($select)
+                    ->select($selectPrestasi)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
                     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('tb_nilai_prestasi l', 'l.id = a.id')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'PRESTASI')
+                    ->orderBy('l.nilai_akumulative', 'DESC')
                     ->orderBy('jarak', 'ASC')
                     ->orderBy('a.created_at', 'ASC')
                     ->limit((int)$kuota->prestasi)

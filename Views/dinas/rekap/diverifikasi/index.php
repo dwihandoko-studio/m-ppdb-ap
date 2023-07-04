@@ -231,7 +231,7 @@
                 "type": "POST",
                 "data": function(data) {
                     data.filter_jalur = $('#filter_jalur').val();
-                    data.filter_jenjang = $('#filter_jenjang').val();
+                    // data.filter_jenjang = $('#filter_jenjang').val();
                 }
             },
             language: {
@@ -267,9 +267,9 @@
             tableUsulan.draw();
         });
 
-        $('#filter_jenjang').change(function() {
-            tableUsulan.draw();
-        });
+        // $('#filter_jenjang').change(function() {
+        //     tableUsulan.draw();
+        // });
 
     });
 

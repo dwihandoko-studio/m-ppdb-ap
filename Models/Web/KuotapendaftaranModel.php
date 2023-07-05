@@ -58,13 +58,12 @@ class KuotapendaftaranModel extends Model
     }
     function get_datatables($filterKecamatan, $filterJenajng)
     {
-        $select = "a.*, e.fullname, b.nama as nama_sekolah, b.status_sekolah, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI')) as pendaftar_zonasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI')) as pendaftar_afirmasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI')) as pendaftar_mutasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI')) as pendaftar_prestasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA')) as pendaftar_swasta, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') as terverifikasi_zonasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') as terverifikasi_afirmasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') as terverifikasi_mutasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') as terverifikasi_prestasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') as terverifikasi_swasta, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI' AND status_pendaftaran = 2) as diterima_zonasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI' AND status_pendaftaran = 2) as diterima_afirmasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI' AND status_pendaftaran = 2) as diterima_mutasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI' AND status_pendaftaran = 2) as diterima_prestasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA' AND status_pendaftaran = 2) as diterima_swasta, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') as belum_verifikasi_zonasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') as belum_verifikasi_afirmasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') as belum_verifikasi_mutasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') as belum_verifikasi_prestasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') as belum_verifikasi_swasta";
-        // $select = "a.*, e.fullname, b.nama as nama_sekolah, b.status_sekolah, c.nama as nama_kecamatan, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI')) as pendaftar_zonasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI')) as pendaftar_afirmasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI')) as pendaftar_mutasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI')) as pendaftar_prestasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA')) as pendaftar_swasta, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') as terverifikasi_zonasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') as terverifikasi_afirmasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') as terverifikasi_mutasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') as terverifikasi_prestasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') as terverifikasi_swasta, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI' AND status_pendaftaran = 2) as diterima_zonasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI' AND status_pendaftaran = 2) as diterima_afirmasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI' AND status_pendaftaran = 2) as diterima_mutasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI' AND status_pendaftaran = 2) as diterima_prestasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA' AND status_pendaftaran = 2) as diterima_swasta, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') as belum_verifikasi_zonasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') as belum_verifikasi_afirmasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') as belum_verifikasi_mutasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') as belum_verifikasi_prestasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') as belum_verifikasi_swasta";
+        $select = "a.*, e.fullname, b.nama as nama_sekolah, b.status_sekolah, c.nama as nama_kecamatan, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI')) as pendaftar_zonasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI')) as pendaftar_afirmasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI')) as pendaftar_mutasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI')) as pendaftar_prestasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') + (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA')) as pendaftar_swasta, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') as terverifikasi_zonasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') as terverifikasi_afirmasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') as terverifikasi_mutasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') as terverifikasi_prestasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') as terverifikasi_swasta, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI' AND status_pendaftaran = 2) as diterima_zonasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI' AND status_pendaftaran = 2) as diterima_afirmasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI' AND status_pendaftaran = 2) as diterima_mutasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI' AND status_pendaftaran = 2) as diterima_prestasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA' AND status_pendaftaran = 2) as diterima_swasta, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'ZONASI') as belum_verifikasi_zonasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'AFIRMASI') as belum_verifikasi_afirmasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'MUTASI') as belum_verifikasi_mutasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'PRESTASI') as belum_verifikasi_prestasi, (SELECT count(id) FROM _tb_pendaftar_temp WHERE tujuan_sekolah_id_1 = a.sekolah_id AND via_jalur = 'SWASTA') as belum_verifikasi_swasta";
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb e', 'a.sekolah_id = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
-        // $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
+        $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
 
         $this->_get_datatables_query();
 
@@ -72,9 +71,9 @@ class KuotapendaftaranModel extends Model
             $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
 
-        // if ($filterKecamatan != "") {
-        //     $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
-        // }
+        if ($filterKecamatan != "") {
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
+        }
 
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
@@ -83,43 +82,41 @@ class KuotapendaftaranModel extends Model
     }
     function count_filtered($filterKecamatan, $filterJenajng)
     {
-        $select = "a.*, b.nama as nama_sekolah";
-        // $select = "a.*, b.nama as nama_sekolah, c.nama as nama_kecamatan";
+        $select = "a.*, b.nama as nama_sekolah, c.nama as nama_kecamatan";
         $this->dt->select($select);
         // $this->dt->join('_users_profil_tb e', 'a.sekolah_id = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
-        // $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
+        $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
         $this->_get_datatables_query();
 
         if ($filterJenajng != "") {
             $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
 
-        // if ($filterKecamatan != "") {
-        //     $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
-        // }
+        if ($filterKecamatan != "") {
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
+        }
 
         return $this->dt->countAllResults();
     }
     public function count_all($filterKecamatan, $filterJenajng)
     {
-        $select = "a.*, b.nama as nama_sekolah";
-        // $select = "a.*, b.nama as nama_sekolah, c.nama as nama_kecamatan";
+        $select = "a.*, b.nama as nama_sekolah, c.nama as nama_kecamatan";
         $this->dt->select($select);
         // $this->dt->join('_users_profil_tb e', 'a.sekolah_id = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
-        // $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
+        $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
 
         $this->_get_datatables_query();
 
         if ($filterJenajng != "") {
             $this->dt->where('a.bentuk_pendidikan_id', $filterJenajng);
         }
-        // if ($filterKecamatan != "") {
-        //     $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
-        // }
+        if ($filterKecamatan != "") {
+            $this->dt->where('LEFT(b.kode_wilayah,6)', $filterKecamatan);
+        }
 
         return $this->dt->countAllResults();
     }

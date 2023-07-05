@@ -212,12 +212,12 @@ class Zonasi extends BaseController
             return json_encode($response);
         }
 
-        // $dataLib = new Datalib();
-        // $canDaftar = $dataLib->canRegister("ZONASI");
+        $dataLib = new Datalib();
+        $canDaftar = $dataLib->canRegister("ZONASI");
 
-        // if ($canDaftar->code !== 200) {
-        //     return json_encode($canDaftar);
-        // }
+        if ($canDaftar->code !== 200) {
+            return json_encode($canDaftar);
+        }
 
         $rules = [
             'name' => [

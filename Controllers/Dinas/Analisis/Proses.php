@@ -721,10 +721,15 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'AFIRMASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if ((int)$kuota->jumlah_lolos >= (int)$kuota->afirmasi) {
+                    print_r("KUOTA MUTASI SUDAH PENUH <br> ");
                     continue;
                 }
 
@@ -796,10 +801,15 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'AFIRMASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if ((int)$kuota->jumlah_lolos >= (int)$kuota->afirmasi) {
+                    print_r("KUOTA AFIRMASI SUDAH PENUH <br> ");
                     continue;
                 }
 
@@ -871,17 +881,22 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'MUTASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if ((int)$kuota->jumlah_lolos >= (int)$kuota->mutasi) {
+                    print_r("KUOTA MUTASI SUDAH PENUH <br> ");
                     continue;
                 }
 
                 $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
-                    print_r("SEKOLAH TIDAK DITEMUKAN ");
+                    print_r("SEKOLAH TIDAK DITEMUKAN <br> ");
                     continue;
                 }
 
@@ -946,12 +961,18 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'MUTASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
                     continue;
                 }
+
+                if ((int)$kuota->jumlah_lolos >= (int)$kuota->mutasi) {
+                    print_r("KUOTA MUTASI SUDAH PENUH <br> ");
+                    continue;
+                }
+
 
                 $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
@@ -1021,10 +1042,15 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'PRESTASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if ((int)$kuota->jumlah_lolos >= (int)$kuota->prestasi) {
+                    print_r("KUOTA PRESTASI SUDAH PENUH <br> ");
                     continue;
                 }
 
@@ -1097,10 +1123,15 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'PRESTASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if ((int)$kuota->jumlah_lolos >= (int)$kuota->prestasi) {
+                    print_r("KUOTA PRESTASI SUDAH PENUH <br> ");
                     continue;
                 }
 
@@ -1176,10 +1207,17 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                // $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'ZONASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos_zonasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if ((int)$kuota->jumlah_lolos_zonasi >= ((int)$kuota->total) - (int)$kuota->jumlah_lolos) {
+                    print_r("KUOTA ZONASI SUDAH PENUH <br> ");
                     continue;
                 }
 
@@ -1252,10 +1290,16 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                // $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND via_jalur = 'ZONASI' AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos_zonasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if ((int)$kuota->jumlah_lolos_zonasi >= ((int)$kuota->total) - (int)$kuota->jumlah_lolos) {
+                    print_r("KUOTA ZONASI SUDAH PENUH <br> ");
                     continue;
                 }
 
@@ -1277,7 +1321,7 @@ class Proses extends BaseController
 
                 $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.tujuan_sekolah_id_1, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
 
-                $limitZonasi = ((int)$kuota->total - (int)$kuota->total_lolos);
+                $limitZonasi = ((int)$kuota->total - (int)$kuota->jumlah_lolos);
 
                 $mutasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)

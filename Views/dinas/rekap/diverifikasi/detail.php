@@ -217,14 +217,14 @@
                     <div class="col-md-3">
                         <div class="form-group _nama-block">
                             <label for="_nama" class="form-control-label">Surat Kelulusan</label>
-                            <a target="_blank" href="<?= base_url('uploads/peserta/kelulusan') . '/' . $data->lampiran_lulus ?>" class="btn btn-block btn-info">Lampiran Surat Kelulusan</a>
+                            <a target="_blank" href="<?= image_url_upload('uploads/peserta/kelulusan') . '/' . $data->lampiran_lulus ?>" class="btn btn-block btn-info">Lampiran Surat Kelulusan</a>
                         </div>
                     </div>
                     <?php if ($data->lampiran_prestasi !== null) { ?>
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Pestasi</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/prestasi') . '/' . $data->lampiran_prestasi ?>" class="btn btn-block btn-info">Lampiran Prestasi</a>
+                                <a target="_blank" href="<?= image_url_upload('uploads/peserta/prestasi') . '/' . $data->lampiran_prestasi ?>" class="btn btn-block btn-info">Lampiran Prestasi</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -232,7 +232,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Afirmasi</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/afirmasi') . '/' . $data->lampiran_afirmasi ?>" class="btn btn-block btn-info">Lampiran Afirmasi</a>
+                                <a target="_blank" href="<?= image_url_upload('uploads/peserta/afirmasi') . '/' . $data->lampiran_afirmasi ?>" class="btn btn-block btn-info">Lampiran Afirmasi</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -240,7 +240,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Foto Rumah</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/fotorumah') . '/' . $data->lampiran_foto_rumah ?>" class="btn btn-block btn-info">Lampiran Foto Rumah</a>
+                                <a target="_blank" href="<?= image_url_upload('uploads/peserta/fotorumah') . '/' . $data->lampiran_foto_rumah ?>" class="btn btn-block btn-info">Lampiran Foto Rumah</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -248,7 +248,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Pernyataan</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/pernyataan') . '/' . $data->lampiran_pernyataan ?>" class="btn btn-block btn-info">Lampiran Pernyataan</a>
+                                <a target="_blank" href="<?= image_url_upload('uploads/peserta/pernyataan') . '/' . $data->lampiran_pernyataan ?>" class="btn btn-block btn-info">Lampiran Pernyataan</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -256,7 +256,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Bukti Mutasi</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/mutasi') . '/' . $data->lampiran_mutasi ?>" class="btn btn-block btn-info">Lampiran Mutasi</a>
+                                <a target="_blank" href="<?= image_url_upload('uploads/peserta/mutasi') . '/' . $data->lampiran_mutasi ?>" class="btn btn-block btn-info">Lampiran Mutasi</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -264,7 +264,7 @@
                         <div class="col-md-3">
                             <div class="form-group _nama-block">
                                 <label for="_nama" class="form-control-label">Lainnya</label>
-                                <a target="_blank" href="<?= base_url('uploads/peserta/lainnya') . '/' . $data->lampiran_lainnya ?>" class="btn btn-block btn-info">Lampiran Lainnya</a>
+                                <a target="_blank" href="<?= image_url_upload('uploads/peserta/lainnya') . '/' . $data->lampiran_lainnya ?>" class="btn btn-block btn-info">Lampiran Lainnya</a>
                             </div>
                         </div>
                     <?php } ?>

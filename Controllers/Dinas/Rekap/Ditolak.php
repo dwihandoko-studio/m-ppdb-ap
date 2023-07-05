@@ -63,7 +63,6 @@ class Ditolak extends BaseController
             //     $row[] = '-';
             // }
 
-
             // $row[] = $no;
 
             $row[] = $list->fullname;

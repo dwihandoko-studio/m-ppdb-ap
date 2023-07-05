@@ -1488,7 +1488,7 @@ class Proses extends BaseController
         }
     }
 
-    public function proseskelulusansisa()
+    public function proseskelulusansisasmp()
     {
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
@@ -1511,10 +1511,15 @@ class Proses extends BaseController
             print_r("DATA SEKOLAH " . count($dataSekolahs));
             foreach ($dataSekolahs as $key => $id) {
                 // print_r("SELESAI PROSES KELULUSAN ");
-                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$kuota) {
-                    print_r("KUOTA TIDAK DITEMUKAN ");
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if (((int)$kuota->total - (int)$kuota->jumlah_lolos) < 1) {
+                    print_r("KUOTA SUDAH PENUH <br> ");
                     continue;
                 }
 
@@ -1530,42 +1535,43 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $totalKuota = (int)$kuota->zonasi + (int)$kuota->mutasi + (int)$kuota->afirmasi + (int)$kuota->prestasi;
+                // $totalKuota = (int)$kuota->zonasi + (int)$kuota->mutasi + (int)$kuota->afirmasi + (int)$kuota->prestasi;
 
-                $jumlahLolos = $this->_db->table('_tb_pendaftar a')
-                    ->select("b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
-                    ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
-                    ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
-                    ->where('a.status_pendaftaran', 2)->countAllResults();
+                // $jumlahLolos = $this->_db->table('_tb_pendaftar a')
+                //     ->select("b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
+                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                //     ->where('a.status_pendaftaran', 2)->countAllResults();
 
-                if ($jumlahLolos < $totalKuota) {
+                if ((int)$kuota->jumlah_lolos < (int)$kuota->total) {
 
-                    $limitNextAfirm = $totalKuota - $jumlahLolos;
+                    $limitNextPrestasi = ((int)$kuota->total - (int)$kuota->jumlah_lolos);
 
-                    $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND status_pendaftaran = 2 AND via_jalur = 'AFIRMASI') as jumlah_lolo_afirmasi";
+                    $selectPrestasi = "b.*, l.jenis_prestasi, l.nilai_akumulative, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND status_pendaftaran = 2 AND via_jalur = 'PRESTASI') as jumlah_lolos_prestasi";
 
-                    $afirmasiData = $this->_db->table('_tb_pendaftar a')
-                        ->select($select)
+                    $prestasiDataSisa = $this->_db->table('_tb_pendaftar a')
+                        ->select($selectPrestasi)
                         ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
                         ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
                         ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                        ->join('tb_nilai_prestasi l', 'l.id = a.id')
                         ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                         ->where('a.status_pendaftaran', 1)
-                        ->where('a.via_jalur', 'AFIRMASI')
+                        ->where('a.via_jalur', 'PRESTASI')
+                        ->orderBy('l.nilai_akumulative', 'DESC')
                         ->orderBy('jarak', 'ASC')
                         ->orderBy('a.created_at', 'ASC')
-                        ->limit($limitNextAfirm)
+                        ->limit($limitNextPrestasi)
                         ->get()->getResult();
-
 
                     $lulusLib = new Prosesluluslib();
 
-                    if (count($afirmasiData) > 0) {
-                        $lulusLib->prosesLulusAfirmasiSisa($afirmasiData, $user->data->id);
-                        print_r("EKSEKUSI TAMBAH KUOTA AFIRMASI <br/>");
-                        print_r($afirmasiData[0]->nama_sekolah_tujuan . "<br/>");
+                    if (count($prestasiDataSisa) > 0) {
+                        $lulusLib->prosesLulusPrestasiSisa($prestasiDataSisa, $user->data->id);
+                        print_r("EKSEKUSI TAMBAH KUOTA PRESTASI ---->>> ");
+                        print_r($prestasiDataSisa[0]->nama_sekolah_tujuan . "<br/>");
                     }
                 } else {
                     print_r("KUOTA TELAH MEMENUHI <br/>");

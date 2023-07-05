@@ -1488,7 +1488,7 @@ class Proses extends BaseController
         }
     }
 
-    public function proseskelulusansisasmp()
+    public function proseskelulusansisasd()
     {
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();
@@ -1504,7 +1504,7 @@ class Proses extends BaseController
             ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->groupBy('a.tujuan_sekolah_id_1')
-            ->where('j.bentuk_pendidikan_id', 6)
+            ->where('j.bentuk_pendidikan_id', 5)
             ->get()->getResult();
 
         if (count($dataSekolahs) > 0) {
@@ -1526,12 +1526,12 @@ class Proses extends BaseController
                 $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
-                    print_r("SEKOLAH TIDAK DITEMUKAN ");
+                    print_r("SEKOLAH TIDAK DITEMUKAN <br/>");
                     continue;
                 }
 
                 if ((int)$sekolah->status_sekolah != 1) {
-                    print_r("SEKOLAH SWASTA SKIP ");
+                    print_r("SEKOLAH SWASTA SKIP <br/> ");
                     continue;
                 }
 
@@ -1577,9 +1577,104 @@ class Proses extends BaseController
                     print_r("KUOTA TELAH MEMENUHI <br/>");
                 }
             }
-            print_r("SELESAI PROSES KELULUSAN ");
+            print_r("SELESAI PROSES KELULUSAN <br/> ");
         } else {
-            print_r("DATA SEKOLAH TIDAK DITEMUKAN");
+            print_r("DATA SEKOLAH TIDAK DITEMUKAN <br/>");
+        }
+    }
+
+    public function proseskelulusansisasmp()
+    {
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
+        $dataSekolahs = $this->_db->table('_tb_pendaftar a')
+            ->select($selectSekolah)
+            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->where('a.status_pendaftaran', 1)
+            ->groupBy('a.tujuan_sekolah_id_1')
+            ->where('j.bentuk_pendidikan_id', 6)
+            ->get()->getResult();
+
+        if (count($dataSekolahs) > 0) {
+            print_r("DATA SEKOLAH " . count($dataSekolahs));
+            foreach ($dataSekolahs as $key => $id) {
+                // print_r("SELESAI PROSES KELULUSAN ");
+                $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi, (zonasi + afirmasi + mutasi + prestasi) as total, (zonasi + afirmasi + mutasi + prestasi) as total, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE status_pendaftaran = 2 AND tujuan_sekolah_id_1 = '{$id->tujuan_sekolah_id_1}' ) as jumlah_lolos")->where('sekolah_id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$kuota) {
+                    print_r("KUOTA TIDAK DITEMUKAN <br> ");
+                    continue;
+                }
+
+                if (((int)$kuota->total - (int)$kuota->jumlah_lolos) < 1) {
+                    print_r("KUOTA SUDAH PENUH <br> ");
+                    continue;
+                }
+
+                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+
+                if (!$sekolah) {
+                    print_r("SEKOLAH TIDAK DITEMUKAN <br/> ");
+                    continue;
+                }
+
+                if ((int)$sekolah->status_sekolah != 1) {
+                    print_r("SEKOLAH SWASTA SKIP <br/> ");
+                    continue;
+                }
+
+                // $totalKuota = (int)$kuota->zonasi + (int)$kuota->mutasi + (int)$kuota->afirmasi + (int)$kuota->prestasi;
+
+                // $jumlahLolos = $this->_db->table('_tb_pendaftar a')
+                //     ->select("b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
+                //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                //     ->where('a.status_pendaftaran', 2)->countAllResults();
+
+                if ((int)$kuota->jumlah_lolos < (int)$kuota->total) {
+
+                    $limitNextPrestasi = ((int)$kuota->total - (int)$kuota->jumlah_lolos);
+
+                    $selectPrestasi = "b.*, l.jenis_prestasi, l.nilai_akumulative, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak, (SELECT count(peserta_didik_id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND status_pendaftaran = 2 AND via_jalur = 'PRESTASI') as jumlah_lolos_prestasi";
+
+                    $prestasiDataSisa = $this->_db->table('_tb_pendaftar a')
+                        ->select($selectPrestasi)
+                        ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
+                        ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
+                        ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                        ->join('tb_nilai_prestasi l', 'l.id = a.id')
+                        ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
+                        ->where('a.status_pendaftaran', 1)
+                        ->where('a.via_jalur', 'PRESTASI')
+                        ->orderBy('l.nilai_akumulative', 'DESC')
+                        ->orderBy('jarak', 'ASC')
+                        ->orderBy('a.created_at', 'ASC')
+                        ->limit($limitNextPrestasi)
+                        ->get()->getResult();
+
+                    $lulusLib = new Prosesluluslib();
+
+                    if (count($prestasiDataSisa) > 0) {
+                        $lulusLib->prosesLulusPrestasiSisa($prestasiDataSisa, $user->data->id);
+                        print_r("EKSEKUSI TAMBAH KUOTA PRESTASI ---->>> ");
+                        print_r($prestasiDataSisa[0]->nama_sekolah_tujuan . "<br/>");
+                    }
+                } else {
+                    print_r("KUOTA TELAH MEMENUHI <br/>");
+                }
+            }
+            print_r("SELESAI PROSES KELULUSAN <br/> ");
+        } else {
+            print_r("DATA SEKOLAH TIDAK DITEMUKAN <br/>");
         }
     }
 

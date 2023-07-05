@@ -98,6 +98,19 @@ class Prosesluluslib
         return true;
     }
 
+    public function prosesTidakLulusSisa($data, $userId)
+    {
+        if (count($data) > 0) {
+            foreach ($data as $key => $value) {
+                $this->tidakluluskanSisa($value, $key + 1, $userId);
+            }
+
+            return true;
+        }
+
+        return true;
+    }
+
     public function prosesTidakLulusMutasi($data, $userId)
     {
         if (count($data) > 0) {
@@ -463,6 +476,43 @@ class Prosesluluslib
             $saveNotifSystem->send([
                 'judul' => "Pendaftaran Jalur Afirmasi Tidak Lolos.",
                 'isi' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).",
+                // 'isi' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>.",
+                'action_web' => 'peserta/riwayat/pendaftaran',
+                'action_app' => 'riwayat_pendaftaran_page',
+                'token' => $pen->id_pendaftaran,
+                'send_from' => $userId,
+                'send_to' => $pen->id,
+            ]);
+
+            // $onesignal = new Fcmlib();
+            // $send = $onesignal->pushNotifToUser([
+            //     'title' => "Pendaftaran Jalur Afirmasi Tidak Lolos.",
+            //     'content' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/>Selanjutnya anda dapat mendaftar kembali menggunakan jalur yang lain (ZONASI, PRESTASI, MUTASI).",
+            //     'send_to' => $pen->id,
+            //     'app_url' => 'riwayat_pendaftaran_page',
+            // ]);
+        } catch (\Throwable $th) {
+        }
+
+        return true;
+    }
+
+    private function tidakluluskanSisa($pen, $urut, $userId)
+    {
+        $data = $this->_db->table('_tb_pendaftar')->where('id', $pen->id_pendaftaran)->update([
+            'status_pendaftaran' => 3,
+            'rangking' => $urut,
+        ]);
+
+        try {
+
+            // $riwayatLib = new Riwayatlib();
+            // $riwayatLib->insert("Memverifikasi Pendaftaran {$pen->fullname} via Jalur Afirmasi dengan No Pendaftaran : {$pen->kode_pendaftaran}", "Memverifikasi Pendaftaran Jalur Afirmasi", "submit");
+
+            $saveNotifSystem = new Notificationlib();
+            $saveNotifSystem->send([
+                'judul' => "Pendaftaran Jalur " . $pen->via_jalur . " Tidak Lolos.",
+                'isi' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>.",
                 // 'isi' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>.",
                 'action_web' => 'peserta/riwayat/pendaftaran',
                 'action_app' => 'riwayat_pendaftaran_page',

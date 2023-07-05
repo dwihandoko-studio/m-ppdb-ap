@@ -627,3 +627,8 @@ function getNamaAndNpsnSekolah($id)
 		return '-';
 	}
 }
+
+function image_url_upload($string)
+{
+	return "https://lamteng.ppdb.kntechline.id/" . $string;
+}

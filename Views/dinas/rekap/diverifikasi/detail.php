@@ -127,6 +127,18 @@
                             <input type="text" value="<?= $data->npsn_sekolah_asal ?>" class="form-control judul" id="_nama" readonly />
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">Nama Sekolah Tujuan</label>
+                            <input type="text" value="<?= $data->nama_sekolah_tujuan ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group _nama-block">
+                            <label for="_nama" class="form-control-label">NPSN Sekolah Tujuan</label>
+                            <input type="text" value="<?= $data->npsn_sekolah_tujuan ?>" class="form-control judul" id="_nama" readonly />
+                        </div>
+                    </div>
                 </div>
                 <?php if (isset($data->jenis_prestasi)) { ?>
                     <hr />

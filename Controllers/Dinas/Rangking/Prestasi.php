@@ -227,457 +227,457 @@ class Prestasi extends BaseController
         }
     }
 
-    public function edit()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+    // public function edit()
+    // {
+    //     if ($this->request->getMethod() != 'post') {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = "Permintaan tidak diizinkan";
+    //         return json_encode($response);
+    //     }
 
-        $rules = [
-            'id' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
-                ]
-            ],
-            'name' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Nama tidak boleh kosong. ',
-                ]
-            ],
-        ];
+    //     $rules = [
+    //         'id' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Id tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'name' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Nama tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //     ];
 
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('id')
-                . $this->validator->getError('name');
-            return json_encode($response);
-        } else {
+    //     if (!$this->validate($rules)) {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = $this->validator->getError('id')
+    //             . $this->validator->getError('name');
+    //         return json_encode($response);
+    //     } else {
 
-            $Profilelib = new Profilelib();
-            $user = $Profilelib->user();
-            if ($user->code != 200) {
-                delete_cookie('jwt');
-                session()->destroy();
-                $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
-                return json_encode($response);
-            }
+    //         $Profilelib = new Profilelib();
+    //         $user = $Profilelib->user();
+    //         if ($user->code != 200) {
+    //             delete_cookie('jwt');
+    //             session()->destroy();
+    //             $response = new \stdClass;
+    //             $response->code = 401;
+    //             $response->message = "Session telah habis.";
+    //             return json_encode($response);
+    //         }
 
-            $id = htmlspecialchars($this->request->getVar('id'), true);
+    //         $id = htmlspecialchars($this->request->getVar('id'), true);
 
-            $oldData = $this->_db->table('_users_profil_tb a')
-                ->where('a.id', $id)
-                ->get()->getRowObject();
+    //         $oldData = $this->_db->table('_users_profil_tb a')
+    //             ->where('a.id', $id)
+    //             ->get()->getRowObject();
 
-            if (!$oldData) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Data tidak ditemukan.";
-                return json_encode($response);
-            }
+    //         if (!$oldData) {
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Data tidak ditemukan.";
+    //             return json_encode($response);
+    //         }
 
-            $data['data'] = $oldData;
+    //         $data['data'] = $oldData;
 
-            $response = new \stdClass;
-            $response->code = 200;
-            $response->result = $oldData;
-            $response->data = view('dinas/rangking/prestasi/edit', $data);
-            $response->message = "Data ditemukan.";
-            return json_encode($response);
-        }
-    }
+    //         $response = new \stdClass;
+    //         $response->code = 200;
+    //         $response->result = $oldData;
+    //         $response->data = view('dinas/rangking/prestasi/edit', $data);
+    //         $response->message = "Data ditemukan.";
+    //         return json_encode($response);
+    //     }
+    // }
 
-    public function editSave()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+    // public function editSave()
+    // {
+    //     if ($this->request->getMethod() != 'post') {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = "Permintaan tidak diizinkan";
+    //         return json_encode($response);
+    //     }
 
-        $rules = [
-            'id' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
-                ]
-            ],
-            'latitude' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Latitude tidak boleh kosong. ',
-                ]
-            ],
-            'longitude' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Longitude tidak boleh kosong. ',
-                ]
-            ],
-        ];
+    //     $rules = [
+    //         'id' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Id tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'latitude' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Latitude tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'longitude' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Longitude tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //     ];
 
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('id')
-                . $this->validator->getError('latitude')
-                . $this->validator->getError('longitude');
-            return json_encode($response);
-        } else {
+    //     if (!$this->validate($rules)) {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = $this->validator->getError('id')
+    //             . $this->validator->getError('latitude')
+    //             . $this->validator->getError('longitude');
+    //         return json_encode($response);
+    //     } else {
 
-            $Profilelib = new Profilelib();
-            $user = $Profilelib->user();
-            if ($user->code != 200) {
-                delete_cookie('jwt');
-                session()->destroy();
-                $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
-                return json_encode($response);
-            }
+    //         $Profilelib = new Profilelib();
+    //         $user = $Profilelib->user();
+    //         if ($user->code != 200) {
+    //             delete_cookie('jwt');
+    //             session()->destroy();
+    //             $response = new \stdClass;
+    //             $response->code = 401;
+    //             $response->message = "Session telah habis.";
+    //             return json_encode($response);
+    //         }
 
-            $id = htmlspecialchars($this->request->getVar('id'), true);
-            $latitude = htmlspecialchars($this->request->getVar('latitude'), true);
-            $longitude = htmlspecialchars($this->request->getVar('longitude'), true);
+    //         $id = htmlspecialchars($this->request->getVar('id'), true);
+    //         $latitude = htmlspecialchars($this->request->getVar('latitude'), true);
+    //         $longitude = htmlspecialchars($this->request->getVar('longitude'), true);
 
-            $oldData = $this->_db->table('_users_profil_tb a')
-                ->where('a.id', $id)
-                ->get()->getRowObject();
+    //         $oldData = $this->_db->table('_users_profil_tb a')
+    //             ->where('a.id', $id)
+    //             ->get()->getRowObject();
 
-            if (!$oldData) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Data tidak ditemukan.";
-                return json_encode($response);
-            }
+    //         if (!$oldData) {
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Data tidak ditemukan.";
+    //             return json_encode($response);
+    //         }
 
-            $this->_db->transBegin();
+    //         $this->_db->transBegin();
 
-            $data = [
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-            ];
+    //         $data = [
+    //             'latitude' => $latitude,
+    //             'longitude' => $longitude,
+    //         ];
 
-            try {
-                $this->_db->table('_users_profil_tb')->where('id', $oldData->id)->update($data);
-                if ($this->_db->affectedRows() > 0) {
-                    $this->_db->transCommit();
-                    // try {
-                    //     $riwayatLib = new Riwayatlib();
-                    //     $riwayatLib->insert("Mengubah titik koordinat ke $latitude - $longitude dari $cekData->latitude - $cekData->longitude untuk Sekolah $cekData->nama ($cekData->npsn)", "Mengedit Koordinat Sekolah", "update");
-                    // } catch (\Throwable $th) {
-                    // }
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Data berhasil diupdate.";
-                    $response->data = $data;
-                    return json_encode($response);
-                } else {
-                    $this->_db->transRollback();
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    $response->message = "Gagal menyimpan data.";
-                    return json_encode($response);
-                }
-            } catch (\Throwable $th) {
-                $this->_db->transRollback();
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Gagal menyimpan data. terjadi kesalahan.";
-                return json_encode($response);
-            }
-        }
-    }
+    //         try {
+    //             $this->_db->table('_users_profil_tb')->where('id', $oldData->id)->update($data);
+    //             if ($this->_db->affectedRows() > 0) {
+    //                 $this->_db->transCommit();
+    //                 // try {
+    //                 //     $riwayatLib = new Riwayatlib();
+    //                 //     $riwayatLib->insert("Mengubah titik koordinat ke $latitude - $longitude dari $cekData->latitude - $cekData->longitude untuk Sekolah $cekData->nama ($cekData->npsn)", "Mengedit Koordinat Sekolah", "update");
+    //                 // } catch (\Throwable $th) {
+    //                 // }
+    //                 $response = new \stdClass;
+    //                 $response->code = 200;
+    //                 $response->message = "Data berhasil diupdate.";
+    //                 $response->data = $data;
+    //                 return json_encode($response);
+    //             } else {
+    //                 $this->_db->transRollback();
+    //                 $response = new \stdClass;
+    //                 $response->code = 400;
+    //                 $response->message = "Gagal menyimpan data.";
+    //                 return json_encode($response);
+    //             }
+    //         } catch (\Throwable $th) {
+    //             $this->_db->transRollback();
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Gagal menyimpan data. terjadi kesalahan.";
+    //             return json_encode($response);
+    //         }
+    //     }
+    // }
 
-    public function editPeringkat()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+    // public function editPeringkat()
+    // {
+    //     if ($this->request->getMethod() != 'post') {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = "Permintaan tidak diizinkan";
+    //         return json_encode($response);
+    //     }
 
-        $rules = [
-            'id' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
-                ]
-            ],
-            'name' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Nama tidak boleh kosong. ',
-                ]
-            ],
-        ];
+    //     $rules = [
+    //         'id' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Id tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'name' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Nama tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //     ];
 
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('id')
-                . $this->validator->getError('name');
-            return json_encode($response);
-        } else {
+    //     if (!$this->validate($rules)) {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = $this->validator->getError('id')
+    //             . $this->validator->getError('name');
+    //         return json_encode($response);
+    //     } else {
 
-            $Profilelib = new Profilelib();
-            $user = $Profilelib->user();
-            if ($user->code != 200) {
-                delete_cookie('jwt');
-                session()->destroy();
-                $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
-                return json_encode($response);
-            }
+    //         $Profilelib = new Profilelib();
+    //         $user = $Profilelib->user();
+    //         if ($user->code != 200) {
+    //             delete_cookie('jwt');
+    //             session()->destroy();
+    //             $response = new \stdClass;
+    //             $response->code = 401;
+    //             $response->message = "Session telah habis.";
+    //             return json_encode($response);
+    //         }
 
-            $id = htmlspecialchars($this->request->getVar('id'), true);
+    //         $id = htmlspecialchars($this->request->getVar('id'), true);
 
-            $oldData = $this->_db->table('tb_nilai_prestasi a')
-                ->where('a.id', $id)
-                ->get()->getRowObject();
+    //         $oldData = $this->_db->table('tb_nilai_prestasi a')
+    //             ->where('a.id', $id)
+    //             ->get()->getRowObject();
 
-            if (!$oldData) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Data tidak ditemukan.";
-                return json_encode($response);
-            }
+    //         if (!$oldData) {
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Data tidak ditemukan.";
+    //             return json_encode($response);
+    //         }
 
-            $data['data'] = $oldData;
+    //         $data['data'] = $oldData;
 
-            $response = new \stdClass;
-            $response->code = 200;
-            $response->result = $oldData;
-            $response->data = view('dinas/rangking/prestasi/edit-peringkat', $data);
-            $response->message = "Data ditemukan.";
-            return json_encode($response);
-        }
-    }
+    //         $response = new \stdClass;
+    //         $response->code = 200;
+    //         $response->result = $oldData;
+    //         $response->data = view('dinas/rangking/prestasi/edit-peringkat', $data);
+    //         $response->message = "Data ditemukan.";
+    //         return json_encode($response);
+    //     }
+    // }
 
-    public function editSavePeringkat()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+    // public function editSavePeringkat()
+    // {
+    //     if ($this->request->getMethod() != 'post') {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = "Permintaan tidak diizinkan";
+    //         return json_encode($response);
+    //     }
 
-        $rules = [
-            'id' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
-                ]
-            ],
-            'jenis_prestasi' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Jenis prestasi tidak boleh kosong. ',
-                ]
-            ],
-        ];
+    //     $rules = [
+    //         'id' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Id tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'jenis_prestasi' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Jenis prestasi tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //     ];
 
-        if (htmlspecialchars($this->request->getVar('jenis_prestasi'), true) == "AKADEMIK") {
-            $jenisVali = [
-                'peringkat_prestasi' => [
-                    'rules' => 'required|trim',
-                    'errors' => [
-                        'required' => 'Peringkat prestasi tidak boleh kosong. ',
-                    ]
-                ],
-                'akreditasi_prestasi' => [
-                    'rules' => 'required|trim',
-                    'errors' => [
-                        'required' => 'Akreditasi sekolah asal prestasi tidak boleh kosong. ',
-                    ]
-                ],
-                'nilai_prestasi' => [
-                    'rules' => 'required|trim',
-                    'errors' => [
-                        'required' => 'Nilai rata-rata ijazah/SKL tidak boleh kosong. ',
-                    ]
-                ],
-            ];
-            $rules = array_merge($rules, $jenisVali);
-        } else {
-            $jenisVali = [
-                'tingkat_prestasi' => [
-                    'rules' => 'required|trim',
-                    'errors' => [
-                        'required' => 'Tingkat prestasi tidak boleh kosong. ',
-                    ]
-                ],
-                'juara_prestasi' => [
-                    'rules' => 'required|trim',
-                    'errors' => [
-                        'required' => 'Juara prestasi tidak boleh kosong. ',
-                    ]
-                ],
-            ];
-            $rules = array_merge($rules, $jenisVali);
-        }
+    //     if (htmlspecialchars($this->request->getVar('jenis_prestasi'), true) == "AKADEMIK") {
+    //         $jenisVali = [
+    //             'peringkat_prestasi' => [
+    //                 'rules' => 'required|trim',
+    //                 'errors' => [
+    //                     'required' => 'Peringkat prestasi tidak boleh kosong. ',
+    //                 ]
+    //             ],
+    //             'akreditasi_prestasi' => [
+    //                 'rules' => 'required|trim',
+    //                 'errors' => [
+    //                     'required' => 'Akreditasi sekolah asal prestasi tidak boleh kosong. ',
+    //                 ]
+    //             ],
+    //             'nilai_prestasi' => [
+    //                 'rules' => 'required|trim',
+    //                 'errors' => [
+    //                     'required' => 'Nilai rata-rata ijazah/SKL tidak boleh kosong. ',
+    //                 ]
+    //             ],
+    //         ];
+    //         $rules = array_merge($rules, $jenisVali);
+    //     } else {
+    //         $jenisVali = [
+    //             'tingkat_prestasi' => [
+    //                 'rules' => 'required|trim',
+    //                 'errors' => [
+    //                     'required' => 'Tingkat prestasi tidak boleh kosong. ',
+    //                 ]
+    //             ],
+    //             'juara_prestasi' => [
+    //                 'rules' => 'required|trim',
+    //                 'errors' => [
+    //                     'required' => 'Juara prestasi tidak boleh kosong. ',
+    //                 ]
+    //             ],
+    //         ];
+    //         $rules = array_merge($rules, $jenisVali);
+    //     }
 
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('id')
-                . $this->validator->getError('jenis_prestasi')
-                . $this->validator->getError('peringkat_prestasi')
-                . $this->validator->getError('akreditasi_prestasi')
-                . $this->validator->getError('nilai_prestasi')
-                . $this->validator->getError('tingkat_prestasi')
-                . $this->validator->getError('juara_prestasi');
-            return json_encode($response);
-        } else {
-            $Profilelib = new Profilelib();
-            $user = $Profilelib->user();
-            if ($user->code != 200) {
-                delete_cookie('jwt');
-                session()->destroy();
-                $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
-                return json_encode($response);
-            }
+    //     if (!$this->validate($rules)) {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = $this->validator->getError('id')
+    //             . $this->validator->getError('jenis_prestasi')
+    //             . $this->validator->getError('peringkat_prestasi')
+    //             . $this->validator->getError('akreditasi_prestasi')
+    //             . $this->validator->getError('nilai_prestasi')
+    //             . $this->validator->getError('tingkat_prestasi')
+    //             . $this->validator->getError('juara_prestasi');
+    //         return json_encode($response);
+    //     } else {
+    //         $Profilelib = new Profilelib();
+    //         $user = $Profilelib->user();
+    //         if ($user->code != 200) {
+    //             delete_cookie('jwt');
+    //             session()->destroy();
+    //             $response = new \stdClass;
+    //             $response->code = 401;
+    //             $response->message = "Session telah habis.";
+    //             return json_encode($response);
+    //         }
 
-            $id = htmlspecialchars($this->request->getVar('id'), true);
-            $jenis_prestasi = htmlspecialchars($this->request->getVar('jenis_prestasi'), true);
-            $peringkat_prestasi = htmlspecialchars($this->request->getVar('peringkat_prestasi'), true);
-            $akreditasi_prestasi = htmlspecialchars($this->request->getVar('akreditasi_prestasi'), true);
-            $nilai_prestasi = htmlspecialchars($this->request->getVar('nilai_prestasi'), true);
-            $tingkat_prestasi = htmlspecialchars($this->request->getVar('tingkat_prestasi'), true);
-            $juara_prestasi = htmlspecialchars($this->request->getVar('juara_prestasi'), true);
+    //         $id = htmlspecialchars($this->request->getVar('id'), true);
+    //         $jenis_prestasi = htmlspecialchars($this->request->getVar('jenis_prestasi'), true);
+    //         $peringkat_prestasi = htmlspecialchars($this->request->getVar('peringkat_prestasi'), true);
+    //         $akreditasi_prestasi = htmlspecialchars($this->request->getVar('akreditasi_prestasi'), true);
+    //         $nilai_prestasi = htmlspecialchars($this->request->getVar('nilai_prestasi'), true);
+    //         $tingkat_prestasi = htmlspecialchars($this->request->getVar('tingkat_prestasi'), true);
+    //         $juara_prestasi = htmlspecialchars($this->request->getVar('juara_prestasi'), true);
 
-            $oldData = $this->_db->table('tb_nilai_prestasi a')
-                ->where('a.id', $id)
-                ->get()->getRowObject();
+    //         $oldData = $this->_db->table('tb_nilai_prestasi a')
+    //             ->where('a.id', $id)
+    //             ->get()->getRowObject();
 
-            if (!$oldData) {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Data tidak ditemukan.";
-                return json_encode($response);
-            }
+    //         if (!$oldData) {
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Data tidak ditemukan.";
+    //             return json_encode($response);
+    //         }
 
-            $nilai_akumulative = 0;
-            if ($jenis_prestasi == "NON AKADEMIK") {
-                if ($tingkat_prestasi == "INTERNASIONAL") {
-                    $nilai_akumulative = 400;
-                } else if ($tingkat_prestasi == "NASIONAL") {
-                    if ($juara_prestasi == "JUARA PERTAMA") {
-                        $nilai_akumulative = 375;
-                    } else if ($juara_prestasi == "JUARA KEDUA") {
-                        $nilai_akumulative = 350;
-                    } else if ($juara_prestasi == "JUARA KETIGA") {
-                        $nilai_akumulative = 325;
-                    } else if ($juara_prestasi == "JAMBORE TK. NASIONAL") {
-                        $nilai_akumulative = 350;
-                    }
-                } else if ($tingkat_prestasi == "PROVINSI") {
-                    if ($juara_prestasi == "JUARA PERTAMA") {
-                        $nilai_akumulative = 350;
-                    } else if ($juara_prestasi == "JUARA KEDUA") {
-                        $nilai_akumulative = 325;
-                    } else if ($juara_prestasi == "JUARA KETIGA") {
-                        $nilai_akumulative = 300;
-                    }
-                } else if ($tingkat_prestasi == "KABUPATEN/KOTA") {
-                    if ($juara_prestasi == "JUARA PERTAMA") {
-                        $nilai_akumulative = 325;
-                    } else if ($juara_prestasi == "JUARA KEDUA") {
-                        $nilai_akumulative = 300;
-                    } else if ($juara_prestasi == "JUARA KETIGA") {
-                        $nilai_akumulative = 275;
-                    }
-                } else if ($tingkat_prestasi == "KECAMATAN") {
-                    if ($juara_prestasi == "JUARA PERTAMA") {
-                        $nilai_akumulative = 275;
-                    } else if ($juara_prestasi == "JUARA KEDUA") {
-                        $nilai_akumulative = 250;
-                    } else if ($juara_prestasi == "JUARA KETIGA") {
-                        $nilai_akumulative = 225;
-                    }
-                }
-            } else if ($jenis_prestasi == "AKADEMIK") {
-                if ($peringkat_prestasi == "PERINGKAT PERTAMA") {
-                    if ($akreditasi_prestasi == "AKREDITASI A") {
-                        $nilai_akumulative = 225;
-                    } else if ($akreditasi_prestasi == "AKREDITASI B") {
-                        $nilai_akumulative = 150;
-                    } else if ($akreditasi_prestasi == "AKREDITASI C") {
-                        $nilai_akumulative = 125;
-                    }
-                } else if ($peringkat_prestasi == "PERINGKAT KEDUA") {
-                    if ($akreditasi_prestasi == "AKREDITASI A") {
-                        $nilai_akumulative = 200;
-                    } else if ($akreditasi_prestasi == "AKREDITASI B") {
-                        $nilai_akumulative = 125;
-                    } else if ($akreditasi_prestasi == "AKREDITASI C") {
-                        $nilai_akumulative = 100;
-                    }
-                } else if ($peringkat_prestasi == "PERINGKAT KETIGA") {
-                    if ($akreditasi_prestasi == "AKREDITASI A") {
-                        $nilai_akumulative = 175;
-                    } else if ($akreditasi_prestasi == "AKREDITASI B") {
-                        $nilai_akumulative = 100;
-                    } else if ($akreditasi_prestasi == "AKREDITASI C") {
-                        $nilai_akumulative = 75;
-                    }
-                }
-            }
+    //         $nilai_akumulative = 0;
+    //         if ($jenis_prestasi == "NON AKADEMIK") {
+    //             if ($tingkat_prestasi == "INTERNASIONAL") {
+    //                 $nilai_akumulative = 400;
+    //             } else if ($tingkat_prestasi == "NASIONAL") {
+    //                 if ($juara_prestasi == "JUARA PERTAMA") {
+    //                     $nilai_akumulative = 375;
+    //                 } else if ($juara_prestasi == "JUARA KEDUA") {
+    //                     $nilai_akumulative = 350;
+    //                 } else if ($juara_prestasi == "JUARA KETIGA") {
+    //                     $nilai_akumulative = 325;
+    //                 } else if ($juara_prestasi == "JAMBORE TK. NASIONAL") {
+    //                     $nilai_akumulative = 350;
+    //                 }
+    //             } else if ($tingkat_prestasi == "PROVINSI") {
+    //                 if ($juara_prestasi == "JUARA PERTAMA") {
+    //                     $nilai_akumulative = 350;
+    //                 } else if ($juara_prestasi == "JUARA KEDUA") {
+    //                     $nilai_akumulative = 325;
+    //                 } else if ($juara_prestasi == "JUARA KETIGA") {
+    //                     $nilai_akumulative = 300;
+    //                 }
+    //             } else if ($tingkat_prestasi == "KABUPATEN/KOTA") {
+    //                 if ($juara_prestasi == "JUARA PERTAMA") {
+    //                     $nilai_akumulative = 325;
+    //                 } else if ($juara_prestasi == "JUARA KEDUA") {
+    //                     $nilai_akumulative = 300;
+    //                 } else if ($juara_prestasi == "JUARA KETIGA") {
+    //                     $nilai_akumulative = 275;
+    //                 }
+    //             } else if ($tingkat_prestasi == "KECAMATAN") {
+    //                 if ($juara_prestasi == "JUARA PERTAMA") {
+    //                     $nilai_akumulative = 275;
+    //                 } else if ($juara_prestasi == "JUARA KEDUA") {
+    //                     $nilai_akumulative = 250;
+    //                 } else if ($juara_prestasi == "JUARA KETIGA") {
+    //                     $nilai_akumulative = 225;
+    //                 }
+    //             }
+    //         } else if ($jenis_prestasi == "AKADEMIK") {
+    //             if ($peringkat_prestasi == "PERINGKAT PERTAMA") {
+    //                 if ($akreditasi_prestasi == "AKREDITASI A") {
+    //                     $nilai_akumulative = 225;
+    //                 } else if ($akreditasi_prestasi == "AKREDITASI B") {
+    //                     $nilai_akumulative = 150;
+    //                 } else if ($akreditasi_prestasi == "AKREDITASI C") {
+    //                     $nilai_akumulative = 125;
+    //                 }
+    //             } else if ($peringkat_prestasi == "PERINGKAT KEDUA") {
+    //                 if ($akreditasi_prestasi == "AKREDITASI A") {
+    //                     $nilai_akumulative = 200;
+    //                 } else if ($akreditasi_prestasi == "AKREDITASI B") {
+    //                     $nilai_akumulative = 125;
+    //                 } else if ($akreditasi_prestasi == "AKREDITASI C") {
+    //                     $nilai_akumulative = 100;
+    //                 }
+    //             } else if ($peringkat_prestasi == "PERINGKAT KETIGA") {
+    //                 if ($akreditasi_prestasi == "AKREDITASI A") {
+    //                     $nilai_akumulative = 175;
+    //                 } else if ($akreditasi_prestasi == "AKREDITASI B") {
+    //                     $nilai_akumulative = 100;
+    //                 } else if ($akreditasi_prestasi == "AKREDITASI C") {
+    //                     $nilai_akumulative = 75;
+    //                 }
+    //             }
+    //         }
 
-            $this->_db->transBegin();
+    //         $this->_db->transBegin();
 
-            $dataUpdate = [
-                'jenis_prestasi' => $jenis_prestasi,
-                'tingkat_prestasi' => $tingkat_prestasi,
-                'juara_prestasi' => $juara_prestasi,
-                'peringkat_prestasi' => $peringkat_prestasi,
-                'akreditasi_prestasi' => $akreditasi_prestasi,
-                'nilai_prestasi' => $nilai_prestasi,
-                'nilai_akumulative' => $nilai_akumulative,
-                'created_at' => date('Y-m-d H:i:s'),
-            ];
+    //         $dataUpdate = [
+    //             'jenis_prestasi' => $jenis_prestasi,
+    //             'tingkat_prestasi' => $tingkat_prestasi,
+    //             'juara_prestasi' => $juara_prestasi,
+    //             'peringkat_prestasi' => $peringkat_prestasi,
+    //             'akreditasi_prestasi' => $akreditasi_prestasi,
+    //             'nilai_prestasi' => $nilai_prestasi,
+    //             'nilai_akumulative' => $nilai_akumulative,
+    //             'created_at' => date('Y-m-d H:i:s'),
+    //         ];
 
-            try {
-                $this->_db->table('tb_nilai_prestasi')->where('id', $oldData->id)->update($dataUpdate);
-                if ($this->_db->affectedRows() > 0) {
-                    $this->_db->transCommit();
-                    // try {
-                    //     $riwayatLib = new Riwayatlib();
-                    //     $riwayatLib->insert("Mengubah titik koordinat ke $latitude - $longitude dari $cekData->latitude - $cekData->longitude untuk Sekolah $cekData->nama ($cekData->npsn)", "Mengedit Koordinat Sekolah", "update");
-                    // } catch (\Throwable $th) {
-                    // }
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Data berhasil diupdate.";
-                    $response->data = $dataUpdate;
-                    return json_encode($response);
-                } else {
-                    $this->_db->transRollback();
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    $response->message = "Gagal menyimpan data.";
-                    return json_encode($response);
-                }
-            } catch (\Throwable $th) {
-                $this->_db->transRollback();
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Gagal menyimpan data. terjadi kesalahan.";
-                return json_encode($response);
-            }
-        }
-    }
+    //         try {
+    //             $this->_db->table('tb_nilai_prestasi')->where('id', $oldData->id)->update($dataUpdate);
+    //             if ($this->_db->affectedRows() > 0) {
+    //                 $this->_db->transCommit();
+    //                 // try {
+    //                 //     $riwayatLib = new Riwayatlib();
+    //                 //     $riwayatLib->insert("Mengubah titik koordinat ke $latitude - $longitude dari $cekData->latitude - $cekData->longitude untuk Sekolah $cekData->nama ($cekData->npsn)", "Mengedit Koordinat Sekolah", "update");
+    //                 // } catch (\Throwable $th) {
+    //                 // }
+    //                 $response = new \stdClass;
+    //                 $response->code = 200;
+    //                 $response->message = "Data berhasil diupdate.";
+    //                 $response->data = $dataUpdate;
+    //                 return json_encode($response);
+    //             } else {
+    //                 $this->_db->transRollback();
+    //                 $response = new \stdClass;
+    //                 $response->code = 400;
+    //                 $response->message = "Gagal menyimpan data.";
+    //                 return json_encode($response);
+    //             }
+    //         } catch (\Throwable $th) {
+    //             $this->_db->transRollback();
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Gagal menyimpan data. terjadi kesalahan.";
+    //             return json_encode($response);
+    //         }
+    //     }
+    // }
 }

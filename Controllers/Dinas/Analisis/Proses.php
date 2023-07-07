@@ -849,7 +849,7 @@ class Proses extends BaseController
         }
     }
 
-    public function antrianprosestidakluluszmpisd()
+    public function antrianprosestidakluluszmpsd()
     {
         $Profilelib = new Profilelib();
         $user = $Profilelib->user();

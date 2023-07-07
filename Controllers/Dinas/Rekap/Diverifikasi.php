@@ -160,165 +160,165 @@ class Diverifikasi extends BaseController
         }
     }
 
-    public function aksicabutberkas()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+    // public function aksicabutberkas()
+    // {
+    //     if ($this->request->getMethod() != 'post') {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = "Permintaan tidak diizinkan";
+    //         return json_encode($response);
+    //     }
 
-        // $dataLib = new Datalib();
-        // $canDaftar = $dataLib->canRegister("AFIRMASI");
+    //     // $dataLib = new Datalib();
+    //     // $canDaftar = $dataLib->canRegister("AFIRMASI");
 
-        // if ($canDaftar->code !== 200) {
-        //     return json_encode($canDaftar);
-        // }
+    //     // if ($canDaftar->code !== 200) {
+    //     //     return json_encode($canDaftar);
+    //     // }
 
-        $rules = [
-            'name' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Name tidak boleh kosong. ',
-                ]
-            ],
-            'keterangan' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Keterangan tidak boleh kosong. ',
-                ]
-            ],
-            'id' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Id tidak boleh kosong. ',
-                ]
-            ],
-        ];
+    //     $rules = [
+    //         'name' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Name tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'keterangan' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Keterangan tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'id' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Id tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //     ];
 
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('keterangan') . $this->validator->getError('name') . $this->validator->getError('id');
-            return json_encode($response);
-        } else {
-            $name = htmlspecialchars($this->request->getVar('name'), true);
-            $id = htmlspecialchars($this->request->getVar('id'), true);
-            $keterangan = htmlspecialchars($this->request->getVar('keterangan'), true);
+    //     if (!$this->validate($rules)) {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = $this->validator->getError('keterangan') . $this->validator->getError('name') . $this->validator->getError('id');
+    //         return json_encode($response);
+    //     } else {
+    //         $name = htmlspecialchars($this->request->getVar('name'), true);
+    //         $id = htmlspecialchars($this->request->getVar('id'), true);
+    //         $keterangan = htmlspecialchars($this->request->getVar('keterangan'), true);
 
-            $jwt = get_cookie('jwt');
-            $token_jwt = getenv('token_jwt.default.key');
-            if ($jwt) {
+    //         $jwt = get_cookie('jwt');
+    //         $token_jwt = getenv('token_jwt.default.key');
+    //         if ($jwt) {
 
-                try {
+    //             try {
 
-                    $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
-                    if ($decoded) {
-                        $userId = $decoded->data->id;
-                        $role = $decoded->data->role;
-                        $cekRegisterTemp = $this->_db->table('_tb_pendaftar')->where('id', $id)->get()->getRowArray();
+    //                 $decoded = JWT::decode($jwt, $token_jwt, array('HS256'));
+    //                 if ($decoded) {
+    //                     $userId = $decoded->data->id;
+    //                     $role = $decoded->data->role;
+    //                     $cekRegisterTemp = $this->_db->table('_tb_pendaftar')->where('id', $id)->get()->getRowArray();
 
-                        if (!$cekRegisterTemp) {
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Data tidak ditemukan.";
-                            return json_encode($response);
-                        }
+    //                     if (!$cekRegisterTemp) {
+    //                         $response = new \stdClass;
+    //                         $response->code = 400;
+    //                         $response->message = "Data tidak ditemukan.";
+    //                         return json_encode($response);
+    //                     }
 
-                        $cekRegisterTemp['updated_at'] = date('Y-m-d H:i:s');
-                        $cekRegisterTemp['update_reject'] = date('Y-m-d H:i:s');
-                        $cekRegisterTemp['admin_approval'] = $userId;
-                        $cekRegisterTemp['keterangan_penolakan'] = $keterangan;
-                        $cekRegisterTemp['status_pendaftaran'] = 3;
+    //                     $cekRegisterTemp['updated_at'] = date('Y-m-d H:i:s');
+    //                     $cekRegisterTemp['update_reject'] = date('Y-m-d H:i:s');
+    //                     $cekRegisterTemp['admin_approval'] = $userId;
+    //                     $cekRegisterTemp['keterangan_penolakan'] = $keterangan;
+    //                     $cekRegisterTemp['status_pendaftaran'] = 3;
 
-                        $this->_db->transBegin();
-                        $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
-                        if ($this->_db->affectedRows() > 0) {
-                            $this->_db->table('_tb_pendaftar')->where('id', $cekRegisterTemp['id'])->delete();
-                            if ($this->_db->affectedRows() > 0) {
-                                $updatelockLib = new Updatedatalib();
-                                $berhasil = $updatelockLib->unlockUpdate($cekRegisterTemp['user_id']);
+    //                     $this->_db->transBegin();
+    //                     $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
+    //                     if ($this->_db->affectedRows() > 0) {
+    //                         $this->_db->table('_tb_pendaftar')->where('id', $cekRegisterTemp['id'])->delete();
+    //                         if ($this->_db->affectedRows() > 0) {
+    //                             $updatelockLib = new Updatedatalib();
+    //                             $berhasil = $updatelockLib->unlockUpdate($cekRegisterTemp['user_id']);
 
-                                try {
-                                    $riwayatLib = new Riwayatlib();
-                                    if ($cekRegisterTemp['via_jalur'] == "ZONASI") {
-                                        $viaJalur = "Zonasi";
-                                    } else if ($cekRegisterTemp['via_jalur'] == "AFIRMASI") {
-                                        $viaJalur = "Afirmasi";
-                                    } else if ($cekRegisterTemp['via_jalur'] == "MUTASI") {
-                                        $viaJalur = "Mutasi";
-                                    } else if ($cekRegisterTemp['via_jalur'] == "PRESTASI") {
-                                        $viaJalur = "Mutasi";
-                                    } else {
-                                        $viaJalur = "Swasta";
-                                    }
-                                    $riwayatLib->insert("Mencabut Berkas Pendaftaran $name via Jalur $viaJalur dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Cabut Berkas Pendaftaran Jalur $viaJalur", "tolak");
+    //                             try {
+    //                                 $riwayatLib = new Riwayatlib();
+    //                                 if ($cekRegisterTemp['via_jalur'] == "ZONASI") {
+    //                                     $viaJalur = "Zonasi";
+    //                                 } else if ($cekRegisterTemp['via_jalur'] == "AFIRMASI") {
+    //                                     $viaJalur = "Afirmasi";
+    //                                 } else if ($cekRegisterTemp['via_jalur'] == "MUTASI") {
+    //                                     $viaJalur = "Mutasi";
+    //                                 } else if ($cekRegisterTemp['via_jalur'] == "PRESTASI") {
+    //                                     $viaJalur = "Mutasi";
+    //                                 } else {
+    //                                     $viaJalur = "Swasta";
+    //                                 }
+    //                                 $riwayatLib->insert("Mencabut Berkas Pendaftaran $name via Jalur $viaJalur dengan No Pendaftaran : " . $cekRegisterTemp['kode_pendaftaran'], "Cabut Berkas Pendaftaran Jalur $viaJalur", "tolak");
 
-                                    $saveNotifSystem = new Notificationlib();
-                                    $saveNotifSystem->send([
-                                        'judul' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
-                                        'isi' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
-                                        'action_web' => 'peserta/riwayat/pendaftaran',
-                                        'action_app' => 'riwayat_pendaftaran_page',
-                                        'token' => $cekRegisterTemp['kode_pendaftaran'],
-                                        'send_from' => $userId,
-                                        'send_to' => $cekRegisterTemp['user_id'],
-                                    ]);
+    //                                 $saveNotifSystem = new Notificationlib();
+    //                                 $saveNotifSystem->send([
+    //                                     'judul' => "Pendaftaran Jalur $viaJalur Dicabut Berkas.",
+    //                                     'isi' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
+    //                                     'action_web' => 'peserta/riwayat/pendaftaran',
+    //                                     'action_app' => 'riwayat_pendaftaran_page',
+    //                                     'token' => $cekRegisterTemp['kode_pendaftaran'],
+    //                                     'send_from' => $userId,
+    //                                     'send_to' => $cekRegisterTemp['user_id'],
+    //                                 ]);
 
-                                    $onesignal = new Fcmlib();
-                                    $send = $onesignal->pushNotifToUser([
-                                        'title' => "Pendaftaran Jalur $viaJalur Ditolak.",
-                                        'content' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
-                                        'send_to' => $cekRegisterTemp['user_id'],
-                                        'app_url' => 'riwayat_pendaftaran_page',
-                                    ]);
-                                } catch (\Throwable $th) {
-                                }
-                                $this->_db->transCommit();
-                                $response = new \stdClass;
-                                $response->code = 200;
-                                $response->message = "Cabut Berkas Verifikasi pendaftaran $name berhasil dilakukan.";
-                                return json_encode($response);
-                            } else {
-                                $this->_db->transRollback();
-                                $response = new \stdClass;
-                                $response->code = 400;
-                                $response->message = "Gagal mencabut berkas verifikasi status pendaftaran peserta. $name";
-                                return json_encode($response);
-                            }
-                        } else {
-                            $this->_db->transRollback();
-                            $response = new \stdClass;
-                            $response->code = 400;
-                            $response->message = "Gagal mencabut berkas verifikasi pendaftaran peserta. $name";
-                            return json_encode($response);
-                        }
-                    } else {
-                        delete_cookie('jwt');
-                        session()->destroy();
-                        $response = new \stdClass;
-                        $response->code = 401;
-                        $response->message = "Session telah habis.";
-                        return json_encode($response);
-                    }
-                } catch (\Exception $e) {
-                    delete_cookie('jwt');
-                    session()->destroy();
-                    $response = new \stdClass;
-                    $response->code = 401;
-                    $response->error = $e;
-                    $response->message = "Session telah habis.";
-                    return json_encode($response);
-                }
-            } else {
-                delete_cookie('jwt');
-                session()->destroy();
-                $response = new \stdClass;
-                $response->code = 401;
-                $response->message = "Session telah habis.";
-                return json_encode($response);
-            }
-        }
-    }
+    //                                 $onesignal = new Fcmlib();
+    //                                 $send = $onesignal->pushNotifToUser([
+    //                                     'title' => "Pendaftaran Jalur $viaJalur Ditolak.",
+    //                                     'content' => "Pendaftaran anda melalui jalur $viaJalur telah dicabut berkas dengan keterangan: $keterangan.",
+    //                                     'send_to' => $cekRegisterTemp['user_id'],
+    //                                     'app_url' => 'riwayat_pendaftaran_page',
+    //                                 ]);
+    //                             } catch (\Throwable $th) {
+    //                             }
+    //                             $this->_db->transCommit();
+    //                             $response = new \stdClass;
+    //                             $response->code = 200;
+    //                             $response->message = "Cabut Berkas Verifikasi pendaftaran $name berhasil dilakukan.";
+    //                             return json_encode($response);
+    //                         } else {
+    //                             $this->_db->transRollback();
+    //                             $response = new \stdClass;
+    //                             $response->code = 400;
+    //                             $response->message = "Gagal mencabut berkas verifikasi status pendaftaran peserta. $name";
+    //                             return json_encode($response);
+    //                         }
+    //                     } else {
+    //                         $this->_db->transRollback();
+    //                         $response = new \stdClass;
+    //                         $response->code = 400;
+    //                         $response->message = "Gagal mencabut berkas verifikasi pendaftaran peserta. $name";
+    //                         return json_encode($response);
+    //                     }
+    //                 } else {
+    //                     delete_cookie('jwt');
+    //                     session()->destroy();
+    //                     $response = new \stdClass;
+    //                     $response->code = 401;
+    //                     $response->message = "Session telah habis.";
+    //                     return json_encode($response);
+    //                 }
+    //             } catch (\Exception $e) {
+    //                 delete_cookie('jwt');
+    //                 session()->destroy();
+    //                 $response = new \stdClass;
+    //                 $response->code = 401;
+    //                 $response->error = $e;
+    //                 $response->message = "Session telah habis.";
+    //                 return json_encode($response);
+    //             }
+    //         } else {
+    //             delete_cookie('jwt');
+    //             session()->destroy();
+    //             $response = new \stdClass;
+    //             $response->code = 401;
+    //             $response->message = "Session telah habis.";
+    //             return json_encode($response);
+    //         }
+    //     }
+    // }
 }

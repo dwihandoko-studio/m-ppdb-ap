@@ -158,7 +158,7 @@ class Zonasi extends BaseController
         $data['user'] = $user->data;
 
         $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
-        $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
+        $data['sekolahname'] = $this->_db->table('ref_sekolah_tujuan')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
         $data['title'] = $data['sekolahname']->nama . ' Rekapitulasi Rangking Zonasi';
 
         return view('dinas/rangking/zonasi/index', $data);
@@ -194,8 +194,8 @@ class Zonasi extends BaseController
             $oldData = $this->_db->table('_tb_pendaftar a')
                 ->select("b.*, k.lampiran_akta_kelahiran, k.lampiran_foto_rumah, k.lampiran_pernyataan, k.lampiran_kk, k.lampiran_lulus, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT')
                 ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
                 ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')

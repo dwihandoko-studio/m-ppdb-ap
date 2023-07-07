@@ -313,8 +313,8 @@ class Riwayat extends BaseController
         // $currentApprove = $this->_db->table('_tb_pendaftar a')
         //     ->select($select)
         //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-        //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-        //     ->join('ref_sekolah d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
+        //     ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+        //     ->join('ref_sekolah_tujuan d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
         //     ->where('a.id', $id)->get()->getRowObject();
 
         // if ($currentApprove) {
@@ -323,8 +323,8 @@ class Riwayat extends BaseController
         //     $pendaftaran = $this->_db->table('_tb_pendaftar_temp a')
         //         ->select($select)
         //         ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-        //         ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-        //         ->join('ref_sekolah d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
+        //         ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+        //         ->join('ref_sekolah_tujuan d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
         //         ->where('a.id', $id)->get()->getRowObject();
         // }
 
@@ -407,10 +407,10 @@ class Riwayat extends BaseController
 			(SELECT * FROM _tb_pendaftar_tolak WHERE peserta_didik_id = '{$user->data->peserta_didik_id}')
 		) AS a
 	LEFT JOIN _users_profil_tb b ON (a.peserta_didik_id = b.peserta_didik_id)
-	LEFT JOIN ref_sekolah c ON (a.from_sekolah_id = c.id)
-	LEFT JOIN ref_sekolah j ON (a.tujuan_sekolah_id_1 = j.id)
-	LEFT JOIN ref_sekolah l ON (a.tujuan_sekolah_id_2 = l.id)
-	LEFT JOIN ref_sekolah m ON (a.tujuan_sekolah_id_3 = m.id)
+	LEFT JOIN ref_sekolah_asal c ON (a.from_sekolah_id = c.id)
+	LEFT JOIN ref_sekolah_tujuan j ON (a.tujuan_sekolah_id_1 = j.id)
+	LEFT JOIN ref_sekolah_tujuan l ON (a.tujuan_sekolah_id_2 = l.id)
+	LEFT JOIN ref_sekolah_tujuan m ON (a.tujuan_sekolah_id_3 = m.id)
 	LEFT JOIN ref_bentuk_pendidikan i ON (c.bentuk_pendidikan_id = i.id)
 	LEFT JOIN ref_provinsi d ON (b.provinsi = d.id)
 	LEFT JOIN ref_kabupaten e ON (b.kabupaten = e.id)

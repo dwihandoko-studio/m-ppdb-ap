@@ -612,7 +612,7 @@ class Kuota extends BaseController
                 return json_encode($response);
             }
 
-            $refSekolah = $this->_db->table('ref_sekolah')->where('id', $sekolah)->get()->getRowObject();
+            $refSekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $sekolah)->get()->getRowObject();
 
             $cekData = $this->_db->table('_setting_kuota_tb')->where('sekolah_id', $sekolah)->get()->getRowObject();
 
@@ -1002,7 +1002,7 @@ class Kuota extends BaseController
                 return json_encode($response);
             }
 
-            $refSekolah = $this->_db->table('ref_sekolah')->where('npsn', $sekolah)->get()->getRowObject();
+            $refSekolah = $this->_db->table('ref_sekolah_tujuan')->where('npsn', $sekolah)->get()->getRowObject();
 
             $cekData = $this->_db->table('_setting_kuota_tb')->where('sekolah_id', $refSekolah->id)->get()->getRowObject();
 

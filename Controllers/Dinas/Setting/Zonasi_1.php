@@ -171,7 +171,7 @@ class Zonasi extends BaseController
 
         $sekolah = $this->_db->table('_setting_kuota_tb a')
             ->select("a.*, b.nama as nama_sekolah, c.nama as nama_kecamatan, d.nama as nama_jenjang")
-            ->join('ref_sekolah b', 'a.sekolah_id = b.id', 'LEFT')
+            ->join('ref_sekolah_tujuan b', 'a.sekolah_id = b.id', 'LEFT')
             ->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT')
             ->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT')
             ->where('a.sekolah_id', htmlspecialchars($id, true))
@@ -250,7 +250,7 @@ class Zonasi extends BaseController
                 ->join('ref_kecamatan d', 'a.kecamatan = d.id', 'LEFT')
                 ->join('ref_kelurahan e', 'a.kelurahan = e.id', 'LEFT')
                 // ->join('ref_dusun f', 'a.dusun = f.id', 'LEFT')
-                ->join('ref_sekolah g', 'a.sekolah_id = g.id', 'LEFT')
+                ->join('ref_sekolah_tujuan g', 'a.sekolah_id = g.id', 'LEFT')
                 ->join('ref_bentuk_pendidikan h', 'a.bentuk_pendidikan_id = h.id', 'LEFT')
                 ->where('a.id', $id)
                 ->get()->getRowObject();
@@ -714,7 +714,7 @@ class Zonasi extends BaseController
                     $role = $decoded->data->role;
                     // $sekolahId = $this->_db->table('_users_profil_tb a')
                     //     ->select("a.*, b.bentuk_pendidikan_id")
-                    //     ->join('ref_sekolah b', 'a.sekolah_id = b.id', 'left')
+                    //     ->join('ref_sekolah_tujuan b', 'a.sekolah_id = b.id', 'left')
                     //     ->where('a.id', $userId)->get()->getRowObject();
 
                     // if (!$sekolahId) {
@@ -960,7 +960,7 @@ class Zonasi extends BaseController
             return json_encode($response);
         }
 
-        $refSekolah = $this->_db->table('ref_sekolah')->select('id, npsn, bentuk_pendidikan_id')->where(['npsn' => $npsn])->get()->getRowObject();
+        $refSekolah = $this->_db->table('ref_sekolah_tujuan')->select('id, npsn, bentuk_pendidikan_id')->where(['npsn' => $npsn])->get()->getRowObject();
 
         if (!$refSekolah) {
             $response = new \stdClass;

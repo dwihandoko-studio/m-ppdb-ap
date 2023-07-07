@@ -144,7 +144,7 @@ class Kuotasisa extends BaseController
         $data['user'] = $user->data;
 
         $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
-        $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
+        $data['sekolahname'] = $this->_db->table('ref_sekolah_tujuan')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
 
         return view('dinas/analisis/kuotasisa/detail', $data);
     }

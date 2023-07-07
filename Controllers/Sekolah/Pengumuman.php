@@ -39,7 +39,7 @@ class Pengumuman extends BaseController
 
         $data['user'] = $user->data;
 
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $user->data->sekolah_id)->get()->getRowObject();
 
         if ($sekolah) {
 
@@ -81,7 +81,7 @@ class Pengumuman extends BaseController
             return redirect()->to(base_url('web/home'));
         }
 
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $user->data->sekolah_id)->get()->getRowObject();
 
         if ($sekolah) {
             $data['data'] = $sekolah;
@@ -115,7 +115,7 @@ class Pengumuman extends BaseController
             return view('404', ['data' => "Data tidak ditemukan."]);
         }
 
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $id)->get()->getRowObject();
 
         if (!$sekolah) {
             return view('404', ['data' => "Data tidak ditemukan."]);
@@ -131,8 +131,8 @@ class Pengumuman extends BaseController
             $afirmasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'AFIRMASI')
@@ -145,8 +145,8 @@ class Pengumuman extends BaseController
             // $mutasiData = $this->_db->table('_tb_pendaftar a')
             //     ->select($select)
             //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-            //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-            //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            //     ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+            //     ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             //     ->where('a.tujuan_sekolah_id_1', $id)
             //     ->where('a.status_pendaftaran', 2)
             //     ->where('a.via_jalur', 'MUTASI')
@@ -159,8 +159,8 @@ class Pengumuman extends BaseController
             // $prestasiData = $this->_db->table('_tb_pendaftar a')
             //     ->select($select)
             //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-            //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-            //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            //     ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+            //     ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             //     ->where('a.tujuan_sekolah_id_1', $id)
             //     ->where('a.status_pendaftaran', 2)
             //     ->where('a.via_jalur', 'PRESTASI')
@@ -184,8 +184,8 @@ class Pengumuman extends BaseController
             // $zonasiData = $this->_db->table('_tb_pendaftar a')
             //     ->select($select)
             //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-            //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-            //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            //     ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+            //     ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             //     ->where('a.tujuan_sekolah_id_1', $id)
             //     ->where('a.status_pendaftaran', 2)
             //     ->where('a.via_jalur', 'ZONASI')
@@ -225,7 +225,7 @@ class Pengumuman extends BaseController
             return redirect()->to(base_url('web/home'));
         }
 
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $user->data->sekolah_id)->get()->getRowObject();
 
         if ($sekolah) {
             $data['data'] = $sekolah;
@@ -259,7 +259,7 @@ class Pengumuman extends BaseController
             return view('404', ['data' => "Data tidak ditemukan."]);
         }
 
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $id)->get()->getRowObject();
 
         if (!$sekolah) {
             return view('404', ['data' => "Data tidak ditemukan."]);
@@ -272,8 +272,8 @@ class Pengumuman extends BaseController
             $afirmasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'SWASTA')
@@ -294,8 +294,8 @@ class Pengumuman extends BaseController
             // $afirmasiData = $this->_db->table('_tb_pendaftar a')
             //     ->select($select)
             //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-            //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-            //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            //     ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+            //     ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             //     ->where('a.tujuan_sekolah_id_1', $id)
             //     ->where('a.status_pendaftaran', 2)
             //     ->where('a.via_jalur', 'AFIRMASI')
@@ -308,8 +308,8 @@ class Pengumuman extends BaseController
             $mutasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'MUTASI')
@@ -322,8 +322,8 @@ class Pengumuman extends BaseController
             $prestasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'PRESTASI')
@@ -347,8 +347,8 @@ class Pengumuman extends BaseController
             $zonasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'ZONASI')
@@ -388,7 +388,7 @@ class Pengumuman extends BaseController
             return redirect()->to(base_url('web/home'));
         }
 
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $user->data->sekolah_id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $user->data->sekolah_id)->get()->getRowObject();
 
         if ($sekolah) {
             $data['data'] = $sekolah;
@@ -422,7 +422,7 @@ class Pengumuman extends BaseController
             return view('404', ['data' => "Data tidak ditemukan."]);
         }
 
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $id)->get()->getRowObject();
 
         if (!$sekolah) {
             return view('404', ['data' => "Data tidak ditemukan."]);
@@ -435,11 +435,11 @@ class Pengumuman extends BaseController
             $afirmasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
-                ->where('a.via_jalur', 'SWASTA')
+                // ->where('a.via_jalur', 'SWASTA')
                 ->orderBy('a.rangking', 'ASC')
                 // ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
@@ -457,8 +457,8 @@ class Pengumuman extends BaseController
             $afirmasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'AFIRMASI')
@@ -471,8 +471,8 @@ class Pengumuman extends BaseController
             $mutasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'MUTASI')
@@ -485,8 +485,8 @@ class Pengumuman extends BaseController
             $prestasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'PRESTASI')
@@ -510,8 +510,8 @@ class Pengumuman extends BaseController
             $zonasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'ZONASI')

@@ -98,8 +98,9 @@ class Kirim extends BaseController
 
         return view('dinas/kirim/index', $data);
     }
-    
-    public function proseskirim() {
+
+    public function proseskirim()
+    {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
             $response->code = 400;
@@ -140,14 +141,14 @@ class Kirim extends BaseController
             if ($this->_db->affectedRows() > 0) {
                 // $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
                 // if ($this->_db->affectedRows() > 0) {
-                    
-                    $this->_db->transCommit();
-                    // print_r("BERHASIL VERIVIED AUTO<br>");
-                    // continue;
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Proses untuk kirim berhasil dilakukan.";
-                    return json_encode($response);
+
+                $this->_db->transCommit();
+                // print_r("BERHASIL VERIVIED AUTO<br>");
+                // continue;
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->message = "Proses untuk kirim berhasil dilakukan.";
+                return json_encode($response);
                 // } else {
                 //     $this->_db->transRollback();
                 //     print_r("GAGAL VERIVIED AUTO<br>" . $cekRegisterTemp['id']);
@@ -169,8 +170,8 @@ class Kirim extends BaseController
             // return json_encode($response);
         }
     }
-    
-    
+
+
     public function ubah()
     {
         if ($this->request->getMethod() != 'post') {
@@ -200,8 +201,8 @@ class Kirim extends BaseController
             $oldData = $this->_db->table('_tb_pendaftar a')
                 ->select("b.*, k.lampiran_kk, k.lampiran_lulus, k.lampiran_pernyataan, k.lampiran_prestasi, k.lampiran_afirmasi, k.lampiran_mutasi, k.lampiran_lainnya, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, d.nama as nama_provinsi, e.nama as nama_kabupaten, f.nama as nama_kecamatan, g.nama as nama_kelurahan, h.nama as nama_dusun, i.nama as nama_bentuk_pendidikan")
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                 ->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT')
                 ->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT')
                 ->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT')
@@ -220,8 +221,8 @@ class Kirim extends BaseController
             }
 
             $data['data'] = $oldData;
-            
-            $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', str_replace("'","",getenv('ppdb.default.wilayahppdb')))->orderBy('nama', 'asc')->get()->getResult();
+
+            $data['kecamatans'] = $this->_db->table('ref_kecamatan')->where('id_kabupaten', str_replace("'", "", getenv('ppdb.default.wilayahppdb')))->orderBy('nama', 'asc')->get()->getResult();
 
             $response = new \stdClass;
             $response->code = 200;
@@ -231,7 +232,7 @@ class Kirim extends BaseController
             return json_encode($response);
         }
     }
-    
+
     public function ubahpelimpahan()
     {
         if ($this->request->getMethod() != 'post') {
@@ -281,14 +282,14 @@ class Kirim extends BaseController
             if ($this->_db->affectedRows() > 0) {
                 // $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
                 // if ($this->_db->affectedRows() > 0) {
-                    
-                    $this->_db->transCommit();
-                    // print_r("BERHASIL VERIVIED AUTO<br>");
-                    // continue;
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Proses ubah tujuan sekolah pelimpahan berhasil dilakukan.";
-                    return json_encode($response);
+
+                $this->_db->transCommit();
+                // print_r("BERHASIL VERIVIED AUTO<br>");
+                // continue;
+                $response = new \stdClass;
+                $response->code = 200;
+                $response->message = "Proses ubah tujuan sekolah pelimpahan berhasil dilakukan.";
+                return json_encode($response);
                 // } else {
                 //     $this->_db->transRollback();
                 //     print_r("GAGAL VERIVIED AUTO<br>" . $cekRegisterTemp['id']);
@@ -303,8 +304,9 @@ class Kirim extends BaseController
             }
         }
     }
-    
-    public function getSekolah() {
+
+    public function getSekolah()
+    {
         if ($this->request->getMethod() != 'post') {
             $response = new \stdClass;
             $response->code = 400;
@@ -339,34 +341,34 @@ class Kirim extends BaseController
         //     $response->message = $this->validator->getError('id') . $this->validator->getError('lat') . $this->validator->getError('long');
         //     return json_encode($response);
         // } else {
-            $id = htmlspecialchars($this->request->getVar('id'), true);
-            $lat = htmlspecialchars($this->request->getVar('lat'), true);
-            $long = htmlspecialchars($this->request->getVar('long'), true);
+        $id = htmlspecialchars($this->request->getVar('id'), true);
+        $lat = htmlspecialchars($this->request->getVar('lat'), true);
+        $long = htmlspecialchars($this->request->getVar('long'), true);
 
-            $sekolahs = $this->_db->table('ref_sekolah a')
-                            // ->select("a.*, ROUND(getDistanceKm('$lat','$long',a.latitude,a.longitude), 2) AS jarak")
-                            // ->where('a.kecamatan_id', $id)
-                            ->where('a.bentuk_pendidikan_id', 6)
-                            ->where("LEFT(a.kode_wilayah,4) = '1209'")
-                            ->get()->getResult();
-                            
-            if(count($sekolahs) > 0) {
-                $response = new \stdClass;
-                $response->code = 200;
-                $response->data = $sekolahs;
-                $response->message = "Data ditemukan.";
-                return json_encode($response);
-            } else {
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Tidak ada data.";
-                return json_encode($response);
-            }
+        $sekolahs = $this->_db->table('ref_sekolah a')
+            // ->select("a.*, ROUND(getDistanceKm('$lat','$long',a.latitude,a.longitude), 2) AS jarak")
+            // ->where('a.kecamatan_id', $id)
+            ->where('a.bentuk_pendidikan_id', 6)
+            ->where("LEFT(a.kode_wilayah,4) = '1209'")
+            ->get()->getResult();
+
+        if (count($sekolahs) > 0) {
+            $response = new \stdClass;
+            $response->code = 200;
+            $response->data = $sekolahs;
+            $response->message = "Data ditemukan.";
+            return json_encode($response);
+        } else {
+            $response = new \stdClass;
+            $response->code = 400;
+            $response->message = "Tidak ada data.";
+            return json_encode($response);
+        }
         // }
     }
-    
+
     // public function proseskelulusan() {
-        
+
     //     $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
     //     $dataSekolahs = $this->_db->table('_tb_pendaftar_proses_an a')
     //                         ->select($selectSekolah)
@@ -375,37 +377,37 @@ class Kirim extends BaseController
     //                         ->groupBy('a.tujuan_sekolah_id')
     //                         ->where('j.bentuk_pendidikan_id', 5)
     //                         ->get()->getResult();
-                            
+
     //     if(count($dataSekolahs) > 0 ) {
     //         print_r("DATA SEKOLAH " . count($dataSekolahs));
     //         foreach ($dataSekolahs as $key => $id) {
     //             // print_r("SELESAI PROSES KELULUSAN ");
     //             $kuota = $this->_db->table('_setting_kuota_tb')->select("zonasi, afirmasi, mutasi, prestasi")->where('sekolah_id', $id->tujuan_sekolah_id)->get()->getRowObject();
-                
+
     //             if(!$kuota) {
     //                 print_r("KUOTA TIDAK DITEMUKAN ");
     //                 continue;
     //             }
-                
+
     //             $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id)->get()->getRowObject();
-                
+
     //             if(!$sekolah) {
     //                 print_r("SEKOLAH TIDAK DITEMUKAN ");
     //                 continue;
     //             }
-                
+
     //             if((int)$sekolah->status_sekolah != 1) {
     //                 print_r("SEKOLAH SWASTA SKIP ");
     //                 continue;
     //             }
-                
+
     //             // $
-                
+
     //             // $limitKuotaAfirmasi = 
-                
+
     //             $select = "b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak"; 
-                
-                
+
+
     //             $afirmasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
@@ -418,7 +420,7 @@ class Kirim extends BaseController
     //                                 ->orderBy('a.created_at', 'ASC')
     //                                 ->limit((int)$kuota->afirmasi)
     //                                 ->get()->getResult();
-                
+
     //             $mutasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
@@ -431,7 +433,7 @@ class Kirim extends BaseController
     //                                 ->orderBy('a.created_at', 'ASC')
     //                                 ->limit((int)$kuota->mutasi)
     //                                 ->get()->getResult();
-                
+
     //             $prestasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
@@ -444,18 +446,18 @@ class Kirim extends BaseController
     //                                 ->orderBy('a.created_at', 'ASC')
     //                                 ->limit((int)$kuota->prestasi)
     //                                 ->get()->getResult();
-                                    
+
     //             $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
     //             $sisaAfirmasiFix = $sisaAfirmasi > 0 ? $sisaAfirmasi : 0;
-                                    
+
     //             $sisaMutasi = (int)$kuota->mutasi - count($mutasiData);
     //             $sisaMutasiFix = $sisaMutasi > 0 ? $sisaMutasi : 0;
-                                    
+
     //             $sisaPrestasi = (int)$kuota->prestasi - count($prestasiData);
     //             $sisaPrestasiFix = $sisaPrestasi > 0 ? $sisaPrestasi : 0;
-                                    
+
     //             $limitZonasi = (int)$kuota->zonasi + $sisaAfirmasiFix + $sisaMutasiFix + $sisaPrestasiFix;
-                
+
     //             $zonasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
@@ -468,21 +470,21 @@ class Kirim extends BaseController
     //                                 ->orderBy('a.created_at', 'ASC')
     //                                 ->limit($limitZonasi)
     //                                 ->get()->getResult();
-                                    
+
     //             $lulusLib = new Prosesluluslib();
-                                    
+
     //             if(count($afirmasiData) > 0) {
     //                 $lulusLib->prosesLulusAfirmasi($afirmasiData);
     //             }
-                
+
     //             if(count($mutasiData) > 0) {
     //                 $lulusLib->prosesLulusMutasi($mutasiData);
     //             }
-                
+
     //             if(count($prestasiData) > 0) {
     //                 $lulusLib->prosesLulusPrestasi($prestasiData);
     //             }
-                
+
     //             if(count($zonasiData) > 0) {
     //                 $lulusLib->prosesLulusZonasi($zonasiData);
     //             }

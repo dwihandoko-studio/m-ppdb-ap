@@ -42,7 +42,7 @@ class Statistik extends BaseController
         $data['page'] = "PPDB ONLINE TA. 2023 - 2024";
         $data['title'] = 'PPDB ONLINE TA. 2023 - 2024';
 
-        $detail = $this->_db->table('ref_sekolah a')
+        $detail = $this->_db->table('ref_sekolah_tujuan a')
             ->select("a.id, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE via_jalur = 'ZONASI') + (SELECT count(id) FROM _tb_pendaftar WHERE via_jalur = 'ZONASI')) as zonasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE via_jalur = 'AFIRMASI') + (SELECT count(id) FROM _tb_pendaftar WHERE via_jalur = 'AFIRMASI')) as afirmasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE via_jalur = 'MUTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE via_jalur = 'MUTASI')) as mutasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE via_jalur = 'PRESTASI') + (SELECT count(id) FROM _tb_pendaftar WHERE via_jalur = 'PRESTASI')) as prestasi, ((SELECT count(id) FROM _tb_pendaftar_temp WHERE via_jalur = 'SWASTA') + (SELECT count(id) FROM _tb_pendaftar WHERE via_jalur = 'SWASTA')) as swasta, ((SELECT count(id) FROM _tb_pendaftar_temp) + (SELECT count(id) FROM _tb_pendaftar)) as total ")
             ->limit(1)
             ->get()
@@ -305,7 +305,7 @@ class Statistik extends BaseController
                 return json_encode($response);
             }
 
-            $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id)->get()->getRowObject();
+            $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id)->get()->getRowObject();
 
             if (!$sekolah) {
                 $response = new \stdClass;

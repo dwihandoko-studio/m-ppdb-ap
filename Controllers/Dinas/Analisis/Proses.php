@@ -157,7 +157,7 @@ class Proses extends BaseController
         $data['user'] = $user->data;
 
         $data['sekolah_id'] = htmlspecialchars($this->request->getGet('token'), true);
-        $data['sekolahname'] = $this->_db->table('ref_sekolah')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
+        $data['sekolahname'] = $this->_db->table('ref_sekolah_tujuan')->select("nama, npsn")->where('id', $data['sekolah_id'])->get()->getRowObject();
 
         return view('dinas/analisis/proses/index', $data);
     }
@@ -259,7 +259,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             // ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -277,7 +277,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -299,8 +299,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -334,7 +334,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             // ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -352,7 +352,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -374,8 +374,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -410,7 +410,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             // ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -428,7 +428,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -450,8 +450,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -486,7 +486,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             // ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -504,7 +504,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -526,8 +526,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -562,7 +562,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -580,7 +580,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -602,8 +602,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'AFIRMASI')
@@ -637,7 +637,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -655,7 +655,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -677,8 +677,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'AFIRMASI')
@@ -712,7 +712,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar_temp a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 0)
             ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -752,8 +752,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar_temp a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 0)
                     ->where('a.via_jalur', 'AFIRMASI')
@@ -787,7 +787,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar_temp a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 0)
             ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -805,7 +805,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -827,8 +827,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar_temp a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 0)
                     ->where('a.via_jalur', 'AFIRMASI')
@@ -862,7 +862,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar_temp a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 0)
             // ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -880,7 +880,7 @@ class Proses extends BaseController
                 //     continue;
                 // }
 
-                // $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                // $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 // if (!$sekolah) {
                 //     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -902,8 +902,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar_temp a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 0)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -937,7 +937,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar_temp a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 0)
             // ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -955,7 +955,7 @@ class Proses extends BaseController
                 //     continue;
                 // }
 
-                // $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                // $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 // if (!$sekolah) {
                 //     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -977,8 +977,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar_temp a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 0)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -1012,7 +1012,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1035,7 +1035,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1057,8 +1057,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'AFIRMASI')
@@ -1092,7 +1092,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'AFIRMASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1115,7 +1115,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1137,8 +1137,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'AFIRMASI')
@@ -1172,7 +1172,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'MUTASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1195,7 +1195,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN <br> ");
@@ -1217,8 +1217,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'MUTASI')
@@ -1252,7 +1252,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'MUTASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1276,7 +1276,7 @@ class Proses extends BaseController
                 }
 
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1298,8 +1298,8 @@ class Proses extends BaseController
                 $mutasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'MUTASI')
@@ -1333,7 +1333,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'PRESTASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1356,7 +1356,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1377,8 +1377,8 @@ class Proses extends BaseController
                 $prestasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($selectPrestasi)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->join('tb_nilai_prestasi l', 'l.id = a.id')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
@@ -1414,7 +1414,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'PRESTASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1437,7 +1437,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1461,8 +1461,8 @@ class Proses extends BaseController
                 $prestasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($selectPrestasi)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->join('tb_nilai_prestasi l', 'l.id = a.id')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
@@ -1498,7 +1498,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'ZONASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1523,7 +1523,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1546,8 +1546,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'ZONASI')
@@ -1581,7 +1581,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->where('a.via_jalur', 'ZONASI')
             ->groupBy('a.tujuan_sekolah_id_1')
@@ -1605,7 +1605,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1628,8 +1628,8 @@ class Proses extends BaseController
                 $mutasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'ZONASI')
@@ -1663,7 +1663,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->groupBy('a.tujuan_sekolah_id_1')
             ->where('j.bentuk_pendidikan_id', 6)
@@ -1680,7 +1680,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -1702,8 +1702,8 @@ class Proses extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'AFIRMASI')
@@ -1715,8 +1715,8 @@ class Proses extends BaseController
                 $mutasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'MUTASI')
@@ -1730,8 +1730,8 @@ class Proses extends BaseController
                 $prestasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($selectPrestasi)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->join('tb_nilai_prestasi l', 'l.id = a.id')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
@@ -1756,8 +1756,8 @@ class Proses extends BaseController
                 $zonasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     ->where('a.via_jalur', 'ZONASI')
@@ -1803,7 +1803,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->groupBy('a.tujuan_sekolah_id_1')
             ->where('j.bentuk_pendidikan_id', 5)
@@ -1825,7 +1825,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN <br/>");
@@ -1842,8 +1842,8 @@ class Proses extends BaseController
                 // $jumlahLolos = $this->_db->table('_tb_pendaftar a')
                 //     ->select("b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
                 //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                //     ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                //     ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                 //     ->where('a.status_pendaftaran', 2)->countAllResults();
 
@@ -1856,8 +1856,8 @@ class Proses extends BaseController
                     $prestasiDataSisa = $this->_db->table('_tb_pendaftar a')
                         ->select($selectPrestasi)
                         ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                        ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                        ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                        ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                        ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                         ->join('tb_nilai_prestasi l', 'l.id = a.id')
                         ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                         ->where('a.status_pendaftaran', 1)
@@ -1898,7 +1898,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->groupBy('a.tujuan_sekolah_id_1')
             ->where('j.bentuk_pendidikan_id', 6)
@@ -1920,7 +1920,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN <br/> ");
@@ -1937,8 +1937,8 @@ class Proses extends BaseController
                 // $jumlahLolos = $this->_db->table('_tb_pendaftar a')
                 //     ->select("b.id, b.nisn, b.fullname, b.peserta_didik_id, b.latitude, b.longitude, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, a.created_at, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak")
                 //     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                //     ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                //     ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                //     ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                //     ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                 //     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                 //     ->where('a.status_pendaftaran', 2)->countAllResults();
 
@@ -1951,8 +1951,8 @@ class Proses extends BaseController
                     $prestasiDataSisa = $this->_db->table('_tb_pendaftar a')
                         ->select($selectPrestasi)
                         ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                        ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                        ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                        ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                        ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                         ->join('tb_nilai_prestasi l', 'l.id = a.id')
                         ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                         ->where('a.status_pendaftaran', 1)
@@ -1993,7 +1993,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->groupBy('a.tujuan_sekolah_id_1')
             ->where('j.bentuk_pendidikan_id', 5)
@@ -2010,7 +2010,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN <br/> ");
@@ -2032,8 +2032,8 @@ class Proses extends BaseController
                 $swastaData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -2067,7 +2067,7 @@ class Proses extends BaseController
         $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id_1, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
         $dataSekolahs = $this->_db->table('_tb_pendaftar a')
             ->select($selectSekolah)
-            ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+            ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
             ->where('a.status_pendaftaran', 1)
             ->groupBy('a.tujuan_sekolah_id_1')
             ->where('j.bentuk_pendidikan_id', 6)
@@ -2084,7 +2084,7 @@ class Proses extends BaseController
                     continue;
                 }
 
-                $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
+                $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id_1)->get()->getRowObject();
 
                 if (!$sekolah) {
                     print_r("SEKOLAH TIDAK DITEMUKAN <br/> ");
@@ -2106,8 +2106,8 @@ class Proses extends BaseController
                 $swastaData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id_1', $id->tujuan_sekolah_id_1)
                     ->where('a.status_pendaftaran', 1)
                     // ->where('a.via_jalur', 'AFIRMASI')
@@ -2133,7 +2133,7 @@ class Proses extends BaseController
     //     $selectSekolah = "a.id as id_pendaftaran, a.tujuan_sekolah_id, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, a.via_jalur, a.created_at, count(a.peserta_didik_id) as jumlah_pendaftar";  //14
     //     $dataSekolahs = $this->_db->table('_tb_pendaftar_proses_an a')
     //                         ->select($selectSekolah)
-    //                         ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+    //                         ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
     //                         ->where('a.status_pendaftaran', 1)
     //                         ->groupBy('a.tujuan_sekolah_id')
     //                         ->where('j.bentuk_pendidikan_id', 5)
@@ -2150,7 +2150,7 @@ class Proses extends BaseController
     //                 continue;
     //             }
 
-    //             $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id)->get()->getRowObject();
+    //             $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id->tujuan_sekolah_id)->get()->getRowObject();
 
     //             if(!$sekolah) {
     //                 print_r("SEKOLAH TIDAK DITEMUKAN ");
@@ -2172,8 +2172,8 @@ class Proses extends BaseController
     //             $afirmasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+    //                                 ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+    //                                 ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
     //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
     //                                 ->where('a.status_pendaftaran', 1)
     //                                 ->where('a.via_jalur', 'AFIRMASI')
@@ -2185,8 +2185,8 @@ class Proses extends BaseController
     //             $mutasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+    //                                 ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+    //                                 ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
     //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
     //                                 ->where('a.status_pendaftaran', 1)
     //                                 ->where('a.via_jalur', 'MUTASI')
@@ -2198,8 +2198,8 @@ class Proses extends BaseController
     //             $prestasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+    //                                 ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+    //                                 ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
     //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
     //                                 ->where('a.status_pendaftaran', 1)
     //                                 ->where('a.via_jalur', 'PRESTASI')
@@ -2222,8 +2222,8 @@ class Proses extends BaseController
     //             $zonasiData = $this->_db->table('_tb_pendaftar_proses_an a')
     //                                 ->select($select)
     //                                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-    //                                 ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-    //                                 ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+    //                                 ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+    //                                 ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
     //                                 ->where('a.tujuan_sekolah_id', $id->tujuan_sekolah_id)
     //                                 ->where('a.status_pendaftaran', 1)
     //                                 ->where('a.via_jalur', 'ZONASI')
@@ -2338,7 +2338,7 @@ class Proses extends BaseController
                 return json_encode($response);
             }
 
-            $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id)->get()->getRowObject();
+            $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id)->get()->getRowObject();
 
             if (!$sekolah) {
                 $response = new \stdClass;
@@ -2360,40 +2360,44 @@ class Proses extends BaseController
             $afirmasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'AFIRMASI')
                 ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->afirmasi)
+                // ->limit((int)$kuota->afirmasi)
                 ->get()->getResult();
 
             $mutasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'MUTASI')
                 ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->mutasi)
+                // ->limit((int)$kuota->mutasi)
                 ->get()->getResult();
 
+            $selectPrestasi = "b.*, l.jenis_prestasi, l.nilai_akumulative, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, a.kode_pendaftaran, a.via_jalur, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";
+
             $prestasiData = $this->_db->table('_tb_pendaftar a')
-                ->select($select)
+                ->select($selectPrestasi)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
-                ->where('a.tujuan_sekolah_id', $id)
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT')
+                ->join('tb_nilai_prestasi l', 'l.id = a.id')
+                ->where('a.tujuan_sekolah_id_1', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'PRESTASI')
+                ->orderBy('l.nilai_akumulative', 'DESC')
                 ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit((int)$kuota->prestasi)
+                // ->limit((int)$kuota->prestasi)
                 ->get()->getResult();
 
             $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
@@ -2410,14 +2414,14 @@ class Proses extends BaseController
             $zonasiData = $this->_db->table('_tb_pendaftar a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                 ->where('a.tujuan_sekolah_id', $id)
                 ->where('a.status_pendaftaran', 2)
                 ->where('a.via_jalur', 'ZONASI')
                 ->orderBy('jarak', 'ASC')
                 ->orderBy('a.created_at', 'ASC')
-                ->limit($limitZonasi)
+                // ->limit($limitZonasi)
                 ->get()->getResult();
 
             $response = new \stdClass;

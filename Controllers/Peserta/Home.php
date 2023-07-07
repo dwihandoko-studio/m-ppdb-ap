@@ -40,12 +40,12 @@ class Home extends BaseController
         $data['lengkap_berkas'] = $this->_db->table('_upload_kelengkapan_berkas')->where('user_id', $userId)->get()->getRowObject();
         // $statusDaftar = $this->_db->table('_tb_pendaftar a')
         //     ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
-        //     ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
+        //     ->join('ref_sekolah_tujuan b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
         //     ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
         // if (!($statusDaftar)) {
         //     $statusDaftar = $this->_db->table('_tb_pendaftar_temp a')
         //         ->select("a.*, b.nama as nama_sekolah, b.npsn as npsn_sekolah")
-        //         ->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
+        //         ->join('ref_sekolah_tujuan b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT')
         //         ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _users_profil_tb WHERE id = '$userId')")->orderBy('a.created_at', 'DESC')->limit(1)->get()->getRowObject();
         // }
 
@@ -124,9 +124,9 @@ class Home extends BaseController
 
         // $data['statusPendaftaran'] = $this->_db->table('_tb_pendaftar_temp a')
         //                 ->select('a.id, a.kode_pendaftaran, a.via_jalur, a.lampiran, a.keterangan, a.keterangan_penolakan, a.status_pendaftaran, a.created_at, a.updated_at, a.updated_aproval, a.updated_registered, b.sekolah_id as idSekolahAsal, b.nama as namaSekolahAsal, b.npsn as npsnSekolahAsal, e.sekolah_id as idSekolahAsalLuar, e.nama as namaSekolahAsalLuar, e.npsn as npsnSekolahAsalLuar, c.sekolah_id as idSekolahTujuan, c.nama as namaSekolahTujuan, c.npsn as npsnSekolahTujuan, d.nama as namaSiswa, d.nisn, d.nik, d.tempat_lahir, d.tanggal_lahir, d.jenis_kelamin')
-        //                 ->join('_ref_sekolah b', 'a.from_sekolah_id = b.sekolah_id', 'LEFT')
+        //                 ->join('_ref_sekolah_asal b', 'a.from_sekolah_id = b.sekolah_id', 'LEFT')
         //                 ->join('_ref_sekolah_luar_kabupaten e', 'a.from_sekolah_id = e.sekolah_id', 'LEFT')
-        //                 ->join('_ref_sekolah c', 'a.tujuan_sekolah_id = c.sekolah_id', 'LEFT')
+        //                 ->join('_ref_sekolah_tujuan c', 'a.tujuan_sekolah_id = c.sekolah_id', 'LEFT')
         //                 ->join('_ref_peserta_didik d', 'a.peserta_didik_id = d.peserta_didik_id', 'LEFT')
         //                 ->where("a.peserta_didik_id = (SELECT peserta_didik_id FROM _ref_peserta_didik WHERE nisn = '$nisn')")
         //                 ->orderBy('a.created_at', 'desc')

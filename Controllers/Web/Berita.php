@@ -137,7 +137,7 @@ class Berita extends BaseController
                 return json_encode($response);
             }
 
-            $sekolah = $this->_db->table('ref_sekolah')->select("status_sekolah")->where('id', $id)->get()->getRowObject();
+            $sekolah = $this->_db->table('ref_sekolah_tujuan')->select("status_sekolah")->where('id', $id)->get()->getRowObject();
 
             if (!$sekolah) {
                 $response = new \stdClass;
@@ -154,14 +154,14 @@ class Berita extends BaseController
                 $zonasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id', $id)
                     ->where('a.status_pendaftaran', 2)
-                    ->where('a.via_jalur', 'SWASTA')
+                    // ->where('a.via_jalur', 'SWASTA')
                     ->orderBy('jarak', 'ASC')
                     ->orderBy('a.created_at', 'ASC')
-                    ->limit($limitZonasi)
+                    // ->limit($limitZonasi)
                     ->get()->getResult();
 
                 $response = new \stdClass;
@@ -177,40 +177,40 @@ class Berita extends BaseController
                 $afirmasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'AFIRMASI')
                     ->orderBy('jarak', 'ASC')
                     ->orderBy('a.created_at', 'ASC')
-                    ->limit((int)$kuota->afirmasi)
+                    // ->limit((int)$kuota->afirmasi)
                     ->get()->getResult();
 
                 $mutasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'MUTASI')
                     ->orderBy('jarak', 'ASC')
                     ->orderBy('a.created_at', 'ASC')
-                    ->limit((int)$kuota->mutasi)
+                    // ->limit((int)$kuota->mutasi)
                     ->get()->getResult();
 
                 $prestasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'PRESTASI')
                     ->orderBy('jarak', 'ASC')
                     ->orderBy('a.created_at', 'ASC')
-                    ->limit((int)$kuota->prestasi)
+                    // ->limit((int)$kuota->prestasi)
                     ->get()->getResult();
 
                 $sisaAfirmasi = (int)$kuota->afirmasi - count($afirmasiData);
@@ -227,14 +227,14 @@ class Berita extends BaseController
                 $zonasiData = $this->_db->table('_tb_pendaftar a')
                     ->select($select)
                     ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                    ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                    ->join('ref_sekolah j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
+                    ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                    ->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id = j.id', 'LEFT')
                     ->where('a.tujuan_sekolah_id', $id)
                     ->where('a.status_pendaftaran', 2)
                     ->where('a.via_jalur', 'ZONASI')
                     ->orderBy('jarak', 'ASC')
                     ->orderBy('a.created_at', 'ASC')
-                    ->limit($limitZonasi)
+                    // ->limit($limitZonasi)
                     ->get()->getResult();
 
                 $response = new \stdClass;

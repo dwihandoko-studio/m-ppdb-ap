@@ -152,7 +152,7 @@ class Profilsekolah extends BaseController
         }
 
         $id = htmlspecialchars($this->request->getGet('token'), true);
-        $sekolah = $this->_db->table('ref_sekolah')->where('id', $id)->get()->getRowObject();
+        $sekolah = $this->_db->table('ref_sekolah_tujuan')->where('id', $id)->get()->getRowObject();
         if (!$sekolah) {
             return redirect()->to(base_url('dinas/setting/profilsekolah/data'));
         }
@@ -302,7 +302,7 @@ class Profilsekolah extends BaseController
             return json_encode($response);
         }
 
-        $refSekolah = $this->_db->table('ref_sekolah')->select('id')->where(['npsn' => $npsn])->get()->getRowObject();
+        $refSekolah = $this->_db->table('ref_sekolah_tujuan')->select('id')->where(['npsn' => $npsn])->get()->getRowObject();
 
         if (!$refSekolah) {
             $response = new \stdClass;

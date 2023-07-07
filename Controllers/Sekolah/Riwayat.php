@@ -197,8 +197,8 @@ class Riwayat extends BaseController
         $currentApprove = $this->_db->table('_tb_pendaftar a')
             ->select($select)
             ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-            ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-            ->join('ref_sekolah d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
+            ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+            ->join('ref_sekolah_tujuan d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
             ->where('a.id', $id)->get()->getRowObject();
 
         if ($currentApprove) {
@@ -207,8 +207,8 @@ class Riwayat extends BaseController
             $pendaftaran = $this->_db->table('_tb_pendaftar_temp a')
                 ->select($select)
                 ->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT')
-                ->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT')
-                ->join('ref_sekolah d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
+                ->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT')
+                ->join('ref_sekolah_tujuan d', 'a.tujuan_sekolah_id = d.id', 'LEFT')
                 ->where('a.id', $id)->get()->getRowObject();
         }
 

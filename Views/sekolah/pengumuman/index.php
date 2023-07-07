@@ -49,7 +49,7 @@
                             <?php } ?>
                             <?php if (isset($pengumuman_zonasi)) { ?>
                                 <?php if ($pengumuman_zonasi) { ?>
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 mt-4">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <button type="button" onclick="downloadSptjmZonasi()" class="btn btn-block btn-default">Download SPTJM Zonasi/Prestasi/Mutasi</button>

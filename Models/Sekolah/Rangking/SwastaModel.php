@@ -31,8 +31,8 @@ class SwastaModel extends Model
 
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');
-        $this->dt->join('ref_sekolah c', 'a.from_sekolah_id = c.id', 'LEFT');
-        $this->dt->join('ref_sekolah j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
+        $this->dt->join('ref_sekolah_asal c', 'a.from_sekolah_id = c.id', 'LEFT');
+        $this->dt->join('ref_sekolah_tujuan j', 'a.tujuan_sekolah_id_1 = j.id', 'LEFT');
         $this->dt->join('ref_bentuk_pendidikan i', 'c.bentuk_pendidikan_id = i.id', 'LEFT');
         // $this->dt->join('ref_provinsi d', 'b.provinsi = d.id', 'LEFT');
         // $this->dt->join('ref_kabupaten e', 'b.kabupaten = e.id', 'LEFT');

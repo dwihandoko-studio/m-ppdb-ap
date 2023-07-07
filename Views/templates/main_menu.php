@@ -1071,24 +1071,24 @@
                                             <span class="sidenav-normal"> Riwayat Pendaftaran </span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "peserta" && $uri->getSegment(2) == "riwayat"  && $uri->getSegment(3) == "aktifitas") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('peserta/riwayat/aktifitas') ?>">
                                             <span class="sidenav-mini-icon"> RA </span>
                                             <i class="ni ni-app"></i>
                                             <span class="sidenav-normal"> Riwayat Aktifitas </span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </li>
                         <?php if (isset($sekolah_pilihan)) { ?>
                             <?php if ($sekolah_pilihan) { ?>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" href="<?= base_url('peserta/riwayat/cetakpendaftaran'); ?>" role="button" aria-expanded="true">
                                         <i class="ni ni-folder-17"></i>
                                         <span class="nav-link-text">Cetak Kartu Pendaftaran</span>
                                     </a>
-                                </li>
+                                </li> -->
                             <?php } ?>
                         <?php } ?>
                     </ul>

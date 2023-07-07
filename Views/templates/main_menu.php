@@ -961,12 +961,12 @@
                                 <span class="nav-link-text">Pengumuman Peserta</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "konfirmasi") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"'; ?> href="<?= base_url('sekolah/konfirmasi'); ?>" role="button" aria-expanded="true">
                                 <i class="ni ni-compass-04"></i>
                                 <span class="nav-link-text">Konfirmasi Daftar Ulang</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "riwayat") ? '' : ' collapsed' ?>" href="#navbar-riwayat" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "riwayat") ? 'true' : 'false' ?>" aria-controls="navbar-riwayat">
                                 <i class="ni ni-ui-04" <?= ($uri->getSegment(1) == "sekolah" && $uri->getSegment(2) == "riwayat") ? ' style="color: #00BCD4 !important"' : '' ?>></i>

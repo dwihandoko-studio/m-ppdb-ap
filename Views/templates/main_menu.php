@@ -659,7 +659,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan") ? '' : ' collapsed' ?>" href="#navbar-pelimpahan" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan") ? 'true' : 'false' ?>" aria-controls="navbar-pelimpahan">
                                 <i class="ni ni-vector" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan") ? ' style="color: #00BCD4 !important"' : '' ?>></i>
                                 <span class="nav-link-text" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan") ? ' style="color: #00BCD4 !important"' : '' ?>>Pelimpahan</span>
@@ -669,27 +669,24 @@
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan"  && $uri->getSegment(3) == "sd") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/pelimpahan/sd') ?>">
                                             <span class="sidenav-mini-icon"> SD </span>
-                                            <!--<i class="ni ni-app"></i>-->
                                             <span class="sidenav-normal"> SD </span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan"  && $uri->getSegment(3) == "smp") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/pelimpahan/smp') ?>">
                                             <span class="sidenav-mini-icon"> SP </span>
-                                            <!--<i class="ni ni-app"></i>-->
                                             <span class="sidenav-normal"> SMP </span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "pelimpahan"  && $uri->getSegment(3) == "rekap") ? 'class="nav-link active" style="color: #00BCD4 !important"' : 'class="nav-link"' ?> href="<?= base_url('dinas/pelimpahan/rekap') ?>">
                                             <span class="sidenav-mini-icon"> RK </span>
-                                            <!--<i class="ni ni-app"></i>-->
                                             <span class="sidenav-normal"> REKAP </span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? '' : ' collapsed' ?>" href="#navbar-rangking" data-toggle="collapse" role="button" aria-expanded="<?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? 'true' : 'false' ?>" aria-controls="navbar-rangking">
                                 <i class="ni ni-sound-wave" <?= ($uri->getSegment(1) == "dinas" && $uri->getSegment(2) == "rangking") ? ' style="color: #00BCD4 !important"' : '' ?>></i>

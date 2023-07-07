@@ -388,7 +388,19 @@ class Prosesluluslib
 
         $this->_db->transBegin();
         unset($cekRegisterTemp['nisn']);
-        $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
+        try {
+            //code...
+            $this->_db->table('_tb_pendaftar_tolak')->insert($cekRegisterTemp);
+        } catch (\Throwable $th) {
+            // $this->_db->transRollback();
+            $error = $th->errorInfo;
+            if ($error[1] == 1062) {
+                // echo "Duplicate entry, ignoring...";
+            } else {
+                $this->_db->transRollback();
+                return true;
+            }
+        }
         if ($this->_db->affectedRows() > 0) {
             $this->_db->table('_tb_pendaftar_temp')->where('id', $cekRegisterTemp['id'])->delete();
             if ($this->_db->affectedRows() > 0) {

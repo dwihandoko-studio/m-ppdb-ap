@@ -115,7 +115,7 @@ $qrCode = "data:image/png;base64," . base64_encode(file_get_contents('https://ch
             <table width="100%" style="border: solid #cbd4dd; font-size: 12px">
                 <tr>
                     <td style="text-align: left; padding-left: 10px; padding-bottom: 10px; padding-top: 10px;">
-                        <img class="img" src="<?= base_url() ?>/temp/<?= $sekolah->id ?>.png" ec="H" style="width: 30mm; background-color: white; color: black;">
+                        <img class="img" src="<?= $qrCode ?>" ec="H" style="width: 30mm; background-color: white; color: black;">
                         <!--<b>INFORMASI</b><br>-->
                         <!--1. Pada saat pengumuman PPDB 2022/2023. Bagi peserta PPDB YANG TIDAK LOLOS di sekolah tujuan, langsung dapat mendaftar<br>-->
                         <!--   melalui PPDB Dalam Jaringan ke Sekolah Terdekat yang Jumlah Kuotanya belum terpenuhi sampai tanggal 30 Juni 2022.<br>-->

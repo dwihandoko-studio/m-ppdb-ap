@@ -35,17 +35,34 @@
                         <div class="card-body">
                             <?php if (isset($pengumuman_afirmasi)) { ?>
                                 <?php if ($pengumuman_afirmasi) { ?>
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <button type="button" onclick="downloadSptjmAfirmasi()" class="btn btn-block btn-default">Download SPTJM Afirmasi</button>
+                                    <?php if (isset($pengumuman_swasta)) { ?>
+                                        <?php if ($pengumuman_swasta) { ?>
+                                        <?php } else { ?>
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <button type="button" onclick="downloadSptjmAfirmasi()" class="btn btn-block btn-default">Download SPTJM Afirmasi</button>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <button type="button" onclick="downloadLampiranAfirmasi()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB Jalur Afirmasi</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <button type="button" onclick="downloadLampiranAfirmasi()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB Jalur Afirmasi</button>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" onclick="downloadSptjmAfirmasi()" class="btn btn-block btn-default">Download SPTJM Afirmasi</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button type="button" onclick="downloadLampiranAfirmasi()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB Jalur Afirmasi</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php } ?>
                                 <?php } ?>
+
                             <?php } ?>
                             <?php if (isset($pengumuman_zonasi)) { ?>
                                 <?php if ($pengumuman_zonasi) { ?>

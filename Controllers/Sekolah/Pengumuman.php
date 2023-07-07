@@ -49,8 +49,10 @@ class Pengumuman extends BaseController
 
             if ($canPengumumanAfirmasi->code !== 200) {
                 $data['pengumuman_afirmasi'] = false;
+                $data['pengumuman_swasta'] = false;
             } else {
                 $data['pengumuman_afirmasi'] = true;
+                $data['pengumuman_swasta'] = false;
             }
             if ($canPengumumanZonasi->code !== 200) {
                 $data['pengumuman_zonasi'] = false;

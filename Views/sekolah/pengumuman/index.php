@@ -61,6 +61,20 @@
                                     </div>
                                 <?php } ?>
                             <?php } ?>
+                            <?php if (isset($pengumuman_swasta)) { ?>
+                                <?php if ($pengumuman_swasta) { ?>
+                                    <div class="col-lg-12 mt-4">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <button type="button" onclick="downloadSptjmSwasta()" class="btn btn-block btn-default">Download SPTJM Swasta</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" onclick="downloadLampiranSwasta()" class="btn btn-block btn-primary">Download Lampiran Peserta Lolos PPDB Sekolah Swasta</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 <?php } else { ?>

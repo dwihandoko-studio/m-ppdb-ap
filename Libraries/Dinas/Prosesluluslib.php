@@ -410,13 +410,13 @@ class Prosesluluslib
                         'send_to' => $cekRegisterTemp['user_id'],
                     ]);
 
-                    $onesignal = new Fcmlib();
-                    $send = $onesignal->pushNotifToUser([
-                        'title' => "Pendaftaran Jalur " . $pen->via_jalur . " Tidak Lolos.",
-                        'content' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/> dikarenakan belum terverifikasi oleh Sekolah Tujuan.",
-                        'send_to' => $cekRegisterTemp['user_id'],
-                        'app_url' => 'riwayat_pendaftaran_page',
-                    ]);
+                    // $onesignal = new Fcmlib();
+                    // $send = $onesignal->pushNotifToUser([
+                    //     'title' => "Pendaftaran Jalur " . $pen->via_jalur . " Tidak Lolos.",
+                    //     'content' => "Anda dinyatakan <b>TIDAK LOLOS</b> seleksi PPDB Tahun Ajaran 2023/2024 <br/>di : <b>" . getNamaAndNpsnSekolah($pen->tujuan_sekolah_id_1) . "</b> Melalui Jalur <b>" . $pen->via_jalur . "</b>. <br/> dikarenakan belum terverifikasi oleh Sekolah Tujuan.",
+                    //     'send_to' => $cekRegisterTemp['user_id'],
+                    //     'app_url' => 'riwayat_pendaftaran_page',
+                    // ]);
                 } catch (\Throwable $th) {
                 }
                 $this->_db->transCommit();

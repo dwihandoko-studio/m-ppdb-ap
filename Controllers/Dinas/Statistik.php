@@ -83,6 +83,71 @@ class Statistik extends BaseController
     //     echo json_encode($output);
     // }
 
+    public function getAllLolos()
+    {
+        $request = Services::request();
+        $datamodel = new StatistiklolosModel($request);
+
+
+        $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+        // $filterJalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
+
+        $lists = $datamodel->get_datatables($filterJenjang);
+        // $lists = [];
+        $data = [];
+        $no = $request->getPost("start");
+        foreach ($lists as $list) {
+            $no++;
+            $row = [];
+
+            $row[] = $no;
+            // if($hakAksesMenu) {
+            //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
+            // $action =
+            //     '
+            //                 <a target="_blank" href="' . base_url('dinas/analisis/hasil/sekolah') . '?token=' . $list->tujuan_sekolah_id_1 . '" class="btn btn-primary btn-sm">
+            //                     <i class="fa fa-eye"></i>
+            //                     <span>Detail</span>
+            //                 </a>';
+            // $row[] = $action;
+            if ($list->bentuk_pendidikan_id == 6) {
+                $row[] = "SMP";
+            } else if ($list->bentuk_pendidikan_id == 5) {
+                $row[] = "SD";
+            } else {
+                $row[] = "Not Known";
+            }
+            $row[] = $list->npsn_sekolah;
+            $row[] = $list->nama_sekolah;
+            $row[] = $list->nama_kecamatan;
+            if ($list->status_sekolah == 1) {
+                $row[] = $list->diterima_afirmasi;
+                $row[] = $list->diterima_zonasi;
+                $row[] = $list->diterima_mutasi;
+                $row[] = $list->diterima_prestasi;
+                $row[] = 0;
+            } else {
+                $row[] = 0;
+                $row[] = 0;
+                $row[] = 0;
+                $row[] = 0;
+                $row[] = $list->diterima_swasta;
+            }
+            $row[] = ($list->diterima_zonasi + $list->diterima_afirmasi + $list->diterima_mutasi + $list->diterima_prestasi + $list->diterima_swasta);
+
+            $data[] = $row;
+        }
+        $output = [
+            "draw" => $request->getPost('draw'),
+            // "recordsTotal" => 0,
+            // "recordsFiltered" => 0,
+            "recordsTotal" => $datamodel->count_all($filterJenjang),
+            "recordsFiltered" => $datamodel->count_filtered($filterJenjang),
+            "data" => $data
+        ];
+        echo json_encode($output);
+    }
+
     public function getAll()
     {
         $request = Services::request();
@@ -349,6 +414,24 @@ class Statistik extends BaseController
         // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
 
         return view('dinas/statistik/index-swasta', $data);
+    }
+
+    public function datalolos()
+    {
+        $data['title'] = 'Rekapitulasi Hasil Pelaksanaan Peserta Lolos';
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $data['user'] = $user->data;
+
+        // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
+
+        return view('dinas/statistik/index-lolos', $data);
     }
 
     public function datajeniskelamin()

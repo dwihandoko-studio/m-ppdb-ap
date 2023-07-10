@@ -62,7 +62,7 @@
                                             <label for="filter_jenjang" class="form-control-label">Filter Jenjang</label>
                                             <select class="form-control filter-jenjang" name="filter_jenjang" id="filter_jenjang" data-toggle="select22" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." required>
                                                 <option value="6" selected>SMP</option>
-                                                <option value="5" selected>SD</option>
+                                                <option value="5">SD</option>
                                             </select>
                                         </div>
                                     </div>

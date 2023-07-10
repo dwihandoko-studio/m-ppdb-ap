@@ -5,7 +5,7 @@ namespace App\Models\Dinas;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\Model;
 
-class StatistikModel extends Model
+class StatistiklolosModel extends Model
 {
     protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, 'b.nama', null, null, null, null, null);

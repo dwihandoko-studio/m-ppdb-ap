@@ -76,12 +76,12 @@
                             <table id="data-table-id" class="table align-items-center table-flush">
                                 <thead>
                                     <tr>
-                                        <th rowspan="3" data-orderable="false">No</th>
-                                        <th rowspan="3" data-orderable="false">Jenjang</th>
-                                        <th rowspan="3">NPSN</th>
-                                        <th rowspan="3">Satuan Pendidikan</th>
-                                        <th rowspan="3">Kecamatan</th>
-                                        <th rowspan="3">Jumlah Pendaftar</th>
+                                        <th data-orderable="false">No</th>
+                                        <th data-orderable="false">Jenjang</th>
+                                        <th data-orderable="false">NPSN</th>
+                                        <th data-orderable="false">Satuan Pendidikan</th>
+                                        <th data-orderable="false">Kecamatan</th>
+                                        <th data-orderable="false">Jumlah Pendaftar</th>
                                         <!-- <th colspan="6" style="text-align: center;" data-orderable="false">Jumlah Pendaftar</th> -->
                                     </tr>
                                     <!-- <tr>

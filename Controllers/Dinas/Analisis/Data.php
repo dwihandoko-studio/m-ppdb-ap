@@ -143,78 +143,78 @@ class Data extends BaseController
         }
     }
 
-    public function detailsave()
-    {
-        if ($this->request->getMethod() != 'post') {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = "Permintaan tidak diizinkan";
-            return json_encode($response);
-        }
+    // public function detailsave()
+    // {
+    //     if ($this->request->getMethod() != 'post') {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = "Permintaan tidak diizinkan";
+    //         return json_encode($response);
+    //     }
 
-        $rules = [
-            'nisn' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'NISN tidak boleh kosong. ',
-                ]
-            ],
-            'nama' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Nama tidak boleh kosong. ',
-                ]
-            ],
-            'tanggal' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Tanggal tidak boleh kosong. ',
-                ]
-            ],
-            'nik' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'NIK tidak boleh kosong. ',
-                ]
-            ],
-        ];
+    //     $rules = [
+    //         'nisn' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'NISN tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'nama' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Nama tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'tanggal' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'Tanggal tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //         'nik' => [
+    //             'rules' => 'required|trim',
+    //             'errors' => [
+    //                 'required' => 'NIK tidak boleh kosong. ',
+    //             ]
+    //         ],
+    //     ];
 
-        if (!$this->validate($rules)) {
-            $response = new \stdClass;
-            $response->code = 400;
-            $response->message = $this->validator->getError('nisn') . $this->validator->getError('nama') . $this->validator->getError('tanggal') . $this->validator->getError('nik');
-            return json_encode($response);
-        } else {
-            $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
-            $nama = htmlspecialchars($this->request->getVar('nama'), true);
-            $tanggal = htmlspecialchars($this->request->getVar('tanggal'), true);
-            $nik = htmlspecialchars($this->request->getVar('nik'), true);
+    //     if (!$this->validate($rules)) {
+    //         $response = new \stdClass;
+    //         $response->code = 400;
+    //         $response->message = $this->validator->getError('nisn') . $this->validator->getError('nama') . $this->validator->getError('tanggal') . $this->validator->getError('nik');
+    //         return json_encode($response);
+    //     } else {
+    //         $nisn = htmlspecialchars($this->request->getVar('nisn'), true);
+    //         $nama = htmlspecialchars($this->request->getVar('nama'), true);
+    //         $tanggal = htmlspecialchars($this->request->getVar('tanggal'), true);
+    //         $nik = htmlspecialchars($this->request->getVar('nik'), true);
 
-            $this->_db->transBegin();
-            try {
-                $this->_db->table('data_balikan')->where("NISN = '$nisn' AND Nama = '$nama' AND Tanggal_lahir = '$tanggal'")->update(['NIK' => $nik]);
-                if ($this->_db->affectedRows() > 0) {
-                    $this->_db->transCommit();
-                    $response = new \stdClass;
-                    $response->code = 200;
-                    $response->message = "Data Berhasil di update.";
-                    return json_encode($response);
-                } else {
-                    $this->_db->transRollback();
-                    $response = new \stdClass;
-                    $response->code = 400;
-                    $response->message = "Data gagal diupdate.";
-                    return json_encode($response);
-                }
-            } catch (\Exception $e) {
-                $this->_db->transRollback();
-                $response = new \stdClass;
-                $response->code = 400;
-                $response->message = "Data tidak ditemukan." . $e;
-                return json_encode($response);
-            }
-        }
-    }
+    //         $this->_db->transBegin();
+    //         try {
+    //             $this->_db->table('data_balikan')->where("NISN = '$nisn' AND Nama = '$nama' AND Tanggal_lahir = '$tanggal'")->update(['NIK' => $nik]);
+    //             if ($this->_db->affectedRows() > 0) {
+    //                 $this->_db->transCommit();
+    //                 $response = new \stdClass;
+    //                 $response->code = 200;
+    //                 $response->message = "Data Berhasil di update.";
+    //                 return json_encode($response);
+    //             } else {
+    //                 $this->_db->transRollback();
+    //                 $response = new \stdClass;
+    //                 $response->code = 400;
+    //                 $response->message = "Data gagal diupdate.";
+    //                 return json_encode($response);
+    //             }
+    //         } catch (\Exception $e) {
+    //             $this->_db->transRollback();
+    //             $response = new \stdClass;
+    //             $response->code = 400;
+    //             $response->message = "Data tidak ditemukan." . $e;
+    //             return json_encode($response);
+    //         }
+    //     }
+    // }
 
 
     public function verified()

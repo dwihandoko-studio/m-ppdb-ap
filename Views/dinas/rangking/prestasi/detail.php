@@ -271,8 +271,8 @@
             </div>
             <div class="modal-footer">
                 <!-- <button onclick="aksiCabutBerkas('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-danger">Cabut Berkas Pendaftaran</button> -->
-                <button onclick="aksiUbahPeringkat('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-warning">Benahi Peringkat Peserta</button>
-                <button onclick="aksiUbahKoordinat('<?= $data->id ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Benahi Koordinat Peserta</button>
+                <!-- <button onclick="aksiUbahPeringkat('<?= $data->id_pendaftaran ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-warning">Benahi Peringkat Peserta</button>
+                <button onclick="aksiUbahKoordinat('<?= $data->id ?>', '<?= str_replace("&#039;", "`", str_replace("'", "`", $data->fullname)) ?>')" type="button" class="btn btn-outline-primary">Benahi Koordinat Peserta</button> -->
                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
             </div>
         </form>
@@ -528,111 +528,111 @@
                 }
             }
 
-            function aksiUbahKoordinat(event, name) {
-                $.ajax({
-                    url: "./edit",
-                    type: 'POST',
-                    data: {
-                        id: event,
-                        name: name,
-                    },
-                    dataType: 'JSON',
-                    beforeSend: function() {
-                        $('div.modal-content-loading').block({
-                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                        });
-                    },
-                    success: function(resul) {
-                        $('div.modal-content-loading').unblock();
+            // function aksiUbahKoordinat(event, name) {
+            //     $.ajax({
+            //         url: "./edit",
+            //         type: 'POST',
+            //         data: {
+            //             id: event,
+            //             name: name,
+            //         },
+            //         dataType: 'JSON',
+            //         beforeSend: function() {
+            //             $('div.modal-content-loading').block({
+            //                 message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+            //             });
+            //         },
+            //         success: function(resul) {
+            //             $('div.modal-content-loading').unblock();
 
-                        if (resul.code !== 200) {
-                            if (resul.code === 401) {
-                                Swal.fire(
-                                    'Failed!',
-                                    resul.message,
-                                    'warning'
-                                ).then((valRes) => {
-                                    document.location.href = BASE_URL + '/dashboard';
-                                });
-                            } else {
-                                Swal.fire(
-                                    'Failed!',
-                                    resul.message,
-                                    'warning'
-                                );
-                            }
-                        } else {
-                            $('#contentModalUpdateLabel').html('EDIT KOORDINAT PESERTA');
-                            $('.contentBodyModalUpdate').html(resul.data);
-                            $('#contentModalUpdate').modal({
-                                backdrop: 'static',
-                                keyboard: false
-                            }, 'show');
-                        }
-                    },
-                    error: function() {
-                        $('div.modal-content-loading').unblock();
-                        Swal.fire(
-                            'Failed!',
-                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                            'warning'
-                        );
-                    }
-                });
-            }
+            //             if (resul.code !== 200) {
+            //                 if (resul.code === 401) {
+            //                     Swal.fire(
+            //                         'Failed!',
+            //                         resul.message,
+            //                         'warning'
+            //                     ).then((valRes) => {
+            //                         document.location.href = BASE_URL + '/dashboard';
+            //                     });
+            //                 } else {
+            //                     Swal.fire(
+            //                         'Failed!',
+            //                         resul.message,
+            //                         'warning'
+            //                     );
+            //                 }
+            //             } else {
+            //                 $('#contentModalUpdateLabel').html('EDIT KOORDINAT PESERTA');
+            //                 $('.contentBodyModalUpdate').html(resul.data);
+            //                 $('#contentModalUpdate').modal({
+            //                     backdrop: 'static',
+            //                     keyboard: false
+            //                 }, 'show');
+            //             }
+            //         },
+            //         error: function() {
+            //             $('div.modal-content-loading').unblock();
+            //             Swal.fire(
+            //                 'Failed!',
+            //                 "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+            //                 'warning'
+            //             );
+            //         }
+            //     });
+            // }
 
-            function aksiUbahPeringkat(event, name) {
-                $.ajax({
-                    url: "./editPeringkat",
-                    type: 'POST',
-                    data: {
-                        id: event,
-                        name: name,
-                    },
-                    dataType: 'JSON',
-                    beforeSend: function() {
-                        $('div.modal-content-loading').block({
-                            message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
-                        });
-                    },
-                    success: function(resul) {
-                        $('div.modal-content-loading').unblock();
+            // function aksiUbahPeringkat(event, name) {
+            //     $.ajax({
+            //         url: "./editPeringkat",
+            //         type: 'POST',
+            //         data: {
+            //             id: event,
+            //             name: name,
+            //         },
+            //         dataType: 'JSON',
+            //         beforeSend: function() {
+            //             $('div.modal-content-loading').block({
+            //                 message: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
+            //             });
+            //         },
+            //         success: function(resul) {
+            //             $('div.modal-content-loading').unblock();
 
-                        if (resul.code !== 200) {
-                            if (resul.code === 401) {
-                                Swal.fire(
-                                    'Failed!',
-                                    resul.message,
-                                    'warning'
-                                ).then((valRes) => {
-                                    document.location.href = BASE_URL + '/dashboard';
-                                });
-                            } else {
-                                Swal.fire(
-                                    'Failed!',
-                                    resul.message,
-                                    'warning'
-                                );
-                            }
-                        } else {
-                            $('#contentModalUpdateLabel').html('EDIT PERINGKAT PESERTA');
-                            $('.contentBodyModalUpdate').html(resul.data);
-                            $('#contentModalUpdate').modal({
-                                backdrop: 'static',
-                                keyboard: false
-                            }, 'show');
-                        }
-                    },
-                    error: function() {
-                        $('div.modal-content-loading').unblock();
-                        Swal.fire(
-                            'Failed!',
-                            "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
-                            'warning'
-                        );
-                    }
-                });
-            }
+            //             if (resul.code !== 200) {
+            //                 if (resul.code === 401) {
+            //                     Swal.fire(
+            //                         'Failed!',
+            //                         resul.message,
+            //                         'warning'
+            //                     ).then((valRes) => {
+            //                         document.location.href = BASE_URL + '/dashboard';
+            //                     });
+            //                 } else {
+            //                     Swal.fire(
+            //                         'Failed!',
+            //                         resul.message,
+            //                         'warning'
+            //                     );
+            //                 }
+            //             } else {
+            //                 $('#contentModalUpdateLabel').html('EDIT PERINGKAT PESERTA');
+            //                 $('.contentBodyModalUpdate').html(resul.data);
+            //                 $('#contentModalUpdate').modal({
+            //                     backdrop: 'static',
+            //                     keyboard: false
+            //                 }, 'show');
+            //             }
+            //         },
+            //         error: function() {
+            //             $('div.modal-content-loading').unblock();
+            //             Swal.fire(
+            //                 'Failed!',
+            //                 "Trafik sedang penuh, silahkan ulangi beberapa saat lagi.",
+            //                 'warning'
+            //             );
+            //         }
+            //     });
+            // }
         </script>
 <?php }
 } ?>

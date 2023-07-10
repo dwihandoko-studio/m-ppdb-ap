@@ -137,6 +137,63 @@ class Statistik extends BaseController
         echo json_encode($output);
     }
 
+    public function getAllSwasta()
+    {
+        $request = Services::request();
+        $datamodel = new StatistikModel($request);
+
+
+        $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";
+        // $filterJalur = htmlspecialchars($request->getVar('filter_jalur'), true) ?? "";
+
+        $lists = $datamodel->get_datatables($filterJenjang);
+        // $lists = [];
+        $data = [];
+        $no = $request->getPost("start");
+        foreach ($lists as $list) {
+            $no++;
+            $row = [];
+
+            $row[] = $no;
+            // if($hakAksesMenu) {
+            //     if((int)$hakAksesMenu->spj_tpg_verifikasi == 1) {
+            // $action =
+            //     '
+            //                 <a target="_blank" href="' . base_url('dinas/analisis/hasil/sekolah') . '?token=' . $list->tujuan_sekolah_id_1 . '" class="btn btn-primary btn-sm">
+            //                     <i class="fa fa-eye"></i>
+            //                     <span>Detail</span>
+            //                 </a>';
+            // $row[] = $action;
+            if ($list->bentuk_pendidikan_id == 6) {
+                $row[] = "SMP";
+            } else if ($list->bentuk_pendidikan_id == 5) {
+                $row[] = "SD";
+            } else {
+                $row[] = "Not Known";
+            }
+            $row[] = $list->npsn_sekolah;
+            $row[] = $list->nama_sekolah;
+            $row[] = $list->nama_kecamatan;
+            $row[] = $list->jumlah_pendaftar;
+            // $row[] = $list->jumlah_pendaftar_zonasi_1;
+            // $row[] = $list->jumlah_pendaftar_zonasi_2;
+            // $row[] = $list->jumlah_pendaftar_zonasi_3;
+            // $row[] = $list->jumlah_pendaftar_mutasi;
+            // $row[] = $list->jumlah_pendaftar_prestasi;
+
+            $data[] = $row;
+        }
+        $output = [
+            "draw" => $request->getPost('draw'),
+            // "recordsTotal" => 0,
+            // "recordsFiltered" => 0,
+            "recordsTotal" => $datamodel->count_all($filterJenjang),
+            "recordsFiltered" => $datamodel->count_filtered($filterJenjang),
+            "data" => $data
+        ];
+        echo json_encode($output);
+    }
+
     public function index()
     {
         return redirect()->to(base_url('dinas/statistik/data'));
@@ -158,6 +215,24 @@ class Statistik extends BaseController
         // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
 
         return view('dinas/statistik/index', $data);
+    }
+
+    public function dataswasta()
+    {
+        $data['title'] = 'Rekapitulasi Pelaksanaan Sebelum Analisis Zonasi, Mutasi dan Prestasi Jalur Swasta';
+        $Profilelib = new Profilelib();
+        $user = $Profilelib->user();
+        if ($user->code != 200) {
+            delete_cookie('jwt');
+            session()->destroy();
+            return redirect()->to(base_url('web/home'));
+        }
+
+        $data['user'] = $user->data;
+
+        // $data['provinsis'] = $this->_db->table('ref_provinsi')->whereNotIn('id', ['350000', '000000'])->orderBy('nama', 'asc')->get()->getResult();
+
+        return view('dinas/statistik/index-swasta', $data);
     }
 
     public function sekolah()

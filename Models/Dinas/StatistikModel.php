@@ -31,7 +31,8 @@ class StatistikModel extends Model
         $this->dt->join('_users_profil_tb e', 'a.tujuan_sekolah_id_1 = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
-        $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');
+        // $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');
+        $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
         $this->dt->where('b.status_sekolah', 1);
         $this->dt->groupBy('a.tujuan_sekolah_id_1');
 

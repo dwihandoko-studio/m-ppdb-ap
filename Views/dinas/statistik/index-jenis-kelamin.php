@@ -238,7 +238,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "./getAllSwasta",
+                "url": "./getAllJenisKelamin",
                 "type": "POST",
                 "data": function(data) {
                     // data.filter_kecamatan = $('#filter_kecamatan').val();

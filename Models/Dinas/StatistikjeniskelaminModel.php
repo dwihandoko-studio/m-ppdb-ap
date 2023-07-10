@@ -5,9 +5,9 @@ namespace App\Models\Dinas;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\Model;
 
-class StatistikswastaModel extends Model
+class StatistikjeniskelaminModel extends Model
 {
-    protected $table = "_tb_pendaftar_bahan a";
+    protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, 'b.nama', null, null, null, null, null);
     protected $column_search = array('b.nama', 'b.npsn');
     protected $order = array('b.nama' => 'asc');
@@ -26,14 +26,14 @@ class StatistikswastaModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.bentuk_pendidikan_id, b.nama as nama_sekolah, b.npsn as npsn_sekolah, b.status_sekolah, b.kode_wilayah as kode_kecamatan, c.nama as nama_kecamatan, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1) as jumlah_pendaftar";
+        $select = "b.bentuk_pendidikan_id, b.nama as nama_sekolah, b.npsn as npsn_sekolah, b.status_sekolah, b.kode_wilayah as kode_kecamatan, c.nama as nama_kecamatan, (SELECT count(id) FROM _tb_pendaftar JOIN _users_profil_tb ON JSON_UNQUOTE(JSON_EXTRACT(_users_profil_tb.details, '$.peserta_didik_id')) = _tb_pendaftar.peserta_didik_id WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND JSON_UNQUOTE(JSON_EXTRACT(_users_profil_tb.details, '$.jenis_kelamin')) = 'L') as jumlah_l, (SELECT count(id) FROM _tb_pendaftar JOIN _users_profil_tb ON JSON_UNQUOTE(JSON_EXTRACT(_users_profil_tb.details, '$.peserta_didik_id')) = _tb_pendaftar.peserta_didik_id WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND JSON_UNQUOTE(JSON_EXTRACT(_users_profil_tb.details, '$.jenis_kelamin')) = 'P') as jumlah_p";
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb e', 'a.tujuan_sekolah_id_1 = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
         // $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');
         $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
-        $this->dt->where('b.status_sekolah', 2);
+        // $this->dt->where('b.status_sekolah', 1);
         $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         $i = 0;

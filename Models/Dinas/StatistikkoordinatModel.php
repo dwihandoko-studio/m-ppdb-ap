@@ -26,7 +26,7 @@ class StatistikkoordinatModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.nisn, b.nama, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, ROUND(getDistanceKm(b.latitude,b.longitude,j.latitude,j.longitude), 2) AS jarak";  //14
+        $select = "b.nisn, b.nama, b.lintang, b.bujur, a.id as id_pendaftaran, c.nama as nama_sekolah_asal, c.npsn as npsn_sekolah_asal, j.nama as nama_sekolah_tujuan, j.npsn as npsn_sekolah_tujuan, j.latitude as latitude_sekolah_tujuan, j.longitude as longitude_sekolah_tujuan, ROUND(getDistanceKm(b.lintang,b.bujur,j.latitude,j.longitude), 2) AS jarak";  //14
 
         $this->dt->select($select);
         $this->dt->join('ref_pd_pendaftar b', 'a.peserta_didik_id = b.peserta_didik_id', 'LEFT');

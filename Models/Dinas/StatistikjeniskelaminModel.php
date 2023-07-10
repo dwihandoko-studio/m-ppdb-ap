@@ -26,14 +26,14 @@ class StatistikjeniskelaminModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.bentuk_pendidikan_id, b.nama as nama_sekolah, b.npsn as npsn_sekolah, b.status_sekolah, b.kode_wilayah as kode_kecamatan, c.nama as nama_kecamatan, (SELECT count(_tb_pendaftar.id) FROM _tb_pendaftar JOIN ref_pd_pendaftar ON ref_pd_pendaftar ref_pd_pendaftar.peserta_didik_id = _tb_pendaftar.peserta_didik_id WHERE _tb_pendaftar.tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND ref_pd_pendaftar.jenis_kelamin = 'L') as jumlah_l, (SELECT count(_tb_pendaftar.id) FROM _tb_pendaftar JOIN ref_pd_pendaftar ON ref_pd_pendaftar.peserta_didik_id = _tb_pendaftar.peserta_didik_id WHERE _tb_pendaftar.tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND ref_pd_pendaftar.jenis_kelamin = 'P') as jumlah_p";
+        $select = "b.bentuk_pendidikan_id, b.nama as nama_sekolah, b.npsn as npsn_sekolah, b.status_sekolah, b.kode_wilayah as kode_kecamatan, c.nama as nama_kecamatan, (SELECT count(_tb_pendaftar.id) FROM _tb_pendaftar JOIN ref_pd_pendaftar ON ref_pd_pendaftar ref_pd_pendaftar.peserta_didik_id = _tb_pendaftar.peserta_didik_id WHERE _tb_pendaftar.tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND _tb_pendaftar.status_pendaftaran = 2 AND ref_pd_pendaftar.jenis_kelamin = 'L') as jumlah_l, (SELECT count(_tb_pendaftar.id) FROM _tb_pendaftar JOIN ref_pd_pendaftar ON ref_pd_pendaftar.peserta_didik_id = _tb_pendaftar.peserta_didik_id WHERE _tb_pendaftar.tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND _tb_pendaftar.status_pendaftaran = 2 AND ref_pd_pendaftar.jenis_kelamin = 'P') as jumlah_p";
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb e', 'a.tujuan_sekolah_id_1 = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT');
         // $this->dt->join('ref_bentuk_pendidikan d', 'a.bentuk_pendidikan_id = d.id', 'LEFT');
         // $this->dt->join('ref_kecamatan c', 'b.kode_wilayah = c.id', 'LEFT');
         $this->dt->join('ref_kecamatan c', 'LEFT(b.kode_wilayah,6) = c.id', 'LEFT');
-        // $this->dt->where('b.status_sekolah', 1);
+        $this->dt->where('a.status_pendaftaran', 2);
         $this->dt->groupBy('a.tujuan_sekolah_id_1');
 
         $i = 0;

@@ -7,6 +7,7 @@ use App\Models\Dinas\StatistikModel;
 use App\Models\Dinas\StatistikswastaModel;
 use App\Models\Dinas\StatistikjeniskelaminModel;
 use App\Models\Dinas\StatistikkoordinatModel;
+use App\Models\Dinas\StatistiklolosModel;
 // use App\Models\Dinas\Analisis\ProsessekolahhasilModel;
 // use App\Models\Dinas\Analisis\ProsessekolahproseshasilModel;
 use Config\Services;

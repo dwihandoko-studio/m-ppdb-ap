@@ -107,7 +107,13 @@ class Statistik extends BaseController
             //                     <span>Detail</span>
             //                 </a>';
             // $row[] = $action;
-            $row[] = $list->jenjang;
+            if ($list->bentuk_pendidikan_id == 6) {
+                $row[] = "SMP";
+            } else if ($list->bentuk_pendidikan_id == 5) {
+                $row[] = "SD";
+            } else {
+                $row[] = "Not Known";
+            }
             $row[] = $list->npsn_sekolah;
             $row[] = $list->nama_sekolah;
             $row[] = $list->nama_kecamatan;

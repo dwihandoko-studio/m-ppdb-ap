@@ -80,7 +80,7 @@ class Statistik extends BaseController
     //     echo json_encode($output);
     // }
 
-    public function getAllSekolah()
+    public function getAll()
     {
         $request = Services::request();
         $datamodel = new StatistikModel($request);

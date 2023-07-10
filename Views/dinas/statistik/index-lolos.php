@@ -76,13 +76,13 @@
                             <table id="data-table-id" class="table align-items-center table-flush">
                                 <thead>
                                     <tr>
-                                        <th rowspan="3" data-orderable="false">No</th>
-                                        <th rowspan="3" data-orderable="false">Jenjang</th>
-                                        <th rowspan="3">Satuan Pendidikan</th>
-                                        <th rowspan="3">NPSN</th>
-                                        <th rowspan="3">Kecamatan</th>
+                                        <th rowspan="2" data-orderable="false">No</th>
+                                        <th rowspan="2" data-orderable="false">Jenjang</th>
+                                        <th rowspan="2">Satuan Pendidikan</th>
+                                        <th rowspan="2">NPSN</th>
+                                        <th rowspan="2">Kecamatan</th>
                                         <th colspan="5" style="text-align: center;" data-orderable="false">Jumlah Data Lolos PPDB</th>
-                                        <th rowspan="3">Total</th>
+                                        <th rowspan="2">Total</th>
                                     </tr>
                                     <tr>
                                         <th data-orderable="false">Jalur Afirmasi</th>

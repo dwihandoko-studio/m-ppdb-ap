@@ -4,6 +4,7 @@ namespace App\Controllers\Dinas;
 
 use App\Controllers\BaseController;
 use App\Models\Dinas\StatistikModel;
+use App\Models\Dinas\StatistikswastaModel;
 // use App\Models\Dinas\Analisis\ProsessekolahhasilModel;
 // use App\Models\Dinas\Analisis\ProsessekolahproseshasilModel;
 use Config\Services;
@@ -140,7 +141,7 @@ class Statistik extends BaseController
     public function getAllSwasta()
     {
         $request = Services::request();
-        $datamodel = new StatistikModel($request);
+        $datamodel = new StatistikswastaModel($request);
 
 
         $filterJenjang = htmlspecialchars($request->getVar('filter_jenjang'), true) ?? "";

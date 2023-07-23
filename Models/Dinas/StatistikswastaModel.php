@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class StatistikswastaModel extends Model
 {
-    protected $table = "_tb_pendaftar_bahan a";
+    protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, 'b.nama', null, null, null, null, null);
     protected $column_search = array('b.nama', 'b.npsn');
     protected $order = array('b.nama' => 'asc');

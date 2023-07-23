@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class StatistikModel extends Model
 {
-    protected $table = "_tb_pendaftar_bahan a";
+    protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, 'b.nama', null, null, null, null, null);
     protected $column_search = array('b.nama', 'b.npsn');
     protected $order = array('b.nama' => 'asc');
@@ -26,7 +26,7 @@ class StatistikModel extends Model
     private function _get_datatables_query()
     {
 
-        $select = "b.bentuk_pendidikan_id, b.nama as nama_sekolah, b.npsn as npsn_sekolah, b.status_sekolah, b.kode_wilayah as kode_kecamatan, c.nama as nama_kecamatan, (SELECT count(id) FROM _tb_pendaftar_bahan WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'AFIRMASI') as jumlah_pendaftar_afirmasi, (SELECT count(id) FROM _tb_pendaftar_bahan WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'ZONASI') as jumlah_pendaftar_zonasi_1, (SELECT count(id) FROM _tb_pendaftar_bahan WHERE tujuan_sekolah_id_2 = a.tujuan_sekolah_id_1 AND via_jalur = 'ZONASI') as jumlah_pendaftar_zonasi_2, (SELECT count(id) FROM _tb_pendaftar_bahan WHERE tujuan_sekolah_id_3 = a.tujuan_sekolah_id_1 AND via_jalur = 'ZONASI') as jumlah_pendaftar_zonasi_3, (SELECT count(id) FROM _tb_pendaftar_bahan WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'MUTASI') as jumlah_pendaftar_mutasi, (SELECT count(id) FROM _tb_pendaftar_bahan WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'PRESTASI') as jumlah_pendaftar_prestasi";
+        $select = "b.bentuk_pendidikan_id, b.nama as nama_sekolah, b.npsn as npsn_sekolah, b.status_sekolah, b.kode_wilayah as kode_kecamatan, c.nama as nama_kecamatan, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'AFIRMASI') as jumlah_pendaftar_afirmasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'ZONASI') as jumlah_pendaftar_zonasi_1, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_2 = a.tujuan_sekolah_id_1 AND via_jalur = 'ZONASI') as jumlah_pendaftar_zonasi_2, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_3 = a.tujuan_sekolah_id_1 AND via_jalur = 'ZONASI') as jumlah_pendaftar_zonasi_3, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'MUTASI') as jumlah_pendaftar_mutasi, (SELECT count(id) FROM _tb_pendaftar WHERE tujuan_sekolah_id_1 = a.tujuan_sekolah_id_1 AND via_jalur = 'PRESTASI') as jumlah_pendaftar_prestasi";
         $this->dt->select($select);
         $this->dt->join('_users_profil_tb e', 'a.tujuan_sekolah_id_1 = e.sekolah_id');
         $this->dt->join('ref_sekolah b', 'a.tujuan_sekolah_id_1 = b.id', 'LEFT');

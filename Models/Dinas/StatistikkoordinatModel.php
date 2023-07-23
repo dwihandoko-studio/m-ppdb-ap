@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class StatistikkoordinatModel extends Model
 {
-    protected $table = "_tb_pendaftar_bahan a";
+    protected $table = "_tb_pendaftar a";
     protected $column_order = array(null, 'b.nisn', 'b.nama', null, null, null, null);
     protected $column_search = array('b.nisn');
     protected $order = array('jarak' => 'desc');
